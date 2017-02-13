@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/undefined_divide_line" />
+
+    <TextView
+        android:id="@+id/tv_compelete"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="right|center_vertical"
+        android:textColor="@color/blue_custom"
+        android:paddingRight="13dp"
+        android:text="完成" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/undefined_divide_line" />
+
+    <LinearLayout
+        android:id="@+id/timepicker"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:orientation="horizontal">
+
+        <com.robin8.rb.extras.wheel.WheelView
+            android:id="@+id/consume_way"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <com.robin8.rb.extras.wheel.WheelView
+            android:id="@+id/day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"/>
+
+        <com.robin8.rb.extras.wheel.WheelView
+            android:id="@+id/hour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <com.robin8.rb.extras.wheel.WheelView
+            android:id="@+id/min"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+</LinearLayout>

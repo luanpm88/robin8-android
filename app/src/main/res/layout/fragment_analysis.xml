@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="13dp">
+
+        <TextView
+            android:id="@+id/atv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_custom"
+            android:maxLines="4"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" />
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/white_custom"
+            android:gravity="center"
+            android:text="@string/detail"
+            android:textColor="@color/blue_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            style="@style/text_view_with_left_line"
+            android:layout_marginTop="13dp"
+            android:text="@string/text_class" />
+
+        <com.robin8.rb.ui.widget.PieChartView
+            android:id="@+id/pv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/sub_gray_custom" />
+
+        <TextView
+            style="@style/text_view_with_left_line"
+            android:layout_marginTop="13dp"
+            android:text="@string/key_tags" />
+
+        <com.moxun.tagcloudlib.view.TagCloudView
+            android:id="@+id/tag_cloud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white_custom"
+            app:autoScrollMode="uniform"
+            app:darkColor="#ff00ff00"
+            app:lightColor="#ffff0000"
+            app:radiusPercent="0.7"
+            app:scrollSpeed="0.5" />
+
+        <TextView
+            style="@style/text_view_with_left_line"
+            android:layout_marginTop="13dp"
+            android:text="@string/sentiment_analysis" />
+
+        <com.robin8.rb.ui.widget.PieChartView
+            android:id="@+id/pv_sentiment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/sub_gray_custom" />
+
+        <TextView
+            style="@style/text_view_with_left_line"
+            android:layout_marginTop="13dp"
+            android:text="@string/product_server" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_custom"
+            android:scrollbars="none">
+
+            <com.robin8.rb.ui.widget.ColumnarChartView
+                android:id="@+id/ccv_product"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/sub_gray_custom" />
+        </HorizontalScrollView>
+
+        <TextView
+            style="@style/text_view_with_left_line"
+            android:layout_marginTop="13dp"
+            android:text="@string/person_brand" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_custom"
+            android:scrollbars="none">
+
+            <com.robin8.rb.ui.widget.ColumnarChartView
+                android:id="@+id/ccv_person_brand"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/sub_gray_custom" />
+        </HorizontalScrollView>
+    </LinearLayout>
+</ScrollView>

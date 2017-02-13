@@ -1,0 +1,58 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--MeasureInfluenceActivity-->
+    <dimen name="measure_influence_span_padding">12.5dp</dimen>
+    <dimen name="measure_influence_span_margin">12.5dp</dimen>
+    <dimen name="measure_influence_span_height">200dp</dimen>
+
+    <!--BindSocialActivity-->
+    <dimen name="bind_social_icon_width">30dp</dimen>
+
+    <!--titlebar-->
+    <dimen name="title_bar_height">44dp</dimen>
+    <dimen name="title_bar_padding">10dp</dimen>
+
+    <!--Mine-->
+    <dimen name="mine_horizontal_item_height">50dp</dimen>
+    <dimen name="mine_horizontal_item_padding">10dp</dimen>
+    <dimen name="mine_vertical_item_padding">8dp</dimen>
+
+    <!--列表默认距离-->
+    <dimen name="list_cell_left">12.5dp</dimen>
+    <dimen name="list_cell_bottom">7.5dp</dimen>
+
+    <!--字体大小-->
+    <dimen name="undefine_font_b">24sp</dimen>
+    <dimen name="undefine_font_a">20sp</dimen>
+    <dimen name="undefine_font_9">30sp</dimen>
+    <dimen name="undefine_font_8">18sp</dimen>
+    <dimen name="undefine_font_7">17sp</dimen>
+    <dimen name="undefine_font_6">16sp</dimen>
+    <dimen name="undefine_font_5">15sp</dimen>
+    <dimen name="undefine_font_4">14sp</dimen>
+    <dimen name="undefine_font_3">13sp</dimen>
+    <dimen name="undefine_font_2">12sp</dimen>
+    <dimen name="undefine_font_1">11sp</dimen>
+    <dimen name="undefine_font_0">10sp</dimen>
+
+
+    <dimen name="bt_cornor">8dp</dimen>
+
+    <dimen name="bind_social_move_length">130dp</dimen>
+    <dimen name="launch_reword_translate">240dp</dimen>
+
+    <!-- Wheel -->
+    <!-- 顶部按钮栏高度 -->
+    <dimen name="pickerview_topbar_height">44dp</dimen>
+    <!-- 顶部按钮paddingLeft -->
+    <dimen name="pickerview_topbar_paddingleft">10dp</dimen>
+    <!-- 顶部按钮paddingRight -->
+    <dimen name="pickerview_topbar_paddingright">30dp</dimen>
+    <!-- 顶部按钮文字大小 -->
+    <dimen name="pickerview_topbar_btn_textsize">20sp</dimen>
+    <dimen name="pickerview_topbar_title_textsize">21sp</dimen>
+
+</resources>

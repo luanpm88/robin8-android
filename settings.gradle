@@ -1,0 +1,1 @@
+include ':app', ':library', ':oneshare2', ':sharesdk2', ':hellocharts-library', ':swipeback', ':LRecyclerview_library'

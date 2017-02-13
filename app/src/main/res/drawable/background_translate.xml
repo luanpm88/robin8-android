@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="false"><shape>
+            <solid android:color="#ffffff" />
+
+            <stroke android:width="0.20000005dip" android:color="#f2f2f2" />
+
+            <corners android:bottomLeftRadius="@dimen/bt_cornor" android:bottomRightRadius="@dimen/bt_cornor" android:topLeftRadius="@dimen/bt_cornor" android:topRightRadius="@dimen/bt_cornor" />
+            <!-- <corners android:bottomLeftRadius="13dip" android:bottomRightRadius="13dip" android:topLeftRadius="13dip" android:topRightRadius="13dip" /> -->
+        </shape></item>
+    <item android:state_pressed="true"><shape>
+            <solid android:color="#ffffff" />
+
+            <stroke android:width="0.20000005dip" android:color="#f2f2f2" />
+
+            <corners android:bottomLeftRadius="@dimen/bt_cornor" android:bottomRightRadius="@dimen/bt_cornor" android:topLeftRadius="@dimen/bt_cornor" android:topRightRadius="@dimen/bt_cornor" />
+            <!-- <corners android:bottomLeftRadius="5.0dip" android:bottomRightRadius="5.0dip" android:topLeftRadius="5.0dip" android:topRightRadius="5.0dip" /> -->
+        </shape></item>
+
+</selector>

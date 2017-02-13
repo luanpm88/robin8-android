@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/white_custom"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="15dp">
+
+    <com.robin8.rb.view.widget.CircleImageView
+        android:id="@+id/civ_image"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="5dp"
+        android:background="@mipmap/icon_social_meipai_on" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_kol_nick"
+            style="@style/textview_center_black"
+            android:layout_width="65dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="--" />
+
+        <TextView
+            style="@style/textview_center"
+            android:text="@string/nickname" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_kol_fans"
+            style="@style/textview_center_black"
+            android:text="--" />
+
+        <TextView
+            style="@style/textview_center"
+            android:text="@string/number_of_fans" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_video_number"
+            style="@style/textview_center_black"
+            android:text="137" />
+
+        <TextView
+            style="@style/textview_center"
+            android:text="@string/number_of_videos" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tv_arrow"
+        android:textColor="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_5"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>

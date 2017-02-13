@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_custom"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/alipay_account"
+        layout="@layout/alipay_bind_item"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/undefined_divide_line" />
+    <include
+        android:id="@+id/alipay_name"
+        layout="@layout/alipay_bind_item"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/undefined_divide_line" />
+
+    <include
+        android:id="@+id/id_number"
+        layout="@layout/alipay_bind_item"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/undefined_divide_line" />
+
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_margin="40dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_blue_pane"
+        android:text="提交"
+        android:textColor="@color/blue_custom"
+        android:textSize="@dimen/undefine_font_5" />
+</LinearLayout>

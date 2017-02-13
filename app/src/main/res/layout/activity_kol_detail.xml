@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.robin8.rb.module.first.widget.ScrollViewExtend
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/iv_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="432dp"
+                    android:background="@color/light_gray_custom" />
+
+                <ImageView
+                    android:id="@+id/iv_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="432dp"
+                    android:background="@mipmap/pic_kol_detail_bg"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/tv_classification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_bg"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:text=""
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="3dp"
+                    android:layout_alignBottom="@+id/iv_bg"
+                    android:layout_marginBottom="41dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/shape_yellow_rectangular" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv_bg"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_kol_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="180dp"
+                        android:singleLine="true"
+                        android:text="--"
+                        android:textColor="@color/white_custom"
+                        android:textSize="@dimen/undefine_font_6" />
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/shape_dot_normal"
+                        android:gravity="center"
+                        android:textColor="@color/white_custom"
+                        android:textSize="@dimen/undefine_font_5" />
+
+                    <TextView
+                        android:id="@+id/tv_kol_from"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:text="--"
+                        android:textColor="@color/white_custom"
+                        android:textSize="@dimen/undefine_font_3" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+           <LinearLayout
+               android:id="@+id/ll_social_content"
+               android:layout_height="wrap_content"
+               android:layout_width="match_parent"
+               android:orientation="vertical"
+               ></LinearLayout>
+
+            <!--<ListView
+                android:id="@+id/lv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:fadingEdge="none"
+                android:scrollingCache="false" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/undefined_backgroud" />
+
+            <TextView
+                style="@style/textview_with_underline"
+                android:text="@string/kol_brief" />
+
+            <TextView
+                android:id="@+id/tv_kol_introduce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_custom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/undefined_backgroud" />
+
+            <TextView
+                style="@style/textview_with_underline"
+                android:text="@string/kol_display" />
+
+            <FrameLayout
+                android:id="@+id/fl_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:background="@color/white_custom"
+                android:clipChildren="false">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="150dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:clipChildren="false" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/undefined_backgroud" />
+
+            <TextView
+                style="@style/textview_with_underline"
+                android:text="@string/kol_tag_cloud" />
+
+            <com.moxun.tagcloudlib.view.TagCloudView
+                android:id="@+id/tag_cloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white_custom"
+                app:autoScrollMode="uniform"
+                app:darkColor="#ff00ff00"
+                app:lightColor="#ffff0000"
+                app:radiusPercent="0.5"
+                app:scrollSpeed="2" />
+        </LinearLayout>
+    </com.robin8.rb.module.first.widget.ScrollViewExtend>
+
+    <RelativeLayout
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:background="@color/cover_transparent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_kol_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="@dimen/undefine_font_a"
+            android:textColor="@color/white_custom"
+            android:text="@string/icons_back" />
+
+        <TextView
+            android:id="@+id/tv_favorite"
+            android:layout_alignParentRight="true"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/undefine_font_a"
+            android:textColor="@drawable/selector_favorite"
+            android:text="@string/icons_favorite_unselected" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_bottom"
+        style="@style/BottomTextViewStyle"
+        android:layout_gravity="bottom"
+        android:text="@string/invite_ta_participate_campaign" />
+</FrameLayout>

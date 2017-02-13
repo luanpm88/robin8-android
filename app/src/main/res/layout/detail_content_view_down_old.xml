@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_down"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@color/sub_gray_custom" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/cover_transparent" />
+        <include  layout="@layout/titlebar_detail_content"/>
+
+        <TextView
+            android:id="@+id/tv_brand_name_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="三座金莲"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_8" />
+
+        <TextView
+            android:id="@+id/tv_activity_time_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:text=""
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <include
+           android:id="@+id/ll_titlebar_down"
+            layout="@layout/titlebar_detail_content" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/undefined_backgroud"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="15dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="悬赏任务"
+                        android:textColor="@color/sub_black_custom"
+                        android:textSize="@dimen/undefine_font_5" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/yellow_custom" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_reword_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:lineSpacingExtra="@dimen/undefine_font_0"
+                    android:text="在新中国的历史上，有一首激昂的歌曲，它虽然简单，却充满着力量；它虽然质朴，却迸发出了时代的最强音。它曾经以排山倒海的气势激励着亿万！"
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="15dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="参与流程"
+                        android:textColor="@color/sub_black_custom"
+                        android:textSize="@dimen/undefine_font_5" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/yellow_custom" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="1.点击立即报名"
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="2.资质审核通过"
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="3.参与品牌活动"
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="4.完成品牌线上推广任务"
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="5.上传任务截图"
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="6.截图审核成功，获得奖励"
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+            </LinearLayout>
+
+            <View
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

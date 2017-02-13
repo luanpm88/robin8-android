@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="13dp"
+        android:paddingTop="13dp"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp"
+        android:background="@drawable/shape_bg_blue_pane"
+        android:text="@string/log_out"
+        android:textColor="@color/blue_custom"
+        android:textSize="@dimen/undefine_font_5" />
+</LinearLayout>

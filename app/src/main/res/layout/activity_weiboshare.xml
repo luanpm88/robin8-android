@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/undefined_backgroud"
+    android:orientation="vertical">
+
+    <include layout="@layout/titlebar_detail_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12.0dip"
+        android:background="@color/white_custom">
+
+        <EditText
+            android:id="@+id/edit_share"
+            android:layout_width="match_parent"
+            android:layout_height="220.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="请输入内容"
+            android:maxLength="140"
+            android:paddingBottom="13.0dip"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="13.0dip"
+            android:textColor="@color/sub_black_custom"
+            android:textColorHint="@color/sub_gray_custom"
+            android:textSize="16.0dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/edit_share"
+            android:layout_marginBottom="5.0dip"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginTop="30.0dip"
+            android:text="已附带原文链接和图片"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="12.0dip"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_numofword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/edit_share"
+            android:layout_alignRight="@id/edit_share"
+            android:layout_marginBottom="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:layout_marginTop="30.0dip"
+            android:text="140"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="12.0dip"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+</LinearLayout>

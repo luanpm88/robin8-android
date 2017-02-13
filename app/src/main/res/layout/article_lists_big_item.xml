@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_custom"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="match_parent"
+        android:layout_height="202.5dp"
+        android:background="@color/light_gray_custom" />
+
+    <com.robin8.rb.ui.widget.AlignTextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:text="安抚客户咖啡咖啡"
+        android:textColor="@color/sub_black_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <TextView
+        android:id="@+id/tv_src"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:text="新浪"
+        android:textColor="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_0" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/undefined_backgroud"/>
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="202.5dp"
+        android:background="@color/undefined_backgroud">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cover_transparent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:gravity="center_horizontal"
+            android:text="--"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            android:id="@+id/tv_expected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="预计提成"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp">
+
+            <com.robin8.rb.view.widget.CircleImageView
+                android:id="@+id/civ_user"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_user_default" />
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/civ_user"
+                android:gravity="center_horizontal"
+                android:text="user"
+                android:textColor="@color/white_custom"
+                android:textSize="@dimen/undefine_font_3" />
+
+            <TextView
+                android:id="@+id/tv_share_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal"
+                android:text="2133"
+                android:textColor="@color/white_custom"
+                android:textSize="@dimen/undefine_font_3" />
+
+            <TextView
+                android:id="@+id/tv_share_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/tv_share_num"
+                android:gravity="center_horizontal"
+                android:text="user"
+                android:textColor="@color/white_custom"
+                android:textSize="@dimen/undefine_font_3" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+</LinearLayout>

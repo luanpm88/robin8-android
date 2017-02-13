@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/undefined_backgroud"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <ImageView
+            android:id="@+id/iv_back_search"
+            android:layout_width="32dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="9dp"
+            android:src="@mipmap/icon_btn_back_black" />
+
+        <LinearLayout
+            android:id="@+id/ll_center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_bg_gray_pane_pane"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/icon_btn_search" />
+
+            <EditText
+                android:id="@+id/et_search_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/search"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:textColor="@color/sub_black_custom"
+                android:textColorHint="@color/sub_gray_custom"
+                android:textSize="@dimen/undefine_font_5" />
+
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="center"
+                android:text="@string/icons_delete"
+                android:textColor="@color/sub_black_custom"
+                android:textSize="@dimen/undefine_font_5" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_search"
+            style="@style/textview_center_black"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/search"
+            android:textColor="@drawable/selector_search_text_color"
+            android:textSize="@dimen/undefine_font_5" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_view"
+        style="@style/Undefined_Line"
+        android:layout_below="@+id/ll_search" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_selector"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/line_view"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_all_classify"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_classify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="全部分类"
+                android:textColor="@color/sub_black_custom"
+                android:textSize="@dimen/undefine_font_5" />
+
+            <ImageView
+                android:id="@+id/iv_classify"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_engine_down" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_all_sequencing"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_sequencing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="综合排序"
+                android:textColor="@color/sub_black_custom"
+                android:textSize="@dimen/undefine_font_5" />
+
+            <ImageView
+                android:id="@+id/iv_sequencing"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_engine_down" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_view2"
+        style="@style/Undefined_Line"
+        android:layout_below="@+id/ll_selector" />
+
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/xrefreshview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_selector">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_income_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@color/undefined_divide_line"
+            android:dividerHeight="1dp"
+            android:listSelector="@android:color/transparent" />
+    </com.andview.refreshview.XRefreshView>
+
+    <LinearLayout
+        android:id="@+id/ll_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/icon_task_default" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前页面无数据，试试别的页面吧"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_6" />
+    </LinearLayout>
+</RelativeLayout>

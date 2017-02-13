@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基于Raphael.js的svg多功能地图插件 - 【科e互联】</title>
+    <script type="text/javascript" src="js/lib/jquery.js"></script>
+    <script type="text/javascript" src="js/lib/raphael-min.js"></script>
+    <script type="text/javascript" src="js/res/chinaMapConfig.js"></script>
+    <script type="text/javascript" src="js/res/worldMapConfig.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript">
+	function test(param){
+		//alert(param[0].c.a);
+		var data = "{'jiangsu':{'stateInitColor':'0'},'henan':{'stateInitColor':'0'},'anhui':{'stateInitColor':'0'},'zhejiang':{'stateInitColor':'0'},'liaoning':{'stateInitColor':'0'},'beijing':{'stateInitColor':'1'},'hubei':{'stateInitColor':'1'},'jilin':{'stateInitColor':'1'},'shanghai':{'stateInitColor':'1'},'guangxi':{'stateInitColor':'1'}}";
+		//var result = eval('('+ param +')');
+		//$("#sss").val(param[0]);
+			var mapObj_1 = {};
+			$('#RegionMap').SVGMap({
+				external: mapObj_1,
+				mapName: 'china',
+				mapWidth: 300,
+				mapHeight: 300,
+				stateData: param,
+				// stateTipWidth: 118,
+				// stateTipHeight: 47,
+				// stateTipX: 2,
+				// stateTipY: 0
+			});
+	}
+
+
+    </script>
+</head>
+<body class="keBody"
+      onload='test({"jiangsu":{"stateInitColor":"0"},"henan":{"stateInitColor":"0"}})'>
+<div class="kePublic">
+    <!--效果html开始-->
+    <div class="wrap">
+        <div class="items" id="Item9">
+            <div class="itemCon">
+                <style type="text/css">
+                    .mapInfo i{ display:inline-block; width:15px; height:15px; margin-top:5px;
+                    line-height:15px; font-style:normal; background:#aeaeae; color:#fff;
+                    font-size:11px; font-family: Tahoma; -webkit-border-radius:15px;
+                    border-radius:15px; text-align:center}
+                    .mapInfo i.active{background:#E27F21;}
+                    .mapInfo span{ padding:0 5px 0 3px;}
+                    .mapInfo b{ font-weight:normal; color:#2770B5}
+
+                    .regionMap{ margin:0 auto;}
+                </style>
+                <div id="Region" style="position:relative; height:360px;">
+                    <div class="regionMap" id="RegionMap"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

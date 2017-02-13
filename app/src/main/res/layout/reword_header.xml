@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <com.robin8.rb.autoviewpager.AutoScrollViewPager
+        android:id="@+id/vp_auto"
+        android:layout_width="fill_parent"
+        android:layout_height="144dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_vp_points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:gravity="center"
+        android:orientation="horizontal">
+    </LinearLayout>
+</FrameLayout>

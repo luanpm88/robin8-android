@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:text="计算公式"
+        android:textColor="@color/sub_black_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[(数值A+数值B)/商品所需人次]取余数+"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <TextView
+            android:id="@+id/tv_lucky_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xxxxxxx"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_3" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:text="数值A"
+        android:textColor="@color/sub_black_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="=截止该商品最后夺宝时间最后10条全站参与记录"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <TextView
+            android:id="@+id/tv_order_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="=xxxxxxxx"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_3" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:text="数值B"
+        android:textColor="@color/sub_black_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="=最近一期中国福利彩票'老时时彩'的揭晓结果"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <TextView
+            android:id="@+id/tv_lottery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="=xxxxx(第xxxxxxxx期"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_3" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:text="幸运号码：xxxxxx"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white_custom"
+        android:background="@color/blue_custom"
+        android:textSize="@dimen/undefine_font_5" />
+</LinearLayout>

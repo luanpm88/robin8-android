@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_other"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="为了给您提供更好的服务\n请输入您的手机号"
+            android:textColor="@color/sub_gray_custom"
+            android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/et_phonenum"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="40dp"
+        android:background="@null"
+        android:hint="手机号"
+        android:inputType="phone"
+        android:maxLength="15"
+        android:singleLine="true"
+        android:textColor="@color/gray_custom"
+        android:textColorHint="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_6" />
+
+    <View
+        style="@style/Undefined_Line"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="13dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_checknum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="验证码"
+            android:inputType="phone"
+            android:maxLength="15"
+            android:singleLine="true"
+            android:textColor="@color/gray_custom"
+            android:textColorHint="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_6" />
+
+        <View
+            android:layout_width="0.4dp"
+            android:layout_height="23dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="@color/undefined_divide_line" />
+
+        <TextView
+            android:id="@+id/tv_checknum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="获取验证码"
+            android:textColor="@color/color_checknum"
+            android:textSize="@dimen/undefine_font_4" />
+    </LinearLayout>
+
+    <View
+        style="@style/Undefined_Line"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp" />
+
+    <TextView
+        android:id="@+id/tv_complete"
+        style="@style/BottomTextViewStyle"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:text="完成"/>
+</LinearLayout>

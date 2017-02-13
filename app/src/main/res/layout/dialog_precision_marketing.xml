@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:background="@drawable/shape_corner_bg_regular"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:gravity="center"
+            android:lineSpacingExtra="1.5dp"
+            android:text="Robin8优先推送最精准匹配的KOL，6小时后活动未消耗完会进行补推，退送给第二梯队的匹配KOL，以此类推......指导活动结束"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <View style="@style/Undefined_Line" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="知道了"
+            android:textColor="@color/gray_custom"
+            android:textSize="@dimen/undefine_font_5" />
+    </LinearLayout>
+</LinearLayout>

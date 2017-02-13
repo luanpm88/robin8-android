@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/white_custom"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_item_title"
+        android:text="微博"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/undefine_font_5"
+        android:textColor="@color/sub_black_custom"
+         />
+
+    <TextView
+        android:id="@+id/tv_item_info"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:layout_height="wrap_content"
+        android:text="点击填写"
+        android:textColor="@color/sub_black_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+</LinearLayout>

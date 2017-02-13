@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@id/ll_content1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="充值金额"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <EditText
+            android:id="@+id/et_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入充值金额"
+            android:inputType="numberDecimal"
+            android:maxLength="12"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:textColor="@color/sub_black_custom"
+            android:textColorHint="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_5" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_below="@+id/ll_content1"
+        style="@style/Undefined_Line" />
+
+    <LinearLayout
+        android:layout_below="@+id/line1"
+        android:id="@id/ll_content2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_invite_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="邀请码    "
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <EditText
+            android:id="@+id/et_invite_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="可不填写"
+            android:inputType="numberDecimal"
+            android:maxLength="12"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:textColor="@color/sub_black_custom"
+            android:textColorHint="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_5" />
+    </LinearLayout>
+
+    <View
+        android:layout_below="@+id/ll_content2"
+        android:id="@+id/line2"
+        style="@style/Undefined_Line" />
+
+    <LinearLayout
+        android:id="@+id/ll_content3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line2"
+        android:background="@color/white_custom"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="支付方式"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:background="@mipmap/icon_advertiser_alipay" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/ll_content3"
+        android:background="@color/undefined_divide_line" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line3"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="*充值后可以使用广告账户余额进行活动发布的订单支付"
+        android:textColor="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_0" />
+
+    <TextView
+        android:id="@+id/tv_recharge_instantly"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue_custom"
+        android:gravity="center"
+        android:text="立即充值"
+        android:textColor="@color/white_custom"
+        android:textSize="@dimen/undefine_font_7" />
+</RelativeLayout>

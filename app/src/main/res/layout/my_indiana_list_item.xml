@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_custom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/light_gray_custom" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="有意思的夺宝活动"
+                android:textColor="@color/sub_black_custom"
+                android:textSize="@dimen/undefine_font_5" />
+
+            <TextView
+                android:id="@+id/tv_issue"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="13dp"
+                android:text="期号：200000393"
+                android:textColor="@color/sub_gray_custom"
+                android:textSize="@dimen/undefine_font_0" />
+
+            <TextView
+                android:id="@+id/tv_mine_times"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:text="我已参与：1人次"
+                android:textColor="@color/gray_custom"
+                android:textSize="@dimen/undefine_font_0" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_executing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="参与进度： 5%"
+                android:textColor="@color/sub_gray_custom"
+                android:textSize="@dimen/undefine_font_0" />
+
+            <ProgressBar
+                android:id="@+id/pb_compelete"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:max="10000"
+                android:progress="0"
+                android:progressDrawable="@drawable/progressbar_color"
+                android:secondaryProgress="0" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_indiana"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_pane_blue_gray"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="追加"
+            android:textColor="@color/blue_custom"
+            android:textSize="@dimen/undefine_font_5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_finished"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="获奖者："
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <TextView
+            android:id="@+id/tv_winner_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="朱丽叶"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="TA已参与："
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <TextView
+            android:id="@+id/tv_winner_times"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textColor="@color/red_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人次"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_3" />
+    </LinearLayout>
+
+    <View
+        style="@style/Undefined_Line"
+        android:layout_marginTop="10dp" />
+</LinearLayout>

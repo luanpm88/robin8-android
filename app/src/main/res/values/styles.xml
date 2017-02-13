@@ -1,0 +1,212 @@
+<resources>
+
+    <style name="AppTheme" parent="@style/AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="bottom_radio_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@android:color/transparent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">@dimen/undefine_font_0</item>
+        <item name="android:textColor">@drawable/bottom_text_color</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style>
+
+    <!-- 自定义进度条样式 -->
+    <style name="Theme_Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="WeslyDialog2" parent="@android:style/Theme.Holo.DialogWhenLarge">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="ProgressBarBig">
+        <item name="android:indeterminateDrawable">@drawable/progress_big</item>
+        <item name="android:maxHeight">48dip</item>
+        <item name="android:maxWidth">48dip</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
+    </style>
+
+    <style name="ProgressBarMockIOS">
+        <item name="android:indeterminateDrawable">@drawable/mock_ios_progressbar</item>
+        <item name="android:indeterminate">false</item>
+        <item name="android:maxHeight">48dip</item>
+        <item name="android:maxWidth">48dip</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
+    </style>
+
+    <style name="ProgressBarMockIOSBig">
+        <item name="android:indeterminateDrawable">@drawable/mock_ios_progressbar</item>
+        <item name="android:indeterminate">false</item>
+        <item name="android:maxHeight">70dip</item>
+        <item name="android:maxWidth">70dip</item>
+        <item name="android:minHeight">70dip</item>
+        <item name="android:minWidth">70dip</item>
+    </style>
+
+    <style name="WeslyDialogNobg" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="WeslyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--homepage页面过滤器对话框-->
+    <style name="text_diaglog_filter">
+        <item name="android:background">@drawable/bg_dialog_filter</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_dialog_filter</item>
+        <item name="android:textSize">@dimen/undefine_font_3</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <!--第三方logo-->
+    <style name="third_logo_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <declare-styleable name="SlideDetailsLayout">
+        <!-- float value for indicate the moment of switch panel-->
+        <attr name="percent" format="float" />
+        <!-- how long the animation keep-->
+        <attr name="duration" format="integer" />
+        <!-- default panel to show after init-->
+        <attr name="default_panel" format="enum">
+            <enum name="front" value="0" />
+            <enum name="behind" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="shadow_left">@mipmap/shadow_left</item>
+        <item name="shadow_right">@mipmap/shadow_right</item>
+        <item name="shadow_bottom">@mipmap/shadow_bottom</item>
+    </style>
+
+    <!-- 自定义进度条样式 -->
+    <style name="ProgressBar_Mini" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <!-- <item name="android:progressDrawable">@drawable/progressbar_mini</item> -->
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <item name="android:minHeight">4dip</item>
+        <item name="android:maxHeight">4dip</item>
+    </style>
+
+
+    <style name="Undefined_Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.4dp</item>
+        <item name="android:background">@color/undefined_divide_line</item>
+    </style>
+
+    <style name="text_selector">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/gray_custom</item>
+        <item name="android:textSize">@dimen/undefine_font_5</item>
+    </style>
+
+    <style name="item_task_center_week">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/sub_black_custom</item>
+    </style>
+
+    <style name="BottomTextViewStyle">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/blue_custom</item>
+        <item name="android:textColor">@color/white_custom</item>
+        <item name="android:textSize">@dimen/undefine_font_5</item>
+    </style>
+
+    <style name="textview_center">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/sub_gray_custom</item>
+        <item name="android:textSize">@dimen/undefine_font_0</item>
+    </style>
+
+    <style name="textview_center_black" parent="@style/textview_center">
+        <item name="android:textColor">@color/sub_black_custom</item>
+        <item name="android:textSize">@dimen/undefine_font_3</item>
+    </style>
+
+    <style name="textview_with_underline">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/sub_black_custom</item>
+        <item name="android:textSize">@dimen/undefine_font_3</item>
+        <item name="android:padding">7dp</item>
+        <item name="android:background">@color/white_custom</item>
+        <item name="android:drawableBottom">@drawable/shape_yellow_rectangular</item>
+    </style>
+
+    <style name="text_view_with_left_line">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/sub_black_custom</item>
+        <item name="android:textSize">@dimen/undefine_font_3</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:background">@color/white_custom</item>
+        <item name="android:drawableLeft">@drawable/shape_yellow_rectangular_vertical</item>
+    </style>
+
+    <style name="textview_with_down_arrow">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/sub_black_custom</item>
+        <item name="android:textSize">@dimen/undefine_font_3</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@color/white_custom</item>
+        <item name="android:drawableBottom">@mipmap/icon_full_arrow_down</item>
+    </style>
+
+    <style name="share_textview">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/sub_gray_custom</item>
+        <item name="android:textSize">@dimen/undefine_font_3</item>
+
+    </style>
+
+</resources>

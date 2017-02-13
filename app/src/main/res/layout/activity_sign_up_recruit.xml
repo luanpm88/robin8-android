@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_word"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="13dp"
+        android:gravity="center_vertical"
+        android:text="文字描述"
+        android:textColor="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_3" />
+
+    <EditText
+        android:id="@+id/et_word"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/white_custom"
+        android:lineSpacingExtra="1.5dp"
+        android:gravity="start"
+        android:inputType="textMultiLine"
+        android:textColor="@color/sub_black_custom"
+        android:textColorHint="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <TextView
+        android:id="@+id/tv_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="13dp"
+        android:gravity="center_vertical"
+        android:text="图片描述"
+        android:textColor="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_3" />
+
+    <ImageView
+        android:id="@+id/iv_post"
+        android:layout_width="match_parent"
+        android:layout_height="204dp"
+        android:background="@mipmap/pic_task_recurit_pic" />
+</LinearLayout>

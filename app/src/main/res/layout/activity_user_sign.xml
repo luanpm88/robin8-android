@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@mipmap/pic_income_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/shape_ring_sub_gray" />
+
+                    <com.robin8.rb.view.widget.CircleImageView
+                        android:id="@+id/civ_image"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/icon_user_defaul" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="--"
+                    android:textColor="@color/white_custom"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_has_signed_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="已经连续签到0天"
+                    android:textColor="@color/white_custom"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="-月签到表"
+                android:textColor="@color/sub_black_custom"
+                android:textSize="13sp" />
+
+            <View style="@style/Undefined_Line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_marginLeft="8.5dp"
+                android:layout_marginRight="8.5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/item_task_center_week"
+                    android:text="周日" />
+
+                <TextView
+                    style="@style/item_task_center_week"
+                    android:text="周一" />
+
+                <TextView
+                    style="@style/item_task_center_week"
+                    android:text="周二" />
+
+                <TextView
+                    style="@style/item_task_center_week"
+                    android:text="周三" />
+
+                <TextView
+                    style="@style/item_task_center_week"
+                    android:text="周四" />
+
+                <TextView
+                    style="@style/item_task_center_week"
+                    android:text="周五" />
+
+                <TextView
+                    style="@style/item_task_center_week"
+                    android:text="周六" />
+            </LinearLayout>
+
+            <com.robin8.rb.ui.widget.OtherGridView
+                android:id="@+id/gv_month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="8.5dp"
+                android:layout_marginRight="8.5dp"
+                android:gravity="center"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="7"
+                android:verticalSpacing="6dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue_custom"
+        android:gravity="center"
+        android:text="立即签到"
+        android:textColor="@color/white_custom"
+        android:textSize="@dimen/undefine_font_5"
+        android:visibility="visible" />
+</RelativeLayout>

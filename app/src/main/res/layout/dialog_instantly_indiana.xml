@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_custom"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="参与人次"
+        android:textColor="@color/gray_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/tv_minus_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_custom"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="8dp"
+            android:text="-"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <EditText
+            android:id="@+id/et_times"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/undefined_backgroud"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:inputType="number"
+            android:text="5"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            android:id="@+id/tv_plus_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_custom"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="8dp"
+            android:text="+"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_times5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="@color/undefined_backgroud"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="5"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            android:id="@+id/tv_times10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="@color/undefined_backgroud"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="10"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            android:id="@+id/tv_times20"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="@color/undefined_backgroud"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="20"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            android:id="@+id/tv_times50"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="@color/undefined_backgroud"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="50"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="共消耗余额6元(当前余额：¥ 900.3)"
+        android:textColor="@color/gray_custom"
+        android:textSize="@dimen/undefine_font_5" />
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue_custom"
+        android:gravity="center"
+        android:text="立即夺宝"
+        android:textColor="@color/white_custom"
+        android:textSize="@dimen/undefine_font_5"
+        android:visibility="visible" />
+</LinearLayout>

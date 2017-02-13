@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/sv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_total_income"
+                android:layout_width="wrap_content"
+                android:layout_height="134.4dp"
+                android:background="@mipmap/pic_income_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/icon_income_text_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2.5dp"
+                        android:gravity="center"
+                        android:text="@string/total_income"
+                        android:textColor="@color/white_custom"
+                        android:textSize="@dimen/undefine_font_0" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_total_income"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_9" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <include
+                    android:id="@+id/layout_was_consume"
+                    layout="@layout/wallet_height_match_item" />
+
+                <View
+                    android:layout_width="0.4dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/undefined_divide_line" />
+
+                <include
+                    android:id="@+id/layout_was_withdraw"
+                    layout="@layout/wallet_height_match_item" />
+
+                <View
+                    android:layout_width="0.4dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/undefined_divide_line" />
+
+                <include
+                    android:id="@+id/layout_being_withdraw"
+                    layout="@layout/wallet_height_match_item" />
+
+                <View
+                    android:layout_width="0.4dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/undefined_divide_line" />
+
+                <include
+                    android:id="@+id/layout_beable_withdraw"
+                    layout="@layout/wallet_height_match_item" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.4dp"
+                android:background="@color/undefined_divide_line" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/days7_income_development"
+                android:textColor="@color/sub_gray_custom"
+                android:textSize="@dimen/undefine_font_5" />
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/lcv_chart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/income_info2"
+                android:textSize="@dimen/undefine_font_0" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@mipmap/icon_income_text_bg_tag" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="60dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:background="@mipmap/pic_income_text_bg"
+                android:paddingLeft="13dp"
+                android:paddingRight="13dp">
+
+                <TextView
+                    android:id="@+id/tv_incomes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="共0笔收入"
+                    android:textColor="@color/sub_gray_custom"
+                    android:textSize="@dimen/undefine_font_6" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="合计：¥0"
+                    android:textColor="@color/sub_gray_custom"
+                    android:textSize="@dimen/undefine_font_6" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@color/gray_custom"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_preview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="预览"
+            android:textColor="@color/white_custom"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="20dp"
+            android:background="@color/white_custom"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/income_info3"
+            android:textColor="@color/white_custom" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/pic_income_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_kol_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="25dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="25dp">
+
+        <com.robin8.rb.view.widget.CircleImageView
+            android:id="@+id/civ_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@mipmap/icon_user_default" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:maxWidth="165dp"
+                    android:text="@string/click_login"
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_5" />
+
+                <ImageView
+                    android:id="@+id/iv_kol_certification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:background="@mipmap/icon_kol_uncertification" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_user_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:singleLine="true"
+                android:text="@string/login_get_more_campaign"
+                android:textColor="@color/white_custom"
+                android:textSize="@dimen/undefine_font_0" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:background="@drawable/shape_bg_yellow_pane"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/be_kol"
+            android:textColor="@color/mine_yellow_custom"
+            android:textSize="@dimen/undefine_font_3" />
+    </LinearLayout>
+
+    <View
+        style="@style/Undefined_Line"
+        android:background="@color/divide_in_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <include
+            android:id="@+id/layout_click_number"
+            layout="@layout/mine_item_height_match" />
+
+        <include
+            android:id="@+id/layout_total_income"
+            layout="@layout/mine_item_height_match" />
+
+        <include
+            android:id="@+id/layout_max_income"
+            layout="@layout/mine_item_height_match" />
+
+        <include
+            android:id="@+id/layout_average_number"
+            layout="@layout/mine_item_height_match" />
+
+    </LinearLayout>
+</LinearLayout>

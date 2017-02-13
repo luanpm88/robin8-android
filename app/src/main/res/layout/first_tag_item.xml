@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.robin8.rb.ui.widget.OtherGridView
+        android:id="@+id/other_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="4"
+        android:paddingTop="10dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:text="1/3"
+        android:textSize="@dimen/undefine_font_3"
+        android:textColor="@color/sub_black_custom"
+        />
+</LinearLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/undefined_backgroud"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:text="请填写个人精彩展示" />
+
+    <EditText
+        android:id="@+id/et_content1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white_custom"
+        android:hint="例如:http//mp.weixin.qq.com/s?__biz=..."
+        android:inputType="text"
+        android:maxLength="22"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColor="@color/sub_black_custom"
+        android:textColorHint="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <TextView
+        android:id="@+id/tv_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:text="请填写个人精彩展示" />
+
+    <EditText
+        android:id="@+id/et_content2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white_custom"
+        android:hint="例如:http//mp.weixin.qq.com/s?__biz=..."
+        android:inputType="text"
+        android:maxLength="22"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColor="@color/sub_black_custom"
+        android:textColorHint="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+
+    <TextView
+        android:id="@+id/tv_title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:text="请填写个人精彩展示" />
+
+    <EditText
+        android:id="@+id/et_content3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white_custom"
+        android:hint="例如:http//mp.weixin.qq.com/s?__biz=..."
+        android:inputType="text"
+        android:maxLength="22"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColor="@color/sub_black_custom"
+        android:textColorHint="@color/sub_gray_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bind"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white_custom"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击打开微信"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            android:id="@+id/tv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_5" />
+    </RelativeLayout>
+</LinearLayout>

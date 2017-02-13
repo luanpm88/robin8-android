@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner_bg_regular"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:text="@string/campaign_sign_up_success_wait_for_auditing"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_4" />
+
+        <View style="@style/Undefined_Line" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@string/confirm"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_6" />
+    </LinearLayout>
+</LinearLayout>

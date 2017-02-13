@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white_custom"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:text="请选择支付方式"
+        android:textColor="@color/gray_custom"
+        android:textSize="@dimen/undefine_font_5" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/undefined_divide_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="7dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="广告账户余额支付"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            android:id="@+id/tv_account_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="¥ 9.4"
+            android:textColor="@color/yellow_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <TextView
+            android:id="@+id/tv_recharge_instantly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="立即充值"
+            android:textColor="@color/blue_custom"
+            android:textSize="@dimen/undefine_font_3" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/iv_btn1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/order_pay_btn_selector" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/undefined_divide_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="7dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝支付"
+            android:textColor="@color/sub_black_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/iv_btn2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/order_pay_btn_selector" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/undefined_divide_line" />
+
+    <TextView
+        android:id="@+id/tv_pay_number"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:paddingRight="15dp"
+        android:text="支付金额：¥ 100"
+        android:layout_gravity="right"
+        android:gravity="center_vertical"
+        android:textColor="@color/sub_black_custom"
+        android:textSize="@dimen/undefine_font_5" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/undefined_divide_line" />
+    </LinearLayout>
+    <View
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/tv_pay_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue_custom"
+        android:gravity="center"
+        android:text="确认支付 ¥ 100"
+        android:textColor="@color/white_custom"
+        android:textSize="@dimen/undefine_font_7" />
+</LinearLayout>

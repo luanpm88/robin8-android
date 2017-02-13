@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:layout_margin="3dp"
+              android:background="@drawable/background_translate"
+              android:gravity="center"
+              android:minWidth="280dip"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="更新说明："
+            android:textColor="@color/dialog_title_color"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tbt_cancel"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_bg_turn"
+            android:gravity="center"
+            android:text="忽  略"
+            android:textColor="#ffffff"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tbt_confirm"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_bg_turn"
+            android:gravity="center"
+            android:text="更  新"
+            android:textColor="#ffffff"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+</LinearLayout>

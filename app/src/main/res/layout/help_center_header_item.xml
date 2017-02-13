@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_marginTop="10dp"
+        style="@style/Undefined_Line"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/white_custom"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="风机房课"
+            android:textColor="@color/gray_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+
+        <TextView
+            android:id="@+id/tv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="课"
+            android:textColor="@color/gray_custom"
+            android:textSize="@dimen/undefine_font_5" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginBottom="10dp"
+        style="@style/Undefined_Line"/>
+
+</LinearLayout>

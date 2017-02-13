@@ -1,0 +1,195 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0'
+    }
+}
+
+android {
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+
+    compileSdkVersion 22
+    buildToolsVersion "23.0.2"
+
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.robin8.rb"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 8
+        versionName "1.7.1"
+        multiDexEnabled true
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'robin8'
+            keyPassword 'robin8'
+            storeFile file('robin8.keystore')
+            storePassword 'robin8'
+        }
+        debug {
+            keyAlias 'robin8'
+            keyPassword 'robin8'
+            storeFile file('robin8.keystore')
+            storePassword 'robin8'
+        }
+    }
+
+    buildTypes {
+
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"  // 不显示Log
+            minifyEnabled true //混淆
+            zipAlignEnabled true //Zipalign优化
+            shrinkResources true  // 移除无用的resource文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' //加载默认混淆配置文件
+            signingConfig signingConfigs.release
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            //生产
+            manifestPlaceholders = [GeTuiAPPID: "IZNLTEcKP29wbXiZVI8414", GeTuiAPPKEY: "q6R5PiHGxN8jzs4gLAmZd1", GeTuiAPPSECRET: "vp1baSRTI268tOTTKb5Tv"]
+        }
+
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true" // 显示Log
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.debug
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
+            //测试
+            manifestPlaceholders = [GeTuiAPPID: "zlSmDk87ki7VnDf7gHM9Q5", GeTuiAPPKEY: "K2BKjl9O0j5hmsLVP5ZJY4", GeTuiAPPSECRET: "2AJtKxqEOT90mQkT5Hiwm2"]
+        }
+    }
+
+    productFlavors {
+
+        //应用宝、360市场、百度 豌豆荚  android_yingyongbao android_360 android_baidu android_wandoujia  android_xiaomi
+        // android_huawei  android_lianxiang
+        // android_meizu  android_oppo  android_vivo
+        android_yingyongbao {
+            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
+        }
+
+        android_360 {
+            manifestPlaceholders = [Td_Channel_Id: "android_360"]
+        }
+
+        android_baidu {
+            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
+        }
+
+        android_wandoujia {
+            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
+        }
+
+        android_xiaomi {
+            manifestPlaceholders = [Td_Channel_Id: "android_xiaomi"]
+        }
+
+        android_huawei {
+            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
+        }
+
+        android_lianxiang {
+            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
+        }
+
+        android_robin8 {
+            manifestPlaceholders = [Td_Channel_Id: "android_robin8"]
+        }
+
+        android_vivo {
+            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
+        }
+        android_oppo {
+            manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
+        }
+
+        android_meizu {
+            manifestPlaceholders = [Td_Channel_Id: "android_meizu"]
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+afterEvaluate {
+    tasks.matching {
+        it.name.startsWith('dex')
+    }.each { dx ->
+        if (dx.additionalParameters == null) {
+            dx.additionalParameters = []
+        }
+        dx.additionalParameters += '--multi-dex' // enable multidex
+    }
+}
+
+dependencies {
+    provided fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/AMap_Location_v2.3.0_20160112.jar')
+    compile files('libs/glide-3.6.1.jar')
+    compile files('libs/gson-2.6.2.jar')
+    compile files('libs/jackson-annotations-2.2.1.jar')
+    compile files('libs/jackson-core-2.2.1.jar')
+    compile files('libs/jackson-databind-2.2.1.jar')
+    compile files('libs/jjwt.0.6.jar')
+    compile files('libs/org.bouncycastle.jar')
+    compile files('libs/okhttp-3.2.0.jar')
+    compile files('libs/okio-1.7.0.jar')
+    compile files('libs/bus-1.0.2-sources.jar')
+    compile project(path: ':library')
+    compile project(path: ':oneshare2')
+    compile project(path: ':hellocharts-library')
+    compile project(path: ':LRecyclerview_library')
+    compile files('libs/nineoldandroids-2.4.0.jar')
+    compile files('libs/alipaySdk-20160516.jar')
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile project(path: ':swipeback')
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.moxun:tagcloudlib:1.0.3'
+    compile files('libs/TalkingData_Analytics_Android_SDK_V2.2.30.jar')
+    compile 'com.android.support:multidex:1.0.1'
+    compile files('libs/core-3.0.0.jar')
+    compile files('libs/GetuiExt-2.0.3.jar')
+    compile files('libs/GetuiSDK2.7.0.0.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/xUtils-2.6.14.jar')
+    compile files('libs/jsoup-1.9.1.jar')
+//    compile files('libs/commons-codec-1.4.jar')
+}

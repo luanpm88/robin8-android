@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ratingbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray_custom"
+    >
+
+
+    <com.robin8.rb.ui.widget.StarBar
+        android:layout_marginTop="30dip"
+        android:id="@+id/starBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ratingbar:starEmpty="@mipmap/star_empty"
+        ratingbar:starFill="@mipmap/star_full"
+        android:layout_centerHorizontal="true"
+        ratingbar:starDistance="10dp"
+        ratingbar:starCount="5"
+        ratingbar:starSize="30dp"
+        android:layout_marginBottom="30dip"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        />
+
+     <EditText
+         android:layout_marginTop="40dip"
+         android:layout_below="@+id/starBar"
+         android:id="@+id/evaluate_content"
+         android:layout_width="match_parent"
+         android:gravity="top|left"
+         android:layout_height="80dip"
+         android:background="@color/white_custom"
+         android:layout_margin="@dimen/activity_vertical_margin"
+         />
+    <TextView
+        android:id="@+id/show_content"
+        android:layout_marginTop="40dip"
+        android:layout_below="@+id/starBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_custom"
+        android:textSize="@dimen/undefine_font_6"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:visibility="gone"
+        />
+
+        <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:text="@string/submit"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/white_custom"
+            android:background="@drawable/shape_evaluate_submit"
+            />
+
+</RelativeLayout>

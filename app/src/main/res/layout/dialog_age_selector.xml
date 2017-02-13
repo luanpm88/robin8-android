@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@color/white_custom"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_all"
+            style="@style/text_selector"
+            android:text="@string/all" />
+        <View style="@style/Undefined_Line"/>
+        <TextView
+            android:id="@+id/tv_part1"
+            style="@style/text_selector"
+            android:text="0-20" />
+        <View style="@style/Undefined_Line"/>
+        <TextView
+            android:id="@+id/tv_part2"
+            style="@style/text_selector"
+            android:text="20-40" />
+        <View style="@style/Undefined_Line"/>
+        <TextView
+            android:id="@+id/tv_part3"
+            style="@style/text_selector"
+            android:text="40-60" />
+        <View style="@style/Undefined_Line"/>
+        <TextView
+            android:id="@+id/tv_part4"
+            style="@style/text_selector"
+            android:text="60-100"
+            />
+        <View style="@style/Undefined_Line"/>
+
+    </LinearLayout>
+</LinearLayout>

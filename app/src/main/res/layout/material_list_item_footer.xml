@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        style="@style/textview_with_underline"
+        android:textColor="@color/yellow_custom"
+        android:text="@string/recurit_process" />
+
+    <TextView
+        style="@style/textview_with_down_arrow"
+        android:text="@string/kol_sign_up" />
+
+    <TextView
+        style="@style/textview_with_down_arrow"
+        android:text="@string/brand_select_kol" />
+
+    <TextView
+        style="@style/textview_with_down_arrow"
+        android:text="@string/kol_receive_campaign" />
+
+    <TextView
+        style="@style/textview_with_down_arrow"
+        android:text="@string/download_campaign_material" />
+
+    <TextView
+        style="@style/textview_with_down_arrow"
+        android:text="@string/upload_campaign_screenshot" />
+
+    <TextView
+        style="@style/textview_with_down_arrow"
+        android:text="@string/screenshot_check_passed" />
+
+    <TextView
+        style="@style/textview_with_down_arrow"
+        android:drawableBottom="@null"
+        android:text="@string/my_wallet_to_account" />
+</LinearLayout>

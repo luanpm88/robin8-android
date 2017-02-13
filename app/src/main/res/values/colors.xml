@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white_custom">#ffffff</color>
+    <color name="green_custom">#37bd64</color>
+    <color name="blue_custom">#2dcad0</color>
+    <color name="blue_transparent_custom">#aa2dcad0</color>
+    <color name="yellow_custom">#ecb200</color>
+    <color name="yellow_transparent_custom">#aaecb200</color>
+    <color name="mine_yellow_custom">#edb300</color>
+    <color name="brown">#A67D3D</color>棕色
+
+    <color name="brown_custom">#ede8dc</color>
+    <color name="red_custom">#f26d45</color>
+
+    <color name="black_custom">#181616</color>
+    <color name="sub_black_custom">#424141</color>
+
+    <color name="gray_custom">#5f6060</color>
+    <color name="sub_gray_custom">#929292</color>
+    <color name="light_gray_custom">#f8f8f8</color>
+
+    <color name="undefined_backgroud">#f2f4f9</color>
+    <color name="undefined_navigation_line">#d4d1d2</color>
+    <color name="undefined_divide_line">#E0E0E0</color>
+
+
+    <color name="dialog_title_color">#008AFC</color>
+    <color name="cover_transparent">#4d000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="cover_transparent_deep">#99000000</color>
+    <color name="normal">#99181616</color>
+
+    <!--  Wheel -->
+    <color name="pickerview_timebtn_nor">#057dff</color>
+    <color name="pickerview_timebtn_pre">#c2daf5</color>
+    <color name="pickerview_bg_topbar">#f5f5f5</color>
+    <color name="pickerview_topbar_title">#000000</color>
+    <color name="pickerview_wheelview_textcolor_out">#a8a8a8</color>
+    <color name="pickerview_wheelview_textcolor_center">#2a2a2a</color>
+    <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
+
+    <color name="mine_head_gray">#3d3d3d</color>
+    <color name="divide_in_black">#545454</color>
+
+
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="tran_dark">#80000000</color>
+</resources>

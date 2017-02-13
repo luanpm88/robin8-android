@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_setting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_refresh_arr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/pull_arrow_down"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/iv_progress"
+                android:layout_width="48dip"
+                android:layout_height="48dip"
+                android:layout_gravity="center"
+                android:visibility="visible" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_refresh_state"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="刷新状态"
+                android:textColor="@color/sub_gray_custom"
+                android:textSize="@dimen/undefine_font_5" />
+
+            <TextView
+                android:id="@+id/tv_refresh_updatetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textColor="@color/sub_gray_custom"
+                android:textSize="@dimen/undefine_font_1" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

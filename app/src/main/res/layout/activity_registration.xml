@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/mine_bg">
+
+    <ScrollView
+        android:id="@+id/sv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@color/white_custom"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/sub_gray_custom" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv"
+                    android:text=""
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_5" />
+
+                <TextView
+                    android:id="@+id/tv_reword_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv"
+                    android:layout_toRightOf="@+id/iv"
+                    android:text="悬赏金额"
+                    android:textColor="@color/sub_black_custom"
+                    android:textSize="@dimen/undefine_font_3" />
+                <TextView
+                    android:id="@+id/tv_reword_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toRightOf="@+id/tv_reword_info"
+                    android:text="100"
+                    android:textColor="@color/yellow_custom"
+                    android:textSize="@dimen/undefine_font_5" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_activity_time"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white_custom"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="2016.07.18 14:49 - 2016.07.20 14:49"
+                android:textColor="@color/sub_black_custom"
+                android:textSize="@dimen/undefine_font_3" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/undefined_divide_line" />
+
+            <TextView
+                android:id="@+id/tv_activity_address"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white_custom"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="http://www.baidu.com"
+                android:textColor="@color/sub_black_custom"
+                android:textSize="@dimen/undefine_font_3" />
+
+            <!-- 姓名 -->
+            <include
+                android:id="@+id/layout_name"
+                layout="@layout/registration_item_et" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/undefined_divide_line" />
+
+            <!-- 联系电话 -->
+            <include
+                android:id="@+id/layout_telphone"
+                layout="@layout/registration_item_et" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/undefined_divide_line" />
+
+            <!--  微信号 -->
+            <include
+                android:id="@+id/layout_wechat_account"
+                layout="@layout/registration_item_et" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/undefined_divide_line" />
+
+            <!--  微信好友数 -->
+            <include
+                android:id="@+id/layout_wechat_friends"
+                layout="@layout/registration_item_et" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/undefined_divide_line" />
+
+            <!--  微博 -->
+            <include
+                android:id="@+id/layout_sina"
+                layout="@layout/registration_item" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/undefined_divide_line" />
+
+            <!--  理想报价 -->
+            <include
+                android:id="@+id/layout_consume"
+                layout="@layout/registration_item" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/undefined_divide_line" />
+
+            <!--  备注信息 -->
+            <include
+                android:id="@+id/layout_remarks"
+                layout="@layout/registration_item" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/undefined_divide_line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="*请务必填写真实姓名与常用手机号码，确保我们可以与您保持联系"
+                android:textColor="@color/sub_gray_custom"
+                android:textSize="@dimen/undefine_font_1" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginBottom="40dp"
+                android:background="@color/undefined_divide_line" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:background="@color/blue_custom"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white_custom" />
+</FrameLayout>
