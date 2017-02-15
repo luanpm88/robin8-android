@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/liping/Documents/Android studio/AgoRobin/Robin8/hellocharts-library/assets"/><source path="/Users/liping/Documents/Android studio/AgoRobin/Robin8/hellocharts-library/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/liping/Documents/Android studio/AgoRobin/Robin8/hellocharts-library/src/release/assets"/></dataSet></merger>

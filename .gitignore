@@ -6,3 +6,11 @@
 .DS_Store
 /build
 /captures
+/library/build
+/LRecyclerview_library/build
+/oneshare2/build
+pulltorefresh/build
+sharesdk2/build
+swipeback/build
+hellocharts-library/build
+
