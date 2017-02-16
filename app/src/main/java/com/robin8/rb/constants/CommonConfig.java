@@ -32,8 +32,9 @@ public class CommonConfig {
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
 
-    public static String SERVICE = "http://test.robin8.net/";//测试服务器
-//     public static String SERVICE = "http://robin8.net/";//正式服务器
+    // public static String SERVICE = "http://test.robin8.net/";//robin8-测试服务器地址
+    public static String SERVICE = "http://139.196.44.225/";//beansmile-测试服务器地址
+    // public static String SERVICE = "http://robin8.net/";//正式服务器地址
     public static final String UpdateUrl = "api/v2/upgrades/check";
     public static final String BIND_IDENTITY_URL = "api/v2/influences/bind_identity";
     public static final String START_URL = "api/v2/influences/start";
