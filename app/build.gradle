@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.2.3'
     }
 }
 
@@ -18,7 +18,7 @@ android {
     }
 
     compileSdkVersion 22
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '25'
 
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
@@ -32,7 +32,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 8
-        versionName "1.7.1"
+        versionName "1.8.1"
         multiDexEnabled true
 
         ndk {
