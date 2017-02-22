@@ -53,7 +53,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/confirm"
-                android:textColor="@color/sub_black_custom"
+                style="@style/text_view_with_dialog_positive"
                 android:textSize="@dimen/undefine_font_5" />
 
             <View

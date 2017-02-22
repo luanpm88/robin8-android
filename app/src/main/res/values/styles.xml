@@ -205,6 +205,10 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="text_view_with_dialog_positive">
+        <item name="android:textColor">@color/blue_custom</item>
+    </style>
+
     <style name="share_textview">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
