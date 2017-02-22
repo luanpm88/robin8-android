@@ -7,6 +7,7 @@ import android.os.PersistableBundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -206,7 +207,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
 
         if (mFirstPager == null) {
-            mFirstPager = new FirstPager(this);
+            mFirstPager = new FirstPager(this, mVPContentPager);
         }
 
         if (mCreatePager == null) {
@@ -289,10 +290,10 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             BasePager pager = mPagerList.get(position);
             View view = pager.rootView;// 根据position获取 3个子界面的一个View
             container.addView(view);
-
             if (position != 0) {
                 mPagerList.get(position).initData();// 让具体的Pager子类加载数据
             }
+
             return view;
         }
 
@@ -300,7 +301,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);// 移除Item
         }
-
     }
 
     class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
@@ -321,6 +321,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                     mPageName = StatisticsAgency.KOL_LIST;
                     onePageSelected(KOL_LIST);
                     mRBBottomFirst.setChecked(true);
+                    mFirstPager.changeVisibleView();
                     break;
                 case CAMPAIGN_LIST:
                     mPageName = StatisticsAgency.CAMPAIGN_LIST;
