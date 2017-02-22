@@ -62,15 +62,11 @@ public class CreatePager extends BasePager implements ICreateFirstView, View.OnC
 
     @Override
     public void initTitleBar() {
-        mTitleBarText.setText(R.string.text_create);
+        mTitleBarText.setText("分享产品");
         mTitleBarText.setVisibility(View.VISIBLE);
-        firstLeft.setVisibility(View.INVISIBLE);
-        firstRight.setVisibility(View.VISIBLE);
-        mRewordLaunchIv.setVisibility(View.VISIBLE);
-        firstRight.setImageResource(R.mipmap.icon_ark_cps);
-        mRewordLaunchIv.setImageResource(R.mipmap.icon_ark_write);
-        mRewordLaunchIv.setOnClickListener(this);
-        firstRight.setOnClickListener(this);
+        firstLeft.setVisibility(View.GONE);
+        firstRight.setVisibility(View.GONE);
+        mRewordLaunchIv.setVisibility(View.GONE);
     }
 
     @Override
