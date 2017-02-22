@@ -2,56 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
-
-        <com.robin8.rb.autoviewpager.AutoScrollViewPager
-            android:id="@+id/auto_scroll_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="131.5dp"
-            android:background="@mipmap/pic_create_banner_0" />
-
-        <LinearLayout
-            android:id="@+id/ll_vp_points"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:translationY="-15dp"></LinearLayout>
-    </RelativeLayout>
+        android:textColor="@color/black_custom"
+        android:textSize="20sp"
+        android:text="创作产品文章 (提成更高) ："
+        android:layout_marginBottom="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp">
 
-        <ImageView
-            android:id="@+id/iv_product"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
-            android:src="@mipmap/icon_create_product" />
+        <Button
+            android:id="@+id/btn_teach_me"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="教我"
+            android:textSize="18sp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/black_custom"
+            android:background="@drawable/shape_bg_product_button"/>
 
-        <View
-            android:layout_width="0.3dp"
-            android:layout_height="match_parent"
-            android:background="@color/undefined_divide_line" />
+        <Button
+            android:id="@+id/btn_choose_product"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="开始挑选产品"
+            android:textSize="18sp"
+            android:textColor="@color/black_custom"
+            android:background="@drawable/shape_bg_product_button"/>
 
-        <ImageView
-            android:id="@+id/iv_article"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
-            android:src="@mipmap/icon_create_article" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="20sp"
+        android:textColor="@color/black_custom"
+        android:text="分享别人的产品文章 (更容易) ："/>
+
+
 </LinearLayout>
