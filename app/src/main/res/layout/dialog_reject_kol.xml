@@ -64,7 +64,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="取消"
-            android:textColor="@color/blue_custom"
+            style="@style/text_view_with_dialog_positive"
             android:textSize="@dimen/undefine_font_5" />
     </LinearLayout>
 </LinearLayout>
