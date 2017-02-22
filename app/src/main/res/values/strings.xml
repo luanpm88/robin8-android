@@ -32,7 +32,7 @@
     <string name="click_approve">*点击开始评测即同意</string>
     <string name="click_login_approve">*点击登录或社交帐号即同意</string>
     <string name="serviece_protocol">用户服务协议</string>
-    <string name="welcome_words">快加入第一个为影响力付费的国际平台吧!</string>
+    <string name="welcome_words">让大众分享文章而赚钱</string>
 
     <string name="more_loading">正在加载更多数据</string>
     <string name="no_net_click_reload">加载失败，点击重试</string>
