@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@mipmap/bg_first_page"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/logo_robin8"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="让大众分享文章而赚钱"
+        android:textColor="@android:color/white"
+        android:textSize="17sp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_message"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/icon_mail"/>
+
+            <TextView
+                style="@style/text_view_with_normal"
+                android:text="系统通知"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_total_money"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_view_with_normal"
+                        android:text="¥"
+                        android:textColor="#ff241f"/>
+
+                    <TextView
+                        style="@style/text_view_with_normal"
+                        android:text="246"
+                        android:textColor="#ff241f"
+                        android:textSize="25sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_view_with_normal"
+                android:text="累积赚到"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sign_in"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_sign_in"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/icon_checkin"/>
+
+                        <TextView
+                            style="@style/text_view_with_normal"
+                            android:layout_toRightOf="@id/iv_sign_in"
+                            android:text="×35"/>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/text_view_with_normal"
+                        android:text="每日签到"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_ongoing_activities"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#1E91AC"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="bottom"
+                    android:text="2"
+                    android:textColor="#424344"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="进行中活动"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_completed_activities"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="bottom"
+                    android:text="7"
+                    android:textStyle="bold"
+                    android:textColor="#424344"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="已完成的活动"
+                    />
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_view_with_normal"
+                android:text="¥188"
+                android:textColor="#ff241f"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_share_activities"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/icon_share"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="去分享活动"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_ongoing_product_share"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="bottom"
+                    android:text="1"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="进行中产品分享"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_completed_product_share"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="bottom"
+                    android:text="3"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="已卖出产品"
+                    />
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_view_with_normal"
+                android:text="¥154"
+                android:textColor="#ff241f"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_share_product"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/icon_share"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="去分享产品"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#1E91AC"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_ongoing_invite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="bottom"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#424344"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="进行中邀请"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_completed_invite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="bottom"
+                    android:text="2"
+                    android:textStyle="bold"
+                    android:textColor="#424344"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="已完成邀请"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_view_with_normal"
+                android:text="¥4"
+                android:textColor="#ff241f"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_share_invite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/icon_share"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="去邀请KOL"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/text_view_with_normal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="今日任务:"
+            android:textColor="#006A23"
+            android:textSize="15sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_checked"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="今天签到"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_checked"/>
+
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="分享一项活动"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_checked"/>
+
+                <TextView
+                    style="@style/text_view_with_normal"
+                    android:text="分享一款产品"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
