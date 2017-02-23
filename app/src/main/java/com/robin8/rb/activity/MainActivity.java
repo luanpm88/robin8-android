@@ -1,10 +1,12 @@
 package com.robin8.rb.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -34,6 +36,7 @@ import com.robin8.rb.task.LocationService;
 import com.robin8.rb.update.UpdateNewApk;
 import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
+import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
@@ -178,6 +181,37 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         mRBBottomCampaign = (RadioButton) findViewById(R.id.rb_bottom_campaign);
         mRBBottomCreate = (RadioButton) findViewById(R.id.rb_bottom_create);
         mRBBottomMine = (RadioButton) findViewById(R.id.rb_bottom_mine);
+        setRadioButtonDrawableSize(mRBBottomFirst);
+        setRadioButtonDrawableSize(mRBBottomCampaign);
+        setRadioButtonDrawableSize(mRBBottomCreate);
+        setRadioButtonDrawableSize(mRBBottomMine);
+    }
+
+    /**
+     * 调整bottomButton图片大小
+     * @param radioButton
+     */
+    private void setRadioButtonDrawableSize(RadioButton radioButton) {
+        Drawable drawable = null;
+        switch (radioButton.getId()) {
+            case R.id.rb_bottom_first:
+                drawable = ContextCompat.getDrawable(this, R.drawable.bottom_first_selector);
+                break;
+            case R.id.rb_bottom_campaign:
+                drawable = ContextCompat.getDrawable(this, R.drawable.bottom_reword_selector);
+                break;
+            case R.id.rb_bottom_create:
+                drawable = ContextCompat.getDrawable(this, R.drawable.bottom_create_selector);
+                break;
+            case R.id.rb_bottom_mine:
+                drawable = ContextCompat.getDrawable(this, R.drawable.bottom_mine_selector);
+                break;
+        }
+        if (drawable != null) {
+            drawable.setBounds(0, 0, DensityUtils.dp2px(this, 35), DensityUtils.dp2px(this, 35));
+            radioButton.setCompoundDrawables(null, drawable, null, null);
+        }
+
     }
 
     @Override
