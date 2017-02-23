@@ -173,7 +173,7 @@ public class FirstPager extends BasePager implements View.OnClickListener{
     private void startProductShareActivity() {
         Intent intent = new Intent();
         intent.setClass(mActivity, FragmentsActivity.class);
-        String nameArr[] = {"我的分享", "我的创作", "待审核", "审核拒绝"};//待审核、审核通过、审核拒绝, 我的分享
+        String nameArr[] = {"我的分享", "我的产品", "待审核", "审核拒绝"};//待审核、审核通过、审核拒绝, 我的分享
         String campaignTypeArr[] = {"shares", "passed", "pending", "rejected"};//'pending' , 'passed','rejected', 'shares'
         Bundle bundle = new Bundle();
         bundle.putStringArray("name", nameArr);

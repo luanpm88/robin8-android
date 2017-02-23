@@ -4,6 +4,7 @@
     <string-array name="mine_list_title">
         <item>我的钱包</item>
         <item>我的活动</item>
+        <item>我的产品</item>
         <item>我的关注</item>
         <item>品牌主</item>
         <item>一元夺宝</item>
@@ -15,6 +16,7 @@
     <string-array name="mine_list_icons">
         <item>&#xe60b;</item>
         <item>&#xe601;</item>
+        <item>&#xe645;</item>
         <item>&#xe623;</item>
         <item>&#xe606;</item>
         <item>&#xe612;</item>
