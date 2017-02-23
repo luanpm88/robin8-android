@@ -414,6 +414,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         if (mPageName == StatisticsAgency.MY) {
             mPagerList.get(MY).initData();
         }
+        if (mFirstPager != null) {
+            mFirstPager.changeVisibleView();
+        }
     }
 
     private boolean mHasPostLocation;

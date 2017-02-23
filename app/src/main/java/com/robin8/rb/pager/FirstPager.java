@@ -71,7 +71,8 @@ public class FirstPager extends BasePager implements View.OnClickListener{
     private void initIsKolView() {
         LayoutInflater layoutInflater = LayoutInflater.from(mActivity.getApplicationContext());
         mIsKolView = layoutInflater.inflate(R.layout.pager_home_is_kol,mLLContent, true);
-        mIsKolView.findViewById(R.id.ll_message).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.iv_message).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.ll_indiana).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_total_money).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_sign_in).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_ongoing_activities).setOnClickListener(this);
@@ -104,6 +105,9 @@ public class FirstPager extends BasePager implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        if (isDoubleClick()) {
+            return;
+        }
         switch (v.getId()) {
             case R.id.btn_be_kol:
                 // 申请成为KOL
@@ -118,7 +122,7 @@ public class FirstPager extends BasePager implements View.OnClickListener{
                     startActivity(intent);
                 }
                 break;
-            case R.id.ll_message:
+            case R.id.iv_message:
                 {
                     Intent intent = new Intent();
                     intent.setClass(mActivity, BaseRecyclerViewActivity.class);
@@ -128,6 +132,15 @@ public class FirstPager extends BasePager implements View.OnClickListener{
                     startActivity(intent);
                 }
                 break;
+            case R.id.ll_indiana:
+            {
+                Intent intent = new Intent(mActivity, BaseRecyclerViewActivity.class);
+                intent.putExtra("destination", SPConstants.INDIANA_ROBIN);
+                intent.putExtra("url", HelpTools.getUrl(CommonConfig.LOTTERY_ACTIVITIES_URL));
+                intent.putExtra("title", mActivity.getString(R.string.robin_indiana));
+                startActivity(intent);
+            }
+            break;
             case R.id.ll_total_money:
                 startActivity(WalletActivity.class);
                 break;
