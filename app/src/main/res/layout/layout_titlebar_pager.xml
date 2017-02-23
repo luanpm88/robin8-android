@@ -52,4 +52,34 @@
         android:layout_centerVertical="true"
         android:src="@mipmap/reword_filter"
         android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_reword_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="筛选"
+            android:textSize="@dimen/undefine_font_7"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_arrow"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_5"
+            android:textStyle="bold"
+            android:layout_marginLeft="3dp"/>
+
+    </LinearLayout>
+
+
 </RelativeLayout>

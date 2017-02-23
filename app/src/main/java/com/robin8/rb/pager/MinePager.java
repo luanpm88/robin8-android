@@ -615,11 +615,11 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                         setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE);
                         break;
                     case 1:
+                    case 2:
+                    case 3:
                     case 6:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.VISIBLE);
                         break;
-                    case 2:
-                    case 3:
                     case 7:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.GONE);
                         break;

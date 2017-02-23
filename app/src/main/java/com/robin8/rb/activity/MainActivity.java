@@ -391,7 +391,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             if (basePager instanceof RewordPager) {
                 RewordPager pager = (RewordPager) basePager;
                 pager.initVpData();
-                pager.setVpAuto();
             }
         }
 

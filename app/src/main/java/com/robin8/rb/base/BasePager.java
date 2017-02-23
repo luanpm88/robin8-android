@@ -17,7 +17,7 @@ public class BasePager {
     public View rootView;// 孩子的具体界面内容，是为了ViewPager中的instantiateItem返回View
     protected LinearLayout mLLContent;// 每个孩子的具体内容的容器
     protected TextView mTitleBarText;
-    protected ImageView mRewordFilterIv;
+    protected LinearLayout mRewordFilterLl;
     protected ImageView mRewordLaunchIv;
     protected ImageView firstLeft;
     protected ImageView firstRight;
@@ -40,7 +40,7 @@ public class BasePager {
         View view = View.inflate(mActivity, R.layout.pager_base, null);
         mLLContent = (LinearLayout) view.findViewById(R.id.fl_basepager_content);
         mTitleBarText = (TextView) view.findViewById(R.id.titlebar_text);
-        mRewordFilterIv = (ImageView) view.findViewById(R.id.reword_filter_iv);
+        mRewordFilterLl = (LinearLayout) view.findViewById(R.id.ll_reword_filter);
         mRewordLaunchIv = (ImageView) view.findViewById(R.id.reword_launch_iv);
         firstLeft = (ImageView) view.findViewById(R.id.first_left);
         firstRight = (ImageView) view.findViewById(R.id.first_right);
