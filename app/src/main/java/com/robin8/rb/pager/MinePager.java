@@ -63,12 +63,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     private static final int MY_WALLET = 1;
     private static final int MY_CAMPAIGN = 2;
-    private static final int MY_CARE = 3;
-    private static final int AD_HOST = 4;
-    private static final int ROBIN_INDIANA = 5;
-    private static final int SIGN = 6;
-    private static final int INVITE_FRIENDS = 7;
-    private static final int HELP_CENTER = 8;
+    private static final int MY_PRODUCT = 3;
+    private static final int MY_CARE = 4;
+    private static final int AD_HOST = 5;
+    private static final int ROBIN_INDIANA = 6;
+    private static final int SIGN = 7;
+    private static final int INVITE_FRIENDS = 8;
+    private static final int HELP_CENTER = 9;
 
     private static final String ROLE_BIG_V = "big_v";
     private static final String ROLE_PUBLIC = "public";
@@ -476,6 +477,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 case MY_CAMPAIGN:
                     skipToCampaign();
                     break;
+                case MY_PRODUCT:
+                    skipToProduct();
+                    break;
                 case MY_CARE:
                     skipToMyCare();
                     break;
@@ -496,6 +500,22 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     break;
             }
         }
+    }
+
+    private void skipToProduct() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, FragmentsActivity.class);
+        String nameArr[] = {"我的分享", "我的产品", "待审核", "审核拒绝"};//待审核、审核通过、审核拒绝, 我的分享
+        String campaignTypeArr[] = {"shares", "passed", "pending", "rejected"};//'pending' , 'passed','rejected', 'shares'
+        Bundle bundle = new Bundle();
+        bundle.putStringArray("name", nameArr);
+        bundle.putStringArray("type", campaignTypeArr);
+        bundle.putString("page_name", StatisticsAgency.MY_CREATE);
+        bundle.putString("title_name", mActivity.getString(R.string.my_create));
+        bundle.putString("url", HelpTools.getUrl(CommonConfig.MY_CREATE_URL));
+        intent.putExtras(bundle);
+        intent.setClass(mActivity, FragmentsActivity.class);
+        mActivity.startActivity(intent);
     }
 
     private void skipToHelpCenter() {
@@ -591,19 +611,19 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 holder.lineDown = convertView.findViewById(R.id.line_down);
                 switch (item.id) {
                     case 0:
-                    case 4:
+                    case 5:
                         setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE);
                         break;
                     case 1:
-                    case 5:
+                    case 6:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.VISIBLE);
                         break;
                     case 2:
-                    case 6:
-                        setLines(holder, View.GONE, View.GONE, View.GONE, View.GONE);
-                        break;
                     case 3:
                     case 7:
+                        setLines(holder, View.GONE, View.GONE, View.GONE, View.GONE);
+                        break;
+                    case 8:
                         setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE);
                         break;
                 }
