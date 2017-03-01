@@ -13,7 +13,7 @@ import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.module.create.adapter.SearchArticleAdapter;
 import com.robin8.rb.module.create.model.ArticleListsModel;
 import com.robin8.rb.module.first.helper.ViewPagerHelper;
-import com.robin8.rb.module.first.view.IFirstPageView;
+import com.robin8.rb.module.first.view.ISearchKolView;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -41,7 +41,7 @@ public class SearchArticlePresenter implements PresenterI {
     private RefreshHeaderView mRefreshHeaderView;
     private RefreshFooterView mRefreshFooterView;
     private RecyclerView mRecyclerView;
-    private IFirstPageView mIFirstPageView;
+    private ISearchKolView mISearchKolView;
     private Context mContext;
     private String mTitle;
     private WProgressDialog mWProgressDialog;
@@ -54,15 +54,15 @@ public class SearchArticlePresenter implements PresenterI {
     private String mUrl;
     private View mLLNoData;
 
-    public SearchArticlePresenter(IFirstPageView view, String url) {
-        mIFirstPageView = view;
+    public SearchArticlePresenter(ISearchKolView view, String url) {
+        mISearchKolView = view;
         mUrl = url;
 
-        mXRefreshView = mIFirstPageView.getXRefreshView();
-        mRecyclerView = mIFirstPageView.getRecyclerView();
-        mRefreshHeaderView = mIFirstPageView.getRefreshHeaderView();
-        mRefreshFooterView = mIFirstPageView.getRefreshFooterView();
-        mLLNoData = mIFirstPageView.getLLNoData();
+        mXRefreshView = mISearchKolView.getXRefreshView();
+        mRecyclerView = mISearchKolView.getRecyclerView();
+        mRefreshHeaderView = mISearchKolView.getRefreshHeaderView();
+        mRefreshFooterView = mISearchKolView.getRefreshFooterView();
+        mLLNoData = mISearchKolView.getLLNoData();
         mContext = mRecyclerView.getContext();
         initXRefreshView();
         initRecyclerView();
@@ -165,7 +165,7 @@ public class SearchArticlePresenter implements PresenterI {
 
         if (mCurrentState == INIT_DATA) {
             if (mWProgressDialog == null) {
-                mWProgressDialog = mIFirstPageView.getWProgressDialog();
+                mWProgressDialog = mISearchKolView.getWProgressDialog();
             }
             if (!mWProgressDialog.isShowing()) {
                 mWProgressDialog.show();
