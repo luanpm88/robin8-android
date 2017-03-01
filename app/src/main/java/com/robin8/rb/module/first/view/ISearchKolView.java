@@ -8,7 +8,7 @@ import com.robin8.rb.ui.widget.RefreshFooterView;
 import com.robin8.rb.ui.widget.RefreshHeaderView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 
-public interface IFirstPageView {
+public interface ISearchKolView {
 
     RecyclerView getRecyclerView();
     XRefreshView getXRefreshView();

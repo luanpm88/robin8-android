@@ -23,7 +23,7 @@ import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.module.create.prenster.SearchArticlePresenter;
 import com.robin8.rb.module.first.prenster.SearchResultPresenter;
-import com.robin8.rb.module.first.view.IFirstPageView;
+import com.robin8.rb.module.first.view.ISearchKolView;
 import com.robin8.rb.ui.widget.OtherListView;
 import com.robin8.rb.ui.widget.RefreshFooterView;
 import com.robin8.rb.ui.widget.RefreshHeaderView;
@@ -43,7 +43,7 @@ import butterknife.ButterKnife;
 /**
  * 搜索页面
  */
-public class SearchKolActivity extends BaseActivity implements IFirstPageView {
+public class SearchKolActivity extends BaseActivity implements ISearchKolView {
 
     private static final int ET_EMPTY = 0;
     private static final int ET_UNEMPTY = 1;

@@ -3,11 +3,14 @@ package com.robin8.rb.pager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
@@ -21,6 +24,9 @@ import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.create.activity.FragmentsActivity;
+import com.robin8.rb.module.first.model.FirstPagerModel;
+import com.robin8.rb.module.first.prenster.FirstPagerPresenter;
+import com.robin8.rb.module.first.view.IFirstPagerView;
 import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
 import com.robin8.rb.module.mine.activity.InviteFriendsActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
@@ -29,7 +35,7 @@ import com.robin8.rb.util.HelpTools;
 /**
  * @author Figo
  */
-public class FirstPager extends BasePager implements View.OnClickListener{
+public class FirstPager extends BasePager implements View.OnClickListener, IFirstPagerView{
 
     private static final String STATE_PENDING = "pending";  //pending,applying,passed,rejected
     private static final String STATE_APPLYING = "applying";    //pending,applying,passed,rejected
@@ -38,6 +44,22 @@ public class FirstPager extends BasePager implements View.OnClickListener{
     private ViewPager mViewPager;
     private View mNotKolView;
     private View mIsKolView;
+    private ImageView mMessageIv;
+    private TextView mTotalIncomeTv;
+    private FirstPagerPresenter mFirstPagerPresenter;
+    private TextView mSignInTv;
+    private TextView mCompletedInviteTv;
+    private TextView mCompletedInviteIncomeTv;
+    private ImageView mCheckSignInIv;
+    private TextView mOngoingCampaignsTv;
+    private TextView mCompletedCampaignsTv;
+    private TextView mCompletedCampaignsIncomeTv;
+    private TextView mOngoingProductsTv;
+    private TextView mCompletedProductsTv;
+    private TextView mCompletedProductsIncomeTv;
+    private TextView mOngoingInviteTv;
+    private ImageView mCheckShareCampaignsIv;
+    private ImageView mCheckShareProductsIv;
 
     public FirstPager(FragmentActivity activity, ViewPager viewPager) {
         super(activity);
@@ -58,7 +80,10 @@ public class FirstPager extends BasePager implements View.OnClickListener{
 
     @Override
     public void initData() {
-        super.initData();
+        if (mFirstPagerPresenter == null) {
+            mFirstPagerPresenter = new FirstPagerPresenter(this);
+        }
+        mFirstPagerPresenter.loadData();
     }
 
     private void initNotKolView() {
@@ -71,19 +96,40 @@ public class FirstPager extends BasePager implements View.OnClickListener{
     private void initIsKolView() {
         LayoutInflater layoutInflater = LayoutInflater.from(mActivity.getApplicationContext());
         mIsKolView = layoutInflater.inflate(R.layout.pager_home_is_kol,mLLContent, true);
-        mIsKolView.findViewById(R.id.iv_message).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.ll_message).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_indiana).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_total_money).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.ll_total_income).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_sign_in).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_ongoing_activities).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_completed_activities).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_share_activities).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.ll_ongoing_campaigns).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.ll_completed_campaigns).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.ll_share_campaigns).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_ongoing_product_share).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_completed_product_share).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_share_product).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_ongoing_invite).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_completed_invite).setOnClickListener(this);
         mIsKolView.findViewById(R.id.ll_share_invite).setOnClickListener(this);
+
+        mMessageIv = (ImageView) mIsKolView.findViewById(R.id.iv_message);
+        mTotalIncomeTv = (TextView) mIsKolView.findViewById(R.id.tv_total_income);
+        mSignInTv = (TextView) mIsKolView.findViewById(R.id.tv_sign_in);
+
+        mOngoingCampaignsTv = (TextView) mIsKolView.findViewById(R.id.tv_ongoing_campaigns);
+        mCompletedCampaignsTv = (TextView) mIsKolView.findViewById(R.id.tv_completed_campaigns);
+        mCompletedCampaignsIncomeTv = (TextView) mIsKolView.findViewById(R.id.tv_completed_campaigns_income);
+
+        mOngoingProductsTv = (TextView) mIsKolView.findViewById(R.id.tv_ongoing_products);
+        mCompletedProductsTv = (TextView) mIsKolView.findViewById(R.id.tv_completed_products);
+        mCompletedProductsIncomeTv = (TextView) mIsKolView.findViewById(R.id.tv_completed_products_income);
+
+        mOngoingInviteTv = (TextView) mIsKolView.findViewById(R.id.tv_ongoing_invite);
+        mCompletedInviteTv = (TextView) mIsKolView.findViewById(R.id.tv_completed_invite);
+        mCompletedInviteIncomeTv = (TextView) mIsKolView.findViewById(R.id.tv_completed_invite_income);
+
+        mCheckSignInIv = (ImageView) mIsKolView.findViewById(R.id.iv_check_sign_in);
+        mCheckShareCampaignsIv = (ImageView) mIsKolView.findViewById(R.id.iv_check_share_campaigns);
+        mCheckShareProductsIv = (ImageView) mIsKolView.findViewById(R.id.iv_check_share_products);
+
     }
 
     /**
@@ -99,6 +145,9 @@ public class FirstPager extends BasePager implements View.OnClickListener{
         } else {
             mNotKolView.setVisibility(View.GONE);
             mIsKolView.setVisibility(View.VISIBLE);
+            if (mFirstPagerPresenter != null) {
+                mFirstPagerPresenter.loadData();
+            }
         }
     }
 
@@ -122,7 +171,7 @@ public class FirstPager extends BasePager implements View.OnClickListener{
                     startActivity(intent);
                 }
                 break;
-            case R.id.iv_message:
+            case R.id.ll_message:
                 {
                     Intent intent = new Intent();
                     intent.setClass(mActivity, BaseRecyclerViewActivity.class);
@@ -141,19 +190,19 @@ public class FirstPager extends BasePager implements View.OnClickListener{
                 startActivity(intent);
             }
             break;
-            case R.id.ll_total_money:
+            case R.id.ll_total_income:
                 startActivity(WalletActivity.class);
                 break;
             case R.id.ll_sign_in:
                 startActivity(UserSignActivity.class);
                 break;
-            case R.id.ll_ongoing_activities:
+            case R.id.ll_ongoing_campaigns:
                 startActivity(MyCampaignActivity.class);
                 break;
-            case R.id.ll_completed_activities:
+            case R.id.ll_completed_campaigns:
                 startActivity(MyCampaignActivity.class);
                 break;
-            case R.id.ll_share_activities:
+            case R.id.ll_share_campaigns:
                 if (mViewPager != null) {
                     mViewPager.setCurrentItem(1);
                 }
@@ -212,5 +261,61 @@ public class FirstPager extends BasePager implements View.OnClickListener{
             mActivity.startActivity(intent);
         }
     }
+
+    @Override
+    public void setTotalIncome(String totalIncome) {
+        mTotalIncomeTv.setText(totalIncome);
+    }
+
+    @Override
+    public void showUnreadMessage(int unReadMessages) {
+        if (unReadMessages > 0) {
+            mMessageIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_first_pager_unread_message));
+        } else {
+            mMessageIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_first_pager_message));
+        }
+    }
+
+    @Override
+    public void setSignInData(String continuousCheckInCount, boolean hadCheckedInToday) {
+        mSignInTv.setText("×" + continuousCheckInCount);
+        if (hadCheckedInToday) {
+            mCheckSignInIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
+        } else {
+            mCheckSignInIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
+        }
+    }
+
+    @Override
+    public void setCampaignData(FirstPagerModel.Campaigns campaignData) {
+        mOngoingCampaignsTv.setText(campaignData.getRunningCount());
+        mCompletedCampaignsTv.setText(campaignData.getCompletedCount());
+        mCompletedCampaignsIncomeTv.setText("¥" + campaignData.getIncome());
+        if (campaignData.isHadSharedToday()) {
+            mCheckShareCampaignsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
+        } else {
+            mCheckShareCampaignsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
+        }
+    }
+
+    @Override
+    public void setProductData(FirstPagerModel.Product productData) {
+        mOngoingProductsTv.setText(productData.getRunningCount());
+        mCompletedProductsTv.setText(productData.getSoldCount());
+        mCompletedProductsIncomeTv.setText("¥" + productData.getIncome());
+        if (productData.isHadSharedToday()) {
+            mCheckShareProductsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
+        } else {
+            mCheckShareProductsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
+        }
+    }
+
+    @Override
+    public void setInviteData(FirstPagerModel.Invite inviteData) {
+        mOngoingInviteTv.setText(inviteData.getRunningCount());
+        mCompletedInviteTv.setText(inviteData.getCompletedCount());
+        mCompletedInviteIncomeTv.setText("¥" + inviteData.getIncome());
+    }
+
 
 }

@@ -12,7 +12,7 @@ import com.robin8.rb.module.first.adapter.FirstPageListAdapter;
 import com.robin8.rb.module.first.helper.ViewPagerHelper;
 import com.robin8.rb.module.first.model.BigVsBean;
 import com.robin8.rb.module.first.model.FirstListModel;
-import com.robin8.rb.module.first.view.IFirstPageView;
+import com.robin8.rb.module.first.view.ISearchKolView;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -41,7 +41,7 @@ public class SearchResultPresenter implements PresenterI {
     private RefreshHeaderView mRefreshHeaderView;
     private RefreshFooterView mRefreshFooterView;
     private RecyclerView mRecyclerView;
-    private IFirstPageView mIFirstPageView;
+    private ISearchKolView mISearchKolView;
     private Context mContext;
     private String mTagName;
     private WProgressDialog mWProgressDialog;
@@ -60,18 +60,18 @@ public class SearchResultPresenter implements PresenterI {
     private View mLLNoData;
     private String mCurrentOrder = ORDER_BY_CREATED;
 
-    public SearchResultPresenter(IFirstPageView view, String tagName, String kolName, boolean withHeaderB, String url) {
-        mIFirstPageView = view;
+    public SearchResultPresenter(ISearchKolView view, String tagName, String kolName, boolean withHeaderB, String url) {
+        mISearchKolView = view;
         mTagName = tagName;
         mKolName = kolName;
         mNeedHeader = withHeaderB;
         mUrl = url;
 
-        mXRefreshView = mIFirstPageView.getXRefreshView();
-        mRecyclerView = mIFirstPageView.getRecyclerView();
-        mRefreshHeaderView = mIFirstPageView.getRefreshHeaderView();
-        mRefreshFooterView = mIFirstPageView.getRefreshFooterView();
-        mLLNoData = mIFirstPageView.getLLNoData();
+        mXRefreshView = mISearchKolView.getXRefreshView();
+        mRecyclerView = mISearchKolView.getRecyclerView();
+        mRefreshHeaderView = mISearchKolView.getRefreshHeaderView();
+        mRefreshFooterView = mISearchKolView.getRefreshFooterView();
+        mLLNoData = mISearchKolView.getLLNoData();
         mContext = mRecyclerView.getContext();
         initXRefreshView();
         initRecyclerView();
@@ -194,7 +194,7 @@ public class SearchResultPresenter implements PresenterI {
 
         if (mCurrentState == INIT_DATA) {
             if (mWProgressDialog == null) {
-                mWProgressDialog = mIFirstPageView.getWProgressDialog();
+                mWProgressDialog = mISearchKolView.getWProgressDialog();
             }
             if (!mWProgressDialog.isShowing()) {
                 mWProgressDialog.show();
