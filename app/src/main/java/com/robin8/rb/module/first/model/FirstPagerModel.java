@@ -20,8 +20,7 @@ public class FirstPagerModel {
     private String continuousCheckInCount;
 
     @SerializedName("today_had_check_in")
-    private boolean hadCheckedInToday;
-
+    private boolean isCheckedInToday;
 
     @SerializedName("campaigns")
     private Campaigns campaigns;
@@ -29,8 +28,7 @@ public class FirstPagerModel {
     @SerializedName("cps_share")
     private Product product;
 
-    @SerializedName("kol_invitation")
-
+    @SerializedName("kol_invitations")
     private Invite invite;
 
     public String getError() {
@@ -49,12 +47,12 @@ public class FirstPagerModel {
         this.continuousCheckInCount = continuousCheckInCount;
     }
 
-    public boolean isHadCheckedInToday() {
-        return hadCheckedInToday;
+    public boolean isCheckedInToday() {
+        return isCheckedInToday;
     }
 
-    public void setHadCheckedInToday(boolean hadCheckedInToday) {
-        this.hadCheckedInToday = hadCheckedInToday;
+    public void setCheckedInToday(boolean checkedInToday) {
+        isCheckedInToday = checkedInToday;
     }
 
     public String getTotalIncome() {
@@ -108,7 +106,7 @@ public class FirstPagerModel {
         private String income;
 
         @SerializedName("had_shared_today")
-        private boolean hadSharedToday;
+        private boolean isSharedToday;
 
         public String getRunningCount() {
             return runningCount;
@@ -134,12 +132,12 @@ public class FirstPagerModel {
             this.income = income;
         }
 
-        public boolean isHadSharedToday() {
-            return hadSharedToday;
+        public boolean isSharedToday() {
+            return isSharedToday;
         }
 
-        public void setHadSharedToday(boolean hadSharedToday) {
-            this.hadSharedToday = hadSharedToday;
+        public void setSharedToday(boolean sharedToday) {
+            isSharedToday = sharedToday;
         }
     }
 
@@ -154,7 +152,7 @@ public class FirstPagerModel {
         private String income;
 
         @SerializedName("had_shared_today")
-        private boolean hadSharedToday;
+        private boolean isSharedToday;
 
         public String getRunningCount() {
             return runningCount;
@@ -180,12 +178,12 @@ public class FirstPagerModel {
             this.income = income;
         }
 
-        public boolean isHadSharedToday() {
-            return hadSharedToday;
+        public boolean isSharedToday() {
+            return isSharedToday;
         }
 
-        public void setHadSharedToday(boolean hadSharedToday) {
-            this.hadSharedToday = hadSharedToday;
+        public void setSharedToday(boolean sharedToday) {
+            isSharedToday = sharedToday;
         }
     }
 

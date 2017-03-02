@@ -35,7 +35,7 @@ public class FirstPagerPresenter extends BasePresenter implements PresenterI {
                 if (firstPagerModel != null) {
                     mIFirstPagerView.setTotalIncome(firstPagerModel.getTotalIncome());
                     mIFirstPagerView.showUnreadMessage(firstPagerModel.getUnReadMessages());
-                    mIFirstPagerView.setSignInData(firstPagerModel.getContinuousCheckInCount(), firstPagerModel.isHadCheckedInToday());
+                    mIFirstPagerView.setSignInData(firstPagerModel.getContinuousCheckInCount(), firstPagerModel.isCheckedInToday());
 
                     if (firstPagerModel.getCampaigns() != null){
                         mIFirstPagerView.setCampaignData(firstPagerModel.getCampaigns());
