@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
-import com.robin8.rb.activity.MyCampaignActivity;
 import com.robin8.rb.activity.WalletActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BasePager;
@@ -138,7 +137,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
     public void changeVisibleView() {
         LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
         BaseApplication baseApplication = BaseApplication.getInstance();
-        if (!baseApplication.hasLogined() || loginBean.getKol().getRole_apply_status() != STATE_PASSED) {
+        if (!baseApplication.hasLogined() || !STATE_PASSED.equals(loginBean.getKol().getRole_apply_status())) {
             // 未登录和不是KOL
             mNotKolView.setVisibility(View.VISIBLE);
             mIsKolView.setVisibility(View.GONE);
@@ -197,10 +196,10 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
                 startActivity(UserSignActivity.class);
                 break;
             case R.id.ll_ongoing_campaigns:
-                startActivity(MyCampaignActivity.class);
+                startCampaignsActivity();
                 break;
             case R.id.ll_completed_campaigns:
-                startActivity(MyCampaignActivity.class);
+                startCampaignsActivity();
                 break;
             case R.id.ll_share_campaigns:
                 if (mViewPager != null) {
@@ -230,7 +229,19 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
         }
     }
 
-
+    private void startCampaignsActivity() {
+        String nameArr[] = {"进行中", "待上传", "审核中", "已完成"};
+        String campaignTypeArr[] = {"approved", "waiting_upload", "verifying", "completed"};
+        Intent intent = new Intent(mActivity, FragmentsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putStringArray("name",nameArr);
+        bundle.putStringArray("type",campaignTypeArr);
+        bundle.putString("page_name", StatisticsAgency.MY_TASK);
+        bundle.putString("title_name", mActivity.getString(R.string.my_capaign));
+        bundle.putString("url",HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL));
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
     private void startProductShareActivity() {
         Intent intent = new Intent();
@@ -264,7 +275,16 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
 
     @Override
     public void setTotalIncome(String totalIncome) {
-        mTotalIncomeTv.setText(totalIncome);
+        try {
+            if (Float.parseFloat(totalIncome) >= 1000.0f) {
+                mTotalIncomeTv.setTextSize(20);
+            } else {
+                mTotalIncomeTv.setTextSize(40);
+            }
+            mTotalIncomeTv.setText(totalIncome);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -277,9 +297,9 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
     }
 
     @Override
-    public void setSignInData(String continuousCheckInCount, boolean hadCheckedInToday) {
+    public void setSignInData(String continuousCheckInCount, boolean isCheckedInToday) {
         mSignInTv.setText("×" + continuousCheckInCount);
-        if (hadCheckedInToday) {
+        if (isCheckedInToday) {
             mCheckSignInIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
         } else {
             mCheckSignInIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
@@ -291,7 +311,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
         mOngoingCampaignsTv.setText(campaignData.getRunningCount());
         mCompletedCampaignsTv.setText(campaignData.getCompletedCount());
         mCompletedCampaignsIncomeTv.setText("¥" + campaignData.getIncome());
-        if (campaignData.isHadSharedToday()) {
+        if (campaignData.isSharedToday()) {
             mCheckShareCampaignsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
         } else {
             mCheckShareCampaignsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
@@ -303,7 +323,8 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
         mOngoingProductsTv.setText(productData.getRunningCount());
         mCompletedProductsTv.setText(productData.getSoldCount());
         mCompletedProductsIncomeTv.setText("¥" + productData.getIncome());
-        if (productData.isHadSharedToday()) {
+
+        if (productData.isSharedToday()) {
             mCheckShareProductsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
         } else {
             mCheckShareProductsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
