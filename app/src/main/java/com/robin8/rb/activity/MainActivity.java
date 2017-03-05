@@ -208,7 +208,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 break;
         }
         if (drawable != null) {
-            drawable.setBounds(0, 0, DensityUtils.dp2px(this, 35), DensityUtils.dp2px(this, 35));
+            drawable.setBounds(0, 0, DensityUtils.dp2px(this, 30), DensityUtils.dp2px(this, 30));
             radioButton.setCompoundDrawables(null, drawable, null, null);
         }
 

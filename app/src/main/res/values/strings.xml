@@ -33,7 +33,7 @@
     <string name="click_approve">*点击开始评测即同意</string>
     <string name="click_login_approve">*点击登录或社交帐号即同意</string>
     <string name="serviece_protocol">用户服务协议</string>
-    <string name="welcome_words">让大众分享文章而赚钱</string>
+    <string name="welcome_words">让大众分享文章来赚钱</string>
 
     <string name="more_loading">正在加载更多数据</string>
     <string name="no_net_click_reload">加载失败，点击重试</string>
@@ -219,7 +219,7 @@
     <string name="business_cop_content_fir">我是品牌主,我要特邀KOL\\n</string>
     <string name="business_submit_success">提交成功，我们会尽快与您联系,请保持电话畅通!</string>
     <string name="my_concern">我的关注</string>
-    <string name="be_kol">申请成为KOL</string>
+    <string name="be_kol">申请成为小网红</string>
 
     <string name="icons_favorite_selected">&#xe622;</string>
     <string name="icons_favorite_unselected">&#xe623;</string>
@@ -274,7 +274,7 @@
     <string name="data_reviewing">资料审核中</string>
     <string name="click_login">点击登录</string>
     <string name="login_get_more_campaign">登录获取更多活动</string>
-    <string name="edit_kol_data">编辑KOL资料</string>
+    <string name="edit_kol_data">编辑我的资料</string>
     <string name="data_rejected">资料审核拒绝</string>
     <string name="data_reviewing_again">重新审核中</string>
     <string name="please_write_nick_name">请填写昵称</string>

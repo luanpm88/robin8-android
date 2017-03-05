@@ -183,10 +183,10 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
         public ViewHolder2(View view) {
             super(view);
 
-            Button teachMeBtn = (Button) view.findViewById(R.id.btn_teach_me);
-            Button chooseProductBtn = (Button) view.findViewById(R.id.btn_choose_product);
-            teachMeBtn.setOnClickListener(this);
-            chooseProductBtn.setOnClickListener(this);
+            TextView teachMeTv = (TextView) view.findViewById(R.id.tv_teach_me);
+            TextView chooseProductTv = (TextView) view.findViewById(R.id.tv_choose_product);
+            teachMeTv.setOnClickListener(this);
+            chooseProductTv.setOnClickListener(this);
         }
 
         @Override
@@ -195,13 +195,13 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
                 Context context = v.getContext();
                 Intent intent;
                 switch (v.getId()) {
-                    case R.id.btn_teach_me:
+                    case R.id.tv_teach_me:
                         intent = new Intent(v.getContext(), HelpCenterActivity.class);
                         intent.putExtra("from",SPConstants.CREATE_FIRST_LIST);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                         break;
-                    case R.id.btn_choose_product:
+                    case R.id.tv_choose_product:
                         intent = new Intent(context, ProductListActivity.class);
                         intent.putExtra("destination", SPConstants.PRODUCT_LIST);
                         intent.putExtra("from", SPConstants.CREATE_FIRST_LIST_PRODUCT);
