@@ -88,7 +88,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
     private void initNotKolView() {
         LayoutInflater layoutInflater = LayoutInflater.from(mActivity.getApplicationContext());
         mNotKolView = layoutInflater.inflate(R.layout.pager_home_not_kol, mLLContent, true);
-        Button beKOLBtn = (Button) mNotKolView.findViewById(R.id.btn_be_kol);
+        TextView beKOLBtn = (TextView) mNotKolView.findViewById(R.id.tv_be_kol);
         beKOLBtn.setOnClickListener(this);
     }
 
@@ -96,18 +96,18 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
         LayoutInflater layoutInflater = LayoutInflater.from(mActivity.getApplicationContext());
         mIsKolView = layoutInflater.inflate(R.layout.pager_home_is_kol,mLLContent, true);
         mIsKolView.findViewById(R.id.ll_message).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_indiana).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_total_income).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_sign_in).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_ongoing_campaigns).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_completed_campaigns).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_share_campaigns).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_ongoing_product_share).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_completed_product_share).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_share_product).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_ongoing_invite).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_completed_invite).setOnClickListener(this);
-        mIsKolView.findViewById(R.id.ll_share_invite).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_indiana).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_total_income).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_sign_in).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_ongoing_campaigns).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_completed_campaigns).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_share_campaigns).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_ongoing_product_share).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_completed_product_share).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_share_product).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_ongoing_invite).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_completed_invite).setOnClickListener(this);
+        mIsKolView.findViewById(R.id.rl_share_invite).setOnClickListener(this);
 
         mMessageIv = (ImageView) mIsKolView.findViewById(R.id.iv_message);
         mTotalIncomeTv = (TextView) mIsKolView.findViewById(R.id.tv_total_income);
@@ -157,7 +157,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
             return;
         }
         switch (v.getId()) {
-            case R.id.btn_be_kol:
+            case R.id.tv_be_kol:
                 // 申请成为KOL
                 if (BaseApplication.getInstance().hasLogined()) {
                     startActivity(BeKolFirstActivity.class);
@@ -180,7 +180,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
                     startActivity(intent);
                 }
                 break;
-            case R.id.ll_indiana:
+            case R.id.rl_indiana:
             {
                 Intent intent = new Intent(mActivity, BaseRecyclerViewActivity.class);
                 intent.putExtra("destination", SPConstants.INDIANA_ROBIN);
@@ -189,41 +189,41 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
                 startActivity(intent);
             }
             break;
-            case R.id.ll_total_income:
+            case R.id.rl_total_income:
                 startActivity(WalletActivity.class);
                 break;
-            case R.id.ll_sign_in:
+            case R.id.rl_sign_in:
                 startActivity(UserSignActivity.class);
                 break;
-            case R.id.ll_ongoing_campaigns:
+            case R.id.rl_ongoing_campaigns:
                 startCampaignsActivity();
                 break;
-            case R.id.ll_completed_campaigns:
+            case R.id.rl_completed_campaigns:
                 startCampaignsActivity();
                 break;
-            case R.id.ll_share_campaigns:
+            case R.id.rl_share_campaigns:
                 if (mViewPager != null) {
                     mViewPager.setCurrentItem(1);
                 }
                 break;
-            case R.id.ll_ongoing_product_share:
+            case R.id.rl_ongoing_product_share:
                 startProductShareActivity();
                 break;
-            case R.id.ll_completed_product_share:
+            case R.id.rl_completed_product_share:
                 startProductShareActivity();
                 break;
-            case R.id.ll_share_product:
+            case R.id.rl_share_product:
                 if (mViewPager != null) {
                     mViewPager.setCurrentItem(2);
                 }
                 break;
-            case R.id.ll_ongoing_invite:
+            case R.id.rl_ongoing_invite:
                 startActivity(InviteFriendsActivity.class);
                 break;
-            case R.id.ll_completed_invite:
+            case R.id.rl_completed_invite:
                 startActivity(InviteFriendsActivity.class);
                 break;
-            case R.id.ll_share_invite:
+            case R.id.rl_share_invite:
                 startActivity(InviteFriendsActivity.class);
                 break;
         }
@@ -279,7 +279,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
             if (Float.parseFloat(totalIncome) >= 1000.0f) {
                 mTotalIncomeTv.setTextSize(20);
             } else {
-                mTotalIncomeTv.setTextSize(40);
+                mTotalIncomeTv.setTextSize(30);
             }
             mTotalIncomeTv.setText(totalIncome);
         } catch (Exception e) {

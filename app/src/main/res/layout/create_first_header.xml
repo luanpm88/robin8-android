@@ -9,42 +9,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black_custom"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:text="创作产品文章 (提成更高) ："
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="30dp">
+        android:layout_height="30dp">
 
-        <Button
-            android:id="@+id/btn_teach_me"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+        <TextView
+            android:id="@+id/tv_teach_me"
             android:text="教我"
-            android:textSize="18sp"
             android:layout_marginRight="50dp"
             android:layout_marginLeft="15dp"
-            android:textColor="@color/black_custom"
-            android:background="@drawable/shape_bg_product_button"/>
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:background="@drawable/shape_bg_yellow_pane"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@color/mine_yellow_custom"
+            android:textSize="@dimen/undefine_font_3"/>
 
-        <Button
-            android:id="@+id/btn_choose_product"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
+        <TextView
+            android:id="@+id/tv_choose_product"
             android:text="开始挑选产品"
-            android:textSize="18sp"
-            android:textColor="@color/black_custom"
-            android:background="@drawable/shape_bg_product_button"/>
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:background="@drawable/shape_bg_yellow_pane"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@color/mine_yellow_custom"
+            android:textSize="@dimen/undefine_font_3"
+            />
 
     </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:gravity="center">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/undefined_backgroud"/>
+
+    </LinearLayout>
+    
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="1"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:textColor="@color/black_custom"
         android:text="分享别人的产品文章 (更容易) ："/>
 
