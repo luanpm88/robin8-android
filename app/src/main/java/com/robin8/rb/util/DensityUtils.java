@@ -27,8 +27,9 @@ public class DensityUtils {
      * dp转px
      */
     public static int dp2px(float dpVal) {
-        if (BaseApplication.getInstance() == null)
+        if (BaseApplication.getContext() == null) {
             return 0;
+        }
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, BaseApplication.getContext().getResources().getDisplayMetrics());
     }
 
@@ -49,10 +50,10 @@ public class DensityUtils {
      * @return
      */
     public static int sp2px(Context context, float spVal) {
-        if (BaseApplication.getInstance() == null)
+        if (BaseApplication.getContext() == null) {
             return 0;
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spVal, BaseApplication.getInstance()
-                .getApplicationContext().getResources().getDisplayMetrics());
+        }
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spVal, BaseApplication.getContext().getResources().getDisplayMetrics());
     }
 
     /**
@@ -63,9 +64,10 @@ public class DensityUtils {
      * @return
      */
     public static float px2dp(Context context, float pxVal) {
-        if (BaseApplication.getInstance() == null)
+        if (BaseApplication.getContext() == null) {
             return 0;
-        final float scale = BaseApplication.getInstance().getApplicationContext().getResources()
+        }
+        final float scale = BaseApplication.getContext().getResources()
                 .getDisplayMetrics().density;
         return (pxVal / scale);
     }
@@ -77,9 +79,10 @@ public class DensityUtils {
      * @return
      */
     public static float px2sp(Context context, float pxVal) {
-        if (BaseApplication.getInstance() == null)
+        if (BaseApplication.getContext() == null) {
             return 0;
-        return (pxVal / BaseApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().scaledDensity);
+        }
+        return (pxVal / BaseApplication.getContext().getResources().getDisplayMetrics().scaledDensity);
     }
 
     public  void getScreenSize(Activity activity) {
