@@ -3,10 +3,11 @@ apply plugin: 'android'
 
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.0'
     }
 }
 
@@ -31,6 +32,7 @@ android {
         applicationId "com.robin8.rb"
         minSdkVersion 14
         targetSdkVersion 22
+        //noinspection HighAppVersionCode
         versionCode 8
         versionName "1.8.1"
         multiDexEnabled true
