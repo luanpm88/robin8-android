@@ -43,7 +43,7 @@ public class CommonConfig {
     public static final String SIGN_IN_URL = "api/v2/kols/sign_in";
     public static final String GET_CODE_URL = "api/v1/phones/get_code";
     public static final String FEED_BACK_URL =  "api/v1/feedbacks/create";
-    public static final String FIRST_PAGER_URL = "api/v1/kols/overview";
+    public static final String FIRST_PAGER_URL = "api/v2_0/kols/overview";
 
     public static final String CAMPAIGNS_DETAIL_URL = "api/v1/campaigns/";
     public static final String CAMPAIGNS_APPLY_URL = "api/v1/campaigns/apply";
