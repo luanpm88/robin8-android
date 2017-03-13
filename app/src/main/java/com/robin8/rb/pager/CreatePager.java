@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.andview.refreshview.XRefreshView;
 import com.robin8.rb.R;
@@ -36,6 +37,7 @@ public class CreatePager extends BasePager implements ICreateFirstView, View.OnC
     private RecyclerView mRecyclerView;
     private RefreshHeaderView mRefreshHeaderView;
     private RefreshFooterView mRefreshFooterView;
+    private LinearLayout mErrorViewLL;
 
     public CreatePager(FragmentActivity activity) {
         super(activity);
@@ -53,7 +55,8 @@ public class CreatePager extends BasePager implements ICreateFirstView, View.OnC
             mRefreshHeaderView = new RefreshHeaderView(mActivity);
             mRefreshFooterView = new RefreshFooterView(mActivity);
             mWProgressDialog = WProgressDialog.createDialog(mActivity);
-
+            mErrorViewLL = (LinearLayout) mPager.findViewById(R.id.ll_error);
+            mErrorViewLL.setOnClickListener(this);
             initTitleBar();
             mCreateFirstPresenter = new CreateFirstPresenter(this, HelpTools.getUrl(CommonConfig.CPS_ARTICLES_URL), mActivity);
             mCreateFirstPresenter.init();
@@ -95,6 +98,11 @@ public class CreatePager extends BasePager implements ICreateFirstView, View.OnC
     }
 
     @Override
+    public LinearLayout getErrorView() {
+        return mErrorViewLL;
+    }
+
+    @Override
     public View getLLNoData() {
         return null;
     }
@@ -107,6 +115,11 @@ public class CreatePager extends BasePager implements ICreateFirstView, View.OnC
                 break;
             case R.id.first_right:
                 skipToMyCreate();
+                break;
+            case R.id.ll_error:
+                if (mCreateFirstPresenter != null) {
+                    mCreateFirstPresenter.init();
+                }
                 break;
         }
     }
