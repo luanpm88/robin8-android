@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.andview.refreshview.XRefreshView;
 import com.robin8.rb.R;
+import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.module.create.adapter.CreateFirstListAdapter;
 import com.robin8.rb.module.create.model.CpsArticlesBean;
 import com.robin8.rb.module.create.model.CreateFirstModel;
@@ -15,11 +19,14 @@ import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.PresenterI;
+import com.robin8.rb.task.LoginTask;
 import com.robin8.rb.ui.widget.RefreshFooterView;
 import com.robin8.rb.ui.widget.RefreshHeaderView;
 import com.robin8.rb.ui.widget.WProgressDialog;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
+import com.robin8.rb.util.HelpTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +59,7 @@ public class CreateFirstPresenter implements PresenterI {
     private List<Object> mDataList = new ArrayList<>();
     private String mUrl;
     private String mCurrentOrder = ORDER_BY_CREATED;
+    private final LinearLayout mErrorViewLL;
 
     public CreateFirstPresenter(ICreateFirstView view, String url, Activity activity) {
         mICreateFirstView = view;
@@ -61,13 +69,14 @@ public class CreateFirstPresenter implements PresenterI {
         mRecyclerView = mICreateFirstView.getRecyclerView();
         mRefreshHeaderView = mICreateFirstView.getRefreshHeaderView();
         mRefreshFooterView = mICreateFirstView.getRefreshFooterView();
+        mErrorViewLL = mICreateFirstView.getErrorView();
         mContext = mRecyclerView.getContext();
         initXRefreshView();
         initRecyclerView();
     }
 
     public void init() {
-        getDataFromNet();
+        loadData();
     }
 
     private void initXRefreshView() {
@@ -88,13 +97,13 @@ public class CreateFirstPresenter implements PresenterI {
             @Override
             public void onRefresh() {
                 mCurrentState = DRAG_REFRESH;
-                getDataFromNet();
+                loadData();
             }
 
             @Override
             public void onLoadMore(boolean isSlience) {
                 mCurrentState = LOAD_MORE;
-                getDataFromNet();
+                loadData();
             }
         });
     }
@@ -104,6 +113,14 @@ public class CreateFirstPresenter implements PresenterI {
         mLinearLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mCreateFirstListAdapter);
+    }
+
+    private void loadData() {
+        if (TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.Token))) {
+            initLoginInfo();
+        } else {
+            getDataFromNet();
+        }
     }
 
     @Override
@@ -118,12 +135,28 @@ public class CreateFirstPresenter implements PresenterI {
         }
     }
 
+    private void initLoginInfo() {
+
+        LoginTask loginTask = LoginTask.newInstance(mActivity.getApplicationContext());
+        loginTask.start(new RequestCallback() {
+            @Override
+            public void onError(Exception e) {
+                CustomToast.showShort(mActivity.getApplicationContext(), "网络加载失败");
+            }
+
+            @Override
+            public void onResponse(String response) {
+                getDataFromNet();
+            }
+        }, CommonConfig.TOURIST_PHONE, CommonConfig.TOURIST_CODE, null);
+
+    }
+
 
     /**
      * 加载网络数据
      */
     private void getDataFromNet() {
-
         if (mCurrentState != LOAD_MORE) {
             mCurrentPage = 1;
         } else {
@@ -156,7 +189,6 @@ public class CreateFirstPresenter implements PresenterI {
         }
         mRequestParams.put("page", mCurrentPage);
         mRequestParams.put("order", mCurrentOrder);
-
         getDataFromServer(true, HttpRequest.GET, mUrl, mRequestParams, new RequestCallback() {
             @Override
             public void onError(Exception e) {
@@ -167,10 +199,16 @@ public class CreateFirstPresenter implements PresenterI {
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore(true);
                 }
+                if (mCurrentState == INIT_DATA && mErrorViewLL != null) {
+                    mErrorViewLL.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onResponse(String response) {
+                if (mErrorViewLL != null) {
+                    mErrorViewLL.setVisibility(View.GONE);
+                }
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
