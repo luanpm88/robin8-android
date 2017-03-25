@@ -43,10 +43,8 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
     private ViewPager mViewPager;
     private View mNotKolView;
     private View mIsKolView;
-    private ImageView mMessageIv;
     private TextView mTotalIncomeTv;
     private FirstPagerPresenter mFirstPagerPresenter;
-    private TextView mSignInTv;
     private TextView mCompletedInviteTv;
     private TextView mCompletedInviteIncomeTv;
     private ImageView mCheckSignInIv;
@@ -95,7 +93,6 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
     private void initIsKolView() {
         LayoutInflater layoutInflater = LayoutInflater.from(mActivity.getApplicationContext());
         mIsKolView = layoutInflater.inflate(R.layout.pager_home_is_kol,mLLContent, true);
-        mIsKolView.findViewById(R.id.ll_message).setOnClickListener(this);
         mIsKolView.findViewById(R.id.rl_indiana).setOnClickListener(this);
         mIsKolView.findViewById(R.id.rl_total_income).setOnClickListener(this);
         mIsKolView.findViewById(R.id.rl_sign_in).setOnClickListener(this);
@@ -109,9 +106,8 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
         mIsKolView.findViewById(R.id.rl_completed_invite).setOnClickListener(this);
         mIsKolView.findViewById(R.id.rl_share_invite).setOnClickListener(this);
 
-        mMessageIv = (ImageView) mIsKolView.findViewById(R.id.iv_message);
+
         mTotalIncomeTv = (TextView) mIsKolView.findViewById(R.id.tv_total_income);
-        mSignInTv = (TextView) mIsKolView.findViewById(R.id.tv_sign_in);
 
         mOngoingCampaignsTv = (TextView) mIsKolView.findViewById(R.id.tv_ongoing_campaigns);
         mCompletedCampaignsTv = (TextView) mIsKolView.findViewById(R.id.tv_completed_campaigns);
@@ -170,7 +166,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
                     startActivity(intent);
                 }
                 break;
-            case R.id.ll_message:
+            case 1111111:
                 {
                     Intent intent = new Intent();
                     intent.setClass(mActivity, BaseRecyclerViewActivity.class);
@@ -276,11 +272,11 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
     @Override
     public void setTotalIncome(String totalIncome) {
         try {
-            if (Float.parseFloat(totalIncome) >= 1000.0f) {
-                mTotalIncomeTv.setTextSize(20);
-            } else {
-                mTotalIncomeTv.setTextSize(30);
-            }
+//            if (Float.parseFloat(totalIncome) >= 1000.0f) {
+//                mTotalIncomeTv.setTextSize(20);
+//            } else {
+//                mTotalIncomeTv.setTextSize(30);
+//            }
             mTotalIncomeTv.setText(totalIncome);
         } catch (Exception e) {
             e.printStackTrace();
@@ -289,20 +285,15 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
 
     @Override
     public void showUnreadMessage(int unReadMessages) {
-        if (unReadMessages > 0) {
-            mMessageIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_first_pager_unread_message));
-        } else {
-            mMessageIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_first_pager_message));
-        }
+
     }
 
     @Override
     public void setSignInData(String continuousCheckInCount, boolean isCheckedInToday) {
-        mSignInTv.setText("×" + continuousCheckInCount);
         if (isCheckedInToday) {
-            mCheckSignInIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
+            mCheckSignInIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.pic_checkin));
         } else {
-            mCheckSignInIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
+            mCheckSignInIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.pic_uncheckin));
         }
     }
 
@@ -312,9 +303,9 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
         mCompletedCampaignsTv.setText(campaignData.getCompletedCount());
         mCompletedCampaignsIncomeTv.setText("¥" + campaignData.getIncome());
         if (campaignData.isSharedToday()) {
-            mCheckShareCampaignsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
+            mCheckShareCampaignsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.pic_shared_campaign));
         } else {
-            mCheckShareCampaignsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
+            mCheckShareCampaignsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.pic_unshared_campaign));
         }
     }
 
@@ -325,9 +316,9 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
         mCompletedProductsIncomeTv.setText("¥" + productData.getIncome());
 
         if (productData.isSharedToday()) {
-            mCheckShareProductsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_checked));
+            mCheckShareProductsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.pic_shared_product));
         } else {
-            mCheckShareProductsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_unchecked));
+            mCheckShareProductsIv.setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.pic_unshared_product));
         }
     }
 

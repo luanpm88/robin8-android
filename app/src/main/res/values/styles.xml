@@ -208,10 +208,13 @@
     <style name="text_view_with_single_line">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/black_custom</item>
         <item name="android:textSize">12sp</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:textStyle"></item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="text_view_with_dialog_positive">
@@ -228,5 +231,16 @@
         <item name="android:textSize">@dimen/undefine_font_3</item>
 
     </style>
+
+    <!--首页kol横条 -->
+    <style name="is_kol_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/shape_border</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
 
 </resources>

@@ -276,8 +276,6 @@ public class RewordPager extends BasePager implements Observer {
         mTitleBarText.setVisibility(View.VISIBLE);
         mRewordFilterLl.setVisibility(View.VISIBLE);
         mRewordLaunchIv.setVisibility(View.GONE);
-        TextView arrowTv = (TextView) mRewordFilterLl.findViewById(R.id.tv_arrow);
-        IconFontHelper.setTextIconFont(arrowTv, R.string.arrow_down);
     }
 
     public void addView() {

@@ -208,7 +208,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 break;
         }
         if (drawable != null) {
-            drawable.setBounds(0, 0, DensityUtils.dp2px(this, 30), DensityUtils.dp2px(this, 30));
+            drawable.setBounds(0, 0, DensityUtils.dp2px(this, 25), DensityUtils.dp2px(this, 25));
             radioButton.setCompoundDrawables(null, drawable, null, null);
         }
 
@@ -262,7 +262,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             mPagerAdapter = new MyPagerAdapter();
         }
         mVPContentPager.setAdapter(mPagerAdapter);
-        mVPContentPager.setOffscreenPageLimit(4);
+        mVPContentPager.setOffscreenPageLimit(5);
         // 设置默认显示的界面 默认显示首页
         mRGContentBottom.check(R.id.rb_bottom_first);
         // 让首页界面加载数据

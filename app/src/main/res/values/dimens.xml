@@ -56,7 +56,7 @@
     <dimen name="pickerview_topbar_title_textsize">21sp</dimen>
     
     <!-- Is KOL page -->
-    <dimen name="is_kol_page_image_size">30dp</dimen>
+    <dimen name="is_kol_page_image_size">25dp</dimen>
     <dimen name="is_kol_page_text_size_large">20sp</dimen>
     <dimen name="is_kol_page_row_padding">3dp</dimen>
     <dimen name="is_kol_page_row_margin_left_or_right">15dp</dimen>
