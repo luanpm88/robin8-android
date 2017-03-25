@@ -30,6 +30,7 @@ import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.pager.CreatePager;
 import com.robin8.rb.pager.FirstPager;
 import com.robin8.rb.pager.MinePager;
+import com.robin8.rb.pager.NotificationPager;
 import com.robin8.rb.pager.RewordPager;
 import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.task.LocationService;
@@ -41,14 +42,16 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
 import com.robin8.rb.util.StringUtil;
+import com.robin8.rb.view.widget.CustomRedDotRadioButton;
 
 import java.util.ArrayList;
 
 public class MainActivity extends BaseBackHomeActivity implements View.OnClickListener {
     private static final int KOL_LIST = 0;
-    private static final int CAMPAIGN_LIST = 1;
-    private static final int CREATE_LIST = 2;
-    private static final int MY = 3;
+    private static final int NOTIFICATION_LIST = 1;
+    private static final int CAMPAIGN_LIST = 2;
+    private static final int CREATE_LIST = 3;
+    private static final int MY = 4;
     private ArrayList<BasePager> mPagerList;
     private RewordPager mRewordPager;
     private FirstPager mFirstPager;
@@ -78,6 +81,8 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     private final static double UNKNOW = -2000;
     private double latitude = UNKNOW;
     private double longitude = UNKNOW;
+    private NotificationPager mNotificationPager;
+    private CustomRedDotRadioButton mRBBottomNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,10 +183,12 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         mVPContentPager = (ViewPager) findViewById(R.id.vp_content_pager);
         mRGContentBottom = (RadioGroup) findViewById(R.id.rg_content_bottom);
         mRBBottomFirst = (RadioButton) findViewById(R.id.rb_bottom_first);
+        mRBBottomNotification = (CustomRedDotRadioButton) findViewById(R.id.rb_bottom_notification);
         mRBBottomCampaign = (RadioButton) findViewById(R.id.rb_bottom_campaign);
         mRBBottomCreate = (RadioButton) findViewById(R.id.rb_bottom_create);
         mRBBottomMine = (RadioButton) findViewById(R.id.rb_bottom_mine);
         setRadioButtonDrawableSize(mRBBottomFirst);
+        setRadioButtonDrawableSize(mRBBottomNotification);
         setRadioButtonDrawableSize(mRBBottomCampaign);
         setRadioButtonDrawableSize(mRBBottomCreate);
         setRadioButtonDrawableSize(mRBBottomMine);
@@ -196,6 +203,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         switch (radioButton.getId()) {
             case R.id.rb_bottom_first:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_first_selector);
+                break;
+            case R.id.rb_bottom_notification:
+                drawable = ContextCompat.getDrawable(this, R.drawable.selector_tab_notification);
                 break;
             case R.id.rb_bottom_campaign:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_reword_selector);
@@ -252,8 +262,13 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             mMinePager = new MinePager(this);
         }
 
+        if (mNotificationPager == null) {
+            mNotificationPager = new NotificationPager(this);
+        }
+
         mPagerList.clear();
         mPagerList.add(mFirstPager);
+        mPagerList.add(mNotificationPager);
         mPagerList.add(mRewordPager);
         mPagerList.add(mCreatePager);
         mPagerList.add(mMinePager);
@@ -281,6 +296,17 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     public void onClick(View v) {
     }
 
+    public void hideNotificationRedDot(boolean b) {
+        if (mRBBottomNotification == null) {
+            return;
+        }
+        if (b) {
+            mRBBottomNotification.hidRedDot();
+        }else {
+            mRBBottomNotification.showRedDot();
+        }
+    }
+
     class MyOnCheckedChangeListener implements RadioGroup.OnCheckedChangeListener {
 
         /**
@@ -293,14 +319,17 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 case R.id.rb_bottom_first:
                     mVPContentPager.setCurrentItem(0, false);
                     break;
-                case R.id.rb_bottom_campaign:
+                case R.id.rb_bottom_notification:
                     mVPContentPager.setCurrentItem(1, false);
                     break;
-                case R.id.rb_bottom_create:
+                case R.id.rb_bottom_campaign:
                     mVPContentPager.setCurrentItem(2, false);
                     break;
-                case R.id.rb_bottom_mine:
+                case R.id.rb_bottom_create:
                     mVPContentPager.setCurrentItem(3, false);
+                    break;
+                case R.id.rb_bottom_mine:
+                    mVPContentPager.setCurrentItem(4, false);
                     break;
             }
         }
@@ -356,6 +385,12 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                     onePageSelected(KOL_LIST);
                     mRBBottomFirst.setChecked(true);
                     mFirstPager.changeVisibleView();
+                    break;
+                case NOTIFICATION_LIST:
+                    mPageName = StatisticsAgency.NOTIFICATION_LIST;
+                    onePageSelected(NOTIFICATION_LIST);
+                    mRBBottomNotification.setChecked(true);
+                    mPagerList.get(NOTIFICATION_LIST).initData();
                     break;
                 case CAMPAIGN_LIST:
                     mPageName = StatisticsAgency.CAMPAIGN_LIST;
@@ -413,6 +448,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         super.onResume();
         if (mPageName == StatisticsAgency.MY) {
             mPagerList.get(MY).initData();
+        }
+        if (mPageName.equals(StatisticsAgency.NOTIFICATION_LIST)) {
+            mPagerList.get(NOTIFICATION_LIST).initData();
         }
         if (mFirstPager != null) {
             mFirstPager.changeVisibleView();

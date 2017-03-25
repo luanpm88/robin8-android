@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
+import com.robin8.rb.activity.MainActivity;
 import com.robin8.rb.activity.WalletActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BasePager;
@@ -166,16 +167,6 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
                     startActivity(intent);
                 }
                 break;
-            case 1111111:
-                {
-                    Intent intent = new Intent();
-                    intent.setClass(mActivity, BaseRecyclerViewActivity.class);
-                    intent.putExtra("destination", SPConstants.MESSAGE_ACTIVITY);
-                    intent.putExtra("url", HelpTools.getUrl(CommonConfig.MESSAGES_URL));
-                    intent.putExtra("title", mActivity.getString(R.string.message));
-                    startActivity(intent);
-                }
-                break;
             case R.id.rl_indiana:
             {
                 Intent intent = new Intent(mActivity, BaseRecyclerViewActivity.class);
@@ -199,7 +190,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
                 break;
             case R.id.rl_share_campaigns:
                 if (mViewPager != null) {
-                    mViewPager.setCurrentItem(1);
+                    mViewPager.setCurrentItem(2);
                 }
                 break;
             case R.id.rl_ongoing_product_share:
@@ -210,7 +201,7 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
                 break;
             case R.id.rl_share_product:
                 if (mViewPager != null) {
-                    mViewPager.setCurrentItem(2);
+                    mViewPager.setCurrentItem(3);
                 }
                 break;
             case R.id.rl_ongoing_invite:
@@ -272,11 +263,6 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
     @Override
     public void setTotalIncome(String totalIncome) {
         try {
-//            if (Float.parseFloat(totalIncome) >= 1000.0f) {
-//                mTotalIncomeTv.setTextSize(20);
-//            } else {
-//                mTotalIncomeTv.setTextSize(30);
-//            }
             mTotalIncomeTv.setText(totalIncome);
         } catch (Exception e) {
             e.printStackTrace();
@@ -285,7 +271,11 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
 
     @Override
     public void showUnreadMessage(int unReadMessages) {
-
+        if (unReadMessages > 0) {
+            ((MainActivity)mActivity).hideNotificationRedDot(false);
+        } else {
+            ((MainActivity)mActivity).hideNotificationRedDot(true);
+        }
     }
 
     @Override

@@ -20,6 +20,10 @@ public class StatisticsAgency {
     public static final String KOL_SEARCH = "kol-search";//KOL搜索
     public static final String KOL_LIST_FOLLOWERS = "kol-list-followers";//KOL关注列表
 
+    //通知
+    public static final String NOTIFICATION_LIST = "notification-list";//活动首页
+
+
     // 活动
     public static final String CAMPAIGN_LIST = "campaign-list";//活动首页
     public static final String CAMPAIGN_DETAIL = "campaign-detail";//悬赏活动详情
