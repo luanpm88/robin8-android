@@ -3,7 +3,8 @@
     android:id="@+id/rl_title"
     android:layout_width="match_parent"
     android:layout_height="@dimen/title_bar_height"
-    android:background="@color/undefined_backgroud">
+    android:background="@drawable/shape_border"
+    android:layout_marginBottom="10dp">
 
     <TextView
         android:id="@+id/titlebar_text"
@@ -60,7 +61,7 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:visibility="gone"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="20dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true">
 
@@ -68,18 +69,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="筛选"
-            android:textSize="@dimen/undefine_font_7"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_arrow"
-            android:textColor="@color/sub_gray_custom"
-            android:textSize="@dimen/undefine_font_5"
-            android:textStyle="bold"
-            android:layout_marginLeft="3dp"/>
+            android:textColor="@color/black_custom"
+            android:textSize="13sp"/>
 
     </LinearLayout>
-
 
 </RelativeLayout>

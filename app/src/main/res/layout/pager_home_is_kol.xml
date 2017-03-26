@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@mipmap/bg_first_page"
+              android:background="@color/background_gray"
               android:gravity="center_horizontal"
               android:orientation="vertical">
 
@@ -10,48 +10,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:background="@color/white_custom">
 
         <ImageView
             android:id="@+id/iv_logo"
-            android:layout_width="180dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             android:src="@mipmap/logo_robin8"
             android:layout_centerInParent="true"/>
-
-        <LinearLayout
-            android:id="@+id/ll_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp">
-
-            <ImageView
-                android:id="@+id/iv_message"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@mipmap/icon_first_pager_message"/>
-
-            <TextView
-                style="@style/text_view_with_single_line"
-                android:textSize="12sp"
-                android:text="系统通知"/>
-
-        </LinearLayout>
 
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/is_kol_page_row_padding"
-        android:paddingTop="@dimen/is_kol_page_row_padding">
+        style="@style/is_kol_row"
+        >
 
         <RelativeLayout
             android:id="@+id/rl_indiana"
@@ -76,7 +49,7 @@
         <RelativeLayout
             android:id="@+id/rl_total_income"
             android:layout_width="0dp"
-            android:layout_weight="1.7"
+            android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
@@ -84,8 +57,9 @@
                 style="@style/text_view_with_single_line"
                 android:text="0"
                 android:textColor="@color/mine_yellow_custom"
-                android:textSize="30sp"
-                android:layout_centerInParent="true"/>
+                android:textSize="@dimen/is_kol_page_text_size_large"
+                android:layout_centerInParent="true"
+                />
 
             <TextView
                 style="@style/text_view_with_single_line"
@@ -116,13 +90,6 @@
                 android:src="@mipmap/icon_checkin"/>
 
             <TextView
-                android:id="@+id/tv_sign_in"
-                style="@style/text_view_with_single_line"
-                android:layout_toRightOf="@id/iv_sign_in"
-                android:layout_alignTop="@id/iv_sign_in"
-                android:text="×0"/>
-
-            <TextView
                 style="@style/text_view_with_single_line"
                 android:text="每日签到"
                 android:layout_centerHorizontal="true"
@@ -133,13 +100,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#1E91AC"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/is_kol_page_row_padding"
-        android:paddingTop="@dimen/is_kol_page_row_padding">
+        style="@style/is_kol_row"
+        >
 
         <RelativeLayout
             android:id="@+id/rl_ongoing_campaigns"
@@ -154,7 +116,6 @@
                 android:layout_centerInParent="true"
                 style="@style/text_view_with_single_line"
                 android:text="0"
-                android:textColor="#424344"
                 android:textSize="@dimen/is_kol_page_text_size_large"/>
 
             <TextView
@@ -163,6 +124,13 @@
                 android:layout_centerHorizontal="true"
                 style="@style/text_view_with_single_line"
                 android:text="进行中活动"/>
+             
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:background="#39CACF"
+                android:layout_alignParentLeft="true"
+                />
 
         </RelativeLayout>
 
@@ -170,14 +138,13 @@
             android:id="@+id/rl_completed_campaigns"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.7">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tv_completed_campaigns"
                 style="@style/text_view_with_single_line"
                 android:text="0"
                 android:layout_centerInParent="true"
-                android:textColor="#424344"
                 android:layout_centerHorizontal="true"
                 android:textSize="@dimen/is_kol_page_text_size_large"/>
 
@@ -187,6 +154,7 @@
                 android:text="¥0"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
                 android:textColor="@color/mine_yellow_custom"/>
 
             <TextView
@@ -224,12 +192,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/is_kol_page_row_padding"
-        android:paddingTop="@dimen/is_kol_page_row_padding">
+        style="@style/is_kol_row"
+        >
 
         <RelativeLayout
             android:id="@+id/rl_ongoing_product_share"
@@ -242,7 +206,6 @@
                 style="@style/text_view_with_single_line"
                 android:layout_centerInParent="true"
                 android:text="0"
-                android:textColor="@android:color/white"
                 android:textSize="@dimen/is_kol_page_text_size_large"/>
 
             <TextView
@@ -252,19 +215,25 @@
                 android:layout_alignParentBottom="true"
                 android:text="进行中产品分享"/>
 
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:background="#ECB200"
+                android:layout_alignParentLeft="true"
+                />
+
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_completed_product_share"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.7">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tv_completed_products"
                 style="@style/text_view_with_single_line"
                 android:text="0"
-                android:textColor="@android:color/white"
                 android:textSize="@dimen/is_kol_page_text_size_large"
                 android:layout_centerInParent="true"/>
 
@@ -273,6 +242,7 @@
                 style="@style/text_view_with_single_line"
                 android:text="¥0"
                 android:textColor="@color/mine_yellow_custom"
+                android:layout_marginTop="3dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"/>
 
@@ -309,13 +279,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#1E91AC"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/is_kol_page_row_padding"
-        android:paddingTop="@dimen/is_kol_page_row_padding">
+        style="@style/is_kol_row"
+        >
 
         <RelativeLayout
             android:id="@+id/rl_ongoing_invite"
@@ -328,7 +293,6 @@
                 android:id="@+id/tv_ongoing_invite"
                 style="@style/text_view_with_single_line"
                 android:text="0"
-                android:textColor="#424344"
                 android:textSize="@dimen/is_kol_page_text_size_large"
                 android:layout_centerInParent="true"/>
 
@@ -339,20 +303,26 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"/>
 
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:background="#F26D45"
+                android:layout_alignParentLeft="true"
+                />
+
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_completed_invite"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.7">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tv_completed_invite"
                 style="@style/text_view_with_single_line"
                 android:text="0"
                 android:layout_centerInParent="true"
-                android:textColor="#424344"
                 android:textSize="@dimen/is_kol_page_text_size_large"/>
 
             <TextView
@@ -360,6 +330,7 @@
                 style="@style/text_view_with_single_line"
                 android:text="¥0"
                 android:textColor="@color/mine_yellow_custom"
+                android:layout_marginTop="3dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"/>
 
@@ -381,7 +352,7 @@
             <ImageView
                 android:layout_width="@dimen/is_kol_page_image_size"
                 android:layout_height="@dimen/is_kol_page_image_size"
-                android:src="@mipmap/icon_share"
+                android:src="@mipmap/icon_invite"
                 android:layout_centerInParent="true"/>
 
             <TextView
@@ -399,77 +370,70 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/text_view_with_single_line"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:text="今日任务:"
-            android:textColor="#1CBC20"
-            android:textSize="15sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/shape_border"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今 日 任 务"
+                android:textColor="@color/black_custom"
+                android:textSize="15sp"
+                android:layout_marginLeft="15dp"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_radius"
+                >
 
                 <ImageView
                     android:id="@+id/iv_check_sign_in"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@mipmap/icon_unchecked"/>
-
-                <TextView
-                    style="@style/text_view_with_single_line"
-                    android:text="今天签到"
-                    android:textSize="15sp"/>
+                    android:layout_width="113dp"
+                    android:layout_height="62dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/pic_uncheckin"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
 
                 <ImageView
                     android:id="@+id/iv_check_share_campaigns"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@mipmap/icon_unchecked"/>
-
-
-                <TextView
-                    style="@style/text_view_with_single_line"
-                    android:text="分享一项活动"
-                    android:textSize="15sp"/>
+                    android:layout_width="113dp"
+                    android:layout_height="62dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/pic_unshared_campaign"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
 
                 <ImageView
                     android:id="@+id/iv_check_share_products"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@mipmap/icon_unchecked"/>
-
-                <TextView
-                    style="@style/text_view_with_single_line"
-                    android:text="分享一款产品"
-                    android:textSize="15sp"/>
+                    android:layout_width="113dp"
+                    android:layout_height="62dp"
+                    android:src="@mipmap/pic_unshared_product"/>
 
             </LinearLayout>
 
