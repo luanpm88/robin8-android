@@ -166,8 +166,8 @@ public class WithdrawCashActivity extends BaseActivity {
             return;
         }
 
-        if (number < 100) {
-            CustomToast.showShort(this, "金额满100方可提现");
+        if (number < 50) {
+            CustomToast.showShort(this, "金额满50方可提现");
             return;
         }
 

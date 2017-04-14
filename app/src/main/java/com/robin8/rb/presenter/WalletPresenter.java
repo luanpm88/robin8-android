@@ -113,7 +113,7 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
         mIUserView.setTVTotal(String.valueOf(mStatsList.get(mStatsList.size() - 1).getTotal_amount()));
         mIUserView.setTVTotalIncome(StringUtil.deleteZero(String.valueOf(mUserAccountBean.getKol().getTotal_income())));
 
-        if (Float.parseFloat(mUserAccountBean.getKol().getAvail_amount()) >= 100) {
+        if (Float.parseFloat(mUserAccountBean.getKol().getAvail_amount()) >= 50) {
             mIUserView.setLLbottom(true);
         } else {
             mIUserView.setLLbottom(false);
