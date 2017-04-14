@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="满100元即可提现"
+            android:hint="满50元即可提现"
             android:inputType="numberDecimal"
             android:maxLength="12"
             android:paddingLeft="13dp"

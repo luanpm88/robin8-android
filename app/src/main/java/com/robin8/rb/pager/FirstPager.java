@@ -141,9 +141,9 @@ public class FirstPager extends BasePager implements View.OnClickListener, IFirs
         } else {
             mNotKolView.setVisibility(View.GONE);
             mIsKolView.setVisibility(View.VISIBLE);
-            if (mFirstPagerPresenter != null) {
-                mFirstPagerPresenter.loadData();
-            }
+        }
+        if (mFirstPagerPresenter != null) {
+            mFirstPagerPresenter.loadData();
         }
     }
 

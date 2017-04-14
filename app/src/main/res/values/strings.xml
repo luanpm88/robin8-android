@@ -118,7 +118,7 @@
     <string name="total_count">合计:</string>
     <string name="total_income">总收益 ></string>
     <string name="income_info2">*图中显示金额包含预计收入(待审核收入)</string>
-    <string name="income_info3">满100元即可提现</string>
+    <string name="income_info3">满50元即可提现</string>
     <string name="withdraw">提现</string>
     <string name="un_binded">未绑定</string>
     <string name="click_bind">点击绑定</string>
