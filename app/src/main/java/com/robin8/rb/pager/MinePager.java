@@ -48,6 +48,7 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.widget.CustomDialogManager;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -261,6 +262,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 }
                 break;
             case STATE_PASSED:
+                // 审核成功 埋点
+                TalkingDataAppCpa.onCustEvent2();
                 if (role.equals(ROLE_BIG_V)) {
                     mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_certification);
                     mApplyTv.setText(R.string.edit_kol_data);
@@ -387,6 +390,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     private void skipToBeKol() {
         if (isLogined(SPConstants.BE_KOL_ACTIVITY)) {
+             // 成为kol埋点
+            TalkingDataAppCpa.onCustEvent1();
             Intent intent = new Intent(mActivity, BeKolFirstActivity.class);
             intent.putExtra("id", mKolBean.getId());
             mActivity.startActivity(intent);

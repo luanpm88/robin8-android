@@ -1,8 +1,11 @@
 package com.robin8.rb.helper;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 
 import com.robin8.rb.util.LogUtil;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
 import com.tendcloud.tenddata.TCAgent;
 
 /**
@@ -81,12 +84,25 @@ public class StatisticsAgency {
     public static final String MY_MESSAGE = "my-message";//我的消息
 
     public static final String SINA_SHARE = "sina_share";//新浪分享
-
+    public static final String TD_AD_ID = "TD_AD_ID";
+    public static final String TD_CHANNEL_ID = "TD_CHANNEL_ID";
 
     public static void init(Context context) {
         TCAgent.LOG_ON = true;
         TCAgent.init(context);
         TCAgent.setReportUncaughtExceptions(true);
+        try {
+            ApplicationInfo applicationInfo = context.getPackageManager()
+                    .getApplicationInfo(context.getPackageName(),
+                            PackageManager.GET_META_DATA);
+            TalkingDataAppCpa.init(context.getApplicationContext(),
+                    applicationInfo.metaData.getString(TD_AD_ID),
+                    applicationInfo.metaData.getString(TD_CHANNEL_ID));
+            LogUtil.logXXfigo("init TD AD" + applicationInfo.metaData.getString(TD_AD_ID)+"\n"
+                    +applicationInfo.metaData.getString(TD_CHANNEL_ID));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void onPageStart(Context context, String pageName) {

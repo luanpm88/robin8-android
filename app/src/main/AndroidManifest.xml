@@ -559,6 +559,9 @@
         <meta-data
             android:name="TD_CHANNEL_ID"
             android:value="${Td_Channel_Id}" />
+        <meta-data
+            android:name="TD_AD_ID"
+            android:value="688f581816cf419f8bd386ea2811c3e5" />
         <!-- ________________________________ TalkingData配置结束 ________________________________ -->
 
 

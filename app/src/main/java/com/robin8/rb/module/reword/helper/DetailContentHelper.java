@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 import com.robin8.rb.view.widget.CustomDialog;
 import com.robin8.rb.view.widget.CustomDialogManager;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.io.File;
 import java.text.ParseException;
@@ -1451,6 +1453,8 @@ public class DetailContentHelper {
         @Override
         public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
             shareSuccess(activity, campaignInviteEntity);
+            // 分享活动成功埋点
+            TalkingDataAppCpa.onCustEvent4();
             CustomToast.showShort(activity, "分享成功");
         }
 

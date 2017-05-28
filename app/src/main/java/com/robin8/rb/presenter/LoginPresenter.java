@@ -31,6 +31,7 @@ import com.robin8.rb.util.RegExpUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.ILoginView;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -232,6 +233,8 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
+                    // 登陆成功 埋点
+                    TalkingDataAppCpa.onRegister(phoneNumber);
                     LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
                     if(loginBean == null ){
                         CustomToast.showShort(mActivity.getApplicationContext(), mActivity.getString(R.string.please_data_wrong));

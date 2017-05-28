@@ -25,6 +25,7 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 
 /**
@@ -205,6 +206,8 @@ public class WithdrawCashActivity extends BaseActivity {
             public void onResponse(String response) {
                 WithdrawBean withdrawBean = GsonTools.jsonToBean(response, WithdrawBean.class);
                 if (withdrawBean.getError() == 0) {
+                    //提现成功埋点
+                    TalkingDataAppCpa.onCustEvent3();
                     mWithCashedB = true;
                     finish();
                     CustomToast.showShort(WithdrawCashActivity.this, "提现成功");
