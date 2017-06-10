@@ -233,8 +233,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
-                    // 登陆成功 埋点
-                    TalkingDataAppCpa.onRegister(phoneNumber);
                     LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
                     if(loginBean == null ){
                         CustomToast.showShort(mActivity.getApplicationContext(), mActivity.getString(R.string.please_data_wrong));
@@ -242,6 +240,8 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                     }
 
                     if (loginBean.getError() == 0) {// 登陆成功
+                        // 登陆成功 埋点
+                        TalkingDataAppCpa.onRegister(phoneNumber);
                         LoginHelper.loginSuccess(loginBean, from, mActivity);
                     } else {
                         CustomToast.showShort(mActivity.getApplicationContext(), loginBean.getDetail());

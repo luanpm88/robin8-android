@@ -159,6 +159,8 @@
         -keep class com.talkingdata.sdk.TalkingDataSDK {public *;}
         -keep class com.apptalkingdata.** {*;}
 
+        -keep class com.talkingdata.sdk.** {*;}
+        -dontwarn com.tendcloud.**
         #sharesdk
         -keep class cn.sharesdk.onekeyshare.**{*;}
         -keep  class cn.sharesdk.**{*;}

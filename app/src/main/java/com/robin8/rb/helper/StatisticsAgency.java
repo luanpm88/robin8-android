@@ -3,6 +3,7 @@ package com.robin8.rb.helper;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 import com.robin8.rb.util.LogUtil;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
@@ -85,21 +86,27 @@ public class StatisticsAgency {
 
     public static final String SINA_SHARE = "sina_share";//新浪分享
     public static final String TD_AD_ID = "TD_AD_ID";
-    public static final String TD_CHANNEL_ID = "TD_CHANNEL_ID";
+    public static final String TD_AD_CHANNEL_ID = "GooglePlay";
+    public static final String TD_ANALYTICS_APP_ID = "TD_ANALYTICS_APP_ID";
+    public static final String TD_ANALYTICS_CHANNEL_ID = "TD_ANALYTICS_CHANNEL_ID";
 
     public static void init(Context context) {
         TCAgent.LOG_ON = true;
-        TCAgent.init(context);
+        TalkingDataAppCpa.LOG_NO = true;
         TCAgent.setReportUncaughtExceptions(true);
+
         try {
             ApplicationInfo applicationInfo = context.getPackageManager()
-                    .getApplicationInfo(context.getPackageName(),
-                            PackageManager.GET_META_DATA);
-            TalkingDataAppCpa.init(context.getApplicationContext(),
-                    applicationInfo.metaData.getString(TD_AD_ID),
-                    applicationInfo.metaData.getString(TD_CHANNEL_ID));
-            LogUtil.logXXfigo("init TD AD" + applicationInfo.metaData.getString(TD_AD_ID)+"\n"
-                    +applicationInfo.metaData.getString(TD_CHANNEL_ID));
+                    .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            //talking data 应用统计初始化
+            String analyticChannelId = applicationInfo.metaData.getString(TD_ANALYTICS_CHANNEL_ID);
+            String analyticAppId = applicationInfo.metaData.getString(TD_ANALYTICS_APP_ID);
+            TCAgent.init(context,analyticAppId,analyticChannelId);
+            //talking data 广告检测初始化
+            String adAppId = applicationInfo.metaData.getString(TD_AD_ID);
+            TalkingDataAppCpa.init(context,
+                    adAppId,
+                    TD_AD_CHANNEL_ID);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
