@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,15 +20,17 @@ import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.module.first.model.KolDetailModel;
 import com.robin8.rb.module.first.model.SocialAccountsBean;
+import com.robin8.rb.module.mine.presenter.BindSocialPresenter;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
-import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
+import com.robin8.rb.util.LogUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,6 +38,9 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
 
 /**
  * 成为KOL
@@ -64,16 +70,18 @@ public class BeKolSecondActivity extends BaseActivity {
     private List<SocialAccountsBean> mSocialAccounts;
     private List<KolDetailModel.KolShowsBean> mKolShows;
     private WProgressDialog mWProgressDialog;
-
+   // private SocialAccountsBean mSocialAccountsBean;
+    private String userNames;
+    private String socialName;
     @Override
     public void setTitleView() {
-        mTVCenter.setText(this.getText(R.string.be_kol));
+        mTVCenter.setText(this.getText(R.string.bind_social_account));
     }
 
     @Override
     public void initView() {
-        mBottomTv.setVisibility(View.VISIBLE);
-        mBottomTv.setText(getString(R.string.next));
+        mBottomTv.setVisibility(View.GONE);
+        mBottomTv.setText(getString(R.string.submit));
         View view = LayoutInflater.from(this).inflate(R.layout.activity_be_kol_first, mLLContent, true);
         ButterKnife.bind(this);
         initData();
@@ -120,7 +128,7 @@ public class BeKolSecondActivity extends BaseActivity {
         for (int i = 0; i < 3; i++) {
             FirstBeKolItem item;
             if (i == 2) {
-                item = new FirstBeKolItem(getString(R.string.personal_show));
+               item = new FirstBeKolItem(getString(R.string.personal_show));
                 if (mKolShows == null) {
                     item.content = 0;
                 } else {
@@ -151,10 +159,10 @@ public class BeKolSecondActivity extends BaseActivity {
     }
 
     private void postData() {
-        if (!mGridDataList.get(0).isChecked) {
-            CustomToast.showShort(this,getString(R.string.must_bind_weixin));
-            return;
-        }
+//        if (!mGridDataList.get(0).isChecked) {
+//            CustomToast.showShort(this,getString(R.string.must_bind_weixin));
+//            return;
+//        }
 
         BasePresenter mBasePresenter = new BasePresenter();
 
@@ -194,14 +202,25 @@ public class BeKolSecondActivity extends BaseActivity {
 
     private void skipToNext() {
         NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
-        Intent intent = new Intent(this, BeKolThirdActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+//        Intent intent = new Intent(this, BeKolThirdActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+        Intent intent = getIntent();
+        setResult(SPConstants.BE_KOL_BIND_RESULT, intent);
         finish();
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    /**
+     * 绑定微信
+     * @param name
+     * @param id
+     */
     private void skipToDetail(String name, int id) {
+        bind(name,id);
+       // judgeConditions(name);
+       // mSocialAccountsBean =  mGridDataList.get(id).socialAccountsBean;
+       /* NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
         Intent intent = new Intent(this, BeKolSecondDetailActivity.class);
         mBackName = name;
         mBackId = id;
@@ -211,7 +230,88 @@ public class BeKolSecondActivity extends BaseActivity {
             intent.putExtra("socialAccountsBean", mGridDataList.get(id).socialAccountsBean);
         }
         startActivityForResult(intent, SPConstants.BE_KOL_SECOND);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);*/
+
+    }
+
+    /**
+     * wechat/qq/weibo直接绑定
+     * @param names
+     */
+    private void bind(final String names , final int ids) {
+        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), null, names);
+        presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
+            @Override
+            public void onResponse(String name) {
+                if (null!=name){
+                    CustomToast.showShort(BeKolSecondActivity.this,"已成功绑定"+names);
+                    userNames = name;
+                    socialName = names;
+                    mypostData(names,name);
+                    mGridDataList.get(ids).isChecked = true;
+                    mMyGridBaseAdapter.notifyDataSetChanged();
+                }else {
+                    CustomToast.showShort(BeKolSecondActivity.this,"绑定失败，请重试");
+                }
+            }
+        });
+        if (getString(R.string.weixin).equals(names)) {
+            presenter.authorize(new Wechat(this));
+        } else if (getString(R.string.qq).equals(names)) {
+            presenter.authorize(new QQ(this));
+        } else if (getString(R.string.weibo).equals(names)) {
+            presenter.authorize(new SinaWeibo(this));
+        }else {
+            NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
+            Intent intent = new Intent(this, BeKolSecondDetailActivity.class);
+            mBackName = names;
+            mBackId = ids;
+            intent.putExtra("id", ids);
+            intent.putExtra("name", names);
+            if (ids >= 0 && ids< mGridDataList.size()) {
+                intent.putExtra("socialAccountsBean", mGridDataList.get(ids).socialAccountsBean);
+            }
+            startActivityForResult(intent, SPConstants.BE_KOL_SECOND);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
+    }
+    private void mypostData(String name,String userName) {
+        String url;
+        BasePresenter mBasePresenter = new BasePresenter();
+        RequestParams params = new RequestParams();
+        params.put("provider_name", name);
+        params.put("price","1");
+        params.put("followers_count","1");
+        params.put("username", userName);
+        LogUtil.LogShitou("绑定qq的报价之类的",name+"//"+userName);
+        url = HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL);
+
+        mBasePresenter.getDataFromServer(true, HttpRequest.POST, url, params, new RequestCallback() {
+            @Override
+            public void onError(Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.LogShitou("提交接口","OK"+response);
+                BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
+
+                if (bean == null) {
+                    CustomToast.showShort(BeKolSecondActivity.this, getString(R.string.please_data_wrong));
+                    return;
+                }
+
+                if (bean.getError() == 0) {
+                    LogUtil.LogShitou("走到这里没有","直接绑定qq");
+                    postData();
+                    // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
+                    //finish();
+                } else {
+                    CustomToast.showShort(BeKolSecondActivity.this, bean.getDetail());
+                }
+            }
+        });
     }
 
     @Override
@@ -224,6 +324,7 @@ public class BeKolSecondActivity extends BaseActivity {
             mDataList.get(2).content = counts;
             mMyListAdapter.notifyDataSetChanged();
         }
+
     }
 
     @Override
@@ -248,6 +349,7 @@ public class BeKolSecondActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_bottom:
+              // mypostData(socialName,userNames);
                 postData();
                 break;
         }
@@ -281,27 +383,31 @@ public class BeKolSecondActivity extends BaseActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            FirstBeKolItem item = getItem(position);
+           FirstBeKolItem item = getItem(position);
             switch (getItemViewType(position)) {
                 case TYPE_HEADER:
                     convertView = LayoutInflater.from(BeKolSecondActivity.this).inflate(R.layout.item_be_kol_header, null);
-                    final View viewHeader = convertView.findViewById(R.id.view_header);
-                    viewHeader.setBackgroundResource(R.mipmap.pic_kol_step_1);
-                    viewHeader.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            viewHeader.getLayoutParams().height = DensityUtils.getScreenWidth(viewHeader.getContext()) * 58 / 700;
-                        }
-                    });
+                    LinearLayout ll_photo = (LinearLayout) convertView.findViewById(R.id.ll_photo);
+                    ll_photo.setVisibility(View.GONE);
+//                                       final View viewHeader = convertView.findViewById(R.id.view_header);
+//                    viewHeader.setBackgroundResource(R.mipmap.pic_kol_step_1);
+//                    viewHeader.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            viewHeader.getLayoutParams().height = DensityUtils.getScreenWidth(viewHeader.getContext()) * 58 / 700;
+//                        }
+//                    });
                     break;
                 case TYPE_NORMAL:
                     if (item != null) {
                         convertView = LayoutInflater.from(BeKolSecondActivity.this).inflate(R.layout.item_be_kol_normal, null);
+                        LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.ll);
+                        ll.setVisibility(View.GONE);
                         TextView tvName = (TextView) convertView.findViewById(R.id.tv_name);
                         TextView tvContent = (TextView) convertView.findViewById(R.id.tv_content);
                         TextView tvArrow = (TextView) convertView.findViewById(R.id.tv_arrow);
                         View viewDivider = convertView.findViewById(R.id.view_divider);
-                        viewDivider.setVisibility(View.VISIBLE);
+                        viewDivider.setVisibility(View.GONE);
                         tvName.setText(item.name);
                         tvContent.setText(String.valueOf(item.content));
                         IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
@@ -398,4 +504,53 @@ public class BeKolSecondActivity extends BaseActivity {
             skipToDetail(name, id);
         }
     }
+//    private void bind(final String names) {
+//        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(),null, names);
+//        presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
+//            @Override
+//            public void onResponse(String name) {
+//                CustomToast.showLong(BeKolSecondActivity.this,"==bind==>"+name);
+//                if (names==name){
+//                    BasePresenter mBasePresenter = new BasePresenter();
+//                    RequestParams params = new RequestParams();
+//                        params.put("provider_name", name);
+//                        params.put("price", "1");
+//
+//                    params.put("followers_count", "10");
+//                    params.put("username", name);
+//                    mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL), params, new RequestCallback() {
+//                        @Override
+//                        public void onError(Exception e) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onResponse(String response) {
+//                            BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
+//
+//                            if (bean == null) {
+//                                CustomToast.showShort(BeKolSecondActivity.this, getString(R.string.please_data_wrong));
+//                                return;
+//                            }
+//
+//                            if (bean.getError() == 0) {
+//                                mGridDataList.get(mBackId).isChecked = true;
+//                                mMyGridBaseAdapter.notifyDataSetChanged();
+//                            } else {
+//                                CustomToast.showShort(BeKolSecondActivity.this, bean.getDetail());
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//        if (getString(R.string.weixin).equals(names)) {
+//            presenter.authorize(new Wechat(this));
+//        } else if (getString(R.string.qq).equals(names)) {
+//            presenter.authorize(new QQ(this));
+//        } else if (getString(R.string.weibo).equals(names)) {
+//            presenter.authorize(new SinaWeibo(this));
+//        }
+//
+//    }
 }

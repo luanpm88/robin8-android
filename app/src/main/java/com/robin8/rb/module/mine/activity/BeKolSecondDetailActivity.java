@@ -3,6 +3,7 @@ package com.robin8.rb.module.mine.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.IconFontHelper;
+import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.module.first.model.SocialAccountsBean;
 import com.robin8.rb.module.mine.presenter.BindSocialPresenter;
@@ -24,6 +26,7 @@ import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 
 import java.io.Serializable;
 
@@ -109,6 +112,7 @@ public class BeKolSecondDetailActivity extends BaseActivity {
                     getString(R.string.for_example) + String.valueOf(1000),
                     null, false);
         } else {
+            LogUtil.LogShitou("这是我走的","other"+name);
             mCurrentPageType = TYPE_NORMAL;
             updateView(getString(R.string.please_write) + name + getString(R.string.nickname),
                     getString(R.string.please_write) + name + getString(R.string.offer_unit),
@@ -205,6 +209,7 @@ public class BeKolSecondDetailActivity extends BaseActivity {
         presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
             @Override
             public void onResponse(String name) {
+                CustomToast.showLong(BeKolSecondDetailActivity.this,"==bind==>"+name);
                 userName = name;
             }
         });
@@ -272,7 +277,7 @@ public class BeKolSecondDetailActivity extends BaseActivity {
     }
 
     private void postData(String text, final Intent intent) {
-        String url;
+        final String url;
         BasePresenter mBasePresenter = new BasePresenter();
         RequestParams params = new RequestParams();
         if (mCurrentPageType == TYPE_PERSONAL_SHOW) {
@@ -304,6 +309,9 @@ public class BeKolSecondDetailActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
+
+                LogUtil.LogShitou("绑定的当前url",url);
+                LogUtil.LogShitou("绑定的详情",response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
 
                 if (bean == null) {
@@ -312,7 +320,13 @@ public class BeKolSecondDetailActivity extends BaseActivity {
                 }
 
                 if (bean.getError() == 0) {
-                    setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
+                    if (mCurrentPageType == TYPE_PERSONAL_SHOW) {
+                        setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
+                    }else {
+                        setResult(SPConstants.BE_KOL_SECOND_ITEM_SOCIAL, intent);
+                    }
+                   // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
+                    NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
                     finish();
                 } else {
                     CustomToast.showShort(BeKolSecondDetailActivity.this, bean.getDetail());

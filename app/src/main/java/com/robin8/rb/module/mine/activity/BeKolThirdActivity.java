@@ -3,6 +3,7 @@ package com.robin8.rb.module.mine.activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
@@ -19,8 +20,8 @@ import butterknife.ButterKnife;
  */
 public class BeKolThirdActivity extends BaseActivity {
 
-    @Bind(R.id.view_header)
-    View viewHeader;
+//    @Bind(R.id.layout_header)
+//    View viewHeader;
     @Bind(R.id.tv_hook)
     TextView tvHook;
 
@@ -35,14 +36,17 @@ public class BeKolThirdActivity extends BaseActivity {
         mBottomTv.setText(getString(R.string.confirm));
         View view = LayoutInflater.from(this).inflate(R.layout.activity_be_kol_third, mLLContent, true);
         ButterKnife.bind(this);
+        View ll_header = view.findViewById(R.id.layout_header);
+        LinearLayout ll = (LinearLayout) ll_header.findViewById(R.id.ll_photo);
+        ll.setVisibility(View.GONE);
 
-        viewHeader.post(new Runnable() {
+       /* viewHeader.post(new Runnable() {
             @Override
             public void run() {
                 viewHeader.getLayoutParams().height = DensityUtils.getScreenWidth(viewHeader.getContext()) * 58 / 700;
             }
         });
-        viewHeader.setBackgroundResource(R.mipmap.pic_kol_step_2);
+        viewHeader.setBackgroundResource(R.mipmap.pic_kol_step_2);*/
         IconFontHelper.setTextIconFont(tvHook, R.string.hook_sign);
         mBottomTv.setOnClickListener(this);
     }

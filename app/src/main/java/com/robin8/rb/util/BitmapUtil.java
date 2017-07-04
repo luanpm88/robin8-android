@@ -411,6 +411,7 @@ public class BitmapUtil {
     public static Bitmap decodeUriAsBitmap(Uri uri, Activity activity) {
         Bitmap bitmap = null;
         try {
+            //bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(),uri);
             bitmap = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(uri));
         } catch (FileNotFoundException e) {
             e.printStackTrace();

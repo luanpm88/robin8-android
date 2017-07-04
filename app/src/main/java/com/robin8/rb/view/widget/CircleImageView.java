@@ -1,5 +1,6 @@
 package com.robin8.rb.view.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 /**
  * 显示圆形图片
  */
+@SuppressLint("AppCompatCustomView")
 public class CircleImageView extends ImageView {
 
     public CircleImageView(Context context) {

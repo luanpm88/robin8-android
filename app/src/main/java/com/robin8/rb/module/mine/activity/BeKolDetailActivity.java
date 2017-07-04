@@ -19,6 +19,7 @@ import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.ui.widget.OtherGridView;
 import com.robin8.rb.util.CustomToast;
+import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,8 @@ public class BeKolDetailActivity extends BaseActivity {
         initData();
         if (getString(R.string.interest).endsWith(name)) {
             mTVCenter.setText(this.getText(R.string.interest_tags));
+        } else if (getString(R.string.social_account).equals(name)){
+            mTVCenter.setText(this.getText(R.string.bind_social_account));
         } else {
             mTVCenter.setText(this.getText(R.string.please_write) + name);
         }
@@ -100,6 +103,7 @@ public class BeKolDetailActivity extends BaseActivity {
             } else {
                 etDesc.setText(content);
                 tvDescNum.setText(String.valueOf(content.length()) + SLASH + String.valueOf(mLimitNumber));
+                etDesc.setSelection(etDesc.length());
             }
             etDesc.addTextChangedListener(new MyTextWatcher(tvDescNum, etDesc));
         }
@@ -110,6 +114,7 @@ public class BeKolDetailActivity extends BaseActivity {
         } else {
             etContent.setText(content);
             tvEtNum.setText(String.valueOf(content.length()) + SLASH + String.valueOf(mLimitNumber));
+            etContent.setSelection(etContent.length());
         }
     }
 
@@ -133,16 +138,24 @@ public class BeKolDetailActivity extends BaseActivity {
         StringBuffer sb = new StringBuffer();
         mTagCount = 0;
         if (mGridData == null || mGridData.size() == 0) {
+            LogUtil.LogShitou("is?","===========");
             return "";
-        }
-        for (int i = 0; i < mGridData.size(); i++) {
-            TagsItem tagsItem = mGridData.get(i);
-            if (tagsItem.isSelected) {
-                sb.append(tagsItem.name).append(",");
-                mTagCount++;
+        }else {
+            LogUtil.LogShitou("have","==>"+mGridData.size());
+            for (int i = 0; i < mGridData.size(); i++) {
+                TagsItem tagsItem = mGridData.get(i);
+                if (tagsItem.isSelected) {
+                    sb.append(tagsItem.name).append(",");
+                    mTagCount++;
+                }
+            }
+            if (sb.length()==0){
+                return "";
+            }else {
+                return sb.substring(0, sb.length() - 1);
             }
         }
-        return sb.substring(0, sb.length() - 1);
+
     }
 
     @Override
