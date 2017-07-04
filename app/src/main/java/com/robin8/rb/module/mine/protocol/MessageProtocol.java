@@ -18,6 +18,7 @@ import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
@@ -156,11 +157,22 @@ public class MessageProtocol implements IProtocol {
             if (tempList != null && tempList.size() > 0) {
                 if (currentState != BaseRecyclerViewPresenter.LOAD_MORE) {
                     mMessagesBeanList.clear();
+                    mCurrentPage++;
+                    mMessagesBeanList.addAll(tempList);
+                    mMessageAdapter.setDataList(mMessagesBeanList);
+                    mMessageAdapter.notifyDataSetChanged();
+                }else {
+                    if (mCurrentPage<=mTotalPages){
+                        mCurrentPage++;
+                        mMessagesBeanList.addAll(tempList);
+                        mMessageAdapter.setDataList(mMessagesBeanList);
+                        mMessageAdapter.notifyDataSetChanged();
+                   }
+                        // else {
+//                        CustomToast.showShort(mActivity,"没有更多消息");
+//                    }
                 }
-                mCurrentPage++;
-                mMessagesBeanList.addAll(tempList);
-                mMessageAdapter.setDataList(mMessagesBeanList);
-                mMessageAdapter.notifyDataSetChanged();
+
             }
         }
     }
