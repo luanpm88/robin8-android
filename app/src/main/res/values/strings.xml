@@ -52,6 +52,7 @@
     <string name="min_100">最低100元</string>
 -->
     <string name="min_2">最低0.2元</string>
+    <string name="min_5">最低0.5元</string>
     <string name="min_20">最低2元</string>
     <string name="min_3">最低3元</string>
     <string name="min_1">最低1元</string>
@@ -326,6 +327,8 @@
     <string name="all_message_read">所有消息标记为已读</string>
     <string name="feed_back">意见反馈</string>
     <string name="sweep_qr_code">扫一扫二维码登录官网</string>
+    <string name="bind_social_account">社交账号绑定</string>
+    <string name="social_account">社交账号</string>
 
     <string name="viewfinderview_status_text1">将二维码/条码放入取景框内</string>
     <string name="viewfinderview_status_text2">即可自动扫描</string>

@@ -180,7 +180,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s != null) {
-                    mTVTitleNum.setText(String.valueOf(s.length()) + "/22");
+                    mTVTitleNum.setText(String.valueOf(s.length()) + "/60");
                     setBottomView();
                 }
             }
@@ -201,7 +201,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s != null) {
-                    mTVIntroduceNum.setText(String.valueOf(s.length()) + "/140");
+                    mTVIntroduceNum.setText(String.valueOf(s.length()) + "/500");
                     setBottomView();
                 }
             }
@@ -234,11 +234,11 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         if ("click".equals(mModifyCampaign.getPer_budget_type())) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
             mTvTitle5.setText(mArrayTitle[4]);
-            mETConsume5.setHint(getResources().getString(R.string.min_2));
+            mETConsume5.setHint(getResources().getString(R.string.min_5));
         } else if ("post".equals(mModifyCampaign.getPer_budget_type())) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_kol));
             mTvTitle5.setText(mArrayTitle[5]);
-            mETConsume5.setHint(getResources().getString(R.string.min_20));
+            mETConsume5.setHint(getResources().getString(R.string.min_3));
         } else if ("simple_cpi".equals(mModifyCampaign.getPer_budget_type())) {
             mTVInfo3.setText(getResources().getString(R.string.type_download_by_kol));
             mTvTitle5.setText(mArrayTitle[6]);
@@ -246,7 +246,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         } else {
             mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
             mTvTitle5.setText(mArrayTitle[7]);
-            mETConsume5.setHint(getResources().getString(R.string.min_1));
+            mETConsume5.setHint(getResources().getString(R.string.min_3));
         }
 
         if (!UN_PAY.equals(mModifyCampaign.getStatus())) {
@@ -344,11 +344,11 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         if ("click".equals(budgetType)) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
             mTvTitle5.setText(mArrayTitle[4]);
-            mETConsume5.setHint(getResources().getString(R.string.min_2));
+            mETConsume5.setHint(getResources().getString(R.string.min_5));
         } else if ("post".equals(budgetType)) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_kol));
             mTvTitle5.setText(mArrayTitle[5]);
-            mETConsume5.setHint(getResources().getString(R.string.min_20));
+            mETConsume5.setHint(getResources().getString(R.string.min_3));
         } else if ("simple_cpi".equals(budgetType)) {
             mTVInfo3.setText(getResources().getString(R.string.type_download_by_kol));
             mTvTitle5.setText(mArrayTitle[6]);
@@ -356,7 +356,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         } else {
             mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
             mTvTitle5.setText(mArrayTitle[7]);
-            mETConsume5.setHint(getResources().getString(R.string.min_1));
+            mETConsume5.setHint(getResources().getString(R.string.min_3));
         }
 
         if (!UN_PAY.equals(status) && status != null) {
@@ -503,9 +503,9 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             String oneComsuneStr = mETConsume5.getText().toString();
             try {
                 float oneComsuneF = Float.parseFloat(oneComsuneStr);
-                if (oneComsuneF < 0.2) {
+                if (oneComsuneF < 0.5) {
                     if (showToast) {
-                        CustomToast.showShort(mActivity, "单个点击费用最低0.2元");
+                        CustomToast.showShort(mActivity, "单个点击费用最低0.5元");
                     }
                     return false;
                 }
@@ -586,7 +586,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         mTVInfo2.setText(DateUtil.getFormatTime(System.currentTimeMillis() + 26 * 60 * 60 * 1000, SPConstants.YY_MM_DD_HH_MM));
         mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
 //        mETConsume4.setHint(getResources().getString(R.string.min_100));
-        mETConsume5.setHint(getResources().getString(R.string.min_2));
+        mETConsume5.setHint(getResources().getString(R.string.min_5));
 
         mTVInfo1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -750,16 +750,16 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                     case TimePickerView.ACTIVITY_TYPE:
                         mTVInfo3.setText(backStr[1]);
                         if (backStr[1].equals(getString(R.string.type_count_by_click))) {//点击
-                            mETConsume5.setHint(getString(R.string.min_2));
+                            mETConsume5.setHint(getString(R.string.min_5));
                             mTvTitle5.setText(mArrayTitle[4]);
                         } else if (backStr[1].equals(getString(R.string.type_count_by_kol))) {//转发
-                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setHint(getString(R.string.min_3));
                             mTvTitle5.setText(mArrayTitle[5]);
                         } else if (backStr[1].equals(getString(R.string.type_download_by_kol))) {//下载
                             mETConsume5.setHint(getString(R.string.min_3));
                             mTvTitle5.setText(mArrayTitle[6]);
                         } else {//任务
-                            mETConsume5.setHint(getString(R.string.min_1));
+                            mETConsume5.setHint(getString(R.string.min_3));
                             mTvTitle5.setText(mArrayTitle[7]);
                         }
                         break;
