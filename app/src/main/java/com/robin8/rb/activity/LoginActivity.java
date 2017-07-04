@@ -1,6 +1,7 @@
 package com.robin8.rb.activity;
 
 import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -33,7 +34,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     private String phoneNumber;
     private String checkNum;
     private TextView mTVLoginInfo;
-    private TimerUtil mTimer;
     private String mKolUuid;
     private boolean mIsFromEffectiveB;
     private TextView mTVCheckNum;
@@ -70,8 +70,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mIBWeibo.setOnClickListener(this);
         mIBQQ.setOnClickListener(this);
 
-        mTVLoginInfo.setText(Html.fromHtml(getString(R.string.click_login_approve) + "<font color=#2dcad0>" + getString(R.string.serviece_protocol) + "</font>"));
-
+        mTVLoginInfo.setText(Html.fromHtml(getString(R.string.click_login_approve) +"<font color=#2dcad0>" + getString(R.string.serviece_protocol) + "</font>"));
         mLoginPresenter = new LoginPresenter(LoginActivity.this, this);
         mLoginPresenter.init();
     }
@@ -126,5 +125,11 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
             checkCode = mETCheckNum.getText().toString();
         }
         return checkCode;
+    }
+
+    @Override
+    public View getTv() {
+
+        return mTVCheckNum;
     }
 }

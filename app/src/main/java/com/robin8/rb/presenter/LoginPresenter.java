@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginOtherWithPhoneActivity;
@@ -17,6 +18,8 @@ import com.robin8.rb.listener.BindSocialPresenterListener;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.OtherLoginListBean;
+import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
+import com.robin8.rb.module.mine.model.MineShowModel;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -27,8 +30,10 @@ import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.RegExpUtil;
 import com.robin8.rb.util.StringUtil;
+import com.robin8.rb.util.TimerUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.ILoginView;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
@@ -54,15 +59,17 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
     private WProgressDialog mWProgressDialog;
 
     public LoginPresenter(Activity activity, ILoginView loginView) {
+
         super(activity);
         mActivity = activity;
         mILoginView = loginView;
     }
 
     public void init() {
+
         Intent intent = mActivity.getIntent();
         Bundle rootBundle = intent.getExtras();
-        if(rootBundle!=null){
+        if (rootBundle != null) {
             mKolUuid = rootBundle.getString("kol_uuid", "");
             from = rootBundle.getInt("from", SPConstants.MAINACTIVITY);
         }
@@ -70,6 +77,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
     @Override
     public void getDataFromServer(boolean needHeader, int method, String url, RequestParams params, RequestCallback callback) {
+
         switch (method) {
             case HttpRequest.GET:
                 HttpRequest.getInstance().get(needHeader, url, params, callback);
@@ -82,9 +90,10 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
     @Override
     public void onComplete(final Platform platform, int action, final HashMap<String, Object> res) {
-        super.onComplete(platform, action, res);
 
+        super.onComplete(platform, action, res);
         //第三方登录成功
+
         if (action == Platform.ACTION_USER_INFOR) {
             if (action == Platform.ACTION_USER_INFOR) {
                 PlatformDb platDB = platform.getDb();//获取数平台数据DB
@@ -95,8 +104,10 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 final String userId = platDB.getUserId();
                 final String userName = platDB.getUserName();
                 UIUtils.runInMainThread(new Runnable() {
+
                     @Override
                     public void run() {
+
                         sendOtherLoginInfo(platform.getName(), token, userGender, userIcon, userId, userName, res);
                     }
                 });
@@ -104,9 +115,12 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         }
     }
 
-    private void sendOtherLoginInfo(String plat, String token, String userGender, String userIcon,
-                                    String userId, String userName, HashMap<String, Object> res) {
+    private void sendOtherLoginInfo(String plat, String token, String userGender, String userIcon, String userId, String userName, HashMap<String, Object> res) {
 
+        if (mWProgressDialog == null) {
+            mWProgressDialog = WProgressDialog.createDialog(mActivity);
+        }
+        mWProgressDialog.show();
         RequestParams requestParams = new RequestParams();
         requestParams.put("app_platform", "Android");
         requestParams.put("app_version", AppUtils.getVersionName(mActivity.getApplicationContext()));
@@ -114,8 +128,8 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         requestParams.put("os_version", AppUtils.getSystemVersion());
         requestParams.put("device_model", android.os.Build.MODEL);
         requestParams.put("IMEI", AppUtils.getIMEI(mActivity.getApplicationContext()));
-        requestParams.put("city_name",  CacheUtils.getString(mActivity, SPConstants.LOCATION_CITY, ""));
-        requestParams.put("IDFA",android.os.Build.MODEL);
+        requestParams.put("city_name", CacheUtils.getString(mActivity, SPConstants.LOCATION_CITY, ""));
+        requestParams.put("IDFA", android.os.Build.MODEL);
         requestParams.put("provider", provider);
         requestParams.put("uid", userId);
         requestParams.put("token", token);
@@ -141,35 +155,46 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         requestParams.put("city", res.get("city"));
 
         getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.OAUTH_LOGIN_URL), requestParams, new RequestCallback() {
-                    @Override
-                    public void onError(Exception e) {
 
-                    }
+            @Override
+            public void onError(Exception e) {
 
-                    @Override
-                    public void onResponse(String response) {
-                        LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
-                        if (loginBean.getError() == 0) {
-                            HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));//保存token
-                            if (!TextUtils.isEmpty(loginBean.getKol().getMobile_number())) {//已经绑定了手机号
-                                HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
-                                BaseApplication.getInstance().setLoginBean(loginBean);
-                                if (BaseApplication.getInstance().hasLogined()) {
-                                    NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
-                                }
-                                LoginHelper.loginSuccess(loginBean,from,mActivity);
-                            } else {//尚未绑定手机号
-                                Intent intent = new Intent(mActivity, LoginOtherWithPhoneActivity.class);
-                                intent.putExtra("from", from);
-                                mActivity.startActivity(intent);
-                                mActivity.finish();
-                            }
-                        }else {
-                            CustomToast.showShort(mActivity,loginBean.getError());
-                        }
-                    }
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
                 }
-        );
+            }
+
+            @Override
+            public void onResponse(String response) {
+
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+                LogUtil.LogShitou("第三方登陆结果", "==>" + response);
+                LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
+                if (loginBean.getError() == 0) {
+                    HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));//保存token
+                    if (! TextUtils.isEmpty(loginBean.getKol().getMobile_number())) {//已经绑定了手机号
+                        HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+                        BaseApplication.getInstance().setLoginBean(loginBean);
+                        if (BaseApplication.getInstance().hasLogined()) {
+                            NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+                        }
+                        LogUtil.LogShitou("第三方登陆指令from", "==>" + from);
+                        LoginHelper.loginSuccess(loginBean, from, mActivity);
+                        mActivity.finish();
+                    } else {//尚未绑定手机号
+                        LogUtil.LogShitou("去绑定phone指令from", "==>" + from);
+                        Intent intent = new Intent(mActivity, LoginOtherWithPhoneActivity.class);
+                        intent.putExtra("from", from);
+                        mActivity.startActivity(intent);
+                        mActivity.finish();
+                    }
+                } else {
+                    CustomToast.showShort(mActivity, loginBean.getError());
+                }
+            }
+        });
     }
 
     /**
@@ -177,8 +202,9 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
      */
 
     public void getCheckNumber() {
+
         String phoneNumber = mILoginView.getPhoneNumber();
-        if (!RegExpUtil.checkMobile(phoneNumber)) {
+        if (! RegExpUtil.checkMobile(phoneNumber)) {
             CustomToast.showShort(mActivity, "请输入正确的手机号码!");
             return;
         }
@@ -190,15 +216,19 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onError(Exception e) {
+
                 CustomToast.showShort(mActivity, "验证码发送失败");
             }
 
             @Override
             public void onResponse(String response) {
+
+                LogUtil.LogShitou("验证码数据" + HelpTools.getUrl(CommonConfig.GET_CODE_URL), response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
                 CustomToast.showShort(mActivity, bean.getDetail());
                 if (bean.getError() == 0) {
                     CustomToast.showShort(mActivity, "验证码发送成功");
+                    new Thread(new TimerUtil(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
                 } else {
                     CustomToast.showShort(mActivity, "验证码发送失败");
                 }
@@ -210,9 +240,10 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
      * 登录
      */
     public void login() {
+
         final String phoneNumber = mILoginView.getPhoneNumber();
         String checkCode = mILoginView.getCheckCode();
-        if (!RegExpUtil.checkMobile(phoneNumber)) {
+        if (! RegExpUtil.checkMobile(phoneNumber)) {
             CustomToast.showShort(mActivity, "请输入正确的手机号码!");
         } else {
             if (mWProgressDialog == null) {
@@ -221,8 +252,10 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             mWProgressDialog.show();
 
             LoginTask.newInstance(mActivity.getApplicationContext()).start(new RequestCallback() {
+
                 @Override
                 public void onError(Exception e) {
+
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
@@ -230,11 +263,12 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
                 @Override
                 public void onResponse(String response) {
+
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
                     LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
-                    if(loginBean == null ){
+                    if (loginBean == null) {
                         CustomToast.showShort(mActivity.getApplicationContext(), mActivity.getString(R.string.please_data_wrong));
                         return;
                     }
@@ -242,12 +276,70 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                     if (loginBean.getError() == 0) {// 登陆成功
                         // 登陆成功 埋点
                         TalkingDataAppCpa.onRegister(phoneNumber);
+                        HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
+                        HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+                        BaseApplication.getInstance().setLoginBean(loginBean);
+                        if (BaseApplication.getInstance().hasLogined()) {
+                            NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+                            //判断是否是kol，如果不是kol，点击申请kol
+                            judgeIskol();
+                        }
                         LoginHelper.loginSuccess(loginBean, from, mActivity);
+
                     } else {
                         CustomToast.showShort(mActivity.getApplicationContext(), loginBean.getDetail());
                     }
                 }
             }, phoneNumber, checkCode, mKolUuid);
         }
+    }
+
+    private void judgeIskol() {
+        if (mWProgressDialog == null) {
+            mWProgressDialog = WProgressDialog.createDialog(mActivity);
+        }
+        mWProgressDialog.show();
+        BasePresenter basePresenter = new BasePresenter();//是否会报401错误
+        basePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.MY_SHOW_URL), null, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onResponse(String response) {
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+                LogUtil.LogShitou("====这是登录后的检测网红=====", response);
+                MineShowModel mineShowModel = GsonTools.jsonToBean(response, MineShowModel.class);
+                if (mineShowModel != null && mineShowModel.getError() == 0) {
+                    // CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
+                    MineShowModel.KolBean kol = mineShowModel.getKol();
+                    if (TextUtils.isEmpty(kol.getRole_apply_status())) {
+                        //不是kol
+                        jumpBeKol(kol.getId());
+                    } else {
+                        if (kol.getRole_apply_status().equals("pending")) {
+                            jumpBeKol(kol.getId());
+                        }
+                        LogUtil.LogShitou("哈哈哈哈", "---//--");
+                    }
+                    // mActivity.finish();
+                }
+            }
+
+
+        });
+    }
+
+    private void jumpBeKol(int id) {
+      //  TalkingDataAppCpa.onCustEvent1();
+        Intent intent = new Intent(mActivity, BeKolFirstActivity.class);
+        intent.putExtra("id", id);
+        mActivity.startActivity(intent);
     }
 }
