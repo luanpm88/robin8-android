@@ -25,6 +25,7 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
 import java.text.DateFormat;
@@ -80,6 +81,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
+                LogUtil.LogShitou("签到历史"+HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL),response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -136,6 +138,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
+                LogUtil.LogShitou("签到"+HelpTools.getUrl(CommonConfig.CHECK_IN_URL),response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -215,10 +218,23 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
     public void initData() {
         Calendar aCalendar = Calendar.getInstance();
         Date date = new Date(System.currentTimeMillis());
+     //   LogUtil.LogShitou("ai ksa","===>"+System.currentTimeMillis());
         aCalendar.setTime(date);
         int day = aCalendar.getActualMaximum(Calendar.DATE);
         mMonth = aCalendar.get(Calendar.MONTH) + 1;
-        int lastSpace = aCalendar.getFirstDayOfWeek();
+//        int lastSpace = aCalendar.getFirstDayOfWeek();
+       // int i1 = aCalendar.get(Calendar.DAY_OF_WEEK) - 1;
+//        LogUtil.LogShitou("天数days","===>"+day);
+//        LogUtil.LogShitou("月mouth","===>"+mMonth);
+//        LogUtil.LogShitou("预留的空间","===>"+lastSpace);
+//        LogUtil.LogShitou("i1","===>"+i1);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+       // SimpleDateFormat format = new SimpleDateFormat("E");
+//        LogUtil.LogShitou("本月第一天是：" , "-->"+Calendar.DAY_OF_MONTH);
+//        LogUtil.LogShitou("本月第一天是：" , "-->"+format.format(aCalendar.getTime()));
+//        LogUtil.LogShitou("本月第一天是：" , "-->"+aCalendar.get(Calendar.DAY_OF_WEEK));
+        int lastSpace = calendar.get(Calendar.DAY_OF_WEEK)-1;
         if (mMonthList != null) {
             mMonthList.clear();
         } else {
