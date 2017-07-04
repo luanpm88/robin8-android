@@ -9,7 +9,8 @@
         android:layout_width="95dp"
         android:layout_height="114dp"
         android:layout_centerHorizontal="true"
-        android:background="@color/undefined_backgroud" />
+        android:background="@color/undefined_backgroud"
+        android:src="@mipmap/icon_user_default"/>
 
     <TextView
         android:id="@+id/tv_name"
@@ -21,7 +22,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:singleLine="true"
-        android:text="afafaef"
+        android:text=""
         android:textColor="@color/white_custom"
         android:textSize="@dimen/undefine_font_3" />
 

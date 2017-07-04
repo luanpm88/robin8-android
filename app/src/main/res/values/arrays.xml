@@ -152,17 +152,18 @@
         <item>music</item>
         <item>overall</item>
     </string-array>
-    <string-array name="be_kol_first" >
-        <item>头部</item>
+    <string-array name="be_kol_first">
+        <item>头像</item>
         <item>昵称</item>
         <item>性别</item>
         <item>年龄</item>
-        <item>职业</item>
         <item>兴趣</item>
+        <item>职业</item>
+        <item>社交账号</item>
         <item>简介</item>
-        <item>图片</item>
+
     </string-array>
-    <string-array name="second_be_kol_item_name" >
+    <string-array name="second_be_kol_item_name">
         <item>微信</item>
         <item>QQ</item>
         <item>微博</item>
@@ -186,13 +187,13 @@
         <item>其它</item>
     </string-array>
 
-    <string-array name="setting_item_name" >
+    <string-array name="setting_item_name">
         <item>开启消息提醒</item>
         <item>开启摇一摇反馈</item>
         <item>关于Robin8</item>
     </string-array>
 
-    <string-array name="product_order" >
+    <string-array name="product_order">
         <item>综合排序</item>
         <item>按价格从高到低</item>
         <item>按价格从低到高</item>
@@ -200,7 +201,7 @@
         <item>按提成从低到高</item>
     </string-array>
 
-    <string-array name="product_order_en" >
+    <string-array name="product_order_en">
         <item>order_overall</item>
         <item>order_price_desc</item>
         <item>order_price_asc</item>

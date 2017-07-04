@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardview"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/cardview"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
 
     <FrameLayout
         android:id="@+id/fl_content"
@@ -16,13 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/sub_gray_custom"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/iv_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/cover_transparent" />
+            android:background="@color/cover_transparent"/>
 
         <ImageView
             android:id="@+id/iv_cover2"
@@ -30,14 +30,32 @@
             android:layout_height="95dp"
             android:layout_gravity="bottom"
             android:background="@mipmap/bg_cover2"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/iv_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/icon_task_tag_invite" />
+            android:background="@mipmap/icon_task_tag_invite"/>
     </FrameLayout>
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/ll_count_down"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="32dp"-->
+    <!--android:layout_gravity="center|right|top"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:visibility="gone">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_count_down"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center|right"-->
+    <!--android:text="剩余0天0时0分"-->
+    <!--android:textColor="@color/white_custom"-->
+    <!--android:textSize="@dimen/undefine_font_3"/>-->
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +81,7 @@
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_0"
             android:textStyle="bold"
-            android:visibility="invisible" />
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/tv_title"
@@ -77,7 +95,7 @@
             android:text="认真是一种能力而不是态度"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_3"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <com.robin8.rb.ui.widget.LineSpaceTextView
             android:id="@+id/tv_alias"
@@ -89,7 +107,7 @@
             android:text="2016"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_0"
-            app:letterSpacing="6dp" />
+            app:letterSpacing="6dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -97,8 +115,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
-        android:orientation="horizontal"
         android:gravity="center_horizontal"
+        android:orientation="horizontal"
         android:visibility="visible">
 
         <LinearLayout
@@ -121,34 +139,18 @@
                     android:background="#8D000000"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="点击"
+                    android:text="距离结束"
                     android:textColor="#fab719"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"/>
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_count_down"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
                     android:layout_marginTop="3dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="1.5dp"
-                        android:gravity="bottom"
-                        android:text="¥ "
-                        android:textColor="@color/white_custom"
-                        android:textSize="@dimen/undefine_font_5" />
-
-                    <TextView
-                        android:id="@+id/tv_buget"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text=""
-                        android:textColor="@color/white_custom"
-                        android:textSize="@dimen/undefine_font_5" />
-                </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:text="剩余0天0时0秒"
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_5"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -157,7 +159,7 @@
             android:layout_height="match_parent"
             android:background="@color/light_gray_custom"
             android:paddingBottom="4dp"
-            android:paddingTop="4dp" />
+            android:paddingTop="4dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -178,9 +180,9 @@
                     android:background="#8D000000"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="剩余"
+                    android:text="最多可赚"
                     android:textColor="@color/white_custom"
-                    android:textSize="@dimen/undefine_font_1" />
+                    android:textSize="@dimen/undefine_font_1"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -197,11 +199,26 @@
                         android:layout_weight="1"
                         android:text="500.0"
                         android:textColor="@color/white_custom"
-                        android:textSize="@dimen/undefine_font_5" />
+                        android:textSize="@dimen/undefine_font_5"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+<LinearLayout
+    android:visibility="gone"
+    android:id="@+id/ll_over_show"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="124dp"
+   android:gravity="center"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_custom"
+        android:textSize="@dimen/undefine_font_7"
+        android:text="已抢完"/>
+</LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_earn"
@@ -210,63 +227,65 @@
         android:layout_gravity="bottom"
         android:background="#55000000"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:visibility="visible">
 
-        <TextView
-            android:id="@+id/tv_earn_click"
+        <!--<TextView-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/tv_earn_click_num"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:text="点击数"-->
+        <!--android:textColor="@color/white_custom"-->
+        <!--android:textSize="@dimen/undefine_font_0"/>-->
+
+        <!--<TextView-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/tv_earn_click_numNow"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="5"-->
+        <!--android:textColor="@color/white_custom"-->
+        <!--android:textSize="14sp"-->
+        <!--android:textStyle="bold"/>-->
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="点击"
-            android:textColor="@color/white_custom"
-            android:textSize="@dimen/undefine_font_0" />
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:text="¥ "
-            android:textColor="@color/white_custom"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_earn_had"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="即将赚"
+                android:textColor="@color/white_custom"
+                android:textSize="10sp"/>
 
-        <TextView
-            android:id="@+id/tv_earn_thistime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="5"
-            android:textColor="@color/white_custom"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="¥ "
+                android:textColor="@color/yellow_custom"
+                android:textSize="@dimen/undefine_font_5"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tv_earn_had"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="即将赚"
-            android:textColor="@color/white_custom"
-            android:textSize="10sp" />
+            <TextView
+                android:id="@+id/tv_earn_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="925"
+                android:textColor="@color/yellow_custom"
+                android:textSize="@dimen/undefine_font_5"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:text="¥ "
-            android:textColor="@color/yellow_custom"
-            android:textSize="@dimen/undefine_font_5"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_earn_money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="925"
-            android:textColor="@color/yellow_custom"
-            android:textSize="@dimen/undefine_font_5"
-            android:textStyle="bold" />
     </LinearLayout>
 </FrameLayout>

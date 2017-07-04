@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:layout_marginLeft="5dp"
-            android:text="，，还活不活了？。"
+            android:text=""
             android:textColor="@color/gray_custom"
             android:textSize="@dimen/undefine_font_5" />
 
@@ -45,6 +45,7 @@
     <View style="@style/Undefined_Line" />
 
     <View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="@color/undefined_backgroud" />
