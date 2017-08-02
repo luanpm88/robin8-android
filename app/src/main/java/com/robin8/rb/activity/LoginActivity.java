@@ -1,18 +1,17 @@
 package com.robin8.rb.activity;
 
 import android.text.Html;
-import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.presenter.LoginPresenter;
-import com.robin8.rb.util.TimerUtil;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.view.ILoginView;
 
-import com.robin8.rb.R;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -89,6 +88,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 finish();
                 break;
             case R.id.ib_weixin:
+                CustomToast.showShort(this,"前往微信中···");
                 mLoginPresenter.authorize(new Wechat(this));
                 break;
             case R.id.ib_weibo:
@@ -96,6 +96,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 break;
             case R.id.ib_qq:
                 mLoginPresenter.authorize(new QQ(this));
+               // finish();
                 break;
         }
     }

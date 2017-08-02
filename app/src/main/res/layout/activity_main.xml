@@ -27,18 +27,20 @@
             android:drawableTop="@drawable/bottom_first_selector"
             android:text="@string/text_first" />
 
+
+
+
         <com.robin8.rb.view.widget.CustomRedDotRadioButton
+            android:visibility="gone"
             android:id="@+id/rb_bottom_notification"
             style="@style/bottom_radio_style"
             android:drawableTop="@drawable/selector_tab_notification"
             android:text="@string/text_notification" />
-
         <RadioButton
             android:id="@+id/rb_bottom_campaign"
             style="@style/bottom_radio_style"
             android:drawableTop="@drawable/bottom_reword_selector"
             android:text="@string/text_campaign" />
-
         <RadioButton
             android:id="@+id/rb_bottom_create"
             style="@style/bottom_radio_style"

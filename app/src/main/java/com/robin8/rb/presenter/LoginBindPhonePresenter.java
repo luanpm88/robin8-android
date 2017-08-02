@@ -1,43 +1,38 @@
 package com.robin8.rb.presenter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
+import com.robin8.rb.activity.MainActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.constants.SPConstants;
-import com.robin8.rb.helper.LoginHelper;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.listener.BindSocialPresenterListener;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.LoginBean;
-import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
 import com.robin8.rb.module.mine.model.MineShowModel;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.RegExpUtil;
-import com.robin8.rb.util.TimerUtil;
+import com.robin8.rb.util.TimerUtilTwo;
 import com.robin8.rb.view.ILoginView;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 /**
- * Created by zc on 2017/6/20.
- */
+ Created by zc on 2017/6/20. */
 
 public class LoginBindPhonePresenter extends BindSocialPresenterListener implements PresenterI {
     private final ILoginView mILoginView;
     private Activity mActivity;
     private int from;
+
     public LoginBindPhonePresenter(Activity activity, ILoginView loginView) {
         super(activity);
         mActivity = activity;
@@ -46,9 +41,9 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
     @Override
     public void init() {
-        Intent intent =mActivity.getIntent();
+        Intent intent = mActivity.getIntent();
         from = intent.getIntExtra("from", 0);
-        LogUtil.LogShitou("重新绑定的form","====>"+from);
+        //        LogUtil.LogShitou("重新绑定的form","====>"+from);
     }
 
     @Override
@@ -69,10 +64,10 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
             CustomToast.showShort(mActivity, "请输入正确的手机号码!");
             return;
         }
-        HelpTools.insertLoginInfo(HelpTools.Token, "");//此时应没有token 手动清理一下
+        //   HelpTools.insertLoginInfo(HelpTools.Token, "");//此时应没有token 手动清理一下
         RequestParams requestParams = new RequestParams();
         requestParams.put("mobile_number", phoneNumber);
-
+        //        LogUtil.LogShitou("发送的参数num",phoneNumber);
         getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.GET_CODE_URL), requestParams, new RequestCallback() {
 
             @Override
@@ -82,12 +77,14 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("验证码数据"+HelpTools.getUrl(CommonConfig.GET_CODE_URL),response);
+                //                LogUtil.LogShitou("验证码数据"+HelpTools.getUrl(CommonConfig.GET_CODE_URL),response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
                 CustomToast.showShort(mActivity, bean.getDetail());
                 if (bean.getError() == 0) {
                     CustomToast.showShort(mActivity, "验证码发送成功");
-                    new Thread(new TimerUtil(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
+                    new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
+                   // new Thread(new TimerUtil(60, null, ((TextView) mILoginView.getTv()),null, mActivity, "重新获取验证码", "s后重新获取",mActivity.getResources().getColor(R.color.color_checknum),mActivity.getResources().getColor(R.color.color_checknum))).start();
+
                 } else {
                     CustomToast.showShort(mActivity, "验证码发送失败");
                 }
@@ -109,18 +106,20 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
             return;
         }
 
-        if (!RegExpUtil.checkMobile(phoneNumber)) {
+        if (! RegExpUtil.checkMobile(phoneNumber)) {
             CustomToast.showShort(mActivity, "请输入正确的手机号码!");
             return;
         }
-
-      //  BasePresenter basePresenter = new BasePresenter();是否会报401错误
+        //   HelpTools.insertLoginInfo(HelpTools.Token, "");//此时应没有token 手动清理一下
+        //  BasePresenter basePresenter = new BasePresenter();//是否会报401错误
+        //        LogUtil.LogShitou("清理之后","===》"+HelpTools.getLoginInfo(HelpTools.Token));
         RequestParams requestParams = new RequestParams();
         requestParams.put("mobile_number", phoneNumber);
         requestParams.put("code", checkNum);
-        LogUtil.LogShitou("发送的参数num",phoneNumber);
-        LogUtil.LogShitou("发送的参数code",checkNum);
-       getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.BIND_MOBILE_URL), requestParams, new RequestCallback() {
+        //        LogUtil.LogShitou("发送的参数num",phoneNumber);
+        //        LogUtil.LogShitou("发送的参数code",checkNum);
+        getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.BIND_MOBILE_URL), requestParams, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
 
@@ -128,66 +127,94 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("登陆成功",response);
+                //                LogUtil.LogShitou("绑定手机号api/v1/kols/bind_mobile",response);
                 parseJson(response);
             }
         });
     }
+
     private void parseJson(String response) {
-
         LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
-
         if (loginBean == null) {
             CustomToast.showShort(mActivity, mActivity.getString(R.string.please_data_wrong));
             return;
         }
         if (loginBean.getError() == 0) {
+            TalkingDataAppCpa.onRegister(loginBean.getKol().getMobile_number());
             HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
             HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
             BaseApplication.getInstance().setLoginBean(loginBean);
             if (BaseApplication.getInstance().hasLogined()) {
+                TalkingDataAppCpa.onCustEvent1();
                 NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+                //判断是否是kol，如果不是kol，点击申请kol
+                //  judgeIskol();
+                //                String mMineData = CacheUtils.getString(mActivity, SPConstants.MINE_DATA, null);
+                //                MineShowModel mineShowModel = GsonTools.jsonToBean(mMineData, MineShowModel.class);
+                //                if (mineShowModel != null && mineShowModel.getError() == 0) {
+                //                    //本地缓存判断
+                //                    CacheUtils.putString(mActivity, SPConstants.MINE_DATA, mMineData);
+                //                    MineShowModel.KolBean kol = mineShowModel.getKol();
+                //                    if (mineShowModel !=null){
+                //                        if (!kol.getRole_apply_status().equals("pending")){
+                //                            jumpBeKol(kol.getId());
+                //                        }
+                //                    }
+                //                }
+
             }
-            judgeIskol();
-           // LoginHelper.loginSuccess(loginBean, from, mActivity);
+            //            LogUtil.LogShitou("绑定手机号此时的from、",""+from);
+            //    LoginHelper.loginSuccess(loginBean, from, mActivity);
+            Intent intent = new Intent(mActivity, MainActivity.class);
+            //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("register_main", "zhu");
+            mActivity.startActivity(intent);
+            mActivity.finish();
         } else {
             CustomToast.showShort(mActivity, loginBean.getDetail());
         }
     }
 
     private void judgeIskol() {
-      getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.MY_SHOW_URL), null, new RequestCallback() {
+        BasePresenter basePresenter = new BasePresenter();//是否会报401错误
+        basePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.MY_SHOW_URL), null, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
             }
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("====这是show检测网红=====",response);
+                //                LogUtil.LogShitou("====这是登录后的检测网红=====",response);
                 MineShowModel mineShowModel = GsonTools.jsonToBean(response, MineShowModel.class);
                 if (mineShowModel != null && mineShowModel.getError() == 0) {
-                    CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
+                    // CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
                     MineShowModel.KolBean kol = mineShowModel.getKol();
-                    if(TextUtils.isEmpty(kol.getRole_apply_status())){
+                    if (TextUtils.isEmpty(kol.getRole_apply_status())) {
                         //不是kol
                         jumpBeKol(kol.getId());
-                    }else {
-                        if (kol.getRole_apply_status().equals("pending")){
+                    } else {
+                        if (kol.getRole_apply_status().equals("pending")) {
                             jumpBeKol(kol.getId());
-                        }else {
-                            LoginHelper.loginSuccess(null, from, mActivity);
                         }
+                        //                        LogUtil.LogShitou("哈哈哈哈","---//--");
                     }
+                    // mActivity.finish();
                 }
             }
 
-          private void jumpBeKol(int id) {
-              TalkingDataAppCpa.onCustEvent1();
-              Intent intent = new Intent(mActivity, BeKolFirstActivity.class);
-              intent.putExtra("id", id);
-              mActivity.startActivity(intent);
 
-          }
-      });
+        });
+    }
+
+    private void jumpBeKol(int id) {
+        TalkingDataAppCpa.onCustEvent1();
+        //        Intent intent = new Intent(mActivity, BeKolFirstActivity.class);
+        //        intent.putExtra("id", id);
+        //        intent.putExtra("jump", "register");
+        //        mActivity.startActivity(intent);
+        Intent intent1 = new Intent(mActivity, MainActivity.class);
+        intent1.putExtra("register_main", "zhu");
+        mActivity.startActivity(intent1);
     }
 }

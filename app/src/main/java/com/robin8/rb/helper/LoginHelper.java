@@ -17,6 +17,7 @@ import com.robin8.rb.module.mine.activity.SettingActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 
 
 /**
@@ -28,6 +29,7 @@ public class LoginHelper {
         CustomToast.showShort(mActivity, "登录成功");
         switch (from) {
             case SPConstants.MAINACTIVITY:
+                LogUtil.LogShitou("哈哈哈","zheli");
                 mActivity.finish();
                 break;
             case SPConstants.DETAILCONTENTACTIVITY:

@@ -22,10 +22,9 @@ import java.util.List;
 
 
 /**
- * @author DLJ
- * @Description 登录任务
- * @date 2016/1/25 11:05
- */
+ @author DLJ
+ @Description 登录任务
+ @date 2016/1/25 11:05 */
 public class LoginTask {
 
     private final static String TD_CHANNEL_ID = "TD_CHANNEL_ID";
@@ -56,6 +55,7 @@ public class LoginTask {
         requestParams.put("utm_source", AppUtils.getApplicationMeteData(mContext, TD_CHANNEL_ID));
 
         HttpRequest.getInstance().post(true, HelpTools.getUrl(CommonConfig.SIGN_IN_URL), requestParams, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
                 callback.onError(e);
@@ -64,7 +64,7 @@ public class LoginTask {
             @Override
             public void onResponse(String response) {
 
-                LogUtil.LogShitou("登陆interface"+"sign_in",response);
+                LogUtil.LogShitou("登陆interface" + "sign_in", response);
                 LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
                 if (loginBean != null && loginBean.getError() == 0) {
                     HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
@@ -72,6 +72,11 @@ public class LoginTask {
                     BaseApplication.getInstance().setLoginBean(loginBean);
                     if (BaseApplication.getInstance().hasLogined()) {
                         NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+                        // Intent intent1 = new Intent(mContext, MainActivity.class);
+                        //                        intent1.putExtra("register_main", "zhu");
+                        //
+                        //                        LogUtil.LogShitou("这是新用户", "dfsdsdvdsvsvsdvsdv");
+                        //                        mContext.startActivity(intent1);
                     }
                 }
 
