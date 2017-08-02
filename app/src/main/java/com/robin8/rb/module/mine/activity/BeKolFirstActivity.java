@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,12 +33,10 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.CustomToast;
-import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
@@ -96,7 +93,7 @@ public class BeKolFirstActivity extends BaseActivity {
     private ImageView mImageView;
     private boolean mImageLoadB;
     private Uri mImageUri;
-    private  String mFinalPicturePath;
+    private String mFinalPicturePath;
     private List<KolDetailModel.KolShowsBean> mKolShows;
     private View mLLContentlv;
     private Bitmap mBitmap;
@@ -107,17 +104,24 @@ public class BeKolFirstActivity extends BaseActivity {
     private static String jobs = null;
     private static String descs = null;
     private TextView tvWechat;
+    private String jump;
+    private String MYTAG = "null";
+    private boolean isShow = false;
 
     @Override
     public void setTitleView() {
-
-        mTVCenter.setText(this.getText(R.string.be_kol));
+        if (isShow){
+            mTVCenter.setText(this.getText(R.string.edit_kol));
+        }else {
+            mTVCenter.setText(this.getText(R.string.be_kol));
+        }
+        mTvEdit.setVisibility(View.VISIBLE);
+        mTvEdit.setOnClickListener(this);
     }
 
     @Override
     public void initView() {
-
-        mBottomTv.setVisibility(View.VISIBLE);
+        mBottomTv.setVisibility(View.GONE);
         mBottomTv.setText(getString(R.string.submit));
         View view = LayoutInflater.from(this).inflate(R.layout.activity_be_kol_first, mLLContent, true);
         ButterKnife.bind(this);
@@ -129,17 +133,31 @@ public class BeKolFirstActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-
         mPageName = StatisticsAgency.KOL_APPLY_INFO;
         super.onResume();
     }
 
     private void initData() {
-
         NotifyManager.getNotifyManager().addObserver(this);
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
+        jump = intent.getStringExtra("jump");
+        if (! TextUtils.isEmpty(jump)) {
+          //  LogUtil.LogShitou("跳转", "进入啊");
+            mIVBack.setVisibility(View.GONE);
+            tvJump.setVisibility(View.VISIBLE);
+            mTvEdit.setVisibility(View.GONE);
+            isShow=true;
+            mTVCenter.setText(this.getText(R.string.edit_kol));
+            mBottomTv.setVisibility(View.VISIBLE);
+        } else {
+            tvJump.setVisibility(View.GONE);
+            mTvEdit.setVisibility(View.VISIBLE);
+          //  LogUtil.LogShitou("跳转", "正常");
+        }
         url = HelpTools.getUrl(CommonConfig.FIRST_KOL_LIST_URL + BACKSLASH + String.valueOf(id) + BACKSLASH + "detail");
+        //http://qa.robin8.net/api/v1_6/big_v/60084/detail
+       // LogUtil.LogShitou("detail", url);
         mStrArr = getResources().getStringArray(R.array.be_kol_first);
         updateData();
         getDataFromNet();
@@ -179,7 +197,7 @@ public class BeKolFirstActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                LogUtil.LogShitou("初始信息", response);
+             //   LogUtil.LogShitou("申请成为kol初始信息", response);
                 parseJson(response);
             }
         });
@@ -238,19 +256,19 @@ public class BeKolFirstActivity extends BaseActivity {
                         break;
                     case ITEM_AGE:
                         item.content = String.valueOf(mBigVBean.getAge());
-                        // age = String.valueOf(mBigVBean.getAge());
+                        ages = String.valueOf(mBigVBean.getAge());
                         break;
                     case ITEM_JOB:
                         item.content = mBigVBean.getJob_info();
-                        // jobs =  mBigVBean.getJob_info();
+                        jobs = mBigVBean.getJob_info();
                         break;
                     case ITEM_INTEREST:
                         item.content = getTags(mBigVBean.getTags());
-                        //  interest = getTags(mBigVBean.getTags());
+                        interest = getTags(mBigVBean.getTags());
                         break;
                     case ITEM_DESC:
                         item.content = mBigVBean.getDesc();
-                        // descs = mBigVBean.getDesc();
+                        descs = mBigVBean.getDesc();
                         break;
                     //                    case ITEM_PIC:
                     //                        item.content = mBigVBean.getAvatar_url();
@@ -281,22 +299,27 @@ public class BeKolFirstActivity extends BaseActivity {
         if (! checkInfoCompelete()) {
             return;
         }
-        //        if (mSocialAccounts != null) {
-        //            if (mSocialAccounts.size() != 0) {
-        //                for (int j = 0; j < mSocialAccounts.size(); j++) {
-        //                    if (! getString(R.string.weixin).equals(mSocialAccounts.get(j).getProvider_name())) {
-        //                        CustomToast.showShort(this, getString(R.string.must_bind_weixin));
-        //                        return;
-        //                    }
-        //                }
-        //            } else {
-        //                CustomToast.showShort(this, getString(R.string.must_bind_weixin));
-        //                return;
-        //            }
-        //        } else {
-        //            CustomToast.showShort(this, getString(R.string.must_bind_weixin));
-        //            return;
-        //        }
+        if (mSocialAccounts != null) {
+            if (mSocialAccounts.size() != 0) {
+                for (int j = 0; j < mSocialAccounts.size(); j++) {
+                    if (getString(R.string.weixin).equals(mSocialAccounts.get(j).getProvider_name())) {
+                        MYTAG = getString(R.string.weixin);
+                        //  CustomToast.showShort(this, getString(R.string.must_bind_weixin));
+                        //  return;
+                    }
+                }
+                if (! MYTAG.equals(getString(R.string.weixin))) {
+                    CustomToast.showShort(this, getString(R.string.must_bind_weixin));
+                    return;
+                }
+            } else {
+                CustomToast.showShort(this, getString(R.string.must_bind_weixin));
+                return;
+            }
+        } else {
+            CustomToast.showShort(this, getString(R.string.must_bind_weixin));
+            return;
+        }
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(this);
         }
@@ -356,13 +379,13 @@ public class BeKolFirstActivity extends BaseActivity {
             imageName = mFinalPicturePath.substring(mFinalPicturePath.lastIndexOf("/") + 1);
             file = new File(mFinalPicturePath);
         }
-//        else {
-//            if (!TextUtils.isEmpty(mDataList.get(ITEM_HEADER).content)){
-//                CustomToast.showShort(BeKolFirstActivity.this,"请上传头像"+mDataList.get(ITEM_HEADER).content);
-//                imageName =(mDataList.get(ITEM_HEADER).content).substring((mDataList.get(ITEM_HEADER).content).lastIndexOf("/") + 1);
-//                file  = new File(mDataList.get(ITEM_HEADER).content);
-//            }
-//        }
+        //        else {
+        //            if (!TextUtils.isEmpty(mDataList.get(ITEM_HEADER).content)){
+        //                CustomToast.showShort(BeKolFirstActivity.this,"请上传头像"+mDataList.get(ITEM_HEADER).content);
+        //                imageName =(mDataList.get(ITEM_HEADER).content).substring((mDataList.get(ITEM_HEADER).content).lastIndexOf("/") + 1);
+        //                file  = new File(mDataList.get(ITEM_HEADER).content);
+        //            }
+        //        }
         HttpRequest.getInstance().post(true, HelpTools.getUrl(CommonConfig.BIG_V_APPLY_FIRST_URL), "avatar", imageName, file, requestMap, new RequestCallback() {
 
             @Override
@@ -375,7 +398,7 @@ public class BeKolFirstActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-
+               // LogUtil.LogShitou("提交结果","===>"+response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -386,18 +409,65 @@ public class BeKolFirstActivity extends BaseActivity {
 
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (bean != null && bean.getError() == 0) {
-                    //  skipToNext();
-                    NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
+                     // skipToNext();
+//                    Intent intent = new Intent(BeKolFirstActivity.this, BeKolThirdActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    startActivity(intent);
+//                    finish();
+//                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//                    NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
+                   postData();
+                }
+            }
+        });
+    }
+    private void postData() {
+        //        if (!mGridDataList.get(0).isChecked) {
+        //            CustomToast.showShort(this,getString(R.string.must_bind_weixin));
+        //            return;
+        //        }
+
+        BasePresenter mBasePresenter = new BasePresenter();
+
+        if (mWProgressDialog == null) {
+            mWProgressDialog = WProgressDialog.createDialog(this);
+        }
+        mWProgressDialog.show();
+
+        String url = HelpTools.getUrl(CommonConfig.SUBMIT_APPLY_URL);
+        mBasePresenter.getDataFromServer(true, HttpRequest.POST, url, null, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onResponse(String response) {
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+                BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
+                if (bean == null) {
+                    CustomToast.showShort(BeKolFirstActivity.this, getString(R.string.please_data_wrong));
+                    return;
+                }
+
+                if (bean.getError() == 0) {
+                    //skipToNext();
                     Intent intent = new Intent(BeKolFirstActivity.this, BeKolThirdActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                } else {
+                    CustomToast.showShort(BeKolFirstActivity.this, bean.getDetail());
                 }
             }
         });
     }
-
     private boolean checkInfoCompelete() {
 
         if (TextUtils.isEmpty(mDataList.get(ITEM_HEADER).content) && TextUtils.isEmpty(mFinalPicturePath)) {
@@ -501,13 +571,22 @@ public class BeKolFirstActivity extends BaseActivity {
             case R.id.tv_bottom:
                 submit();
                 break;
+            case R.id.tv_edit:
+               // CustomToast.showShort(BeKolFirstActivity.this, "编辑");
+                if (isShow) {
+                    mTVCenter.setText(this.getText(R.string.be_kol));
+                    mTvEdit.setText("编辑");
+                    isShow = false;
+                    mBottomTv.setVisibility(View.GONE);
+                } else {
+                    mTVCenter.setText(this.getText(R.string.edit_kol));
+                    mTvEdit.setText("取消");
+                    isShow = true;
+                    mBottomTv.setVisibility(View.VISIBLE);
+                }
+                mMyListAdapter.notifyDataSetChanged();
+                break;
         }
-    }
-
-    @Override
-    public void finish() {
-
-        super.finish();
     }
 
     class MyListAdapter extends BaseAdapter {
@@ -567,19 +646,19 @@ public class BeKolFirstActivity extends BaseActivity {
                     tvName.setText(item.name);
                     //tvContent.setText(item.content);
                     IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
-                    if (!TextUtils.isEmpty(item.content)) {
-                        LogUtil.LogShitou("选择头像图片", "---->" + item.content);
-                        BitmapUtil.loadImage(BeKolFirstActivity.this,item.content, civImage);
-                    }else{
-                        if (mBitmap!=null){
+                    if (! TextUtils.isEmpty(item.content)) {
+                        //LogUtil.LogShitou("选择头像图片", "---->" + item.content);
+                        BitmapUtil.loadImage(BeKolFirstActivity.this, item.content, civImage);
+                    } else {
+                        if (mBitmap != null) {
                             civImage.setImageBitmap(mBitmap);
                         }
                     }
-//                    else {
-//                        if (! TextUtils.isEmpty(mFinalPicturePath)) {
-//                            BitmapUtil.loadImage(BeKolFirstActivity.this, mFinalPicturePath, civImage);
-//                        }
-//                    }
+                    //                    else {
+                    //                        if (! TextUtils.isEmpty(mFinalPicturePath)) {
+                    //                            BitmapUtil.loadImage(BeKolFirstActivity.this, mFinalPicturePath, civImage);
+                    //                        }
+                    //                    }
                     //                    final View viewHeader = convertView.findViewById(R.id.view_header);
                     //                    viewHeader.setBackgroundResource(R.mipmap.pic_kol_step_0);
                     //                    viewHeader.post(new Runnable() {
@@ -623,7 +702,13 @@ public class BeKolFirstActivity extends BaseActivity {
                     } else {
                         viewDivider.setVisibility(View.GONE);
                     }
-                    IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
+                    if (isShow){
+                        tvArrow.setVisibility(View.VISIBLE);
+                        IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
+                    }else {
+                        tvArrow.setVisibility(View.GONE);
+                    }
+
                     break;
                 case TYPE_SOCIAL:
                     convertView = LayoutInflater.from(BeKolFirstActivity.this).inflate(R.layout.item_be_kol_socal, null);
@@ -646,7 +731,13 @@ public class BeKolFirstActivity extends BaseActivity {
                         }
                     }
                     tvName.setText(item.name);
-                    IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
+                    if (isShow){
+                        tvArrow.setVisibility(View.VISIBLE);
+                        IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
+                    }else {
+                        tvArrow.setVisibility(View.GONE);
+                    }
+
                     break;
                 case TYPE_DESC:
                     convertView = LayoutInflater.from(BeKolFirstActivity.this).inflate(R.layout.item_be_kol_desc, null);
@@ -661,7 +752,13 @@ public class BeKolFirstActivity extends BaseActivity {
                     } else {
                         tvContent.setText(item.content);
                     }
-                    IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
+                    if (isShow){
+                        tvArrow.setVisibility(View.VISIBLE);
+                        IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
+                    }else {
+                        tvArrow.setVisibility(View.GONE);
+                    }
+
                     break;
                 //                case TYPE_PIC:
                 //                    convertView = LayoutInflater.from(BeKolFirstActivity.this).inflate(R.layout.item_be_kol_pic, null);
@@ -680,8 +777,11 @@ public class BeKolFirstActivity extends BaseActivity {
             }
 
             //if (position != ITEM_HEADER) {
-            convertView.setOnClickListener(new MyOnClickListener(item.name, item.content, position));
+
             // }
+            if (isShow==true){
+                convertView.setOnClickListener(new MyOnClickListener(item.name, item.content, position));
+            }
             return convertView;
         }
     }
@@ -722,7 +822,12 @@ public class BeKolFirstActivity extends BaseActivity {
                 //                    break;
                 case ITEM_HEADER:
                     //点击跳转到相册
-                    updateImage();
+                    if (isShow==false){
+                        CustomToast.showShort(BeKolFirstActivity.this,"wadw");
+                    }else {
+                        updateImage();
+                    }
+
                     break;
                 case ITEM_SOCIAL_ACCOUNT:
                     skipToNext();
@@ -775,6 +880,7 @@ public class BeKolFirstActivity extends BaseActivity {
         Intent intent = new Intent(this, BeKolSecondActivity.class);
         intent.putExtra("social_accounts", (Serializable) mSocialAccounts);
         intent.putExtra("kol_shows", (Serializable) mKolShows);
+        intent.putExtra("kol_id", mBigVBean.getId());
         //startActivity(intent);
         startActivityForResult(intent, SPConstants.BE_KOL_BIND_RESULT);
         //  finish();
@@ -811,9 +917,9 @@ public class BeKolFirstActivity extends BaseActivity {
                 mDataList.get(ITEM_DESC).content = content;
                 descs = content;
             }
-//            if (!TextUtils.isEmpty(imgPath)){
-//                BitmapUtil.loadImage(BeKolFirstActivity.this, imgPath, civImage);
-//            }
+            //            if (!TextUtils.isEmpty(imgPath)){
+            //                BitmapUtil.loadImage(BeKolFirstActivity.this, imgPath, civImage);
+            //            }
             mMyListAdapter.notifyDataSetChanged();
             return;
         }
@@ -843,8 +949,8 @@ public class BeKolFirstActivity extends BaseActivity {
                     // getDataFromNet();
                     break;
             }
-        }else{
-            if (requestCode==SPConstants.BE_KOL_BIND_RESULT){
+        } else {
+            if (requestCode == SPConstants.BE_KOL_BIND_RESULT) {
                 checkInfo();
             }
         }
@@ -882,7 +988,7 @@ public class BeKolFirstActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                LogUtil.LogShitou("初始信息", response);
+                //LogUtil.LogShitou("初始信息", response);
                 KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
                 if (kolDetailModel != null && kolDetailModel.getError() == 0) {
                     mBigVBean = kolDetailModel.getBig_v();
@@ -917,14 +1023,30 @@ public class BeKolFirstActivity extends BaseActivity {
                 mDataList.get(ITEM_GENDER).content = getString(R.string.female);
                 sexs = getString(R.string.female);
             }
-//            if (!TextUtils.isEmpty(imgPath)){
-//                BitmapUtil.loadImage(BeKolFirstActivity.this, imgPath, civImage);
-//                CustomToast.showShort(BeKolFirstActivity.this,mDataList.get(ITEM_HEADER).content);
-//            }else{
-//                CustomToast.showShort(BeKolFirstActivity.this,"???????");
-//            }
+            //            if (!TextUtils.isEmpty(imgPath)){
+            //                BitmapUtil.loadImage(BeKolFirstActivity.this, imgPath, civImage);
+            //                CustomToast.showShort(BeKolFirstActivity.this,mDataList.get(ITEM_HEADER).content);
+            //            }else{
+            //                CustomToast.showShort(BeKolFirstActivity.this,"???????");
+            //            }
             mMyListAdapter.notifyDataSetChanged();
             cdm.dismiss();
         }
     }
+
+    //    @Override
+    //    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    //
+    //        if (keyCode == KeyEvent.KEYCODE_BACK) {
+    //            if (! TextUtils.isEmpty(jump)) {
+    //                if (jump.equals("register")) {
+    //                    LogUtil.LogShitou("返回按键", "no");
+    //                    return true;
+    //                }
+    //            }
+    //            LogUtil.LogShitou("返回按键", "ok");
+    //        }
+    //        return super.onKeyDown(keyCode, event);
+    //    }
+
 }
