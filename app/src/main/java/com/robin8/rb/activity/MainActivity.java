@@ -1,5 +1,6 @@
 package com.robin8.rb.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -30,9 +31,10 @@ import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.pager.CreatePager;
 import com.robin8.rb.pager.FirstPager;
 import com.robin8.rb.pager.MinePager;
-import com.robin8.rb.pager.NotificationPager;
 import com.robin8.rb.pager.RewordPager;
 import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.receiver.DemoIntentService;
+import com.robin8.rb.receiver.DemoPushService;
 import com.robin8.rb.task.LocationService;
 import com.robin8.rb.update.UpdateNewApk;
 import com.robin8.rb.util.AppUtils;
@@ -42,16 +44,16 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
 import com.robin8.rb.util.StringUtil;
-import com.robin8.rb.view.widget.CustomRedDotRadioButton;
 
 import java.util.ArrayList;
 
 public class MainActivity extends BaseBackHomeActivity implements View.OnClickListener {
+
     private static final int KOL_LIST = 0;
-    private static final int NOTIFICATION_LIST = 1;
-    private static final int CAMPAIGN_LIST = 2;
-    private static final int CREATE_LIST = 3;
-    private static final int MY = 4;
+    //private static final int NOTIFICATION_LIST = 1;
+    private static final int CAMPAIGN_LIST = 1;
+    private static final int CREATE_LIST = 2;
+    private static final int MY = 3;
     private ArrayList<BasePager> mPagerList;
     private RewordPager mRewordPager;
     private FirstPager mFirstPager;
@@ -68,27 +70,51 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     private UpdateNewApk mUpdateNewApk = null;
     private LocationService locationService;
     private Handler mCheckVersionHandler = new Handler() {
+
         public void handleMessage(Message msg) {
+
             new Thread() {
+
                 @Override
                 public void run() {
+
                     super.run();
                 }
             }.start();
         }
     };
 
-    private final static double UNKNOW = -2000;
+    private final static double UNKNOW = - 2000;
     private double latitude = UNKNOW;
     private double longitude = UNKNOW;
-    private NotificationPager mNotificationPager;
-    private CustomRedDotRadioButton mRBBottomNotification;
-
+  //  private NotificationPager mNotificationPager;
+  // private InfluencePager mInfluencePager;
+   // private CustomRedDotRadioButton mRBBottomNotification;
+    private Intent intent;
+private String register_main;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         initNotify();
-        mPageName = StatisticsAgency.KOL_LIST;
+        intent = getIntent();
+        register_main = intent.getStringExtra("register_main");
+        //        if (! TextUtils.isEmpty(intent.getStringExtra("push"))) {
+//            mPageName = StatisticsAgency.CAMPAIGN_LIST;
+//        } else {
+//            mPageName = StatisticsAgency.KOL_LIST;
+//        }
+        if (!TextUtils.isEmpty(register_main)){
+            if (register_main.equals("zhu")){
+                LogUtil.LogShitou("我们啊啊啊啊啊啊","德国队");
+                mPageName = StatisticsAgency.CAMPAIGN_LIST;
+            }
+        }else {
+            LogUtil.LogShitou("我们啊啊啊啊啊啊","美国");
+            mPageName = StatisticsAgency.KOL_LIST;
+        }
+       //mPageName = StatisticsAgency.KOL_LIST;
+       // mPageName = StatisticsAgency.CAMPAIGN_LIST;
         setContentView(R.layout.activity_main);
         setSwipeBackEnable(false);
         checkNewVersion();
@@ -110,6 +136,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     @Override
     protected void onStop() {
+
         if (locationService != null && mListener != null) {
             locationService.unregisterListener(mListener); //注销掉监听
             locationService.stop(); //停止定位服务
@@ -118,6 +145,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     }
 
     private void postData() {
+
         BasePresenter base = new BasePresenter();
         RequestParams requestParams = new RequestParams();
         requestParams.put("app_platform", SPConstants.ANDROID);
@@ -130,7 +158,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         if (longitude != UNKNOW && latitude != UNKNOW) {
             requestParams.put("longitude", longitude);
             requestParams.put("latitude", latitude);
-            LogUtil.logXXfigo("UNKNOW longitude="+longitude+"latitude="+latitude);
+            LogUtil.logXXfigo("UNKNOW longitude=" + longitude + "latitude=" + latitude);
         }
         base.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.UPDATE_PROFILE_URL), requestParams, null);
     }
@@ -138,6 +166,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
         if (mUpdateNewApk != null) {
             mUpdateNewApk = null;
@@ -155,8 +184,10 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             mUpdateNewApk = new UpdateNewApk(this, mCheckVersionHandler);
             mUpdateNewApk.checkNewVersion(false);
             mCheckVersionHandler.postDelayed(new Runnable() {
+
                 @Override
                 public void run() {
+
                     mCheckVersionHandler.sendEmptyMessage(0);
                 }
             }, 1000);
@@ -166,9 +197,14 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     }
 
     private void initNotify() {
-        PushManager.getInstance().initialize(this.getApplicationContext());
+
+        //PushManager.getInstance().initialize(this.getApplicationContext());
+       PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
         boolean notifyB = CacheUtils.getBoolean(this, SPConstants.NOTIFY_TOGGLE, true);
+        LogUtil.LogShitou("个推开关","===>"+notifyB);
         if (notifyB) {
+            LogUtil.LogShitou("打开","===>"+notifyB);
             PushManager.getInstance().turnOnPush(this);//打开个推开关
         } else {
             PushManager.getInstance().turnOffPush(this);
@@ -180,15 +216,16 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
      */
     @SuppressWarnings("deprecation")
     private void initView() {
+
         mVPContentPager = (ViewPager) findViewById(R.id.vp_content_pager);
         mRGContentBottom = (RadioGroup) findViewById(R.id.rg_content_bottom);
         mRBBottomFirst = (RadioButton) findViewById(R.id.rb_bottom_first);
-        mRBBottomNotification = (CustomRedDotRadioButton) findViewById(R.id.rb_bottom_notification);
+      //  mRBBottomNotification = (CustomRedDotRadioButton) findViewById(R.id.rb_bottom_notification);
         mRBBottomCampaign = (RadioButton) findViewById(R.id.rb_bottom_campaign);
         mRBBottomCreate = (RadioButton) findViewById(R.id.rb_bottom_create);
         mRBBottomMine = (RadioButton) findViewById(R.id.rb_bottom_mine);
         setRadioButtonDrawableSize(mRBBottomFirst);
-        setRadioButtonDrawableSize(mRBBottomNotification);
+       // setRadioButtonDrawableSize(mRBBottomNotification);
         setRadioButtonDrawableSize(mRBBottomCampaign);
         setRadioButtonDrawableSize(mRBBottomCreate);
         setRadioButtonDrawableSize(mRBBottomMine);
@@ -196,17 +233,19 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     /**
      * 调整bottomButton图片大小
+     *
      * @param radioButton
      */
     private void setRadioButtonDrawableSize(RadioButton radioButton) {
+
         Drawable drawable = null;
         switch (radioButton.getId()) {
             case R.id.rb_bottom_first:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_first_selector);
                 break;
-            case R.id.rb_bottom_notification:
-                drawable = ContextCompat.getDrawable(this, R.drawable.selector_tab_notification);
-                break;
+//            case R.id.rb_bottom_notification:
+//                drawable = ContextCompat.getDrawable(this, R.drawable.selector_tab_notification);
+//                break;
             case R.id.rb_bottom_campaign:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_reword_selector);
                 break;
@@ -226,11 +265,13 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+
         super.onSaveInstanceState(outState, outPersistentState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
         super.onRestoreInstanceState(savedInstanceState);
     }
 
@@ -238,6 +279,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
      * 初始化参数
      */
     public void initData() {
+
         FragmentManager fm = getSupportFragmentManager();
         if (fm != null && fm.getFragments() != null) {
             fm.getFragments().clear();
@@ -251,7 +293,8 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
 
         if (mFirstPager == null) {
-            mFirstPager = new FirstPager(this, mVPContentPager);
+          //  mFirstPager = new FirstPager(this, mVPContentPager);
+            mFirstPager = new FirstPager(this);
         }
 
         if (mCreatePager == null) {
@@ -261,14 +304,19 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         if (mMinePager == null) {
             mMinePager = new MinePager(this);
         }
-
-        if (mNotificationPager == null) {
-            mNotificationPager = new NotificationPager(this);
-        }
+//通知pager
+//        if (mNotificationPager == null) {
+         //  mNotificationPager = new NotificationPager(this);
+//        }
+//        if (mInfluencePager == null) {
+//            mInfluencePager = new InfluencePager(this);
+//        }
 
         mPagerList.clear();
+
         mPagerList.add(mFirstPager);
-        mPagerList.add(mNotificationPager);
+       // mPagerList.add(mNotificationPager);
+     // mPagerList.add(mInfluencePager);
         mPagerList.add(mRewordPager);
         mPagerList.add(mCreatePager);
         mPagerList.add(mMinePager);
@@ -277,9 +325,20 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             mPagerAdapter = new MyPagerAdapter();
         }
         mVPContentPager.setAdapter(mPagerAdapter);
-        mVPContentPager.setOffscreenPageLimit(5);
+        mVPContentPager.setOffscreenPageLimit(4);
+//
         // 设置默认显示的界面 默认显示首页
-        mRGContentBottom.check(R.id.rb_bottom_first);
+       // mRGContentBottom.check(R.id.rb_bottom_first);
+        if (!TextUtils.isEmpty(register_main)){
+            if (register_main.equals("zhu")){
+                mRGContentBottom.check(R.id.rb_bottom_campaign);
+                mVPContentPager.setCurrentItem(1);
+            }else {
+                mRGContentBottom.check(R.id.rb_bottom_first);
+            }
+        }else {
+            mRGContentBottom.check(R.id.rb_bottom_first);
+        }
         // 让首页界面加载数据
         mPagerList.get(0).initData();
         // 监听ViewPager的页签的变化
@@ -294,18 +353,20 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+
     }
 
-    public void hideNotificationRedDot(boolean b) {
-        if (mRBBottomNotification == null) {
-            return;
-        }
-        if (b) {
-            mRBBottomNotification.hidRedDot();
-        }else {
-            mRBBottomNotification.showRedDot();
-        }
-    }
+//    public void hideNotificationRedDot(boolean b) {
+//
+//        if (mRBBottomNotification == null) {
+//            return;
+//        }
+//        if (b) {
+//            mRBBottomNotification.hidRedDot();
+//        } else {
+//            mRBBottomNotification.showRedDot();
+//        }
+//    }
 
     class MyOnCheckedChangeListener implements RadioGroup.OnCheckedChangeListener {
 
@@ -319,17 +380,17 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 case R.id.rb_bottom_first:
                     mVPContentPager.setCurrentItem(0, false);
                     break;
-                case R.id.rb_bottom_notification:
+//                case R.id.rb_bottom_notification:
+//                    mVPContentPager.setCurrentItem(1, false);
+//                    break;
+                case R.id.rb_bottom_campaign:
                     mVPContentPager.setCurrentItem(1, false);
                     break;
-                case R.id.rb_bottom_campaign:
+                case R.id.rb_bottom_create:
                     mVPContentPager.setCurrentItem(2, false);
                     break;
-                case R.id.rb_bottom_create:
-                    mVPContentPager.setCurrentItem(3, false);
-                    break;
                 case R.id.rb_bottom_mine:
-                    mVPContentPager.setCurrentItem(4, false);
+                    mVPContentPager.setCurrentItem(3, false);
                     break;
             }
         }
@@ -340,16 +401,19 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
         @Override
         public int getCount() {
+
             return mPagerList.size();
         }
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
+
             return view == object;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
+
             BasePager pager = mPagerList.get(position);
             View view = pager.rootView;// 根据position获取 3个子界面的一个View
             container.addView(view);
@@ -362,6 +426,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
+
             container.removeView((View) object);// 移除Item
         }
     }
@@ -384,14 +449,14 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                     mPageName = StatisticsAgency.KOL_LIST;
                     onePageSelected(KOL_LIST);
                     mRBBottomFirst.setChecked(true);
-                    mFirstPager.changeVisibleView();
+                   // mFirstPager.changeVisibleView();
                     break;
-                case NOTIFICATION_LIST:
-                    mPageName = StatisticsAgency.NOTIFICATION_LIST;
-                    onePageSelected(NOTIFICATION_LIST);
-                    mRBBottomNotification.setChecked(true);
-                    mPagerList.get(NOTIFICATION_LIST).initData();
-                    break;
+//                case NOTIFICATION_LIST:
+//                    mPageName = NOTIFICATION_LIST;
+//                    onePageSelected(NOTIFICATION_LIST);
+//                    mRBBottomNotification.setChecked(true);
+//                    mPagerList.get(NOTIFICATION_LIST).initData();
+//                    break;
                 case CAMPAIGN_LIST:
                     mPageName = StatisticsAgency.CAMPAIGN_LIST;
                     onePageSelected(CAMPAIGN_LIST);
@@ -416,6 +481,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
         @Override
         public void onPageScrollStateChanged(int state) {
+
         }
     }
 
@@ -438,23 +504,36 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.MY);
         } else if (mLastPosition == CAMPAIGN_LIST) {
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.CAMPAIGN_LIST);
-        }else if(mLastPosition == CREATE_LIST){
+        } else if (mLastPosition == CREATE_LIST) {
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.CREATE_LIST);
         }
     }
 
     @Override
     protected void onResume() {
+
         super.onResume();
         if (mPageName == StatisticsAgency.MY) {
             mPagerList.get(MY).initData();
         }
-        if (mPageName.equals(StatisticsAgency.NOTIFICATION_LIST)) {
-            mPagerList.get(NOTIFICATION_LIST).initData();
+        if (!TextUtils.isEmpty(register_main)){
+            if (register_main.equals("zhu")){
+                LogUtil.LogShitou("我们啊啊啊啊啊啊","德国队");
+                mPageName = StatisticsAgency.CAMPAIGN_LIST;
+            }
+        }else {
+            LogUtil.LogShitou("我们啊啊啊啊啊啊","美国");
+            mPageName = StatisticsAgency.KOL_LIST;
         }
-        if (mFirstPager != null) {
-            mFirstPager.changeVisibleView();
-        }
+//        if (mPageName.equals(NOTIFICATION_LIST)) {
+//            mPagerList.get(NOTIFICATION_LIST).initData();
+//        }
+//        if (mPageName.equals(StatisticsAgency.CAMPAIGN_LIST)){
+//            mPagerList.get(CAMPAIGN_LIST).initData();
+//        }
+//        if (mFirstPager != null) {
+//            mFirstPager.changeVisibleView();
+//        }
     }
 
     private boolean mHasPostLocation;
@@ -465,7 +544,8 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            if (null != location && location.getLocType() != BDLocation.TypeServerError && !mHasPostLocation) {
+
+            if (null != location && location.getLocType() != BDLocation.TypeServerError && ! mHasPostLocation) {
                 longitude = location.getLongitude();
                 latitude = location.getLatitude();
                 mHasPostLocation = true;
