@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
+import com.robin8.rb.util.ActivityManagerUtils;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -23,12 +24,15 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
     protected ImageView mIVBack;
     protected View mViewLine;
     protected TextView mBottomTv;
+    protected TextView mTvEdit;
+    protected TextView tvJump;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.layout_titlebar_activity);
+        ActivityManagerUtils.getInstance().addActivity(this);
         initBaseView();
         setTitleView();
         initView();
@@ -46,14 +50,20 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
         mLLContent = (LinearLayout) findViewById(R.id.ll_content);
         mViewLine = findViewById(R.id.view_line);
         mBottomTv = (TextView) findViewById(R.id.tv_bottom);
-
+        mTvEdit = ((TextView) findViewById(R.id.tv_edit));
+        tvJump = ((TextView) findViewById(R.id.tv_jump));
         mTVRight.setOnClickListener(this);
         mIVBack.setOnClickListener(this);
+        tvJump.setOnClickListener(this);
+        mTvEdit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_jump:
+                executeOnclickLeftView();
+                break;
             case R.id.iv_back:
                 executeOnclickLeftView();
                 break;
@@ -82,6 +92,7 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
      * 点击右侧View执行事件
      */
     protected abstract void executeOnclickRightView();
+
 
     @Override
     public void finish() {

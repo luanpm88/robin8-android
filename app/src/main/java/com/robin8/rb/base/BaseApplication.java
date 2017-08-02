@@ -50,6 +50,7 @@ public class BaseApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
+
         super.onCreate();
 
         // 监控程序崩溃的异常
@@ -58,6 +59,9 @@ public class BaseApplication extends MultiDexApplication {
 
         // Handler对象
         mHandler = new Handler();
+//        if (mHandler == null) {
+//            mHandler = new Handler();
+//        }
         // Context
         mContext = getApplicationContext();
         // 主线程id,获取当前方法运行线程id,此方法运行在主线程中,�?��获取的是主线程id
@@ -74,9 +78,9 @@ public class BaseApplication extends MultiDexApplication {
          * 初始化定位sdk，建议在Application中创建
          */
         locationService = new LocationService(getApplicationContext());
-        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
-//        SDKInitializer.initialize(getApplicationContext());
-
+        mVibrator = (Vibrator) getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+        //        SDKInitializer.initialize(getApplicationContext());
+        //埋点初始化
         StatisticsAgency.init(this);
         ShareSDK.initSDK(this);
     }
@@ -88,20 +92,26 @@ public class BaseApplication extends MultiDexApplication {
     public static Handler getHandler() {
         return mHandler;
     }
-
+//    public static void sendMessage(Message msg) {
+//        mHandler.sendMessage(msg);
+//    }
     public static Context getContext() {
+
         return mContext;
     }
 
     public static int getMainThreadId() {
+
         return mMainThreadIdI;
     }
 
     public static Thread getMainThread() {
+
         return mMainThread;
     }
 
     public static BaseApplication getInstance() {
+
         if (mInstance == null) {
             mInstance = new BaseApplication();
         }
@@ -109,6 +119,7 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     public LoginBean getLoginBean() {
+
         if (mLoginBean == null) {
             mLoginBean = GsonTools.jsonToBean(HelpTools.getLoginInfo(HelpTools.LoginBean), LoginBean.class);
         }
@@ -116,13 +127,14 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     public boolean hasLogined() {
+
         LoginBean loginBean = getLoginBean();
-        if (loginBean == null || loginBean.getKol() == null || CommonConfig.TOURIST_PHONE.equals(loginBean.getKol().getMobile_number()) ) {
+        if (loginBean == null || loginBean.getKol() == null || CommonConfig.TOURIST_PHONE.equals(loginBean.getKol().getMobile_number())) {
             return false;
         }
 
         LoginBean.KolEntity kol = loginBean.getKol();
-        if(TextUtils.isEmpty(kol.getIssue_token()) || TextUtils.isEmpty(kol.getMobile_number())){
+        if (TextUtils.isEmpty(kol.getIssue_token()) || TextUtils.isEmpty(kol.getMobile_number())) {
             return false;
         }
         LogUtil.logXXfigo("mobile number:" + loginBean.getKol().getMobile_number());
@@ -130,15 +142,18 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     public void setLoginBean(LoginBean loginBean) {
+
         mLoginBean = loginBean;
         HelpTools.insertLoginInfo(HelpTools.LoginBean, GsonTools.beanToJson(loginBean));
     }
 
     public List<ContactBean> getContactBeans() {
+
         return mContactBeanList;
     }
 
     public void setContactBeans(List<ContactBean> contactBeanList) {
+
         this.mContactBeanList = contactBeanList;
     }
 
@@ -155,11 +170,15 @@ public class BaseApplication extends MultiDexApplication {
         //取得夏令时差：
         int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);
         //从本地时间里扣除这些差量，即可以取得UTC时间：
-        cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));
+        cal.add(java.util.Calendar.MILLISECOND, - (zoneOffset + dstOffset));
         long timeInMillis = cal.getTimeInMillis();
-        TokenBean tokenBean = new TokenBean(StringUtil.checkString(HelpTools.getLoginInfo(HelpTools.Token)), ((int) (timeInMillis / 1000)));
-
+        String myToken = HelpTools.getLoginInfo(HelpTools.Token);
+        TokenBean tokenBean = new TokenBean(StringUtil.checkString(myToken), ((int) (timeInMillis / 1000)));
+//        LogUtil.LogShitou("请求头问题token", "===>" + myToken);
+//        LogUtil.LogShitou("请求头问题时间", "===>" + ((int) (timeInMillis / 1000)));
         String s1 = GsonTools.beanToJson(tokenBean);
+      //  LogUtil.LogShitou("请求头问题s1", "===>" + s1);
+
         HashMap<String, Object> headMap = new HashMap<>();
         headMap.put("typ", JWT);
         headMap.put("alg", ALGORITHM);
@@ -170,6 +189,7 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     public static boolean isDoubleClick() {
+
         long currentTimeMillis = System.currentTimeMillis();
         if (currentTimeMillis - lastTime < 800) {
             return true;
@@ -182,12 +202,14 @@ public class BaseApplication extends MultiDexApplication {
      * 加密的bean 用于gson转化为json格式字符串
      */
     public static class TokenBean {
+
         String get_code;
         String is_new;
         String private_token;
         long time;
 
         public TokenBean(String private_token, long time) {
+
             this.private_token = private_token;
             this.time = time;
             this.is_new = "is_new";
@@ -202,6 +224,7 @@ public class BaseApplication extends MultiDexApplication {
      * @return
      */
     public static String decodeToken(String token) {
+
         if (TextUtils.isEmpty(token)) {
             return "";
         }
@@ -216,6 +239,7 @@ public class BaseApplication extends MultiDexApplication {
 
     @Override
     protected void attachBaseContext(Context base) {
+
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
@@ -223,10 +247,12 @@ public class BaseApplication extends MultiDexApplication {
     private Bitmap screenShot;//摇一摇的截图
 
     public Bitmap getScreenShot() {
+
         return screenShot;
     }
 
     public void setScreenShot(Bitmap screenShot) {
+
         if (this.screenShot != null)
             this.screenShot.recycle();
         this.screenShot = screenShot;

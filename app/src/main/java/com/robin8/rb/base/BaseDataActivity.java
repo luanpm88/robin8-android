@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.util.ActivityManagerUtils;
 import com.robin8.rb.util.ShakeListenerUtils;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -22,6 +23,7 @@ public abstract class BaseDataActivity extends SwipeBackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initShake();
+        ActivityManagerUtils.getInstance().addActivity(this);
     }
 
     @Override

@@ -2,9 +2,9 @@ package com.robin8.rb.base;
 
 import android.view.KeyEvent;
 
-import com.robin8.rb.util.CustomToast;
-
 import com.robin8.rb.R;
+import com.robin8.rb.util.ActivityManagerUtils;
+import com.robin8.rb.util.CustomToast;
 
 public abstract class BaseBackHomeActivity extends BaseDataActivity {
 
@@ -25,7 +25,8 @@ public abstract class BaseBackHomeActivity extends BaseDataActivity {
             CustomToast.showShort(getApplicationContext(), getString(R.string.click_again_go_back));
             mExitTime = System.currentTimeMillis();
         } else {
-            finish();
+            ActivityManagerUtils.getInstance().exit();
+         //  finish();
         }
     }
 }
