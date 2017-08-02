@@ -34,6 +34,7 @@ public class HelpTools {
      */
     public static String CURRENTUSERID = "currentUserId";
     public static String COMMON = "common";
+    public static String NATIVE = "nativeuid";
     private static SharedPreferences commonSp;// 保存通用数据(与是否登录无关的信息)
     private static SharedPreferences loginSp;// 登录的数据
     private static InputMethodManager inputManager;
