@@ -1,16 +1,16 @@
 package com.robin8.rb.module.mine.presenter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.listener.BindSocialPresenterListener;
+import com.robin8.rb.model.IndentyBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.ui.widget.WProgressDialog;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
@@ -22,14 +22,14 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformDb;
 
 /**
- * @author Figo
- */
+ @author Figo */
 public class BindSocialPresenter extends BindSocialPresenterListener {
 
     private String name;
     private Context mContext;
     private TextView tvName;
     private OnBindListener listener;
+
     public interface OnBindListener {
 
         void onResponse(String userName);
@@ -119,12 +119,29 @@ public class BindSocialPresenter extends BindSocialPresenterListener {
                         @Override
                         public void onResponse(String response) {
                             LogUtil.LogShitou("第三方登陆成功后", response);
-                            if (tvName != null) {
-                                tvName.setText(name + mContext.getString(R.string.has_binded) + userName);
+                            IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
+                            if (indentyBean.getError() == 0) {
+//                                List<IndentyBean.IdentitiesBean> identities = indentyBean.getIdentities();
+//                                if (identities != null) {
+//                                    if (identities.size() > 0) {
+//                                        for (int i = 0; i < identities.size(); i++) {
+//                                            if (identities.get(i).getProvider().equals("wechat")){
+//
+//                                            }
+//                                        }
+//                                    }
+//                                }
+                                if (listener != null) {
+                                    listener.onResponse(userName);
+                                }
+                                if (tvName != null) {
+                                    tvName.setText(name + mContext.getString(R.string.has_binded) + userName);
+                                }
+
+                            } else {
+                                CustomToast.showShort(mContext, "授权失败，请重试");
                             }
-                            if (listener != null) {
-                                listener.onResponse(userName);
-                            }
+
                         }
                     });
                 }

@@ -19,7 +19,6 @@ import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.ui.widget.OtherGridView;
 import com.robin8.rb.util.CustomToast;
-import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,10 +137,10 @@ public class BeKolDetailActivity extends BaseActivity {
         StringBuffer sb = new StringBuffer();
         mTagCount = 0;
         if (mGridData == null || mGridData.size() == 0) {
-            LogUtil.LogShitou("is?","===========");
+            //LogUtil.LogShitou("is?","===========");
             return "";
         }else {
-            LogUtil.LogShitou("have","==>"+mGridData.size());
+            //LogUtil.LogShitou("have","==>"+mGridData.size());
             for (int i = 0; i < mGridData.size(); i++) {
                 TagsItem tagsItem = mGridData.get(i);
                 if (tagsItem.isSelected) {

@@ -3,7 +3,6 @@ package com.robin8.rb.module.mine.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -112,7 +111,7 @@ public class BeKolSecondDetailActivity extends BaseActivity {
                     getString(R.string.for_example) + String.valueOf(1000),
                     null, false);
         } else {
-            LogUtil.LogShitou("这是我走的","other"+name);
+            //LogUtil.LogShitou("这是我走的","other"+name);
             mCurrentPageType = TYPE_NORMAL;
             updateView(getString(R.string.please_write) + name + getString(R.string.nickname),
                     getString(R.string.please_write) + name + getString(R.string.offer_unit),
@@ -295,6 +294,7 @@ public class BeKolSecondDetailActivity extends BaseActivity {
             } else if (mCurrentPageType == TYPE_NORMAL) {
                 username = etContent1.getText().toString();
                 params.put("username", username);
+                LogUtil.LogShitou("绑定结果username",username);
             }else if(mCurrentPageType == TYPE_GONGZHONGHAO){
                 params.put("uid", etContent1.getText().toString());
             }
@@ -329,7 +329,10 @@ public class BeKolSecondDetailActivity extends BaseActivity {
                     NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
                     finish();
                 } else {
-                    CustomToast.showShort(BeKolSecondDetailActivity.this, bean.getDetail());
+                    if (!TextUtils.isEmpty(bean.getDetail())){
+                        CustomToast.showShort(BeKolSecondDetailActivity.this, bean.getDetail());
+                    }
+
                 }
             }
         });
