@@ -184,6 +184,7 @@
         #个推
         -dontwarn com.igexin.**
         -keep class com.igexin.**{*;}
+        -keep class org.json.** { *; }
 
          #glide
          -dontwarn com.bumptech.glide.**
