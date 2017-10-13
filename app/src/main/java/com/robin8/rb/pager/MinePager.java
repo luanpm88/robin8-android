@@ -13,6 +13,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -100,6 +101,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private TextView mApplyTv;
     private MineShowModel.KolBean mKolBean;
     private View mKolItemLL;
+    private int isHiddle = 0;
 
     public MinePager(FragmentActivity activity) {
 
@@ -355,6 +357,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         if (mineShowModel != null && mineShowModel.getError() == 0) {
             CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
             mKolBean = mineShowModel.getKol();
+            int detail = mineShowModel.getDetail();
+            isHiddle=detail;
             updateView(mKolBean);
         }
     }
@@ -667,6 +671,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 Holder holder = null;
                 holder = new Holder();
                 convertView = View.inflate(mActivity.getApplicationContext(), R.layout.mine_item_width_match, null);
+                holder.mLlItem = (LinearLayout)convertView.findViewById(R.id.ll_item);
                 holder.mTVArrow = (TextView) convertView.findViewById(R.id.tv_arrow);
                 holder.mTVItemIcon = (TextView) convertView.findViewById(R.id.tv_item_icon);
                 holder.mTVItemTitle = (TextView) convertView.findViewById(R.id.tv_item_title);
@@ -692,7 +697,20 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                         setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE);
                         break;
                 }
-
+               if (item.name.equals("一元夺宝")){
+                   if (isHiddle==0){
+                       holder.mLlItem.setVisibility(View.GONE);
+                       holder.lineDown.setVisibility(View.GONE);
+                   }else {
+                       if (isHiddle==9){
+                           holder.mLlItem.setVisibility(View.GONE);
+                           holder.lineDown.setVisibility(View.GONE);
+                       }else {
+                           holder.mLlItem.setVisibility(View.VISIBLE);
+                           holder.lineDown.setVisibility(View.VISIBLE);
+                       }
+                   }
+               }
                 IconFontHelper.setTextIconFont(holder.mTVArrow, R.string.arrow_right);
                 IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);
                 holder.mTVItemTitle.setText(item.name);
@@ -713,7 +731,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     static class Holder {
-
+public LinearLayout mLlItem;
         public TextView mTVArrow;
         public TextView mTVItemIcon;
         public TextView mTVItemTitle;
