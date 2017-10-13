@@ -3,6 +3,7 @@ package com.robin8.rb.module.create.activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.andview.refreshview.XRefreshView;
@@ -21,6 +22,7 @@ public class ArticleListsActivity extends BaseActivity implements IRobinIndianaV
     private XRefreshView mXRefreshView;
     private TextView mBottomTv;
     private ArticleListsPresenter mPresenter;
+    private LinearLayout llEmpty;
 
     @Override
     public void setTitleView() {
@@ -31,10 +33,13 @@ public class ArticleListsActivity extends BaseActivity implements IRobinIndianaV
         mTVRight.setVisibility(View.VISIBLE);
         View view = LayoutInflater.from(this).inflate(R.layout.activity_income_detail, mLLContent, true);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_income_detail);
+        llEmpty = ((LinearLayout) view.findViewById(R.id.ll_no_data));
         mRecyclerView.setHasFixedSize(true);
         mXRefreshView = (XRefreshView) findViewById(R.id.xrefreshview);
         mBottomTv = (TextView) findViewById(R.id.tv_bottom);
-
+        llEmpty.setVisibility(View.VISIBLE);
+        mXRefreshView.setVisibility(View.GONE);
+        mBottomTv.setVisibility(View.GONE);
         mPresenter = new ArticleListsPresenter(this, this);
         mPresenter.start();
     }
