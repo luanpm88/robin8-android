@@ -1,5 +1,6 @@
 package com.robin8.rb.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,10 +12,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -30,6 +37,7 @@ import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.pager.CreatePager;
 import com.robin8.rb.pager.FirstPager;
+import com.robin8.rb.pager.InfluencePager;
 import com.robin8.rb.pager.MinePager;
 import com.robin8.rb.pager.RewordPager;
 import com.robin8.rb.presenter.BasePresenter;
@@ -44,16 +52,18 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
 import com.robin8.rb.util.StringUtil;
+import com.robin8.rb.view.widget.CustomDialogManager;
 
 import java.util.ArrayList;
 
 public class MainActivity extends BaseBackHomeActivity implements View.OnClickListener {
 
     private static final int KOL_LIST = 0;
-    //private static final int NOTIFICATION_LIST = 1;
+    // private static final int NOTIFICATION_LIST = 2;
+    private static final int INFLUENCE_LIST = 2;
     private static final int CAMPAIGN_LIST = 1;
-    private static final int CREATE_LIST = 2;
-    private static final int MY = 3;
+    private static final int CREATE_LIST = 3;
+    private static final int MY = 4;
     private ArrayList<BasePager> mPagerList;
     private RewordPager mRewordPager;
     private FirstPager mFirstPager;
@@ -65,10 +75,12 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     private RadioButton mRBBottomFirst;
     private RadioButton mRBBottomCampaign;
     private RadioButton mRBBottomCreate;
+    private RadioButton mRBBottomInfluence;
     private RadioButton mRBBottomMine;
     private int mLastPosition;
     private UpdateNewApk mUpdateNewApk = null;
     private LocationService locationService;
+
     private Handler mCheckVersionHandler = new Handler() {
 
         public void handleMessage(Message msg) {
@@ -87,11 +99,12 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     private final static double UNKNOW = - 2000;
     private double latitude = UNKNOW;
     private double longitude = UNKNOW;
-  //  private NotificationPager mNotificationPager;
-  // private InfluencePager mInfluencePager;
-   // private CustomRedDotRadioButton mRBBottomNotification;
+    //  private NotificationPager mNotificationPager;
+    private InfluencePager mInfluencePager;
+    // private CustomRedDotRadioButton mRBBottomNotification;
     private Intent intent;
-private String register_main;
+    private String register_main;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -100,21 +113,23 @@ private String register_main;
         intent = getIntent();
         register_main = intent.getStringExtra("register_main");
         //        if (! TextUtils.isEmpty(intent.getStringExtra("push"))) {
-//            mPageName = StatisticsAgency.CAMPAIGN_LIST;
-//        } else {
-//            mPageName = StatisticsAgency.KOL_LIST;
-//        }
-        if (!TextUtils.isEmpty(register_main)){
-            if (register_main.equals("zhu")){
-                LogUtil.LogShitou("我们啊啊啊啊啊啊","德国队");
+        //            mPageName = StatisticsAgency.CAMPAIGN_LIST;
+        //        } else {
+        //            mPageName = StatisticsAgency.KOL_LIST;
+        //        }
+        if (! TextUtils.isEmpty(register_main)) {
+            if (register_main.equals("zhu")) {
                 mPageName = StatisticsAgency.CAMPAIGN_LIST;
+            } else if (register_main.equals("influence")) {
+                mPageName = StatisticsAgency.INFLUENCE_LIST;
+                onePageSelected(INFLUENCE_LIST);
             }
-        }else {
-            LogUtil.LogShitou("我们啊啊啊啊啊啊","美国");
+        } else {
             mPageName = StatisticsAgency.KOL_LIST;
         }
-       //mPageName = StatisticsAgency.KOL_LIST;
-       // mPageName = StatisticsAgency.CAMPAIGN_LIST;
+
+        //mPageName = StatisticsAgency.KOL_LIST;
+        // mPageName = StatisticsAgency.CAMPAIGN_LIST;
         setContentView(R.layout.activity_main);
         setSwipeBackEnable(false);
         checkNewVersion();
@@ -122,6 +137,13 @@ private String register_main;
         startLocate();
         initView();
         initData();
+        if (TextUtils.isEmpty((HelpTools.getCommonXml(HelpTools.ShadowFirst)))) {
+            showShadowDialog(MainActivity.this, 0);
+        } else {
+            if (! (HelpTools.getCommonXml(HelpTools.ShadowFirst)).equals(getString(R.string.submit))) {
+                showShadowDialog(MainActivity.this, 0);
+            }
+        }
     }
 
     private void startLocate() {
@@ -197,14 +219,11 @@ private String register_main;
     }
 
     private void initNotify() {
-
         //PushManager.getInstance().initialize(this.getApplicationContext());
-       PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+        PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
         boolean notifyB = CacheUtils.getBoolean(this, SPConstants.NOTIFY_TOGGLE, true);
-        LogUtil.LogShitou("个推开关","===>"+notifyB);
         if (notifyB) {
-            LogUtil.LogShitou("打开","===>"+notifyB);
             PushManager.getInstance().turnOnPush(this);//打开个推开关
         } else {
             PushManager.getInstance().turnOffPush(this);
@@ -212,7 +231,7 @@ private String register_main;
     }
 
     /**
-     * 初始化界面
+     初始化界面
      */
     @SuppressWarnings("deprecation")
     private void initView() {
@@ -220,21 +239,21 @@ private String register_main;
         mVPContentPager = (ViewPager) findViewById(R.id.vp_content_pager);
         mRGContentBottom = (RadioGroup) findViewById(R.id.rg_content_bottom);
         mRBBottomFirst = (RadioButton) findViewById(R.id.rb_bottom_first);
-      //  mRBBottomNotification = (CustomRedDotRadioButton) findViewById(R.id.rb_bottom_notification);
+        //  mRBBottomNotification = (CustomRedDotRadioButton) findViewById(R.id.rb_bottom_notification);
         mRBBottomCampaign = (RadioButton) findViewById(R.id.rb_bottom_campaign);
+        mRBBottomInfluence = (RadioButton) findViewById(R.id.rb_bottom_influence);
         mRBBottomCreate = (RadioButton) findViewById(R.id.rb_bottom_create);
         mRBBottomMine = (RadioButton) findViewById(R.id.rb_bottom_mine);
         setRadioButtonDrawableSize(mRBBottomFirst);
-       // setRadioButtonDrawableSize(mRBBottomNotification);
+        setRadioButtonDrawableSize(mRBBottomInfluence);
         setRadioButtonDrawableSize(mRBBottomCampaign);
         setRadioButtonDrawableSize(mRBBottomCreate);
         setRadioButtonDrawableSize(mRBBottomMine);
     }
 
     /**
-     * 调整bottomButton图片大小
-     *
-     * @param radioButton
+     调整bottomButton图片大小
+     @param radioButton
      */
     private void setRadioButtonDrawableSize(RadioButton radioButton) {
 
@@ -243,11 +262,11 @@ private String register_main;
             case R.id.rb_bottom_first:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_first_selector);
                 break;
-//            case R.id.rb_bottom_notification:
-//                drawable = ContextCompat.getDrawable(this, R.drawable.selector_tab_notification);
-//                break;
             case R.id.rb_bottom_campaign:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_reword_selector);
+                break;
+            case R.id.rb_bottom_influence:
+                drawable = ContextCompat.getDrawable(this, R.drawable.selector_tab_notification);
                 break;
             case R.id.rb_bottom_create:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_create_selector);
@@ -276,7 +295,7 @@ private String register_main;
     }
 
     /**
-     * 初始化参数
+     初始化参数
      */
     public void initData() {
 
@@ -288,15 +307,17 @@ private String register_main;
         if (mPagerList == null) {
             mPagerList = new ArrayList<BasePager>();
         }
+        if (mFirstPager == null) {
+            //  mFirstPager = new FirstPager(this, mVPContentPager);
+            mFirstPager = new FirstPager(this);
+        }
         if (mRewordPager == null) {
             mRewordPager = new RewordPager(this);
         }
 
-        if (mFirstPager == null) {
-          //  mFirstPager = new FirstPager(this, mVPContentPager);
-            mFirstPager = new FirstPager(this);
+        if (mInfluencePager == null) {
+            mInfluencePager = new InfluencePager(this);
         }
-
         if (mCreatePager == null) {
             mCreatePager = new CreatePager(this);
         }
@@ -304,20 +325,16 @@ private String register_main;
         if (mMinePager == null) {
             mMinePager = new MinePager(this);
         }
-//通知pager
-//        if (mNotificationPager == null) {
-         //  mNotificationPager = new NotificationPager(this);
-//        }
-//        if (mInfluencePager == null) {
-//            mInfluencePager = new InfluencePager(this);
-//        }
+        //通知pager
+        //        if (mNotificationPager == null) {
+        //  mNotificationPager = new NotificationPager(this);
+        //        }
 
         mPagerList.clear();
-
         mPagerList.add(mFirstPager);
-       // mPagerList.add(mNotificationPager);
-     // mPagerList.add(mInfluencePager);
+        // mPagerList.add(mNotificationPager);
         mPagerList.add(mRewordPager);
+        mPagerList.add(mInfluencePager);
         mPagerList.add(mCreatePager);
         mPagerList.add(mMinePager);
 
@@ -325,20 +342,25 @@ private String register_main;
             mPagerAdapter = new MyPagerAdapter();
         }
         mVPContentPager.setAdapter(mPagerAdapter);
-        mVPContentPager.setOffscreenPageLimit(4);
-//
+        mVPContentPager.setOffscreenPageLimit(5);
+        //
         // 设置默认显示的界面 默认显示首页
-       // mRGContentBottom.check(R.id.rb_bottom_first);
-        if (!TextUtils.isEmpty(register_main)){
-            if (register_main.equals("zhu")){
+        // mRGContentBottom.check(R.id.rb_bottom_first);
+        if (! TextUtils.isEmpty(register_main)) {
+            if (register_main.equals("zhu")) {
                 mRGContentBottom.check(R.id.rb_bottom_campaign);
                 mVPContentPager.setCurrentItem(1);
-            }else {
+            } else if (register_main.equals("influence")) {
+                mRGContentBottom.check(R.id.rb_bottom_influence);
+                mVPContentPager.setCurrentItem(2);
+                // mPagerList.get(2).initData();
+            } else {
                 mRGContentBottom.check(R.id.rb_bottom_first);
             }
-        }else {
+        } else {
             mRGContentBottom.check(R.id.rb_bottom_first);
         }
+
         // 让首页界面加载数据
         mPagerList.get(0).initData();
         // 监听ViewPager的页签的变化
@@ -349,6 +371,7 @@ private String register_main;
         mRBBottomCampaign.setOnClickListener(this);
         mRBBottomMine.setOnClickListener(this);
         mRBBottomCreate.setOnClickListener(this);
+        mRBBottomInfluence.setOnClickListener(this);
     }
 
     @Override
@@ -356,22 +379,22 @@ private String register_main;
 
     }
 
-//    public void hideNotificationRedDot(boolean b) {
-//
-//        if (mRBBottomNotification == null) {
-//            return;
-//        }
-//        if (b) {
-//            mRBBottomNotification.hidRedDot();
-//        } else {
-//            mRBBottomNotification.showRedDot();
-//        }
-//    }
+    //    public void hideNotificationRedDot(boolean b) {
+    //
+    //        if (mRBBottomNotification == null) {
+    //            return;
+    //        }
+    //        if (b) {
+    //            mRBBottomNotification.hidRedDot();
+    //        } else {
+    //            mRBBottomNotification.showRedDot();
+    //        }
+    //    }
 
     class MyOnCheckedChangeListener implements RadioGroup.OnCheckedChangeListener {
 
         /**
-         * 当rodioButton 切换时回调 点击RadioButton 切换到相应的Pager界面
+         当rodioButton 切换时回调 点击RadioButton 切换到相应的Pager界面
          */
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -380,22 +403,33 @@ private String register_main;
                 case R.id.rb_bottom_first:
                     mVPContentPager.setCurrentItem(0, false);
                     break;
-//                case R.id.rb_bottom_notification:
-//                    mVPContentPager.setCurrentItem(1, false);
-//                    break;
                 case R.id.rb_bottom_campaign:
                     mVPContentPager.setCurrentItem(1, false);
                     break;
+                case R.id.rb_bottom_influence:
+                    if (! isLogined()) {
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.putExtra("influence", StatisticsAgency.INFLUENCE_LIST);
+                        startActivity(intent);
+                    } else {
+                        mVPContentPager.setCurrentItem(2, false);
+                    }
+                    break;
                 case R.id.rb_bottom_create:
-                    mVPContentPager.setCurrentItem(2, false);
+                    mVPContentPager.setCurrentItem(3, false);
                     break;
                 case R.id.rb_bottom_mine:
-                    mVPContentPager.setCurrentItem(3, false);
+                    mVPContentPager.setCurrentItem(4, false);
                     break;
             }
         }
     }
 
+
+    private boolean isLogined() {
+        BaseApplication baseApplication = BaseApplication.getInstance();
+        return baseApplication.hasLogined();
+    }
 
     class MyPagerAdapter extends PagerAdapter {
 
@@ -418,9 +452,11 @@ private String register_main;
             View view = pager.rootView;// 根据position获取 3个子界面的一个View
             container.addView(view);
             if (position != 0) {
+                //                                if (position!=2){
+                //                                    mPagerList.get(position).initData();// 让具体的Pager子类加载数据
+                //                                }
                 mPagerList.get(position).initData();// 让具体的Pager子类加载数据
             }
-
             return view;
         }
 
@@ -439,7 +475,7 @@ private String register_main;
         }
 
         /**
-         * 当某一个界面被旋转 回调
+         当某一个界面被旋转 回调
          */
         @Override
         public void onPageSelected(int position) {
@@ -449,30 +485,40 @@ private String register_main;
                     mPageName = StatisticsAgency.KOL_LIST;
                     onePageSelected(KOL_LIST);
                     mRBBottomFirst.setChecked(true);
-                   // mFirstPager.changeVisibleView();
+                    // mFirstPager.changeVisibleView();
+                   // showShadowDialog(MainActivity.this, 0);
                     break;
-//                case NOTIFICATION_LIST:
-//                    mPageName = NOTIFICATION_LIST;
-//                    onePageSelected(NOTIFICATION_LIST);
-//                    mRBBottomNotification.setChecked(true);
-//                    mPagerList.get(NOTIFICATION_LIST).initData();
-//                    break;
                 case CAMPAIGN_LIST:
                     mPageName = StatisticsAgency.CAMPAIGN_LIST;
                     onePageSelected(CAMPAIGN_LIST);
                     mRBBottomCampaign.setChecked(true);
+                    break;
+                case INFLUENCE_LIST:
+                    mPageName = StatisticsAgency.INFLUENCE_LIST;
+                    onePageSelected(INFLUENCE_LIST);
+                    mRBBottomInfluence.setChecked(true);
+                    mPagerList.get(INFLUENCE_LIST).initData();
                     break;
                 case CREATE_LIST:
                     mPageName = StatisticsAgency.CREATE_LIST;
                     onePageSelected(CREATE_LIST);
                     mRBBottomCreate.setChecked(true);
                     break;
-
                 case MY:
                     mPageName = StatisticsAgency.MY;
                     onePageSelected(MY);
                     mRBBottomMine.setChecked(true);
                     mPagerList.get(MY).initData();
+                    //我的页面蒙版
+                    if (TextUtils.isEmpty((HelpTools.getCommonXml(HelpTools.ShadowMine)))) {
+                        showShadowDialog(MainActivity.this, 4);
+                    } else {
+                        if (! (HelpTools.getCommonXml(HelpTools.ShadowMine)).equals(getString(R.string.submit))) {
+                            showShadowDialog(MainActivity.this, 4);
+                        }
+                    }
+                   // showShadowDialog(MainActivity.this, 4);
+
                     break;
             }
             StatisticsAgency.onPageStart(MainActivity.this, mPageName);
@@ -492,6 +538,7 @@ private String register_main;
             if (basePager instanceof RewordPager) {
                 RewordPager pager = (RewordPager) basePager;
                 pager.initVpData();
+                pager.setVpAuto();
             }
         }
 
@@ -506,6 +553,8 @@ private String register_main;
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.CAMPAIGN_LIST);
         } else if (mLastPosition == CREATE_LIST) {
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.CREATE_LIST);
+        } else if (mLastPosition == INFLUENCE_LIST) {
+            StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.INFLUENCE_LIST);
         }
     }
 
@@ -516,24 +565,36 @@ private String register_main;
         if (mPageName == StatisticsAgency.MY) {
             mPagerList.get(MY).initData();
         }
-        if (!TextUtils.isEmpty(register_main)){
-            if (register_main.equals("zhu")){
-                LogUtil.LogShitou("我们啊啊啊啊啊啊","德国队");
+        if (! TextUtils.isEmpty(register_main)) {
+            if (register_main.equals("zhu")) {
                 mPageName = StatisticsAgency.CAMPAIGN_LIST;
+            } else if (register_main.equals("influence")) {
+                mPageName = StatisticsAgency.INFLUENCE_LIST;
+                // onePageSelected(INFLUENCE_LIST);
             }
-        }else {
-            LogUtil.LogShitou("我们啊啊啊啊啊啊","美国");
+        } else {
             mPageName = StatisticsAgency.KOL_LIST;
         }
-//        if (mPageName.equals(NOTIFICATION_LIST)) {
-//            mPagerList.get(NOTIFICATION_LIST).initData();
-//        }
-//        if (mPageName.equals(StatisticsAgency.CAMPAIGN_LIST)){
-//            mPagerList.get(CAMPAIGN_LIST).initData();
-//        }
-//        if (mFirstPager != null) {
-//            mFirstPager.changeVisibleView();
-//        }
+        //        if (mPageName == StatisticsAgency.INFLUENCE_LIST) {
+        //            if (! TextUtils.isEmpty(register_main)) {
+        //               if (register_main.equals("influence")) {
+        //                    mPageName = StatisticsAgency.INFLUENCE_LIST;
+        //                }else {
+        //                   mPagerList.get(INFLUENCE_LIST).pasue();
+        //               }
+        //            }else {
+        //                mPagerList.get(INFLUENCE_LIST).pasue();
+        //            }
+        //        }
+        //        if (mPageName.equals(NOTIFICATION_LIST)) {
+        //            mPagerList.get(NOTIFICATION_LIST).initData();
+        //        }
+        //        if (mPageName.equals(StatisticsAgency.CAMPAIGN_LIST)){
+        //            mPagerList.get(CAMPAIGN_LIST).initData();
+        //        }
+        //        if (mFirstPager != null) {
+        //            mFirstPager.changeVisibleView();
+        //        }
     }
 
     private boolean mHasPostLocation;
@@ -554,4 +615,47 @@ private String register_main;
         }
 
     };
+
+    public void showShadowDialog(final Activity activity, final int page) {
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_shadow_layout, null);
+        ImageView imgBg = (ImageView) view.findViewById(R.id.img_shadow_mine);
+        ImageView imgBgFirst = (ImageView) view.findViewById(R.id.img_shadow_first);
+        ImageView imgBgFirstRight = (ImageView) view.findViewById(R.id.img_shadow_first_right);
+        RelativeLayout llShadow = (RelativeLayout) view.findViewById(R.id.ll_shadow);
+        if (page == 0) {
+            imgBgFirst.setVisibility(View.VISIBLE);
+            imgBgFirstRight.setVisibility(View.VISIBLE);
+        } else {
+            imgBg.setVisibility(View.VISIBLE);
+        }
+        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
+        llShadow.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if (page == 0) {
+                    HelpTools.insertCommonXml(HelpTools.ShadowFirst, getString(R.string.submit));
+                } else {
+                    HelpTools.insertCommonXml(HelpTools.ShadowMine, getString(R.string.submit));
+                }
+                cdm.dismiss();
+            }
+        });
+
+        Window win = cdm.dg.getWindow();
+
+        WindowManager.LayoutParams lp = win.getAttributes();
+
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+        lp.dimAmount = 0.2f;
+
+        win.setAttributes(lp);
+        cdm.dg.setCanceledOnTouchOutside(true);
+        cdm.dg.getWindow().setGravity(Gravity.CENTER);
+        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+        cdm.showDialog();
+    }
 }

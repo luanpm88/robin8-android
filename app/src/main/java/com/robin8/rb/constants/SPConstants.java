@@ -45,6 +45,9 @@ public class SPConstants {
     public static final int ARTICLE_SHARE = 56;
     public static final int MY_LAUNCH_REWORD_ACTIVITY = 57;
     public static final int CITY_LIST = 58;
+    public static final int BE_KOL_BIND_RESULT = 59;//绑定完成返回
+    public static final int PUSH_TO_DETAIL = 60;//推送到活动详情
+    public static final int CHOSE_TYPE = 61;//发布活动时选择发布的平台
 
     public static final String SP_SIGN = "robin8_sp";
     public static final String ROBIN_IME = "robin_ime";
@@ -74,6 +77,7 @@ public class SPConstants {
     public static final String FEEDBACK_TOGGLE = "feedback_toggle";
     public static final String HELP_CENTER_DATA = "help_center_data";
     public static final String MINE_DATA = "mine_data";
+    public static final String INFLUENCE_DATA = "influence_data";
     public static final String PRODUCT_DETAIL_SEARCH = "product_detail_search";
     public static final String ARTICLE_SEARCH = "article_search";
 

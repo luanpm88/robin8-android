@@ -25,6 +25,17 @@ public class HelpTools {
     public static final String Token = "token";
     public static final String LoginBean = "loginBean";
     public static final String XiaoXiTiXing = "xiaoxitixing";
+    public static final String FirstIn = "FirstIn";
+    public static final String SecondIn = "SecondIn";
+    public static final String ThirdIn = "ThirdIn";
+    public static final String PagerData = "PagerData";
+    public static final String InviteDialog = "InviteDialog";
+    public static final String MyKolId = "MyKolId";
+    public static final String IsBind = "IsBind";
+    public static final String ShadowFirst = "ShadowFirst";
+    public static final String ShadowMine = "ShadowMine";
+    public static final String ShadowCampaign = "ShadowCampaign";
+    public static final String isLeader = "isLeader";
 
 
     public static final String LOGININFO = "loginInfo";// 本地存储文件名字
@@ -34,7 +45,7 @@ public class HelpTools {
      */
     public static String CURRENTUSERID = "currentUserId";
     public static String COMMON = "common";
-    public static String NATIVE = "nativeuid";
+   // public static String NATIVE = "nativeuid";
     private static SharedPreferences commonSp;// 保存通用数据(与是否登录无关的信息)
     private static SharedPreferences loginSp;// 登录的数据
     private static InputMethodManager inputManager;

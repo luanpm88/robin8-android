@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="15dp"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_data_type_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_air"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="母婴"
+            android:textColor="@color/black_202020"
+            android:textSize="@dimen/undefine_font_5"/>
+
+        <TextView
+            android:id="@+id/tv_rank_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@mipmap/icon_badge"
+            android:drawablePadding="10dp"
+            android:layout_centerVertical="true"
+            android:text="在静安区 No.15"
+            android:textColor="@color/black_202020"
+            android:textSize="@dimen/undefine_font_4"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_item_one"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_num_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:text="100%"
+            android:textColor="@color/black_202020"
+            android:textSize="@dimen/undefine_font_5"/>
+
+        <com.robin8.rb.ui.widget.myprogress.RoundCornerProgressBar
+            android:id="@+id/pro_one"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2.5dp"
+            android:layout_weight="5.5"
+            app:rcBackgroundColor="@color/white_custom"
+            app:rcBackgroundPadding="2dp"
+            app:rcMax="100"
+            app:rcProgress="40"
+            app:rcProgressColor="@color/red_custom"
+            app:rcRadius="10dp"
+            app:rcRadiusBg="10dp"
+            app:rcSecondaryProgress="100"
+            app:rcSecondaryProgressColor="@color/gray_e4e4e4"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+
+            <ImageView
+                android:id="@+id/img_show_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:src="@mipmap/icon_up"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/show_layout_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_repeat_num_item_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/icon_relay"
+                android:text="2311"
+                android:textColor="@color/black_202020"
+                android:textSize="@dimen/undefine_font_3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/aver_repeat"
+                android:textColor="@color/gray_969696"
+                android:textSize="@dimen/undefine_font_3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_comment_num_item_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/icon_comment"
+                android:text="2311"
+                android:textColor="@color/black_202020"
+                android:textSize="@dimen/undefine_font_3"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/aver_comment"
+                android:textColor="@color/gray_969696"
+                android:textSize="@dimen/undefine_font_3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_click_num_item_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/icon_zan"
+                android:text="2311"
+                android:textColor="@color/black_202020"
+                android:textSize="@dimen/undefine_font_3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/aver_click"
+                android:textColor="@color/gray_969696"
+                android:textSize="@dimen/undefine_font_3"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

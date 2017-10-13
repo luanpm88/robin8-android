@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.moxun.tagcloudlib.view.TagCloudView;
@@ -28,6 +29,7 @@ import com.robin8.rb.module.first.adapter.RotateYTransformer;
 import com.robin8.rb.module.first.adapter.TextTagsAdapter;
 import com.robin8.rb.module.first.model.KolDetailModel;
 import com.robin8.rb.module.first.model.SocialAccountsBean;
+import com.robin8.rb.module.social.SocialDetailActivity;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -38,6 +40,7 @@ import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 
@@ -100,6 +103,8 @@ public class KolDetailContentActivity extends BaseActivity {
     TextView tvKolFrom;
     @Bind(R.id.fl_viewpager)
     FrameLayout flViewpager;
+    @Bind(R.id.ll_look_social_detail)
+    RelativeLayout mLookSocialLayout;
     private BasePresenter mBasePresenter;
     private RequestParams mRequestParams;
     private String url;
@@ -111,6 +116,7 @@ public class KolDetailContentActivity extends BaseActivity {
     private int size;
     private KolDetailModel mKolDetailModel;
     private int id;
+    private int thisId;
 
     @Override
     protected void onResume() {
@@ -138,13 +144,13 @@ public class KolDetailContentActivity extends BaseActivity {
         ivBg.post(new Runnable() {
             @Override
             public void run() {
-                ivBg.getLayoutParams().height = DensityUtils.getScreenWidth(KolDetailContentActivity.this) * 6 / 5;
-                ivCover.getLayoutParams().height = DensityUtils.getScreenWidth(KolDetailContentActivity.this) * 6 / 5;
+                ivBg.getLayoutParams().height = DensityUtils.getScreenWidth(KolDetailContentActivity.this)*6/5 ;
+                ivCover.getLayoutParams().height = DensityUtils.getScreenWidth(KolDetailContentActivity.this)*6/5 ;
                 ivBg.getLayoutParams().width = DensityUtils.getScreenWidth(KolDetailContentActivity.this);
                 ivCover.getLayoutParams().width = DensityUtils.getScreenWidth(KolDetailContentActivity.this);
             }
         });
-
+        mLookSocialLayout.setOnClickListener(this);
         tvKolBack.setOnClickListener(this);
         tvFavorite.setOnClickListener(this);
         tvBottom.setOnClickListener(this);
@@ -263,6 +269,8 @@ public class KolDetailContentActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
+
+//                LogUtil.LogShitou("商务合作",response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -280,6 +288,17 @@ public class KolDetailContentActivity extends BaseActivity {
             }
             mKolDetailModel = kolDetailModel;
             KolDetailModel.BigVBean big_v = kolDetailModel.getBig_v();
+            thisId= big_v.getId();
+          // mLookSocialLayout.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.MyKolId))){
+                if (HelpTools.getCommonXml(HelpTools.MyKolId).equals(String.valueOf(thisId))){
+                    mLookSocialLayout.setVisibility(View.GONE);
+                }else {
+                    mLookSocialLayout.setVisibility(View.VISIBLE);
+                }
+            }else {
+                mLookSocialLayout.setVisibility(View.GONE);
+            }
             BitmapUtil.loadImage(this, big_v.getAvatar_url(), ivBg, BitmapUtil.getBg());
             tvKolName.setText(big_v.getName());
             if (big_v.getTags() != null && big_v.getTags().size() > 0) {
@@ -408,8 +427,51 @@ public class KolDetailContentActivity extends BaseActivity {
             case R.id.tv_bottom:
                 skipToInviteCampaign();
                 break;
+            case R.id.ll_look_social_detail:
+                //跳转去影响力详情
+             //   influencePk();
+                if (!isLogined(0)){
+                    return;
+                }else {
+                    Intent intent = new Intent(KolDetailContentActivity.this, SocialDetailActivity.class);
+                    intent.putExtra(SocialDetailActivity.OTHER_DETAIL_TAG,thisId);
+                    startActivity(intent);
+                }
+                break;
         }
         super.onClick(v);
+    }
+
+    private void influencePk() {
+        BasePresenter mBasePresenter = new BasePresenter();
+        RequestParams params = new RequestParams();
+        params.put("provider", "weibo");
+        mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.CALCULATE_INFLUENCE_SCORE), params, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.LogShitou("影响力第一个接口", "==>" + response);
+//                BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
+//                if (baseBean!=null){
+//                    if (baseBean.getError() == 0) {
+//                        loadDataTwo();
+//                    } else {
+//                        CustomToast.showShort(mActivity, baseBean.getMessage());
+//                    }
+//                }else {
+//                    LogUtil.LogShitou("为什么？？","======");
+//                    llHaveResult.setVisibility(View.GONE);
+//                    llNoResult.setVisibility(View.VISIBLE);
+//                }
+
+
+            }
+        });
     }
 
     private boolean isLogined(int from) {

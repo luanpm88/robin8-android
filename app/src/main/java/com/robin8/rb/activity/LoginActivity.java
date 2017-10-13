@@ -1,6 +1,7 @@
 package com.robin8.rb.activity;
 
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -85,7 +86,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 mLoginPresenter.login();
                 break;
             case R.id.tv_tourist:
-                finish();
+                mLoginPresenter.backMain(0);
                 break;
             case R.id.ib_weixin:
                 CustomToast.showShort(this,"前往微信中···");
@@ -98,12 +99,17 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 mLoginPresenter.authorize(new QQ(this));
                // finish();
                 break;
+            case R.id.iv_back:
+               mLoginPresenter.backMain(0);
+                break;
+
         }
     }
 
     @Override
     protected void executeOnclickLeftView() {
-        finish();
+        //mLoginPresenter.backMain();
+       // finish();
     }
 
     @Override
@@ -132,5 +138,12 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     public View getTv() {
 
         return mTVCheckNum;
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+          mLoginPresenter.backMain(0);
+        }
+        return false;
     }
 }

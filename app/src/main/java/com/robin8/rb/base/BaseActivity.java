@@ -26,6 +26,7 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
     protected TextView mBottomTv;
     protected TextView mTvEdit;
     protected TextView tvJump;
+    protected LinearLayout mShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,8 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
         mBottomTv = (TextView) findViewById(R.id.tv_bottom);
         mTvEdit = ((TextView) findViewById(R.id.tv_edit));
         tvJump = ((TextView) findViewById(R.id.tv_jump));
+        mShare = ((LinearLayout) findViewById(R.id.ll_share));
+        mShare.setOnClickListener(this);
         mTVRight.setOnClickListener(this);
         mIVBack.setOnClickListener(this);
         tvJump.setOnClickListener(this);

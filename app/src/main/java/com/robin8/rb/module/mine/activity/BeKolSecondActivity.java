@@ -350,8 +350,8 @@ public class BeKolSecondActivity extends BaseActivity {
      @param names
      */
     private void bind(final String names, final int ids) {
-        CustomToast.showShort(BeKolSecondActivity.this, "正在前往微信中...");
-        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), null, names);
+        CustomToast.showShort(BeKolSecondActivity.this, "正在前往"+names+"中...");
+        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), null, names,0);
         presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
 
             @Override
@@ -397,7 +397,7 @@ public class BeKolSecondActivity extends BaseActivity {
         params.put("price", "0.1");
         params.put("followers_count", "0.1");
         params.put("username", userName);
-        //LogUtil.LogShitou("绑定qq的报价之类的",name+"//"+userName);
+      //  LogUtil.LogShitou("绑定qq的报价之类的",name+"//"+userName);
         url = HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL);
 
         mBasePresenter.getDataFromServer(true, HttpRequest.POST, url, params, new RequestCallback() {
@@ -439,6 +439,7 @@ public class BeKolSecondActivity extends BaseActivity {
         } else if (resultCode == SPConstants.BE_KOL_SECOND_PERSONAL_SHOW && data != null) {
             int counts = data.getIntExtra("counts", 0);
             mDataList.get(2).content = counts;
+           // mGridDataList.get(mBackId).isChecked = true;
             mMyListAdapter.notifyDataSetChanged();
         }
 
@@ -732,13 +733,15 @@ public class BeKolSecondActivity extends BaseActivity {
                 isShow = false;
                 mMyGridBaseAdapter.notifyDataSetChanged();
                 //  CustomToast.showShort(BeKolSecondActivity.this, "没有" + name);
-                getBindCount(type, providerName, name, id);
+             //   getBindCount(type, providerName, name, id);
+                skipToDetail(name, id);
             } else if (type == 1) {
                 //已绑定
                 CustomToast.showShort(BeKolSecondActivity.this, "已绑定" + name);
             } else if (type == 2) {
                 //需要解绑
                 //查询解绑次数
+              //  unBind(uid, providerName);
                 getBindCount(type, providerName, name, uid);
                 //  showDialog(BeKolSecondActivity.this, uid, providerName, name);
                 // CustomToast.showShort(BeKolSecondActivity.this, "想要解绑"+name);
@@ -822,7 +825,7 @@ public class BeKolSecondActivity extends BaseActivity {
         }
 
         if (mRequestParams == null) {
-
+            mRequestParams  = new RequestParams();
         }
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(this);

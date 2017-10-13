@@ -28,11 +28,13 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 
 import java.io.Serializable;
 
 /**
+ 发布活动支付页面
  */
 public class OrederPayActivity extends BaseActivity {
 
@@ -114,6 +116,7 @@ public class OrederPayActivity extends BaseActivity {
         mCampaign = (LaunchRewordModel.Campaign) serializable;
          mBrandAmountF = mCampaign.getBrand_amount();
         mPayNumberTv.setText("支付金额：¥ " + StringUtil.deleteZero(mCampaign.getNeed_pay_amount()));
+        mPayConfirmTv.setText("确认支付 ¥ " + StringUtil.deleteZero(mCampaign.getNeed_pay_amount()));
         mAccountIncomeTv.setText("¥ " + StringUtil.deleteZero(mBrandAmountF));
     }
 
@@ -182,7 +185,8 @@ public class OrederPayActivity extends BaseActivity {
 
                 @Override
                 public void onResponse(String response) {
-                    Log.e("xxfigo", "response=" + response);
+                    LogUtil.LogShitou("账户余额支付===>",HelpTools.getUrl(CommonConfig.BRAND_AMMOUNT_PAY_URL)+"///"+response);
+                   // Log.e("xxfigo", "response=" + response);
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
@@ -255,7 +259,8 @@ public class OrederPayActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                Log.e("xxfigo", "CAMPAIGN_CHECK_SUCCESS_BY_ALIPAY_URL =" + response);
+               // Log.e("xxfigo", "CAMPAIGN_CHECK_SUCCESS_BY_ALIPAY_URL =" + response);
+                LogUtil.LogShitou("支付成功","==>"+response);
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if(baseBean == null){
                     CustomToast.showShort(OrederPayActivity.this, getString(R.string.please_data_wrong));

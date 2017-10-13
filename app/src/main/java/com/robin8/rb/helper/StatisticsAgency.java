@@ -3,7 +3,6 @@ package com.robin8.rb.helper;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.util.Log;
 
 import com.robin8.rb.util.LogUtil;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
@@ -25,7 +24,11 @@ public class StatisticsAgency {
     public static final String KOL_LIST_FOLLOWERS = "kol-list-followers";//KOL关注列表
 
     //通知
-    public static final String NOTIFICATION_LIST = "notification-list";//活动首页
+  //  public static final String NOTIFICATION_LIST = "notification-list";//活动首页
+    public static final String INFLUENCE_LIST = "My_influence";//影响力
+    public static final String PK_INFLUENCE = "Pk_influence";//影响力pk
+    public static final String OTHER_INFLUENCE = "Other_people_influence";//他人影响力
+    public static final String GO_TEST_INFLUENCE = "Go_test_influence";//影响力
 
 
     // 活动
@@ -104,6 +107,7 @@ public class StatisticsAgency {
             TCAgent.init(context,analyticAppId,analyticChannelId);
             //talking data 广告检测初始化
             String adAppId = applicationInfo.metaData.getString(TD_AD_ID);
+            LogUtil.LogShitou("埋点的id","++-->"+adAppId);
             TalkingDataAppCpa.init(context,
                     adAppId,
                     TD_AD_CHANNEL_ID);

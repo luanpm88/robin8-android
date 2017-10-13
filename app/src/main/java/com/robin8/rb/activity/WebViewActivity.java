@@ -211,9 +211,10 @@ public class WebViewActivity extends BaseActivity {
         View llBottom = view.findViewById(R.id.ll_bottom);
         llBottom.setVisibility(View.VISIBLE);
         contentShareLL = (LinearLayout) view.findViewById(R.id.ll_content_share);
-        View shareTV = view.findViewById(R.id.tv_share);
+        final View shareTV = view.findViewById(R.id.tv_share);
+      //  shareTV.setVisibility(View.INVISIBLE);
         contentShareLL.setOnClickListener(this);
-        shareTV.setOnClickListener(this);
+       // shareTV.setOnClickListener(this);
 
         mBasePresenter = new BasePresenter();
         mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.CPS_ARTICLES_URL + "/" + String.valueOf(id) + "/show"), null, new RequestCallback() {
@@ -223,22 +224,25 @@ public class WebViewActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                parseJson(response);
+               // LogUtil.LogShitou("创作之详情",response);
+                CreateFirstDetailModel bean = GsonTools.jsonToBean(response, CreateFirstDetailModel.class);
+                if (bean == null) {
+                    return;
+                }
+                if (bean.getError() == 0) {
+                    mCpsArticle = bean.getCps_article();
+                    mCpsArticleSharesList = mCpsArticle.getCps_article_shares();
+                    initShareList(contentShareLL, mCpsArticleSharesList);
+                    shareTV.setVisibility(View.VISIBLE);
+                    shareTV.setOnClickListener(WebViewActivity.this);
+                }
             }
         });
     }
 
-    private void parseJson(String response) {
-        CreateFirstDetailModel bean = GsonTools.jsonToBean(response, CreateFirstDetailModel.class);
-        if (bean == null) {
-            return;
-        }
-        if (bean.getError() == 0) {
-            mCpsArticle = bean.getCps_article();
-            mCpsArticleSharesList = mCpsArticle.getCps_article_shares();
-            initShareList(contentShareLL, mCpsArticleSharesList);
-        }
-    }
+//    private void parseJson(String response) {
+//
+//    }
 
     private void initShareList(LinearLayout linearLayout, List<CpsArticleSharesBean> list) {
         Context context = linearLayout.getContext();
@@ -269,9 +273,11 @@ public class WebViewActivity extends BaseActivity {
         if (!isDoubleClick()) {
             switch (v.getId()) {
                 case R.id.tv_share:
+
                     shareArticle();
                     break;
                 case R.id.ll_content_share:
+                    //参与人员
                     skipToShareDetail();
                     break;
                 case R.id.tv_left:
@@ -284,7 +290,6 @@ public class WebViewActivity extends BaseActivity {
                 case R.id.tv_expected_income:
                     skipToDetail();
                     break;
-
                 case R.id.tv_weixin:
                     share(mShareUrl, mImgUrl, Wechat.NAME);
                     break;
@@ -326,6 +331,9 @@ public class WebViewActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 创作页面分享
+     */
     private void popSharePromptDialog() {
         View view = LayoutInflater.from(WebViewActivity.this).inflate(R.layout.dialog_reject_screenshot, null);
         TextView leftTV = (TextView) view.findViewById(R.id.tv_confirm);
@@ -548,6 +556,14 @@ public class WebViewActivity extends BaseActivity {
                 CampaignInviteBean.InviteesBean bean = new CampaignInviteBean.InviteesBean();
                 bean.setName(cpsArticleSharesBean.getKol_name());
                 bean.setAvatar_url(cpsArticleSharesBean.getKol_avatar_url());
+                if (!TextUtils.isEmpty(cpsArticleSharesBean.getKol_id())){
+                    bean.setId(Integer.valueOf(cpsArticleSharesBean.getKol_id()));
+                }else{
+                    LogUtil.LogShitou("谁的是空name","===>"+cpsArticleSharesBean.getKol_name());
+                    LogUtil.LogShitou("谁的是空id","===>"+cpsArticleSharesBean.getId());
+                }
+              //  bean.setId(Integer.valueOf(cpsArticleSharesBean.getKol_id()));
+
                 list.add(bean);
             }
         }

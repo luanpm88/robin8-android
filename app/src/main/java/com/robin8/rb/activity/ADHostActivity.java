@@ -1,7 +1,6 @@
 package com.robin8.rb.activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -109,7 +108,7 @@ public class ADHostActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                Log.e("xxfigo", "response" + response);
+//                Log.e("xxfigo", "response" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -146,6 +145,7 @@ public class ADHostActivity extends BaseActivity {
                 skipToRecharge();
                 break;
             case R.id.layout_my_launch_campaign:
+                //我发布的活动
                 shipToMyCampaign();
                 break;
             case R.id.layout_my_account_menu:
@@ -183,6 +183,9 @@ public class ADHostActivity extends BaseActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    /**
+     * 发布悬赏活动
+     */
     private void skipToLaunch() {
         Intent intent = new Intent(this, LaunchRewordFirstActivity.class);
         startActivity(intent);

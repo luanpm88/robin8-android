@@ -1,57 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <com.robin8.rb.ui.widget.NoScrollViewPager
-        android:id="@+id/vp_content_pager"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_alignParentTop="true"
-        ></com.robin8.rb.ui.widget.NoScrollViewPager>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <RadioGroup
-        android:id="@+id/rg_content_bottom"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:background="@color/undefined_backgroud"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
+        <com.robin8.rb.ui.widget.NoScrollViewPager
+            android:id="@+id/vp_content_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            ></com.robin8.rb.ui.widget.NoScrollViewPager>
 
-        <RadioButton
-            android:id="@+id/rb_bottom_first"
-            style="@style/bottom_radio_style"
-            android:drawableTop="@drawable/bottom_first_selector"
-            android:text="@string/text_first" />
+        <RadioGroup
+            android:id="@+id/rg_content_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/vp_content_pager"
+            android:background="@color/undefined_backgroud"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_bottom_first"
+                style="@style/bottom_radio_style"
+                android:drawableTop="@drawable/bottom_first_selector"
+                android:text="@string/text_first"/>
+
+            <RadioButton
+                android:id="@+id/rb_bottom_campaign"
+                style="@style/bottom_radio_style"
+                android:drawableTop="@drawable/bottom_reword_selector"
+                android:text="@string/text_campaign"/>
+
+            <!--<com.robin8.rb.view.widget.CustomRedDotRadioButton-->
+            <!--android:id="@+id/rb_bottom_notification"-->
+            <!--style="@style/bottom_radio_style"-->
+            <!--android:drawableTop="@drawable/selector_tab_notification"-->
+            <!--android:text="@string/text_notification"-->
+            <!--android:visibility="gone"/>-->
+            <RadioButton
+                android:id="@+id/rb_bottom_influence"
+                style="@style/bottom_radio_style"/>
+
+            <RadioButton
+                android:id="@+id/rb_bottom_create"
+                style="@style/bottom_radio_style"
+                android:drawableTop="@drawable/bottom_create_selector"
+                android:text="@string/text_create"/>
+
+            <RadioButton
+                android:id="@+id/rb_bottom_mine"
+                style="@style/bottom_radio_style"
+                android:drawableTop="@drawable/bottom_mine_selector"
+                android:text="@string/text_mine"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp">
+            <com.robin8.rb.ui.widget.myprogress.CircleView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                custom:titleBackgroundColor="@color/undefined_backgroud"/>
+
+            <com.robin8.rb.view.widget.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/icon_inflence"/>
+        </RelativeLayout>
+        <TextView
+            android:textSize="@dimen/undefine_font_0"
+            android:layout_gravity="center"
+            android:paddingTop="1dp"
+            android:paddingBottom="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@drawable/bottom_text_color"
+            android:text="影响力"/>
+    </LinearLayout>
 
 
-
-
-        <com.robin8.rb.view.widget.CustomRedDotRadioButton
-            android:visibility="gone"
-            android:id="@+id/rb_bottom_notification"
-            style="@style/bottom_radio_style"
-            android:drawableTop="@drawable/selector_tab_notification"
-            android:text="@string/text_notification" />
-        <RadioButton
-            android:id="@+id/rb_bottom_campaign"
-            style="@style/bottom_radio_style"
-            android:drawableTop="@drawable/bottom_reword_selector"
-            android:text="@string/text_campaign" />
-        <RadioButton
-            android:id="@+id/rb_bottom_create"
-            style="@style/bottom_radio_style"
-            android:drawableTop="@drawable/bottom_create_selector"
-            android:text="@string/text_product" />
-
-
-        <RadioButton
-            android:id="@+id/rb_bottom_mine"
-            style="@style/bottom_radio_style"
-            android:drawableTop="@drawable/bottom_mine_selector"
-            android:text="@string/text_mine" />
-    </RadioGroup>
-</LinearLayout>
+</RelativeLayout>

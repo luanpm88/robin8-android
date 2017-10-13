@@ -7,8 +7,7 @@ import com.robin8.rb.base.BaseApplication;
 import java.io.File;
 
 /**
- * 主要的配置文件
- */
+ 主要的配置文件 */
 public class CommonConfig {
 
     public static final String HELP_URL = "http://robin8.net/kol_publish_campaign_help";
@@ -16,11 +15,9 @@ public class CommonConfig {
 
     static {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-            path = Environment.getExternalStorageDirectory()
-                    + File.separator + "robin8" + File.separator;
+            path = Environment.getExternalStorageDirectory() + File.separator + "robin8" + File.separator;
         else
-            path = BaseApplication.getContext().getCacheDir()
-                    + File.separator;
+            path = BaseApplication.getContext().getCacheDir() + File.separator;
     }
 
     public static final String TOURIST_PHONE = "13000000000";//游客手机号
@@ -32,17 +29,18 @@ public class CommonConfig {
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
 
-    public static String SERVICE = "http://test.robin8.net/";//robin8-测试服务器地址
-    // public static String SERVICE = "http://robin8.net/";//正式服务器地址
+ //  public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
+ public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
     public static final String UpdateUrl = "api/v2/upgrades/check";
     public static final String BIND_IDENTITY_URL = "api/v2/influences/bind_identity";
     public static final String START_URL = "api/v2/influences/start";
     public static final String UNBIND_IDENTITY_URL = "api/v2/influences/unbind_identity";
-    public static final String KOLS_IDENTITY_BIND_URL ="api/v1/kols/identity_bind";
+    public static final String KOLS_IDENTITY_BIND_URL_OLD = "api/v1/kols/identity_bind";
+    public static final String KOLS_IDENTITY_BIND_URL = "api/v1/kols/identity_bind_v2";//新接口
     public static final String CAMPAIGN_INVITES_URL = "api/v1/campaign_invites";
     public static final String SIGN_IN_URL = "api/v2/kols/sign_in";
     public static final String GET_CODE_URL = "api/v1/phones/get_code";
-    public static final String FEED_BACK_URL =  "api/v1/feedbacks/create";
+    public static final String FEED_BACK_URL = "api/v1/feedbacks/create";
     public static final String FIRST_PAGER_URL = "api/v2_0/kols/overview";
 
     public static final String CAMPAIGNS_DETAIL_URL = "api/v1/campaigns/";
@@ -81,17 +79,19 @@ public class CommonConfig {
 
     public static final String MY_SHOW_URL = "api/v1_6/my/show";
     public static final String BIG_V_APPLY_FIRST_URL = "api/v1_6/big_v_applies/update_profile";
-    public static final String UPDATE_SOCIAL_URL = "api/v1_6/big_v_applies/update_social";
+    public static final String UPDATE_SOCIAL_URL_OLD = "api/v1_6/big_v_applies/update_social";
+   // public static final String UPDATE_SOCIAL_URL = "api/v1_6/big_v_applies/update_social_v2";//新接口
+    public static final String UPDATE_SOCIAL_URL = "api/v1_6/big_v_applies/update_social";//新接口
     public static final String SUBMIT_APPLY_URL = "api/v1_6/big_v_applies/submit_apply";
     public static final String CAMPAIGNS_MATERIALS_URL = "api/v1_6/campaigns/materials";
     public static final String CAMPAIGN_INVITES16_URL = "api/v1_6/campaign_invites/";
     public static final String MY_SHOW13_URL = "api/v1_3/my/show";
     public static final String MESSAGES_URL = "api/v1/messages";
-    public static final String READ_ALL_MESSAGES_URL ="api/v2/messages/read_all";
+    public static final String READ_ALL_MESSAGES_URL = "api/v2/messages/read_all";
     public static final String HELP_CENTER_URL = "api/v1_6/system/account_notice";
     public static final String SWEEP_LOGIN_URL = "api/v1_5/scan_qr_code_and_login";
 
-    public static final String INVITE_FRIENDS_URL =  "api/v1_3/tasks/invite_info";
+    public static final String INVITE_FRIENDS_URL = "api/v1_3/tasks/invite_info";
     public static final String OAUTH_LOGIN_URL = "api/v2/kols/oauth_login";
     public static final String BIND_MOBILE_URL = "api/v1/kols/bind_mobile";
     public static final String JOINED_KOLS_URL = "api/v1_4/kol_campaigns/joined_kols";
@@ -101,14 +101,46 @@ public class CommonConfig {
     public static final String ARTICLES_LIST_URL = "api/v2/articles";//文章列表
     public static final String ARTICLES_SEARCH_URL = "api/v2/articles/search";//文章搜索
     public static final String MY_CREATE_URL = "api/v1_7/cps_articles/my_articles";//我的创作列表
-    public static final String SHARE_ARTICLE_URL =  "api/v1_7/cps_articles/share_article";
-    public static final String IMAGES_UPLOAD_URL =  "api/v1_7/images/upload";
-    public static final String RELEASE_URL =  "api/v1_7/cps_articles/create";
+    public static final String SHARE_ARTICLE_URL = "api/v1_7/cps_articles/share_article";
+    public static final String IMAGES_UPLOAD_URL = "api/v1_7/images/upload";
+    public static final String RELEASE_URL = "api/v1_7/cps_articles/create";
 
     public static final String EXPECT_EFFECT_LIST_URL = "api/v1_8/campaign_analysis/expect_effect_list";
     public static final String CONTENT_ANALYSIS_URL = "api/v1_8/campaign_analysis/content_analysis";
     public static final String INVITEE_ANALYSIS_URL = "api/v1_8/campaign_analysis/invitee_analysis";
-    public static final String CATEGORIES_URL =  "api/v1_7/cps_materials/categories";
+    public static final String CATEGORIES_URL = "api/v1_7/cps_materials/categories";
 
     public static final String CAMPAIGN_EVALUATIONS = "api/v1_8/campaign_evaluations/evaluate";
+
+
+    public static final String SOCIAL_BIND_COUNT = "api/v1/kols/bind_count";//put  - kol_id -provider
+    public static final String SOCIAL_UNBIND_COUNT = "api/v1/kols/unbind_count";//put  - kol_id -provider
+
+    //影响力
+    public static final String INFLUENCE_PROFILE = "api/v1/kols/profile";// 获取用户信息Get请求
+    public static final String INFLUENCE_RANK = "api/v2/influences/rank";//社交账号排名Get请求 参数：kol_uuid
+    public static final String INFLUENCE_RANK_WITH_PAGE = "api/v2/influences/rank_with_page";//社交账号排名Get请求 参数：kol_uuid page
+    public static final String INFLUENCE_SHARE = "api/v2/influences/share";//  社交影响力分享 参数：kol_uuid
+    public static final String INFLUENCE_DETAIL = "api/v2/influences/item_detail";// 社交影响力解读 参数：kol_uuid
+    public static final String INFLUENCE_UPGRADE = "api/v2/influences/upgrade";//  影响力提升 参数：kol_uuid
+    public static final String INFLUENCE_INFO_LIST = "api/v1/kols/identities";//  获取第三方账号列表
+    public static final String INFLUENCE_UNBIND = "api/v1/kols/identity_unbind";//  解除第三方账号绑定 PUT请求 参数： uid
+    public static final String INFLUENCE_START = "api/v2/influences/start";// 社交进入测试影响力 GET请求
+    public static final String INFLUENCE_BIND_CONTACT = "api/v2/influences/bind_contacts";//上传通讯录POST请求 参数：contacts（数组）
+    public static final String INFLUENCE_FORWARD = "api/v2/article_actions/forward";// 我的分享GET请求 参数：page
+    public static final String SOCIAL_UNBIND = "api/v1_6/big_v/unbind_social_account";// 我的分享GET请求 参数：page
+
+    //计算影响力
+    public static final String CALCULATE_INFLUENCE_SCORE = "api/v2_0/kols/calculate_influence_score";//post
+    public static final String INFLUENCE_SCORE = "api/v2_0/kols/influence_score";//get
+    public static final String INFLUENCE_SEND_INVITE = "api/v2/influences/send_invite";//post mobile kol_uuid
+    public static final String INFLUENCE_OTHER = "api/v2_0/kols/";
+    public static final String INVITE_CONTACTS = "api/v2_0/contacts/kol_contacts";
+    public static final String INVITE_SEND_SMS = "api/v2_0/contacts/send_invitation";
+    public static final String INFLUENCE_SHOW = "api/v2_0/kols/manage_influence_visibility";//get
+
+    //2、api/v2/influences/
+    //    send_invite 短信邀请
+    //    post请求 参数：
+    //    kol_uuid mobile电话号码
 }

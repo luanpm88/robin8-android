@@ -67,6 +67,8 @@
             style="@style/textview_center_black"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:text="@string/search"
             android:textColor="@drawable/selector_search_text_color"
             android:textSize="@dimen/undefine_font_5" />

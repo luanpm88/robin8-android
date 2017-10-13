@@ -89,13 +89,13 @@
 
     <declare-styleable name="SlideDetailsLayout">
         <!-- float value for indicate the moment of switch panel-->
-        <attr name="percent" format="float" />
+        <attr name="percent" format="float"/>
         <!-- how long the animation keep-->
-        <attr name="duration" format="integer" />
+        <attr name="duration" format="integer"/>
         <!-- default panel to show after init-->
         <attr name="default_panel" format="enum">
-            <enum name="front" value="0" />
-            <enum name="behind" value="1" />
+            <enum name="front" value="0"/>
+            <enum name="behind" value="1"/>
         </attr>
     </declare-styleable>
 
@@ -221,6 +221,14 @@
         <item name="android:textColor">@color/blue_custom</item>
     </style>
 
+    <style name="tv_white_with_dialog_positive">
+        <item name="android:textColor">@color/white_custom</item>
+    </style>
+
+    <style name="tv_with_dialog_positive">
+        <item name="android:textColor">@color/pickerview_wheelview_textcolor_center</item>
+    </style>
+
     <style name="share_textview">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -240,6 +248,18 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:background">@drawable/shape_border</item>
         <item name="android:layout_marginBottom">10dp</item>
+    </style>
+    <!--蒙版-->
+    <style name="Dialog.FullScreen" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
 

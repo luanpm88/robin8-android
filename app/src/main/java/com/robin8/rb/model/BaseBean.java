@@ -10,13 +10,28 @@ public class BaseBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private String detail;// 提示信息
     private int error = -1;// 状态
+    private String message;
+    private String error_message;
     private String alipay_url;
     private float brand_amount;
 
     private int total_pages = 0;
     private int current_page = 0;
     private int per_page = 0;
+    public String getError_message() {
+        return error_message;
+    }
 
+    public void setError_message(String error_message) {
+        this.error_message = error_message;
+    }
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
     public String getDetail() {
         return detail;
     }

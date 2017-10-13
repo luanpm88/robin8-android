@@ -1,65 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-      <declare-styleable name = "searchedit">
-            <attr name = "imagewidth"
-                  format = "dimension" />
-            <!--<attr name = "textColor"
-                  format = "dimension" />
-            <attr name = "textSize"
-                  format = "dimension" />-->
-      </declare-styleable>
-      <declare-styleable name = "space_divider_textview">
-            <attr name = "letterSpacing"
-                  format = "dimension" />
-      </declare-styleable>
-      <declare-styleable name = "StrokeCircleImageView">
-            <attr name = "strokeCirclecolor"
-                  format = "color" />
-      </declare-styleable>
+    <declare-styleable name="searchedit">
+        <attr name="imagewidth"
+              format="dimension"/>
+        <!--<attr name = "textColor"
+              format = "dimension" />
+        <attr name = "textSize"
+              format = "dimension" />-->
+    </declare-styleable>
+    <declare-styleable name="space_divider_textview">
+        <attr name="letterSpacing"
+              format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="StrokeCircleImageView">
+        <attr name="strokeCirclecolor"
+              format="color"/>
+    </declare-styleable>
 
-      <declare-styleable name="SwipeBackLayout">
-            <attr name="edge_size" format="dimension"/>
-            <attr name="edge_flag">
-                  <enum name="left" value="0" />
-                  <enum name="right" value="1" />
-                  <enum name="bottom" value="2" />
-                  <enum name="all" value="3" />
-            </attr>
-            <attr name="shadow_left" format="reference"/>
-            <attr name="shadow_right" format="reference"/>
-            <attr name="shadow_bottom" format="reference"/>
-      </declare-styleable>
+    <declare-styleable name="SwipeBackLayout">
+        <attr name="edge_size" format="dimension"/>
+        <attr name="edge_flag">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+            <enum name="bottom" value="2"/>
+            <enum name="all" value="3"/>
+        </attr>
+        <attr name="shadow_left" format="reference"/>
+        <attr name="shadow_right" format="reference"/>
+        <attr name="shadow_bottom" format="reference"/>
+    </declare-styleable>
 
-      <attr name="SwipeBackLayoutStyle" format="reference"/>
+    <attr name="SwipeBackLayoutStyle" format="reference"/>
 
-     <!--Wheel-->
-      <declare-styleable name="wheelview">
-            <attr name="gravity">
-                  <enum name="center" value="17"/>
-                  <enum name="left" value="3"/>
-                  <enum name="right" value="5"/>
-            </attr>
-            <attr name="textColorOut" format="color"/>
-            <attr name="textColorCenter" format="color"/>
-            <attr name="dividerColor" format="color"/>
-      </declare-styleable>
+    <!--Wheel-->
+    <declare-styleable name="wheelview">
+        <attr name="gravity">
+            <enum name="center" value="17"/>
+            <enum name="left" value="3"/>
+            <enum name="right" value="5"/>
+        </attr>
+        <attr name="textColorOut" format="color"/>
+        <attr name="textColorCenter" format="color"/>
+        <attr name="dividerColor" format="color"/>
+    </declare-styleable>
 
-      <declare-styleable name="Switch">
-            <attr name="thumb" format="reference" />
-          <attr name="textOn" format="string" />
-          <attr name="textOff" format="string" />
-      </declare-styleable>
+    <declare-styleable name="Switch">
+        <attr name="thumb" format="reference"/>
+        <attr name="textOn" format="string"/>
+        <attr name="textOff" format="string"/>
+    </declare-styleable>
 
-      <declare-styleable name="RatingBar">
-            <!--星星间距-->
-            <attr format="dimension" name="starDistance"/>
-            <!--星星大小-->
-            <attr format="dimension" name="starSize"/>
-            <!--星星个数-->
-            <attr format="integer" name="starCount"/>
-            <!--星星空图-->
-            <attr format="reference" name="starEmpty"/>
-            <!--星星满图-->
-            <attr format="reference" name="starFill"/>
-      </declare-styleable>
+    <declare-styleable name="RatingBar">
+        <!--星星间距-->
+        <attr name="starDistance" format="dimension"/>
+        <!--星星大小-->
+        <attr name="starSize" format="dimension"/>
+        <!--星星个数-->
+        <attr name="starCount" format="integer"/>
+        <!--星星空图-->
+        <attr name="starEmpty" format="reference"/>
+        <!--星星满图-->
+        <attr name="starFill" format="reference"/>
+    </declare-styleable>
+
+    <!--自定义控件的类名-->
+    <declare-styleable name="CircleView">
+        <attr name="titleSize" format="dimension"></attr>
+        <attr name="titleText" format="string"></attr>
+        <attr name="titleColor" format="color"></attr>
+        <attr name="titleBackgroundColor" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="CustomProgressBar">
+        <attr name="progressColor" format="color"/>
+        <attr name="progressDescColor" format="color"/>
+        <attr name="progressDescBgColor" format="color"/>
+        <attr name="progressDescBgAllColor" format="color"/>
+        <attr name="progressRadius" format="dimension"/>
+        <attr name="max" format="integer"/>
+        <attr name="progress" format="integer"/>
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="progressDesc" format="string"/>
+        <attr name="isShowDesc" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundCornerProgress">
+        <attr name="rcReverse" format="boolean"/>
+        <attr name="rcProgress" format="float"/>
+        <attr name="rcMax" format="float"/>
+        <attr name="rcSecondaryProgress" format="float"/>
+        <attr name="rcBackgroundPadding" format="dimension"/>
+        <attr name="rcRadius" format="dimension"/>
+        <attr name="rcRadiusBg" format="dimension"/>
+        <attr name="rcProgressColor" format="color"/>
+        <attr name="rcSecondaryProgressColor" format="color"/>
+        <attr name="rcBackgroundColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundIndicatorView">
+        <attr name="back_color" format="color"/>
+        <attr name="front_color1" format="color"/>
+        <attr name="front_color2" format="color"/>
+        <attr name="front_color3" format="color"/>
+        <attr name="back_width" format="dimension"/>
+        <attr name="front_width" format="dimension"/>
+        <attr name="is_need_photo" format="boolean"/>
+        <attr name="is_need_title" format="boolean"/>
+        <attr name="is_need_content" format="boolean"/>
+        <attr name="is_need_content_two" format="boolean"/>
+        <attr name="is_need_unit" format="boolean"/>
+        <attr name="is_need_dial" format="boolean"/>
+        <attr name="string_title" format="string"/>
+        <attr name="string_unit" format="string"/>
+        <attr name="total_engle" format="integer"/>
+        <attr name="start_engle" format="integer"/>
+        <attr name="need" format="integer"/>
+        <attr name="current_value" format="float"/>
+        <attr name="max_value" format="float"/>
+    </declare-styleable>
+    <!--<declare-styleable name="ShowDataView">-->
+        <!--<attr name="value1" format="float"/>-->
+        <!--<attr name="value2" format="float"/>-->
+        <!--<attr name="value3" format="float"/>-->
+        <!--<attr name="value4" format="float"/>-->
+        <!--<attr name="value5" format="float"/>-->
+        <!--<attr name="value6" format="float"/>-->
+        <!--<attr name="value7" format="float"/>-->
+        <!--<attr name="value8" format="float"/>-->
+    <!--</declare-styleable>-->
+    <declare-styleable name="CardViewPager">
+        <attr name="card_padding" format="dimension"/>
+        <attr name="card_margin" format="dimension"/>
+        <attr name="card_max_offset" format="dimension"/>
+        <attr name="card_loop" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="EasySlidingTabs">
+        <attr name="easyIndicatorColor" format="color"/>
+        <attr name="easyUnderlineColor" format="color"/>
+        <attr name="easyTabTextColor" format="color"/>
+        <attr name="easySelectedTagTextColor" format="color"/>
+        <attr name="easyDividerColor" format="color"/>
+        <attr name="easyIndicatorHeight" format="dimension"/>
+        <attr name="easyUnderlineHeight" format="dimension"/>
+        <attr name="easyDividerPadding" format="dimension"/>
+        <attr name="easyTabPaddingLeftRight" format="dimension"/>
+        <attr name="easyTabBackground" format="reference"/>
+        <attr name="easyScrollOffset" format="dimension"/>
+        <attr name="easyShouldExpand" format="boolean"/>
+        <attr name="easyTextAllCaps" format="boolean"/>
+        <attr name="easyIndicatorDrawable" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="StickyNavLayout">
+        <!--默认是否悬停tab-->
+        <attr name="isStickNav" format="boolean"/>
+        <!--距离悬浮的位置-->
+        <attr name="stickOffset" format="dimension"/>
+    </declare-styleable>
 </resources>

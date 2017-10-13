@@ -12,7 +12,8 @@ public class CampaignInviteBean extends BaseBean {
 
     private CampaignListBean.CampaignInviteEntity campaign_invite;
     private List<InviteesBean> invitees;
-
+    private int invitees_count;
+    private String leader_club;
     public CampaignListBean.CampaignInviteEntity getCampaign_invite() {
         return campaign_invite;
     }
@@ -27,6 +28,22 @@ public class CampaignInviteBean extends BaseBean {
 
     public void setInvitees(List<InviteesBean> invitees) {
         this.invitees = invitees;
+    }
+
+    public int getInvitees_count() {
+        return invitees_count;
+    }
+
+    public void setInvitees_count(int invitees_count) {
+        this.invitees_count = invitees_count;
+    }
+
+    public String getLeader_club() {
+        return leader_club;
+    }
+
+    public void setLeader_club(String leader_club) {
+        this.leader_club = leader_club;
     }
 
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/ll_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.68"
+        android:background="@color/black_000000"/>
+
+
+    <ImageView
+        android:id="@+id/img_shadow_invite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/dialog_bg_campaign_invite"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_shadow_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/dialog_bg_share_up"
+            android:visibility="visible"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/dialog_bg_share_btn"
+            android:visibility="visible"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/img_shadow_mine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="235dp"
+        android:layout_marginLeft="5dp"
+        android:src="@mipmap/dialog_bg_mine"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_shadow_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/dialog_bg_first_pager_left"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_shadow_first_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/img_shadow_first"
+        android:src="@mipmap/dialog_bg_first_pager_right"
+        android:visibility="gone"/>
+
+</RelativeLayout>

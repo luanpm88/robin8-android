@@ -4,7 +4,7 @@
     <!--MeasureInfluenceActivity-->
     <string name="measure_influence_text1">你, 比想象中更有影响力</string>
     <string name="measure_influence_text2">Robin8大数据更懂你</string>
-    <string name="measure_influence_text3">测试您的社交影响力</string>
+    <string name="measure_influence_text3">测试您的社交价值</string>
     <string name="tourist">游客</string>
 
     <!--MainActivity-->
@@ -17,6 +17,7 @@
     <string name="text_product">产品</string>
     <string name="text_create">创作</string>
     <string name="text_mine">我的</string>
+    <string name="text_social">影响力</string>
     <string name="text_topnews">头条</string>
     <string name="text_public_number">公众号</string>
     <string name="text_launch_reword">发起悬赏</string>
@@ -39,16 +40,21 @@
     <string name="more_loading">正在加载更多数据</string>
     <string name="no_net_click_reload">加载失败，点击重试</string>
     <string name="no_more_data">无更多数据</string>
+    <string name="aver_repeat">平均转发</string>
+    <string name="aver_comment">平均评论</string>
+    <string name="aver_click">平均点赞</string>
+
 
     <!--LoginActivity-->
     <string name="register_or_login">注册/登录</string>
+    <string name="set_pwd">设置密码</string>
 
     <string name="launch_reword">发布悬赏活动</string>
     <string name="type_count_by_click">按点击次数计费</string>
     <string name="type_count_by_kol">按KOL转发计费</string>
     <string name="type_download_by_kol">按KOL下载计费</string>
     <string name="type_task_by_kol">按KOL任务计费</string>
-<!--
+    <!--
     <string name="min_100">最低100元</string>
 -->
     <string name="min_2">最低0.2元</string>
@@ -221,7 +227,8 @@
     <string name="business_cop_content_fir">我是品牌主,我要特邀KOL\\n</string>
     <string name="business_submit_success">提交成功，我们会尽快与您联系,请保持电话畅通!</string>
     <string name="my_concern">我的关注</string>
-    <string name="be_kol">申请成为小网红</string>
+    <string name="be_kol">我的KOL资料</string>
+    <string name="edit_kol">编辑KOL资料</string>
 
     <string name="icons_favorite_selected">&#xe622;</string>
     <string name="icons_favorite_unselected">&#xe623;</string>
@@ -245,10 +252,13 @@
     <string name="selected">&#xe61e;</string>
     打开消息
     <string name="next">下一步</string>
+    <string name="jump">跳过</string>
     <string name="invite_friends">邀请好友</string>
     <string name="be_kol_first_compelete_data">资料完善度越高，接受的活动价格越高</string>
     <string name="confirm">确定</string>
+
     <string name="interest">兴趣</string>
+    <string name="user_phone_num">手机号</string>
     <string name="interest_tags">兴趣标签(可选5个)</string>
     <string name="please_write">请填写</string>
     <string name="age">年龄</string>
@@ -272,6 +282,7 @@
     <string name="male">男</string>
     <string name="female">女</string>
     <string name="please_data_wrong">请求参数错误</string>
+    <string name="over_time">请求超时</string>
     <string name="unknown">未知</string>
     <string name="data_reviewing">资料审核中</string>
     <string name="click_login">点击登录</string>
@@ -294,7 +305,7 @@
     <string name="approved_check_the_screenshot">审核通过-查看截图</string>
     <string name="approving_check_the_screenshot">审核中-查看截图</string>
     <string name="look_the_screenshot">查看截图</string>
-    <string name="upload_again">重新上传</string>
+    <string name="upload_again">再次上传</string>
     <string name="approve_reject_check_reason">审核拒绝-查看原因</string>
     <string name="campaign_missed">活动已错失</string>
     <string name="sign_up_approve_failed">报名审核失败</string>
@@ -340,6 +351,9 @@
     <string name="sweep_login_success">扫描登录成功</string>
     <string name="share_invite_friends_title">我最近发现一款每天都可以赚钱的App,您也来试试？</string>
     <string name="share_invite_friends_text">Robin8基于大数据的社交影响平台</string>
+    <string name="share_pk_title">快来Robin8测试你的社交账号影响力吧！</string>
+    <string name="share_pk">要和我比拼影响力么？快来Robin8一决高下！</string>
+    <string name="share_pk_text">更有海量现金活动，还能和好友PK社交影响力哟</string>
     <string name="bind_mobile">绑定手机号码</string>
     <string name="my_capaign">我的活动</string>
     <string name="robin8">ROBIN8</string>
@@ -391,6 +405,7 @@
     <string name="realese_article_tips">文章发布后不可修改，文章中的商品被购买，您可以获得高额提成</string>
     <string name="finish_article_tips">当前文章尚未发布，是否退出编辑？</string>
     <string name="white_space">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</string>
+    <string name="white_space_ban">\t\t\t\t\t\t\t\t\t\t\t</string>
     <string name="sign_end">报名结束</string>
     <string name="has_been_end">已结束</string>
     <string name="kol_age">KOL年龄</string>
@@ -430,12 +445,28 @@
     <string name="share_to_weibo">分享到新浪微博</string>
     <string name="share_to_qzone">分享到QQ空间</string>
     <string name="share_to_wechat_favorites">分享到微信收藏</string>
+    <string name="share_for_money">分享赚收益</string>
     <string name="known">知道了</string>
-    <string name="screenshot_check_ruler">\u30001、活动保留时间太短a；\n\u30002、活动被设置了分组；\n\u30003、活动含诱导点击文字；\n\u30004、没按照参考截图上传；\n\u30005、分享了过多相同活动。</string>
+    <string name="screenshot_check_ruler">\u30001.活动保留时间太短\n\u30002.活动被设置了分组\n\u30003.活动含诱导点击文字\n\u30004.没按照参考截图上传\n\u30005.分享了过多相同活动</string>
     <string name="share_success_and_ruler">分享成功啦-《Robin8截图审核规则》</string>
-    
+    <string name="campaign_request">活动要求</string>
+
     <!-- 评价效果 页面-->
-    
+
     <string name="effect_evaluate">效果评价</string>
     <string name="effect_import">您的评价对我们非常重要</string>
+
+    <!--个推-->
+    <string name="add_tag">添加标签</string>
+    <string name="add_tag_unknown_exception">设置标签失败，未知异常</string>
+    <string name="add_tag_success">接口调用成功</string>
+    <string name="add_tag_error_count">接口调用失败, tag数量过大, 最大不能超过200个</string>
+    <string name="add_tag_error_frequency">设置标签失败，频率过快</string>
+    <string name="add_tag_error_null">接口调用失败, tag 为空</string>
+    <string name="add_tag_error_repeat">设置标签失败, 标签重复</string>
+    <string name="add_tag_error_unbind">设置标签失败, 服务未初始化成功</string>
+    <string name="add_tag_error_not_online">还未登陆成功</string>
+    <string name="add_tag_error_black_list">该应用已经在黑名单中,请联系售后支持!</string>
+    <string name="add_tag_error_exceed">已存 tag 超过限制</string>
+    <string name="push_transmission_data">收到一条透传测试消息</string>
 </resources>

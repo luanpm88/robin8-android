@@ -66,7 +66,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="立即分享"
+            android:text="@string/share_for_money"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_3"
             android:textStyle="bold" />

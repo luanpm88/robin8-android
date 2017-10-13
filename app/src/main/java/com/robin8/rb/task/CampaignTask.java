@@ -92,7 +92,7 @@ public class CampaignTask {
                         mActivity.finish();
                     }
                 } else {
-                    CustomToast.showShort(mActivity, baseBean.getError());
+                    CustomToast.showShort(mActivity, baseBean.getMessage());
                 }
             }
         });

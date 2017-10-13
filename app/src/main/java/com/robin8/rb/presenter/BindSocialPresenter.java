@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.robin8.rb.R;
-import com.robin8.rb.activity.MeasureInfluenceActivity;
+import com.robin8.rb.module.social.SocialInfluenceActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.listener.BindSocialPresenterListener;
@@ -28,6 +28,7 @@ import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.IBindSocialView;
 import com.robin8.rb.view.widget.CustomDialogManager;
@@ -51,17 +52,19 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
     private LayoutInflater mLayoutInflater;
 
     public BindSocialPresenter(Activity activity, IBindSocialView userView) {
+
         super(activity);
         mActivity = activity;
         mIUserView = userView;
     }
 
     public void init() {
+
         Intent intent = mActivity.getIntent();
         Bundle rootBundle = intent.getExtras();
         mKolUuid = rootBundle.getString("kol_uuid", "");
-        mOtherLoginList = (ArrayList<OtherLoginListBean
-                .OtherLoginBean>) rootBundle.getSerializable("list");
+      //  LogUtil.LogShitou("传递过来的mKolUuid", "===>" + mKolUuid);
+        mOtherLoginList = (ArrayList<OtherLoginListBean.OtherLoginBean>) rootBundle.getSerializable("list");
         mUploadedContactsB = rootBundle.getBoolean("uploaded_contacts");
 
         mLayoutInflater = LayoutInflater.from(mActivity);
@@ -69,6 +72,7 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
 
     @Override
     public void getDataFromServer(boolean needHeader, int method, String url, RequestParams params, RequestCallback callback) {
+
         switch (method) {
             case HttpRequest.GET:
                 HttpRequest.getInstance().get(needHeader, url, params, callback);
@@ -80,20 +84,38 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
     }
 
     public void startTest() {
-        if (mOtherLoginList != null && mOtherLoginList.size()>0) {
-            if (!mUploadedContactsB){//如果没上传过联系人 开始上传
+        //判断权限是否开启
+//        PackageManager pm = mActivity.getPackageManager();
+//        boolean permission = (PackageManager.PERMISSION_GRANTED ==
+//                pm.checkPermission("android.permission.READ_CONTACTS", "packageName"));
+//        if (permission) {
+//            CustomToast.showShort(mActivity,"拥有权限");
+//        }else {
+//            CustomToast.showShort(mActivity,"权限？？？？");
+//        }
+
+        if (mOtherLoginList != null && mOtherLoginList.size() > 0) {
+            if (! mUploadedContactsB) {//如果没上传过联系人 开始上传
                 waitForGetContact();
-            } else{
+              //  LogUtil.LogShitou("上传过","=="+mOtherLoginList.size());
+            } else {
                 goToResultPage();
+            //    LogUtil.LogShitou("没有上传过","=="+mOtherLoginList.size());
             }
-        } else
+        } else{
             CustomToast.showShort(mActivity, "请先绑定社交账号");
+
+        }
+       // waitForGetContact();
     }
 
     private void waitForGetContact() {
+
         new Thread(new Runnable() {
+
             @Override
             public void run() {
+
                 while (true) {
                     try {
                         if (null == BaseApplication.getInstance().getContactBeans()) {
@@ -101,8 +123,10 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
                         } else {
                             Thread.sleep(300);
                             UIUtils.runInMainThread(new Runnable() {
+
                                 @Override
                                 public void run() {
+
                                     uploadContacts();
                                 }
                             });
@@ -120,11 +144,13 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
      * 上传通讯录
      */
     public void uploadContacts() {
+
         RequestParams requestParams = new RequestParams();
         requestParams.put("kol_uuid", mKolUuid);
         requestParams.put("contacts", GsonTools.listToJsonByAnnotation(BaseApplication.getInstance().getContactBeans()));
-
+        LogUtil.LogShitou("上传的联系人", "==>" + GsonTools.listToJsonByAnnotation(BaseApplication.getInstance().getContactBeans()));
         HttpRequest.getInstance().post(true, HelpTools.getUrl("api/v2/influences/bind_contacts"), requestParams, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
 
@@ -132,6 +158,8 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
 
             @Override
             public void onResponse(String response) {
+
+                LogUtil.LogShitou("上传联系人", response);
                 OtherLoginListBean authListBean = GsonTools.jsonToBean(response, OtherLoginListBean.class);
                 if (authListBean.getError() == 0) {
                     mKolUuid = authListBean.getKol_uuid();
@@ -142,14 +170,16 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
     }
 
     private void goToResultPage() {
-        Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
-        intent.putExtra("kol_uuid", mKolUuid);
-        intent.putExtra("haveResult", true);
+
+        Intent intent = new Intent(mActivity, SocialInfluenceActivity.class);
+       // intent.putExtra("kol_uuid", mKolUuid);
+      //  intent.putExtra("haveResult", true);
         mActivity.startActivity(intent);
     }
 
     @Override
     public void onComplete(final Platform platform, int action, final HashMap<String, Object> res) {
+
         super.onComplete(platform, action, res);
 
         //第三方登录成功
@@ -163,8 +193,10 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
             final String userName = platDB.getUserName();
 
             UIUtils.runInMainThread(new Runnable() {
+
                 @Override
                 public void run() {
+
                     RequestParams mRequestParams = new RequestParams();
                     mRequestParams.put("provider", provider);
                     mRequestParams.put("token", token);
@@ -180,8 +212,7 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
                         mRequestParams.put("statuses_count", String.valueOf(res.get("statuses_count")));//微博数
                         mRequestParams.put("registered_at", String.valueOf(res.get("created_at")));//微博注册时间
                         mRequestParams.put("verified", String.valueOf(res.get("verified")));//微博是否加V验证
-                        mRequestParams.put("refresh_token", String.valueOf(res.get("refresh_token")))
-                        ;//微博令牌刷新token
+                        mRequestParams.put("refresh_token", String.valueOf(res.get("refresh_token")));//微博令牌刷新token
                     } else if ("Wechat".equals(platform.getName())) {
                         mRequestParams.put("uid", String.valueOf(res.get("openid")));
                         mRequestParams.put("unionid", String.valueOf(res.get("unionid")));
@@ -194,6 +225,7 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
                     mRequestParams.put("is_yellow_vip", String.valueOf(res.get("is_yellow_vip")));
 
                     getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.KOLS_IDENTITY_BIND_URL), mRequestParams, new RequestCallback() {
+
                         @Override
                         public void onError(Exception e) {
 
@@ -201,6 +233,7 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
 
                         @Override
                         public void onResponse(String response) {
+
                             OtherLoginListBean otherLoginListBean = GsonTools.jsonToBean(response, OtherLoginListBean.class);
                             if (otherLoginListBean == null) {
                                 return;
@@ -214,13 +247,14 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
     }
 
     private void updateView(ArrayList<OtherLoginListBean.OtherLoginBean> otherLoginList) {
+
         mOtherLoginList = otherLoginList;
-        if(mOtherLoginList.size() ==1){
+        if (mOtherLoginList.size() == 1) {
             mIUserView.setBindSocialTV(View.INVISIBLE);
             ObjectAnimator animation = ObjectAnimator.ofFloat(mIUserView.getLinearLayout(), "translationY", 0f, UIUtils.getDimens(R.dimen.bind_social_move_length));
             animation.setDuration(400);
             animation.start();
-        }else if(mOtherLoginList.size() ==0) {
+        } else if (mOtherLoginList.size() == 0) {
             ObjectAnimator animation = ObjectAnimator.ofFloat(mIUserView.getLinearLayout(), "translationY", UIUtils.getDimens(R.dimen.bind_social_move_length), 0f);
             mIUserView.setBindSocialTV(View.VISIBLE);
             animation.setDuration(400);
@@ -234,10 +268,11 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
         bindListView.setOnItemClickListener(bindSocialOnItemClickListener);
     }
 
-    public class BindSocialOnItemClickListener implements AdapterView.OnItemClickListener{
+    public class BindSocialOnItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             showPopWindow(mOtherLoginList.get(position));
         }
     }
@@ -248,22 +283,27 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
      * @param bean
      */
     private void showPopWindow(final OtherLoginListBean.OtherLoginBean bean) {
+
         View view = LayoutInflater.from(mActivity).inflate(R.layout.dialog_bottom, null);
-        TextView confirmTV = (TextView)view.findViewById(R.id.tv_confirm);
-        TextView cancelTV = (TextView)view.findViewById(R.id.tv_cancel);
+        TextView confirmTV = (TextView) view.findViewById(R.id.tv_confirm);
+        TextView cancelTV = (TextView) view.findViewById(R.id.tv_cancel);
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
 
         confirmTV.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
                 cdm.dismiss();
                 unbindOtherLoginAccount(bean);
             }
         });
 
         cancelTV.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
                 cdm.dismiss();
             }
         });
@@ -287,6 +327,7 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
         mRequestParams.put("kol_uuid", mKolUuid);
 
         HttpRequest.getInstance().post(true, HelpTools.getUrl(CommonConfig.UNBIND_IDENTITY_URL), mRequestParams, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
 
@@ -294,6 +335,7 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
 
             @Override
             public void onResponse(String response) {
+
                 Log.e("xxfigo", "UNBIND  onResponse=" + response);
                 OtherLoginListBean otherLoginListBean = GsonTools.jsonToBean(response, OtherLoginListBean.class);
                 if (otherLoginListBean == null) {
@@ -306,21 +348,23 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
 
     public class BindSocialAdapter extends BaseAdapter {
 
-        private int[] drawables = new int[]{R.mipmap.login_weibo, R.mipmap.login_weixin,
-                R.mipmap.login_qq};
+        private int[] drawables = new int[]{R.mipmap.login_weibo, R.mipmap.login_weixin, R.mipmap.login_qq};
 
         @Override
         public int getCount() {
+
             return mOtherLoginList.size();
         }
 
         @Override
         public OtherLoginListBean.OtherLoginBean getItem(int position) {
+
             return mOtherLoginList.get(position);
         }
 
         @Override
         public long getItemId(int position) {
+
             return position;
         }
 
@@ -342,8 +386,7 @@ public class BindSocialPresenter extends BindSocialPresenterListener implements 
                 holder = (Holder) convertView.getTag();
             }
 
-            BitmapUtil.loadImage(mActivity, item.getAvatar_url(), holder.civHeadimage, R.mipmap
-                    .head_default_normal);
+            BitmapUtil.loadImage(mActivity, item.getAvatar_url(), holder.civHeadimage, R.mipmap.head_default_normal);
 
             holder.tvName.setText(item.getName());
             holder.tvAccount.setText(item.getUid());

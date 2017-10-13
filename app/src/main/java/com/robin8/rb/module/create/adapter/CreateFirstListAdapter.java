@@ -8,7 +8,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +24,6 @@ import com.robin8.rb.module.create.activity.ArticleListsActivity;
 import com.robin8.rb.module.create.activity.ProductListActivity;
 import com.robin8.rb.module.create.model.CpsArticlesBean;
 import com.robin8.rb.module.first.helper.ViewPagerHelper;
-import com.robin8.rb.module.mine.activity.HelpCenterActivity;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.HelpTools;
@@ -39,6 +37,8 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
     private ViewHolder mViewHolder;
     private static final String TAG = CreateFirstListAdapter.class.getSimpleName();
     private List<Object> mDataList;
+    private ViewPagerHelper mViewPagerHelper;
+    private List<BannerBean> mBannerBeanList = new ArrayList<>();
     private long lastTime;
 
     public enum ITEM_TYPE {
@@ -90,7 +90,12 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
         }
 
         Object obj = mDataList.get(position);
-        if (obj instanceof CpsArticlesBean) {
+        if (obj == null) {
+            if (viewHolder instanceof ViewHolder2) {
+                ViewHolder2 holder = (ViewHolder2) viewHolder;
+                setHeaderItem(holder);
+            }
+        } else  if (obj instanceof CpsArticlesBean) {
             CpsArticlesBean bean = (CpsArticlesBean) obj;
             if (viewHolder instanceof ViewHolder) {
                 ViewHolder holder = (ViewHolder) viewHolder;
@@ -98,7 +103,21 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
             }
         }
     }
+    /**
+     * 填充头布局
+     *
+     * @param holder
+     */
+    private void setHeaderItem(ViewHolder2 holder) {
+        BannerBean bean0 = new BannerBean(R.mipmap.pic_create_banner_0, BannerBean.CREATE_EARN_MONEY);
+        BannerBean bean1 = new BannerBean(R.mipmap.pic_create_banner_1, BannerBean.HOW_CREATE);
+        mBannerBeanList.clear();
+        mBannerBeanList.add(bean0);
+        mBannerBeanList.add(bean1);
 
+        mViewPagerHelper = new ViewPagerHelper(mActivity);
+        mViewPagerHelper.updateAutoVp(holder.autoVp, holder.llVpPoints, mBannerBeanList);
+    }
     private void setNormalItem(ViewHolder holder, CpsArticlesBean bean) {
         holder.tvTitle.setText(bean.getTitle());
         if(bean.getMaterial_total_price() != 0){
@@ -110,10 +129,17 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
         }
 
         IconFontHelper.setTextIconFont(holder.tvShareIcon, R.string.share_sign);
-        holder.tvUserName.setText(bean.getAuthor().getName());
+        if (bean.getAuthor()!=null){
+            holder.tvUserName.setText(bean.getAuthor().getName());
+            BitmapUtil.loadImage(mActivity.getApplicationContext(), bean.getAuthor().getAvatar_url(), holder.civUser);
+        }else {
+            holder.tvUserName.setText("");
+            BitmapUtil.loadImage(mActivity.getApplicationContext(), "http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/59831/0c500643d3.jpg!200", holder.civUser);
+        }
+
         holder.tvShareNum.setText(String.valueOf(bean.getCps_article_share_count()));
         setImageView(holder.ivBg, holder.rlContent, bean.getCover());
-        BitmapUtil.loadImage(mActivity.getApplicationContext(), bean.getAuthor().getAvatar_url(), holder.civUser);
+      //  BitmapUtil.loadImage(mActivity.getApplicationContext(), bean.getAuthor().getAvatar_url(), holder.civUser);
         holder.ivBg.setOnClickListener(new MyOnClickListener(holder.ivBg.getContext(), bean));
     }
 
@@ -180,11 +206,20 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
     }
 
     private class ViewHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public AutoScrollViewPager autoVp;
+        public ImageView ivProduct;
+        public ImageView ivArticle;
+        public LinearLayout llVpPoints;
         public ViewHolder2(View view) {
             super(view);
-
-            view.findViewById(R.id.iv_teach_me).setOnClickListener(this);
-            view.findViewById(R.id.iv_choose_product).setOnClickListener(this);
+//            view.findViewById(R.id.iv_teach_me).setOnClickListener(this);
+//            view.findViewById(R.id.iv_choose_product).setOnClickListener(this);
+            autoVp = (AutoScrollViewPager) view.findViewById(R.id.auto_scroll_view_pager);
+            ivProduct = (ImageView) view.findViewById(R.id.iv_product);
+            ivArticle = (ImageView) view.findViewById(R.id.iv_article);
+            llVpPoints = (LinearLayout) view.findViewById(R.id.ll_vp_points);
+            ivProduct.setOnClickListener(this);
+            ivArticle.setOnClickListener(this);
         }
 
         @Override
@@ -193,13 +228,7 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
                 Context context = v.getContext();
                 Intent intent;
                 switch (v.getId()) {
-                    case R.id.iv_teach_me:
-                        intent = new Intent(v.getContext(), HelpCenterActivity.class);
-                        intent.putExtra("from",SPConstants.CREATE_FIRST_LIST);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                        break;
-                    case R.id.iv_choose_product:
+                    case R.id.iv_product:
                         intent = new Intent(context, ProductListActivity.class);
                         intent.putExtra("destination", SPConstants.PRODUCT_LIST);
                         intent.putExtra("from", SPConstants.CREATE_FIRST_LIST_PRODUCT);
@@ -208,6 +237,29 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                         break;
+                    case R.id.iv_article:
+                        intent = new Intent(context, ArticleListsActivity.class);
+                        intent.putExtra("destination", SPConstants.ARTICLE_LIST);
+                        intent.putExtra("url", HelpTools.getUrl(CommonConfig.ARTICLES_LIST_URL));
+                        intent.putExtra("title", context.getString(R.string.article));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                        break;
+//                    case R.id.iv_teach_me:
+//                        intent = new Intent(v.getContext(), HelpCenterActivity.class);
+//                        intent.putExtra("from",SPConstants.CREATE_FIRST_LIST);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        context.startActivity(intent);
+//                        break;
+//                    case R.id.iv_choose_product:
+//                        intent = new Intent(context, ProductListActivity.class);
+//                        intent.putExtra("destination", SPConstants.PRODUCT_LIST);
+//                        intent.putExtra("from", SPConstants.CREATE_FIRST_LIST_PRODUCT);
+//                        intent.putExtra("url", HelpTools.getUrl(CommonConfig.PRODUCT_LIST_URL));
+//                        intent.putExtra("title", context.getString(R.string.product));
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        context.startActivity(intent);
+//                        break;
                 }
             }
         }

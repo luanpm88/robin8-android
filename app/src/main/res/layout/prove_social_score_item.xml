@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_share_campain"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_icon"
+            android:text="标题"
+            android:textColor="@color/black_202020"
+            android:textSize="@dimen/undefine_font_3"/>
+
+        <TextView
+            android:layout_below="@+id/tv_title"
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_toLeftOf="@+id/btn_action"
+            android:layout_alignLeft="@+id/tv_title"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text=""
+            android:textColor="@color/gray_969696"
+            android:textSize="@dimen/undefine_font_1"/>
+
+
+        <TextView
+            android:id="@+id/btn_action"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_solid_blue"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="去分享"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_2"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.14"
+        android:background="#a4a4a4"/>
+</LinearLayout>

@@ -1,86 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background_gray"
-    >
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:background="@drawable/shape_border"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginBottom="10dp"
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black_custom"
-            android:textSize="18sp"
-            android:text="创作产品文章"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="提成更高"
-            android:textSize="12sp"
-            android:textColor="#939393"
-            />
+        <com.robin8.rb.autoviewpager.AutoScrollViewPager
+            android:id="@+id/auto_scroll_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="131.5dp"
+            android:background="@mipmap/pic_create_banner_0" />
 
         <LinearLayout
+            android:id="@+id/ll_vp_points"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:layout_marginTop="25dp"
-            >
+            android:orientation="horizontal"
+            android:translationY="-15dp"></LinearLayout>
+    </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/iv_teach_me"
-            android:layout_width="125dp"
-            android:layout_height="41dp"
-            android:layout_marginRight="40dp"
-            android:src="@mipmap/pic_product_teach_me"/>
-
-        <ImageView
-            android:id="@+id/iv_choose_product"
-            android:layout_width="125dp"
-            android:layout_height="41dp"
-            android:src="@mipmap/pic_product_choose"/>
-
-        </LinearLayout>
-
-     </LinearLayout>
-    
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:background="@drawable/shape_border"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/iv_product"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textSize="18sp"
-            android:textColor="@color/black_custom"
-            android:text="分享别人的产品文章"/>
+            android:layout_weight="1"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:src="@mipmap/icon_create_product" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="match_parent"
+            android:background="@color/undefined_divide_line" />
+
+        <ImageView
+            android:id="@+id/iv_article"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="更容易"
-            android:textSize="12sp"
-            android:textColor="#939393"
-            />
-
+            android:layout_weight="1"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:src="@mipmap/icon_create_article" />
     </LinearLayout>
-    
-
-
-
 </LinearLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--android:background="@color/background_gray"-->
+    <!--&gt;-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="155dp"-->
+        <!--android:background="@drawable/shape_border"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--&gt;-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/black_custom"-->
+            <!--android:textSize="18sp"-->
+            <!--android:text="创作产品文章"-->
+            <!--/>-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="提成更高"-->
+            <!--android:textSize="12sp"-->
+            <!--android:textColor="#939393"-->
+            <!--/>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginTop="25dp"-->
+            <!--&gt;-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_teach_me"-->
+            <!--android:layout_width="125dp"-->
+            <!--android:layout_height="41dp"-->
+            <!--android:layout_marginRight="40dp"-->
+            <!--android:src="@mipmap/pic_product_teach_me"/>-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_choose_product"-->
+            <!--android:layout_width="125dp"-->
+            <!--android:layout_height="41dp"-->
+            <!--android:src="@mipmap/pic_product_choose"/>-->
+
+        <!--</LinearLayout>-->
+
+     <!--</LinearLayout>-->
+    <!---->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="84dp"-->
+        <!--android:background="@drawable/shape_border"-->
+        <!--android:orientation="vertical"-->
+        <!--android:gravity="center">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:maxLines="1"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textColor="@color/black_custom"-->
+            <!--android:text="分享别人的产品文章"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="更容易"-->
+            <!--android:textSize="12sp"-->
+            <!--android:textColor="#939393"-->
+            <!--/>-->
+
+    <!--</LinearLayout>-->
+    <!---->
+
+
+
+<!--</LinearLayout>-->

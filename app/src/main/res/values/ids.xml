@@ -22,4 +22,11 @@
   <item type="id" name="quit"/>
   <item type="id" name="restart_preview"/>
   <item type="id" name="return_scan_result"/>
+
+  <!--sticky_nav_id-->
+  <item name="id_stickynavlayout_topview" type="id"/>
+  <item name="id_stickynavlayout_viewpager" type="id"/>
+  <item name="id_stickynavlayout_indicator" type="id"/>
+  <item name="id_stickynavlayout_innerscrollview" type="id"/>
+
 </resources>

@@ -43,7 +43,7 @@ public class LaunchRewordModel extends BaseBean {
         private String age;
         private String[][] stats_data;
         private String tag_labels;
-
+private String sub_type;
         private String evaluation_status;
         private int effect_score;
         private String review_content;
@@ -310,6 +310,14 @@ public class LaunchRewordModel extends BaseBean {
 
         public void setTag_labels(String tag_labels) {
             this.tag_labels = tag_labels;
+        }
+
+        public String getSub_type() {
+            return sub_type;
+        }
+
+        public void setSub_type(String sub_type) {
+            this.sub_type = sub_type;
         }
     }
 

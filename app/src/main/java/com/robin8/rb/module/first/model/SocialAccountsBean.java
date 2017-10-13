@@ -3,6 +3,7 @@ package com.robin8.rb.module.first.model;
 import java.io.Serializable;
 
 public class SocialAccountsBean implements Serializable {
+    private int id;
     private String provider;
     private String provider_name;
     private String uid;
@@ -119,5 +120,13 @@ public class SocialAccountsBean implements Serializable {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

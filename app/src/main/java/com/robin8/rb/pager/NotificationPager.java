@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,19 +12,16 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alipay.security.mobile.module.commonutils.LOG;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
-import com.robin8.rb.activity.MainActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BasePager;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.IconFontHelper;
 import com.robin8.rb.indiana.protocol.IProtocol;
-import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.mine.protocol.MessageProtocol;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -38,6 +34,7 @@ import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
 /**
+ * 通知界面
  * Created by seven on 25/03/2017.
  */
 
@@ -236,12 +233,14 @@ public class NotificationPager extends BasePager implements View.OnClickListener
             public void onError(Exception e) {
                 mIProtocol.notifyData();
                 mAdapter.notifyDataSetChanged();
-                ((MainActivity)mActivity).hideNotificationRedDot(true);
+               // ((MainActivity)mActivity).hideNotificationRedDot(true);
             }
 
             @Override
             public void onResponse(String response) {
+                mXRefreshView.startRefresh();
                 LogUtil.logXXfigo("READ_ALL_MESSAGES_URL  " + response);
+
             }
         });
     }

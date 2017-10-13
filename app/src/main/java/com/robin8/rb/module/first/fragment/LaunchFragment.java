@@ -37,10 +37,12 @@ import com.robin8.rb.model.NotifyMsgEntity;
 import com.robin8.rb.module.first.activity.CityListActivity;
 import com.robin8.rb.module.first.activity.LaunchRewordSecondActivity;
 import com.robin8.rb.module.first.model.AnalysisResultModel;
+import com.robin8.rb.module.mine.activity.CampaignChoseTypeActivity;
 import com.robin8.rb.module.reword.activity.DetailContentActivity;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.ui.widget.citylist.ContactItemInterface;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
@@ -48,6 +50,7 @@ import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.RegExpUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
@@ -66,12 +69,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * 智能发布
- */
+ 用户发布悬赏活动
+ 发布活动
+ 2017／09／19／zc */
 public class LaunchFragment extends BaseFragment implements View.OnClickListener, Observer, View.OnTouchListener {
 
     private ViewPagerAdapter.SelectItem mData;
-    public static final int IDLE = -1;
+    public static final int IDLE = - 1;
     private static final int REJECT = 1;
     private static final String UN_PAY = "unpay";
     private static final int ALL = 0;
@@ -89,6 +93,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     private EditText mETAddress;// 活动链接
     private EditText mETConsume4;// 活动总预算
     private EditText mETConsume5;// 单个点击费用
+    private TextView mTVInfoSubType;// 活动平台
     private TextView mTVInfo1;// 活动开始时间
     private TextView mTVInfo2;// 活动结束时间
     private TextView mTVInfo3;// 选择活动类型
@@ -97,7 +102,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     private boolean hasTranslateB;
     private TimePickerView pvTime;
     private ArrayList<String> mDateList = new ArrayList<String>();
-    private ArrayList<String> mConsumeWayList = new ArrayList<String>();
+    private ArrayList<String> mConsumeWayList;
     private LinearLayout mLLWheel;
     private TimePickerView.Type mClickType = TimePickerView.Type.OTHER;
     private View mTVPreview;
@@ -128,6 +133,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     private List<ContactItemInterface> contactList;
     private int mAgeType;
     private LayoutInflater mLayoutInflater;
+    private String stChoseType;
 
     @Override
     public View initView() {
@@ -147,7 +153,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         View precisionMarketing = view.findViewById(R.id.precision_marketing);
 
         mTVPreview = view.findViewById(R.id.tv_preview);
-        mTVSubmit = view.findViewById(R.id.tv_submit);
+        mTVSubmit = view.findViewById(R.id.tv_submit);//提交按钮
         precisionMarketing.setOnClickListener(this);
         mLLPostImage.setOnClickListener(this);
         mTVPreview.setOnClickListener(this);
@@ -155,13 +161,13 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         initItem(view);
         initAddItem(view);
         initEditText();
-        prepareData();
+        prepareData(0);
         updateViewWhenFromReject();
         return view;
     }
 
     /**
-     * 设置编辑框
+     设置编辑框
      */
     private void initEditText() {
 
@@ -172,6 +178,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         mETConsume5.addTextChangedListener(editTextWatcher);
 
         mETTitle.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -193,6 +200,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
 
         mETIntroduce.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -234,22 +242,22 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         if ("click".equals(mModifyCampaign.getPer_budget_type())) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
             mTvTitle5.setText(mArrayTitle[4]);
-            mETConsume5.setHint(getResources().getString(R.string.min_5));
+            mETConsume5.setHint(getResources().getString(R.string.min_2));
         } else if ("post".equals(mModifyCampaign.getPer_budget_type())) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_kol));
             mTvTitle5.setText(mArrayTitle[5]);
-            mETConsume5.setHint(getResources().getString(R.string.min_3));
+            mETConsume5.setHint(getResources().getString(R.string.min_20));
         } else if ("simple_cpi".equals(mModifyCampaign.getPer_budget_type())) {
             mTVInfo3.setText(getResources().getString(R.string.type_download_by_kol));
             mTvTitle5.setText(mArrayTitle[6]);
-            mETConsume5.setHint(getResources().getString(R.string.min_3));
+            mETConsume5.setHint(getResources().getString(R.string.min_20));
         } else {
             mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
             mTvTitle5.setText(mArrayTitle[7]);
-            mETConsume5.setHint(getResources().getString(R.string.min_3));
+            mETConsume5.setHint(getResources().getString(R.string.min_20));
         }
 
-        if (!UN_PAY.equals(mModifyCampaign.getStatus())) {
+        if (! UN_PAY.equals(mModifyCampaign.getStatus())) {
             mETConsume4.setEnabled(false);
             mTVTitle4.setTextColor(UIUtils.getColor(R.color.sub_gray_custom));
             mETConsume4.setTextColor(UIUtils.getColor(R.color.sub_gray_custom));
@@ -290,7 +298,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         if (mLaunchRewordDialog != null) {
             mLaunchRewordDialog = null;
         }
-        if (!TextUtils.isEmpty(mFinalPicturePath) && !mFinalPicturePath.startsWith("http://")) {
+        if (! TextUtils.isEmpty(mFinalPicturePath) && ! mFinalPicturePath.startsWith("http://")) {
             BitmapUtil.deleteBm(mFinalPicturePath);
         }
         if (mBitmap != null) {
@@ -303,7 +311,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void setAnalysisResultModel(Object obj) {
         super.setAnalysisResultModel(obj);
-        if (!(obj instanceof AnalysisResultModel)) {
+        if (! (obj instanceof AnalysisResultModel)) {
             return;
         }
         AnalysisResultModel analysisResultModel = (AnalysisResultModel) obj;
@@ -323,18 +331,15 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         String tagLabels = campaignInput.getTag_labels();
         String region = campaignInput.getRegion();
 
-        setDataToView(nameTitle, description, imgUrl, address, startTime, deadLine,
-                budgetType, budget, perActionBudget, status, age, gender, tagLabels, region);
+        setDataToView(nameTitle, description, imgUrl, address, startTime, deadLine, budgetType, budget, perActionBudget, status, age, gender, tagLabels, region);
 
     }
 
-    private void setDataToView(String nameTitle, String description, String imgUrl, String address, String startTime,
-                               String deadLine, String budgetType, int budget, double perActionBudget, String status,
-                               String age, String gender, String tagLabels, String region) {
+    private void setDataToView(String nameTitle, String description, String imgUrl, String address, String startTime, String deadLine, String budgetType, int budget, double perActionBudget, String status, String age, String gender, String tagLabels, String region) {
         mETTitle.setText(nameTitle);
         mETIntroduce.setText(description);
         mFinalPicturePath = imgUrl;
-        if(!TextUtils.isEmpty(mFinalPicturePath)){
+        if (! TextUtils.isEmpty(mFinalPicturePath)) {
             mImageLoadB = true;
         }
         BitmapUtil.loadImage(mActivity.getApplicationContext(), imgUrl, mIVPost);
@@ -344,22 +349,22 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         if ("click".equals(budgetType)) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
             mTvTitle5.setText(mArrayTitle[4]);
-            mETConsume5.setHint(getResources().getString(R.string.min_5));
+            mETConsume5.setHint(getResources().getString(R.string.min_2));
         } else if ("post".equals(budgetType)) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_kol));
             mTvTitle5.setText(mArrayTitle[5]);
-            mETConsume5.setHint(getResources().getString(R.string.min_3));
+            mETConsume5.setHint(getResources().getString(R.string.min_20));
         } else if ("simple_cpi".equals(budgetType)) {
             mTVInfo3.setText(getResources().getString(R.string.type_download_by_kol));
             mTvTitle5.setText(mArrayTitle[6]);
-            mETConsume5.setHint(getResources().getString(R.string.min_3));
+            mETConsume5.setHint(getResources().getString(R.string.min_20));
         } else {
             mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
             mTvTitle5.setText(mArrayTitle[7]);
-            mETConsume5.setHint(getResources().getString(R.string.min_3));
+            mETConsume5.setHint(getResources().getString(R.string.min_20));
         }
 
-        if (!UN_PAY.equals(status) && status != null) {
+        if (! UN_PAY.equals(status) && status != null) {
             mETConsume4.setEnabled(false);
             mTVTitle4.setTextColor(UIUtils.getColor(R.color.sub_gray_custom));
             mETConsume4.setTextColor(UIUtils.getColor(R.color.sub_gray_custom));
@@ -368,7 +373,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         mETConsume4.setText(StringUtil.deleteZero(budget));
         mETConsume5.setText(StringUtil.deleteZero(perActionBudget));
 
-        if(checkInfoCompelete(false)){
+        if (checkInfoCompelete(false)) {
             mLLBottom.setBackgroundResource(R.color.blue_custom);
         }
 
@@ -394,6 +399,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             switch (requestCode) {
                 case SPConstants.IMAGE_REQUEST_CODE:
                     mImageUri = data.getData();
+                    //mImageUri = Uri.parse(data.getData().toString().replace("content", "file"));
+                    //URLEncoder.encode(mImageUri, "UTF-8");
+                    //  LogUtil.LogShitou("图片的路径","==="+data.getData());
+                    // LogUtil.LogShitou("图片的路径3","==="+replace);
+                    //LogUtil.LogShitou("图片的路径2","==="+Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg"));
+                    //  mImageUri = Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg");
                     BitmapUtil.cropImageUri(mImageUri, 1080, 607, SPConstants.RESULT_CROP_CODE, 16, 9, mActivity);
                     break;
                 case SPConstants.RESULT_CROP_CODE:
@@ -416,26 +427,45 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                     }
                     mTVInfoCity.setText(cityListStr);
                     break;
+                case SPConstants.CHOSE_TYPE:
+                    //选择平台后返回
+                    stChoseType = data.getStringExtra("chose");
+                    if (TextUtils.isEmpty(stChoseType)) {
+                        stChoseType = "";
+                    } else {
+                        mTVInfoSubType.setText(stChoseType);
+                    }
+                    if (pvTime!=null){
+                        pvTime.clearView();//里面的view==null
+                        pvTime=null;
+                    }
+                    mTVInfo3.setText("");
+                    prepareData(1);
+                    break;
             }
         }
     }
-
     /**
-     * 检查信息是否完整
-     *
-     * @param showToast
-     * @return
+     检查信息是否完整
+     @param showToast
+     @return
      */
     private boolean checkInfoCompelete(boolean showToast) {
-
-        if (mActivity.getString(R.string.type_count_by_click).equals(mTVInfo3.getText().toString())) {
-            mCountType = "click";
-        } else if (getString(R.string.type_count_by_kol).equals(mTVInfo3.getText().toString())) {
-            mCountType = "post";
-        } else if (getString(R.string.type_download_by_kol).equals(mTVInfo3.getText().toString())) {
-            mCountType = "simple_cpi";
-        } else {//任务
-            mCountType = "cpt";
+        if (TextUtils.isEmpty(mTVInfo3.getText().toString())) {
+            if (showToast) {
+                CustomToast.showShort(mActivity, "请选择活动类型");
+            }
+            return false;
+        } else {
+            if (mActivity.getString(R.string.type_count_by_click).equals(mTVInfo3.getText().toString())) {
+                mCountType = "click";
+            } else if (getString(R.string.type_count_by_kol).equals(mTVInfo3.getText().toString())) {
+                mCountType = "post";
+            } else if (getString(R.string.type_download_by_kol).equals(mTVInfo3.getText().toString())) {
+                mCountType = "simple_cpi";
+            } else {//任务
+                mCountType = "cpt";
+            }
         }
 
         if (TextUtils.isEmpty(mETTitle.getText().toString())) {
@@ -452,7 +482,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             return false;
         }
 
-        if (!mImageLoadB) {
+        if (! mImageLoadB) {
             if (showToast) {
                 CustomToast.showShort(mActivity, "请上传封面图片");
             }
@@ -464,7 +494,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                 CustomToast.showShort(mActivity, "请填写活动链接");
             }
             return false;
-        } else if (!RegExpUtil.isUrl(mETAddress.getText().toString())) {
+        } else if (! RegExpUtil.isUrl(mETAddress.getText().toString())) {
             if (showToast) {
                 CustomToast.showShort(mActivity, "活动链接格式不正确");
                 return false;
@@ -478,20 +508,20 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             return false;
         } else {
             String totalComsuneStr = mETConsume4.getText().toString();
-//            try {
-//                float totalComsuneF = Float.parseFloat(totalComsuneStr);
-//                if (totalComsuneF < 100) {
-//                    if (showToast) {
-//                        CustomToast.showShort(mActivity, "总预算最低100元");
-//                    }
-//                    return false;
-//                }
-//            } catch (Exception e) {
-//                if (showToast) {
-//                    CustomToast.showShort(mActivity, "总预算金额格式错误");
-//                }
-//                return false;
-//            }
+            //            try {
+            //                float totalComsuneF = Float.parseFloat(totalComsuneStr);
+            //                if (totalComsuneF < 100) {
+            //                    if (showToast) {
+            //                        CustomToast.showShort(mActivity, "总预算最低100元");
+            //                    }
+            //                    return false;
+            //                }
+            //            } catch (Exception e) {
+            //                if (showToast) {
+            //                    CustomToast.showShort(mActivity, "总预算金额格式错误");
+            //                }
+            //                return false;
+            //            }
         }
 
         if (TextUtils.isEmpty(mETConsume5.getText().toString())) {
@@ -503,9 +533,9 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             String oneComsuneStr = mETConsume5.getText().toString();
             try {
                 float oneComsuneF = Float.parseFloat(oneComsuneStr);
-                if (oneComsuneF < 0.5) {
+                if (oneComsuneF < 0.2) {
                     if (showToast) {
-                        CustomToast.showShort(mActivity, "单个点击费用最低0.5元");
+                        CustomToast.showShort(mActivity, "单个点击费用最低0.2元");
                     }
                     return false;
                 }
@@ -555,6 +585,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     private void initItem(View view) {
 
         mArrayTitle = getResources().getStringArray(R.array.launch_reword_item);
+        //选择活动的发布平台
+        View layoutSubType = view.findViewById(R.id.layout_sub_type);
+        TextView tvTitleSubType = (TextView) layoutSubType.findViewById(R.id.tv_title);
+        mTVInfoSubType = (TextView) layoutSubType.findViewById(R.id.tv_info);
+        mTVInfoSubType.setText("");
+        layoutSubType.setOnClickListener(this);
 
         View layoutStartTime = view.findViewById(R.id.layout_start_time);
         TextView tvTitle1 = (TextView) layoutStartTime.findViewById(R.id.tv_title);
@@ -563,7 +599,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         View layoutEndTime = view.findViewById(R.id.layout_end_time);
         TextView tvTitle2 = (TextView) layoutEndTime.findViewById(R.id.tv_title);
         mTVInfo2 = (TextView) layoutEndTime.findViewById(R.id.tv_info);
-
+        // 选择活动类型
         View layoutActivityType = view.findViewById(R.id.layout_activity_type);
         TextView tvTitle3 = (TextView) layoutActivityType.findViewById(R.id.tv_title);
         mTVInfo3 = (TextView) layoutActivityType.findViewById(R.id.tv_info);
@@ -576,6 +612,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         mTvTitle5 = (TextView) layoutPerConsume.findViewById(R.id.tv_title);
         mETConsume5 = (EditText) layoutPerConsume.findViewById(R.id.et_consume);
 
+        tvTitleSubType.setText("推广平台选择");
         tvTitle1.setText(mArrayTitle[0]);
         tvTitle2.setText(mArrayTitle[1]);
         tvTitle3.setText(mArrayTitle[2]);
@@ -584,11 +621,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
         mTVInfo1.setText(DateUtil.getFormatTime(System.currentTimeMillis() + 2 * 60 * 60 * 1000, SPConstants.YY_MM_DD_HH_MM));
         mTVInfo2.setText(DateUtil.getFormatTime(System.currentTimeMillis() + 26 * 60 * 60 * 1000, SPConstants.YY_MM_DD_HH_MM));
-        mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
-//        mETConsume4.setHint(getResources().getString(R.string.min_100));
-        mETConsume5.setHint(getResources().getString(R.string.min_5));
+        // mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
+        //        mETConsume4.setHint(getResources().getString(R.string.min_100));
+        // mETConsume5.setHint(getResources().getString(R.string.min_2));
 
         mTVInfo1.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 translateY(TimePickerView.ACTIVITY_START, TimePickerView.Type.DATE_HOUR_MONTH);
@@ -596,20 +634,38 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         });
 
         mTVInfo2.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 translateY(TimePickerView.ACTIVITY_END, TimePickerView.Type.DATE_HOUR_MONTH);
             }
         });
-
+        //类型选择
         mTVInfo3.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                translateY(TimePickerView.ACTIVITY_TYPE, TimePickerView.Type.CONSUME_WAY);
+              //  mTVInfo3.setText("");
+                if (TextUtils.isEmpty(stChoseType)) {
+                    CustomToast.showShort(mActivity, "请先选择推广平台");
+                } else {
+                    // prepareData();
+//                    if (pvTime!=null){
+//                        pvTime.clearView();
+//                        pvTime=null;
+//                    }
+                    if (stChoseType.equals((mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat) + "," + mActivity.getString(R.string.weibo))) || stChoseType.equals(mActivity.getString(R.string.weibo))) {
+                        //微信微博同时选择／选择微博，活动类型只有三个
+                        translateY(TimePickerView.ACTIVITY_TYPE_NO_CLICK, TimePickerView.Type.CONSUME_WAY);
+                    } else {
+                        translateY(TimePickerView.ACTIVITY_TYPE, TimePickerView.Type.CONSUME_WAY);
+                    }
+                }
             }
         });
 
         mETConsume4.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -626,6 +682,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         });
 
         mETConsume5.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -645,7 +702,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
     private void onCompelete() {
         if (hasTranslateB) {
-            ObjectAnimator animation = ObjectAnimator.ofFloat(mSVContent, "translationY", -UIUtils.getDimens(R.dimen.launch_reword_translate), 0f);
+            ObjectAnimator animation = ObjectAnimator.ofFloat(mSVContent, "translationY", - UIUtils.getDimens(R.dimen.launch_reword_translate), 0f);
             animation.setDuration(400);
             animation.start();
 
@@ -657,6 +714,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             animation2.start();
 
             new Handler().postDelayed(new Runnable() {
+
                 @Override
                 public void run() {
                     mLLWheel.setVisibility(View.GONE);
@@ -668,7 +726,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     /**
-     * 显示wheelView
+     显示wheelView
      */
     private void translateY(int itemId, TimePickerView.Type type) {
 
@@ -686,8 +744,8 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void animate() {
-        if (!hasTranslateB) {
-            ObjectAnimator animation = ObjectAnimator.ofFloat(mSVContent, "translationY", 0f, -UIUtils.getDimens(R.dimen.launch_reword_translate));
+        if (! hasTranslateB) {
+            ObjectAnimator animation = ObjectAnimator.ofFloat(mSVContent, "translationY", 0f, - UIUtils.getDimens(R.dimen.launch_reword_translate));
             animation.setDuration(400);
             animation.start();
 
@@ -713,17 +771,17 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         if (type == TimePickerView.Type.OTHER) {
             return;
         }
-
+     //   pvTime = new TimePickerView(mActivity, mConsumeWayList, mDateList, type, mLLWheel, mCurrenetItem);
         if (pvTime == null) {
             pvTime = new TimePickerView(mActivity, mConsumeWayList, mDateList, type, mLLWheel, mCurrenetItem);
         } else {
-            switch (mCurrenetItem) {
-                case TimePickerView.ACTIVITY_START:
-                    pvTime.setSelectItem(mStartDateBean.day, mStartDateBean.hour, mStartDateBean.minute, mCurrenetItem);
-                    break;
-                case TimePickerView.ACTIVITY_END:
-                    pvTime.setSelectItem(mEndDateBean.day, mEndDateBean.hour, mEndDateBean.minute, mCurrenetItem);
-                    break;
+                switch (mCurrenetItem) {
+                    case TimePickerView.ACTIVITY_START:
+                        pvTime.setSelectItem(mStartDateBean.day, mStartDateBean.hour, mStartDateBean.minute, mCurrenetItem);
+                        break;
+                    case TimePickerView.ACTIVITY_END:
+                        pvTime.setSelectItem(mEndDateBean.day, mEndDateBean.hour, mEndDateBean.minute, mCurrenetItem);
+                        break;
             }
         }
         pvTime.setType(type);
@@ -731,6 +789,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         pvTime.setBelongItem(mCurrenetItem);
 
         pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
+
             @Override
             public void onTimeSelect(String str, int day, int hour, int minute, boolean isMust) {
                 String[] backStr = str.split("/");
@@ -748,18 +807,43 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                         mEndDateBean.minute = minute;
                         break;
                     case TimePickerView.ACTIVITY_TYPE:
+                        LogUtil.LogShitou("yyyyyy","走不走这里");
                         mTVInfo3.setText(backStr[1]);
                         if (backStr[1].equals(getString(R.string.type_count_by_click))) {//点击
-                            mETConsume5.setHint(getString(R.string.min_5));
+                            mETConsume5.setHint(getString(R.string.min_2));
+                            mETConsume5.setText(String.valueOf(0.5));
                             mTvTitle5.setText(mArrayTitle[4]);
                         } else if (backStr[1].equals(getString(R.string.type_count_by_kol))) {//转发
-                            mETConsume5.setHint(getString(R.string.min_3));
+                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[5]);
                         } else if (backStr[1].equals(getString(R.string.type_download_by_kol))) {//下载
-                            mETConsume5.setHint(getString(R.string.min_3));
+                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[6]);
                         } else {//任务
-                            mETConsume5.setHint(getString(R.string.min_3));
+                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setText(String.valueOf(3));
+                            mTvTitle5.setText(mArrayTitle[7]);
+                        }
+                        break;
+                    case TimePickerView.ACTIVITY_TYPE_NO_CLICK:
+                        mTVInfo3.setText(backStr[1]);
+                        if (backStr[1].equals(getString(R.string.type_count_by_click))) {//点击
+                            mETConsume5.setHint(getString(R.string.min_2));
+                            mETConsume5.setText(String.valueOf(0.5));
+                            mTvTitle5.setText(mArrayTitle[4]);
+                        } else if (backStr[1].equals(getString(R.string.type_count_by_kol))) {//转发
+                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setText(String.valueOf(3));
+                            mTvTitle5.setText(mArrayTitle[5]);
+                        } else if (backStr[1].equals(getString(R.string.type_download_by_kol))) {//下载
+                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setText(String.valueOf(3));
+                            mTvTitle5.setText(mArrayTitle[6]);
+                        } else {//任务
+                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[7]);
                         }
                         break;
@@ -772,12 +856,33 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
     }
 
-    public void prepareData() {
-        String[] consumeWay = getResources().getStringArray(R.array.launch_reword_consume_way);
-        List<String> tempList = Arrays.asList(consumeWay);
+    private List<String> tempList;
+
+    public void prepareData(int where) {
+        //根据所选平台更换选择类型的数据
+        if (TextUtils.isEmpty(stChoseType)) {
+            //初始
+            tempList = Arrays.asList(getResources().getStringArray(R.array.launch_reword_consume_way));
+        } else {
+            if (stChoseType.equals((mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat) + "," + mActivity.getString(R.string.weibo))) || stChoseType.equals(mActivity.getString(R.string.weibo))) {
+                //微信微博同时选择／选择微博，活动类型只有三个
+                tempList = Arrays.asList(getResources().getStringArray(R.array.launch_reword_consume_way_no_click));
+            } else {
+                tempList = Arrays.asList(getResources().getStringArray(R.array.launch_reword_consume_way));
+            }
+        }
+//        if (where == 1) {
+//            if (tempList.size() != 0) {
+//                mTVInfo3.setText(tempList.get(0));
+//                hasTranslateB = true;
+//                onCompelete();
+//            } else {
+//                mTVInfo3.setText("");
+//            }
+//        }
+        mConsumeWayList = new ArrayList<String>();
         mConsumeWayList.clear();
         mConsumeWayList.addAll(tempList);
-
         mDateList.clear();
         try {
             DateUtil.getAllYearDate(mDateList);
@@ -796,9 +901,11 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                 skipToLocal();
                 break;
             case R.id.tv_preview:
+                //预览活动
                 skipToPreview();
                 break;
             case R.id.tv_submit:
+                //提交悬赏活动
                 submit();
                 break;
             case R.id.layout_age:
@@ -813,6 +920,9 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             case R.id.layout_city:
                 skipToCityList();
                 break;
+            case R.id.layout_sub_type:
+                skipToChoseType();
+                break;
             case R.id.precision_marketing:
                 showPrecisionMarketingDialog();
                 break;
@@ -824,6 +934,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         TextView tv_cancel = (TextView) view.findViewById(R.id.tv_cancel);
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
         tv_cancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 cdm.dg.dismiss();
@@ -834,16 +945,15 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
         cdm.showDialog();
     }
-
+    private WProgressDialog mWProgressDialog;
     /**
-     * 提交
+     提交
      */
     private void submit() {
-        if (!checkInfoCompelete(true)) {
+        if (! checkInfoCompelete(true)) {
             return;
         }
-
-        CustomToast.showShort(mActivity, "提交中..");
+        CustomToast.showLong(mActivity, "提交中..");
         LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
         requestMap.put("name", mETTitle.getText().toString());
         requestMap.put("description", mETIntroduce.getText().toString());
@@ -854,10 +964,23 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         requestMap.put("budget", mETConsume4.getText().toString());
         requestMap.put("per_action_budget", mETConsume5.getText().toString());
         requestMap.put("age", getPostAge(mTVInfoAge.getText().toString()));
+        //发布平台sub_type
+        if (stChoseType.equals((mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat) + "," + mActivity.getString(R.string.weibo)))) {
+            String s = "wechat,weibo";
+            //   String [] s = new String[]{"wechat","weibo"};
+            requestMap.put("sub_type", s);
+        } else if (stChoseType.equals(mActivity.getString(R.string.weibo))) {
+            requestMap.put("sub_type", "weibo");
+        } else if (stChoseType.equals(mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat))) {
+            requestMap.put("sub_type", "wechat");
+        } else {
+            CustomToast.showShort(mActivity, "请选择推广平台");
+            return;
+        }
         String gender = "全部";
-        if (getString(R.string.male).equals(mTVInfoSex.getText())){
+        if (getString(R.string.male).equals(mTVInfoSex.getText())) {
             gender = "1";
-        }else if(getString(R.string.female).equals(mTVInfoSex.getText())){
+        } else if (getString(R.string.female).equals(mTVInfoSex.getText())) {
             gender = "2";
         }
         requestMap.put("gender", gender);
@@ -866,7 +989,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
         File file = null;
         String imageName = null;
-        if (!TextUtils.isEmpty(mFinalPicturePath) && !mFinalPicturePath.startsWith("http://")) {
+        if (! TextUtils.isEmpty(mFinalPicturePath) && ! mFinalPicturePath.startsWith("http://")) {
             imageName = mFinalPicturePath.substring(mFinalPicturePath.lastIndexOf("/") + 1);
             file = new File(mFinalPicturePath);
         }
@@ -874,31 +997,42 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         String url;
         int method;
         if (mFrom == REJECT) {
+            //修改活动
             requestMap.put("img_url", mModifyCampaign.getImg_url());
             requestMap.put("id", String.valueOf(mModifyCampaign.getId()));
             url = HelpTools.getUrl(CommonConfig.MODIFY_LAUNCH_CAMPAIGNS_URL);
             method = HttpRequest.PUT;
         } else {
-            if (!TextUtils.isEmpty(mFinalPicturePath) && mFinalPicturePath.startsWith("http://")) {
+            //创建活动
+            if (! TextUtils.isEmpty(mFinalPicturePath) && mFinalPicturePath.startsWith("http://")) {
                 requestMap.put("img_url", mFinalPicturePath);
             }
             url = HelpTools.getUrl(CommonConfig.LAUNCH_CAMPAIGNS_URL);
             method = HttpRequest.POST;
         }
-
+        if (mWProgressDialog == null) {
+            mWProgressDialog = WProgressDialog.createDialog(mActivity);
+        }
+        mWProgressDialog.show();
         BasePresenter mBasePresenter = new BasePresenter();
         mBasePresenter.getDataFromServer(true, method, url, "img", imageName, file, requestMap, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
                 CustomToast.showShort(mActivity, getString(R.string.please_data_wrong));
             }
 
             @Override
             public void onResponse(String response) {
-
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
                 LaunchRewordModel launchRewordModel = GsonTools.jsonToBean(response, LaunchRewordModel.class);
                 if (launchRewordModel == null) {
-                    CustomToast.showShort(mActivity, getString(R.string.please_data_wrong));
+                    CustomToast.showShort(mActivity, getString(R.string.over_time));
                     return;
                 }
 
@@ -913,7 +1047,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
     private String getDisPlay(String age) {
         for (int i = 0; i < agePostArr.length; i++) {
-            if (!TextUtils.isEmpty(age) && age.equals(agePostArr[i])) {
+            if (! TextUtils.isEmpty(age) && age.equals(agePostArr[i])) {
                 return ageArr[i];
             }
         }
@@ -922,7 +1056,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
     private String getPostAge(String ageS) {
         for (int i = 0; i < ageArr.length; i++) {
-            if (!TextUtils.isEmpty(ageS) && ageS.equals(ageArr[i])) {
+            if (! TextUtils.isEmpty(ageS) && ageS.equals(ageArr[i])) {
                 return agePostArr[i];
             }
         }
@@ -930,7 +1064,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void skipToNextPage(LaunchRewordModel launchRewordModel) {
-        if (mFrom == REJECT && !UN_PAY.equals(mModifyCampaign.getStatus())) {
+        if (mFrom == REJECT && ! UN_PAY.equals(mModifyCampaign.getStatus())) {
             mActivity.setResult(SPConstants.LAUNCHREWORDACTIVIRY);
             mActivity.finish();
             return;
@@ -957,17 +1091,29 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void skipToPreview() {
-        if (!checkInfoCompelete(true)) {
+        if (! checkInfoCompelete(true)) {
             return;
         }
         Intent intent = new Intent(mActivity, DetailContentActivity.class);
         startActivity(addBundle(intent));
     }
 
+    /**
+     选择城市
+     */
     private void skipToCityList() {
         Intent intent = new Intent(mActivity, CityListActivity.class);
         intent.putExtra("citylist", (Serializable) contactList);
         startActivityForResult(intent, SPConstants.CITY_LIST);
+    }
+
+    /**
+     选择发布类型
+     */
+    private void skipToChoseType() {
+        Intent intent = new Intent(mActivity, CampaignChoseTypeActivity.class);
+        intent.putExtra("chose", stChoseType);
+        startActivityForResult(intent, SPConstants.CHOSE_TYPE);
     }
 
     private int mTagCount;
@@ -1006,6 +1152,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
 
         tv_confirm.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String tags = getTags();
@@ -1019,6 +1166,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         });
 
         tv_cancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < mGridData.size(); i++) {
@@ -1046,7 +1194,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     /**
-     * 年龄选择弹窗
+     年龄选择弹窗
      */
     private void showAgeSelector() {
         View view = mLayoutInflater.inflate(R.layout.dialog_age_selector, null);
@@ -1055,14 +1203,14 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         TextView tv_part2 = (TextView) view.findViewById(R.id.tv_part2);
         TextView tv_part3 = (TextView) view.findViewById(R.id.tv_part3);
         TextView tv_part4 = (TextView) view.findViewById(R.id.tv_part4);
-//        TextView tv_part5 = (TextView) view.findViewById(R.id.tv_part5);
+        //        TextView tv_part5 = (TextView) view.findViewById(R.id.tv_part5);
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
         tv_all.setOnClickListener(new AgeSelectorOnClickListener(0, cdm));
         tv_part1.setOnClickListener(new AgeSelectorOnClickListener(1, cdm));
         tv_part2.setOnClickListener(new AgeSelectorOnClickListener(2, cdm));
         tv_part3.setOnClickListener(new AgeSelectorOnClickListener(3, cdm));
         tv_part4.setOnClickListener(new AgeSelectorOnClickListener(4, cdm));
-//        tv_part5.setOnClickListener(new AgeSelectorOnClickListener(5, cdm));
+        //        tv_part5.setOnClickListener(new AgeSelectorOnClickListener(5, cdm));
         cdm.dg.setCanceledOnTouchOutside(true);
         cdm.dg.getWindow().setGravity(Gravity.CENTER);
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
@@ -1070,7 +1218,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     /**
-     * 性别选择弹窗
+     性别选择弹窗
      */
     private void showGenderSelector() {
         View view = mLayoutInflater.inflate(R.layout.dialog_gender_selector, null);
@@ -1121,7 +1269,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     /**
-     * 设置底部显示样式
+     设置底部显示样式
      */
     private void setBottomView() {
         mInfoCompelete = checkInfoCompelete(false);
@@ -1162,9 +1310,9 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     class DateBean {
-        public int day = -1;
-        public int hour = -1;
-        public int minute = -1;
+        public int day = - 1;
+        public int hour = - 1;
+        public int minute = - 1;
     }
 
     private class MyGridAdapter extends BaseAdapter {

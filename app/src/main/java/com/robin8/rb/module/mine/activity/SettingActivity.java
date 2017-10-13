@@ -23,6 +23,7 @@ import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.ui.widget.SwitchView;
 import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
+import com.robin8.rb.util.HelpTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -206,6 +207,10 @@ public class SettingActivity extends BaseActivity {
                         BaseApplication.getInstance().setLoginBean(null);
                         CacheUtils.putString(SettingActivity.this, SPConstants.MINE_DATA, null);
                         NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN_OUT);
+                        //HelpTools.insertCommonXml(HelpTools.NATIVE,"");
+                        HelpTools.insertCommonXml(HelpTools.MyKolId,"");
+                        HelpTools.insertCommonXml(HelpTools.PagerData,"");
+                        HelpTools.insertCommonXml(HelpTools.isLeader,"");
                         intent = new Intent(SettingActivity.this, LoginActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putInt("from", SPConstants.MAINACTIVITY);

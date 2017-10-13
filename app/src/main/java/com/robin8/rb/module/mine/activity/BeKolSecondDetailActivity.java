@@ -25,7 +25,6 @@ import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 
 import java.io.Serializable;
 
@@ -204,11 +203,11 @@ public class BeKolSecondDetailActivity extends BaseActivity {
     }
 
     private void bind() {
-        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), tvName, name);
+        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), tvName, name,0);
         presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
             @Override
             public void onResponse(String name) {
-                CustomToast.showLong(BeKolSecondDetailActivity.this,"==bind==>"+name);
+              //  CustomToast.showLong(BeKolSecondDetailActivity.this,"==bind==>"+name);
                 userName = name;
             }
         });
@@ -294,7 +293,7 @@ public class BeKolSecondDetailActivity extends BaseActivity {
             } else if (mCurrentPageType == TYPE_NORMAL) {
                 username = etContent1.getText().toString();
                 params.put("username", username);
-                LogUtil.LogShitou("绑定结果username",username);
+              //  LogUtil.LogShitou("绑定结果username",username);
             }else if(mCurrentPageType == TYPE_GONGZHONGHAO){
                 params.put("uid", etContent1.getText().toString());
             }
@@ -310,8 +309,8 @@ public class BeKolSecondDetailActivity extends BaseActivity {
             @Override
             public void onResponse(String response) {
 
-                LogUtil.LogShitou("绑定的当前url",url);
-                LogUtil.LogShitou("绑定的详情",response);
+              //  LogUtil.LogShitou("绑定的当前url",url);
+               // LogUtil.LogShitou("绑定的详情",response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
 
                 if (bean == null) {
@@ -321,8 +320,10 @@ public class BeKolSecondDetailActivity extends BaseActivity {
 
                 if (bean.getError() == 0) {
                     if (mCurrentPageType == TYPE_PERSONAL_SHOW) {
+                      //  LogUtil.LogShitou("看返回","这是1");
                         setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
                     }else {
+                      //  LogUtil.LogShitou("看返回","这是2");
                         setResult(SPConstants.BE_KOL_SECOND_ITEM_SOCIAL, intent);
                     }
                    // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);

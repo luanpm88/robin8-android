@@ -26,6 +26,7 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.HelpTools;
 
 /**
+ * 创作
  * @author Figo
  */
 public class CreatePager extends BasePager implements ICreateFirstView, View.OnClickListener {
@@ -65,11 +66,20 @@ public class CreatePager extends BasePager implements ICreateFirstView, View.OnC
 
     @Override
     public void initTitleBar() {
-        mTitleBarText.setText("分享产品");
+//        mTitleBarText.setText("分享产品");
+//        mTitleBarText.setVisibility(View.VISIBLE);
+//        firstLeft.setVisibility(View.GONE);
+//        firstRight.setVisibility(View.GONE);
+//        mRewordLaunchIv.setVisibility(View.GONE);
+        mTitleBarText.setText(R.string.text_create);
         mTitleBarText.setVisibility(View.VISIBLE);
-        firstLeft.setVisibility(View.GONE);
-        firstRight.setVisibility(View.GONE);
-        mRewordLaunchIv.setVisibility(View.GONE);
+        firstLeft.setVisibility(View.INVISIBLE);
+        firstRight.setVisibility(View.VISIBLE);
+        mRewordLaunchIv.setVisibility(View.VISIBLE);
+        firstRight.setImageResource(R.mipmap.icon_ark_cps);
+        mRewordLaunchIv.setImageResource(R.mipmap.icon_ark_write);
+        mRewordLaunchIv.setOnClickListener(this);
+        firstRight.setOnClickListener(this);
     }
 
     @Override
@@ -133,7 +143,9 @@ public class CreatePager extends BasePager implements ICreateFirstView, View.OnC
             bundle.putStringArray("name", nameArr);
             bundle.putStringArray("type", campaignTypeArr);
             bundle.putString("page_name", StatisticsAgency.MY_CREATE);
+          //  bundle.putString("title_name", mActivity.getString(R.string.my_create));
             bundle.putString("title_name", mActivity.getString(R.string.my_create));
+
             bundle.putString("url", HelpTools.getUrl(CommonConfig.MY_CREATE_URL));
             intent.putExtras(bundle);
             mActivity.startActivity(intent);

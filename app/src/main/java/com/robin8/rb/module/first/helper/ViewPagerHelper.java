@@ -156,7 +156,7 @@ public class ViewPagerHelper {
         private int size;
         private LinearLayout linearLayout;
 
-        MyOnPageChangeListener(int size, LinearLayout linearLayout) {
+        public MyOnPageChangeListener(int size, LinearLayout linearLayout) {
             this.size = size;
             this.linearLayout = linearLayout;
         }

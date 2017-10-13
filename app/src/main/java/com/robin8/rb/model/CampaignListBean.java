@@ -9,9 +9,13 @@ import java.util.List;
  * @date 2016/1/27 20:17
  */
 public class CampaignListBean extends BaseBean {
-    private String message;
     private MsgStatusbean message_stat;
+    private List<CampaignInviteEntity> campaign_invites;
+    private List<AnnouncementEntity> announcements;
 
+    public List<CampaignInviteEntity> getCampaign_invites() {
+        return campaign_invites;
+    }
     public MsgStatusbean getMessage_stat() {
         return message_stat;
     }
@@ -19,33 +23,15 @@ public class CampaignListBean extends BaseBean {
     public void setMessage_stat(MsgStatusbean message_stat) {
         this.message_stat = message_stat;
     }
-
-    private List<CampaignInviteEntity> campaign_invites;
-
+    public void setCampaign_invites(List<CampaignInviteEntity> campaign_invite) {
+        this.campaign_invites = campaign_invite;
+    }
     public List<AnnouncementEntity> getAnnouncements() {
         return announcements;
     }
 
     public void setAnnouncements(List<AnnouncementEntity> announcements) {
         this.announcements = announcements;
-    }
-
-    private List<AnnouncementEntity> announcements;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public List<CampaignInviteEntity> getCampaign_invites() {
-        return campaign_invites;
-    }
-
-    public void setCampaign_invites(List<CampaignInviteEntity> campaign_invite) {
-        this.campaign_invites = campaign_invite;
     }
 
     public static class MsgStatusbean {
@@ -132,6 +118,7 @@ public class CampaignListBean extends BaseBean {
         private int id;
         private String status;
         private String img_status;
+        private String sub_type;
         private String share_url;
         private boolean is_invited;
         private String avatar_url;
@@ -148,6 +135,7 @@ public class CampaignListBean extends BaseBean {
         private List<Integer> upload_interval_time;
         private String uuid;
         private boolean start_upload_screenshot;//是否开始上传截图
+        private String cpi_example_screenshot;
 
         public String getKol_name() {
             return kol_name;
@@ -333,6 +321,22 @@ public class CampaignListBean extends BaseBean {
 
         public void setInvite_status(String invite_status) {
             this.invite_status = invite_status;
+        }
+
+        public String getSub_type() {
+            return sub_type;
+        }
+
+        public void setSub_type(String sub_type) {
+            this.sub_type = sub_type;
+        }
+
+        public String getCpi_example_screenshot() {
+            return cpi_example_screenshot;
+        }
+
+        public void setCpi_example_screenshot(String cpi_example_screenshot) {
+            this.cpi_example_screenshot = cpi_example_screenshot;
         }
 
         public static class CampaignEntity implements Serializable {

@@ -3,7 +3,7 @@
     <alpha
         android:fillEnabled="true"
         android:fillAfter="true"
-        android:duration="100"
+        android:duration="1000"
         android:fromAlpha="1"
         android:toAlpha="0" />
 </set>

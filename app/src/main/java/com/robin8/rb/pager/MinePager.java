@@ -45,6 +45,7 @@ import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.widget.CustomDialogManager;
@@ -101,6 +102,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private View mKolItemLL;
 
     public MinePager(FragmentActivity activity) {
+
         this.mActivity = activity;
         initDataList();
         rootView = initView();
@@ -108,6 +110,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void initDataList() {
+
         String[] arrayTitle = mActivity.getResources().getStringArray(R.array.mine_list_title);
         String[] arrayId = mActivity.getResources().getStringArray(R.array.mine_list_icons);
         if (mItemList == null) {
@@ -125,6 +128,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     @Override
     public void initTitleBar() {
+
         mTitleBar = mPager.findViewById(R.id.rl_title);
         mMineMessageTv = (TextView) mTitleBar.findViewById(R.id.mine_message_tv);
         mMineSettingTv = (TextView) mTitleBar.findViewById(R.id.mine_setting_tv);
@@ -136,6 +140,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     @Override
     public View initView() {
+
         LayoutInflater layoutInflater = LayoutInflater.from(mActivity.getApplicationContext());
         mPager = layoutInflater.inflate(R.layout.pager_mine, null);
         initTitleBar();
@@ -144,12 +149,14 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void initListView() {
+
         mLVMineList = (ListView) mPager.findViewById(R.id.lv_mine_list);
         mMineListAdapter = new MineListAdapter();
         mLVMineList.setAdapter(mMineListAdapter);
         MineListOnItemClickListener mMineListOnItemClickListener = new MineListOnItemClickListener();
         mLVMineList.setOnItemClickListener(mMineListOnItemClickListener);
         mLVMineList.setOnScrollListener(new AbsListView.OnScrollListener() {
+
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
 
@@ -157,6 +164,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
                 if (mHeader != null) {
                     mTop = mHeader.getTop();
                     if (Math.abs(mTop) > BaseApplication.mPixelDensityF * 40) {
@@ -175,6 +183,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
      * @param view
      */
     private void initView(final View view) {
+
         mHeader = view;
         Context context = view.getContext();
         View layoutClickNumber = view.findViewById(R.id.layout_click_number);
@@ -207,26 +216,35 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void updateView(MineShowModel.KolBean kol) {
+
         if (kol == null || mClickNumberTv == null) {
             return;
         }
 
         LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
-        LoginBean.KolEntity kolEntity = loginBean.getKol();
-        kolEntity.setRole_apply_status(kol.getRole_apply_status());
-        kolEntity.setRole_check_remark(kol.getRole_check_remark());
-        loginBean.setKol(kolEntity);
-        BaseApplication.getInstance().setLoginBean(loginBean);
+        if (loginBean!=null) {
+            if (loginBean.getKol() != null) {
+                LoginBean.KolEntity kolEntity = loginBean.getKol();
+                kolEntity.setRole_apply_status(kol.getRole_apply_status());
+                kolEntity.setRole_check_remark(kol.getRole_check_remark());
+                loginBean.setKol(kolEntity);
+                BaseApplication.getInstance().setLoginBean(loginBean);
+                HelpTools.insertCommonXml(HelpTools.MyKolId,String.valueOf(kol.getId()));
+                mClickNumberTv.setText(String.valueOf(kol.getMax_campaign_click()));
+                mTotalNumberTv.setText(StringUtil.deleteZero(kol.getCampaign_total_income()));
+                mMaxNumberTv.setText(StringUtil.deleteZero(kol.getMax_campaign_earn_money()));
+                mAverageNumberTv.setText(StringUtil.deleteZero(kol.getAvg_campaign_credit()));
 
-        mClickNumberTv.setText(String.valueOf(kol.getMax_campaign_click()));
-        mTotalNumberTv.setText(StringUtil.deleteZero(kol.getCampaign_total_income()));
-        mMaxNumberTv.setText(StringUtil.deleteZero(kol.getMax_campaign_earn_money()));
-        mAverageNumberTv.setText(StringUtil.deleteZero(kol.getAvg_campaign_credit()));
-
-        mUserNameTv.setText(kol.getName());
-        mUserTagTv.setText(getTags(kol.getTags()));
-        BitmapUtil.loadImage(mActivity.getApplicationContext(), kol.getAvatar_url(), mCIVImage);
-        setApplyTvState(kol.getRole_apply_status(), kol.getKol_role());
+                mUserNameTv.setText(kol.getName());
+                mUserTagTv.setText(getTags(kol.getTags()));
+                if (!TextUtils.isEmpty(kol.getAvatar_url())){
+                    BitmapUtil.loadImage(mActivity.getApplicationContext(), kol.getAvatar_url(), mCIVImage);
+                }else {
+                    mCIVImage.setImageResource(R.mipmap.icon_user_default);
+                }
+                setApplyTvState(kol.getRole_apply_status(), kol.getKol_role());
+            }
+        }
     }
 
     /**
@@ -236,6 +254,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
      * @param role
      */
     private void setApplyTvState(String state, String role) {
+
         if (TextUtils.isEmpty(state) || TextUtils.isEmpty(role)) {
             mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_uncertification);
             mApplyTv.setText(R.string.be_kol);
@@ -251,7 +270,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 break;
             case STATE_APPLYING:
                 mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_uncertification);
-                if (!role.equals(ROLE_BIG_V)) {
+                if (! role.equals(ROLE_BIG_V)) {
                     mApplyTv.setText(R.string.data_reviewing);
                     mApplyTv.setTextColor(UIUtils.getColor(R.color.mine_yellow_custom));
                     mApplyTv.setBackgroundResource(R.drawable.shape_bg_yellow_pane);
@@ -287,6 +306,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private String getTags(List<MineShowModel.KolBean.TagsBean> tags) {
+
         if (tags == null || tags.size() <= 0) {
             return mActivity.getString(R.string.be_kol_get_more_info);
         }
@@ -304,28 +324,33 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     @Override
     public void initData() {
 
-        if (!BaseApplication.getInstance().hasLogined()) {
+        if (! BaseApplication.getInstance().hasLogined()) {
             initViewWithoutLogin();
             return;
         }
 
         String mMineData = CacheUtils.getString(mActivity, SPConstants.MINE_DATA, null);
         parseJson(mMineData);
-
+        //kol信息在此
         BasePresenter mBasePresenter = new BasePresenter();
         mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.MY_SHOW_URL), null, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
+
             }
 
             @Override
             public void onResponse(String response) {
+                LogUtil.LogShitou("我的页面","==>"+response);
                 parseJson(response);
             }
         });
+
     }
 
     private void parseJson(String response) {
+        //LogUtil.LogShitou("show信息","===>"+response);
         MineShowModel mineShowModel = GsonTools.jsonToBean(response, MineShowModel.class);
         if (mineShowModel != null && mineShowModel.getError() == 0) {
             CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
@@ -335,6 +360,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void initViewWithoutLogin() {
+
         if (mCIVImage == null) {
             return;
         }
@@ -351,6 +377,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     @Override
     public void onClick(View v) {
+
         if (isDoubleClick()) {
             return;
         }
@@ -382,6 +409,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void skipToSetting() {
+
         if (isLogined(SPConstants.SETTING_ACTIVITY)) {
             Intent intent = new Intent(mActivity, SettingActivity.class);
             mActivity.startActivity(intent);
@@ -389,8 +417,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void skipToBeKol() {
+
         if (isLogined(SPConstants.BE_KOL_ACTIVITY)) {
-             // 成为kol埋点
+            // 成为kol埋点
             TalkingDataAppCpa.onCustEvent1();
             Intent intent = new Intent(mActivity, BeKolFirstActivity.class);
             intent.putExtra("id", mKolBean.getId());
@@ -399,6 +428,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void showRejectedDialog() {
+
         View view = LayoutInflater.from(mActivity).inflate(R.layout.dialog_reject_kol, null);
         TextView bekolTV = (TextView) view.findViewById(R.id.tv_be_kol);
         TextView reasonTV = (TextView) view.findViewById(R.id.tv_reason);
@@ -406,15 +436,19 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
         reasonTV.setText(mKolBean.getRole_check_remark());
         cancelTV.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
                 cdm.dismiss();
             }
         });
 
         bekolTV.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
                 skipToBeKol();
                 cdm.dismiss();
             }
@@ -427,6 +461,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void skipToAdHost() {
+
         if (isLogined(SPConstants.AD_HOST_ACTIVITY)) {
             Intent intent = new Intent(mActivity, ADHostActivity.class);
             mActivity.startActivity(intent);
@@ -434,7 +469,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private boolean isLogined(int from) {
-        if (!BaseApplication.getInstance().hasLogined()) {
+
+        if (! BaseApplication.getInstance().hasLogined()) {
             Intent intent = new Intent(mActivity, LoginActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt("from", from);
@@ -446,10 +482,12 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void skipToWallet() {
+//        Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
+//        mActivity.startActivity(intent);
         if (isLogined(SPConstants.WALLETACTIVIRY)) {
             Intent intent = new Intent(mActivity, WalletActivity.class);
             mActivity.startActivity(intent);
-        }
+       }
     }
 
     @Override
@@ -460,6 +498,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             int type = msgEntity.getCode();
             switch (type) {
                 case NotifyManager.TYPE_LOGIN:
+
                 case NotifyManager.TYPE_LOGIN_OUT:
                 case NotifyManager.TYPE_REFRESH_PROFILE:
                     initData();
@@ -472,6 +511,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             if (isDoubleClick()) {
                 return;
             }
@@ -491,13 +531,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 case INVITE_FRIENDS:
                     skipToInViteFriends();
                     break;
-                case AD_HOST:
+                case AD_HOST://品牌主
                     skipToAdHost();
                     break;
                 case SIGN:
                     skipToSign();
                     break;
-                case ROBIN_INDIANA:
+                case ROBIN_INDIANA:////罗宾夺宝
                     skipToRobinIndiana();
                     break;
                 case HELP_CENTER:
@@ -508,6 +548,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void skipToProduct() {
+
         Intent intent = new Intent();
         intent.setClass(mActivity, FragmentsActivity.class);
         String nameArr[] = {"我的分享", "我的产品", "待审核", "审核拒绝"};//待审核、审核通过、审核拒绝, 我的分享
@@ -524,11 +565,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void skipToHelpCenter() {
+
         Intent intent = new Intent(mActivity, HelpCenterActivity.class);
         mActivity.startActivity(intent);
     }
 
     private void skipToInViteFriends() {
+
         if (isLogined(SPConstants.INVITE_FRIENDS_ACTIVITY)) {
             Intent intent = new Intent(mActivity, InviteFriendsActivity.class);
             intent.putExtra("from", SPConstants.MY_CARE);
@@ -538,7 +581,11 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         }
     }
 
+    /**
+     * 我的关注
+     */
     private void skipToMyCare() {
+
         if (isLogined(SPConstants.MY_CAMPAIGN_ACTIVITY)) {
             Intent intent = new Intent(mActivity, SearchKolActivity.class);
             intent.putExtra("from", SPConstants.MY_CARE);
@@ -548,17 +595,21 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         }
     }
 
+    /**
+     * 我的活动
+     */
     private void skipToCampaign() {
+
         if (isLogined(SPConstants.MY_CAMPAIGN_ACTIVITY)) {
             String nameArr[] = {"进行中", "待上传", "审核中", "已完成"};
             String campaignTypeArr[] = {"approved", "waiting_upload", "verifying", "completed"};
             Intent intent = new Intent(mActivity, FragmentsActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putStringArray("name",nameArr);
-            bundle.putStringArray("type",campaignTypeArr);
+            bundle.putStringArray("name", nameArr);
+            bundle.putStringArray("type", campaignTypeArr);
             bundle.putString("page_name", StatisticsAgency.MY_TASK);
             bundle.putString("title_name", mActivity.getString(R.string.my_capaign));
-            bundle.putString("url",HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL));
+            bundle.putString("url", HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL));
             intent.putExtras(bundle);
             mActivity.startActivity(intent);
         }
@@ -566,7 +617,11 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     }
 
+    /**
+     * 签到
+     */
     private void skipToSign() {
+
         if (isLogined(SPConstants.USER_SIGN_ACTIVITY)) {
             Intent intent = new Intent(mActivity, UserSignActivity.class);
             mActivity.startActivity(intent);
@@ -574,6 +629,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void skipToRobinIndiana() {
+
         if (isLogined(SPConstants.ROBININDIANA)) {
             Intent intent = new Intent(mActivity, BaseRecyclerViewActivity.class);
             intent.putExtra("destination", SPConstants.INDIANA_ROBIN);
@@ -587,21 +643,25 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
         @Override
         public int getCount() {
+
             return mItemList == null ? 0 : mItemList.size();
         }
 
         @Override
         public ItemBean getItem(int position) {
+
             return mItemList.get(position);
         }
 
         @Override
         public long getItemId(int position) {
+
             return position;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
             ItemBean item = getItem(position);
             if (item != null) {
                 Holder holder = null;
@@ -644,6 +704,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         }
 
         private void setLines(Holder holder, int visible, int visible1, int visible2, int visible3) {
+
             holder.lineTop.setVisibility(visible);
             holder.viewUp.setVisibility(visible1);
             holder.lineUp.setVisibility(visible2);
@@ -652,6 +713,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     static class Holder {
+
         public TextView mTVArrow;
         public TextView mTVItemIcon;
         public TextView mTVItemTitle;
@@ -662,11 +724,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     public class ItemBean {
+
         public int id;
         public String name;
         public String icons;
 
         public ItemBean(int id, String icons, String name) {
+
             this.id = id;
             this.icons = icons;
             this.name = name;

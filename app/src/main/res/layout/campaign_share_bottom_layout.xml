@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/gray_eeeef2"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_top_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:text="邀请好友一起赚收益"
+            android:textColor="@color/black_202020"
+            android:textSize="@dimen/undefine_font_6"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_marginTop="15dp"/>
+    </LinearLayout>
+
+
+    <!--<View style="@style/Undefined_Line"-->
+    <!--android:alpha="0.2"-->
+    <!--android:background="@color/black_000000"/>-->
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="分享赚收益"
+            android:textColor="@color/black_202020"
+            android:textSize="@dimen/undefine_font_6"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_campaign"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_marginTop="15dp"/>
+    </LinearLayout>
+
+    <!--<View style="@style/Undefined_Line"-->
+    <!--android:background="@color/black_000000"/>-->
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white_custom"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/black_3a3a3a"
+        android:textSize="@dimen/undefine_font_5"/>
+</LinearLayout>
+
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="80dp"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:weightSum="5">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_weixin"-->
+    <!--style="@style/share_textview"-->
+    <!--android:drawableTop="@mipmap/login_weixin"-->
+    <!--android:text="微信" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_wechatmoments"-->
+    <!--style="@style/share_textview"-->
+    <!--android:drawableTop="@mipmap/icon_social_wechatmoments_on"-->
+    <!--android:text="朋友圈" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_weibo"-->
+    <!--style="@style/share_textview"-->
+    <!--android:drawableTop="@mipmap/login_weibo"-->
+    <!--android:text="微博" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_qq"-->
+    <!--style="@style/share_textview"-->
+    <!--android:drawableTop="@mipmap/login_qq"-->
+    <!--android:text="QQ" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_qonze"-->
+    <!--style="@style/share_textview"-->
+    <!--android:drawableTop="@mipmap/login_kongjian"-->
+    <!--android:text="QQ空间" />-->
+    <!--</LinearLayout>-->

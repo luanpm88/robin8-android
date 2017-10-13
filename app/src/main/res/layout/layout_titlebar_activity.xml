@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:id="@+id/ll_root"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/ll_titlebar"
@@ -13,48 +13,95 @@
         android:gravity="center_vertical">
 
         <ImageView
-            android:layout_centerVertical="true"
             android:id="@+id/iv_back"
             android:layout_width="80dp"
             android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="50dp"
             android:paddingTop="10dp"
-            android:src="@mipmap/icon_btn_back_black" />
+            android:src="@mipmap/icon_btn_back_black"
+            android:visibility="visible"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_jump"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="40dp"
+            android:textColor="#909090"
+            android:paddingTop="10dp"
+            android:text="跳过"/>
 
         <TextView
             android:id="@+id/tv_center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="300dp"
+            android:layout_centerInParent="true"
             android:ellipsize="end"
             android:gravity="center"
-            android:layout_centerInParent="true"
+            android:maxWidth="300dp"
             android:singleLine="true"
             android:text="推广内容详情  "
             android:textColor="@color/black_custom"
-            android:textSize="@dimen/undefine_font_7" />
+            android:textSize="@dimen/undefine_font_7"/>
 
         <TextView
-            android:layout_centerVertical="true"
             android:id="@+id/tv_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:gravity="right|center_vertical"
             android:paddingRight="13dp"
             android:text="撤销"
             android:textColor="@color/sub_gray_custom"
-            android:layout_alignParentRight="true"
             android:textSize="@dimen/undefine_font_5"
-            android:visibility="invisible" />
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right|center_vertical"
+            android:paddingRight="13dp"
+            android:text="编辑"
+            android:textColor="@color/black_custom"
+            android:textSize="@dimen/undefine_font_5"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:id="@+id/ll_share"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:visibility="gone"
+            android:paddingRight="20dp"
+            android:paddingLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_title_share"
+                />
+
+        </LinearLayout>
+
     </RelativeLayout>
 
     <View
         android:id="@+id/view_line"
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
-        android:background="@color/undefined_divide_line" />
+        android:background="@color/undefined_divide_line"/>
 
     <LinearLayout
         android:id="@+id/ll_content"
@@ -66,5 +113,5 @@
     <TextView
         android:id="@id/tv_bottom"
         style="@style/BottomTextViewStyle"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 </LinearLayout>

@@ -11,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
@@ -23,7 +22,6 @@ import com.robin8.rb.base.BasePager;
 import com.robin8.rb.base.LoadingPage;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
-import com.robin8.rb.helper.IconFontHelper;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.model.BannerBean;
 import com.robin8.rb.model.CampaignListBean;
@@ -40,7 +38,6 @@ import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +75,9 @@ public class RewordPager extends BasePager implements Observer {
     private RewordFilterDialog mRewordFilterDialog;
 
     private RadioButton rb;
+    private LinearLayout mTopPoints;
+
+    private AutoScrollViewPager mVpAuto;
     private int mTotalPages;
 
     public RewordPager(FragmentActivity activity) {
@@ -169,7 +169,7 @@ public class RewordPager extends BasePager implements Observer {
             @Override
             public void onResponse(String response) {
 
-                LogUtil.LogShitou("获取活动列表数据"+HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL),response);
+              // LogUtil.LogShitou("获取活动列表数据"+HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL),response);
                 CacheUtils.putLong(mActivity.getApplicationContext(), SPConstants.TAG_REFRESH_TIME, System.currentTimeMillis());
                 CampaignListBean bean = GsonTools.jsonToBean(response, CampaignListBean.class);
 
@@ -177,7 +177,6 @@ public class RewordPager extends BasePager implements Observer {
                     initLogin(INIT_DATA);
                     return;
                 }
-
                 if (bean != null && bean.getError() == 0) {
                     mTotalPages = bean.getTotal_pages();
                     if (mCurrentState != LOAD_MORE) {
@@ -186,15 +185,16 @@ public class RewordPager extends BasePager implements Observer {
 
                     List<CampaignListBean.CampaignInviteEntity> campiList = bean.getCampaign_invites();
                     List<CampaignListBean.AnnouncementEntity> announcementsList = bean.getAnnouncements();
-
                     switch (state) {
                         case INIT_DATA:
                             mLoadingPage.showSafePage(LoadingPage.STATE_LOAD_SUCCESS);
                             initVpData();
+                            setVpAuto();
                             break;
                         case REFRESH:
                             mRefreshListView.setRefreshFinshed(true);
                             initVpData();
+                            setVpAuto();
                             break;
                         case LOAD_MORE:
                             if (campiList == null || campiList.size() <= 3) {
@@ -254,6 +254,21 @@ public class RewordPager extends BasePager implements Observer {
         mBannerList.add(bean1);
         mBannerList.add(bean2);
     }
+    /**
+     * 设置轮播图
+     */
+    public void setVpAuto() {
+        int size = mBannerList.size();
+        if (mVpAuto == null) {
+            return;
+        }
+        mVpAuto.setAdapter(new ImagePagerAdapter(mActivity, mBannerList).setInfiniteLoop(true));
+        mVpAuto.setOnPageChangeListener(new MyOnPageChangeListener(size, mTopPoints));
+        mVpAuto.setInterval(5000);
+        mVpAuto.startAutoScroll();
+        mVpAuto.setCurrentItem(1000 * size);
+        setPoints(0, size, mTopPoints);
+    }
 
     private void setPoints(int position, int size, LinearLayout topPoints) {
         topPoints.removeAllViews();// 清空以前的点
@@ -278,7 +293,8 @@ public class RewordPager extends BasePager implements Observer {
         mTitleBarText.setText(mActivity.getText(R.string.text_reword));
         mTitleBarText.setVisibility(View.VISIBLE);
         mRewordFilterLl.setVisibility(View.VISIBLE);
-        mRewordLaunchIv.setVisibility(View.GONE);
+       mRewordLaunchIv.setVisibility(View.GONE);
+       // mRewordLaunchIv.setVisibility(View.VISIBLE);
     }
 
     public void addView() {
@@ -289,6 +305,14 @@ public class RewordPager extends BasePager implements Observer {
         mRefreshListView.setDividerHeight(10);
 
         View header = View.inflate(mActivity, R.layout.reword_header, null);
+        mVpAuto = (AutoScrollViewPager) header.findViewById(R.id.vp_auto);
+        mVpAuto.post(new Runnable() {
+            @Override
+            public void run() {
+                mVpAuto.getLayoutParams().height = DensityUtils.getScreenWidth(mVpAuto.getContext()) * 2 / 5;
+            }
+        });
+        mTopPoints = (LinearLayout) header.findViewById(R.id.ll_vp_points);
         mRefreshListView.addSecondHeader(header);
 
         mRewordAdapter = new RewordAdapter(mActivity, mInviteEntityList);

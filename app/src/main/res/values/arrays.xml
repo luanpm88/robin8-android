@@ -12,7 +12,63 @@
         <item>邀请好友</item>
         <item>帮助中心</item>
     </string-array>
+    <string-array name="social_tag_name">
+        <item>其他</item>
+        <item>手机</item>
+        <item>美妆</item>
+        <item>母婴</item>
+        <item>娱乐</item>
+        <item>旅游</item>
+        <item>教育</item>
+        <item>时尚</item>
+        <item>游戏</item>
+        <item>房地产</item>
+        <item>财经</item>
+        <item>数码</item>
+        <item>家电</item>
+        <item>健康</item>
+        <item>图书</item>
+        <item>体育</item>
+        <item>航空</item>
+        <item>家居</item>
+        <item>汽车</item>
+        <item>酒店</item>
+        <item>摄影</item>
+        <item>美食</item>
+        <item>健身</item>
+        <item>音乐</item>
+        <item>消费电子</item>
+        <item>互联网</item>
+    </string-array>
 
+    <string-array name="social_tag_english">
+        <item>other</item>
+        <item>mobile</item>
+        <item>beauty</item>
+        <item>babies</item>
+        <item>entertainment</item>
+        <item>travel</item>
+        <item>education</item>
+        <item>fashion</item>
+        <item>games</item>
+        <item>realestate</item>
+        <item>finance</item>
+        <item>digital</item>
+        <item>appliances</item>
+        <item>health</item>
+        <item>books</item>
+        <item>sports</item>
+        <item>airline</item>
+        <item>furniture</item>
+        <item>auto</item>
+        <item>hotel</item>
+        <item>camera</item>
+        <item>food</item>
+        <item>fitness</item>
+        <item>music</item>
+        <item>ce</item>
+        <item>internet</item>
+    </string-array>
     <string-array name="mine_list_icons">
         <item>&#xe60b;</item>
         <item>&#xe601;</item>
@@ -47,6 +103,11 @@
         <item>按点击次数计费</item>
         <item>按KOL转发计费</item>
         <item>按KOL下载计费</item>
+        <item>按KOL任务计费</item>
+    </string-array>
+
+    <string-array name="launch_reword_consume_way_no_click">
+        <item>按KOL转发计费</item>
         <item>按KOL任务计费</item>
     </string-array>
 
@@ -155,6 +216,7 @@
     <string-array name="be_kol_first">
         <item>头像</item>
         <item>昵称</item>
+        <item>手机号</item>
         <item>性别</item>
         <item>年龄</item>
         <item>兴趣</item>
@@ -185,6 +247,30 @@
         <item>一直播</item>
         <item>美啦</item>
         <item>其它</item>
+    </string-array>
+
+    <string-array name="second_be_kol_item_provider">
+        <item>wechat</item>
+        <item>qq</item>
+        <item>weibo</item>
+        <item>public_wechat</item>
+        <item>meipai</item>
+        <item>miaopai</item>
+        <item>zhihu</item>
+        <item>douyu</item>
+
+        <item>yingke</item>
+        <item>tieba</item>
+        <item>tianya</item>
+        <item>taobao</item>
+        <item>huajiao</item>
+        <item>nice</item>
+        <item>douban</item>
+        <item>xiaohuangshu</item>
+
+        <item>yizhibo</item>
+        <item>meila</item>
+        <item>other</item>
     </string-array>
 
     <string-array name="setting_item_name">

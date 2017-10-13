@@ -14,6 +14,9 @@ import com.robin8.rb.listener.BindSocialPresenterListener;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.mine.model.MineShowModel;
+import com.robin8.rb.module.social.MeasureInfluenceActivity;
+import com.robin8.rb.module.social.MeasureInfluenceManActivity;
+import com.robin8.rb.module.social.SocialBindActivity;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -32,6 +35,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
     private final ILoginView mILoginView;
     private Activity mActivity;
     private int from;
+    private int influence;
 
     public LoginBindPhonePresenter(Activity activity, ILoginView loginView) {
         super(activity);
@@ -43,6 +47,11 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
     public void init() {
         Intent intent = mActivity.getIntent();
         from = intent.getIntExtra("from", 0);
+        if (!TextUtils.isEmpty(intent.getStringExtra("influence"))){
+            influence=1;
+        }else {
+            influence=0;
+        }
         //        LogUtil.LogShitou("重新绑定的form","====>"+from);
     }
 
@@ -165,16 +174,76 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
             }
             //            LogUtil.LogShitou("绑定手机号此时的from、",""+from);
             //    LoginHelper.loginSuccess(loginBean, from, mActivity);
-            Intent intent = new Intent(mActivity, MainActivity.class);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.putExtra("register_main", "zhu");
-            mActivity.startActivity(intent);
-            mActivity.finish();
+
+            //==============================
+            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))){
+                //first走过
+                jumpActivity(1);
+            }else if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))){
+                //first和second都走过
+                jumpActivity(2);
+            }else{
+                //从影响力来的就回去影响力，否则回到活动页面
+                backMain();
+            }
+//            Intent intent = new Intent(mActivity, MainActivity.class);
+//            //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            intent.putExtra("register_main", "zhu");
+//            mActivity.startActivity(intent);
+//            mActivity.finish();
         } else {
             CustomToast.showShort(mActivity, loginBean.getDetail());
         }
     }
+    private void jumpActivity(int i) {
+        if (i == 0) {
+            //没有微博或者微信
+            Intent intent = new Intent(mActivity, SocialBindActivity.class);
+            mActivity.startActivity(intent);
+            mActivity.finish();
+            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        } else if (i == 1) {
+            //有微博或者微信
+            Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
+            mActivity.startActivity(intent);
+            mActivity.finish();
+            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        } else if (i == 2) {
+            //跳转到man
+            Intent intent = new Intent(mActivity, MeasureInfluenceManActivity.class);
+            mActivity.startActivity(intent);
+            mActivity.finish();
+            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
+    }
+    public void backMain() {
+        if (influence == 1) {
+            //返回影响力界面
+            if (BaseApplication.getInstance().hasLogined()) {
+                //登陆成功就返回影响力界面
+                Intent intent = new Intent(mActivity, MainActivity.class);
+                intent.putExtra("register_main", "influence");
+                mActivity.startActivity(intent);
+                mActivity.finish();
+                mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            } else {
+                //为登陆就返回活动页面
+                Intent intent = new Intent(mActivity, MainActivity.class);
+                intent.putExtra("register_main", "zhu");
+                mActivity.startActivity(intent);
+                mActivity.finish();
+                mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        } else {
+            Intent intent = new Intent(mActivity, MainActivity.class);
+            intent.putExtra("register_main", "zhu");
+            mActivity.startActivity(intent);
+            mActivity.finish();
+            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            // mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
+        }
+    }
     private void judgeIskol() {
         BasePresenter basePresenter = new BasePresenter();//是否会报401错误
         basePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.MY_SHOW_URL), null, new RequestCallback() {
