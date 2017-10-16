@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="当前页面无数据，试试别的页面吧"
+            android:text="敬请期待"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6" />
     </LinearLayout>
@@ -52,4 +52,5 @@
         android:textColor="@color/white_custom"
         android:textSize="@dimen/undefine_font_5"
         android:visibility="gone" />
+
 </RelativeLayout>
