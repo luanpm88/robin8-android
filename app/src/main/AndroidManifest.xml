@@ -567,9 +567,19 @@
             android:exported="true">
         </receiver>
 
-        <activity android:name=".module.social.SocailPkActivity">
+        <activity
+            android:name=".module.social.SocailPkActivity"
+            android:configChanges="keyboard|orientation"
+            android:hardwareAccelerated="true"
+            android:launchMode="standard"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.reword.activity.LookScreenImgActivity">
+        <activity
+            android:name=".module.reword.activity.LookScreenImgActivity"
+            android:configChanges="keyboard|orientation"
+            android:hardwareAccelerated="true"
+            android:launchMode="standard"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".module.social.SocialBindActivity"
@@ -592,7 +602,17 @@
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.mine.activity.CampaignChoseTypeActivity">
+        <activity
+            android:name=".module.mine.activity.CampaignChoseTypeActivity"
+            android:configChanges="keyboard|orientation"
+            android:hardwareAccelerated="true"
+            android:launchMode="standard"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".module.mine.activity.InvitationCodeActivity"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

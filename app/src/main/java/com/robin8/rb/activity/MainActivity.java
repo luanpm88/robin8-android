@@ -560,11 +560,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     @Override
     protected void onResume() {
-
         super.onResume();
-        if (mPageName == StatisticsAgency.MY) {
-            mPagerList.get(MY).initData();
-        }
         if (! TextUtils.isEmpty(register_main)) {
             if (register_main.equals("zhu")) {
                 mPageName = StatisticsAgency.CAMPAIGN_LIST;
@@ -572,9 +568,11 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 mPageName = StatisticsAgency.INFLUENCE_LIST;
                 // onePageSelected(INFLUENCE_LIST);
             }
-        } else {
-            mPageName = StatisticsAgency.KOL_LIST;
         }
+        if (mPageName == StatisticsAgency.MY) {
+            mPagerList.get(MY).initData();
+        }
+
         //        if (mPageName == StatisticsAgency.INFLUENCE_LIST) {
         //            if (! TextUtils.isEmpty(register_main)) {
         //               if (register_main.equals("influence")) {

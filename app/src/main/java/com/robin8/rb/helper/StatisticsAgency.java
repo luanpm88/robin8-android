@@ -86,6 +86,7 @@ public class StatisticsAgency {
     public static final String MY_SIGN = "my-sign";//我的每日签到
     public static final String MY_SETTING = "my-setting";//我的设置
     public static final String MY_MESSAGE = "my-message";//我的消息
+    public static final String MY_INVITATION_CODE = "my-incitation_code";//输入邀请码
 
     public static final String SINA_SHARE = "sina_share";//新浪分享
     public static final String TD_AD_ID = "TD_AD_ID";

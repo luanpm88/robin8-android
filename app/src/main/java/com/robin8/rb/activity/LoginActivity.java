@@ -18,10 +18,9 @@ import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 
 /**
- * @author Figo
- * @Description 登录
- * @date 2016年7月5日
- */
+ @author Figo
+ @Description 登录
+ @date 2016年7月5日 */
 public class LoginActivity extends BaseActivity implements ILoginView, View.OnClickListener {
     private static final int MSG_USERID_FOUND = 1;
     private static final int MSG_LOGIN = 2;
@@ -39,6 +38,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     private TextView mTVCheckNum;
     private View mBTNLogin;
     private LoginPresenter mLoginPresenter;
+    private EditText mETInvitationCode;
 
 
     @Override
@@ -54,6 +54,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mTVCenter.getPaint().setFakeBoldText(true);
         mETPhoneNumber = (EditText) view.findViewById(R.id.et_phonenum);
         mETCheckNum = (EditText) view.findViewById(R.id.et_checknum);
+        mETInvitationCode = ((EditText) view.findViewById(R.id.et_invitation_code));
         mTVLoginInfo = (TextView) view.findViewById(R.id.tv_login_info);
         mTVCheckNum = (TextView) view.findViewById(R.id.tv_checknum);
         mBTNLogin = view.findViewById(R.id.bt_login);
@@ -70,7 +71,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mIBWeibo.setOnClickListener(this);
         mIBQQ.setOnClickListener(this);
 
-        mTVLoginInfo.setText(Html.fromHtml(getString(R.string.click_login_approve) +"<font color=#2dcad0>" + getString(R.string.serviece_protocol) + "</font>"));
+        mTVLoginInfo.setText(Html.fromHtml(getString(R.string.click_login_approve) + "<font color=#2dcad0>" + getString(R.string.serviece_protocol) + "</font>"));
         mLoginPresenter = new LoginPresenter(LoginActivity.this, this);
         mLoginPresenter.init();
     }
@@ -89,7 +90,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 mLoginPresenter.backMain(0);
                 break;
             case R.id.ib_weixin:
-                CustomToast.showShort(this,"前往微信中···");
+                CustomToast.showShort(this, "前往微信中···");
                 mLoginPresenter.authorize(new Wechat(this));
                 break;
             case R.id.ib_weibo:
@@ -97,10 +98,10 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 break;
             case R.id.ib_qq:
                 mLoginPresenter.authorize(new QQ(this));
-               // finish();
+                // finish();
                 break;
             case R.id.iv_back:
-               mLoginPresenter.backMain(0);
+                mLoginPresenter.backMain(0);
                 break;
 
         }
@@ -109,7 +110,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     @Override
     protected void executeOnclickLeftView() {
         //mLoginPresenter.backMain();
-       // finish();
+        // finish();
     }
 
     @Override
@@ -135,14 +136,33 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     }
 
     @Override
+    public String getInvitationCode() {
+        String invitationCode = "";
+        if (mETInvitationCode != null) {
+            invitationCode = mETInvitationCode.getText().toString().trim();
+        }
+        return invitationCode;
+    }
+
+    @Override
+    public void clearEdit(int i) {
+        if (i==3){
+            if (mETInvitationCode!=null){
+               mETInvitationCode.setText("");
+            }
+        }
+    }
+
+    @Override
     public View getTv() {
 
         return mTVCheckNum;
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-          mLoginPresenter.backMain(0);
+            mLoginPresenter.backMain(0);
         }
         return false;
     }

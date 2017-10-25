@@ -35,6 +35,7 @@ import com.robin8.rb.module.create.activity.FragmentsActivity;
 import com.robin8.rb.module.first.activity.SearchKolActivity;
 import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
 import com.robin8.rb.module.mine.activity.HelpCenterActivity;
+import com.robin8.rb.module.mine.activity.InvitationCodeActivity;
 import com.robin8.rb.module.mine.activity.InviteFriendsActivity;
 import com.robin8.rb.module.mine.activity.SettingActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
@@ -58,10 +59,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * 新闻界面 NewsPager
- *
- * @author Figo
- */
+ 新闻界面 NewsPager
+ @author Figo */
 public class MinePager extends BasePager implements View.OnClickListener, Observer {
 
     private static final int MY_WALLET = 1;
@@ -72,7 +71,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private static final int ROBIN_INDIANA = 6;
     private static final int SIGN = 7;
     private static final int INVITE_FRIENDS = 8;
-    private static final int HELP_CENTER = 9;
+    private static final int INVITE_CODE = 9;
+    private static final int HELP_CENTER = 10;
 
     private static final String ROLE_BIG_V = "big_v";
     private static final String ROLE_PUBLIC = "public";
@@ -102,6 +102,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private MineShowModel.KolBean mKolBean;
     private View mKolItemLL;
     private int isHiddle = 0;
+    //private int[] socialTagIcon = {R.mipmap.icon_wallet,R.mipmap.,R.mipmap.icon_checkin,R.mipmap.icon_invite,R.mipmap.icon_help_center};
 
     public MinePager(FragmentActivity activity) {
 
@@ -180,9 +181,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     * 初始化界面
-     *
-     * @param view
+     初始化界面
+     @param view
      */
     private void initView(final View view) {
 
@@ -224,14 +224,14 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         }
 
         LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
-        if (loginBean!=null) {
+        if (loginBean != null) {
             if (loginBean.getKol() != null) {
                 LoginBean.KolEntity kolEntity = loginBean.getKol();
                 kolEntity.setRole_apply_status(kol.getRole_apply_status());
                 kolEntity.setRole_check_remark(kol.getRole_check_remark());
                 loginBean.setKol(kolEntity);
                 BaseApplication.getInstance().setLoginBean(loginBean);
-                HelpTools.insertCommonXml(HelpTools.MyKolId,String.valueOf(kol.getId()));
+                HelpTools.insertCommonXml(HelpTools.MyKolId, String.valueOf(kol.getId()));
                 mClickNumberTv.setText(String.valueOf(kol.getMax_campaign_click()));
                 mTotalNumberTv.setText(StringUtil.deleteZero(kol.getCampaign_total_income()));
                 mMaxNumberTv.setText(StringUtil.deleteZero(kol.getMax_campaign_earn_money()));
@@ -239,9 +239,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
                 mUserNameTv.setText(kol.getName());
                 mUserTagTv.setText(getTags(kol.getTags()));
-                if (!TextUtils.isEmpty(kol.getAvatar_url())){
+                if (! TextUtils.isEmpty(kol.getAvatar_url())) {
                     BitmapUtil.loadImage(mActivity.getApplicationContext(), kol.getAvatar_url(), mCIVImage);
-                }else {
+                } else {
                     mCIVImage.setImageResource(R.mipmap.icon_user_default);
                 }
                 setApplyTvState(kol.getRole_apply_status(), kol.getKol_role());
@@ -250,10 +250,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     * 设置Kol审核以及认证状态
-     *
-     * @param state
-     * @param role
+     设置Kol审核以及认证状态
+     @param state
+     @param role
      */
     private void setApplyTvState(String state, String role) {
 
@@ -344,7 +343,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("我的页面","==>"+response);
+                LogUtil.LogShitou("我的页面", "==>" + response);
                 parseJson(response);
             }
         });
@@ -358,7 +357,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
             mKolBean = mineShowModel.getKol();
             int detail = mineShowModel.getDetail();
-            isHiddle=detail;
+            isHiddle = detail;
             updateView(mKolBean);
         }
     }
@@ -486,12 +485,12 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void skipToWallet() {
-//        Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
-//        mActivity.startActivity(intent);
+        //        Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
+        //        mActivity.startActivity(intent);
         if (isLogined(SPConstants.WALLETACTIVIRY)) {
             Intent intent = new Intent(mActivity, WalletActivity.class);
             mActivity.startActivity(intent);
-       }
+        }
     }
 
     @Override
@@ -544,6 +543,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 case ROBIN_INDIANA:////罗宾夺宝
                     skipToRobinIndiana();
                     break;
+                case INVITE_CODE:
+                    skipToInvitationCode();
+                    break;
                 case HELP_CENTER:
                     skipToHelpCenter();
                     break;
@@ -586,7 +588,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     * 我的关注
+     我的关注
      */
     private void skipToMyCare() {
 
@@ -600,7 +602,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     * 我的活动
+     我的活动
      */
     private void skipToCampaign() {
 
@@ -622,7 +624,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     * 签到
+     签到
      */
     private void skipToSign() {
 
@@ -630,6 +632,16 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             Intent intent = new Intent(mActivity, UserSignActivity.class);
             mActivity.startActivity(intent);
         }
+    }
+
+    /**
+     * 输入邀请码
+     */
+    private void skipToInvitationCode() {
+    if (isLogined(SPConstants.INVITATION_CODE)){
+        Intent intent = new Intent(mActivity, InvitationCodeActivity.class);
+        mActivity.startActivity(intent);
+    }
     }
 
     private void skipToRobinIndiana() {
@@ -671,7 +683,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 Holder holder = null;
                 holder = new Holder();
                 convertView = View.inflate(mActivity.getApplicationContext(), R.layout.mine_item_width_match, null);
-                holder.mLlItem = (LinearLayout)convertView.findViewById(R.id.ll_item);
+                holder.mLlItem = (LinearLayout) convertView.findViewById(R.id.ll_item);
                 holder.mTVArrow = (TextView) convertView.findViewById(R.id.tv_arrow);
                 holder.mTVItemIcon = (TextView) convertView.findViewById(R.id.tv_item_icon);
                 holder.mTVItemTitle = (TextView) convertView.findViewById(R.id.tv_item_title);
@@ -688,31 +700,39 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     case 2:
                     case 3:
                     case 6:
+                    case 7:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.VISIBLE);
                         break;
-                    case 7:
+                    case 8:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.GONE);
                         break;
-                    case 8:
+                    case 9:
                         setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE);
                         break;
                 }
-               if (item.name.equals("一元夺宝")){
-                   if (isHiddle==0){
-                       holder.mLlItem.setVisibility(View.GONE);
-                       holder.lineDown.setVisibility(View.GONE);
-                   }else {
-                       if (isHiddle==9){
-                           holder.mLlItem.setVisibility(View.GONE);
-                           holder.lineDown.setVisibility(View.GONE);
-                       }else {
-                           holder.mLlItem.setVisibility(View.VISIBLE);
-                           holder.lineDown.setVisibility(View.VISIBLE);
-                       }
-                   }
-               }
+                if (item.name.equals("一元夺宝")) {
+                    holder.mLlItem.setVisibility(View.GONE);
+                    holder.lineDown.setVisibility(View.GONE);
+                    //                   if (isHiddle==0){
+                    //                       holder.mLlItem.setVisibility(View.GONE);
+                    //                       holder.lineDown.setVisibility(View.GONE);
+                    //                   }else {
+                    //                       if (isHiddle==9){
+                    //                           holder.mLlItem.setVisibility(View.GONE);
+                    //                           holder.lineDown.setVisibility(View.GONE);
+                    //                       }else {
+                    //                           holder.mLlItem.setVisibility(View.VISIBLE);
+                    //                           holder.lineDown.setVisibility(View.VISIBLE);
+                    //                       }
+                    //                   }
+                }
+                if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+                    IconFontHelper.setTextIconFont(mActivity,holder.mTVItemIcon, R.mipmap.icon_invitation_code);
+                } else {
+                    IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);
+                }
                 IconFontHelper.setTextIconFont(holder.mTVArrow, R.string.arrow_right);
-                IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);
+
                 holder.mTVItemTitle.setText(item.name);
             } else {
                 convertView = View.inflate(mActivity.getApplicationContext(), R.layout.mine_item_header, null);
@@ -731,7 +751,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     static class Holder {
-public LinearLayout mLlItem;
+        public LinearLayout mLlItem;
         public TextView mTVArrow;
         public TextView mTVItemIcon;
         public TextView mTVItemTitle;

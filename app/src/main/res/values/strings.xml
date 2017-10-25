@@ -227,6 +227,7 @@
     <string name="business_cop_content_fir">我是品牌主,我要特邀KOL\\n</string>
     <string name="business_submit_success">提交成功，我们会尽快与您联系,请保持电话畅通!</string>
     <string name="my_concern">我的关注</string>
+    <string name="edit_invitation_code">输入邀请码</string>
     <string name="be_kol">我的KOL资料</string>
     <string name="edit_kol">编辑KOL资料</string>
 

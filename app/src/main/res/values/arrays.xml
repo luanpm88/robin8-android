@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
+    <!--<string-array name="mine_list_title">-->
+        <!--<item>我的钱包</item>-->
+        <!--<item>我的活动</item>-->
+        <!--<item>我的产品</item>-->
+        <!--<item>我的关注</item>-->
+        <!--<item>品牌主</item>-->
+        <!--<item>一元夺宝</item>-->
+        <!--<item>每日签到</item>-->
+        <!--<item>邀请好友</item>-->
+        <!--<item>帮助中心</item>-->
+    <!--</string-array>-->
+
     <string-array name="mine_list_title">
         <item>我的钱包</item>
         <item>我的活动</item>
@@ -10,6 +22,7 @@
         <item>一元夺宝</item>
         <item>每日签到</item>
         <item>邀请好友</item>
+        <item>输入邀请码</item>
         <item>帮助中心</item>
     </string-array>
     <string-array name="social_tag_name">
@@ -79,6 +92,7 @@
         <item>&#xe627;</item>
         <item>&#xe60a;</item>
         <item>&#xe607;</item>
+        <item>&#xe607;</item>
     </string-array>
 
     <string-array name="mine_list_info">
@@ -102,13 +116,13 @@
     <string-array name="launch_reword_consume_way">
         <item>按点击次数计费</item>
         <item>按KOL转发计费</item>
-        <item>按KOL下载计费</item>
-        <item>按KOL任务计费</item>
+        <!--<item>按KOL下载计费</item>-->
+        <!--<item>按KOL任务计费</item>-->
     </string-array>
 
     <string-array name="launch_reword_consume_way_no_click">
         <item>按KOL转发计费</item>
-        <item>按KOL任务计费</item>
+        <!--<item>按KOL任务计费</item>-->
     </string-array>
 
     <string-array name="first_page_tag_item1">

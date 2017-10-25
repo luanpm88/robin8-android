@@ -50,7 +50,6 @@ import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.RegExpUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
@@ -252,9 +251,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             mTvTitle5.setText(mArrayTitle[6]);
             mETConsume5.setHint(getResources().getString(R.string.min_20));
         } else {
-            mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
-            mTvTitle5.setText(mArrayTitle[7]);
-            mETConsume5.setHint(getResources().getString(R.string.min_20));
+//            mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
+//            mTvTitle5.setText(mArrayTitle[7]);
+//            mETConsume5.setHint(getResources().getString(R.string.min_20));
+            mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
+            mTvTitle5.setText(mArrayTitle[4]);
+            mETConsume5.setHint(getResources().getString(R.string.min_2));
         }
 
         if (! UN_PAY.equals(mModifyCampaign.getStatus())) {
@@ -359,9 +361,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             mTvTitle5.setText(mArrayTitle[6]);
             mETConsume5.setHint(getResources().getString(R.string.min_20));
         } else {
-            mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
-            mTvTitle5.setText(mArrayTitle[7]);
-            mETConsume5.setHint(getResources().getString(R.string.min_20));
+//            mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
+//            mTvTitle5.setText(mArrayTitle[7]);
+//            mETConsume5.setHint(getResources().getString(R.string.min_20));
+            mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
+            mTvTitle5.setText(mArrayTitle[4]);
+            mETConsume5.setHint(getResources().getString(R.string.min_2));
         }
 
         if (! UN_PAY.equals(status) && status != null) {
@@ -464,7 +469,8 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             } else if (getString(R.string.type_download_by_kol).equals(mTVInfo3.getText().toString())) {
                 mCountType = "simple_cpi";
             } else {//任务
-                mCountType = "cpt";
+               // mCountType = "cpt";
+               mCountType = "click";
             }
         }
 
@@ -807,7 +813,6 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                         mEndDateBean.minute = minute;
                         break;
                     case TimePickerView.ACTIVITY_TYPE:
-                        LogUtil.LogShitou("yyyyyy","走不走这里");
                         mTVInfo3.setText(backStr[1]);
                         if (backStr[1].equals(getString(R.string.type_count_by_click))) {//点击
                             mETConsume5.setHint(getString(R.string.min_2));
@@ -822,9 +827,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                             mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[6]);
                         } else {//任务
-                            mETConsume5.setHint(getString(R.string.min_20));
-                            mETConsume5.setText(String.valueOf(3));
-                            mTvTitle5.setText(mArrayTitle[7]);
+//                            mETConsume5.setHint(getString(R.string.min_20));
+//                            mETConsume5.setText(String.valueOf(3));
+//                            mTvTitle5.setText(mArrayTitle[7]);
+                            mETConsume5.setHint(getString(R.string.min_2));
+                            mETConsume5.setText(String.valueOf(0.5));
+                            mTvTitle5.setText(mArrayTitle[4]);
                         }
                         break;
                     case TimePickerView.ACTIVITY_TYPE_NO_CLICK:
@@ -842,9 +850,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                             mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[6]);
                         } else {//任务
-                            mETConsume5.setHint(getString(R.string.min_20));
-                            mETConsume5.setText(String.valueOf(3));
-                            mTvTitle5.setText(mArrayTitle[7]);
+//                            mETConsume5.setHint(getString(R.string.min_20));
+//                            mETConsume5.setText(String.valueOf(3));
+//                            mTvTitle5.setText(mArrayTitle[7]);
+                            mETConsume5.setHint(getString(R.string.min_2));
+                            mETConsume5.setText(String.valueOf(0.5));
+                            mTvTitle5.setText(mArrayTitle[4]);
                         }
                         break;
                 }

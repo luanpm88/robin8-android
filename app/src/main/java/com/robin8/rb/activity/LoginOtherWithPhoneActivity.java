@@ -1,31 +1,13 @@
 package com.robin8.rb.activity;
 
-import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.robin8.rb.base.BaseActivity;
-import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.helper.LoginHelper;
-import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.model.LoginBean;
-import com.robin8.rb.okhttp.HttpRequest;
-import com.robin8.rb.okhttp.RequestCallback;
-import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.presenter.BasePresenter;
-import com.robin8.rb.presenter.LoginBindPhonePresenter;
-import com.robin8.rb.util.CustomToast;
-import com.robin8.rb.util.GsonTools;
-import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
-import com.robin8.rb.util.RegExpUtil;
-
 import com.robin8.rb.R;
-import com.robin8.rb.util.TimerUtil;
+import com.robin8.rb.base.BaseActivity;
+import com.robin8.rb.presenter.LoginBindPhonePresenter;
 import com.robin8.rb.view.ILoginView;
 
 /**
@@ -162,6 +144,16 @@ public class LoginOtherWithPhoneActivity extends BaseActivity implements ILoginV
             checkCode = mETCheckNum.getText().toString();
         }
         return checkCode;
+    }
+
+    @Override
+    public String getInvitationCode() {
+        return null;
+    }
+
+    @Override
+    public void clearEdit(int i) {
+
     }
 
     @Override

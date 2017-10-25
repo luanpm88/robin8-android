@@ -45,6 +45,7 @@ public class LoginTask {
         requestParams.put("mobile_number", objects.get(0));
         requestParams.put("code", objects.get(1));
         requestParams.put("kol_uuid", objects.get(2));
+        requestParams.put("invite_code", objects.get(3));
         requestParams.put("app_platform", SPConstants.ANDROID);
         requestParams.put("app_version", AppUtils.getVersionName(mContext));
         requestParams.put("os_version", AppUtils.getSystemVersion());
@@ -79,7 +80,18 @@ public class LoginTask {
                         //                        mContext.startActivity(intent1);
                     }
                 }
-
+//                else {
+//                    if (loginBean.getError()==1){
+//
+//                        try {
+//                            if (!TextUtils.isEmpty(loginBean.getDetail())){
+//                                CustomToast.showShort(mContext,loginBean.getDetail());
+//                            }
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
                 callback.onResponse(response);
             }
         });
