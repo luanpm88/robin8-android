@@ -48,6 +48,7 @@ public class SPConstants {
     public static final int BE_KOL_BIND_RESULT = 59;//绑定完成返回
     public static final int PUSH_TO_DETAIL = 60;//推送到活动详情
     public static final int CHOSE_TYPE = 61;//发布活动时选择发布的平台
+    public static final int INVITATION_CODE = 62;//输入邀请码
 
     public static final String SP_SIGN = "robin8_sp";
     public static final String ROBIN_IME = "robin_ime";

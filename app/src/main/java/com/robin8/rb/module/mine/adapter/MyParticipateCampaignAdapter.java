@@ -28,6 +28,8 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
 
     public  interface OnRecyclerViewListener {
         void onItemClick(int position);
+        void onContentClick(int position);
+        void onReasonClick(int position);
     }
 
     private OnRecyclerViewListener onRecyclerViewListener;
@@ -80,14 +82,25 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
         if("rejected".equals(invite_status)){
             holder.topTv.setText("审核拒绝");
             holder.topTv.setTextColor(UIUtils.getColor(R.color.red_custom));
+            holder.bottomTv.setText("点击查看原因 >");
+            holder.bottomTv.setTextColor(UIUtils.getColor(R.color.red_custom));
+
         }else if("completed".equals(data.campaignType)) {
-            holder.topTv.setText("已赚");
+            holder.topTv.setText("审核成功");
             holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+            holder.bottomTv.setText("已赚¥ "+ StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+            holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+            holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+            holder.llReason.setClickable(false);
+            holder.nameTv.setClickable(false);
         }else {
             holder.topTv.setText("即将赚");
             holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+            holder.bottomTv.setText("¥ "+ StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+            holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+            holder.llReason.setClickable(false);
+            holder.nameTv.setClickable(false);
         }
-        holder.bottomTv.setText("¥ "+ StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
     }
 
 
@@ -101,19 +114,29 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
         public TextView nameTv;
         public TextView bottomTv;
         public int position;
+        public LinearLayout llReason;
 
         public ViewHolder(View itemView) {
             super(itemView);
             nameTv = (TextView) itemView.findViewById(R.id.tv_name);
             topTv = (TextView) itemView.findViewById(R.id.tv_top);
             bottomTv = (TextView) itemView.findViewById(R.id.tv_bottom);
+            llReason = (LinearLayout) itemView.findViewById(R.id.ll_reason);
             itemView.setOnClickListener(this);
+            nameTv.setOnClickListener(this);
+            llReason.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             if (null != onRecyclerViewListener) {
-                onRecyclerViewListener.onItemClick(position);
+                if (v.getId()==R.id.ll_reason){
+                    onRecyclerViewListener.onReasonClick(position);
+                }else if (v.getId()==R.id.tv_name){
+                    onRecyclerViewListener.onContentClick(position);
+                }else {
+                    onRecyclerViewListener.onItemClick(position);
+                }
             }
         }
 

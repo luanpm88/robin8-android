@@ -1,12 +1,12 @@
 package com.robin8.rb.module.reword.helper;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -26,12 +26,11 @@ import com.robin8.rb.http.xutil.IHttpCallBack;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.CampaignInviteBean;
 import com.robin8.rb.model.CampaignListBean;
-import com.robin8.rb.model.IndentyBean;
 import com.robin8.rb.module.first.model.KolDetailModel;
 import com.robin8.rb.module.first.model.SocialAccountsBean;
 import com.robin8.rb.module.mine.model.MineShowModel;
 import com.robin8.rb.module.mine.presenter.BindSocialPresenter;
-import com.robin8.rb.module.mine.presenter.GetUidPresenter;
+import com.robin8.rb.module.reword.activity.DetailContentActivity;
 import com.robin8.rb.module.reword.activity.LookScreenImgActivity;
 import com.robin8.rb.module.reword.activity.SignUpRecruitActivity;
 import com.robin8.rb.okhttp.HttpRequest;
@@ -49,7 +48,6 @@ import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
-import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.widget.CircleImageView;
 import com.robin8.rb.view.widget.CustomDialog;
 import com.robin8.rb.view.widget.CustomDialogManager;
@@ -70,7 +68,6 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.wechat.favorite.WechatFavorite;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
@@ -130,6 +127,8 @@ public class DetailContentHelper {
     private final String BACKSLASH = "/";
     private String TAG = "null";
     public static String SUCCESS = "null";
+    private String wechatEn = "wechat";
+    private String weiboEn = "weibo";
 
     public DetailContentHelper(View line, TextView tvRight, TextView tvLeft) {
 
@@ -331,21 +330,21 @@ public class DetailContentHelper {
     }
 
     private int getTextId(CampaignListBean.CampaignInviteEntity bean) {
-
-        String per_action_type = bean.getCampaign().getPer_action_type();
-        String wechat_auth_type = bean.getCampaign().getWechat_auth_type();
-        int textId = R.string.share_to_wechatmoments;
-        if (! TextUtils.isEmpty(wechat_auth_type) && wechat_auth_type.equals("self_info")) {
-            textId = R.string.share_to_wechat_favorites;
-        } else {
-            if (TextUtils.isEmpty(per_action_type) || "wechat".equals(per_action_type)) {
-                textId = R.string.share_to_wechatmoments;
-            } else if ("weibo".equals(per_action_type)) {
-                textId = R.string.share_to_weibo;
-            } else if ("qq".equals(per_action_type)) {
-                textId = R.string.share_to_qzone;
-            }
-        }
+        int textId = R.string.share_for_money;
+        //        String per_action_type = bean.getCampaign().getPer_action_type();
+        //        String wechat_auth_type = bean.getCampaign().getWechat_auth_type();
+        //        int textId = R.string.share_to_wechatmoments;
+        //        if (! TextUtils.isEmpty(wechat_auth_type) && wechat_auth_type.equals("self_info")) {
+        //            textId = R.string.share_to_wechat_favorites;
+        //        } else {
+        //            if (TextUtils.isEmpty(per_action_type) || "wechat".equals(per_action_type)) {
+        //                textId = R.string.share_to_wechatmoments;
+        //            } else if ("weibo".equals(per_action_type)) {
+        //                textId = R.string.share_to_weibo;
+        //            } else if ("qq".equals(per_action_type)) {
+        //                textId = R.string.share_to_qzone;
+        //            }
+        //        }
         return textId;
     }
 
@@ -429,7 +428,8 @@ public class DetailContentHelper {
             if (imgStatus.equals(STATE_PASSED)) {// 整个显示 @"审核通过-查看截图"  右边显示 @"再次分享"
                 setBottomView(tvLeft, tvRight, line, R.string.approved_check_the_screenshot, R.string.share_again);
                 mCurrentLeftState = CLICK_CHECK_SCREENSHOT;
-                mCurrentRightState = CLICK_SHARE;
+                // mCurrentRightState = CLICK_SHARE;
+                mCurrentRightState = CLICK_SHARE_NO_PAY;
             } else if (imgStatus.equals(STATE_PENDING)) {// 左边显示 @"审核中-查看截图"   右边显示 @"重新上传"
                 //原代码
                 //                setBottomView(tvLeft, tvRight, line, R.string.approving_check_the_screenshot, R.string.upload_again);
@@ -563,7 +563,7 @@ public class DetailContentHelper {
      活动参与状态
      活动参与人员状态
      */
-    public void setUpCenterView(CampaignListBean.CampaignInviteEntity bean, List<CampaignInviteBean.InviteesBean> inviteList, TextView clickView, TextView moneyView, TextView infoView, TextView countView, TextView joinNumberTv, LinearLayout linearLayout) {
+    public void setUpCenterView(CampaignListBean.CampaignInviteEntity bean, List<CampaignInviteBean.InviteesBean> inviteList, TextView clickView, TextView moneyView, TextView infoView, TextView countView, TextView joinNumberTv, LinearLayout linearLayout, int count) {
 
         if (bean == null || TextUtils.isEmpty(bean.getInvite_status())) {
             return;
@@ -572,7 +572,11 @@ public class DetailContentHelper {
         if (inviteList == null || inviteList.size() == 0) {
             joinNumberTv.setText("已经有0人参加");
         } else {
-            joinNumberTv.setText("已经有" + inviteList.size() + "人参加");
+            if (count == - 1) {
+                joinNumberTv.setText("已经有" + inviteList.size() + "人参加");
+            } else {
+                joinNumberTv.setText("已经有" + count + "人参加");
+            }
         }
         initInviteesList(linearLayout, inviteList);
 
@@ -685,7 +689,7 @@ public class DetailContentHelper {
             mWProgressDialog = WProgressDialog.createDialog(activity);
         }
         mWProgressDialog.show();
-
+        LogUtil.LogShitou("活动上传截图", "===>??????????????");
         LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
         String urlImg = HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot");
         requestMap.put("[url]", urlImg);
@@ -694,6 +698,7 @@ public class DetailContentHelper {
 
             @Override
             public void onComplate(ResponceBean responceBean) {
+                //LogUtil.LogShitou("活动上传截图", "===>" + responceBean);
                 if (mWProgressDialog != null) {
                     try {
                         mWProgressDialog.dismiss();
@@ -992,27 +997,47 @@ public class DetailContentHelper {
                 receiveInvite(activity, mCampaignInviteEntity);
                 break;
             case CLICK_CHECK_SCREENSHOT://查看截图
-                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot());
+                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot(), "1");
                 break;
             case CLICK_CHECK_REJECT_REASON://审核拒绝-查看原因
                 showRejectDialog(activity, mCampaignInviteEntity);
                 break;
             case CLICK_SHARE://分享
-                boolean agreeProtocol = CacheUtils.getBoolean(activity, SPConstants.AGREE_PROTOCOL, false);
-                if (agreeProtocol) {
-                    //share(activity, mCampaignInviteEntity);\
-                    // CustomToast.showShort(activity, "这是点击右边");
-                    bindWechat(activity, 0);
-                } else {
-                    popProtocolDialog(activity, mCampaignInviteEntity);
-                }
+                // boolean agreeProtocol = CacheUtils.getBoolean(activity, SPConstants.AGREE_PROTOCOL, false);
+                //                if (agreeProtocol) {
+                //                    //share(activity, mCampaignInviteEntity);\
+                //                    // CustomToast.showShort(activity, "这是点击右边");
+                //                    bindWechat(activity, 0);
+                //                } else {
+                //                    popProtocolDialog(activity, mCampaignInviteEntity);
+                //                }
+                showShareDialog(activity, mCampaignInviteEntity, 0);
                 break;
             case CLICK_SIGN_UP:// 招募——活动报名
                 registrationActivities(activity, mCampaignInviteEntity);
                 break;
             case CLICK_SHARE_NO_PAY:// 无偿转发
-                bindWechat(activity, 1);
+                //                showShareDialog(activity, mCampaignInviteEntity,1);
+                // bindWechat(activity, 1);
                 // popSharedialog(activity, mCampaignInviteEntity);
+                if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
+                    bindWechat(activity, 1, 0);
+                } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
+                    popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                } else {
+                    if (TextUtils.isEmpty(mCampaignInviteEntity.getSub_type())) {
+                        bindWechat(activity, 1, 0);
+                    } else {
+                        if (mCampaignInviteEntity.getSub_type().equals(wechatEn)) {
+                            bindWechat(activity, 1, 0);
+                        } else if (mCampaignInviteEntity.getSub_type().equals(weiboEn)) {
+                            popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                        } else {
+                            showShareDialog(activity, mCampaignInviteEntity, 1);
+                        }
+                    }
+
+                }
                 break;
         }
     }
@@ -1020,8 +1045,9 @@ public class DetailContentHelper {
     /**
      @param activity
      @param type 0是正常流程，1是无偿转发
+     @param wechatType 0是朋友圈，1是群组
      */
-    private void bindWechat(final Activity activity, final int type) {
+    private void bindWechat(final Activity activity, final int type, final int wechatType) {
 
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(activity);
@@ -1053,41 +1079,39 @@ public class DetailContentHelper {
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
-                    LogUtil.LogShitou("活动分享获取信息！！！", response);
+                    // LogUtil.LogShitou("活动分享获取信息！！！", response);
                     KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
                     if (kolDetailModel != null && kolDetailModel.getError() == 0) {
                         List<SocialAccountsBean> mSocialAccounts = kolDetailModel.getSocial_accounts();
                         if (mSocialAccounts != null) {
                             if (mSocialAccounts.size() != 0) {
                                 for (int i = 0; i < mSocialAccounts.size(); i++) {
-                                    if (mSocialAccounts.get(i).getProvider_name().equals(activity.getString(R.string.weixin)) || mSocialAccounts.get(i).getProvider().equals("wechat")) {
+                                    if (mSocialAccounts.get(i).getProvider_name().equals(activity.getString(R.string.weixin)) || mSocialAccounts.get(i).getProvider().equals(wechatEn)) {
                                         TAG = activity.getString(R.string.weixin);
                                     }
                                 }
                                 if (TAG.equals("null")) {
                                     //没有绑定微信
-                                    getBindCount(activity, activity.getString(R.string.weixin), kolDetailModel.getBig_v().getId(), type, false);
-                                    // CustomToast.showShort(activity, "正在前往微信中");
-                                    //   bind(activity, activity.getString(R.string.weixin), type);
+                                    CustomToast.showShort(activity, "正在前往微信中");
+                                    bind(activity, activity.getString(R.string.weixin), type, wechatType);
+                                    // getBindCount(activity, activity.getString(R.string.weixin), kolDetailModel.getBig_v().getId(), type, false);
                                 } else {
-                                    //已经绑定了微信
-                                    //获取当前绑定的微信的uid
-                                    //                                    if (HelpTools.getCommonXml(HelpTools.NATIVE).equals("")) {
-                                    //                                        isSameWechat(activity, mCampaignInviteEntity, kolDetailModel.getBig_v().getId(),type);
-                                    //                                    } else {
-                                    //                                        if (HelpTools.getCommonXml(HelpTools.NATIVE).equals())
-                                    //
-                                    //                                    }
-                                    isSameWechat(activity, mCampaignInviteEntity, kolDetailModel.getBig_v().getId(), type);
+                                    if (type == 0) {
+                                        share(activity, mCampaignInviteEntity, wechatEn, wechatType);
+                                    } else {
+                                        popSharedialog(activity, mCampaignInviteEntity, wechatEn, wechatType);
+                                    }
+                                    // isSameWechat(activity, mCampaignInviteEntity, kolDetailModel.getBig_v().getId(), type);
                                 }
                             } else {
-                                getBindCount(activity, activity.getString(R.string.weixin), kolDetailModel.getBig_v().getId(), type, false);
-                                // bind(activity, activity.getString(R.string.weixin), type);
-                                //CustomToast.showShort(activity, "正在前往微信中");
+                                CustomToast.showShort(activity, "正在前往微信中");
+                                bind(activity, activity.getString(R.string.weixin), type, wechatType);
+                                //getBindCount(activity, activity.getString(R.string.weixin), kolDetailModel.getBig_v().getId(), type, false);
                             }
                         } else {
-                            getBindCount(activity, activity.getString(R.string.weixin), kolDetailModel.getBig_v().getId(), type, false);
-                            // bind(activity, activity.getString(R.string.weixin), type);
+                            CustomToast.showShort(activity, "正在前往微信中");
+                            bind(activity, activity.getString(R.string.weixin), type, wechatType);
+                            // getBindCount(activity, activity.getString(R.string.weixin), kolDetailModel.getBig_v().getId(), type, false);
                         }
                     }
                 }
@@ -1095,182 +1119,15 @@ public class DetailContentHelper {
         }
     }
 
-    private void isSameWechat(final Activity activity, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final int kolId, final int type) {
-        if (mBasePresenter == null) {
-            mBasePresenter = new BasePresenter();
-        }
-        //        if (mWProgressDialog == null) {
-        //            mWProgressDialog = WProgressDialog.createDialog(activity);
-        //        }
-        //        mWProgressDialog.show();
-        final ArrayList<String> listWechat = new ArrayList<>();
-        mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.INFLUENCE_INFO_LIST), null, new RequestCallback() {
-
-            @Override
-            public void onError(Exception e) {
-                //                if (mWProgressDialog != null) {
-                //                    mWProgressDialog.dismiss();
-                //                }
-            }
-
-            @Override
-            public void onResponse(String response) {
-                //LogUtil.LogShitou("获取第三方账号url", HelpTools.getUrl(CommonConfig.INFLUENCE_INFO_LIST));
-              //  LogUtil.LogShitou("获取第三方账号Uid", response);
-                IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
-                if (indentyBean != null) {
-                    if (indentyBean.getError() == 0) {
-                        if (indentyBean.getIdentities() != null) {
-                            if (indentyBean.getIdentities().size() != 0) {
-                                for (int i = 0; i < indentyBean.getIdentities().size(); i++) {
-                                    if ((indentyBean.getIdentities().get(i).getProvider()).equals("wechat")) {
-                                        listWechat.add(indentyBean.getIdentities().get(i).getUid());
-                                    }
-                                }
-                                if (listWechat.size()!=0){
-                                    if (listWechat.get(0).equals(HelpTools.getCommonXml(HelpTools.NATIVE))) {
-                                        if (type == 0) {
-                                            share(activity, mCampaignInviteEntity);
-                                        } else {
-                                            popSharedialog(activity, mCampaignInviteEntity);
-                                        }
-                                    } else {
-                                        getNewWechat(activity, listWechat.get(0), mCampaignInviteEntity, kolId, type);
-                                    }
-                                }else {
-                                    if (type == 0) {
-                                        share(activity, mCampaignInviteEntity);
-                                    } else {
-                                        popSharedialog(activity, mCampaignInviteEntity);
-                                    }
-                                }
-                            } else {
-                                if (type == 0) {
-                                    share(activity, mCampaignInviteEntity);
-                                } else {
-                                    popSharedialog(activity, mCampaignInviteEntity);
-                                }
-                               // getBindCount(activity, activity.getString(R.string.weixin), kolId, type, false);
-                            }
-                        } else {
-                            if (type == 0) {
-                                share(activity, mCampaignInviteEntity);
-                            } else {
-                                popSharedialog(activity, mCampaignInviteEntity);
-                            }
-                           // getBindCount(activity, activity.getString(R.string.weixin),kolId, type, false);
-                        }
-
-                    }else {
-                        try {
-                           CustomToast.showShort(activity,indentyBean.getDetail());
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    }
-                    //                    else {
-                    //                        if (mWProgressDialog != null) {
-                    //                            mWProgressDialog.dismiss();
-                    //                        }
-                    //                    }
-                }else {
-                    if (type == 0) {
-                        share(activity, mCampaignInviteEntity);
-                    } else {
-                        popSharedialog(activity, mCampaignInviteEntity);
-                    }
-                    //getBindCount(activity, activity.getString(R.string.weixin),kolId, type, false);
-                }
-                //                else {
-                //                    if (mWProgressDialog != null) {
-                //                        mWProgressDialog.dismiss();
-                //                    }
-                //                }
-
-            }
-        });
-    }
-
-    private void getNewWechat(final Activity activity, final String mUid, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final int kolId, final int type) {
-        CustomToast.showShort(activity, "正在前往微信中...");
-        //        if (mWProgressDialog != null) {
-        //            mWProgressDialog.dismiss();
-        //        }
-        GetUidPresenter uidPresenter = new GetUidPresenter(activity.getApplicationContext(), null, activity.getString(R.string.weixin));
-        uidPresenter.setOnBindListener(new GetUidPresenter.OnBindListener() {
-
-            @Override
-            public void onResponse(String uid) {
-                if (null != uid) {
-                    CustomToast.showShort(activity, "授权成功");
-                    if (uid.equals(mUid)) {
-                        UIUtils.runInMainThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                if (type == 0) {
-                                    share(activity, mCampaignInviteEntity);
-                                } else {
-                                    popSharedialog(activity, mCampaignInviteEntity);
-                                }
-                            }
-                        });
-
-                    } else {
-                        //uid不一致查询绑定次数
-                        UIUtils.runInMainThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                //  LogUtil.LogShitou("走的次数", "哈哈哈哈哈");
-                                getBindCount(activity, activity.getString(R.string.weixin), kolId, type, true);
-                            }
-                        });
-
-                    }
-                    // bindPostData(activity, names, name, type);
-                } else {
-                    CustomToast.showLong(activity, "绑定失败，请重试");
-                }
-            }
-        });
-        uidPresenter.authorize(new Wechat(activity));
-        //        BindSocialPresenter presenter = new BindSocialPresenter(activity.getApplicationContext(), null, "微信");
-        //        presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
-        //
-        //            @Override
-        //            public void onResponse(String name,String uid) {
-        //                if (null != uid) {
-        //                    LogUtil.LogShitou("获取uid",uid);
-        //                    //CustomToast.showShort(activity, "已成功绑定微信");
-        //                    if (uid.equals(mUid)){
-        //                        if (type == 0) {
-        //                            share(activity, mCampaignInviteEntity);
-        //                        } else {
-        //                            popSharedialog(activity, mCampaignInviteEntity);
-        //                        }
-        //                    }else {
-        //                        LogUtil.LogShitou("uid不一致","许多地址v");
-        //                    }
-        //                   // bindPostData(activity, names, name, type);
-        //                } else {
-        //                    CustomToast.showLong(activity, "绑定失败，请重试");
-        //                }
-        //            }
-        //        });
-
-    }
-
-
-    private void bind(final Activity activity, final String names, final int type) {
-        BindSocialPresenter presenter = new BindSocialPresenter(activity.getApplicationContext(), null, names);
+    private void bind(final Activity activity, final String names, final int type, final int wechatType) {
+        BindSocialPresenter presenter = new BindSocialPresenter(activity.getApplicationContext(), null, names, 0);
         presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
 
             @Override
             public void onResponse(String name) {
                 if (null != name) {
                     CustomToast.showShort(activity, "已成功绑定" + names);
-                    bindPostData(activity, names, name, type);
+                    bindPostData(activity, names, name, type, wechatType);
                 } else {
                     CustomToast.showLong(activity, "绑定失败，请重试");
                 }
@@ -1278,11 +1135,13 @@ public class DetailContentHelper {
         });
         if (activity.getString(R.string.weixin).equals(names)) {
             presenter.authorize(new Wechat(activity));
+        } else if (activity.getString(R.string.weibo).equals(names)) {
+            presenter.authorize(new SinaWeibo(activity));
         }
 
     }
 
-    private void bindPostData(final Activity activity, String name, String userName, final int type) {
+    private void bindPostData(final Activity activity, String name, String userName, final int type, final int wechatType) {
 
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(activity);
@@ -1296,7 +1155,7 @@ public class DetailContentHelper {
         params.put("username", userName);
         //LogUtil.LogShitou("绑定微信的报价之类的", name + "//" + userName);
 
-        mBasePresenter.getDataFromServer(true, HttpRequest.POST, (HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL)), params, new RequestCallback() {
+        mBasePresenter.getDataFromServer(true, HttpRequest.POST, (HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL_OLD)), params, new RequestCallback() {
 
             @Override
             public void onError(Exception e) {
@@ -1308,7 +1167,7 @@ public class DetailContentHelper {
 
             @Override
             public void onResponse(String response) {
-             //   LogUtil.LogShitou("分享页面提交微信绑定", "OK" + response);
+                //   LogUtil.LogShitou("分享页面提交微信绑定", "OK" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -1319,126 +1178,18 @@ public class DetailContentHelper {
                 }
                 if (bean.getError() == 0) {
                     if (type == 1) {
-                        popSharedialog(activity, mCampaignInviteEntity);
+                        popSharedialog(activity, mCampaignInviteEntity, wechatEn, wechatType);
                     } else {
-                        share(activity, mCampaignInviteEntity);
+                        share(activity, mCampaignInviteEntity, wechatEn, wechatType);
                     }
-                    //  LogUtil.LogShitou("走到这里没有","直接绑定微信");
-                    // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
-                    //finish();
+
                 } else {
-                    //CustomToast.showShort(activity, bean.getDetail());
                     CustomToast.showShort(activity, "绑定失败");
                 }
             }
         });
     }
 
-    private void getBindCount(final Activity activity, final String name, final int kolid, final int type, final boolean isNewWechat) {
-        if (mBasePresenter == null) {
-            mBasePresenter = new BasePresenter();
-        }
-
-        if (mRequestParams == null) {
-            mRequestParams = new RequestParams();
-        }
-        if (mWProgressDialog == null) {
-            mWProgressDialog = WProgressDialog.createDialog(activity);
-        }
-        mWProgressDialog.show();
-        mRequestParams.put("kol_id", kolid);
-        mRequestParams.put("provider", "wechat");
-        mBasePresenter.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.SOCIAL_BIND_COUNT), mRequestParams, new RequestCallback() {
-
-            @Override
-            public void onError(Exception e) {
-                if (mWProgressDialog != null) {
-                    mWProgressDialog.dismiss();
-                }
-            }
-
-            @Override
-            public void onResponse(String response) {
-                // LogUtil.LogShitou("绑次数查询", response);
-                if (mWProgressDialog != null) {
-                    mWProgressDialog.dismiss();
-                }
-                BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
-                if (baseBean.getError() == 0) {
-                    if (! TextUtils.isEmpty(baseBean.getDetail())) {
-                        if (isNewWechat) {
-                            showMyDialog(activity, "检测到绑定微信与登陆微信不符\n" + "确定绑定当前登陆" + name + "？", baseBean.getDetail(), type, true, true);
-                        } else {
-                            showMyDialog(activity, "确定绑定当前" + name + "？", baseBean.getDetail(), type, true, false);
-                        }
-                    }
-                } else if (baseBean.getError() == 1) {
-                   // LogUtil.LogShitou("走的次数", "哈？？？？？");
-                    if (! TextUtils.isEmpty(baseBean.getDetail())) {
-                        if (isNewWechat) {
-                          //  LogUtil.LogShitou("走了几次", "???????????");
-                            showMyDialog(activity, "检测到绑定微信与登陆微信不符", baseBean.getDetail(), type, false, true);
-                        } else {
-                            showMyDialog(activity, baseBean.getDetail(), null, type, false, false);
-
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    private void showMyDialog(final Activity activity, String title, String info, final int type, final boolean is, final boolean isNewWechat) {
-        // String rejectReason = campaignInviteEntity.getReject_reason();
-        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_reject_screenshot, null);
-        TextView confirmTV = (TextView) view.findViewById(R.id.tv_confirm);
-        TextView tvTop = (TextView) view.findViewById(R.id.tv_top);
-        TextView infoTv = (TextView) view.findViewById(R.id.tv_info);
-        TextView rightTv = (TextView) view.findViewById(R.id.tv_right);
-        LinearLayout layoutLeft = (LinearLayout) view.findViewById(R.id.layout_left);
-        LinearLayout layoutRight = (LinearLayout) view.findViewById(R.id.layout_right);
-        tvTop.setText(title);
-        if (is) {
-            confirmTV.setText("确定");
-            rightTv.setText("取消");
-            infoTv.setText(info);
-        } else {
-            layoutRight.setVisibility(View.GONE);
-            infoTv.setText(info);
-            confirmTV.setText("确定");
-            layoutLeft.setBackground(activity.getResources().getDrawable(R.drawable.shape_corner_bg_bottom));
-        }
-
-        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
-        layoutLeft.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                cdm.dismiss();
-                if (is) {
-                    CustomToast.showShort(activity, "正在前往微信中");
-                    bind(activity, activity.getString(R.string.weixin), type);
-                } else {
-                    if (isNewWechat) {
-                        HelpTools.insertCommonXml(HelpTools.NATIVE, "");
-                    }
-                }
-
-            }
-        });
-        layoutRight.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                cdm.dismiss();
-            }
-        });
-        cdm.dg.setCanceledOnTouchOutside(false);
-        cdm.dg.getWindow().setGravity(Gravity.CENTER);
-        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        cdm.showDialog();
-    }
 
     public void clickBottomLeft(Activity activity) {
         if (isDoubleClick()) {
@@ -1458,27 +1209,43 @@ public class DetailContentHelper {
                 receiveInvite(activity, mCampaignInviteEntity);
                 break;
             case CLICK_CHECK_SCREENSHOT://查看截图
-                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot());
+                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot(), "1");
                 break;
             case CLICK_CHECK_REJECT_REASON://审核拒绝-查看原因
                 showRejectDialog(activity, mCampaignInviteEntity);
                 break;
             case CLICK_SHARE://分享
-                boolean agreeProtocol = CacheUtils.getBoolean(activity, SPConstants.AGREE_PROTOCOL, false);
-                if (agreeProtocol) {
-                    // share(activity, mCampaignInviteEntity);
-                    // CustomToast.showShort(activity, "这是点击左边");
-                    bindWechat(activity, 0);
-                } else {
-                    popProtocolDialog(activity, mCampaignInviteEntity);
-                }
+                //boolean agreeProtocol = CacheUtils.getBoolean(activity, SPConstants.AGREE_PROTOCOL, false);
+                //                if (agreeProtocol) {
+                //                    // share(activity, mCampaignInviteEntity);
+                //                    // CustomToast.showShort(activity, "这是点击左边");
+                //
+                //                    bindWechat(activity, 0);
+                //                } else {
+                //                    popProtocolDialog(activity, mCampaignInviteEntity);
+                //                }
+                showShareDialog(activity, mCampaignInviteEntity, 0);
                 break;
             case CLICK_SIGN_UP:// 招募——活动报名
                 registrationActivities(activity, mCampaignInviteEntity);
                 break;
             case CLICK_SHARE_NO_PAY:// 无偿转发
-                bindWechat(activity, 1);
-                //     popSharedialog(activity, mCampaignInviteEntity);
+                // showShareDialog(activity, mCampaignInviteEntity, 1);
+                if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
+                    bindWechat(activity, 1, 0);
+                } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
+                    popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                } else {
+                    if (mCampaignInviteEntity.getSub_type().equals(wechatEn)) {
+                        bindWechat(activity, 1, 0);
+                    } else if (mCampaignInviteEntity.getSub_type().equals(weiboEn)) {
+                        popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                    } else {
+                        showShareDialog(activity, mCampaignInviteEntity, 1);
+                    }
+                }
+                //bindWechat(activity, 1);//只有微信
+                //     popSharedialog(activity, mCampaignInviteEntity);//初版
                 break;
             case CLICK_UPLOAD_AND_CHECK:
                 showSelectImageDialog(activity, mCampaignInviteEntity, true);
@@ -1487,7 +1254,15 @@ public class DetailContentHelper {
         }
     }
 
-    private void popProtocolDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity) {
+
+    /**
+     免责协议
+     @param activity
+     @param campaignInviteEntity
+     @param shareType 分享平台
+     @param wchatType 微信朋友圈／群组
+     */
+    private void popProtocolDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity, final String shareType, final int wchatType) {
 
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_text_protocol, null);
         TextView confirmTV = (TextView) view.findViewById(R.id.tv_confirm);
@@ -1498,7 +1273,11 @@ public class DetailContentHelper {
             @Override
             public void onClick(View v) {
                 // CustomToast.showShort(activity, "同意协议");
-                bindWechat(activity, 0);
+                if (shareType.equals(wechatEn)) {
+                    bindWechat(activity, 0, wchatType);
+                } else {
+                    share(activity, campaignInviteEntity, weiboEn, wchatType);
+                }
                 //  share(activity, campaignInviteEntity);
                 cdm.dismiss();
                 CacheUtils.putBoolean(activity, SPConstants.AGREE_PROTOCOL, true);
@@ -1680,18 +1459,18 @@ public class DetailContentHelper {
 
             @Override
             public void onClick(View v) {
-
-                showSnapDialog(activity, campaignInviteEntity.getCampaign().getCpi_example_screenshot());
                 cdm.dismiss();
+                showSnapDialog(activity, campaignInviteEntity.getCpi_example_screenshot(), "0");
+
             }
         });
         rightTv.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                showSnapDialog(activity, campaignInviteEntity.getScreenshot());
                 cdm.dismiss();
+                showSnapDialog(activity, campaignInviteEntity.getScreenshot(), "1");
+
             }
         });
         cdm.dg.setCanceledOnTouchOutside(true);
@@ -1702,13 +1481,16 @@ public class DetailContentHelper {
 
     /**
      显示截图对话框
+     截图参考
      @param activity
      @param url
+     @param type 0: 截图参考 ； 1：查看截图
      */
-    private void showSnapDialog(Activity activity, String url) {
+    private void showSnapDialog(Activity activity, String url, String type) {
 
         Intent intent = new Intent(activity, LookScreenImgActivity.class);
         intent.putExtra("img_url", url);
+        intent.putExtra("bottom_isShow", type);
         activity.startActivityForResult(intent, IMAGE_REQUEST_LOOK_CODE);
 
         //        final CustomDialog dialog = new SwipeBackDialog(activity, R.layout.dialog_help);
@@ -1751,7 +1533,7 @@ public class DetailContentHelper {
 
             @Override
             public void onClick(View view) {
-                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot());
+                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot(), "1");
                 cdm.dismiss();
             }
         });
@@ -1777,7 +1559,7 @@ public class DetailContentHelper {
                 //                intent.putExtra("title", activity.getString(R.string.screenshot_reference));
                 //                intent.putExtra("url", campaignInviteEntity.getCampaign().getCpi_example_screenshot());
                 //                activity.startActivity(intent);
-                showSnapDialog(activity, campaignInviteEntity.getCampaign().getCpi_example_screenshot());
+                showSnapDialog(activity, campaignInviteEntity.getCpi_example_screenshot(), "0");
                 cdm.dismiss();
             }
         });
@@ -1823,15 +1605,116 @@ public class DetailContentHelper {
         dialog.showDialog();
     }
 
+    private CustomDialogManager mCustomDialogManager;
+    private List<DetailContentActivity.ShareBean> myShareListCampaign;
 
-    private void share(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity) {
-       // LogUtil.LogShitou("这里???？", "===>" + campaignInviteEntity.getUuid());
-       // LogUtil.LogShitou("这里?ididid", "===>" + HelpTools.getUrl(CommonConfig.CAMPAIGNS_DETAIL_URL + "/" + campaignInviteEntity.getCampaign().getId() + "/receive"));
 
-        // LogUtil.LogShitou("看看我的uuid",uuid);
+    /**
+     title右上角分享的弹窗
+     @param activity
+     @param mCampaignInviteEntity
+     @param i
+     */
+    private void showShareDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final int i) {
+
+        View view = LayoutInflater.from(activity).inflate(R.layout.campaign_share_bottom_layout, null);
+        RecyclerView recyclerViewCampaign = (RecyclerView) view.findViewById(R.id.recycler_view_campaign);
+        LinearLayout llTop = (LinearLayout) view.findViewById(R.id.ll_top_share);
+        LinearLayout llBittom = ((LinearLayout) view.findViewById(R.id.ll_bottom_share));
+        TextView tvCancel = (TextView) view.findViewById(R.id.tv_cancel);
+        llTop.setVisibility(View.GONE);
+        llBittom.setVisibility(View.VISIBLE);
+
+        //分享活动
+        myShareListCampaign = new ArrayList<>();
+        if (TextUtils.isEmpty(mCampaignInviteEntity.getCampaign().getPer_action_type())) {
+            CustomToast.showShort(activity, "网络繁忙，请稍后再试");
+            return;
+        } else {
+            if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
+                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
+                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
+            } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
+                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
+            } else {
+                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
+                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
+                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
+
+            }
+        }
+        DetailContentActivity.ShareAdapter shareAdapterCampaing = new DetailContentActivity.ShareAdapter(myShareListCampaign);
+        LinearLayoutManager linearLayoutManagerTwo = new LinearLayoutManager(recyclerViewCampaign.getContext());
+        linearLayoutManagerTwo.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewCampaign.setLayoutManager(linearLayoutManagerTwo);
+        recyclerViewCampaign.setAdapter(shareAdapterCampaing);
+        final boolean agreeProtocol = CacheUtils.getBoolean(activity, SPConstants.AGREE_PROTOCOL, false);
+        shareAdapterCampaing.setOnRecyclerViewListener(new DetailContentActivity.ShareAdapter.OnRecyclerViewListener() {
+
+            @Override
+            public void onItemClick(View v, int position) {
+                if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
+                    if (position == 0) {//朋友圈
+                        if (agreeProtocol) {
+                            bindWechat(activity, i, 0);
+                        } else {
+                            popProtocolDialog(activity, mCampaignInviteEntity, wechatEn, 0);
+                        }
+                    } else {//群组
+                        if (agreeProtocol) {
+                            bindWechat(activity, i, 1);
+                        } else {
+                            popProtocolDialog(activity, mCampaignInviteEntity, wechatEn, 1);
+                        }
+                    }
+
+                } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
+                    if (agreeProtocol) {
+                        share(activity, mCampaignInviteEntity, wechatEn, - 1);
+                    } else {
+                        popProtocolDialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                    }
+                } else {
+                    if (agreeProtocol) {
+                        if (position == 0) {
+                            share(activity, mCampaignInviteEntity, weiboEn, - 1);
+                        } else if (position == 1) {
+                            bindWechat(activity, 0, 0);
+                        } else {
+                            bindWechat(activity, 0, 1);
+                        }
+                    } else {
+                        if (position == 0) {
+                            popProtocolDialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                        } else if (position == 1) {
+                            popProtocolDialog(activity, mCampaignInviteEntity, wechatEn, 0);
+                        } else {
+                            popProtocolDialog(activity, mCampaignInviteEntity, wechatEn, 1);
+                        }
+                    }
+                }
+                mCustomDialogManager.dismiss();
+            }
+        });
+
+
+        mCustomDialogManager = new CustomDialogManager(activity, view);
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                mCustomDialogManager.dismiss();
+            }
+        });
+        mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
+        mCustomDialogManager.dg.getWindow().setGravity(Gravity.BOTTOM);
+        mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+        mCustomDialogManager.showDialog();
+    }
+
+    private void share(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity, final String shareType, final int wechatType) {
         if (! TextUtils.isEmpty(campaignInviteEntity.getUuid())) {//再次分享
-           // LogUtil.LogShitou("走了这里", "----------");
-            popSharedialog(activity, campaignInviteEntity);
+            popSharedialog(activity, campaignInviteEntity, shareType, 0);
             return;
         }
         if (mWProgressDialog == null) {
@@ -1842,7 +1725,7 @@ public class DetailContentHelper {
             mBasePresenter = new BasePresenter();
         }
 
-      //  LogUtil.LogShitou("填什么", "fsdvdv");
+        //  LogUtil.LogShitou("填什么", "fsdvdv");
         mBasePresenter.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.CAMPAIGNS_DETAIL_URL + "/" + campaignInviteEntity.getCampaign().getId() + "/receive"), null, new RequestCallback() {
 
             @Override
@@ -1856,7 +1739,7 @@ public class DetailContentHelper {
 
             @Override
             public void onResponse(String response) {
-             //   LogUtil.LogShitou("这里是回调", "==>" + response);
+                //   LogUtil.LogShitou("这里是回调", "==>" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -1864,7 +1747,9 @@ public class DetailContentHelper {
                 if (bean.getError() == 0 && bean.getCampaign_invite() != null && bean.getCampaign_invite().getCampaign() != null) {
                     CampaignListBean.CampaignInviteEntity entity = bean.getCampaign_invite();
                     mCampaignInviteEntityId = String.valueOf(entity.getId());
-                    popSharedialog(activity, entity);
+                    shareSuccess(activity, entity, shareType, wechatType);
+                    //  popSharedialog(activity, entity, shareType);
+
                 } else {
                     CustomToast.showShort(activity, bean.getDetail());
                 }
@@ -1876,22 +1761,40 @@ public class DetailContentHelper {
     /**
      弹出分享面板
      */
-    private void popSharedialog(Activity activity, CampaignListBean.CampaignInviteEntity campaignInviteEntity) {
-       // LogUtil.LogShitou("///", "//////////");
+    private void popSharedialog(Activity activity, CampaignListBean.CampaignInviteEntity campaignInviteEntity, String shareType, int wechatType) {
         String per_action_type = campaignInviteEntity.getCampaign().getPer_action_type();
-        String platName = WechatMoments.NAME;
+        String platName = "";
         String wechat_auth_type = campaignInviteEntity.getCampaign().getWechat_auth_type();
         if (! TextUtils.isEmpty(wechat_auth_type) && wechat_auth_type.equals("self_info")) {
-            platName = WechatFavorite.NAME;
+            if (wechatType == 0) {
+                platName = WechatMoments.NAME;
+            } else {
+                platName = Wechat.NAME;
+            }
         } else {
             if (TextUtils.isEmpty(per_action_type) || "wechat".equals(per_action_type)) {
-                platName = WechatMoments.NAME;
+                if (wechatType == 0) {
+                    platName = WechatMoments.NAME;
+                } else {
+                    platName = Wechat.NAME;
+                }
             } else if ("weibo".equals(per_action_type)) {
                 platName = SinaWeibo.NAME;
             } else if ("qq".equals(per_action_type)) {
                 platName = QZone.NAME;
+            } else if (("wechat,weibo").equals(per_action_type)) {
+                if (shareType.equals(weiboEn)) {
+                    platName = SinaWeibo.NAME;
+                } else {
+                    if (wechatType == 0) {
+                        platName = WechatMoments.NAME;
+                    } else {
+                        platName = Wechat.NAME;
+                    }
+                }
             }
         }
+      //  LogUtil.LogShitou("最后确定的那么","====<>>"+platName);
         CustomToast.showShort(activity, "正在前往分享...");
         ShareSDK.initSDK(activity);
         OnekeyShare oks = new OnekeyShare();
@@ -1901,14 +1804,13 @@ public class DetailContentHelper {
         oks.disableSSOWhenAuthorize();
         oks.setTitle(campaignInviteEntity.getCampaign().getName());
         String shareUrl = null;
-        if (campaignInviteEntity.getStatus().equals("missed"))//如果此时已错过
-        {
+        if (campaignInviteEntity.getStatus().equals("missed")) {//如果此时已错过
             shareUrl = campaignInviteEntity.getCampaign().getUrl();
         } else {
             shareUrl = campaignInviteEntity.getShare_url();
         }
         if (SinaWeibo.NAME.equals(platName)) {
-            oks.setText(campaignInviteEntity.getCampaign().getDescription() + shareUrl);
+            oks.setText(("#Robin8#" + "「" + campaignInviteEntity.getCampaign().getBrand_name() + "「" + campaignInviteEntity.getCampaign().getName() + "」」" + shareUrl));
         } else {
             oks.setText(campaignInviteEntity.getCampaign().getDescription());
             oks.setTitleUrl(campaignInviteEntity.getShare_url());
@@ -1918,17 +1820,34 @@ public class DetailContentHelper {
         oks.setImageUrl(campaignInviteEntity.getCampaign().getImg_url());
         // oks.setImageUrl("http://7xozqe.com1.z0.glb.clouddn.com/o_1blg3fgmb1oof99q9k1oq5ar57.gif?imageMogr2/crop/!900.0000000000001x506.25000000000006a0a41.19718309859155");
         oks.setSite(activity.getString(R.string.app_name));
-        oks.setSiteUrl("http://robin8.net");
+        // oks.setSiteUrl("http://robin8.net");
+        oks.setSiteUrl(CommonConfig.SITE_URL);
         oks.show(activity);
     }
 
-    private void shareSuccess(final Activity activity, CampaignListBean.CampaignInviteEntity mCampaignInviteEntity) {
+    private void shareSuccess(final Activity activity, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final String plat, final int wechatType) {
         //分享成功 如果是第一次分享 调用share接口 此时活动状态将变为approved
         if (mCampaignInviteEntity.getStatus().equals("running") || CAMPAIGN_TYPE_RECRUIT.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())) {
-
             RequestParams requestParams = new RequestParams();
             if (mBasePresenter == null) {
                 mBasePresenter = new BasePresenter();
+            }
+            if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
+                requestParams.put("sub_type", wechatEn);
+            } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
+                requestParams.put("sub_type", weiboEn);
+            } else {
+                //                if (plat.equals("SinaWeibo")){
+                //                    requestParams.put("sub_type", weiboEn);
+                //                }else {
+                //                    requestParams.put("sub_type", wechatEn);
+                //                }
+                //                if (position == 0) {
+                //                    requestParams.put("sub_type", weiboEn);
+                //                } else if (position == 1) {
+                //                    requestParams.put("sub_type", wechatEn);
+                //                }
+                requestParams.put("sub_type", plat);
             }
 
             mBasePresenter.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntity.getId() + "/share"), requestParams, new RequestCallback() {
@@ -1941,30 +1860,39 @@ public class DetailContentHelper {
 
                 @Override
                 public void onResponse(String response) {
-                   // LogUtil.LogShitou("分享结果", response);
+                    // LogUtil.LogShitou("分享结果", response);
                     CampaignInviteBean campaignInviteEntity = GsonTools.jsonToBean(response, CampaignInviteBean.class);
                     if (campaignInviteEntity != null && campaignInviteEntity.getError() == 0) {
                         CampaignListBean.CampaignInviteEntity entity = campaignInviteEntity.getCampaign_invite();
-                        updateBottomShareView(entity);
-                        NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_SHARE_SUCCESS);
+                        // updateBottomShareView(entity);
+                        bean = entity;
+                        entityId = String.valueOf(entity.getId());
+                        // NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_SHARE_SUCCESS);
                         SUCCESS = "success";
-                        if (((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
-                            // tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_again))
-                            showShareSuccessDialog(activity, entity);
-                        }
+                        //                        if (((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
+                        //                            // tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_again))
+                        //                            showShareSuccessDialog(activity, entity);
+                        //                        }
+                        popSharedialog(activity, entity, plat, wechatType);
                     } else if (campaignInviteEntity != null) {
                         CustomToast.showShort(activity, campaignInviteEntity.getDetail());
+                    } else {
+                        CustomToast.showShort(activity, "分享失败，请重新分享");
                     }
                 }
             });
-        } else if (mCampaignInviteEntity.getStatus().equals(STATE_APPROVED)) {
-            String screenshot = mCampaignInviteEntity.getScreenshot();
-            if (TextUtils.isEmpty(screenshot) && ((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
-                // tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_again))
-                showShareSuccessDialog(activity, mCampaignInviteEntity);
-            }
         }
+        //        else if (mCampaignInviteEntity.getStatus().equals(STATE_APPROVED)) {
+        //            String screenshot = mCampaignInviteEntity.getScreenshot();
+        //            if (TextUtils.isEmpty(screenshot) && ((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
+        //                // tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_again))
+        //                showShareSuccessDialog(activity, mCampaignInviteEntity);
+        //            }
+        //        }
     }
+
+    private CampaignListBean.CampaignInviteEntity bean;
+    private String entityId;
 
     /**
      分享成功后的截图审核规则
@@ -2074,7 +2002,25 @@ public class DetailContentHelper {
 
         @Override
         public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            shareSuccess(activity, campaignInviteEntity);
+            LogUtil.LogShitou("这是什么", "====>" + platform.getName());
+            //  shareSuccess(activity, campaignInviteEntity,platform.getName());
+            if (mCampaignInviteEntity.getStatus().equals("running") || CAMPAIGN_TYPE_RECRUIT.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())) {
+                if (bean != null) {
+                    updateBottomShareView(bean);
+                    NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_SHARE_SUCCESS);
+                    SUCCESS = "success";
+                    if (((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
+                        // tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_again))
+                        showShareSuccessDialog(activity, bean);
+                    }
+                }
+            } else if (mCampaignInviteEntity.getStatus().equals(STATE_APPROVED)) {
+                String screenshot = mCampaignInviteEntity.getScreenshot();
+                if (TextUtils.isEmpty(screenshot) && ((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
+                    // tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_again))
+                    showShareSuccessDialog(activity, mCampaignInviteEntity);
+                }
+            }
             // 分享活动成功埋点
             TalkingDataAppCpa.onCustEvent4();
             CustomToast.showShort(activity, "分享成功");
@@ -2082,14 +2028,239 @@ public class DetailContentHelper {
 
         @Override
         public void onError(Platform platform, int i, Throwable throwable) {
-            CustomToast.showShort(activity, "分享失败");
+            CustomToast.showShort(activity, "分享失败，请重新分享");
 
         }
 
         @Override
         public void onCancel(Platform platform, int i) {
-           // LogUtil.LogShitou("欧了美", "3");
+            // LogUtil.LogShitou("欧了美", "3");
             CustomToast.showShort(activity, "取消分享");
         }
     }
 }
+
+
+//    private void isSameWechat(final Activity activity, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final int kolId, final int type) {
+//        if (mBasePresenter == null) {
+//            mBasePresenter = new BasePresenter();
+//        }
+//        final ArrayList<String> listWechat = new ArrayList<>();
+//        mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.INFLUENCE_INFO_LIST), null, new RequestCallback() {
+//
+//            @Override
+//            public void onError(Exception e) {
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                //  LogUtil.LogShitou("获取第三方账号Uid", response);
+//                IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
+//                if (indentyBean != null) {
+//                    if (indentyBean.getError() == 0) {
+//                        if (indentyBean.getIdentities() != null) {
+//                            if (indentyBean.getIdentities().size() != 0) {
+//                                for (int i = 0; i < indentyBean.getIdentities().size(); i++) {
+//                                    if ((indentyBean.getIdentities().get(i).getProvider()).equals("wechat")) {
+//                                        listWechat.add(indentyBean.getIdentities().get(i).getUid());
+//                                    }
+//                                }
+//                                if (listWechat.size()!=0){
+//                                    if (listWechat.get(0).equals(HelpTools.getCommonXml(HelpTools.NATIVE))) {
+//                                        if (type == 0) {
+//                                            share(activity, mCampaignInviteEntity);
+//                                        } else {
+//                                            popSharedialog(activity, mCampaignInviteEntity);
+//                                        }
+//                                    } else {
+//                                        getNewWechat(activity, listWechat.get(0), mCampaignInviteEntity, kolId, type);
+//                                    }
+//                                }else {
+//                                    if (type == 0) {
+//                                        share(activity, mCampaignInviteEntity);
+//                                    } else {
+//                                        popSharedialog(activity, mCampaignInviteEntity);
+//                                    }
+//                                }
+//                            } else {
+//                                if (type == 0) {
+//                                    share(activity, mCampaignInviteEntity);
+//                                } else {
+//                                    popSharedialog(activity, mCampaignInviteEntity);
+//                                }
+//                            }
+//                        } else {
+//                            if (type == 0) {
+//                                share(activity, mCampaignInviteEntity);
+//                            } else {
+//                                popSharedialog(activity, mCampaignInviteEntity);
+//                            }
+//                        }
+//
+//                    }else {
+//                        try {
+//                            CustomToast.showShort(activity,indentyBean.getDetail());
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }else {
+//                    if (type == 0) {
+//                        share(activity, mCampaignInviteEntity);
+//                    } else {
+//                        popSharedialog(activity, mCampaignInviteEntity);
+//                    }
+//                }
+//            }
+//        });
+//    }
+//
+//    private void getNewWechat(final Activity activity, final String mUid, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final int kolId, final int type) {
+//        CustomToast.showShort(activity, "正在前往微信中...");
+//        GetUidPresenter uidPresenter = new GetUidPresenter(activity.getApplicationContext(), null, activity.getString(R.string.weixin));
+//        uidPresenter.setOnBindListener(new GetUidPresenter.OnBindListener() {
+//
+//            @Override
+//            public void onResponse(String uid) {
+//                if (null != uid) {
+//                    CustomToast.showShort(activity, "授权成功");
+//                    if (uid.equals(mUid)) {
+//                        UIUtils.runInMainThread(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                if (type == 0) {
+//                                    share(activity, mCampaignInviteEntity);
+//                                } else {
+//                                    popSharedialog(activity, mCampaignInviteEntity);
+//                                }
+//                            }
+//                        });
+//
+//                    } else {
+//                        //uid不一致查询绑定次数
+//                        UIUtils.runInMainThread(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                //  LogUtil.LogShitou("走的次数", "哈哈哈哈哈");
+//                                getBindCount(activity, activity.getString(R.string.weixin), kolId, type, true);
+//                            }
+//                        });
+//
+//                    }
+//                    // bindPostData(activity, names, name, type);
+//                } else {
+//                    CustomToast.showLong(activity, "绑定失败，请重试");
+//                }
+//            }
+//        });
+//        uidPresenter.authorize(new Wechat(activity));
+//    }
+
+//    private void getBindCount(final Activity activity, final String name, final int kolid, final int type, final boolean isNewWechat) {
+//        if (mBasePresenter == null) {
+//            mBasePresenter = new BasePresenter();
+//        }
+//
+//        if (mRequestParams == null) {
+//            mRequestParams = new RequestParams();
+//        }
+//        if (mWProgressDialog == null) {
+//            mWProgressDialog = WProgressDialog.createDialog(activity);
+//        }
+//        mWProgressDialog.show();
+//        mRequestParams.put("kol_id", kolid);
+//        mRequestParams.put("provider", "wechat");
+//        mBasePresenter.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.SOCIAL_BIND_COUNT), mRequestParams, new RequestCallback() {
+//
+//            @Override
+//            public void onError(Exception e) {
+//                if (mWProgressDialog != null) {
+//                    mWProgressDialog.dismiss();
+//                }
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                // LogUtil.LogShitou("绑次数查询", response);
+//                if (mWProgressDialog != null) {
+//                    mWProgressDialog.dismiss();
+//                }
+//                BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
+//                if (baseBean.getError() == 0) {
+//                    if (! TextUtils.isEmpty(baseBean.getDetail())) {
+//                        if (isNewWechat) {
+//                            showMyDialog(activity, "检测到绑定微信与登陆微信不符\n" + "确定绑定当前登陆" + name + "？", baseBean.getDetail(), type, true, true);
+//                        } else {
+//                            showMyDialog(activity, "确定绑定当前" + name + "？", baseBean.getDetail(), type, true, false);
+//                        }
+//                    }
+//                } else if (baseBean.getError() == 1) {
+//                    // LogUtil.LogShitou("走的次数", "哈？？？？？");
+//                    if (! TextUtils.isEmpty(baseBean.getDetail())) {
+//                        if (isNewWechat) {
+//                            //  LogUtil.LogShitou("走了几次", "???????????");
+//                            showMyDialog(activity, "检测到绑定微信与登陆微信不符", baseBean.getDetail(), type, false, true);
+//                        } else {
+//                            showMyDialog(activity, baseBean.getDetail(), null, type, false, false);
+//
+//                        }
+//                    }
+//                }
+//            }
+//        });
+//    }
+//
+//    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+//    private void showMyDialog(final Activity activity, String title, String info, final int type, final boolean is, final boolean isNewWechat) {
+//        // String rejectReason = campaignInviteEntity.getReject_reason();
+//        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_reject_screenshot, null);
+//        TextView confirmTV = (TextView) view.findViewById(R.id.tv_confirm);
+//        TextView tvTop = (TextView) view.findViewById(R.id.tv_top);
+//        TextView infoTv = (TextView) view.findViewById(R.id.tv_info);
+//        TextView rightTv = (TextView) view.findViewById(R.id.tv_right);
+//        LinearLayout layoutLeft = (LinearLayout) view.findViewById(R.id.layout_left);
+//        LinearLayout layoutRight = (LinearLayout) view.findViewById(R.id.layout_right);
+//        tvTop.setText(title);
+//        if (is) {
+//            confirmTV.setText("确定");
+//            rightTv.setText("取消");
+//            infoTv.setText(info);
+//        } else {
+//            layoutRight.setVisibility(View.GONE);
+//            infoTv.setText(info);
+//            confirmTV.setText("确定");
+//            layoutLeft.setBackground(activity.getResources().getDrawable(R.drawable.shape_corner_bg_bottom));
+//        }
+//
+//        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
+//        layoutLeft.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                cdm.dismiss();
+//                if (is) {
+//                    CustomToast.showShort(activity, "正在前往微信中");
+//                    bind(activity, activity.getString(R.string.weixin), type);
+//                } else {
+//                    if (isNewWechat) {
+//                        HelpTools.insertCommonXml(HelpTools.NATIVE, "");
+//                    }
+//                }
+//
+//            }
+//        });
+//        layoutRight.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                cdm.dismiss();
+//            }
+//        });
+//        cdm.dg.setCanceledOnTouchOutside(false);
+//        cdm.dg.getWindow().setGravity(Gravity.CENTER);
+//        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+//        cdm.showDialog();
+//    }
+

@@ -25,14 +25,6 @@
             android:layout_height="match_parent"
             android:visibility="gone"
             />
-
-        <ProgressBar
-            android:id="@+id/pb_refresh_progress"
-            style="@style/ProgressBarMockIOSBig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone"/>
     </RelativeLayout>
 
     <View
@@ -42,6 +34,7 @@
         android:background="@color/black_686868"/>
 
     <LinearLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
@@ -56,8 +49,9 @@
 
             <TextView
                 android:id="@+id/tv_up_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="@string/upload_screenshot"
                 android:textColor="@color/white_custom"/>
         </LinearLayout>
@@ -78,10 +72,58 @@
 
             <TextView
                 android:id="@+id/tv_refresh_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="刷新"
+                android:gravity="center"
                 android:textColor="@color/black_686868"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_bottom_check"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/blue_2bdbe2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_look_screenshot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="示例"
+                android:textColor="@color/white_custom"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:alpha="0.4"
+            android:background="@color/white_custom"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/blue_2bdbe2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_up"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/upload_screenshot"
+                android:textColor="@color/white_custom"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

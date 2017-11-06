@@ -185,8 +185,8 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onResponse(String response) {
-                //  LogUtil.LogShitou("第三方登陆啊啊啊啊返回数据", response);
-                LogUtil.LogShitou("provider", "===>" + provider);
+             //   LogUtil.LogShitou("第三方登陆啊啊啊啊返回数据==========>", response);
+             //   LogUtil.LogShitou("provider", "===>" + provider);
 
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
@@ -202,7 +202,8 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                     //                            NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
                     //                        }
                     //-----
-                    toBind(provider, plat, token, userGender, userIcon, userId, userName, res, loginBean);
+                  //  toBind(provider,plat,token,userGender,userIcon,userId,userName,res,loginBean);
+                    afterBind(loginBean);
                     //----------
                     //                        Intent intent = new Intent(mActivity, MainActivity.class);
                     //                        intent.putExtra("register_main", "zhu");
@@ -263,7 +264,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onResponse(String response) {
-                //  LogUtil.LogShitou("第三方绑定登陆成功后", response);
+              //  LogUtil.LogShitou("第三方绑定登陆成功后======>", response);
                 IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
                 if (indentyBean.getError() == 0) {
                     //  LogUtil.LogShitou("去绑定===========>", "<=============>" +provider+ plat + userName);

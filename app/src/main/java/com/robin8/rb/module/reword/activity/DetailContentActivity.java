@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -17,8 +22,10 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.activity.MainActivity;
@@ -57,14 +64,24 @@ import com.robin8.rb.view.widget.CustomDialogManager;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.tencent.qzone.QZone;
+import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.moments.WechatMoments;
+
 
 /**
- * 活动详情页面
- */
+ 活动详情页面 */
 public class DetailContentActivity extends BaseDataActivity implements View.OnClickListener, Observer {
 
     private static final String CAMPAIGN_TYPE_INVITE = "invite";//邀请
@@ -127,7 +144,10 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
     private RequestParams mRequestParams;
     private final String BACKSLASH = "/";
-    private ImageView mImgCampaignsRequest;
+    private TextView mTvCampaignsRequest;
+    private LinearLayout llShare;//分享按钮
+    private int mInviteesCount = - 1;
+    private RelativeLayout llRemark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +156,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         getData();
         initView();
         initData();
+        // showShadowDialog(DetailContentActivity.this,false,null);
 
     }
 
@@ -145,11 +166,12 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         mFrom = mBundle.getInt("from");
         switch (mFrom) {
             case SPConstants.LAUNCHREWORDACTIVIRY://发起悬赏活动
-                LogUtil.LogShitou("发起悬赏活动", "step1");
+                //从预览进入
+                // LogUtil.LogShitou("发起悬赏活动", "step1");
                 initDataWhenFromLauncher();
                 break;
             case SPConstants.MESSAGE_ACTIVITY://消息列表
-                LogUtil.LogShitou("发起悬赏活动", "step2");
+                //LogUtil.LogShitou("发起悬赏活动", "step2");
                 initDataWhenFromMessage();
                 break;
             case SPConstants.PUSH_TO_DETAIL:
@@ -157,27 +179,28 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
                 break;
             default://默认为悬赏活动列表
-                LogUtil.LogShitou("发起悬赏活动", "step3");
+                // LogUtil.LogShitou("发起悬赏活动", "step3");
                 initDataWhenFromDefault();
                 break;
         }
     }
-    private void shareCtaAndCti(final Activity activity,String info,boolean is) {
+
+    private void shareCtaAndCti(final Activity activity, String info, boolean is) {
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_promit_cpa, null);
         TextView confirmTV = (TextView) view.findViewById(R.id.tv_confirm);
         TextView infoTv = (TextView) view.findViewById(R.id.tv_info);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layout_bg);
         //TextView rightTv = (TextView) view.findViewById(R.id.tv_right);
         confirmTV.setText(R.string.known);
-//        switch (type){
-//            case CAMPAIGN_TYPE_POST:
-//                infoTv.setText(info);
-//                break;
-//            case
-//        }
+        //        switch (type){
+        //            case CAMPAIGN_TYPE_POST:
+        //                infoTv.setText(info);
+        //                break;
+        //            case
+        //        }
         // rightTv.setText(R.string.known)
-        if (is){
-            new Thread(new TimerUtil(4, null, confirmTV,layout, activity, "知道了","s",activity.getResources().getColor(R.color.black_686868),activity.getResources().getColor(R.color.white_custom))).start();
+        if (is) {
+            new Thread(new TimerUtil(4, null, confirmTV, layout, activity, "知道了", "s", activity.getResources().getColor(R.color.black_686868), activity.getResources().getColor(R.color.white_custom))).start();
         }
         infoTv.setText(info);
         infoTv.setGravity(Gravity.LEFT);
@@ -204,6 +227,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
         cdm.showDialog();
     }
+
     private void initDataWhenFromDefault() {
 
         mCampaignInviteEntity = (CampaignListBean.CampaignInviteEntity) mBundle.getSerializable("bean");
@@ -224,12 +248,12 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 mPageName = StatisticsAgency.CAMPAIGN_INVITE;
             }
         }
-//        else if (CAMPAIGN_TYPE_CPI.equals(perBudgetType)|| CAMPAIGN_TYPE_CPA.equals(perBudgetType)){
-//            if (!TextUtils.isEmpty(remark)){
-//                LogUtil.LogShitou("?????","---22---->"+remark);
-//                shareCtaAndCti(DetailContentActivity.this,remark);
-//            }
-//        }
+        //        else if (CAMPAIGN_TYPE_CPI.equals(perBudgetType)|| CAMPAIGN_TYPE_CPA.equals(perBudgetType)){
+        //            if (!TextUtils.isEmpty(remark)){
+        //                LogUtil.LogShitou("?????","---22---->"+remark);
+        //                shareCtaAndCti(DetailContentActivity.this,remark);
+        //            }
+        //        }
         else {
             mWithWebViewB = true;
             mPageName = StatisticsAgency.CAMPAIGN_DETAIL;
@@ -237,17 +261,17 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         mCampaignId = mCampaignInviteEntity.getCampaign().getId();
         mCampaignInviteId = mCampaignInviteEntity.getId();
         url = CommonConfig.CAMPAIGNS_DETAIL_URL + mCampaignId;
-        LogUtil.LogShitou("通过活动列表进入",url);
+        // LogUtil.LogShitou("通过活动列表进入", url);
         mWebUrl = mCampaignInviteEntity.getCampaign().getUrl();
     }
 
-//    @Override
-//    protected void onResume() {
-//        if (DetailContentHelper.SUCCESS.equals("success")){
-//            initData();
-//        }
-//        super.onResume();
-//    }
+    //    @Override
+    //    protected void onResume() {
+    //        if (DetailContentHelper.SUCCESS.equals("success")){
+    //            initData();
+    //        }
+    //        super.onResume();
+    //    }
 
     private void initDataWhenFromMessage() {
 
@@ -275,6 +299,9 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         url = CommonConfig.CAMPAIGNS_DETAIL_URL + mCampaignId;
     }
 
+    /**
+     从预览进入
+     */
     private void initDataWhenFromLauncher() {
 
         path = mBundle.getString("path");
@@ -290,17 +317,21 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     private void initView() {
-
         mSlideDetailsLayout = (SlideDetailsLayout) findViewById(R.id.slide_detail_layout);
         mLLContent = (LinearLayout) findViewById(R.id.ll_content2);
+        LinearLayout mTitleLayout = (LinearLayout) findViewById(R.id.ll_content);
+        mTitleLayout.setBackgroundColor(R.color.black_000000);
+        mTitleLayout.setAlpha(0.78f);//活动详情开头半透明
         mTVBottomLeft = (TextView) findViewById(R.id.tv_bottom_left);
         mTVBottomRight = (TextView) findViewById(R.id.tv_bottom_right);
         mViewLine = findViewById(R.id.view_line);
         mTVJoinNumber = (TextView) findViewById(R.id.tv_join_number);
         mLinearLayout = (LinearLayout) findViewById(R.id.ll_content_invite);
         mLLListInvite = (LinearLayout) findViewById(R.id.ll_list_invite);
-        mImgCampaignsRequest = ((ImageView) findViewById(R.id.img_campaigns_request));//活动要求的按钮
-
+        mTvCampaignsRequest = ((TextView) findViewById(R.id.tv_campaigns_request));//活动要求的按钮
+        llShare = (LinearLayout) findViewById(R.id.ll_share);
+        llShare.setVisibility(View.VISIBLE);
+        llShare.setOnClickListener(this);
         if (mWithWebViewB) {
             mLLListInvite.setVisibility(View.VISIBLE);
             LayoutInflater.from(this).inflate(R.layout.detail_content_view_down_webv, mLLContent);
@@ -322,6 +353,8 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
         mImageView = (ImageView) findViewById(R.id.iv);
         mContentFl = findViewById(R.id.rl_content);
+        llRemark = (RelativeLayout) findViewById(R.id.ll_remark);
+        llRemark.setAlpha(0.4f);
         mTVRemark = (TextView) findViewById(R.id.tv_remark);
         mBackIv = (ImageView) findViewById(R.id.iv_back);
         mTVTitleUp = (TextView) findViewById(R.id.tv_title);
@@ -351,7 +384,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     * 活动素材（招募、特邀）
+     活动素材（招募、特邀）
      */
     private void initListView() {
 
@@ -362,14 +395,16 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     * 发布悬赏活动--预览
+     发布悬赏活动--预览
      */
     private void updateUpFromLaunchView() {
 
         mLLListInvite.setVisibility(View.GONE);
         mTVCountTime.setVisibility(View.GONE);
-        mTVTitleUp.setVisibility(View.GONE);
+        mTVTitleUp.setVisibility(View.VISIBLE);
         mTVBrandName.setVisibility(View.GONE);
+        llShare.setVisibility(View.INVISIBLE);
+        mTVTitleUp.setText(title);
         mTVActivityName.setText(title);
         mTVActivityTime.setText(startTime + " - " + endTime);
         mTVBrandInfo.setText(introduce);
@@ -409,6 +444,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             mWProgressDialog = WProgressDialog.createDialog(DetailContentActivity.this);
         }
         mWProgressDialog.show();
+        requestParams.put("invitee_page", "1");
         mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(url), requestParams, new RequestCallback() {
 
             @Override
@@ -422,12 +458,19 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("活动详情数据", response);
+             //   LogUtil.LogShitou("活动详情数据", response);
                 CampaignInviteBean campaignInviteEntity = GsonTools.jsonToBean(response, CampaignInviteBean.class);
                 if (campaignInviteEntity != null && campaignInviteEntity.getError() == 0) {
                     mCampaignInviteEntity = campaignInviteEntity.getCampaign_invite();
                     mInviteBean = campaignInviteEntity.getInvitees();
-
+                    if (TextUtils.isEmpty(campaignInviteEntity.getLeader_club())) {
+                        HelpTools.insertCommonXml(HelpTools.isLeader, "");
+                        forLeader(false);
+                    } else {
+                        HelpTools.insertCommonXml(HelpTools.isLeader, campaignInviteEntity.getLeader_club());
+                        forLeader(true);
+                    }
+                    mInviteesCount = campaignInviteEntity.getInvitees_count();
                     if (mWebView != null) {
                         mWebUrl = mCampaignInviteEntity.getCampaign().getUrl();
                         mWebView.loadUrl(mWebUrl);
@@ -508,7 +551,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     * 更新上页
+     更新上页
      */
     private void updateUpView() {
 
@@ -521,49 +564,82 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         } else {
             mTVNextPage.setText(getString(R.string.campaign_data_download));
         }
-//走马灯
+        //走马灯
         if (CAMPAIGN_TYPE_CPI.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type()) || CAMPAIGN_TYPE_CPT.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type()) || CAMPAIGN_TYPE_CPA.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())) {
-            mTVRemark.setVisibility(View.GONE);
+            // forLeader(false);
             String remark = mCampaignInviteEntity.getCampaign().getRemark();
             if (TextUtils.isEmpty(remark)) {
                 return;
             }
-            mImgCampaignsRequest.setVisibility(View.VISIBLE);
-            mImgCampaignsRequest.setOnClickListener(new View.OnClickListener() {
+            mTvCampaignsRequest.setVisibility(View.VISIBLE);
+            mTvCampaignsRequest.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
-                    shareCtaAndCti(DetailContentActivity.this,mCampaignInviteEntity.getCampaign().getRemark(),false);
+                    shareCtaAndCti(DetailContentActivity.this, mCampaignInviteEntity.getCampaign().getRemark(), false);
                 }
             });
-            if (mCampaignInviteEntity.getStatus().equals("running")){
-                shareCtaAndCti(DetailContentActivity.this,mCampaignInviteEntity.getCampaign().getRemark(),true);
+            if (mCampaignInviteEntity.getStatus().equals("running")) {
+                if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
+                    showShadowDialog(DetailContentActivity.this, true, mCampaignInviteEntity.getCampaign().getRemark());
+                } else {
+                    if (HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
+                        shareCtaAndCti(DetailContentActivity.this, mCampaignInviteEntity.getCampaign().getRemark(), true);
+                    } else {
+                        showShadowDialog(DetailContentActivity.this, true, mCampaignInviteEntity.getCampaign().getRemark());
+                    }
+                }
             }
-         //   mTVRemark.setText(remark + getString(R.string.white_space) + getString(R.string.white_space) + remark + getString(R.string.white_space));
-           // mTVRemark.requestFocus();
-        } else if (CAMPAIGN_TYPE_RECRUIT.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())){
-            mTVRemark.setVisibility(View.VISIBLE);
-            String remark = mCampaignInviteEntity.getCampaign().getRemark();
-            if (TextUtils.isEmpty(remark)) {
-                return;
+            //   mTVRemark.setText(remark + getString(R.string.white_space) + getString(R.string.white_space) + remark + getString(R.string.white_space));
+            // mTVRemark.requestFocus();
+        } else if (CAMPAIGN_TYPE_RECRUIT.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())) {
+            // forLeader(false);
+            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
+                showShadowDialog(DetailContentActivity.this, false, null);
+            } else {
+                if (! HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
+                    showShadowDialog(DetailContentActivity.this, false, null);
+                }
             }
-            mTVRemark.setText(remark + getString(R.string.white_space) + getString(R.string.white_space) + remark + getString(R.string.white_space));
-            mTVRemark.requestFocus();
-        }else if (CAMPAIGN_TYPE_POST.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())){
-            mTVRemark.setVisibility(View.GONE);
-            mImgCampaignsRequest.setVisibility(View.VISIBLE);
-            mImgCampaignsRequest.setOnClickListener(new View.OnClickListener() {
+
+            //            String remark = mCampaignInviteEntity.getCampaign().getRemark();
+            //            if (TextUtils.isEmpty(remark)) {
+            //                return;
+            //            }
+            //   mTVRemark.setText(remark + getString(R.string.white_space) + getString(R.string.white_space) + remark + getString(R.string.white_space));
+            //  mTVRemark.requestFocus();
+        } else if (CAMPAIGN_TYPE_POST.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())) {
+            // forLeader(false);
+            mTvCampaignsRequest.setVisibility(View.VISIBLE);
+            mTvCampaignsRequest.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
-                    shareCtaAndCti(DetailContentActivity.this,"此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过",false);
+                    shareCtaAndCti(DetailContentActivity.this, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过", false);
                 }
             });
-            if (mCampaignInviteEntity.getStatus().equals("running")){
-                shareCtaAndCti(DetailContentActivity.this,"此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过",true);
+            if (mCampaignInviteEntity.getStatus().equals("running")) {
+                //  shareCtaAndCti(DetailContentActivity.this, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过", true);
+                if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
+                    showShadowDialog(DetailContentActivity.this, true, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过");
+                } else {
+                    if (HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
+                        shareCtaAndCti(DetailContentActivity.this, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过", true);
+                    } else {
+                        showShadowDialog(DetailContentActivity.this, true, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过");
+                    }
+                }
             }
-        }else {
-            mImgCampaignsRequest.setVisibility(View.GONE);
-            mTVRemark.setVisibility(View.GONE);
+        } else {
+            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
+                showShadowDialog(DetailContentActivity.this, false, null);
+            } else {
+                if (! HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
+                    showShadowDialog(DetailContentActivity.this, false, null);
+                }
+            }
+            mTvCampaignsRequest.setVisibility(View.GONE);
+            //forLeader(false);
         }
         mImageView.post(new CorrectionRunnable(mImageView.getContext(), mContentFl, mImageView));
         BitmapUtil.loadImage(this.getApplicationContext(), mCampaignInviteEntity.getCampaign().getImg_url(), mImageView);
@@ -578,7 +654,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         if (mDetailContentHelper == null) {
             mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
         }
-        mDetailContentHelper.setUpCenterView(mCampaignInviteEntity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout);
+        mDetailContentHelper.setUpCenterView(mCampaignInviteEntity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout, mInviteesCount);
     }
 
     public void initWebViewSettings() {
@@ -605,6 +681,34 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         mWebSettings.setUserAgentString("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; zh-tw) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16");
     }
 
+    /**
+     leader用户需要显示走马灯
+     @param is
+     */
+    private void forLeader(boolean is) {
+        String mText = "点击右上角分享按钮，将活动分享给你的成员";
+        if (is) {
+            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.isLeader))) {
+                llRemark.setVisibility(View.GONE);
+                mTVRemark.setVisibility(View.GONE);
+            } else {
+                llRemark.setVisibility(View.VISIBLE);
+                mTVRemark.setVisibility(View.VISIBLE);
+                mTVRemark.setText(getString(R.string.white_space_ban) + mText + getString(R.string.white_space) + getString(R.string.white_space) + mText + getString(R.string.white_space));
+                mTVRemark.requestFocus();
+            }
+        } else {
+            if (! TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.isLeader))) {
+                llRemark.setVisibility(View.VISIBLE);
+                mTVRemark.setVisibility(View.VISIBLE);
+                mTVRemark.setText(getString(R.string.white_space_ban) + mText + getString(R.string.white_space) + getString(R.string.white_space) + mText + getString(R.string.white_space));
+                mTVRemark.requestFocus();
+            }
+            llRemark.setVisibility(View.GONE);
+            mTVRemark.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     protected void onDestroy() {
 
@@ -620,7 +724,9 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         if (mBasePresenter != null) {
             mBasePresenter = null;
         }
-
+        //        if (mTVRemark.getVisibility()==View.VISIBLE){
+        //            mTVRemark.stopScroll();
+        //        }
         super.onDestroy();
     }
 
@@ -635,14 +741,14 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 mSlideDetailsLayout.smoothClose(true);
                 break;
             case R.id.iv_back:
-                if (mFrom==SPConstants.PUSH_TO_DETAIL){
+                if (mFrom == SPConstants.PUSH_TO_DETAIL) {
                     //从推送进入
                     startActivity(new Intent(DetailContentActivity.this, MainActivity.class));
                     DetailContentActivity.this.finish();
-                }else {
+                } else {
                     finish();
                 }
-               // finish();
+                // finish();
                 break;
             case R.id.tv_next_page:
                 mSlideDetailsLayout.smoothOpen(true);
@@ -682,9 +788,28 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             case R.id.ll_content_invite:
                 skipToInvitees();
                 break;
+            case R.id.ll_share:
+                //分享H5
+                showShareDialog(DetailContentActivity.this);
+                //  checklsShowTipsDialog(DetailContentActivity.this);
+                break;
+            //            case R.id.img_wechat:
+            //                share(Wechat.NAME);
+            //                break;
+            //            case R.id.img_wechat_room:
+            //                share(WechatMoments.NAME);
+            //                break;
+            //            case R.id.img_weibo:
+            //                share(SinaWeibo.NAME);
+            //                break;
+            //            case R.id.img_qq:
+            //                share(QQ.NAME);
+            //                break;
+            //            case R.id.img_qq_room:
+            //                share(QZone.NAME);
+            //                break;
         }
     }
-
 
 
     private void skipToInvitees() {
@@ -737,6 +862,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 case DetailContentHelper.IMAGE_REQUEST_LOOK_CODE:
                     final String backPicturePath = data.getStringExtra("look_back_img");
                     new Thread(new Runnable() {
+
                         @Override
                         public void run() {
 
@@ -770,22 +896,446 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             if (msgEntity.getCode() == NotifyManager.TYPE_SHARE_SUCCESS) {
                 CampaignListBean.CampaignInviteEntity entity = (CampaignListBean.CampaignInviteEntity) msgEntity.getData();
                 if (mDetailContentHelper == null) {
+                    LogUtil.LogShitou("底部状态栏是否改变", "DetailContentActivity" + "855");
                     mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
                 }
                 if (entity != null) {
                     if (CAMPAIGN_TYPE_RECRUIT.equals(entity.getCampaign().getPer_budget_type())) {
+                        LogUtil.LogShitou("底部状态栏是否改变", "DetailContentActivity" + "860");
+
                         mDetailContentHelper.showSignUpSuccessDialog(this, getString(R.string.campaign_sign_up_success_wait_for_auditing));
                         mDetailContentHelper.updateBottomShareView(entity);
-                    }else {
-                        mDetailContentHelper.setUpCenterView(entity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout);
+                    } else {
+                        LogUtil.LogShitou("底部状态栏是否改变", "DetailContentActivity" + "863");
+
+                        mDetailContentHelper.setUpCenterView(entity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout, mInviteesCount);
                     }
-                }else{
+                } else {
+                    LogUtil.LogShitou("底部状态栏是否改变", "DetailContentActivity" + "866");
                     //如果为空就刷新界面
                     initData();
                 }
             }
         }
     }
+
+    //===============分享===============
+    private CustomDialogManager mCustomDialogManager;
+    private List<ShareBean> myShareList;
+    private List<ShareBean> myShareListCampaign;
+
+
+    /**
+     title右上角分享的弹窗
+     @param activity
+     */
+    private void showShareDialog(final Activity activity) {
+        View view = LayoutInflater.from(activity).inflate(R.layout.campaign_share_bottom_layout, null);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerViewCampaign = (RecyclerView) view.findViewById(R.id.recycler_view_campaign);
+        LinearLayout llTop = (LinearLayout) view.findViewById(R.id.ll_top_share);
+        LinearLayout llBittom = ((LinearLayout) view.findViewById(R.id.ll_bottom_share));
+        TextView tvCancel = (TextView) view.findViewById(R.id.tv_cancel);
+        //邀请好友一起赚钱
+        llTop.setVisibility(View.VISIBLE);
+        llBittom.setVisibility(View.GONE);
+        myShareList = new ArrayList<>();
+        myShareList.add(new ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
+        myShareList.add(new ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
+        myShareList.add(new ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
+        myShareList.add(new ShareBean("QQ好友", R.mipmap.login_qq));
+        myShareList.add(new ShareBean("QQ空间", R.mipmap.login_kongjian));
+        ShareAdapter shareAdapter = new ShareAdapter(myShareList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(shareAdapter);
+        //分享活动
+        //        myShareListCampaign = new ArrayList<>();
+        //        myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
+        //        myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
+        //        myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
+        //        ShareAdapter shareAdapterCampaing = new ShareAdapter(myShareListCampaign);
+        //        LinearLayoutManager linearLayoutManagerTwo = new LinearLayoutManager(recyclerViewCampaign.getContext());
+        //        linearLayoutManagerTwo.setOrientation(LinearLayoutManager.HORIZONTAL);
+        //        recyclerViewCampaign.setLayoutManager(linearLayoutManagerTwo);
+        //        recyclerViewCampaign.setAdapter(shareAdapterCampaing);
+
+
+
+        mCustomDialogManager = new CustomDialogManager(activity, view);
+        shareAdapter.setOnRecyclerViewListener(new ShareAdapter.OnRecyclerViewListener() {
+
+            @Override
+            public void onItemClick(View v, int position) {
+                switch (position) {
+                    case 0:
+                        share(SinaWeibo.NAME);
+                        break;
+                    case 1:
+                        share(Wechat.NAME);
+                        break;
+                    case 2:
+                        share(WechatMoments.NAME);
+                        break;
+                    case 3:
+                        share(QQ.NAME);
+                        break;
+                    case 4:
+                        share(QZone.NAME);
+                        break;
+                }
+
+            }
+        });
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                mCustomDialogManager.dismiss();
+            }
+        });
+        mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
+        mCustomDialogManager.dg.getWindow().setGravity(Gravity.BOTTOM);
+        mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+        mCustomDialogManager.showDialog();
+    }
+
+    private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
+    private static final String TITLE_URL = CommonConfig.SERVICE + "invite?inviter_id=";
+    private static final String TITLE_URL_CAMPAIGN = CommonConfig.SERVICE + "wechat_campaign/campaign_page?campaign_id=";
+    private static final String TITLE_URL_LEADER = CommonConfig.SERVICE + "club_campaign/campaign_page?campaign_id=";
+
+    /**
+     弹出分享面板：微信朋友圈H5  其他文章内容
+     @param platName
+     */
+    private void share(String platName) {
+
+        if (mCustomDialogManager != null) {
+            mCustomDialogManager.dismiss();
+        }
+        CustomToast.showShort(DetailContentActivity.this, "前往分享...");
+        ShareSDK.initSDK(DetailContentActivity.this);
+        OnekeyShare oks = new OnekeyShare();
+        oks.setCallback(new MySharedListener());
+        oks.setPlatform(platName);
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        if (mCampaignInviteEntity == null) {
+            int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
+            if (SinaWeibo.NAME.equals(platName)) {
+                oks.setText(getResources().getString(R.string.share_invite_friends_text) + TITLE_URL + String.valueOf(id));
+            } else {
+                oks.setText(getResources().getString(R.string.share_invite_friends_text));
+            }
+            oks.setTitle(getResources().getString(R.string.share_invite_friends_title));
+            oks.setTitleUrl(TITLE_URL + String.valueOf(id));
+            oks.setUrl(TITLE_URL + String.valueOf(id));
+        } else {
+            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.isLeader))) {
+                if (Wechat.NAME.equals(platName)) {
+                    oks.setText(mCampaignInviteEntity.getCampaign().getName());
+                    oks.setTitle("Robin8邀请你成为" + mCampaignInviteEntity.getCampaign().getBrand_name() + "品牌代言人");
+                    oks.setTitleUrl(TITLE_URL_CAMPAIGN + mCampaignInviteEntity.getCampaign().getId());
+                    oks.setUrl(TITLE_URL_CAMPAIGN + mCampaignInviteEntity.getCampaign().getId());
+                } else {
+                    if (SinaWeibo.NAME.equals(platName)) {
+                        // oks.setText(mCampaignInviteEntity.getCampaign().getName() + TITLE_URL_CAMPAIGN + mCampaignInviteEntity.getCampaign().getId());
+                        //  oks.setText(mCampaignInviteEntity.getCampaign().getDescription() + mCampaignInviteEntity.getCampaign().getUrl());
+                        oks.setText("#Robin8#" + "「" + mCampaignInviteEntity.getCampaign().getBrand_name() + "「" + mCampaignInviteEntity.getCampaign().getName() + "」」" + mCampaignInviteEntity.getCampaign().getUrl());
+                    } else {
+                        oks.setText(mCampaignInviteEntity.getCampaign().getDescription());
+                    }
+                    oks.setTitle(mCampaignInviteEntity.getCampaign().getName());
+                    oks.setTitleUrl(mCampaignInviteEntity.getCampaign().getUrl());
+                    oks.setUrl(mCampaignInviteEntity.getCampaign().getUrl());
+                }
+            }else {
+                if (Wechat.NAME.equals(platName)) {
+                    oks.setText(mCampaignInviteEntity.getCampaign().getName());
+                    oks.setTitle("Robin8邀请你成为" + mCampaignInviteEntity.getCampaign().getBrand_name() + "品牌代言人");
+                    oks.setTitleUrl(TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId()+"&club="+HelpTools.getCommonXml(HelpTools.isLeader));
+                    oks.setUrl(TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId()+"&club="+HelpTools.getCommonXml(HelpTools.isLeader));
+                } else {
+                    if (SinaWeibo.NAME.equals(platName)) {
+                        oks.setText(("#Robin8#" + "「" + mCampaignInviteEntity.getCampaign().getBrand_name() + "「" + mCampaignInviteEntity.getCampaign().getName() + "」」" + (TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId()+"&club="+HelpTools.getCommonXml(HelpTools.isLeader))));
+                    } else {
+                        oks.setText(mCampaignInviteEntity.getCampaign().getDescription());
+                    }
+                    oks.setTitle(mCampaignInviteEntity.getCampaign().getName());
+                    oks.setTitleUrl(mCampaignInviteEntity.getCampaign().getUrl());
+                    oks.setUrl(mCampaignInviteEntity.getCampaign().getUrl());
+                }
+            }
+        }
+
+        oks.setImageUrl(IMAGE_URL);
+        oks.setSite(getResources().getString(R.string.app_name));
+        oks.setSiteUrl(CommonConfig.SITE_URL);
+        // oks.setSiteUrl(("http://robin8.net/wechat_campaign/campaign_page?campaign_id=3904"));
+        oks.show(DetailContentActivity.this);
+    }
+
+    private class MySharedListener implements PlatformActionListener {
+        @Override
+        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+            CustomToast.showShort(DetailContentActivity.this, "分享成功");
+        }
+
+        @Override
+        public void onError(Platform platform, int i, Throwable throwable) {
+            CustomToast.showShort(DetailContentActivity.this, "分享失败");
+        }
+
+        @Override
+        public void onCancel(Platform platform, int i) {
+            CustomToast.showShort(DetailContentActivity.this, "分享取消");
+        }
+    }
+
+    public static class ShareAdapter extends BaseRecyclerAdapter {
+        private OnRecyclerViewListener onRecyclerViewListener;
+        private ViewHolder mViewHolder;
+        private List<ShareBean> myList;
+
+        public ShareAdapter(List<ShareBean> list) {
+            this.myList = list;
+        }
+
+        public interface OnRecyclerViewListener {
+            void onItemClick(View v, int position);
+        }
+
+        public void setOnRecyclerViewListener(OnRecyclerViewListener onRecyclerViewListener) {
+            this.onRecyclerViewListener = onRecyclerViewListener;
+        }
+
+        //        @Override
+        //        public void onClick(View view) {
+        //            switch (view.getId()) {
+        //
+        //            }
+        //        }
+
+        @Override
+        public RecyclerView.ViewHolder getViewHolder(View view) {
+            return mViewHolder;
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType, boolean isItem) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.campaign_share_item, null);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            view.setLayoutParams(lp);
+            mViewHolder = new ViewHolder(view);
+            return mViewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position, boolean isItem) {
+            if (holder instanceof ViewHolder) {
+                final ViewHolder viewHolder = (ViewHolder) holder;
+                viewHolder.position = position;
+                viewHolder.itemIcon.setImageResource(myList.get(position).getIcon());
+                viewHolder.itemName.setText(myList.get(position).getName());
+                viewHolder.itemLayout.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (onRecyclerViewListener != null) {
+                            onRecyclerViewListener.onItemClick(viewHolder.itemLayout, position);
+                        }
+                    }
+                });
+            }
+        }
+
+        @Override
+        public int getAdapterItemCount() {
+            return myList == null ? 0 : myList.size();
+        }
+
+        //        @Override
+        //        public int getAdapterItemViewType(int position) {
+        //            return 1;
+        //        }
+        class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
+
+            private final TextView itemName;
+            private final ImageView itemIcon;
+            private final RelativeLayout itemLayout;
+            public int position;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                itemView.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (onRecyclerViewListener != null) {
+                            onRecyclerViewListener.onItemClick(v, getPosition());
+                        }
+                    }
+                });
+                itemName = ((TextView) itemView.findViewById(R.id.tv_share_item_name));
+                itemIcon = ((ImageView) itemView.findViewById(R.id.img_share_item_icon));
+                itemLayout = ((RelativeLayout) itemView.findViewById(R.id.ll_layout));
+            }
+
+            //            @Override
+            //            public void onClick(View v) {
+            //                if (null != onRecyclerViewListener) {
+            //                    onRecyclerViewListener.onItemClick(position);
+            //                }
+            //            }
+
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
+        }
+    }
+
+    public static class ShareBean implements Serializable {
+        private String name;
+        private int icon;
+
+        public ShareBean(String name, int icon) {
+            this.name = name;
+            this.icon = icon;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getIcon() {
+            return icon;
+        }
+
+        public void setIcon(int icon) {
+            this.icon = icon;
+        }
+    }
+
+    //===================蒙版======================
+    public void showShadowDialog(final Activity activity, final boolean isShowRequest, final String content) {
+        // String rejectReason = campaignInviteEntity.getReject_reason();
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_shadow_layout, null);
+        RelativeLayout llShadow = (RelativeLayout) view.findViewById(R.id.ll_shadow);
+        final ImageView imgBg = (ImageView) view.findViewById(R.id.img_shadow_invite);
+        final LinearLayout imgBgTwo = (LinearLayout) view.findViewById(R.id.ll_shadow_share);
+        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
+        imgBg.setVisibility(View.VISIBLE);
+        llShadow.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                HelpTools.insertCommonXml(HelpTools.ShadowCampaign, getString(R.string.submit));
+                if (imgBg.getVisibility() == View.VISIBLE) {
+                    imgBg.setVisibility(View.GONE);
+                    imgBgTwo.setVisibility(View.VISIBLE);
+                } else {
+                    cdm.dismiss();
+                    if (isShowRequest) {
+                        shareCtaAndCti(DetailContentActivity.this, content, true);
+                    }
+                }
+            }
+        });
+        //        imgBg.setOnClickListener(new View.OnClickListener() {
+        //
+        //            @Override
+        //            public void onClick(View view) {
+        //                // cdm.dismiss();
+        //                imgBg.setVisibility(View.GONE);
+        //                imgBgTwo.setVisibility(View.VISIBLE);
+        //            }
+        //        });
+        //        imgBgTwo.setOnClickListener(new View.OnClickListener() {
+        //
+        //            @Override
+        //            public void onClick(View view) {
+        //                cdm.dismiss();
+        //                if (isShowRequest){
+        //                    shareCtaAndCti(DetailContentActivity.this, mCampaignInviteEntity.getCampaign().getRemark(), true);
+        //                }
+        //            }
+        //        });
+        Window win = cdm.dg.getWindow();
+
+        WindowManager.LayoutParams lp = win.getAttributes();
+
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+        lp.dimAmount = 0.2f;
+
+        win.setAttributes(lp);
+        cdm.dg.setCanceledOnTouchOutside(false);
+        cdm.dg.getWindow().setGravity(Gravity.CENTER);
+        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+        cdm.showDialog();
+    }
+
+    //    private static Dialog getCustomDialog(final Activity activity, View view, boolean dismissTouchOutSide, boolean cancelable, int theme) {
+    //        Dialog dialog = new Dialog(activity, R.style.Dialog_FullScreen);
+    //        dialog.setContentView(view);
+    //        dialog.setCancelable(cancelable);
+    //        dialog.setCanceledOnTouchOutside(dismissTouchOutSide);
+    //        Window win = dialog.getWindow();
+    //
+    //        WindowManager.LayoutParams lp = win.getAttributes();
+    //
+    //        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+    //
+    //        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+    //
+    //        lp.dimAmount = 0.2f;
+    //
+    //        win.setAttributes(lp);
+    //        if (! cancelable) {
+    //            dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+    //
+    //                @Override
+    //                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+    //                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+    //                        dialog.dismiss();
+    //                        activity.finish();
+    //                    }
+    //                    return false;
+    //                }
+    //            });
+    //        }
+    //        return dialog;
+    //    }
+
+    //    private static void checklsShowTipsDialog(Activity activity) {
+    //        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_tips, null, true);
+    //        ImageView imageView = (ImageView) view.findViewById(R.id.tips_iv);
+    //        boolean isShow = false;
+    //        // imageView.setBackgroundResource(R.drawable.tips_homepage);
+    //        if (isShow) {
+    //            return;
+    //        }
+    //        final Dialog dialog = getCustomDialog(activity, view, true, true, - 1);
+    //        view.setOnClickListener(new View.OnClickListener() {
+    //
+    //            @Override
+    //            public void onClick(View view) {
+    //                dialog.dismiss();
+    //            }
+    //        });
+    //        dialog.show();
+    //    }
+}
 //    @Override
 //        public boolean onKeyDown(int keyCode, KeyEvent event) {
 //
@@ -802,7 +1352,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 //            }
 //            return super.onKeyDown(keyCode, event);
 //        }
-}
+
 
 //    private void bindWechat() {
 //        String string = CacheUtils.getString(DetailContentActivity.this, SPConstants.MINE_DATA, null);

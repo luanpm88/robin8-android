@@ -47,7 +47,6 @@ import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.widget.CustomDialogManager;
@@ -343,7 +342,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("我的页面", "==>" + response);
+                // LogUtil.LogShitou("我的页面", "==>" + response);
                 parseJson(response);
             }
         });
@@ -635,13 +634,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     * 输入邀请码
+     输入邀请码
      */
     private void skipToInvitationCode() {
-    if (isLogined(SPConstants.INVITATION_CODE)){
-        Intent intent = new Intent(mActivity, InvitationCodeActivity.class);
-        mActivity.startActivity(intent);
-    }
+        if (isLogined(SPConstants.INVITATION_CODE)) {
+            Intent intent = new Intent(mActivity, InvitationCodeActivity.class);
+            mActivity.startActivity(intent);
+        }
     }
 
     private void skipToRobinIndiana() {
@@ -713,26 +712,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 if (item.name.equals("一元夺宝")) {
                     holder.mLlItem.setVisibility(View.GONE);
                     holder.lineDown.setVisibility(View.GONE);
-                    //                   if (isHiddle==0){
-                    //                       holder.mLlItem.setVisibility(View.GONE);
-                    //                       holder.lineDown.setVisibility(View.GONE);
-                    //                   }else {
-                    //                       if (isHiddle==9){
-                    //                           holder.mLlItem.setVisibility(View.GONE);
-                    //                           holder.lineDown.setVisibility(View.GONE);
-                    //                       }else {
-                    //                           holder.mLlItem.setVisibility(View.VISIBLE);
-                    //                           holder.lineDown.setVisibility(View.VISIBLE);
-                    //                       }
-                    //                   }
                 }
                 if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                    IconFontHelper.setTextIconFont(mActivity,holder.mTVItemIcon, R.mipmap.icon_invitation_code);
+                    IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_invitation_code);
                 } else {
                     IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);
                 }
                 IconFontHelper.setTextIconFont(holder.mTVArrow, R.string.arrow_right);
-
                 holder.mTVItemTitle.setText(item.name);
             } else {
                 convertView = View.inflate(mActivity.getApplicationContext(), R.layout.mine_item_header, null);

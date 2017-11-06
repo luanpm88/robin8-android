@@ -17,13 +17,14 @@
             android:gravity="center_vertical"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:singleLine="true"
             android:text=""
             android:textColor="@color/gray_custom"
             android:textSize="@dimen/undefine_font_5" />
 
         <LinearLayout
+            android:id="@+id/ll_reason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -34,12 +35,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:layout_marginBottom="2.5dp"
                 android:layout_gravity="right"
                 android:textColor="@color/gray_custom"
                 android:textSize="@dimen/undefine_font_3"
                 android:text="一直" />
 
             <TextView
+                android:layout_marginTop="2.5dp"
                 android:id="@+id/tv_bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
