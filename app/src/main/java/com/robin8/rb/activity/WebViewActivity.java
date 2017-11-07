@@ -1,10 +1,12 @@
 package com.robin8.rb.activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -12,6 +14,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -147,6 +150,7 @@ public class WebViewActivity extends BaseActivity {
         if (bean != null && bean instanceof ProductListModel.CpsMaterialsBean) {
             mCpsMaterialsBean = (ProductListModel.CpsMaterialsBean) bean;
         }
+
     }
 
     @Override
@@ -165,7 +169,7 @@ public class WebViewActivity extends BaseActivity {
     private void initFrom(View view) {
         if (from == SPConstants.CREATE_FIRST_LIST || from == SPConstants.MYCREATE_LIST1) {//我的创作
             initViewWhenFromCreateList(view);
-        } else if (from == SPConstants.CREATE_FIRST_LIST_PRODUCT) {//从首页进商品库
+        } else if (from == SPConstants.CREATE_FIRST_LIST_PRODUCT) {//从创作商品库进入进商品库
             initViewWhenFromCreateListToProduct(view);
         } else if (from == SPConstants.EDIT_CREATE_ACTIVITY) {//从编辑创作页进商品库
             initViewWhenFromEditCreate(view);
@@ -712,14 +716,36 @@ public class WebViewActivity extends BaseActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             LogUtil.logXXfigo("shouldOverrideUrlLoading url=" + url);
-            if (url.endsWith(".apk")) {
+
+            if (url.startsWith("weixin://wap/pay?")){
+                try{
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+
+                }catch (ActivityNotFoundException e){
+                   CustomToast.showShort(WebViewActivity.this,"请安装微信最新版！");
+                }
+            }else if (url.startsWith("openapp.jdmobile://virtual?")){
+                try{
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                }catch (ActivityNotFoundException e){
+                    CustomToast.showShort(WebViewActivity.this,"请安装京东最新版！");
+                }
+            }else if (url.endsWith(".apk")) {
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
                 Uri content_url = Uri.parse(url);
                 intent.setData(content_url);
                 startActivity(intent);
+            }else {
+                view.loadUrl(url);
             }
-            return super.shouldOverrideUrlLoading(view, url);
+            return true;
         }
 
         @Override
@@ -736,6 +762,17 @@ public class WebViewActivity extends BaseActivity {
             if (mWProgressDialog != null) {
                 mWProgressDialog.dismiss();
             }
+            try {
+                view.clearView();
+                view.clearHistory();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed();
         }
     }
 
