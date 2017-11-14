@@ -60,7 +60,9 @@ public class BasePager {
     public void initTitleBar() {
 
     }
-
+//public void pasue(){
+//
+//}
     public boolean isDoubleClick() {
         long currentTimeMillis = System.currentTimeMillis();
         if(currentTimeMillis - lastTime <800){

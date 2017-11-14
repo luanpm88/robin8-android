@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -100,12 +99,15 @@ public class FeedBackActivity extends BaseActivity {
 
         File file = null;
         if(mHaveBitmap){
-             file = new File(BitmapUtil.saveBitmap
-                    (BitmapUtil.path + File.separator + "screenShot", compressBitmap(BaseApplication.getInstance().getScreenShot())));
+            Bitmap bitmap = compressBitmap(BaseApplication.getInstance().getScreenShot());
+            if (bitmap!=null){
+                file = new File(BitmapUtil.saveBitmap
+                        (BitmapUtil.path + File.separator + "screenShot", bitmap));
+            }else {
+                CustomToast.showShort(FeedBackActivity.this, "感谢您的反馈");
+                FeedBackActivity.this.finish();
+            }
         }
-
-
-        Log.e("11111","1111111");
         HttpRequest.getInstance().post(true, HelpTools.getUrl(CommonConfig.FEED_BACK_URL), "screenshot", "screenshot", file, requestMap, new RequestCallback() {
 
             @Override
@@ -117,8 +119,18 @@ public class FeedBackActivity extends BaseActivity {
             public void onResponse(String response) {
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (null == baseBean || baseBean.getError() == 0) {
-                    FeedBackActivity.this.finish();
                     CustomToast.showShort(FeedBackActivity.this, "感谢您的反馈");
+                    FeedBackActivity.this.finish();
+                }else if (baseBean.getError()==1){
+                    if (!TextUtils.isEmpty(baseBean.getDetail())){
+                        CustomToast.showShort(FeedBackActivity.this,baseBean.getDetail());
+                        finish();
+                    }else {
+                        CustomToast.showShort(FeedBackActivity.this, "感谢您的反馈");
+                        finish();
+                    }
+                }else {
+                    finish();
                 }
             }
         });
@@ -126,6 +138,9 @@ public class FeedBackActivity extends BaseActivity {
 
     private Bitmap compressBitmap(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        if (bitmap.isRecycled()){
+           return null;
+        }else {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
         if (baos.toByteArray().length / 1024 > 1000)
@@ -143,6 +158,7 @@ public class FeedBackActivity extends BaseActivity {
         bitmap.recycle();
         byte[] bytes = baos.toByteArray();
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);//很容易 OOM
+        }
         //return bitmap;
     }
 
@@ -154,6 +170,16 @@ public class FeedBackActivity extends BaseActivity {
     @Override
     protected void executeOnclickRightView() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (BaseApplication.getInstance().getScreenShot()!=null){
+            if (!BaseApplication.getInstance().getScreenShot().isRecycled()){
+                BaseApplication.getInstance().getScreenShot().recycle();
+            }
+        }
     }
 
     @Override

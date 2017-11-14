@@ -9,6 +9,7 @@ import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.presenter.PresenterI;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 
 /**
  * Created by seven on 24/02/2017.
@@ -31,6 +32,7 @@ public class FirstPagerPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
+//                LogUtil.LogShitou("这是什么",response);
                 FirstPagerModel firstPagerModel = GsonTools.jsonToBean(response, FirstPagerModel.class);
                 if (firstPagerModel != null) {
                     mIFirstPagerView.setTotalIncome(firstPagerModel.getTotalIncome());

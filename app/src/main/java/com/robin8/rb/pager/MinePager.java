@@ -58,8 +58,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- 新闻界面 NewsPager
- @author Figo */
+ 我的页面
+ @author Figo zc */
 public class MinePager extends BasePager implements View.OnClickListener, Observer {
 
     private static final int MY_WALLET = 1;
@@ -483,6 +483,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         return true;
     }
 
+    /**
+     * 我的钱包
+     */
     private void skipToWallet() {
         //        Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
         //        mActivity.startActivity(intent);
@@ -606,15 +609,15 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private void skipToCampaign() {
 
         if (isLogined(SPConstants.MY_CAMPAIGN_ACTIVITY)) {
-            String nameArr[] = {"进行中", "待上传", "审核中", "已完成"};
-            String campaignTypeArr[] = {"approved", "waiting_upload", "verifying", "completed"};
+            String nameArr[] = {"审核中", "审核通过", "审核拒绝"};
+            String campaignTypeArr[] = {"pending", "passed", "rejected"};
             Intent intent = new Intent(mActivity, FragmentsActivity.class);
             Bundle bundle = new Bundle();
             bundle.putStringArray("name", nameArr);
             bundle.putStringArray("type", campaignTypeArr);
             bundle.putString("page_name", StatisticsAgency.MY_TASK);
             bundle.putString("title_name", mActivity.getString(R.string.my_capaign));
-            bundle.putString("url", HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL));
+            bundle.putString("url", HelpTools.getUrl(CommonConfig.MY_CAMPAIGNS));
             intent.putExtras(bundle);
             mActivity.startActivity(intent);
         }
@@ -709,7 +712,11 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                         setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE);
                         break;
                 }
-                if (item.name.equals("一元夺宝")) {
+//                if (item.name.equals("一元购")) {
+//                    holder.mLlItem.setVisibility(View.GONE);
+//                    holder.lineDown.setVisibility(View.GONE);
+//                }
+                 if (item.name.equals("我的产品")) {
                     holder.mLlItem.setVisibility(View.GONE);
                     holder.lineDown.setVisibility(View.GONE);
                 }

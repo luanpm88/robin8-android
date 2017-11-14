@@ -89,6 +89,8 @@ public class LaunchRewordActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
+
+//                LogUtil.LogShitou("发布悬赏活动",response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }

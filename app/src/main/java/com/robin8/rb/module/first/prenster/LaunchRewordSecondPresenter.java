@@ -26,6 +26,7 @@ import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.ILaunchRewordSecondView;
 
@@ -88,6 +89,7 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
 
             @Override
             public void onResponse(String response) {
+                LogUtil.LogShitou("修改活动详情","===>"+response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -264,7 +266,8 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
 
             @Override
             public void onResponse(String response) {
-                Log.e("xxfigo", "PAY_BY_VOUCHER_URL=" + response);
+                LogUtil.LogShitou("去支付",HelpTools.getUrl(CommonConfig.PAY_BY_VOUCHER_URL)+response);
+               // Log.e("xxfigo", "PAY_BY_VOUCHER_URL=" + response);
                 mLaunchRewordModel = GsonTools.jsonToBean(response, LaunchRewordModel.class);
                 if (mLaunchRewordModel == null) {
                     CustomToast.showShort(mActivity, mActivity.getString(R.string.please_data_wrong));

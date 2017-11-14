@@ -158,6 +158,7 @@ public class LaunchRewordFirstActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_bottom:
+                //智能发布
                 submit();
                 break;
             case R.id.tv_delete:

@@ -36,6 +36,7 @@ public class HelpTools {
     public static final String ShadowMine = "ShadowMine";
     public static final String ShadowCampaign = "ShadowCampaign";
     public static final String isLeader = "isLeader";
+    public static final String SERVER = "Service";
 
 
     public static final String LOGININFO = "loginInfo";// 本地存储文件名字

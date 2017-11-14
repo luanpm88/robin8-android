@@ -7,7 +7,6 @@ import android.widget.EditText;
 
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
-import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -17,10 +16,12 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 
 import static com.robin8.rb.constants.CommonConfig.MY_INVITATION_CODE_URL;
 
+/**
+ * 输入邀请码
+ */
 public class InvitationCodeActivity extends BaseActivity {
 
     private EditText editCode;
@@ -86,7 +87,7 @@ public class InvitationCodeActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("邀请码", "======>" + response);
+              //  LogUtil.LogShitou("邀请码", "======>" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -110,11 +111,11 @@ public class InvitationCodeActivity extends BaseActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        mPageName = StatisticsAgency.MY_INVITATION_CODE;
-        super.onResume();
-    }
+//    @Override
+//    protected void onResume() {
+//        mPageName = StatisticsAgency.MY_INVITATION_CODE;
+//        super.onResume();
+//    }
 
     @Override
     protected void executeOnclickLeftView() {

@@ -2,6 +2,7 @@ package com.robin8.rb.module.mine.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.igexin.sdk.PushManager;
 import com.robin8.rb.R;
+import com.robin8.rb.activity.ChangeHttpActivity;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.activity.WebViewActivity;
 import com.robin8.rb.base.BaseActivity;
@@ -30,8 +32,7 @@ import java.util.List;
 
 
 /**
- * 成为KOL
- */
+ 成为KOL */
 public class SettingActivity extends BaseActivity {
 
     private static final int TYPE_LOGIN = 0;
@@ -50,6 +51,32 @@ public class SettingActivity extends BaseActivity {
     @Override
     public void setTitleView() {
         mTVCenter.setText(R.string.setting);
+        mTVCenter.setOnClickListener(new View.OnClickListener() {
+
+            final static int COUNTS = 5;//点击次数
+            final static long DURATION = 3 * 1000;//规定有效时间
+            long[] mHits = new long[COUNTS];
+
+            @Override
+            public void onClick(View view) {
+                /**
+                 * 实现双击方法
+                 * src 拷贝的源数组
+                 * srcPos 从源数组的那个位置开始拷贝.
+                 * dst 目标数组
+                 * dstPos 从目标数组的那个位子开始写数据
+                 * length 拷贝的元素的个数
+                 */
+                System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+                //实现左移，然后最后一个位置更新距离开机的时间，如果最后一个时间和最开始时间小于DURATION，即连续5次点击
+                mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+                if (mHits[0] >= (SystemClock.uptimeMillis() - DURATION)) {
+                  //  String tips = "您已在[" + DURATION + "]ms内连续点击【" + mHits.length + "】次了！！！";
+                  //  Toast.makeText(SettingActivity.this, tips, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SettingActivity.this, ChangeHttpActivity.class));
+                }
+            }
+        });
     }
 
     @Override
@@ -208,9 +235,9 @@ public class SettingActivity extends BaseActivity {
                         CacheUtils.putString(SettingActivity.this, SPConstants.MINE_DATA, null);
                         NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN_OUT);
                         //HelpTools.insertCommonXml(HelpTools.NATIVE,"");
-                        HelpTools.insertCommonXml(HelpTools.MyKolId,"");
-                        HelpTools.insertCommonXml(HelpTools.PagerData,"");
-                        HelpTools.insertCommonXml(HelpTools.isLeader,"");
+                        HelpTools.insertCommonXml(HelpTools.MyKolId, "");
+                        HelpTools.insertCommonXml(HelpTools.PagerData, "");
+                        HelpTools.insertCommonXml(HelpTools.isLeader, "");
                         intent = new Intent(SettingActivity.this, LoginActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putInt("from", SPConstants.MAINACTIVITY);

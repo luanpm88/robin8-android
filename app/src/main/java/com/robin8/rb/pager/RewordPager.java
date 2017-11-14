@@ -2,6 +2,7 @@ package com.robin8.rb.pager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.text.TextPaint;
@@ -13,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.robin8.rb.R;
+import com.robin8.rb.activity.ChangeHttpActivity;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.adapter.ImagePagerAdapter;
 import com.robin8.rb.adapter.RewordAdapter;
@@ -28,6 +30,8 @@ import com.robin8.rb.model.CampaignListBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.NotifyMsgEntity;
 import com.robin8.rb.module.first.activity.LaunchRewordFirstActivity;
+import com.robin8.rb.module.reword.banner.CardPagerAdapter;
+import com.robin8.rb.module.reword.banner.ShadowTransformer;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.protocol.RewordProtocol;
 import com.robin8.rb.task.LoginTask;
@@ -45,7 +49,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * 新闻界面 NewsPager
+ * 活动页面
  *
  * @author Figo
  */
@@ -77,7 +81,10 @@ public class RewordPager extends BasePager implements Observer {
     private RadioButton rb;
     private LinearLayout mTopPoints;
 
-    private AutoScrollViewPager mVpAuto;
+   // private com.robin8.rb.module.reword.banner.ViewPager mVpAuto;
+   private AutoScrollViewPager mVpAuto;
+    private CardPagerAdapter mCardAdapter;
+    private ShadowTransformer mCardShadowTransformer;
     private int mTotalPages;
 
     public RewordPager(FragmentActivity activity) {
@@ -116,7 +123,7 @@ public class RewordPager extends BasePager implements Observer {
                 public void onResponse(String response) {
                     loadData(status);
                 }
-            }, CommonConfig.TOURIST_PHONE, CommonConfig.TOURIST_CODE, null);
+            }, CommonConfig.TOURIST_PHONE, CommonConfig.TOURIST_CODE, null,null);
         } else {
             loadData(INIT_DATA);
         }
@@ -262,6 +269,12 @@ public class RewordPager extends BasePager implements Observer {
         if (mVpAuto == null) {
             return;
         }
+//        mCardAdapter = new CardPagerAdapter(mActivity,mBannerList);
+//        mCardShadowTransformer = new ShadowTransformer(mVpAuto, mCardAdapter);
+//        mVpAuto.setAdapter(mCardAdapter);
+//        mVpAuto.setPageTransformer(false, mCardShadowTransformer);
+//        mVpAuto.setOffscreenPageLimit(3);
+//        mCardShadowTransformer.setScale(0.27272727f,true);
         mVpAuto.setAdapter(new ImagePagerAdapter(mActivity, mBannerList).setInfiniteLoop(true));
         mVpAuto.setOnPageChangeListener(new MyOnPageChangeListener(size, mTopPoints));
         mVpAuto.setInterval(5000);
@@ -294,6 +307,31 @@ public class RewordPager extends BasePager implements Observer {
         mTitleBarText.setVisibility(View.VISIBLE);
         mRewordFilterLl.setVisibility(View.VISIBLE);
        mRewordLaunchIv.setVisibility(View.GONE);
+        mTitleBarText.setOnClickListener(new View.OnClickListener() {
+            final static int COUNTS = 9;//点击次数
+            final static long DURATION = 3 * 1000;//规定有效时间
+            long[] mHits = new long[COUNTS];
+            @Override
+            public void onClick(View view) {
+
+                        /**
+                         * 实现双击方法
+                         * src 拷贝的源数组
+                         * srcPos 从源数组的那个位置开始拷贝.
+                         * dst 目标数组
+                         * dstPos 从目标数组的那个位子开始写数据
+                         * length 拷贝的元素的个数
+                         */
+                        System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+                        //实现左移，然后最后一个位置更新距离开机的时间，如果最后一个时间和最开始时间小于DURATION，即连续5次点击
+                        mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+                        if (mHits[0] >= (SystemClock.uptimeMillis() - DURATION)) {
+                            //  String tips = "您已在[" + DURATION + "]ms内连续点击【" + mHits.length + "】次了！！！";
+                            //  Toast.makeText(SettingActivity.this, tips, Toast.LENGTH_SHORT).show();
+                           mActivity.startActivity(new Intent(mActivity, ChangeHttpActivity.class));
+                        }
+            }
+        });
        // mRewordLaunchIv.setVisibility(View.VISIBLE);
     }
 

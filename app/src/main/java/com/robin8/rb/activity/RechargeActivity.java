@@ -30,6 +30,7 @@ import com.robin8.rb.util.HelpTools;
 
 
 /**
+    立即充值
  * 支付宝充值页面
  */
 public class RechargeActivity extends BaseActivity {

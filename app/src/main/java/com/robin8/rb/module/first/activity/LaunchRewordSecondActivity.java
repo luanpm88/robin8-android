@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
@@ -20,8 +21,12 @@ import com.robin8.rb.view.ILaunchRewordSecondView;
 
 import java.util.Observable;
 
+import static com.robin8.rb.R.id.tv_right;
+
 /**
- * 钱包页面
+ * 发布活动
+ * 待付款／审核中
+ * 等待支付页面
  */
 public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchRewordSecondView {
 
@@ -43,16 +48,15 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
 
     @Override
     public void setTitleView() {
-
         Intent intent = getIntent();
         from = intent.getIntExtra("from", -1);
         mTVCenter.setText(this.getText(R.string.launch_reword));
+        mLLTitleBar.setVisibility(View.GONE);
+        mViewLine.setVisibility(View.GONE);
     }
 
     @Override
     public void initView() {
-        mLLTitleBar.setVisibility(View.GONE);
-        mViewLine.setVisibility(View.GONE);
         View view = LayoutInflater.from(this).inflate(R.layout.activity_launch_reword_second, mLLContent, true);
         mImageView = (ImageView) view.findViewById(R.id.iv);
         mTitleTv = (TextView) view.findViewById(R.id.tv_title);
@@ -65,10 +69,11 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
         mCountTv = (TextView) view.findViewById(R.id.tv_count);
         mPayInstantlyTv = (TextView) view.findViewById(R.id.tv_pay_instantly);
         mTitleTv.setText(this.getText(R.string.launch_reword));
+        ((LinearLayout) view.findViewById(R.id.ll_share)).setVisibility(View.GONE);
         mSwitchView = (SwitchView) findViewById(R.id.view_switch);
         View titlebarDetailContent = findViewById(R.id.titlebar_detail_content);
         mBackIv = (ImageView) titlebarDetailContent.findViewById(R.id.iv_back);
-        mRightIv = (TextView) titlebarDetailContent.findViewById(R.id.tv_right);
+        mRightIv = (TextView) titlebarDetailContent.findViewById(tv_right);
 
         if(from == SPConstants.MY_LAUNCH_REWORD_ACTIVITY){
             View rlModifyCampaign = view.findViewById(R.id.rl_modify_campaign);
@@ -133,10 +138,11 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.tv_right:
+            case tv_right:
                 mLaunchRewordSecondPresenter.cancelCampaign();
                 break;
             case R.id.rl_modify_campaign:
+                //去修改活动
                 mLaunchRewordSecondPresenter.skipToLaunchReword();
                 break;
         }

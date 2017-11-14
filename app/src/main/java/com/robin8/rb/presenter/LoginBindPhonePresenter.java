@@ -77,7 +77,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
         RequestParams requestParams = new RequestParams();
         requestParams.put("mobile_number", phoneNumber);
         //        LogUtil.LogShitou("发送的参数num",phoneNumber);
-        getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.GET_CODE_URL), requestParams, new RequestCallback() {
+        getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.GET_CODE_URL), requestParams, new RequestCallback() {
 
             @Override
             public void onError(Exception e) {
@@ -86,17 +86,22 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
             @Override
             public void onResponse(String response) {
-                //                LogUtil.LogShitou("验证码数据"+HelpTools.getUrl(CommonConfig.GET_CODE_URL),response);
+           //  LogUtil.LogShitou("验证码数据"+HelpTools.getUrl(CommonConfig.GET_CODE_URL),response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
-                CustomToast.showShort(mActivity, bean.getDetail());
-                if (bean.getError() == 0) {
-                    CustomToast.showShort(mActivity, "验证码发送成功");
-                    new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
-                   // new Thread(new TimerUtil(60, null, ((TextView) mILoginView.getTv()),null, mActivity, "重新获取验证码", "s后重新获取",mActivity.getResources().getColor(R.color.color_checknum),mActivity.getResources().getColor(R.color.color_checknum))).start();
+               // CustomToast.showShort(mActivity, bean.getDetail());
+                if (bean!=null){
+                    if (bean.getError() == 0) {
+                        CustomToast.showShort(mActivity, "验证码发送成功");
+                        new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
+                        // new Thread(new TimerUtil(60, null, ((TextView) mILoginView.getTv()),null, mActivity, "重新获取验证码", "s后重新获取",mActivity.getResources().getColor(R.color.color_checknum),mActivity.getResources().getColor(R.color.color_checknum))).start();
 
-                } else {
+                    } else {
+                        CustomToast.showShort(mActivity, "验证码发送失败");
+                    }
+                }else {
                     CustomToast.showShort(mActivity, "验证码发送失败");
                 }
+
             }
         });
     }

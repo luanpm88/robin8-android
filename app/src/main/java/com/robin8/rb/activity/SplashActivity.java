@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import com.igexin.sdk.PushManager;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseApplication;
+import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.model.ContactBean;
 import com.robin8.rb.model.LocationModel;
@@ -36,9 +37,15 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         HelpTools.getKoluuidFromNet();
         // PushManager.getInstance().initialize(this.getApplicationContext());
+//        if (TextUtils.isEmpty(CommonConfig.SERVICE)){
+//            HelpTools.insertCommonXml(HelpTools.SERVER, CommonConfig.SERVICE_CUSTOM);
+//        }
+        if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SERVER))){
+            CommonConfig.SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
+        }
         PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
-        HelpTools.insertCommonXml(HelpTools.NATIVE,"");
+       // HelpTools.insertCommonXml(HelpTools.NATIVE,"");
         getContacts();
         getLocation();
         //        Intent intent = getIntent();
@@ -89,12 +96,13 @@ public class SplashActivity extends Activity {
                         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                         SplashActivity.this.startActivity(intent);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                SplashActivity.this.finish();
-                            }
-                        }, 500);
+                        SplashActivity.this.finish();
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                SplashActivity.this.finish();
+//                            }
+//                        }, 500);
 
                         //                        if (i == 2) {
                         //                            Intent intent = new Intent(SplashActivity.this, DetailContentActivity.class);
@@ -121,7 +129,7 @@ public class SplashActivity extends Activity {
                         //                        }
 
                     }
-                }, 1500);
+                }, 1000);
             }
         });
     }

@@ -31,7 +31,8 @@ import com.robin8.rb.util.StringUtil;
 import java.util.List;
 
 /**
- * 我发布的活动详情--拒绝
+ * 我发布的活动
+ * 详情--拒绝
  */
 public class MyLaunchCampaignRejectActivity extends BaseActivity {
 

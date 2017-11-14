@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS"/> -->
+     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -226,7 +226,22 @@
             android:name=".activity.WebViewActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+
+            <!-- <intent-filter> -->
+            <!-- <data android:scheme="weixin"/> &lt;!&ndash; 自定义的scheme &ndash;&gt; -->
+            <!-- <action android:name="android.intent.action.VIEW"/> -->
+            <!-- <category android:name="android.intent.category.DEFAULT"/> -->
+            <!-- <category android:name="android.intent.category.BROWSABLE"/> -->
+            <!-- </intent-filter> -->
+            <!-- <intent-filter> -->
+            <!-- <data android:scheme="alipays"/> &lt;!&ndash; 自定义的scheme &ndash;&gt; -->
+            <!-- <action android:name="android.intent.action.VIEW"/> -->
+            <!-- <category android:name="android.intent.category.DEFAULT"/> -->
+            <!-- <category android:name="android.intent.category.BROWSABLE"/> -->
+            <!-- </intent-filter> -->
+
+        </activity>
         <activity
             android:name=".module.mine.activity.UserSignActivity"
             android:configChanges="keyboard|orientation"
@@ -301,7 +316,7 @@
             android:name=".module.mine.activity.FeedBackActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".extras.sweep.android.CaptureActivity"
@@ -613,6 +628,12 @@
             android:name=".module.mine.activity.InvitationCodeActivity"
             android:configChanges="keyboard|orientation"
             android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.ChangeHttpActivity"
+                  android:configChanges="keyboard|orientation"
+                  android:hardwareAccelerated="true"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait">
         </activity>
     </application>
 

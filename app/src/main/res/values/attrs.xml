@@ -158,4 +158,12 @@
         <!--距离悬浮的位置-->
         <attr name="stickOffset" format="dimension"/>
     </declare-styleable>
+
+    <!--活动页面banner-->
+    <declare-styleable name="ViewPager">
+        <attr name="orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>

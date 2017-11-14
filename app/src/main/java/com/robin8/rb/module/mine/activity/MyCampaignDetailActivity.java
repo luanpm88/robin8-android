@@ -31,7 +31,8 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.StringUtil;
 
 /**
- * 我发布的活动详情--进行中、已完成
+ * 我发布的活动
+ * 详情--进行中、已完成
  */
 public class MyCampaignDetailActivity extends BaseActivity {
 

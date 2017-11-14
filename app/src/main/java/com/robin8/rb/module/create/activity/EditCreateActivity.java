@@ -66,7 +66,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * 提现页面
+ * 开始创作
  */
 public class EditCreateActivity extends BaseActivity {
 

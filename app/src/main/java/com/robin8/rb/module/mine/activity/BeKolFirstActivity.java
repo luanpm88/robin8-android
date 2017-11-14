@@ -198,7 +198,7 @@ public class BeKolFirstActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                //   LogUtil.LogShitou("申请成为kol初始信息", response);
+               // LogUtil.LogShitou("申请成为kol初始信息", response);
                 parseJson(response);
             }
         });
@@ -973,6 +973,7 @@ public class BeKolFirstActivity extends BaseActivity {
         } else {
             if (requestCode == SPConstants.BE_KOL_BIND_RESULT) {
                 checkInfo();
+                //getDataFromNet();
             }
         }
 
@@ -1009,13 +1010,13 @@ public class BeKolFirstActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                //LogUtil.LogShitou("初始信息", response);
+               // LogUtil.LogShitou("初始信息", response);
                 KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
                 if (kolDetailModel != null && kolDetailModel.getError() == 0) {
                     mBigVBean = kolDetailModel.getBig_v();
                     mSocialAccounts = kolDetailModel.getSocial_accounts();
                     mKolShows = kolDetailModel.getKol_shows();
-                    // updateData();
+                   // updateData();
                     mMyListAdapter.notifyDataSetChanged();
                 }
             }

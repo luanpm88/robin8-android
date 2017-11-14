@@ -174,10 +174,10 @@ public class BaseApplication extends MultiDexApplication {
         long timeInMillis = cal.getTimeInMillis();
         String myToken = HelpTools.getLoginInfo(HelpTools.Token);
         TokenBean tokenBean = new TokenBean(StringUtil.checkString(myToken), ((int) (timeInMillis / 1000)));
-//        LogUtil.LogShitou("请求头问题token", "===>" + myToken);
-//        LogUtil.LogShitou("请求头问题时间", "===>" + ((int) (timeInMillis / 1000)));
+       // LogUtil.LogShitou("请求头问题token", "===>" + myToken);
+       // LogUtil.LogShitou("请求头问题时间", "===>" + ((int) (timeInMillis / 1000)));
         String s1 = GsonTools.beanToJson(tokenBean);
-      //  LogUtil.LogShitou("请求头问题s1", "===>" + s1);
+       // LogUtil.LogShitou("请求头问题s1", "===>" + s1);
 
         HashMap<String, Object> headMap = new HashMap<>();
         headMap.put("typ", JWT);

@@ -126,8 +126,16 @@ public class SearchKolActivity extends BaseActivity implements ISearchKolView {
 
         if (SPConstants.ARTICLE_SEARCH.endsWith(from)) {
             mSearchArticlePresenter = new SearchArticlePresenter(this, HelpTools.getUrl(address));
-        } else {
+        }
+//        else if (SPConstants.KOL_SEARCH.endsWith(from)){
+//            LogUtil.LogShitou("来了没","哈哈啊哈哈");
+//            mLLTitleBar.setVisibility(View.GONE);
+//            mSearchResultPresenter = new SearchResultPresenter(this, null, null, true, HelpTools.getUrl(address));
+//           // mSearchResultPresenter = new SearchResultPresenter(this, null, null, true, HelpTools.getUrl(CommonConfig.FIRST_KOL_LIST_URL));
+//        }
+        else {
             mSearchResultPresenter = new SearchResultPresenter(this, tagName, kolName, false, HelpTools.getUrl(address));
+
         }
         initContent();
     }
@@ -222,6 +230,7 @@ public class SearchKolActivity extends BaseActivity implements ISearchKolView {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_search:
+                LogUtil.LogShitou("我点击了","sa");
                 search(mEditText.getText().toString());
                 break;
             case R.id.tv_delete:

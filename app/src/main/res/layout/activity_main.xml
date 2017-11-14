@@ -17,18 +17,20 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             ></com.robin8.rb.ui.widget.NoScrollViewPager>
-
+        <View
+            style="@style/Undefined_Line" />
         <RadioGroup
             android:id="@+id/rg_content_bottom"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/vp_content_pager"
-            android:background="@color/undefined_backgroud"
+            android:background="@color/white_custom"
             android:gravity="center"
             android:orientation="horizontal">
 
             <RadioButton
+                android:visibility="gone"
                 android:id="@+id/rb_bottom_first"
                 style="@style/bottom_radio_style"
                 android:drawableTop="@drawable/bottom_first_selector"
@@ -48,11 +50,14 @@
             <!--android:visibility="gone"/>-->
             <RadioButton
                 android:id="@+id/rb_bottom_influence"
+                android:drawableTop="@drawable/bottom_influence_selector"
+                android:text="@string/text_social"
                 style="@style/bottom_radio_style"/>
 
             <RadioButton
                 android:id="@+id/rb_bottom_create"
                 style="@style/bottom_radio_style"
+                android:visibility="gone"
                 android:drawableTop="@drawable/bottom_create_selector"
                 android:text="@string/text_create"/>
 
@@ -65,6 +70,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

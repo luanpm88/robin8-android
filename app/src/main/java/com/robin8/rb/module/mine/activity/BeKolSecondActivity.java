@@ -119,7 +119,6 @@ public class BeKolSecondActivity extends BaseActivity {
         Serializable obj = intent.getSerializableExtra("social_accounts");
         Serializable obj2 = intent.getSerializableExtra("kol_shows");
         mKolId = intent.getIntExtra("kol_id", 0);
-        //  LogUtil.LogShitou("传递过来的kolid", "==>" + mKolId);
         if (obj instanceof List) {
             mSocialAccounts = (List<SocialAccountsBean>) obj;
         }
@@ -168,7 +167,7 @@ public class BeKolSecondActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-              //  LogUtil.LogShitou("社交账号数据刷新", response);
+             //   LogUtil.LogShitou("社交账号数据刷新", response);
                 parseJson(response);
             }
         });
@@ -187,7 +186,6 @@ public class BeKolSecondActivity extends BaseActivity {
             }
         } else {
             LogUtil.LogShitou("失败", "失败");
-
         }
     }
 
@@ -214,8 +212,6 @@ public class BeKolSecondActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                // BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
-
             }
         });
     }
@@ -269,11 +265,6 @@ public class BeKolSecondActivity extends BaseActivity {
     }
 
     private void postData() {
-        //        if (!mGridDataList.get(0).isChecked) {
-        //            CustomToast.showShort(this,getString(R.string.must_bind_weixin));
-        //            return;
-        //        }
-
         BasePresenter mBasePresenter = new BasePresenter();
 
         if (mWProgressDialog == null) {
@@ -313,13 +304,9 @@ public class BeKolSecondActivity extends BaseActivity {
 
     private void skipToNext() {
         NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
-        //        Intent intent = new Intent(this, BeKolThirdActivity.class);
-        //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //        startActivity(intent);
         Intent intent = getIntent();
         setResult(SPConstants.BE_KOL_BIND_RESULT, intent);
         finish();
-        //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     /**
@@ -329,20 +316,6 @@ public class BeKolSecondActivity extends BaseActivity {
      */
     private void skipToDetail(String name, int id) {
         bind(name, id);
-        // judgeConditions(name);
-        // mSocialAccountsBean =  mGridDataList.get(id).socialAccountsBean;
-       /* NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
-        Intent intent = new Intent(this, BeKolSecondDetailActivity.class);
-        mBackName = name;
-        mBackId = id;
-        intent.putExtra("id", id);
-        intent.putExtra("name", name);
-        if (id >= 0 && id < mGridDataList.size()) {
-            intent.putExtra("socialAccountsBean", mGridDataList.get(id).socialAccountsBean);
-        }
-        startActivityForResult(intent, SPConstants.BE_KOL_SECOND);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);*/
-
     }
 
     /**
@@ -409,7 +382,7 @@ public class BeKolSecondActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                //LogUtil.LogShitou("提交接口","OK"+response);
+              //  LogUtil.LogShitou("提交接口",response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
 
                 if (bean == null) {
@@ -418,13 +391,12 @@ public class BeKolSecondActivity extends BaseActivity {
                 }
 
                 if (bean.getError() == 0) {
-                    //   LogUtil.LogShitou("走到这里没有","直接绑定qq");
                     postData();
                     //  skipToNext();
                     // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
                     //finish();
                 } else {
-                    CustomToast.showShort(BeKolSecondActivity.this, bean.getDetail());
+                    CustomToast.showShort(BeKolSecondActivity.this, "提交失败");
                 }
             }
         });
@@ -853,7 +825,7 @@ public class BeKolSecondActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("绑次数查询", response);
+              //  LogUtil.LogShitou("绑次数查询", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -918,8 +890,8 @@ public class BeKolSecondActivity extends BaseActivity {
                 @Override
                 public void onResponse(String response) {
                     //  LogUtil.LogShitou("获取第三方账号url", HelpTools.getUrl(CommonConfig.INFLUENCE_INFO_LIST));
-                     LogUtil.LogShitou("社交账号绑定界面获取第三方账号", "===>"+response);
-                     LogUtil.LogShitou("社交账号绑定界面获取providerName", "===>"+providerName);
+                   //  LogUtil.LogShitou("社交账号绑定界面获取第三方账号", "===>"+response);
+                   //  LogUtil.LogShitou("社交账号绑定界面获取providerName", "===>"+providerName);
                     try {
                         if (mWProgressDialog != null) {
                             mWProgressDialog.dismiss();
@@ -1009,7 +981,7 @@ public class BeKolSecondActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("解绑结果", response);
+               // LogUtil.LogShitou("解绑结果", response);
                 try {
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 
 /**
- * 我的创作列表
+ * 我的活动/我的产品／我的创作
  */
 public class FragmentsActivity extends BaseActivity {
 
@@ -93,7 +93,12 @@ public class FragmentsActivity extends BaseActivity {
             mFragmentList.add(fragment);
         }
         mViewPager.setAdapter(mViewPagerAdapter);
-        mViewPager.setOffscreenPageLimit(4);
+        if (mPageName==StatisticsAgency.MY_TASK){
+            mViewPager.setOffscreenPageLimit(3);
+        }else {
+            mViewPager.setOffscreenPageLimit(4);
+
+        }
         mTabPageIndicator.setViewPager(mViewPager);//关联
         mTabPageIndicator.setOnPageChangeListener(new MyOnPageChangeListener());
         mViewPagerAdapter.notifyDataSetChanged();

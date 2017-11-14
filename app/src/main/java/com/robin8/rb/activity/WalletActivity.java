@@ -2,6 +2,7 @@ package com.robin8.rb.activity;
 
 import android.content.Intent;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -14,11 +15,12 @@ import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.IWalletView;
 
+import java.text.DecimalFormat;
+
 import lecho.lib.hellocharts.view.LineChartView;
 
 /**
- * 钱包页面
- */
+ 钱包页面 */
 public class WalletActivity extends BaseActivity implements IWalletView {
 
     private WalletPresenter mWalletPresenter;
@@ -94,7 +96,7 @@ public class WalletActivity extends BaseActivity implements IWalletView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mWalletPresenter.onActivityResult(requestCode,resultCode,data);
+        mWalletPresenter.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -138,6 +140,9 @@ public class WalletActivity extends BaseActivity implements IWalletView {
         mTVBeingItemNumber.setText(text);
     }
 
+    /**
+     @param text 可提现金额
+     */
     @Override
     public void setTVBeableItemNumber(CharSequence text) {
         mTVBeableItemNumber.setText(text);
@@ -146,26 +151,46 @@ public class WalletActivity extends BaseActivity implements IWalletView {
     @Override
     public void setTVIncomes(CharSequence text) {
 
-        String timesIncome = getString(R.string.total) + "<font color=#ecb200>"
-                + text + "</font>" + getString(R.string.income_times);
+        String timesIncome = getString(R.string.total) + "<font color=#ecb200>" + text + "</font>" + getString(R.string.income_times);
 
         mTVIncomes.setText(Html.fromHtml(timesIncome));
     }
 
     @Override
     public void setTVTotal(String text) {
-        String todayTotalIncome = getString(R.string.total_count) + "<font color=#ffffff>¥ "
-                + StringUtil.deleteZero(text) + "</font>";
+        String todayTotalIncome = getString(R.string.total_count) + "<font color=#ffffff>¥ " + StringUtil.deleteZero(text) + "</font>";
         mTVTotal.setText(Html.fromHtml(todayTotalIncome));
     }
 
+    /**
+     @param clickEnable 底部按钮设置
+     */
     @Override
     public void setLLbottom(boolean clickEnable) {
         if (clickEnable) {
-            mTVSubmit.setText(getString(R.string.withdraw));
+            mTVSubmit.setText(getString(R.string.withdraw_now));
             mLLbottom.setBackgroundResource(R.color.blue_custom);
         } else {
-            mTVSubmit.setText(getString(R.string.income_info3));
+            if (TextUtils.isEmpty(mTVBeableItemNumber.getText().toString().trim())) {
+                mTVSubmit.setText(getString(R.string.income_info3));
+            } else {
+                try {
+                    float value = 50 - Float.valueOf(StringUtil.deleteZero(mTVBeableItemNumber.getText().toString().trim()));
+                    if (value > 0) {
+                        DecimalFormat df = new DecimalFormat("0.00");
+                        String values = df.format(value);
+                        if(values.indexOf(".") > 0){
+                            //正则表达
+                            values = values.replaceAll("0+?$", "");//去掉后面无用的零
+                            values = values.replaceAll("[.]$", "");//如小数点后面全是零则去掉小数点
+                        }
+                        mTVSubmit.setText("还差" + values + "元可以提现");
+                    }
+                } catch (Exception e) {
+                    mTVSubmit.setText(getString(R.string.income_info3));
+                    e.printStackTrace();
+                }
+            }
             mLLbottom.setBackgroundResource(R.color.gray_custom);
             mLLbottom.setEnabled(false);
             mLLbottom.setClickable(false);

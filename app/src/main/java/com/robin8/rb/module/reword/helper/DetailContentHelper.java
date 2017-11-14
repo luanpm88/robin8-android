@@ -689,7 +689,6 @@ public class DetailContentHelper {
             mWProgressDialog = WProgressDialog.createDialog(activity);
         }
         mWProgressDialog.show();
-        LogUtil.LogShitou("活动上传截图", "===>??????????????");
         LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
         String urlImg = HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot");
         requestMap.put("[url]", urlImg);
@@ -1021,15 +1020,18 @@ public class DetailContentHelper {
                 // bindWechat(activity, 1);
                 // popSharedialog(activity, mCampaignInviteEntity);
                 if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
-                    bindWechat(activity, 1, 0);
+                 //   bindWechat(activity, 1, 0);
+                    showShareDialog(activity, mCampaignInviteEntity, 1);
                 } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
                     popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
                 } else {
                     if (TextUtils.isEmpty(mCampaignInviteEntity.getSub_type())) {
-                        bindWechat(activity, 1, 0);
+                      //  bindWechat(activity, 1, 0);
+                        showShareDialog(activity, mCampaignInviteEntity, 1);
                     } else {
                         if (mCampaignInviteEntity.getSub_type().equals(wechatEn)) {
-                            bindWechat(activity, 1, 0);
+                         //   bindWechat(activity, 1, 0);
+                            showShareDialog(activity, mCampaignInviteEntity, 1);
                         } else if (mCampaignInviteEntity.getSub_type().equals(weiboEn)) {
                             popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
                         } else {
@@ -1232,12 +1234,14 @@ public class DetailContentHelper {
             case CLICK_SHARE_NO_PAY:// 无偿转发
                 // showShareDialog(activity, mCampaignInviteEntity, 1);
                 if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
-                    bindWechat(activity, 1, 0);
+                   // bindWechat(activity, 1, 0);
+                    showShareDialog(activity, mCampaignInviteEntity, 1);
                 } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
                     popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
                 } else {
                     if (mCampaignInviteEntity.getSub_type().equals(wechatEn)) {
-                        bindWechat(activity, 1, 0);
+                      //  bindWechat(activity, 1, 0);
+                        showShareDialog(activity, mCampaignInviteEntity, 1);
                     } else if (mCampaignInviteEntity.getSub_type().equals(weiboEn)) {
                         popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
                     } else {
@@ -1714,7 +1718,8 @@ public class DetailContentHelper {
 
     private void share(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity, final String shareType, final int wechatType) {
         if (! TextUtils.isEmpty(campaignInviteEntity.getUuid())) {//再次分享
-            popSharedialog(activity, campaignInviteEntity, shareType, 0);
+            showShareDialog(activity, campaignInviteEntity, 1);
+           // popSharedialog(activity, campaignInviteEntity, shareType, 0);
             return;
         }
         if (mWProgressDialog == null) {

@@ -62,6 +62,7 @@ public class CreateFirstPresenter implements PresenterI {
     private final LinearLayout mErrorViewLL;
 
     public CreateFirstPresenter(ICreateFirstView view, String url, Activity activity) {
+
         mICreateFirstView = view;
         mUrl = url;
         mActivity = activity;
@@ -76,18 +77,22 @@ public class CreateFirstPresenter implements PresenterI {
     }
 
     public void init() {
+
         loadData();
     }
 
     private void initXRefreshView() {
+
         mXRefreshView.setPullLoadEnable(true);
         mXRefreshView.setSlienceLoadMore();
         mXRefreshView.setAutoLoadMore(false);
         mXRefreshView.setCustomHeaderView(mRefreshHeaderView);
         mXRefreshView.setCustomFooterView(mRefreshFooterView);
         mXRefreshView.post(new Runnable() {
+
             @Override
             public void run() {
+
                 mRefreshHeaderView.findViewById(R.id.ll_setting).getLayoutParams().width = DensityUtils.getScreenWidth(mContext);
             }
         });
@@ -96,12 +101,14 @@ public class CreateFirstPresenter implements PresenterI {
 
             @Override
             public void onRefresh() {
+
                 mCurrentState = DRAG_REFRESH;
                 loadData();
             }
 
             @Override
             public void onLoadMore(boolean isSlience) {
+
                 mCurrentState = LOAD_MORE;
                 loadData();
             }
@@ -109,6 +116,7 @@ public class CreateFirstPresenter implements PresenterI {
     }
 
     private void initRecyclerView() {
+
         mCreateFirstListAdapter = new CreateFirstListAdapter(mDataList, mActivity);
         mLinearLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -116,6 +124,7 @@ public class CreateFirstPresenter implements PresenterI {
     }
 
     private void loadData() {
+
         if (TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.Token))) {
             initLoginInfo();
         } else {
@@ -125,6 +134,7 @@ public class CreateFirstPresenter implements PresenterI {
 
     @Override
     public void getDataFromServer(boolean needHeader, int method, String url, RequestParams params, RequestCallback callback) {
+
         switch (method) {
             case HttpRequest.GET:
                 HttpRequest.getInstance().get(needHeader, url, params, callback);
@@ -139,16 +149,19 @@ public class CreateFirstPresenter implements PresenterI {
 
         LoginTask loginTask = LoginTask.newInstance(mActivity.getApplicationContext());
         loginTask.start(new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
+
                 CustomToast.showShort(mActivity.getApplicationContext(), "网络加载失败");
             }
 
             @Override
             public void onResponse(String response) {
+              //  LogUtil.LogShitou("创作","===>"+response);
                 getDataFromNet();
             }
-        }, CommonConfig.TOURIST_PHONE, CommonConfig.TOURIST_CODE, null);
+        }, CommonConfig.TOURIST_PHONE, CommonConfig.TOURIST_CODE, null,null);
 
     }
 
@@ -157,6 +170,7 @@ public class CreateFirstPresenter implements PresenterI {
      * 加载网络数据
      */
     private void getDataFromNet() {
+
         if (mCurrentState != LOAD_MORE) {
             mCurrentPage = 1;
         } else {
@@ -174,14 +188,19 @@ public class CreateFirstPresenter implements PresenterI {
             if (mWProgressDialog == null) {
                 mWProgressDialog = mICreateFirstView.getWProgressDialog();
             }
-            if (!mWProgressDialog.isShowing()) {
-                mWProgressDialog.show();
+            if (! mWProgressDialog.isShowing()) {
+                try {
+                    mWProgressDialog.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         }
         if (mRequestParams == null) {
             mRequestParams = new RequestParams();
         }
-
+        //是否加载更多
         if (mWithKolAnnouncementB) {
             mRequestParams.put("with_kol_announcement", "Y");
         } else {
@@ -190,8 +209,10 @@ public class CreateFirstPresenter implements PresenterI {
         mRequestParams.put("page", mCurrentPage);
         mRequestParams.put("order", mCurrentOrder);
         getDataFromServer(true, HttpRequest.GET, mUrl, mRequestParams, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
+
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -225,6 +246,7 @@ public class CreateFirstPresenter implements PresenterI {
     }
 
     private void parseJson(String response) {
+
         CreateFirstModel createFirstModel = GsonTools.jsonToBean(response, CreateFirstModel.class);
         if (createFirstModel != null && createFirstModel.getError() == 0) {
             if (mCurrentState != LOAD_MORE) {

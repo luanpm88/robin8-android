@@ -16,4 +16,5 @@ public interface ISearchKolView {
     RefreshFooterView getRefreshFooterView();
     WProgressDialog getWProgressDialog();
     View getLLNoData();
+
 }
