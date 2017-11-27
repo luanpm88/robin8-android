@@ -238,6 +238,7 @@ public class SettingActivity extends BaseActivity {
                         HelpTools.insertCommonXml(HelpTools.MyKolId, "");
                         HelpTools.insertCommonXml(HelpTools.PagerData, "");
                         HelpTools.insertCommonXml(HelpTools.isLeader, "");
+                        HelpTools.insertCommonXml(HelpTools.CloudToken, "");
                         intent = new Intent(SettingActivity.this, LoginActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putInt("from", SPConstants.MAINACTIVITY);

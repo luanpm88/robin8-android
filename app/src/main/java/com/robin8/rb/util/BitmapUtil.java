@@ -399,7 +399,8 @@ public class BitmapUtil {
         intent.putExtra("outputX", outputX);
         intent.putExtra("outputY", outputY);
         intent.putExtra("scale", true);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+       //intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,  Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg"));
         intent.putExtra("scale", true);//黑边
         intent.putExtra("scaleUpIfNeeded", true);//黑边
         intent.putExtra("return-data", false);
@@ -411,8 +412,9 @@ public class BitmapUtil {
     public static Bitmap decodeUriAsBitmap(Uri uri, Activity activity) {
         Bitmap bitmap = null;
         try {
-            //bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(),uri);
+           // bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(),uri);
             bitmap = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(uri));
+            //bitmap = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;

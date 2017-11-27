@@ -70,6 +70,7 @@ public class UpdateNewApk {
             RequestParams requestParams = new RequestParams();
             requestParams.put("app_platform", "Android");
             requestParams.put("app_version", AppUtils.getVersionName(context));
+            LogUtil.LogShitou("当前的版本号",AppUtils.getVersionName(context));
             mHttpRequest.get(false, HelpTools.getUrl(CommonConfig.UpdateUrl), requestParams, new RequestCallback() {
                 @Override
                 public void onError(Exception e) {
@@ -80,12 +81,13 @@ public class UpdateNewApk {
 
                 @Override
                 public void onResponse(String response) {
-                    LogUtil.logXXfigo(HelpTools.getUrl(CommonConfig.UpdateUrl) + "  " + response);
+                    LogUtil.logXXfigo(HelpTools.getUrl(CommonConfig.UpdateUrl) + " 版本 " + response);
                     UpdateBean commBean = null;
                     try {
                         commBean = GsonTools.jsonToBean(response, UpdateBean.class);
                     } catch (Exception e) {
                         LogUtil.logXXfigo(e.toString());
+                        //LogUtil.LogShitou("gson出错",e.toString());
                     }
 
                     if (commBean != null && commBean.getError() == 0 && commBean.isHad_upgrade()) {

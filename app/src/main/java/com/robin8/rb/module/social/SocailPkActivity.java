@@ -37,7 +37,6 @@ import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 import com.robin8.rb.view.widget.CustomDialogManager;
@@ -808,8 +807,6 @@ public class SocailPkActivity extends BaseActivity {
 
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         String url_share = TITLE_URL + String.valueOf(id) + "/kol_pk";
-        LogUtil.LogShitou("产看空了","id"+id);
-        LogUtil.LogShitou("看空了","=====》"+url_share);
         CustomToast.showShort(SocailPkActivity.this, "正在前往分享...");
         ShareSDK.initSDK(SocailPkActivity.this);
         OnekeyShare oks = new OnekeyShare();

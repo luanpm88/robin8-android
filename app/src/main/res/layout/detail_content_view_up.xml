@@ -132,6 +132,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingExtra="1.5dp"
+            android:textIsSelectable="true"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text=""

@@ -35,6 +35,7 @@ import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.model.LaunchRewordModel;
 import com.robin8.rb.model.NotifyMsgEntity;
+import com.robin8.rb.module.mine.activity.CampaignChoseTypeActivity;
 import com.robin8.rb.module.reword.activity.DetailContentActivity;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -63,12 +64,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Observable;
 
+import static com.robin8.rb.R.string.wechat;
+
 /**
- * 发起悬赏活动页面
- */
+ 发起悬赏活动页面 */
 public class ModifyRewordActivity extends BaseActivity implements View.OnClickListener {
 
-    public static final int IDLE = -1;
+    public static final int IDLE = - 1;
     private static final int REJECT = 1;
     private static final String UN_PAY = "unpay";
     private static final int ALL = 0;
@@ -86,6 +88,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     private EditText mETAddress;// 活动链接
     private EditText mETConsume4;// 活动总预算
     private EditText mETConsume5;// 单个点击费用
+    private TextView mTVInfoSubType;// 活动平台
     private TextView mTVInfo1;// 活动开始时间
     private TextView mTVInfo2;// 活动结束时间
     private TextView mTVInfo3;// 选择活动类型
@@ -94,7 +97,8 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     private boolean hasTranslateB;
     private TimePickerView pvTime;
     private ArrayList<String> mDateList = new ArrayList<String>();
-    private ArrayList<String> mConsumeWayList = new ArrayList<String>();
+    //  private ArrayList<String> mConsumeWayList = new ArrayList<String>();
+    private ArrayList<String> mConsumeWayList;
     private LinearLayout mLLWheel;
     private TimePickerView.Type mClickType = TimePickerView.Type.OTHER;
     private View mTVPreview;
@@ -124,6 +128,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     private MyGridAdapter mMyGridAdapter;
     private List<ContactItemInterface> contactList;
     private int mAgeType;
+   // private String stChoseType;
 
     @Override
     protected void onResume() {
@@ -165,6 +170,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void updateViewWhenFromReject() {
+        //api/v1_4/kol_campaigns/detail 传过来数据
         Intent intent = getIntent();
         Object obj = intent.getSerializableExtra("campaign");
         mModifyCampaign = null;
@@ -176,6 +182,19 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
             return;
         }
         mETTitle.setText(mModifyCampaign.getName());
+        if (TextUtils.isEmpty(mModifyCampaign.getSub_type())){
+            mTVInfoSubType.setText("");
+        }else {
+            if (mModifyCampaign.getSub_type().equals("weibo")){
+                mTVInfoSubType.setText(getString(R.string.weibo));
+            }else if (mModifyCampaign.getSub_type().equals("wechat,weibo")){
+                mTVInfoSubType.setText(getString( R.string.weixin)+getString(R.string.wechat)+","+getString(R.string.weibo));
+            }else {
+                mTVInfoSubType.setText(getString( R.string.weixin)+getString(R.string.wechat));
+
+            }
+
+        }
         mETIntroduce.setText(mModifyCampaign.getDescription());
         BitmapUtil.loadImage(this.getApplicationContext(), mModifyCampaign.getImg_url(), mIVPost);
         mETAddress.setText(mModifyCampaign.getUrl());
@@ -199,7 +218,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
             mETConsume5.setHint(getResources().getString(R.string.min_1));
         }
 
-        if (!UN_PAY.equals(mModifyCampaign.getStatus())) {
+        if (! UN_PAY.equals(mModifyCampaign.getStatus())) {
             mETConsume4.setEnabled(false);
             mTVTitle4.setTextColor(UIUtils.getColor(R.color.sub_gray_custom));
             mETConsume4.setTextColor(UIUtils.getColor(R.color.sub_gray_custom));
@@ -210,14 +229,14 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         mLLBottom.setBackgroundResource(R.color.blue_custom);
 
         mTVInfoAge.setText(getDisPlay(mModifyCampaign.getAge()));
-        if ("0".equals(mModifyCampaign.getGender())){
+        if ("0".equals(mModifyCampaign.getGender())) {
             mTVInfoSex.setText("全部");
 
-        }else if("1".equals(mModifyCampaign.getGender())){
+        } else if ("1".equals(mModifyCampaign.getGender())) {
             mTVInfoSex.setText("男");
-        }else if("2".equals(mModifyCampaign.getGender())){
+        } else if ("2".equals(mModifyCampaign.getGender())) {
             mTVInfoSex.setText("女");
-        }else{
+        } else {
             mTVInfoSex.setText(mModifyCampaign.getGender());
         }
         mTVInfoCity.setText(mModifyCampaign.getRegion());
@@ -230,7 +249,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
     private String getDisPlay(String age) {
         for (int i = 0; i < agePostArr.length; i++) {
-            if (!TextUtils.isEmpty(age) && age.equals(agePostArr[i])) {
+            if (! TextUtils.isEmpty(age) && age.equals(agePostArr[i])) {
                 return ageArr[i];
             }
         }
@@ -238,7 +257,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     /**
-     * 设置编辑框
+     设置编辑框
      */
     private void initEditText() {
 
@@ -248,6 +267,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         mETConsume5.addTextChangedListener(editTextWatcher);
 
         mETTitle.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -269,6 +289,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
 
         mETIntroduce.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -294,7 +315,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         if (mLaunchRewordDialog != null) {
             mLaunchRewordDialog = null;
         }
-        if (!TextUtils.isEmpty(mFinalPicturePath) && !mFinalPicturePath.startsWith("http://")) {
+        if (! TextUtils.isEmpty(mFinalPicturePath) && ! mFinalPicturePath.startsWith("http://")) {
             BitmapUtil.deleteBm(mFinalPicturePath);
         }
         if (mBitmap != null) {
@@ -306,21 +327,26 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     /**
-     * 检查信息是否完整
-     *
-     * @param showToast
-     * @return
+     检查信息是否完整
+     @param showToast
+     @return
      */
     private boolean checkInfoCompelete(boolean showToast) {
-
-        if (getString(R.string.type_count_by_click).equals(mTVInfo3.getText().toString())) {
-            mCountType = "click";
-        } else if (getString(R.string.type_count_by_kol).equals(mTVInfo3.getText().toString())) {
-            mCountType = "post";
-        } else if (getString(R.string.type_download_by_kol).equals(mTVInfo3.getText().toString())) {
-            mCountType = "simple_cpi";
-        } else {//任务
-            mCountType = "cpt";
+        if (TextUtils.isEmpty(mTVInfo3.getText().toString())) {
+            if (showToast) {
+                CustomToast.showShort(this, "请选择活动类型");
+            }
+            return false;
+        } else {
+            if (getString(R.string.type_count_by_click).equals(mTVInfo3.getText().toString())) {
+                mCountType = "click";
+            } else if (getString(R.string.type_count_by_kol).equals(mTVInfo3.getText().toString())) {
+                mCountType = "post";
+            } else if (getString(R.string.type_download_by_kol).equals(mTVInfo3.getText().toString())) {
+                mCountType = "simple_cpi";
+            } else {//任务
+                mCountType = "cpt";
+            }
         }
 
         if (TextUtils.isEmpty(mETTitle.getText().toString())) {
@@ -337,7 +363,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
             return false;
         }
 
-        if (!mImageLoadB) {
+        if (! mImageLoadB) {
             if (showToast) {
                 CustomToast.showShort(this, "请上传封面图片");
             }
@@ -349,7 +375,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
                 CustomToast.showShort(this, "请填写活动链接");
             }
             return false;
-        } else if (!RegExpUtil.isUrl(mETAddress.getText().toString())) {
+        } else if (! RegExpUtil.isUrl(mETAddress.getText().toString())) {
             if (showToast) {
                 CustomToast.showShort(this, "活动链接格式不正确");
                 return false;
@@ -362,21 +388,21 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
             }
             return false;
         } else {
-//            String totalComsuneStr = mETConsume4.getText().toString();
-//            try {
-//                float totalComsuneF = Float.parseFloat(totalComsuneStr);
-//                if (totalComsuneF < 100) {
-//                    if (showToast) {
-//                        CustomToast.showShort(this, "总预算最低100元");
-//                    }
-//                    return false;
-//                }
-//            } catch (Exception e) {
-//                if (showToast) {
-//                    CustomToast.showShort(this, "总预算金额格式错误");
-//                }
-//                return false;
-//            }
+            //            String totalComsuneStr = mETConsume4.getText().toString();
+            //            try {
+            //                float totalComsuneF = Float.parseFloat(totalComsuneStr);
+            //                if (totalComsuneF < 100) {
+            //                    if (showToast) {
+            //                        CustomToast.showShort(this, "总预算最低100元");
+            //                    }
+            //                    return false;
+            //                }
+            //            } catch (Exception e) {
+            //                if (showToast) {
+            //                    CustomToast.showShort(this, "总预算金额格式错误");
+            //                }
+            //                return false;
+            //            }
         }
 
         if (TextUtils.isEmpty(mETConsume5.getText().toString())) {
@@ -441,6 +467,13 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
         mArrayTitle = getResources().getStringArray(R.array.launch_reword_item);
 
+        //选择活动的发布平台
+        View layoutSubType = findViewById(R.id.layout_sub_type);
+        TextView tvTitleSubType = (TextView) layoutSubType.findViewById(R.id.tv_title);
+        mTVInfoSubType = (TextView) layoutSubType.findViewById(R.id.tv_info);
+        mTVInfoSubType.setText("");
+        layoutSubType.setOnClickListener(this);
+
         View layoutStartTime = findViewById(R.id.layout_start_time);
         TextView tvTitle1 = (TextView) layoutStartTime.findViewById(R.id.tv_title);
         mTVInfo1 = (TextView) layoutStartTime.findViewById(R.id.tv_info);
@@ -461,6 +494,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         mTvTitle5 = (TextView) layoutPerConsume.findViewById(R.id.tv_title);
         mETConsume5 = (EditText) layoutPerConsume.findViewById(R.id.et_consume);
 
+        tvTitleSubType.setText("推广平台选择");
         tvTitle1.setText(mArrayTitle[0]);
         tvTitle2.setText(mArrayTitle[1]);
         tvTitle3.setText(mArrayTitle[2]);
@@ -470,10 +504,11 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         mTVInfo1.setText(DateUtil.getFormatTime(System.currentTimeMillis() + 2 * 60 * 60 * 1000, SPConstants.YY_MM_DD_HH_MM));
         mTVInfo2.setText(DateUtil.getFormatTime(System.currentTimeMillis() + 26 * 60 * 60 * 1000, SPConstants.YY_MM_DD_HH_MM));
         mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
-//        mETConsume4.setHint(getResources().getString(R.string.min_100));
+        //        mETConsume4.setHint(getResources().getString(R.string.min_100));
         mETConsume5.setHint(getResources().getString(R.string.min_2));
 
         mTVInfo1.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 translateY(TimePickerView.ACTIVITY_START, TimePickerView.Type.DATE_HOUR_MONTH);
@@ -481,6 +516,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         });
 
         mTVInfo2.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 translateY(TimePickerView.ACTIVITY_END, TimePickerView.Type.DATE_HOUR_MONTH);
@@ -488,13 +524,25 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         });
 
         mTVInfo3.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                translateY(TimePickerView.ACTIVITY_TYPE, TimePickerView.Type.CONSUME_WAY);
+                // translateY(TimePickerView.ACTIVITY_TYPE, TimePickerView.Type.CONSUME_WAY);
+                if (TextUtils.isEmpty((mTVInfoSubType.getText().toString()))) {
+                    CustomToast.showShort(ModifyRewordActivity.this, "请先选择推广平台");
+                } else {
+                    if ((mTVInfoSubType.getText().toString()).equals((getString(R.string.weixin) + getString(wechat) + "," + getString(R.string.weibo))) || (mTVInfoSubType.getText().toString()).equals(getString(R.string.weibo))) {
+                        //微信微博同时选择／选择微博，活动类型只有三个
+                        translateY(TimePickerView.ACTIVITY_TYPE_NO_CLICK, TimePickerView.Type.CONSUME_WAY);
+                    } else {
+                        translateY(TimePickerView.ACTIVITY_TYPE, TimePickerView.Type.CONSUME_WAY);
+                    }
+                }
             }
         });
 
         mETConsume4.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -511,6 +559,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         });
 
         mETConsume5.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -529,7 +578,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     /**
-     * 显示wheelView
+     显示wheelView
      */
     private void translateY(int itemId, TimePickerView.Type type) {
 
@@ -547,8 +596,8 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void animate() {
-        if (!hasTranslateB) {
-            ObjectAnimator animation = ObjectAnimator.ofFloat(mSVContent, "translationY", 0f, -UIUtils.getDimens(R.dimen.launch_reword_translate));
+        if (! hasTranslateB) {
+            ObjectAnimator animation = ObjectAnimator.ofFloat(mSVContent, "translationY", 0f, - UIUtils.getDimens(R.dimen.launch_reword_translate));
             animation.setDuration(400);
             animation.start();
 
@@ -592,6 +641,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         pvTime.setBelongItem(mCurrenetItem);
 
         pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
+
             @Override
             public void onTimeSelect(String str, int day, int hour, int minute, boolean isMust) {
                 String[] backStr = str.split("/");
@@ -609,6 +659,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
                         mEndDateBean.minute = minute;
                         break;
                     case TimePickerView.ACTIVITY_TYPE:
+                    case TimePickerView.ACTIVITY_TYPE_NO_CLICK:
                         mTVInfo3.setText(backStr[1]);
                         if (backStr[1].equals(getString(R.string.type_count_by_click))) {//点击
                             mETConsume5.setHint(getString(R.string.min_2));
@@ -633,9 +684,25 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
     }
 
+    private List<String> tempList;
+
     public void prepareData() {
-        String[] consumeWay = getResources().getStringArray(R.array.launch_reword_consume_way);
-        List<String> tempList = Arrays.asList(consumeWay);
+        //        String[] consumeWay = getResources().getStringArray(R.array.launch_reword_consume_way);
+        //        List<String> tempList = Arrays.asList(consumeWay);
+        //根据所选平台更换选择类型的数据
+        if (TextUtils.isEmpty((mTVInfoSubType.getText().toString()))) {
+            //初始
+            tempList = Arrays.asList(getResources().getStringArray(R.array.launch_reword_consume_way));
+        } else {
+            if ((mTVInfoSubType.getText().toString()).equals((getString(R.string.weixin) + getString(wechat) + "," + getString(R.string.weibo))) || (mTVInfoSubType.getText().toString()).equals(getString(R.string.weibo))) {
+                //微信微博同时选择／选择微博，活动类型只有三个
+                tempList = Arrays.asList(getResources().getStringArray(R.array.launch_reword_consume_way_no_click));
+            } else {
+                tempList = Arrays.asList(getResources().getStringArray(R.array.launch_reword_consume_way));
+            }
+        }
+        mConsumeWayList = new ArrayList<String>();
+
         mConsumeWayList.clear();
         mConsumeWayList.addAll(tempList);
 
@@ -675,6 +742,9 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
             case R.id.layout_city:
                 skipToCityList();
                 break;
+            case R.id.layout_sub_type:
+                skipToChoseType();
+                break;
         }
     }
 
@@ -682,6 +752,15 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         Intent intent = new Intent(this, CityListActivity.class);
         intent.putExtra("citylist", (Serializable) contactList);
         startActivityForResult(intent, SPConstants.CITY_LIST);
+    }
+
+    /**
+     选择发布类型
+     */
+    private void skipToChoseType() {
+        Intent intent = new Intent(this, CampaignChoseTypeActivity.class);
+        intent.putExtra("chose", (mTVInfoSubType.getText().toString()));
+        startActivityForResult(intent, SPConstants.CHOSE_TYPE);
     }
 
     private int mTagCount;
@@ -720,6 +799,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         final CustomDialogManager cdm = new CustomDialogManager(this, view);
 
         tv_confirm.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String tags = getTags();
@@ -733,6 +813,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         });
 
         tv_cancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < mGridData.size(); i++) {
@@ -760,7 +841,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     /**
-     * 年龄选择弹窗
+     年龄选择弹窗
      */
     private void showAgeSelector() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_age_selector, null);
@@ -769,14 +850,14 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         TextView tv_part2 = (TextView) view.findViewById(R.id.tv_part2);
         TextView tv_part3 = (TextView) view.findViewById(R.id.tv_part3);
         TextView tv_part4 = (TextView) view.findViewById(R.id.tv_part4);
-//        TextView tv_part5 = (TextView) view.findViewById(R.id.tv_part5);
+        //        TextView tv_part5 = (TextView) view.findViewById(R.id.tv_part5);
         final CustomDialogManager cdm = new CustomDialogManager(this, view);
         tv_all.setOnClickListener(new AgeSelectorOnClickListener(0, cdm));
         tv_part1.setOnClickListener(new AgeSelectorOnClickListener(1, cdm));
         tv_part2.setOnClickListener(new AgeSelectorOnClickListener(2, cdm));
         tv_part3.setOnClickListener(new AgeSelectorOnClickListener(3, cdm));
         tv_part4.setOnClickListener(new AgeSelectorOnClickListener(4, cdm));
-//        tv_part5.setOnClickListener(new AgeSelectorOnClickListener(5, cdm));
+        //        tv_part5.setOnClickListener(new AgeSelectorOnClickListener(5, cdm));
         cdm.dg.setCanceledOnTouchOutside(true);
         cdm.dg.getWindow().setGravity(Gravity.CENTER);
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
@@ -784,7 +865,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     /**
-     * 性别选择弹窗
+     性别选择弹窗
      */
     private void showGenderSelector() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_gender_selector, null);
@@ -860,14 +941,29 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
                     }
                     mTVInfoCity.setText(cityListStr);
                     break;
+                case SPConstants.CHOSE_TYPE:
+                    //选择平台后返回
+                   String  stChoseType = data.getStringExtra("chose");
+                    if (TextUtils.isEmpty(stChoseType)) {
+                      //  stChoseType = "";
+                        mTVInfoSubType.setText("");
+                    } else {
+                        mTVInfoSubType.setText(stChoseType);
+                    }
+                    if (pvTime != null) {
+                        pvTime.clearView();//里面的view==null
+                        pvTime = null;
+                    }
+                    mTVInfo3.setText("");
+                    prepareData();
+                    break;
             }
         }
     }
 
     /**
-     * 裁剪图片方法实现
-     *
-     * @param uri
+     裁剪图片方法实现
+     @param uri
      */
     private void cropImageUri(Uri uri, int outputX, int outputY, int requestCode) {
         Intent intent = new Intent("com.android.camera.action.CROP");
@@ -899,7 +995,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     /**
-     * 设置底部显示样式
+     设置底部显示样式
      */
     private void setBottomView() {
         mInfoCompelete = checkInfoCompelete(false);
@@ -911,10 +1007,12 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     /**
-     * 提交
+     提交
      */
     private void submit() {
-        if (!checkInfoCompelete(true)) {
+      //  LogUtil.LogShitou("这不是空？点击点击", "<====>");
+
+        if (! checkInfoCompelete(true)) {
             return;
         }
 
@@ -932,18 +1030,31 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         requestMap.put("age", getPostAge(mTVInfoAge.getText().toString()));
         requestMap.put("region", mTVInfoCity.getText());
         requestMap.put("tags", mTVInfoClassify.getText());
-
+        //发布平台sub_type
+        if ((mTVInfoSubType.getText().toString()).equals((getString(R.string.weixin) + getString(wechat) + "," + getString(R.string.weibo)))) {
+            String s = "wechat,weibo";
+            //   String [] s = new String[]{"wechat","weibo"};
+            requestMap.put("sub_type", s);
+        } else if ((mTVInfoSubType.getText().toString()).equals(getString(R.string.weibo))) {
+            requestMap.put("sub_type", "weibo");
+        } else if ((mTVInfoSubType.getText().toString()).equals(getString(R.string.weixin) + getString(wechat))) {
+            requestMap.put("sub_type", "wechat");
+        } else {
+            CustomToast.showShort(this, "请选择推广平台");
+            return;
+        }
+       // LogUtil.LogShitou("这不是空？", "====>" + stChoseType);
         String gender = "全部";
-        if (getString(R.string.male).equals(mTVInfoSex.getText())){
+        if (getString(R.string.male).equals(mTVInfoSex.getText())) {
             gender = "1";
-        }else if(getString(R.string.female).equals(mTVInfoSex.getText())){
+        } else if (getString(R.string.female).equals(mTVInfoSex.getText())) {
             gender = "2";
         }
         requestMap.put("gender", gender);
 
         File file = null;
         String imageName = null;
-        if (!TextUtils.isEmpty(mFinalPicturePath) && !mFinalPicturePath.startsWith("http://")) {
+        if (! TextUtils.isEmpty(mFinalPicturePath) && ! mFinalPicturePath.startsWith("http://")) {
             imageName = mFinalPicturePath.substring(mFinalPicturePath.lastIndexOf("/") + 1);
             file = new File(mFinalPicturePath);
         }
@@ -963,6 +1074,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         BasePresenter mBasePresenter = new BasePresenter();
 
         mBasePresenter.getDataFromServer(true, method, url, "img", imageName, file, requestMap, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
                 CustomToast.showShort(ModifyRewordActivity.this, getString(R.string.please_data_wrong));
@@ -989,7 +1101,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
     private String getPostAge(String ageS) {
         for (int i = 0; i < ageArr.length; i++) {
-            if (!TextUtils.isEmpty(ageS) && ageS.equals(ageArr[i])) {
+            if (! TextUtils.isEmpty(ageS) && ageS.equals(ageArr[i])) {
                 return agePostArr[i];
             }
         }
@@ -997,7 +1109,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void skipToNextPage(LaunchRewordModel launchRewordModel) {
-        if (mFrom == REJECT && !UN_PAY.equals(mModifyCampaign.getStatus())) {
+        if (mFrom == REJECT && ! UN_PAY.equals(mModifyCampaign.getStatus())) {
             setResult(SPConstants.LAUNCHREWORDACTIVIRY);
             finish();
             return;
@@ -1010,7 +1122,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void skipToPreview() {
-        if (!checkInfoCompelete(true)) {
+        if (! checkInfoCompelete(true)) {
             return;
         }
         Intent intent = new Intent(this, DetailContentActivity.class);
@@ -1035,7 +1147,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
     private void onCompelete() {
         if (hasTranslateB) {
-            ObjectAnimator animation = ObjectAnimator.ofFloat(mSVContent, "translationY", -UIUtils.getDimens(R.dimen.launch_reword_translate), 0f);
+            ObjectAnimator animation = ObjectAnimator.ofFloat(mSVContent, "translationY", - UIUtils.getDimens(R.dimen.launch_reword_translate), 0f);
             animation.setDuration(400);
             animation.start();
 
@@ -1047,6 +1159,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
             animation2.start();
 
             new Handler().postDelayed(new Runnable() {
+
                 @Override
                 public void run() {
                     mLLWheel.setVisibility(View.GONE);
@@ -1068,9 +1181,9 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
 
     class DateBean {
-        public int day = -1;
-        public int hour = -1;
-        public int minute = -1;
+        public int day = - 1;
+        public int hour = - 1;
+        public int minute = - 1;
     }
 
     class EditTextWatcher implements TextWatcher {

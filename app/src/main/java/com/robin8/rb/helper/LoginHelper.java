@@ -12,6 +12,7 @@ import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.first.activity.LaunchRewordFirstActivity;
+import com.robin8.rb.module.mine.activity.HelpCenterActivity;
 import com.robin8.rb.module.mine.activity.InvitationCodeActivity;
 import com.robin8.rb.module.mine.activity.InviteFriendsActivity;
 import com.robin8.rb.module.mine.activity.SettingActivity;
@@ -76,7 +77,6 @@ public class LoginHelper {
                 mActivity.startActivity(intent);
                 mActivity.finish();
                 break;
-
             case SPConstants.SETTING_ACTIVITY:
                 intent = new Intent(mActivity, SettingActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -95,6 +95,13 @@ public class LoginHelper {
                 mActivity.startActivity(intent);
                 mActivity.finish();
                 break;
+            case SPConstants.HELP_CENTER:
+                intent = new Intent(mActivity, HelpCenterActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mActivity.startActivity(intent);
+                mActivity.finish();
+            case SPConstants.RONG_CLOUD:
+                mActivity.finish();
             default:
                 mActivity.finish();
                 break;

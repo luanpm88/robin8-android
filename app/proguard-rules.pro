@@ -229,5 +229,12 @@
         -keepclasseswithmembernames class * {
             @butterknife.* <methods>;
         }
+        #融云
+        -keep class io.rong.** {*;}
+        -keep class * implements io.rong.imlib.model.MessageContent {*;}
+        -dontwarn io.rong.push.**
+        -dontnote com.xiaomi.**
+        -dontnote com.google.android.gms.gcm.**
+        -dontnote io.rong.**
 
 

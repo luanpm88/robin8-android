@@ -107,7 +107,7 @@ public class InviteFriendsActivity extends BaseActivity {
         mImgDown.setOnClickListener(this);
         mListView = ((LinearLayoutForListView) findViewById(R.id.list_content));
         mEmptyLayout = ((LinearLayout) findViewById(R.id.ll_empty));
-        tvRewordInfo.setText(Html.fromHtml("邀请好友下载立得<font color=#ecb200>" + "2元" + "</font>现金奖励"));
+        tvRewordInfo.setText(Html.fromHtml("邀请好友下载并完成一个活动,立得<font color=#ecb200>" + "2元" + "</font>奖励"));
         tvInvite = ((TextView) view.findViewById(R.id.tv_invite_friend));
         tvInvite.setOnClickListener(this);
         //--联系人处理

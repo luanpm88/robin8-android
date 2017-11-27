@@ -101,7 +101,8 @@ public class PostInviteesActivity extends BaseActivity {
             }
             BitmapUtil.loadImage(PostInviteesActivity.this, bean.getAvatar_url(), holder.civImage);
             holder.tvName.setText(bean.getName());
-
+            //LogUtil.LogShitou("人员列表","===>"+bean.getId());
+           // LogUtil.LogShitou("人员列表","===>"+bean.getName())
             convertView.setOnClickListener(new MyOnClickListener(bean.getId()));
             return convertView;
         }

@@ -81,7 +81,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("签到历史"+HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL),response);
+                //LogUtil.LogShitou("签到历史"+HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL),response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -138,7 +138,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("签到"+HelpTools.getUrl(CommonConfig.CHECK_IN_URL),response);
+                //LogUtil.LogShitou("签到"+HelpTools.getUrl(CommonConfig.CHECK_IN_URL),response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }

@@ -34,6 +34,22 @@ public class DateUtil {
         return df.format(new Date(time));
     }
 
+ /**
+     * 获取到当前时间的毫秒值
+     * @param format
+     * @return
+     */
+    public static String getNowTimeMs(String format){
+    SimpleDateFormat format1 = new SimpleDateFormat(format);
+    String format2 = format1.format(new Date());
+    long nowTimes = 0;
+    try {
+        nowTimes = format1.parse(format2).getTime();
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    return String.valueOf(nowTimes);
+}
 
     public static void getAllYearDate(List<String> list) throws ParseException {
         String today = getNowTime("yyyy-MM-dd");

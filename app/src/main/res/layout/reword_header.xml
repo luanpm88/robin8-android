@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="fill_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:layout_height="wrap_content">
 
     <com.robin8.rb.autoviewpager.AutoScrollViewPager
         android:id="@+id/vp_auto"
         android:layout_width="fill_parent"
         android:layout_height="144dp" />
+    <!--<com.robin8.rb.module.reword.banner.ViewPager-->
+        <!--android:id="@+id/vp_auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:clipToPadding="false"-->
+        <!--android:overScrollMode="never"-->
+        <!--app:orientation="horizontal"-->
+        <!--android:paddingEnd="@dimen/viewpager_padding"-->
+        <!--android:paddingLeft="@dimen/viewpager_padding"-->
+        <!--android:paddingRight="@dimen/viewpager_padding"-->
+        <!--android:paddingStart="@dimen/viewpager_padding" />-->
 
     <LinearLayout
         android:id="@+id/ll_vp_points"

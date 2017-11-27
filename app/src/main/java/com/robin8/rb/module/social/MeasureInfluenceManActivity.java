@@ -23,7 +23,6 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -147,7 +146,7 @@ public class MeasureInfluenceManActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("提交微博绑定", "OK" + response);
+               // LogUtil.LogShitou("提交微博绑定", "OK" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }

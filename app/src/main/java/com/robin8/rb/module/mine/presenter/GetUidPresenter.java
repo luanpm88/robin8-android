@@ -8,7 +8,6 @@ import com.robin8.rb.listener.BindSocialPresenterListener;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.util.HelpTools;
 
 import java.util.HashMap;
 
@@ -83,7 +82,7 @@ public class GetUidPresenter extends BindSocialPresenterListener {
 //                                }
 //                                });
             if (listener != null) {
-                HelpTools.insertCommonXml(HelpTools.NATIVE,String.valueOf(res.get("openid")));
+              //  HelpTools.insertCommonXml(HelpTools.NATIVE,String.valueOf(res.get("openid")));
                 listener.onResponse(String.valueOf(res.get("openid")));
             }
             if (tvName != null) {

@@ -697,7 +697,7 @@ public class DetailContentHelper {
 
             @Override
             public void onComplate(ResponceBean responceBean) {
-                //LogUtil.LogShitou("活动上传截图", "===>" + responceBean);
+               // LogUtil.LogShitou("活动上传截图", "===>" + responceBean);
                 if (mWProgressDialog != null) {
                     try {
                         mWProgressDialog.dismiss();
@@ -1815,7 +1815,8 @@ public class DetailContentHelper {
             shareUrl = campaignInviteEntity.getShare_url();
         }
         if (SinaWeibo.NAME.equals(platName)) {
-            oks.setText(("#Robin8#" + "「" + campaignInviteEntity.getCampaign().getBrand_name() + "「" + campaignInviteEntity.getCampaign().getName() + "」」" + shareUrl));
+          //  oks.setText(("#Robin8#" + "「" + campaignInviteEntity.getCampaign().getBrand_name() + "「" + campaignInviteEntity.getCampaign().getName() + "」」" + shareUrl));
+            oks.setText(("#Robin8#" + "「" +"「" + campaignInviteEntity.getCampaign().getName() + "」」" + shareUrl));
         } else {
             oks.setText(campaignInviteEntity.getCampaign().getDescription());
             oks.setTitleUrl(campaignInviteEntity.getShare_url());

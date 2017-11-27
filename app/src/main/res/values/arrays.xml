@@ -23,6 +23,7 @@
         <item>每日签到</item>
         <item>邀请好友</item>
         <item>输入邀请码</item>
+        <item>在线客服</item>
         <item>帮助中心</item>
     </string-array>
     <string-array name="social_tag_name">
@@ -93,13 +94,7 @@
         <item>&#xe60a;</item>
         <item>&#xe607;</item>
         <item>&#xe607;</item>
-    </string-array>
-
-    <string-array name="mine_list_info">
-        <item>完善资料得现金</item>
-        <item>1元夺宝赢好礼</item>
-        <item>每日签到返现金</item>
-        <item>邀请好友赚现金</item>
+        <item>&#xe607;</item>
     </string-array>
 
     <string-array name="launch_reword_item">
@@ -117,12 +112,12 @@
         <item>按点击次数计费</item>
         <item>按KOL转发计费</item>
         <!--<item>按KOL下载计费</item>-->
-        <!--<item>按KOL任务计费</item>-->
+        <item>按KOL任务计费</item>
     </string-array>
 
     <string-array name="launch_reword_consume_way_no_click">
         <item>按KOL转发计费</item>
-        <!--<item>按KOL任务计费</item>-->
+        <item>按KOL任务计费</item>
     </string-array>
 
     <string-array name="first_page_tag_item1">

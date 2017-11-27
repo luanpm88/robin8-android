@@ -34,7 +34,6 @@ import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +104,7 @@ public class PersonListFragment extends BaseFragment {
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore();
                 }
-                LogUtil.LogShitou("接单人员数据", response);
+               // LogUtil.LogShitou("接单人员数据", response);
                 PersonListBean invitePeopleModel1 = GsonTools.jsonToBean(response, PersonListBean.class);
                 if (invitePeopleModel1 == null) {
                     CustomToast.showShort(mActivity, getString(R.string.please_data_wrong));

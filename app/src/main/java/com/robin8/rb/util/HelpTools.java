@@ -23,6 +23,7 @@ public class HelpTools {
     public static final String LoginNumber = "loginNumber";// 当前登录人的电话号码
     public static final String LastRequestCodeTime = "lastRequestCode,ime";// 最后一次请求验证码的时间
     public static final String Token = "token";
+    public static final String CloudToken = "cloud_token";
     public static final String LoginBean = "loginBean";
     public static final String XiaoXiTiXing = "xiaoxitixing";
     public static final String FirstIn = "FirstIn";

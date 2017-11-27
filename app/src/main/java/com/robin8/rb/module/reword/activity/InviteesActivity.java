@@ -82,6 +82,7 @@ public class InviteesActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
+               // LogUtil.LogShitou("参与人员的信息",response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }

@@ -1,5 +1,6 @@
 package com.robin8.rb.base;
 
+import android.app.ActivityManager;
 import android.app.Service;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -20,6 +21,8 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 
+import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +33,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClaims;
 import io.jsonwebtoken.impl.TextCodec;
+import io.rong.imkit.RongIM;
 
 public class BaseApplication extends MultiDexApplication {
 
@@ -59,18 +63,46 @@ public class BaseApplication extends MultiDexApplication {
 
         // Handler对象
         mHandler = new Handler();
-//        if (mHandler == null) {
-//            mHandler = new Handler();
-//        }
+        //        if (mHandler == null) {
+        //            mHandler = new Handler();
+        //        }
         // Context
         mContext = getApplicationContext();
         // 主线程id,获取当前方法运行线程id,此方法运行在主线程中,�?��获取的是主线程id
         mMainThreadIdI = android.os.Process.myTid();
         // 主线程对�?
         mMainThread = Thread.currentThread();
+        if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext())) || "io.rong.push".equals(getCurProcessName(getApplicationContext()))) {
 
+            /**
+             * IMKit SDK调用第一步 初始化
+             */
+            RongIM.init(this);
+            RongIM.getInstance().setMessageAttachedUserInfo(true);
+        }
         initConfig();
         initData();
+    }
+
+    /**
+     获得当前进程的名字
+     @param context
+     @return
+     */
+    public static String getCurProcessName(Context context) {
+
+        int pid = android.os.Process.myPid();
+
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager.getRunningAppProcesses()) {
+
+            if (appProcess.pid == pid) {
+
+                return appProcess.processName;
+            }
+        }
+        return null;
     }
 
     private void initConfig() {
@@ -92,9 +124,10 @@ public class BaseApplication extends MultiDexApplication {
     public static Handler getHandler() {
         return mHandler;
     }
-//    public static void sendMessage(Message msg) {
-//        mHandler.sendMessage(msg);
-//    }
+
+    //    public static void sendMessage(Message msg) {
+    //        mHandler.sendMessage(msg);
+    //    }
     public static Context getContext() {
 
         return mContext;
@@ -158,9 +191,8 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     /**
-     * 获取加密的header
-     *
-     * @return
+     获取加密的header
+     @return
      */
     public static String getHeader() {
 
@@ -174,18 +206,37 @@ public class BaseApplication extends MultiDexApplication {
         long timeInMillis = cal.getTimeInMillis();
         String myToken = HelpTools.getLoginInfo(HelpTools.Token);
         TokenBean tokenBean = new TokenBean(StringUtil.checkString(myToken), ((int) (timeInMillis / 1000)));
-       // LogUtil.LogShitou("请求头问题token", "===>" + myToken);
-       // LogUtil.LogShitou("请求头问题时间", "===>" + ((int) (timeInMillis / 1000)));
         String s1 = GsonTools.beanToJson(tokenBean);
-       // LogUtil.LogShitou("请求头问题s1", "===>" + s1);
-
         HashMap<String, Object> headMap = new HashMap<>();
         headMap.put("typ", JWT);
         headMap.put("alg", ALGORITHM);
 
         String compact = Jwts.builder().setHeader(headMap).setPayload(s1).signWith(SignatureAlgorithm.HS256, TextCodec.BASE64.encode(SALT)).compact();
-
         return compact;
+    }
+
+    /**
+     获取加密的header
+     @return
+     */
+    public static List<String> getHeaderRongYun() {
+        List<String> list = new ArrayList<>();
+        Calendar cal = Calendar.getInstance();
+        //取得时间偏移量：
+        int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);
+        //取得夏令时差：
+        int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);
+        //从本地时间里扣除这些差量，即可以取得UTC时间：
+        cal.add(java.util.Calendar.MILLISECOND, - (zoneOffset + dstOffset));
+        long timeInMillis = cal.getTimeInMillis();
+        String nonce = String.valueOf(Math.floor(Math.random() * 1000000));
+        String signature = sha1(CommonConfig.RONG_CLOUD_SECRET + nonce + String.valueOf((int) (timeInMillis / 1000)));
+        list.add(CommonConfig.RONG_CLOUD_KEY);
+        list.add(nonce);
+        list.add(signature);
+        list.add("application/x-www-form-urlencoded");
+        list.add(String.valueOf(((int) (timeInMillis / 1000))));
+        return list;
     }
 
     public static boolean isDoubleClick() {
@@ -199,7 +250,7 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     /**
-     * 加密的bean 用于gson转化为json格式字符串
+     加密的bean 用于gson转化为json格式字符串
      */
     public static class TokenBean {
 
@@ -218,10 +269,9 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     /**
-     * 解密
-     *
-     * @param token
-     * @return
+     解密
+     @param token
+     @return
      */
     public static String decodeToken(String token) {
 
@@ -256,5 +306,25 @@ public class BaseApplication extends MultiDexApplication {
         if (this.screenShot != null)
             this.screenShot.recycle();
         this.screenShot = screenShot;
+    }
+
+    private static String sha1(String data) {
+        StringBuffer buf = new StringBuffer();
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.update(data.getBytes());
+            byte[] bits = md.digest();
+            for (int i = 0; i < bits.length; i++) {
+                int a = bits[i];
+                if (a < 0)
+                    a += 256;
+                if (a < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(a));
+            }
+        } catch (Exception e) {
+
+        }
+        return buf.toString();
     }
 }

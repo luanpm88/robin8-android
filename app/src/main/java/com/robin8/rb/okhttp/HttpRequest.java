@@ -7,10 +7,10 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.robin8.rb.base.BaseApplication;
+import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.HttpPostKeyConstants;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
-import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
 
@@ -18,8 +18,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -126,6 +128,15 @@ public class HttpRequest {
                 if (postBody != null) {
                     if (needHeader) {
                         builder.header(HttpPostKeyConstants.AUTHORIZATION, BaseApplication.getHeader());
+                    }else {
+                        if (url.equals(CommonConfig.RONG_CLOUD_URL)){
+                            List<String> yun = BaseApplication.getHeaderRongYun();
+                            builder.addHeader("App-Key",yun.get(0));
+                            builder.addHeader("Nonce", yun.get(1));
+                            builder.addHeader("Signature",yun.get(2));
+                            builder.addHeader("Content-Type", yun.get(3));
+                            builder.addHeader("Timestamp",yun.get(4));
+                        }
                     }
                     builder.post(postBody);
                 }
@@ -153,7 +164,7 @@ public class HttpRequest {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Log.e("result",result);
+                      //  Log.e("result",result);
                         if (callback != null) {
                             callback.onResponse(result);
                         }
@@ -374,5 +385,23 @@ public class HttpRequest {
                 }
             }
         });
+    }
+
+    private static String sha1(String data){
+        StringBuffer buf = new StringBuffer();
+        try{
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.update(data.getBytes());
+            byte[] bits = md.digest();
+            for(int i = 0 ; i < bits.length;i++){
+                int a = bits[i];
+                if(a<0) a+=256;
+                if(a<16) buf.append("0");
+                buf.append(Integer.toHexString(a));
+            }
+        }catch(Exception e){
+
+        }
+        return buf.toString();
     }
 }

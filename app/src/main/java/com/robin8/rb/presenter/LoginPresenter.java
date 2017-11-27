@@ -25,6 +25,7 @@ import com.robin8.rb.model.IndentyBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.OtherLoginListBean;
 import com.robin8.rb.module.mine.model.MineShowModel;
+import com.robin8.rb.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.module.social.MeasureInfluenceActivity;
 import com.robin8.rb.module.social.MeasureInfluenceManActivity;
 import com.robin8.rb.module.social.SocialBindActivity;
@@ -487,7 +488,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                         // talkingData 统计
                         TalkingDataAppCpa.onRegister(phoneNumber);
                         TalkingDataAppCpa.onLogin(phoneNumber);
-
                         //  LoginHelper.loginSuccess(loginBean, from, mActivity);
                         HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
                         HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
@@ -495,6 +495,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                         if (BaseApplication.getInstance().hasLogined()) {
                             NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
                         }
+                        initGetRongCloud(loginBean.getKol().getMobile_number(),loginBean.getKol().getName(),loginBean.getKol().getAvatar_url());
                         //登陆成功之后去绑定社交账号页面
                         int is = 0;
                         if (loginBean.getKol_identities() != null) {
@@ -547,27 +548,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                             e.printStackTrace();
                         }
                     }
-                    //                        TalkingDataAppCpa.onRegister(phoneNumber);
-                    //                        TalkingDataAppCpa.onLogin(phoneNumber);
-                    //                        HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
-                    //                        HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
-                    //                        BaseApplication.getInstance().setLoginBean(loginBean);
-                    //                        if (BaseApplication.getInstance().hasLogined()) {
-                    //                            LogUtil.LogShitou("走这里了吗？", "============");
-                    //                             NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
-                    //判断是否是kol，如果不是kol，点击申请kol
-                    //                            Intent intent1 = new Intent(mActivity, MainActivity.class);
-                    //                            intent1.putExtra("register_main", "zhu");
-                    //
-                    //                            LogUtil.LogShitou("这是新用户", "dfsdsdvdsvsvsdvsdv");
-                    //                            mActivity.startActivity(intent1);
-                    //judgeIskol();
-                    //                        }
-                    //                        LoginHelper.loginSuccess(loginBean, from, mActivity);
-                    //                        }else {
-                    //                          //  LoginHelper.loginSuccess(loginBean, from, mActivity);
-                    //                        }
-
                 }
             }, phoneNumber, checkCode, mKolUuid, invitationCode);
         }
@@ -621,7 +601,46 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
         });
     }
+    private void initGetRongCloud(String id,String name,String imgUrl) {
+        BasePresenter base = new BasePresenter();
+        RequestParams requestParams = new RequestParams();
+        if (TextUtils.isEmpty(id)){
+            //游客
+            requestParams.put("userId",CommonConfig.TOURIST_PHONE);
+            requestParams.put("name","游客");
+            requestParams.put("portraitUri","http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/ad9d7a31d7!avatar");
+        }else {
+            requestParams.put("userId",id);
+            if (TextUtils.isEmpty(name)){
+                requestParams.put("name",id);
+            }else{
+                requestParams.put("name",name);
+            }
+            if (TextUtils.isEmpty(imgUrl)){
+                requestParams.put("portraitUri","http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/22494f2caf!avatar");
+            }else{
+                requestParams.put("portraitUri",imgUrl);
+            }
+        }
+        base.getDataFromServer(false, HttpRequest.POST, CommonConfig.RONG_CLOUD_URL, requestParams, new RequestCallback() {
 
+            @Override
+            public void onError(Exception e) {
+                CustomToast.showShort(mActivity,mActivity.getResources().getString(R.string.no_net));
+            }
+            @Override
+            public void onResponse(String response) {
+                RongCloudBean rongCloudBean = GsonTools.jsonToBean(response, RongCloudBean.class);
+                if (rongCloudBean.getCode()==200){
+                    HelpTools.insertCommonXml(HelpTools.CloudToken,rongCloudBean.getToken());
+                }else{
+                    HelpTools.insertCommonXml(HelpTools.CloudToken,"");
+                }
+
+            }
+        });
+
+    }
     private void jumpBeKol(int id) {
         //  TalkingDataAppCpa.onCustEvent1();
         Intent intent1 = new Intent(mActivity, MainActivity.class);

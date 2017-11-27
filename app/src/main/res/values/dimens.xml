@@ -61,5 +61,7 @@
     <dimen name="is_kol_page_row_padding">3dp</dimen>
     <dimen name="is_kol_page_row_margin_left_or_right">15dp</dimen>
 
+    <!--活动banner-->
+    <dimen name="viewpager_padding">40dp</dimen>
 
 </resources>

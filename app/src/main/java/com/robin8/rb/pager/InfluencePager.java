@@ -163,14 +163,6 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
         mDataList = new ArrayList<>();
         //====关键词====//
         showDataView = ((ShowDataView) mPager.findViewById(R.id.show_my_data));
-        //        showDataView.setValue1(0);
-        //        showDataView.setValue2(0);
-        //        showDataView.setValue3(0);
-        //        showDataView.setValue4(0);
-        //        showDataView.setValue5(0);
-        //        showDataView.setValue6(0);
-        //        showDataView.setValue7(0);
-        //        showDataView.setValue8(0);
         //====fragment====//
         myTabs = ((EasySlidingTabs) mPager.findViewById(R.id.my_indicator));
         mScroll = ((ScrollViewExtend) mPager.findViewById(R.id.scroll_extend));
@@ -309,7 +301,7 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
 
             @Override
             public void onResponse(String response) {
-              //  LogUtil.LogShitou("影响力第一个接口", "==>" + response);
+               // LogUtil.LogShitou("影响力第一个接口", "==>" + response);
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (baseBean != null) {
                     if (baseBean.getError() == 0) {
@@ -338,13 +330,10 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
 
             @Override
             public void onResponse(String response) {
-             //   LogUtil.LogShitou("影响力第二步接口", "===================>" + response);
-
+               // LogUtil.LogShitou("影响力第二步接口", "===================>" + response);
                 // CacheUtils.putString(mActivity, SPConstants.INFLUENCE_DATA, response);
                // LogUtil.LogShitou("看看走了几次", "====>" + count);
-
                 dealDatas(response);
-
                 //weiBoFg.myData(response,0);
             }
 
@@ -404,13 +393,13 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
 
                                     @Override
                                     public void run() {
-                                        //                                                        new Handler().postDelayed(new Runnable() {
+                                        // new Handler().postDelayed(new Runnable() {
                                         //
-                                        //                                                            @Override
-                                        //                                                            public void run() {
+                                        //     @Override
+                                        //     public void run() {
                                         //
-                                        //                                                            }
-                                        //                                                        }, 3500);
+                                        //     }
+                                        // }, 3500);
                                         count++;
                                         again = true;
                                         loadDataTwo();

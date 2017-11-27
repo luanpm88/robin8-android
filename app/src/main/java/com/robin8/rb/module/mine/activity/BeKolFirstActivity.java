@@ -37,6 +37,7 @@ import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
@@ -144,7 +145,6 @@ public class BeKolFirstActivity extends BaseActivity {
         id = intent.getIntExtra("id", 0);
         jump = intent.getStringExtra("jump");
         if (! TextUtils.isEmpty(jump)) {
-            //  LogUtil.LogShitou("跳转", "进入啊");
             mIVBack.setVisibility(View.GONE);
             tvJump.setVisibility(View.VISIBLE);
             mTvEdit.setVisibility(View.GONE);
@@ -154,7 +154,6 @@ public class BeKolFirstActivity extends BaseActivity {
         } else {
             tvJump.setVisibility(View.GONE);
             mTvEdit.setVisibility(View.VISIBLE);
-            //  LogUtil.LogShitou("跳转", "正常");
         }
         url = HelpTools.getUrl(CommonConfig.FIRST_KOL_LIST_URL + BACKSLASH + String.valueOf(id) + BACKSLASH + "detail");
         //http://qa.robin8.net/api/v1_6/big_v/60084/detail
@@ -205,9 +204,7 @@ public class BeKolFirstActivity extends BaseActivity {
     }
 
     private void parseJson(String json) {
-
         KolDetailModel kolDetailModel = GsonTools.jsonToBean(json, KolDetailModel.class);
-        //  LogUtil.LogShitou("查看json","===>"+json);
         if (kolDetailModel != null && kolDetailModel.getError() == 0) {
             mBigVBean = kolDetailModel.getBig_v();
             mSocialAccounts = kolDetailModel.getSocial_accounts();
@@ -252,15 +249,12 @@ public class BeKolFirstActivity extends BaseActivity {
                         switch (mBigVBean.getGender()) {
                             case UNKNOWN:
                                 item.content = getString(R.string.unknown);
-                                // sexs =getString(R.string.unknown);
                                 break;
                             case MALE:
                                 item.content = getString(R.string.male);
-                                // sexs = getString(R.string.male);
                                 break;
                             case FEMALE:
                                 item.content = getString(R.string.female);
-                                // sexs = getString(R.string.female);
                                 break;
                         }
                         break;
@@ -280,10 +274,6 @@ public class BeKolFirstActivity extends BaseActivity {
                         item.content = mBigVBean.getDesc();
                         descs = mBigVBean.getDesc();
                         break;
-
-                    //                    case ITEM_PIC:
-                    //                        item.content = mBigVBean.getAvatar_url();
-                    //                        break;
                 }
                 mDataList.add(item);
             }
@@ -315,8 +305,6 @@ public class BeKolFirstActivity extends BaseActivity {
                 for (int j = 0; j < mSocialAccounts.size(); j++) {
                     if (getString(R.string.weixin).equals(mSocialAccounts.get(j).getProvider_name())) {
                         MYTAG = getString(R.string.weixin);
-                        //  CustomToast.showShort(this, getString(R.string.must_bind_weixin));
-                        //  return;
                     }
                 }
                 if (! MYTAG.equals(getString(R.string.weixin))) {
@@ -375,28 +363,12 @@ public class BeKolFirstActivity extends BaseActivity {
             }
         }
         requestMap.put("gender", gender);
-
-
-        //        String gender = "0";
-        //        if (getString(R.string.male).equals(mDataList.get(ITEM_GENDER).content)){
-        //            gender = "1";
-        //        }else if(getString(R.string.female).equals(mTVInfoSex.getText())){
-        //            gender = "2";
-        //        }
-        //        requestMap.put("gender", gender);
         String imageName = null;
         File file = null;
         if (! TextUtils.isEmpty(mFinalPicturePath)) {
             imageName = mFinalPicturePath.substring(mFinalPicturePath.lastIndexOf("/") + 1);
             file = new File(mFinalPicturePath);
         }
-        //        else {
-        //            if (!TextUtils.isEmpty(mDataList.get(ITEM_HEADER).content)){
-        //                CustomToast.showShort(BeKolFirstActivity.this,"请上传头像"+mDataList.get(ITEM_HEADER).content);
-        //                imageName =(mDataList.get(ITEM_HEADER).content).substring((mDataList.get(ITEM_HEADER).content).lastIndexOf("/") + 1);
-        //                file  = new File(mDataList.get(ITEM_HEADER).content);
-        //            }
-        //        }
         HttpRequest.getInstance().post(true, HelpTools.getUrl(CommonConfig.BIG_V_APPLY_FIRST_URL), "avatar", imageName, file, requestMap, new RequestCallback() {
 
             @Override
@@ -409,7 +381,7 @@ public class BeKolFirstActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                // LogUtil.LogShitou("提交结果","===>"+response);
+                 LogUtil.LogShitou("提交结果","===>"+response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -420,23 +392,12 @@ public class BeKolFirstActivity extends BaseActivity {
 
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (bean != null && bean.getError() == 0) {
-                    // skipToNext();
-                    //                    Intent intent = new Intent(BeKolFirstActivity.this, BeKolThirdActivity.class);
-                    //                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    //                    startActivity(intent);
-                    //                    finish();
-                    //                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    //                    NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
                     postData();
                 }
             }
         });
     }
     private void postData() {
-        //        if (!mGridDataList.get(0).isChecked) {
-        //            CustomToast.showShort(this,getString(R.string.must_bind_weixin));
-        //            return;
-        //        }
 
         BasePresenter mBasePresenter = new BasePresenter();
 
@@ -467,7 +428,6 @@ public class BeKolFirstActivity extends BaseActivity {
                 }
 
                 if (bean.getError() == 0) {
-                    //skipToNext();
                     Intent intent = new Intent(BeKolFirstActivity.this, BeKolThirdActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -501,20 +461,11 @@ public class BeKolFirstActivity extends BaseActivity {
             return false;
 
         }
-        //        if (TextUtils.isEmpty(mDataList.get(ITEM_JOB).content)) {
-        //            CustomToast.showShort(this, getString(R.string.please_write_job));
-        //            return false;
-        //        }
 
         if (TextUtils.isEmpty(mDataList.get(ITEM_INTEREST).content) && TextUtils.isEmpty(interest)) {
             CustomToast.showShort(this, getString(R.string.please_write_interest));
             return false;
         }
-
-      /*  if (TextUtils.isEmpty(mDataList.get(ITEM_DESC).content)) {
-            CustomToast.showShort(this, getString(R.string.please_write_desc));
-            return false;
-        }*/
 
         return true;
     }
@@ -583,7 +534,6 @@ public class BeKolFirstActivity extends BaseActivity {
                 submit();
                 break;
             case R.id.tv_edit:
-                // CustomToast.showShort(BeKolFirstActivity.this, "编辑");
                 if (isShow) {
                     mTVCenter.setText(this.getText(R.string.be_kol));
                     mTvEdit.setText("编辑");
@@ -624,8 +574,6 @@ public class BeKolFirstActivity extends BaseActivity {
                     return TYPE_DESC;
                 case ITEM_SOCIAL_ACCOUNT:
                     return TYPE_SOCIAL;
-                //                case ITEM_PIC:
-                //                    return TYPE_PIC;
                 default:
                     return TYPE_NORMAL;
             }
@@ -651,33 +599,18 @@ public class BeKolFirstActivity extends BaseActivity {
                 case TYPE_HEADER:
                     convertView = LayoutInflater.from(BeKolFirstActivity.this).inflate(R.layout.item_be_kol_header, null);
                     TextView tvName = (TextView) convertView.findViewById(R.id.tv_name);
-                    // TextView tvContent = (TextView)convertView.findViewById(R.id.tv_content);
                     TextView tvArrow = (TextView) convertView.findViewById(R.id.tv_arrow);
                     civImage = (CircleImageView) convertView.findViewById(R.id.civ_image);
                     tvName.setText(item.name);
-                    //tvContent.setText(item.content);
                     IconFontHelper.setTextIconFont(tvArrow, R.string.arrow_right);
                     if (! TextUtils.isEmpty(item.content)) {
-                        //LogUtil.LogShitou("选择头像图片", "---->" + item.content);
+                        LogUtil.LogShitou("选择头像图片", "---->" + item.content);
                         BitmapUtil.loadImage(BeKolFirstActivity.this, item.content, civImage);
                     } else {
                         if (mBitmap != null) {
                             civImage.setImageBitmap(mBitmap);
                         }
                     }
-                    //                    else {
-                    //                        if (! TextUtils.isEmpty(mFinalPicturePath)) {
-                    //                            BitmapUtil.loadImage(BeKolFirstActivity.this, mFinalPicturePath, civImage);
-                    //                        }
-                    //                    }
-                    //                    final View viewHeader = convertView.findViewById(R.id.view_header);
-                    //                    viewHeader.setBackgroundResource(R.mipmap.pic_kol_step_0);
-                    //                    viewHeader.post(new Runnable() {
-                    //                        @Override
-                    //                        public void run() {
-                    //                            viewHeader.getLayoutParams().height = DensityUtils.getScreenWidth(viewHeader.getContext()) * 58 / 700;
-                    //                        }
-                    //                    });
                     break;
                 case TYPE_NORMAL:
                     convertView = LayoutInflater.from(BeKolFirstActivity.this).inflate(R.layout.item_be_kol_normal, null);
@@ -711,7 +644,6 @@ public class BeKolFirstActivity extends BaseActivity {
                             }
                         }
                     } else {
-                        // LogUtil.LogShitou("年龄之类的", item.content + "-------------");
                         tvContent.setText(item.content);
                     }
                     if (item.name.equals(getString(R.string.interest))) {
@@ -782,20 +714,6 @@ public class BeKolFirstActivity extends BaseActivity {
                     }
 
                     break;
-                //                case TYPE_PIC:
-                //                    convertView = LayoutInflater.from(BeKolFirstActivity.this).inflate(R.layout.item_be_kol_pic, null);
-                //                    mLLContentlv = convertView.findViewById(R.id.ll_content);
-                //                    TextView tvAdd = (TextView) convertView.findViewById(R.id.tv_add);
-                //                    mImageView = (ImageView) convertView.findViewById(R.id.iv_image);
-                //                    IconFontHelper.setTextIconFont(tvAdd, R.string.add_sign);
-                //
-                //                    if (!TextUtils.isEmpty(item.content)) {
-                //                        BitmapUtil.loadImage(BeKolFirstActivity.this, item.content, mImageView);
-                //                        mLLContentlv.setVisibility(View.GONE);
-                //                    } else {
-                //                        mLLContentlv.setVisibility(View.VISIBLE);
-                //                    }
-                //                    break;
             }
 
 
@@ -837,13 +755,10 @@ public class BeKolFirstActivity extends BaseActivity {
                 case ITEM_GENDER:
                     showGenderSelector();
                     break;
-                //                case ITEM_PIC:
-                //                    updateImage();
-                //                    break;
                 case ITEM_HEADER:
                     //点击跳转到相册
                     if (isShow==false){
-                        CustomToast.showShort(BeKolFirstActivity.this,"wadw");
+                        CustomToast.showShort(BeKolFirstActivity.this,"跳转失败！！");
                     }else {
                         updateImage();
                     }
@@ -896,14 +811,11 @@ public class BeKolFirstActivity extends BaseActivity {
     }
 
     private void skipToNext() {
-
         Intent intent = new Intent(this, BeKolSecondActivity.class);
         intent.putExtra("social_accounts", (Serializable) mSocialAccounts);
         intent.putExtra("kol_shows", (Serializable) mKolShows);
         intent.putExtra("kol_id", mBigVBean.getId());
-        //startActivity(intent);
         startActivityForResult(intent, SPConstants.BE_KOL_BIND_RESULT);
-        //  finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
@@ -937,9 +849,6 @@ public class BeKolFirstActivity extends BaseActivity {
                 mDataList.get(ITEM_DESC).content = content;
                 descs = content;
             }
-            //            if (!TextUtils.isEmpty(imgPath)){
-            //                BitmapUtil.loadImage(BeKolFirstActivity.this, imgPath, civImage);
-            //            }
             mMyListAdapter.notifyDataSetChanged();
             return;
         }
@@ -954,14 +863,11 @@ public class BeKolFirstActivity extends BaseActivity {
                     break;
                 case SPConstants.RESULT_CROP_CODE:
                     mBitmap = BitmapUtil.decodeUriAsBitmap(mImageUri, this);
-
                     try {
                         mFinalPicturePath = FileUtils.saveBitmapToSD(mBitmap, "temp" + SystemClock.currentThreadTimeMillis());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    // mLLContentlv.setVisibility(View.GONE);
-                    //  mImageView.setImageBitmap(mBitmap);
                     civImage.setImageBitmap(mBitmap);
                     mImageLoadB = true;
                     break;

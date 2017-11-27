@@ -34,7 +34,9 @@ import com.robin8.rb.base.BasePager;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.pager.CreatePager;
 import com.robin8.rb.pager.FirstPager;
@@ -48,7 +50,9 @@ import com.robin8.rb.task.LocationService;
 import com.robin8.rb.update.UpdateNewApk;
 import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
+import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
@@ -117,9 +121,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 mPageName = StatisticsAgency.INFLUENCE_LIST;
             }
         }
-//        else {
-//            mPageName = StatisticsAgency.CAMPAIGN_LIST;
-//        }
+        //        else {
+        //            mPageName = StatisticsAgency.CAMPAIGN_LIST;
+        //        }
         setContentView(R.layout.activity_main);
         setSwipeBackEnable(false);
         checkNewVersion();
@@ -127,6 +131,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         startLocate();
         initView();
         initData();
+        if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.CloudToken))) {
+            initGetRongCloud();
+        }
         if (TextUtils.isEmpty((HelpTools.getCommonXml(HelpTools.ShadowFirst)))) {
             showShadowDialog(MainActivity.this, 0);
         } else {
@@ -346,18 +353,57 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         } else {
             mRGContentBottom.check(R.id.rb_bottom_campaign);
         }
-
         // 让首页界面加载数据
         mPagerList.get(0).initData();
         // 监听ViewPager的页签的变化
         mVPContentPager.setOnPageChangeListener(new MyOnPageChangeListener());
         // 监听底部 页签单选框
         mRGContentBottom.setOnCheckedChangeListener(new MyOnCheckedChangeListener());
-       // mRBBottomFirst.setOnClickListener(this);
+        // mRBBottomFirst.setOnClickListener(this);
         mRBBottomCampaign.setOnClickListener(this);
         mRBBottomMine.setOnClickListener(this);
-       // mRBBottomCreate.setOnClickListener(this);
+        // mRBBottomCreate.setOnClickListener(this);
         mRBBottomInfluence.setOnClickListener(this);
+    }
+
+    /**
+     获取融云的token
+     */
+    private void initGetRongCloud() {
+        BasePresenter base = new BasePresenter();
+        RequestParams requestParams = new RequestParams();
+        if (! TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))) {
+            requestParams.put("userId", HelpTools.getLoginInfo(HelpTools.LoginNumber));
+            if (TextUtils.isEmpty(BaseApplication.getInstance().getLoginBean().getKol().getName())) {
+                requestParams.put("name", HelpTools.getLoginInfo(HelpTools.LoginNumber));
+            } else {
+                requestParams.put("name", BaseApplication.getInstance().getLoginBean().getKol().getName());
+            }
+            if (TextUtils.isEmpty(BaseApplication.getInstance().getLoginBean().getKol().getAvatar_url())) {
+                requestParams.put("portraitUri", "http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/22494f2caf!avatar");
+            } else {
+                requestParams.put("portraitUri", BaseApplication.getInstance().getLoginBean().getKol().getAvatar_url());
+            }
+
+            base.getDataFromServer(false, HttpRequest.POST, CommonConfig.RONG_CLOUD_URL, requestParams, new RequestCallback() {
+
+                @Override
+                public void onError(Exception e) {
+                    CustomToast.showShort(MainActivity.this, getString(R.string.no_net));
+                }
+
+                @Override
+                public void onResponse(String response) {
+                    RongCloudBean rongCloudBean = GsonTools.jsonToBean(response, RongCloudBean.class);
+                    if (rongCloudBean.getCode() == 200) {
+                        HelpTools.insertCommonXml(HelpTools.CloudToken, rongCloudBean.getToken());
+                    } else {
+                        HelpTools.insertCommonXml(HelpTools.CloudToken, "");
+                    }
+
+                }
+            });
+        }
     }
 
     @Override
@@ -606,13 +652,13 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             public void onClick(View view) {
                 if (page == 0) {
                     HelpTools.insertCommonXml(HelpTools.ShadowFirst, getString(R.string.submit));
-                    if (imgStartLeft.getVisibility()==View.VISIBLE){
+                    if (imgStartLeft.getVisibility() == View.VISIBLE) {
                         imgStartLeft.setVisibility(View.INVISIBLE);
                         imgBgFirst.setVisibility(View.INVISIBLE);
                         imgBgFirstRight.setVisibility(View.VISIBLE);
                         imgStartRight.setVisibility(View.VISIBLE);
-                    }else {
-                      cdm.dismiss();
+                    } else {
+                        cdm.dismiss();
                     }
                 } else {
                     HelpTools.insertCommonXml(HelpTools.ShadowMine, getString(R.string.submit));

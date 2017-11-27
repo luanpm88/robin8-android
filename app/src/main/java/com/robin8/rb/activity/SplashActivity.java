@@ -37,9 +37,6 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         HelpTools.getKoluuidFromNet();
         // PushManager.getInstance().initialize(this.getApplicationContext());
-//        if (TextUtils.isEmpty(CommonConfig.SERVICE)){
-//            HelpTools.insertCommonXml(HelpTools.SERVER, CommonConfig.SERVICE_CUSTOM);
-//        }
         if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SERVER))){
             CommonConfig.SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
         }

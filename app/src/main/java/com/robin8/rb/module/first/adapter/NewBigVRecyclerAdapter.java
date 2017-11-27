@@ -95,6 +95,8 @@ public class NewBigVRecyclerAdapter extends BaseRecyclerAdapter implements View.
         return mDataList == null ? 0 : mDataList.size();
     }
 
+
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         public int position;

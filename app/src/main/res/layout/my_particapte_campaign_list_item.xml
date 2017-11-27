@@ -1,56 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:gravity="center_vertical"
-        android:layout_marginRight="13dp"
         android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:gravity="center_vertical"
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:singleLine="true"
-            android:text=""
-            android:textColor="@color/gray_custom"
-            android:textSize="@dimen/undefine_font_5" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/gray_custom"
+                android:textSize="@dimen/undefine_font_5"/>
+            <TextView
+                android:id="@+id/tv_share_type"
+                android:visibility="gone"
+                android:textSize="@dimen/undefine_font_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_name"/>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/red_custom"
+                android:textSize="@dimen/undefine_font_3"/>
+        </RelativeLayout>
         <LinearLayout
             android:id="@+id/ll_reason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+               android:layout_gravity="center"
                 android:layout_marginBottom="2.5dp"
-                android:layout_gravity="right"
+                android:gravity="right"
                 android:textColor="@color/gray_custom"
-                android:textSize="@dimen/undefine_font_3"
-                android:text="一直" />
+                android:textSize="@dimen/undefine_font_3"/>
 
             <TextView
-                android:layout_marginTop="2.5dp"
                 android:id="@+id/tv_bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_gravity="right"
+                android:layout_marginTop="2.5dp"
+                android:layout_gravity="center"
                 android:textColor="@color/gray_custom"
-                android:textSize="@dimen/undefine_font_3"
-                android:text="qq" />
+                android:textSize="@dimen/undefine_font_3"/>
         </LinearLayout>
     </LinearLayout>
 

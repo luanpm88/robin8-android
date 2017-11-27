@@ -103,7 +103,7 @@ public class SocialCardWeChatFragment extends BaseFragment implements View.OnCli
 //            llShow.setVisibility(View.VISIBLE);
 //            llHide.setVisibility(View.GONE);
 //            tvCanSee.setVisibility(View.VISIBLE);
-            vp.setObjectForPosition(view,1);
+           // vp.setObjectForPosition(view,1);
 //        } else {
 //            llWechatHide.setVisibility(View.VISIBLE);
 //            tvCanSee.setVisibility(View.GONE);

@@ -191,153 +191,142 @@ public class SocialCardFragment extends BaseFragment implements View.OnClickList
         llTwo.setOnClickListener(this);
         llThree.setOnClickListener(this);
         //
-        if (type.equals(mActivity.getString(R.string.weibo))) {
-            llWechatHide.setVisibility(View.GONE);
-            llShow.setVisibility(View.VISIBLE);
-            llHide.setVisibility(View.GONE);
-            tvCanSee.setVisibility(View.VISIBLE);
-//            if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.PagerData))){
-//                myData(HelpTools.getCommonXml(HelpTools.PagerData),0);
-//            }
-            vp.setObjectForPosition(view, 0);
-        } else {
-            tvCanSee.setVisibility(View.GONE);
-            llWechatHide.setVisibility(View.VISIBLE);
-            tvUserName.setText("我是Robin8");
-            tvUserDec.setText("您的个人数据管理平台");
-            vp.setObjectForPosition(view, 1);
+        if (view != null) {
+            if (type.equals(mActivity.getString(R.string.weibo))) {
+                llWechatHide.setVisibility(View.GONE);
+                llShow.setVisibility(View.VISIBLE);
+                llHide.setVisibility(View.GONE);
+                tvCanSee.setVisibility(View.VISIBLE);
+                vp.setObjectForPosition(view, 0);
+            } else {
+                tvCanSee.setVisibility(View.GONE);
+                llWechatHide.setVisibility(View.VISIBLE);
+                tvUserName.setText("我是Robin8");
+                tvUserDec.setText("您的个人数据管理平台");
+                vp.setObjectForPosition(view, 1);
+            }
         }
         //vp.resetHeight(0);
-      //  myData(result, 2);
-
         return view;
     }
+
     public void myData(String result, int should) {
-        // super.initData();
-       // LogUtil.LogShitou("卡看这个should", "===>" + should);
         if (should == 0) {
             tvCanSee.setVisibility(View.VISIBLE);
-        } else{
+        } else {
             tvCanSee.setVisibility(View.GONE);
         }
-            map = new HashMap<>();
-            mapCe = new HashMap<>();
-            socialTagName = mActivity.getResources().getStringArray(R.array.social_tag_name);
-            socialTagEnglish = mActivity.getResources().getStringArray(R.array.social_tag_english);
-            socialTagIcon = new int[]{R.mipmap.icon_other,R.mipmap.icon_phone,R.mipmap.icon_dress, R.mipmap.icon_baby,
-                    R.mipmap.icon_disport, R.mipmap.icon_tour, R.mipmap.icon_education,
-                    R.mipmap.icon_fashion, R.mipmap.icon_game, R.mipmap.icon_house,
-                    R.mipmap.icon_wealh, R.mipmap.icon_camera, R.mipmap.icon_appliance,
-                    R.mipmap.icon_health, R.mipmap.icon_book, R.mipmap.icon_sports,
-                    R.mipmap.icon_air, R.mipmap.icon_home, R.mipmap.icon_car, R.mipmap.icon_hotel, R.mipmap.icon_video,
-                    R.mipmap.icon_food, R.mipmap.icon_body_bulid, R.mipmap.icon_music,
-                    R.mipmap.icon_consume,R.mipmap.icon_internet};
-            for (int i = 0; i < socialTagName.length; i++) {
-                mapCe.put(socialTagEnglish[i], socialTagName[i]);
-                map.put(socialTagName[i], socialTagIcon[i]);
-            }
-            //
+        map = new HashMap<>();
+        mapCe = new HashMap<>();
+        socialTagName = mActivity.getResources().getStringArray(R.array.social_tag_name);
+        socialTagEnglish = mActivity.getResources().getStringArray(R.array.social_tag_english);
+        socialTagIcon = new int[]{R.mipmap.icon_other, R.mipmap.icon_phone, R.mipmap.icon_dress, R.mipmap.icon_baby, R.mipmap.icon_disport, R.mipmap.icon_tour, R.mipmap.icon_education, R.mipmap.icon_fashion, R.mipmap.icon_game, R.mipmap.icon_house, R.mipmap.icon_wealh, R.mipmap.icon_camera, R.mipmap.icon_appliance, R.mipmap.icon_health, R.mipmap.icon_book, R.mipmap.icon_sports, R.mipmap.icon_air, R.mipmap.icon_home, R.mipmap.icon_car, R.mipmap.icon_hotel, R.mipmap.icon_video, R.mipmap.icon_food, R.mipmap.icon_body_bulid, R.mipmap.icon_music, R.mipmap.icon_consume, R.mipmap.icon_internet};
+        for (int i = 0; i < socialTagName.length; i++) {
+            mapCe.put(socialTagEnglish[i], socialTagName[i]);
+            map.put(socialTagName[i], socialTagIcon[i]);
+        }
+        //
 
-            if (! TextUtils.isEmpty(result)) {
-                InfluenceScoreBean influenceScoreBean = GsonTools.jsonToBean(result, InfluenceScoreBean.class);
-                if (influenceScoreBean != null) {
-                    if (should == 1) {
-                        if (influenceScoreBean.isInfluence_score_visibility()) {
-                            llShow.setVisibility(View.VISIBLE);
-                            llHide.setVisibility(View.GONE);
-                        } else {
-                            llShow.setVisibility(View.GONE);
-                            llHide.setVisibility(View.VISIBLE);
-                        }
+        if (! TextUtils.isEmpty(result)) {
+            InfluenceScoreBean influenceScoreBean = GsonTools.jsonToBean(result, InfluenceScoreBean.class);
+            if (influenceScoreBean != null) {
+                if (should == 1) {
+                    if (influenceScoreBean.isInfluence_score_visibility()) {
+                        llShow.setVisibility(View.VISIBLE);
+                        llHide.setVisibility(View.GONE);
                     } else {
-                        if (influenceScoreBean.isInfluence_score_visibility()) {
-                            tvCanSee.setText("对他人可见");
-                        } else {
-                            tvCanSee.setText("对他人隐藏");
-                        }
-                    }
-                    tvUserName.setText(influenceScoreBean.getName());
-                    tvUserDec.setText(influenceScoreBean.getDescription());
-                    if (! TextUtils.isEmpty(influenceScoreBean.getAvatar_url())) {
-                        BitmapUtil.loadImage(mActivity.getApplicationContext(), influenceScoreBean.getAvatar_url(), imgUserPhoto);
-                    } else {
-                        imgUserPhoto.setImageResource(R.mipmap.logo_circle);
-                    }
-                    tvRepeatNum.setText(String.valueOf(influenceScoreBean.getAvg_posts()));
-                    tvCommentNum.setText(String.valueOf(influenceScoreBean.getAvg_comments()));
-                    tvClickNum.setText(String.valueOf(influenceScoreBean.getAvg_likes()));
-                    mDataList = influenceScoreBean.getIndustries();
-                    if (influenceScoreBean.getIndustries().size() != 0) {
-                        layoutShowOne.setVisibility(View.VISIBLE);
-                        llNoData.setVisibility(View.VISIBLE);
-                        llScoreLow.setVisibility(View.GONE);
-                        if (mDataList.size() >= 2) {
-                            Collections.sort(mDataList, hashIndustry);
-                            for (int i = 0; i < mDataList.size(); i++) {
-                                if (mDataList.size() == 2) {
-                                    llNoDataThree.setVisibility(View.GONE);
-                                    setIcon(mDataList.get(0).getIndustry_name(), tvDataNameOne);
-                                    setIcon(mDataList.get(1).getIndustry_name(), tvDataNameTwo);
-                                    tvNumOne.setText(StringUtil.deleteZero(mDataList.get(0).getIndustry_score())+"%");
-                                    tvNumTwo.setText(StringUtil.deleteZero(mDataList.get(1).getIndustry_score())+"%");
-                                    tvRepeatItemOne.setText(String.valueOf(mDataList.get(0).getAvg_posts()));
-                                    tvRepeatItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_posts()));
-                                    tvCommentItemOne.setText(String.valueOf(mDataList.get(0).getAvg_comments()));
-                                    tvCommentItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_comments()));
-                                    tvClickItemOne.setText(String.valueOf(mDataList.get(0).getAvg_likes()));
-                                    tvClickItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_likes()));
-                                    proOne.setProgress((float) (mDataList.get(0).getIndustry_score()));
-                                    proTwo.setProgress((float) (mDataList.get(1).getIndustry_score()));
-//                                    proOne.setBegin(true);
-//                                    proTwo.setBegin(true);
-
-                                } else {
-                                    setIcon(mDataList.get(0).getIndustry_name(), tvDataNameOne);
-                                    setIcon(mDataList.get(1).getIndustry_name(), tvDataNameTwo);
-                                    setIcon(mDataList.get(2).getIndustry_name(), tvDataNameThree);
-                                    tvNumOne.setText(StringUtil.deleteZero(mDataList.get(0).getIndustry_score())+"%");
-                                    tvNumTwo.setText(StringUtil.deleteZero(mDataList.get(1).getIndustry_score())+"%");
-                                    tvNumThree.setText(StringUtil.deleteZero(mDataList.get(2).getIndustry_score())+"%");
-                                    tvRepeatItemOne.setText(String.valueOf(mDataList.get(0).getAvg_posts()));
-                                    tvRepeatItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_posts()));
-                                    tvRepeatItemThree.setText(String.valueOf(mDataList.get(2).getAvg_posts()));
-                                    tvCommentItemOne.setText(String.valueOf(mDataList.get(0).getAvg_comments()));
-                                    tvCommentItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_comments()));
-                                    tvCommentItemThree.setText(String.valueOf(mDataList.get(2).getAvg_comments()));
-                                    tvClickItemOne.setText(String.valueOf(mDataList.get(0).getAvg_likes()));
-                                    tvClickItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_likes()));
-                                    tvClickItemThree.setText(String.valueOf(mDataList.get(2).getAvg_likes()));
-                                    proOne.setProgress((float) (mDataList.get(0).getIndustry_score()));
-                                    proTwo.setProgress((float) (mDataList.get(1).getIndustry_score()));
-                                    proThree.setProgress((float) (mDataList.get(2).getIndustry_score()));
-//                                    proOne.setBegin(true);
-//                                    proTwo.setBegin(true);
-//                                    proThree.setBegin(true);
-                                }
-                            }
-                        } else if (mDataList.size() == 1) {
-                            llNoDataThree.setVisibility(View.GONE);
-                            llNoDataTwo.setVisibility(View.GONE);
-                            setIcon(mDataList.get(0).getIndustry_name(), tvDataNameOne);
-                            tvNumOne.setText(StringUtil.deleteZero(mDataList.get(0).getIndustry_score())+"%");
-                            tvRepeatItemOne.setText(String.valueOf(mDataList.get(0).getAvg_posts()));
-                            tvCommentItemOne.setText(String.valueOf(mDataList.get(0).getAvg_comments()));
-                            tvClickItemOne.setText(String.valueOf(mDataList.get(0).getAvg_likes()));
-                            proOne.setProgress((float) (mDataList.get(0).getIndustry_score()));
-                           // proOne.setBegin(true);
-                        }
-                    }else {
-                        llNoData.setVisibility(View.GONE);
-                        llScoreLow.setVisibility(View.VISIBLE);
+                        llShow.setVisibility(View.GONE);
+                        llHide.setVisibility(View.VISIBLE);
                     }
                 } else {
-                    //数据未取得
-                    llNoData.setVisibility(View.GONE);
+                    if (influenceScoreBean.isInfluence_score_visibility()) {
+                        tvCanSee.setText("对他人可见");
+                    } else {
+                        tvCanSee.setText("对他人隐藏");
+                    }
                 }
+                tvUserName.setText(influenceScoreBean.getName());
+                tvUserDec.setText(influenceScoreBean.getDescription());
+                if (! TextUtils.isEmpty(influenceScoreBean.getAvatar_url())) {
+                    BitmapUtil.loadImage(mActivity.getApplicationContext(), influenceScoreBean.getAvatar_url(), imgUserPhoto);
+                } else {
+                    imgUserPhoto.setImageResource(R.mipmap.logo_circle);
+                }
+                tvRepeatNum.setText(String.valueOf(influenceScoreBean.getAvg_posts()));
+                tvCommentNum.setText(String.valueOf(influenceScoreBean.getAvg_comments()));
+                tvClickNum.setText(String.valueOf(influenceScoreBean.getAvg_likes()));
+                mDataList = influenceScoreBean.getIndustries();
+                if (influenceScoreBean.getIndustries().size() != 0) {
+                    layoutShowOne.setVisibility(View.VISIBLE);
+                    llNoData.setVisibility(View.VISIBLE);
+                    llScoreLow.setVisibility(View.GONE);
+                    if (mDataList.size() >= 2) {
+                        Collections.sort(mDataList, hashIndustry);
+                        for (int i = 0; i < mDataList.size(); i++) {
+                            if (mDataList.size() == 2) {
+                                llNoDataThree.setVisibility(View.GONE);
+                                setIcon(mDataList.get(0).getIndustry_name(), tvDataNameOne);
+                                setIcon(mDataList.get(1).getIndustry_name(), tvDataNameTwo);
+                                tvNumOne.setText(StringUtil.deleteZero(mDataList.get(0).getIndustry_score()) + "%");
+                                tvNumTwo.setText(StringUtil.deleteZero(mDataList.get(1).getIndustry_score()) + "%");
+                                tvRepeatItemOne.setText(String.valueOf(mDataList.get(0).getAvg_posts()));
+                                tvRepeatItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_posts()));
+                                tvCommentItemOne.setText(String.valueOf(mDataList.get(0).getAvg_comments()));
+                                tvCommentItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_comments()));
+                                tvClickItemOne.setText(String.valueOf(mDataList.get(0).getAvg_likes()));
+                                tvClickItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_likes()));
+                                proOne.setProgress((float) (mDataList.get(0).getIndustry_score()));
+                                proTwo.setProgress((float) (mDataList.get(1).getIndustry_score()));
+                                //                                    proOne.setBegin(true);
+                                //                                    proTwo.setBegin(true);
 
+                            } else {
+                                setIcon(mDataList.get(0).getIndustry_name(), tvDataNameOne);
+                                setIcon(mDataList.get(1).getIndustry_name(), tvDataNameTwo);
+                                setIcon(mDataList.get(2).getIndustry_name(), tvDataNameThree);
+                                tvNumOne.setText(StringUtil.deleteZero(mDataList.get(0).getIndustry_score()) + "%");
+                                tvNumTwo.setText(StringUtil.deleteZero(mDataList.get(1).getIndustry_score()) + "%");
+                                tvNumThree.setText(StringUtil.deleteZero(mDataList.get(2).getIndustry_score()) + "%");
+                                tvRepeatItemOne.setText(String.valueOf(mDataList.get(0).getAvg_posts()));
+                                tvRepeatItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_posts()));
+                                tvRepeatItemThree.setText(String.valueOf(mDataList.get(2).getAvg_posts()));
+                                tvCommentItemOne.setText(String.valueOf(mDataList.get(0).getAvg_comments()));
+                                tvCommentItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_comments()));
+                                tvCommentItemThree.setText(String.valueOf(mDataList.get(2).getAvg_comments()));
+                                tvClickItemOne.setText(String.valueOf(mDataList.get(0).getAvg_likes()));
+                                tvClickItemTwo.setText(String.valueOf(mDataList.get(1).getAvg_likes()));
+                                tvClickItemThree.setText(String.valueOf(mDataList.get(2).getAvg_likes()));
+                                proOne.setProgress((float) (mDataList.get(0).getIndustry_score()));
+                                proTwo.setProgress((float) (mDataList.get(1).getIndustry_score()));
+                                proThree.setProgress((float) (mDataList.get(2).getIndustry_score()));
+                                //                                    proOne.setBegin(true);
+                                //                                    proTwo.setBegin(true);
+                                //                                    proThree.setBegin(true);
+                            }
+                        }
+                    } else if (mDataList.size() == 1) {
+                        llNoDataThree.setVisibility(View.GONE);
+                        llNoDataTwo.setVisibility(View.GONE);
+                        setIcon(mDataList.get(0).getIndustry_name(), tvDataNameOne);
+                        tvNumOne.setText(StringUtil.deleteZero(mDataList.get(0).getIndustry_score()) + "%");
+                        tvRepeatItemOne.setText(String.valueOf(mDataList.get(0).getAvg_posts()));
+                        tvCommentItemOne.setText(String.valueOf(mDataList.get(0).getAvg_comments()));
+                        tvClickItemOne.setText(String.valueOf(mDataList.get(0).getAvg_likes()));
+                        proOne.setProgress((float) (mDataList.get(0).getIndustry_score()));
+                        // proOne.setBegin(true);
+                    }
+                } else {
+                    llNoData.setVisibility(View.GONE);
+                    llScoreLow.setVisibility(View.VISIBLE);
+                }
             } else {
-                llShow.setVisibility(View.GONE);
+                //数据未取得
+                llNoData.setVisibility(View.GONE);
             }
+
+        } else {
+            llShow.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -359,9 +348,9 @@ public class SocialCardFragment extends BaseFragment implements View.OnClickList
                     hideOrShow(0);
                 }
                 break;
-//            case R.id.tv_to_bind:
-//
-//                break;
+            //            case R.id.tv_to_bind:
+            //
+            //                break;
         }
     }
 
@@ -372,10 +361,10 @@ public class SocialCardFragment extends BaseFragment implements View.OnClickList
         RequestParams requestParams = new RequestParams();
         if (i == 0) {
             requestParams.put("action", "on");
-          //  LogUtil.LogShitou("=====》open","on");
+            //  LogUtil.LogShitou("=====》open","on");
         } else {
             requestParams.put("action", "off");
-          //  LogUtil.LogShitou("=====》close","off");
+            //  LogUtil.LogShitou("=====》close","off");
         }
 
         mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.INFLUENCE_SHOW), requestParams, new RequestCallback() {
@@ -387,7 +376,7 @@ public class SocialCardFragment extends BaseFragment implements View.OnClickList
 
             @Override
             public void onResponse(String response) {
-              //  LogUtil.LogShitou("显示或者隐藏", "===>" + response);
+                //  LogUtil.LogShitou("显示或者隐藏", "===>" + response);
                 if (i == 0) {
                     tvCanSee.setText("对他人可见");
                 } else {
@@ -398,15 +387,11 @@ public class SocialCardFragment extends BaseFragment implements View.OnClickList
     }
 
     private void setIcon(String type, TextView tv) {
-       // LogUtil.LogShitou("这里？？","==="+type);
         String textTagName = mapCe.get(type);
         Drawable drawable = mActivity.getResources().getDrawable(map.get(textTagName));
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         tv.setCompoundDrawables(drawable, null, null, null);
         tv.setText(textTagName);
-//        if (map.keySet().iterator().hasNext()) {
-//
-//        }
     }
 
     private void upOrDown(ImageView img, RelativeLayout lyOne) {

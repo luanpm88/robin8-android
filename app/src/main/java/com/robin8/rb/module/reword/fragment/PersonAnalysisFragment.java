@@ -1,7 +1,6 @@
 package com.robin8.rb.module.reword.fragment;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -52,7 +51,7 @@ public class PersonAnalysisFragment extends BaseFragment implements View.OnClick
     }
 
     private void initWebView(final String provinceOpt) {
-        Log.e("provinceOpt",provinceOpt);
+       // Log.e("provinceOpt",provinceOpt);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 //        mWebView.addJavascriptInterface(new Object() {

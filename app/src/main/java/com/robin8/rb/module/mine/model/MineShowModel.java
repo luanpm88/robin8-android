@@ -78,6 +78,7 @@ public class MineShowModel implements Serializable {
          */
 
         private List<TagsBean> tags;
+       private List<String> admintag;
 
         public int getId() {
             return id;
@@ -167,6 +168,14 @@ public class MineShowModel implements Serializable {
             this.tags = tags;
         }
 
+        public List<String> getAdmintag() {
+            return admintag;
+        }
+
+        public void setAdmintag(List<String> admintag) {
+            this.admintag = admintag;
+        }
+
         public static class TagsBean {
             private String name;
             private String label;
@@ -187,5 +196,6 @@ public class MineShowModel implements Serializable {
                 this.label = label;
             }
         }
+
     }
 }

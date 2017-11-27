@@ -13,7 +13,6 @@ import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.UIUtils;
 
 import java.util.HashMap;
@@ -29,6 +28,8 @@ public class BindSocialPresenter extends BindSocialPresenterListener {
     private Context mContext;
     private TextView tvName;
     private OnBindListener listener;
+    private int ver = 0;
+    private String url;
 
     public interface OnBindListener {
 
@@ -40,12 +41,13 @@ public class BindSocialPresenter extends BindSocialPresenterListener {
         this.listener = listener;
     }
 
-    public BindSocialPresenter(Context context, TextView tvName, String name) {
+    public BindSocialPresenter(Context context, TextView tvName, String name, int ver) {
 
         super(context);
         mContext = context;
         this.tvName = tvName;
         this.name = name;
+        this.ver = ver;
     }
 
     //public BindSocialPresenter(Context context,String name){
@@ -84,10 +86,12 @@ public class BindSocialPresenter extends BindSocialPresenterListener {
 
                 @Override
                 public void run() {
+                    CustomToast.showShort(mContext, "绑定中···");
                     RequestParams mRequestParams = new RequestParams();
                     mRequestParams.put("provider", provider);
                     mRequestParams.put("token", token);
                     mRequestParams.put("name", userName);
+                   // LogUtil.LogShitou("这是什么name","================>"+userName);
                     mRequestParams.put("uid", userId);
                     mRequestParams.put("url", "");
                     mRequestParams.put("avatar_url", userIcon);
@@ -110,7 +114,12 @@ public class BindSocialPresenter extends BindSocialPresenterListener {
                     mRequestParams.put("gender", String.valueOf(res.get("gender")));
                     mRequestParams.put("is_vip", String.valueOf(res.get("is_vip")));
                     mRequestParams.put("is_yellow_vip", String.valueOf(res.get("is_yellow_vip")));
-                    getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.KOLS_IDENTITY_BIND_URL), mRequestParams, new RequestCallback() {
+                    if (ver==0){
+                        url = HelpTools.getUrl(CommonConfig.KOLS_IDENTITY_BIND_URL_OLD);
+                    }else {
+                        url = HelpTools.getUrl(CommonConfig.KOLS_IDENTITY_BIND_URL);
+                    }
+                    getDataFromServer(true, HttpRequest.POST,url , mRequestParams, new RequestCallback() {
 
                         @Override
                         public void onError(Exception e) {
@@ -118,19 +127,19 @@ public class BindSocialPresenter extends BindSocialPresenterListener {
 
                         @Override
                         public void onResponse(String response) {
-                            LogUtil.LogShitou("第三方登陆成功后", response);
+                          //  LogUtil.LogShitou("第三方登陆成功后", response);
                             IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
                             if (indentyBean.getError() == 0) {
-//                                List<IndentyBean.IdentitiesBean> identities = indentyBean.getIdentities();
-//                                if (identities != null) {
-//                                    if (identities.size() > 0) {
-//                                        for (int i = 0; i < identities.size(); i++) {
-//                                            if (identities.get(i).getProvider().equals("wechat")){
-//
-//                                            }
-//                                        }
-//                                    }
-//                                }
+                                //                                List<IndentyBean.IdentitiesBean> identities = indentyBean.getIdentities();
+                                //                                if (identities != null) {
+                                //                                    if (identities.size() > 0) {
+                                //                                        for (int i = 0; i < identities.size(); i++) {
+                                //                                            if (identities.get(i).getProvider().equals("wechat")){
+                                //
+                                //                                            }
+                                //                                        }
+                                //                                    }
+                                //                                }
                                 if (listener != null) {
                                     listener.onResponse(userName);
                                 }
