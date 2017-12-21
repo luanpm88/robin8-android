@@ -37,7 +37,6 @@ import com.robin8.rb.presenter.PresenterI;
 import com.robin8.rb.ui.widget.RefreshFooterView;
 import com.robin8.rb.ui.widget.RefreshHeaderView;
 import com.robin8.rb.ui.widget.WProgressDialog;
-import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
@@ -141,7 +140,7 @@ public class BaseRecyclerViewPresenter extends BasePresenter implements Presente
                 rightTv.setText(mActivity.getString(R.string.text_mine));
                 mIUserView.setPageName(StatisticsAgency.MY_INDIANA);
                 break;
-
+            //消息
             case SPConstants.MESSAGE_ACTIVITY:
                 mIProtocol = new MessageProtocol(mActivity);
                 rightTv.setTextSize(20);
@@ -279,6 +278,7 @@ public class BaseRecyclerViewPresenter extends BasePresenter implements Presente
 
             @Override
             public void onResponse(String response) {
+                LogUtil.LogShitou("当前是消息"+url,"========>"+response);
                 if (mXRefreshView != null) {
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore();
@@ -359,7 +359,6 @@ public class BaseRecyclerViewPresenter extends BasePresenter implements Presente
                 break;
             case SPConstants.MESSAGE_ACTIVITY:
                 showMessageDiaog();
-                CustomToast.showShort(mActivity,"??333?");
                 break;
             case SPConstants.PRODUCT_LIST:
                 if (BaseApplication.getInstance().hasLogined()) {
@@ -414,7 +413,7 @@ public class BaseRecyclerViewPresenter extends BasePresenter implements Presente
             @Override
             public void onResponse(String response) {
                 mXRefreshView.startRefresh();
-                LogUtil.logXXfigo("READ_ALL_MESSAGES_URL  " + response);
+                LogUtil.logXXfigo("消息全部已读  " + response);
             }
         });
     }

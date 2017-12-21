@@ -1,5 +1,6 @@
 package com.robin8.rb.module.mine.view;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.robin8.rb.ui.widget.OtherGridView;
@@ -23,4 +24,8 @@ public interface IUserSignView {
     void setMonthTv(String text);
     OtherGridView getMonthGv();
     TextView getBottomTv();
+    TextView mEarnAccumulatedTv();
+    TextView getEarnTodayTv();
+    ImageView goNext();
+    ImageView backLast();
 }

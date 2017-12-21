@@ -175,8 +175,7 @@ public class RewordPager extends BasePager implements Observer {
 
             @Override
             public void onResponse(String response) {
-
-              // LogUtil.LogShitou("获取活动列表数据"+HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL),response);
+              //  LogUtil.LogShitou("获取活动列表数据"+HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL),response);
                 CacheUtils.putLong(mActivity.getApplicationContext(), SPConstants.TAG_REFRESH_TIME, System.currentTimeMillis());
                 CampaignListBean bean = GsonTools.jsonToBean(response, CampaignListBean.class);
 
@@ -308,7 +307,7 @@ public class RewordPager extends BasePager implements Observer {
         mRewordFilterLl.setVisibility(View.VISIBLE);
        mRewordLaunchIv.setVisibility(View.GONE);
         mTitleBarText.setOnClickListener(new View.OnClickListener() {
-            final static int COUNTS = 9;//点击次数
+            final static int COUNTS = 8;//点击次数
             final static long DURATION = 3 * 1000;//规定有效时间
             long[] mHits = new long[COUNTS];
             @Override

@@ -21,6 +21,7 @@ public class MineShowModel implements Serializable {
     private int detail;
     private KolBean kol;
     private boolean is_open_indiana;
+    private boolean has_any_unread_message;
 
     public int getError() {
         return error;
@@ -59,6 +60,14 @@ public class MineShowModel implements Serializable {
 
     public void setKol(KolBean kol) {
         this.kol = kol;
+    }
+
+    public boolean isHas_any_unread_message() {
+        return has_any_unread_message;
+    }
+
+    public void setHas_any_unread_message(boolean has_any_unread_message) {
+        this.has_any_unread_message = has_any_unread_message;
     }
 
     public static class KolBean implements Serializable{

@@ -9,29 +9,18 @@
     <color name="yellow_custom">#ecb200</color>
     <color name="yellow_transparent_custom">#aaecb200</color>
     <color name="mine_yellow_custom">#edb300</color>
-    <color name="brown">#A67D3D</color>棕色
+    <color name="brown">#A67D3D</color>
     <color name="yellow_ffc130">#ffc130</color>
     <color name="yellow_ffc701">#ffc701</color>
     <color name="yellow_ff8004">#ff8004</color>
     <color name="yellow_ff9b0d">#ff9b0d</color>
+    <color name="yellow_ffad4c">#ffad4c</color>
     <color name="blue_2bdbe2">#2bdbe2</color>
-    <color name="bg_custom">#f5f5f5</color>
+    <color name="red_ff3030">#ff3030</color>
+
 
     <color name="brown_custom">#ede8dc</color>
     <color name="red_custom">#f26d45</color>
-
-    <color name="black_custom">#181616</color>
-    <color name="black_000000">#000000</color>
-    <color name="sub_black_custom">#424141</color>
-
-    <color name="gray_custom">#5f6060</color>
-    <color name="sub_gray_custom">#929292</color>
-    <color name="light_gray_custom">#f8f8f8</color>
-
-    <color name="undefined_backgroud">#f2f4f9</color>
-    <color name="undefined_navigation_line">#d4d1d2</color>
-    <color name="undefined_divide_line">#E0E0E0</color>
-
 
     <color name="dialog_title_color">#008AFC</color>
     <color name="cover_transparent">#4d000000</color>
@@ -67,6 +56,9 @@
     <color name="viewfinder_mask">#60000000</color>
     <color name="tran_dark">#80000000</color>
 
+    <color name="black_custom">#181616</color>
+    <color name="black_000000">#000000</color>
+    <color name="sub_black_custom">#424141</color>
     <color name="black_2e2e2e">#2e2e2e</color>
     <color name="black_202020">#202020</color>
     <color name="black_ececec">#ececec</color>
@@ -83,12 +75,23 @@
     <color name="gray_969696">#969696</color>
     <color name="gray_8a8a8a">#8a8a8a</color>
     <color name="gray_eeeef2">#eeeef2</color>
-    <color name="red_ff3030">#ff3030</color>
+    <color name="gray_b6b6b6">#b6b6b6</color>
+    <color name="bg_custom">#f5f5f5</color>
     <color name="white_cccccc">#cccccc</color>
     <color name="white_f3f3f3">#f3f3f3</color>
+    <color name="white_dfdfdf">#dfdfdf</color>
+
+    <color name="gray_custom">#5f6060</color>
+    <color name="sub_gray_custom">#929292</color>
+    <color name="light_gray_custom">#f8f8f8</color>
+    <!--all line-->
+    <color name="undefined_backgroud">#f2f4f9</color>
+    <color name="undefined_navigation_line">#d4d1d2</color>
+    <color name="undefined_divide_line">#E0E0E0</color>
 
 
     <color name="round_corner_progress_bar_background_default">#5f5f5f</color>
     <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
-    <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent</color>
+    <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent
+    </color>
 </resources>

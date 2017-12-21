@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +23,7 @@ import com.robin8.rb.ui.widget.LineSpaceTextView;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.DensityUtils;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
-
-import org.jsoup.helper.DataUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -216,7 +212,10 @@ public class RewordAdapter extends BaseAdapter {
     private void setCampaignTypeView(CampaignListBean.CampaignInviteEntity item, ViewHolder viewHolder, int activityStatues) {
 
         String per_budget_type = item.getCampaign().getPer_budget_type();
-        if (TextUtils.isEmpty(per_budget_type)) {
+        String status = item.getCampaign().getStatus();//活动状态
+        float remainBudget = item.getCampaign().getRemain_budget();//活动预算
+        float per_action_budget = item.getCampaign().getPer_action_budget();//活动单价
+        if (TextUtils.isEmpty(per_budget_type) || TextUtils.isEmpty(status)) {
             return;
         }
         switch (per_budget_type) {
@@ -234,7 +233,7 @@ public class RewordAdapter extends BaseAdapter {
         if (activityStatues == EXECUTING) {//活动未结束
             viewHolder.iv_cover.setBackgroundColor(mActivity.getResources().getColor(R.color.cover_transparent));
             viewHolder.tv_actiontype.setTextColor(Color.parseColor("#fab719"));//黄色
-            viewHolder.ll_over_show.setVisibility(View.GONE);
+    //        viewHolder.ll_over_show.setVisibility(View.GONE);
          //   viewHolder.ll_count_down.setVisibility(View.VISIBLE);
 //            int deadLine_time = new Long(DateUtil.getTimeLong(item.getCampaign().getDeadline())).intValue();
 //            int now_time = new Long(DateUtil.getTimeLong(DateUtil.getNowTimeMs("yyyyMMddHHmmssSSS"))).intValue();
@@ -254,7 +253,7 @@ public class RewordAdapter extends BaseAdapter {
             if (DetailContentHelper.CAMPAIGN_TYPE_RECRUIT.equals(item.getCampaign().getPer_budget_type())) {
                 String recruitEndTime = item.getCampaign().getRecruit_end_time();
                 long recruitEndTimeL = DateUtil.getTimeLong(recruitEndTime);
-                String status = item.getCampaign().getStatus();
+
                 if (! TextUtils.isEmpty(status) && (status.equals("running") || status.equals("executing")) && recruitEndTimeL <= System.currentTimeMillis()) {// "报名已结束"
                     viewHolder.tv_over.setVisibility(View.VISIBLE);
                     viewHolder.tv_over.setText(R.string.sign_end);
@@ -265,14 +264,36 @@ public class RewordAdapter extends BaseAdapter {
                 viewHolder.tv_over.setVisibility(View.GONE);
             }
         } else if (activityStatues == EXECUTED) {//已结束
-            LogUtil.logXXfigo("已结束" + item.getCampaign().getPer_budget_type() + item.getCampaign().getName());
-          //  viewHolder.ll_count_down.setVisibility(View.GONE);
-            viewHolder.ll_over_show.setVisibility(View.VISIBLE);
+          //  viewHolder.ll_over_show.setVisibility(View.VISIBLE);
             viewHolder.iv_cover.setBackgroundColor(mActivity.getResources().getColor(R.color.cover_transparent_deep));
             viewHolder.tv_actiontype.setTextColor(Color.WHITE);//白色
             viewHolder.tv_over.setVisibility(View.VISIBLE);
-            viewHolder.tv_over.setText(R.string.has_been_end);
+            if (judgeEnterActivity(item)==JOINED){
+                if (TextUtils.isEmpty(item.getImg_status())){
+                    viewHolder.tv_over.setText(R.string.ending);
+                }else {
+                    if (status.equals("executed") || (!item.getImg_status().equals("passed")) ){
+                        viewHolder.tv_over.setText(R.string.ending);
+                    }
+                    if (status.equals("settled")||(status.equals("executed")&& item.getImg_status().equals("passed"))){
+                        viewHolder.tv_over.setText(R.string.has_been_end);
+                    }
+                }
+            }else {
+                viewHolder.tv_over.setText(R.string.has_been_end);
+            }
+
             viewHolder.payinfoLinearLayout.setVisibility(View.GONE);
+        }
+        if(judgeEnterActivity(item)!=JOINED){
+            //活动预算 < 活动单价 已抢完visible
+            if ((remainBudget-per_action_budget)>=0){
+                viewHolder.ll_over_show.setVisibility(View.GONE);
+            }else {
+                viewHolder.ll_over_show.setVisibility(View.VISIBLE);
+            }
+        }else {
+            viewHolder.ll_over_show.setVisibility(View.GONE);
         }
         //  viewHolder.tv_buget.setText(StringUtil.deleteZero(String.valueOf(item.getCampaign().getPer_action_budget())));//设置转发金额
     }
@@ -332,7 +353,6 @@ public class RewordAdapter extends BaseAdapter {
 
         String showTime = "";
         int day = sum / 60 / 60 / 24;
-        Log.e("获得天数", "--->" + day);
         // 先获取个秒数值
         int sec = sum % 60;
         // 如果大于60秒，获取分钟。（秒数）
@@ -402,7 +422,7 @@ public class RewordAdapter extends BaseAdapter {
 
         if (activityStatues == EXECUTING) {//活动未结束
             viewHolder.tv_last.setText("最多可赚");
-            viewHolder.tv_remainder.setText("¥ " + StringUtil.deleteZero(String.valueOf(item.getCampaign().getRemain_budget())));//剩余金额
+            viewHolder.tv_remainder.setText("¥ " + StringUtil.deleteZero(String.valueOf(item.getCampaign().getBudget())));//剩余金额
         } else if (activityStatues == EXECUTED) {//活动已结束
            // viewHolder.tv_last.setText("已抢完");
             viewHolder.payinfoLinearLayout.setVisibility(View.GONE);

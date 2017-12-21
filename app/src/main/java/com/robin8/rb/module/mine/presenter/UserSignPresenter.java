@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
@@ -23,22 +24,20 @@ import com.robin8.rb.presenter.PresenterI;
 import com.robin8.rb.ui.widget.OtherGridView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
+import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
+import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
- * @author Figo
- */
+ @author Figo, zc */
 public class UserSignPresenter extends BasePresenter implements PresenterI {
 
     protected static final String YYYY_MM_DD = "yyyy-MM-dd";
@@ -51,6 +50,14 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
     private int mMonth;
     private OtherGridView mGridView;
     private MonthAdapter mMonthAdapter;
+    private int year;
+    private int month;
+    public ImageView imgBack;
+    public ImageView imgNext;
+    public TextView mEarnAccumulatedTv;
+    public TextView mEarnTodayTv;
+    private List<String> listDate;
+    private Map<String, Integer> mapHistory;
 
     public UserSignPresenter(Activity activity, IUserSignView userView) {
         mActivity = activity;
@@ -60,18 +67,27 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
     public void init() {
         mBottomTv = mIUserView.getBottomTv();
         mGridView = mIUserView.getMonthGv();
-
-        updateView();
-        getDataFromNet();
+        imgBack = mIUserView.backLast();
+        imgNext = mIUserView.goNext();
+        mEarnAccumulatedTv = mIUserView.mEarnAccumulatedTv();
+        mEarnTodayTv = mIUserView.getEarnTodayTv();
+        listDate = new ArrayList<>();
+        mapHistory = new HashMap<>();
+        updateView(0);
+        getDataFromNet(0);
     }
 
-    private void getDataFromNet() {
+    /**
+     签到历史
+     */
+    private void getDataFromNet(final int where) {
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(mActivity);
         }
         mWProgressDialog.show();
 
         getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL), null, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
                 if (mWProgressDialog != null) {
@@ -81,11 +97,17 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
-                //LogUtil.LogShitou("签到历史"+HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL),response);
+                // response = "{\"error\":0,\"continuous_checkin_count\":4,\"today_had_check_in\":true," + "\"checkin_history\":[" + "\"2017-12-07\"," + "\"2017-12-06\"," + "\"2017-12-05\"," + "\"2017-12-04\"," + "\"2017-12-03\"," + "\"2017-12-02\"," + "\"2017-12-01\"," + "\"2017-11-30\"," + "\"2017-11-29\"," + "\"2017-11-16\"," + "\"2017-11-15\"," + "\"2017-11-07\"," + "\"2017-11-06\"," + "\"2017-11-05\"," + "\"2017-11-04\"," + "\"2017-11-03\"," + "\"2017-11-02\"," + "\"2017-11-01\"," + "\"2017-10-29\"," + "\"2017-10-31\"]}";
+               // LogUtil.LogShitou("签到历史" + HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL), response);
+              //  response = "{\n" + "    \"error\": 0,\n" + "    \"continuous_checkin_count\": 1,\n" + "    \"today_had_check_in\": true,\n" + "    \"checkin_history\": [\n" + "        {\n" + "            \"created_at\": \"2017-12-08\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-12-07\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-12-06\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "              {\n" + "            \"created_at\": \"2017-12-05\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "      \n" + "        {\n" + "            \"created_at\": \"2017-12-03\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "      \n" + "        {\n" + "            \"created_at\": \"2017-12-01\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-30\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-29\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-28\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-20\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-17\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-14\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-12\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-11\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "       \n" + "        {\n" + "            \"created_at\": \"2017-10-31\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-10-30\",\n" + "            \"is_continuous\": 1\n" + "        }\n" + "    ],\n" + "    \"total_check_in_days\": 167,\n" + "    \"total_check_in_amount\": 24.9,\n" + "    \"today_already_amount\": 0,\n" + "    \"today_can_amount\": 0.2,\n" + "    \"tomorrow_can_amount\": 0.25\n" + "}";
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
                 parseJson(response);
+                if (where==1){
+                    //签到成功弹窗
+                    showSuccessDialog();
+                }
             }
         });
     }
@@ -96,7 +118,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
         }
         mSignHistoryModel = GsonTools.jsonToBean(response, SignHistoryModel.class);
         if (mSignHistoryModel != null && mSignHistoryModel.getError() == 0) {
-            updateView();
+            updateView(0);
         }
     }
 
@@ -122,6 +144,9 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
         }
     }
 
+    /**
+     签到
+     */
     public void sign() {
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(mActivity);
@@ -129,6 +154,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
         mWProgressDialog.show();
 
         getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.CHECK_IN_URL), null, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
                 if (mWProgressDialog != null) {
@@ -138,7 +164,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
-                //LogUtil.LogShitou("签到"+HelpTools.getUrl(CommonConfig.CHECK_IN_URL),response);
+               // LogUtil.LogShitou("签到" + HelpTools.getUrl(CommonConfig.CHECK_IN_URL), response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -148,64 +174,123 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
                     return;
                 }
                 if (bean.getError() == 0) {
-                    List<String> list = null;
-                    if (mSignHistoryModel != null) {
-                        list = mSignHistoryModel.getCheckin_history();
-                    }
-                    if (list == null) {
-                        list = new ArrayList<String>();
-                    }
-                    Date date = new Date(System.currentTimeMillis());
-                    DateFormat dateFormat = new SimpleDateFormat(YYYY_MM_DD);
-                    list.add(dateFormat.format(date));
-                    mSignHistoryModel.setCheckin_history(list);
-                    mSignHistoryModel.setContinuous_checkin_count(mSignHistoryModel.getContinuous_checkin_count() + 1);
-                    mSignHistoryModel.setToday_had_check_in(true);
-                    updateView();
-                    showSuccessDialog();
+                    //List<String> list = new ArrayList<String>();
+                    //                    if (mSignHistoryModel != null) {
+                    //                        List<SignHistoryModel.CheckinHistoryBean> checkin_history = mSignHistoryModel.getCheckin_history();
+                    //                        if (checkin_history.size()!=0){
+                    //                            for (int i = 0; i < checkin_history.size(); i++) {
+                    //                                list.add(checkin_history.get(i).getCreated_at());
+                    //                            }
+                    //                        }
+                    //                        //  list = mSignHistoryModel.getCheckin_history();
+                    //                    }
+                    //                   if (list == null) {
+                    //                        list = new ArrayList<String>();
+                    //                    }
+                    //                    Date date = new Date(System.currentTimeMillis());
+                    //                    DateFormat dateFormat = new SimpleDateFormat(YYYY_MM_DD);
+                    //                    list.add(dateFormat.format(date));
+                    //                    mSignHistoryModel.setCheckin_history(list);
+                    //                    mSignHistoryModel.setContinuous_checkin_count(mSignHistoryModel.getContinuous_checkin_count() + 1);
+                    //                    mSignHistoryModel.setToday_had_check_in(true);
+                    //                    updateView(0);
+                    getDataFromNet(1);
+
                 } else {
-                    CustomToast.showShort(mActivity, bean.getDetail());
+                    if (!TextUtils.isEmpty(bean.getDetail())){
+                        CustomToast.showShort(mActivity, bean.getDetail());
+                    }
                 }
             }
         });
     }
 
     private void showSuccessDialog() {
+        String s = "";
         View view = LayoutInflater.from(mActivity).inflate(R.layout.dialog_sign_success, null);
+        TextView tvInfo = (TextView) view.findViewById(R.id.tv_info);
+        TextView tvKnow = (TextView) view.findViewById(R.id.tv_know);
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
+        if (mSignHistoryModel!=null){
+            s = "签到成功，"+StringUtil.addZeroForNum(String.valueOf(mSignHistoryModel.getToday_already_amount()),4)+"元奖励已放入您的钱包！\n您已连续签到"+mSignHistoryModel.getContinuous_checkin_count()+"天，不要间断哦～";
+
+        }else {
+            s = "签到成功";
+        }
+        tvInfo.setText(s);
+       if (mSignHistoryModel!=null){
+           int length = String.valueOf(mSignHistoryModel.getContinuous_checkin_count()).trim().length();
+           StringUtil.setTextViewSpan(tvInfo, 32, 5, 9, mActivity.getResources().getColor(R.color.blue_custom));
+           StringUtil.setTextViewSpan(tvInfo, 32, 27, 27+length, mActivity.getResources().getColor(R.color.blue_custom));
+       }
+        tvKnow.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                cdm.dismiss();
+            }
+        });
         cdm.dg.setCanceledOnTouchOutside(true);
         cdm.dg.getWindow().setGravity(Gravity.CENTER);
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
         cdm.showDialog();
-
-        view.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                cdm.dismiss();
-            }
-        },1000);
     }
 
-    private void updateView() {
 
-        initData();
+    public void lastMouth(int where) {
+        if (where == 0) {
+            //上个月
+            imgBack.setVisibility(View.GONE);
+            imgNext.setVisibility(View.GONE);
+            updateView(- 1);
+        } else {
+            //下个月
+            imgNext.setVisibility(View.GONE);
+            imgBack.setVisibility(View.GONE);
+            updateView(1);
+        }
+
+    }
+
+    private void updateView(int i) {
+        if (mSignHistoryModel != null) {
+            if (mSignHistoryModel.getCheckin_history().size() != 0) {
+                for (int j = 0; j < mSignHistoryModel.getCheckin_history().size(); j++) {
+                    listDate.add(mSignHistoryModel.getCheckin_history().get(j).getCreated_at());
+                    mapHistory.put(mSignHistoryModel.getCheckin_history().get(j).getCreated_at(), mSignHistoryModel.getCheckin_history().get(j).getIs_continuous());
+                }
+            }
+        } else {
+            return;
+        }
+        initData(i);
 
         LoginBean bean = BaseApplication.getInstance().getLoginBean();
+        //昵称头像
         if (bean != null && bean.getKol() != null) {
             mIUserView.setUserNameTv(bean.getKol().getName());
             mIUserView.setCircleImageView(bean.getKol().getAvatar_url());
         }
 
         if (mSignHistoryModel != null) {
+            //连续签到天数
             mIUserView.setHasSignedDaysTv(String.valueOf(mSignHistoryModel.getContinuous_checkin_count()));
+            mEarnAccumulatedTv.setText(String.valueOf(mSignHistoryModel.getTotal_check_in_amount()));
+            mEarnTodayTv.setText(String.valueOf(mSignHistoryModel.getToday_already_amount()));
+
         }
         if (mSignHistoryModel != null && mSignHistoryModel.isToday_had_check_in()) {
-            mBottomTv.setText(mActivity.getString(R.string.sign_was_done));
+            //明日签到可领 0.00 元
+            // mBottomTv.setText(mActivity.getString(R.string.sign_was_done));
+            mBottomTv.setText("明日签到可领 "+mSignHistoryModel.getTomorrow_can_amount()+" 元");
             mBottomTv.setBackgroundResource(R.color.sub_gray_custom);
         } else {
-            mBottomTv.setText(mActivity.getString(R.string.sign_instantly));
+            //今日签到可领 0.00 元
+            //  mBottomTv.setText(mActivity.getString(R.string.sign_instantly));
+            mBottomTv.setText("今日签到可领 "+mSignHistoryModel.getToday_can_amount()+" 元");
             mBottomTv.setBackgroundResource(R.color.blue_custom);
         }
+        mMonth = month;
         mIUserView.setMonthTv(String.valueOf(mMonth));
 
         if (mMonthList != null && mMonthList.size() > 0) {
@@ -215,64 +300,108 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
         mMonthAdapter.setMonthList(mMonthList);
     }
 
-    public void initData() {
-        Calendar aCalendar = Calendar.getInstance();
-        Date date = new Date(System.currentTimeMillis());
-     //   LogUtil.LogShitou("ai ksa","===>"+System.currentTimeMillis());
-        aCalendar.setTime(date);
-        int day = aCalendar.getActualMaximum(Calendar.DATE);
-        mMonth = aCalendar.get(Calendar.MONTH) + 1;
-//        int lastSpace = aCalendar.getFirstDayOfWeek();
-       // int i1 = aCalendar.get(Calendar.DAY_OF_WEEK) - 1;
-//        LogUtil.LogShitou("天数days","===>"+day);
-//        LogUtil.LogShitou("月mouth","===>"+mMonth);
-//        LogUtil.LogShitou("预留的空间","===>"+lastSpace);
-//        LogUtil.LogShitou("i1","===>"+i1);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-       // SimpleDateFormat format = new SimpleDateFormat("E");
-//        LogUtil.LogShitou("本月第一天是：" , "-->"+Calendar.DAY_OF_MONTH);
-//        LogUtil.LogShitou("本月第一天是：" , "-->"+format.format(aCalendar.getTime()));
-//        LogUtil.LogShitou("本月第一天是：" , "-->"+aCalendar.get(Calendar.DAY_OF_WEEK));
-        int lastSpace = calendar.get(Calendar.DAY_OF_WEEK)-1;
+    public void initData(int where) {
+        year = DateUtil.getYear();
+        month = DateUtil.getMonth();
+        if (where == - 1) {
+            if (month == 1) {
+                month = 12;
+                year--;
+            } else {
+                month--;
+            }
+        } else if (where == 1) {
+            month = month;
+            year = year;
+        }
+        //LogUtil.LogShitou("查看当前的月和年", month + "   年===》" + year);
+        int day = DateUtil.getDaysOfMonth(year, month);
+        //        Calendar aCalendar = Calendar.getInstance();
+        //        Date date = new Date(System.currentTimeMillis());
+        //        aCalendar.setTime(date);
+        //        int day = aCalendar.getActualMaximum(Calendar.DATE);
+        //        //当前的月份
+        //        mMonth = aCalendar.get(Calendar.MONTH) + 1;
+        //        //计算当前月的第一天是星期几
+        //        Calendar calendar = Calendar.getInstance();
+        //        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        //        int lastSpace = calendar.get(Calendar.DAY_OF_WEEK) - 1;//预留的空间
+
         if (mMonthList != null) {
             mMonthList.clear();
         } else {
             mMonthList = new ArrayList<SignDay>();
         }
-        for (int i = 0; i < lastSpace; i++) {
-            mMonthList.add(i, null);
+        List<Integer> lastSpaces = DateUtil.getLastDaysNow(year, month);
+        //此处是在本月显示上个月的剩余日期，显示签到就必须-1
+        if (lastSpaces != null && lastSpaces.size() != 0) {
+            int spMonth = month;
+            int spYear = year;
+            if (spMonth == 1) {
+                spMonth = 12;
+                spYear--;
+            } else {
+                spMonth--;
+            }
+
+            for (int i = 0; i < lastSpaces.size(); i++) {
+                SignDay dayInfo = null;
+                dayInfo = new SignDay(String.valueOf(lastSpaces.get(i)), isSign(spYear, spMonth, lastSpaces.get(i)));
+                mMonthList.add(dayInfo);
+            }
         }
         for (int i = 1; i <= day; i++) {
             SignDay dayInfo = null;
-
-            if (isSign(i)) {
-                dayInfo = new SignDay(String.valueOf(i), true);
-            } else {
-                dayInfo = new SignDay(String.valueOf(i), false);
-            }
+            dayInfo = new SignDay(String.valueOf(i), isSign(year, month, i));
             mMonthList.add(dayInfo);
         }
     }
 
-    private boolean isSign(int i) {
-        boolean sign = false;
+    /**
+     @param year
+     @param month
+     @param day
+     @return -1:未签到 ；0：间隔签到 ；1 :连续签到
+     */
+    private int isSign(int year, int month, int day) {
+        String s = String.valueOf(year + "-" + month + "-" + day);
+        if (day<10){
+            s = String.valueOf(year + "-" + month + "-0" + day);
+        }
         if (mSignHistoryModel != null && mSignHistoryModel.getCheckin_history() != null && mSignHistoryModel.getCheckin_history().size() > 0) {
-            for (String dates : mSignHistoryModel.getCheckin_history()) {
-                int j = Integer.parseInt(dates.substring(8));
-                if (i == j) {
-                    return true;
+            if (listDate.size() != 0) {
+                for (String dates : listDate) {
+//                    int j = Integer.parseInt(dates.substring(8));   //  日
+//                    int n = Integer.valueOf((dates.substring(5)).substring(0, 2));// 月
+//                    int m = Integer.valueOf(dates.substring(0, 4));//  年
+//                    if (year == m && month == n && day == j) {
+//                        if (mapHistory != null) {
+//                            return mapHistory.get(String.valueOf(year + "-" + month + "-" + day));
+//                        } else {
+//                            return - 1;
+//                        }
+//                    }
+                    if (s.equals(dates)) {
+                        //已签到，判读是否连续签到
+                        if (mapHistory != null) {
+                            return mapHistory.get(s);
+                        } else {
+                            return - 1;
+                        }
+                    }
                 }
             }
+
         }
-        return sign;
+        return - 1;
     }
+
 
     public class SignDay {
         public String day;
-        public boolean isSign;
+        public int isSign;
 
-        public SignDay(String s, boolean b) {
+        public SignDay(String s, int b) {
             this.day = s;
             this.isSign = b;
         }

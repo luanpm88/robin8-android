@@ -1,7 +1,12 @@
 package com.robin8.rb.util;
 
 import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
+import android.widget.TextView;
 
 import com.igexin.sdk.PushManager;
 
@@ -334,5 +339,39 @@ public class StringUtil {
         LogUtil.logXXfigo("clientid="+clientid);
         return clientid;
     }
+    /**
+     更改字符串的字体大小和粗体，颜色
+     @param view
+     @param fontSize 字体大小
+     @param start 起始位置
+     @param end 截止位置
+     @param color 字颜色
+     */
+    public static void setTextViewSpan(TextView view, int fontSize, int start, int end, int color) {
 
+        Spannable span = new SpannableString(view.getText());
+        span.setSpan(new AbsoluteSizeSpan(fontSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        span.setSpan(new ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        view.setText(span);
+        //        view.getPaint().setFakeBoldText(true);
+    }
+
+    /**
+     补0
+     @param str
+     @param strLength
+     @return
+     */
+    public static String addZeroForNum(String str,int strLength){
+        int strLen = str.length();
+        if (strLen<strLength){
+            while (strLen<strLength){
+                StringBuffer sb = new StringBuffer();
+                sb.append(str).append("0");
+                str = sb.toString();
+                strLen = str.length();
+            }
+        }
+        return str;
+    }
 }

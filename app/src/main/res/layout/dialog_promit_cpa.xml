@@ -39,8 +39,22 @@
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.2"
-                android:lineSpacingExtra="2dp"
+                android:lineSpacingExtra="3dp"
                 android:text="@string/share_article_tips"
+                android:textColor="@color/black_5a5a5a"
+                android:textSize="@dimen/undefine_font_4"/>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_info_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.2"
+                android:lineSpacingExtra="3dp"
+                android:text=""
                 android:textColor="@color/black_5a5a5a"
                 android:textSize="@dimen/undefine_font_4"/>
         </LinearLayout>

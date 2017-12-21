@@ -126,7 +126,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         //        }
         setContentView(R.layout.activity_main);
         setSwipeBackEnable(false);
-        checkNewVersion();
+      //  checkNewVersion();
         postData();
         startLocate();
         initView();

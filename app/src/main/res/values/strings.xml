@@ -410,6 +410,7 @@
     <string name="white_space">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</string>
     <string name="white_space_ban">\t\t\t\t\t\t\t\t\t\t\t</string>
     <string name="sign_end">报名结束</string>
+    <string name="ending">正在结算</string>
     <string name="has_been_end">已结束</string>
     <string name="kol_age">KOL年龄</string>
     <string name="kol_sex">KOL性别</string>
@@ -453,6 +454,7 @@
     <string name="screenshot_check_ruler">\u30001.活动保留时间太短\n\u30002.活动被设置了分组\n\u30003.活动含诱导点击文字\n\u30004.没按照参考截图上传\n\u30005.分享了过多相同活动</string>
     <string name="share_success_and_ruler">分享成功啦-《Robin8截图审核规则》</string>
     <string name="campaign_request">活动要求</string>
+    <string name="sign_rule">签到奖励规则</string>
 
     <!-- 评价效果 页面-->
 

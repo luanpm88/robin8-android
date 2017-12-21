@@ -18,7 +18,6 @@ import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
-import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
@@ -28,6 +27,7 @@ import java.util.List;
 
 
 /**
+ 消息页面
  * Created by Figo on 2016/6/30.
  */
 public class MessageProtocol implements IProtocol {

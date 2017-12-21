@@ -16,6 +16,9 @@ import com.robin8.rb.util.DateUtil;
 import java.util.List;
 
 
+/**
+ * 消息页面适配器
+ */
 public class MessageAdapter extends BaseRecyclerAdapter {
     private ViewHolder mViewHolder;
     private static final String TAG = MessageAdapter.class.getSimpleName();
