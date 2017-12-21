@@ -58,9 +58,16 @@ public class MonthAdapter extends BaseAdapter {
             if (monthList.get(position) != null) {
                 UserSignPresenter.SignDay info = monthList.get(position);
                 holder.tvDate.setText(info.day);
-
-                if(info.isSign){
+                if (position<7){
+                    if (Integer.valueOf(monthList.get(position).day)>20){
+                        holder.tvDate.setAlpha(0.4f);
+                    }
+                }
+                if(info.isSign ==0){
                     holder.tvDate.setBackgroundResource(R.drawable.shape_ring_sub_red);
+                }else if (info.isSign ==1){
+                    holder.tvDate.setBackgroundResource(R.drawable.shape_bg_circle_blue);
+                    holder.tvDate.setTextColor(context.getResources().getColor(R.color.white_custom));
                 }else {
                     holder.tvDate.setBackgroundResource(android.R.color.transparent);
                 }
