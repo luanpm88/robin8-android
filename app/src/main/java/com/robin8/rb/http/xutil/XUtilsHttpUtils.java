@@ -92,9 +92,7 @@ public class XUtilsHttpUtils implements IHttpUtils {
         if (paramBean != null) {
             paramBean.callback = callBack;
             httpUtils.send(com.lidroid.xutils.http.client.HttpRequest.HttpMethod.PUT, paramBean
-                    .url, (RequestParams) paramBean
-                    .params, getCallBack
-                    (params, callBack));
+                    .url, (RequestParams) paramBean.params, getCallBack(params, callBack));
         }
     }
 
@@ -104,9 +102,7 @@ public class XUtilsHttpUtils implements IHttpUtils {
         IParamHelper.HttpParamBean paramBean = defaultParamHelper.getParamBean(params);
         if (paramBean != null) {
             httpUtils.download(paramBean.url, targetPath, autoResume, autoRename, getCallBack
-                    (params,
-
-                            callBack));
+                    (params,callBack));
         }
     }
 

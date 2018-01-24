@@ -50,7 +50,7 @@ public class BasePresenter implements PresenterI {
         }
     }
 
-
+//public void postImages(boolean addHeader,int method,String url,)
 
 
     public void postImage(boolean addHeader, int method,Map<String, Object> requestMap, IHttpCallBack callBack) {

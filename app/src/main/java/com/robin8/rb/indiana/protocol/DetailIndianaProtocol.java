@@ -50,7 +50,7 @@ public class DetailIndianaProtocol implements IProtocol {
 
     @Override
     public RequestParams getRequestParams() {
-        Log.e("xxfigo", "page=" + mCurrentPage + "  mTotalPages=" + mTotalPages);
+        Log.e("夺宝？", "page=" + mCurrentPage + "  mTotalPages=" + mTotalPages);
         if (mTotalPages != 0 && mCurrentPage > mTotalPages) {
             return null;
         }

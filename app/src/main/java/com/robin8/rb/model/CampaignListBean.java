@@ -124,6 +124,7 @@ public class CampaignListBean extends BaseBean {
         private String avatar_url;
         private String kol_name;
         private String screenshot;
+        private List<String> screenshots;
         private String reject_reason;
         private String approved_at;//转发时间
         private boolean can_upload_screenshot;//是否可以上传截图
@@ -136,6 +137,16 @@ public class CampaignListBean extends BaseBean {
         private String uuid;
         private boolean start_upload_screenshot;//是否开始上传截图
         private String cpi_example_screenshot;
+       private List<String> cpi_example_screenshots;
+        private List<String> screenshot_comment;
+
+        public List<String> getScreenshot_comment() {
+            return screenshot_comment;
+        }
+
+        public void setScreenshot_comment(List<String> screenshot_comment) {
+            this.screenshot_comment = screenshot_comment;
+        }
 
         public String getKol_name() {
             return kol_name;
@@ -339,6 +350,22 @@ public class CampaignListBean extends BaseBean {
             this.cpi_example_screenshot = cpi_example_screenshot;
         }
 
+        public List<String> getCpi_example_screenshots() {
+            return cpi_example_screenshots;
+        }
+
+        public void setCpi_example_screenshots(List<String> cpi_example_screenshots) {
+            this.cpi_example_screenshots = cpi_example_screenshots;
+        }
+
+        public List<String> getScreenshots() {
+            return screenshots;
+        }
+
+        public void setScreenshots(List<String> screenshots) {
+            this.screenshots = screenshots;
+        }
+
         public static class CampaignEntity implements Serializable {
             private int id;
             private String name;
@@ -363,6 +390,7 @@ public class CampaignListBean extends BaseBean {
             private float remain_budget;
             private int share_time;
             private List<Integer> interval_time;
+            private List<String> cpi_example_screenshots;
             private String cpi_example_screenshot;
             private String remark;
             private boolean is_applying_note_required;
@@ -604,6 +632,14 @@ public class CampaignListBean extends BaseBean {
 
             public void setWechat_auth_type(String wechat_auth_type) {
                 this.wechat_auth_type = wechat_auth_type;
+            }
+
+            public List<String> getCpi_example_screenshots() {
+                return cpi_example_screenshots;
+            }
+
+            public void setCpi_example_screenshots(List<String> cpi_example_screenshots) {
+                this.cpi_example_screenshots = cpi_example_screenshots;
             }
         }
     }

@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -79,11 +79,19 @@
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme">
+            android:theme="@style/AppSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <!--https://qa.robin8.net/marketing_dashboard/campaign_invites/pending?q%5Bcampaign_status_eq%5D=executed&q%5Btotal_click_lt%5D=1-->
+                <!--http://blog.csdn.net/suyan_why/article/details/52622289-->
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" android:host="blog.csdn.net" android:pathPrefix="/suyan_why/article/details/52622289"/>
             </intent-filter>
         </activity>
         <activity
@@ -629,12 +637,75 @@
             android:configChanges="keyboard|orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.ChangeHttpActivity"
+        <activity
+            android:name=".activity.ChangeHttpActivity"
+            android:configChanges="keyboard|orientation"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- ===============融云================= -->
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.robin8.rb.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path"/>
+        </provider>
+
+        <!-- 聊天界面 -->
+        <activity
+            android:name=".module.mine.rongcloud.ConversationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:host="com.robin8.rb"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong"/>
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".module.mine.receiver.SealNotificationReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="io.rong.push.intent.MESSAGE_ARRIVED"/>
+                <action android:name="io.rong.push.intent.MI_MESSAGE_ARRIVED"/>
+                <action android:name="io.rong.push.intent.MESSAGE_CLICKED"/>
+                <action android:name="io.rong.push.intent.MI_MESSAGE_CLICKED"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- ===============融云================= -->
+
+        <!--多图上传-->
+        <activity android:name=".module.reword.activity.ScreenImgActivity"
                   android:configChanges="keyboard|orientation"
                   android:hardwareAccelerated="true"
                   android:launchMode="singleTop"
-                  android:screenOrientation="portrait">
-        </activity>
+                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.reword.chose_photo.PhotoPickerActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".module.reword.chose_photo.PhotoPreviewActivity"
+            android:configChanges="keyboard|orientation"
+            android:hardwareAccelerated="true"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

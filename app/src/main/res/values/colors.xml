@@ -39,7 +39,6 @@
 
     <!--覆盖颜色-->
     <color name="bgColor_overlay">#60000000</color>
-
     <color name="mine_head_gray">#3d3d3d</color>
     <color name="divide_in_black">#545454</color>
 
@@ -57,6 +56,8 @@
     <color name="tran_dark">#80000000</color>
 
     <color name="black_custom">#181616</color>
+    <color name="gray_first">#777777</color>
+    <color name="gray_second">#BBBBBB</color>
     <color name="black_000000">#000000</color>
     <color name="sub_black_custom">#424141</color>
     <color name="black_2e2e2e">#2e2e2e</color>

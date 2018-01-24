@@ -418,8 +418,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onError(Exception e) {
-
-                CustomToast.showShort(mActivity, "验证码发送失败------");
+                CustomToast.showShort(mActivity, "验证码发送失败!");
             }
 
             @Override

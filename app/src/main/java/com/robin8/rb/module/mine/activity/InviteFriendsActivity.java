@@ -76,6 +76,8 @@ public class InviteFriendsActivity extends BaseActivity {
     TextView tvInviteNumber;
     @Bind(R.id.tv_reword_money)
     TextView tvRewordMoney;
+    @Bind(R.id.tv_invite_code)
+    TextView tvInvitedCode;
     private CustomDialogManager mCustomDialogManager;
     private CustomShareHelper mCustomShareHelper;
     private ImageView mImgDown;
@@ -113,7 +115,6 @@ public class InviteFriendsActivity extends BaseActivity {
         //--联系人处理
         try {
             String s = GsonTools.listToJsonByAnnotation(BaseApplication.getInstance().getContactBeans());
-            LogUtil.LogShitou("没有联系人", "===>" + s);
             if (selfPermissionGranted(Manifest.permission.READ_PHONE_STATE) == false) {
                 ActivityCompat.requestPermissions(InviteFriendsActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_CODE_ASK_PERMISSIONS);
             } else {
@@ -304,7 +305,7 @@ public class InviteFriendsActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.logXXfigo("response+" + response);
+                LogUtil.logXXfigo("邀请好友+" + response);
                 InviteFridensModel inviteFridensModel = GsonTools.jsonToBean(response, InviteFridensModel.class);
                 if (inviteFridensModel != null && inviteFridensModel.getError() == 0) {
                     updateView(inviteFridensModel);
@@ -316,6 +317,8 @@ public class InviteFriendsActivity extends BaseActivity {
     private void updateView(InviteFridensModel inviteFridensModel) {
         tvRewordMoney.setText("¥ " + StringUtil.deleteZero(inviteFridensModel.getInvite_amount()));
         tvInviteNumber.setText(String.valueOf(inviteFridensModel.getInvite_count()));
+        tvInvitedCode.setText(String.valueOf(inviteFridensModel.getInvite_code()));
+
     }
 
 

@@ -46,8 +46,7 @@ public class DefaultParamHelper<T> implements IParamHelper<T> {
                             String fileHeader = key.substring(0, i);
                             if (fileHeader.contains("/")) {
                                 String[] split = fileHeader.split("/");
-                                addFileParams(requestParams, key.substring(i + 1, key.length()
-                                ), (File) value, split[1] + "/" + split[2]);
+                                addFileParams(requestParams, key.substring(i + 1, key.length()), (File) value, split[1] + "/" + split[2]);
                             }
                         }
                     } else if (key.startsWith("[array]")) {//传普通字符串参数

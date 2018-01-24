@@ -51,6 +51,7 @@ import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.widget.CustomDialogManager;
@@ -364,7 +365,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
             @Override
             public void onResponse(String response) {
-               // LogUtil.LogShitou("我的页面", "==>" + response);
+                LogUtil.LogShitou("我的页面", "==>" + response);
                 parseJson(response);
             }
         });
@@ -872,10 +873,10 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     //                        setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE);
                     //                        break;
                 }
-                if (item.name.equals("一元购")) {
-                    holder.mLlItem.setVisibility(View.GONE);
-                    holder.lineDown.setVisibility(View.GONE);
-                }
+//                if (item.name.equals("一元购")) {
+//                    holder.mLlItem.setVisibility(View.GONE);
+//                    holder.lineDown.setVisibility(View.GONE);
+//                }
                 //隐藏我的关注
                 if (item.name.equals(mActivity.getResources().getString(R.string.my_concern))) {
                     holder.mLlItem.setVisibility(View.GONE);

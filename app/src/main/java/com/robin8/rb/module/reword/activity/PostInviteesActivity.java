@@ -42,7 +42,6 @@ public class PostInviteesActivity extends BaseActivity {
         if (serializable instanceof List) {
             mDataList = (List) serializable;
         }
-
         KolsAdapter adadpter = new KolsAdapter();
         gvKols.setAdapter(adadpter);
     }

@@ -22,10 +22,12 @@ import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 
 
 /**
  * 商品详情
+ * 一元夺宝支付
  */
 public class IndianaOrderPayActivity extends BaseActivity {
 
@@ -96,6 +98,8 @@ public class IndianaOrderPayActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(String response) {
+                        LogUtil.LogShitou("一元夺宝111","=======>"+response);
+
                         PayOrderModel payOrderModel = GsonTools.jsonToBean(response, PayOrderModel.class);
                         if(payOrderModel == null){
                             CustomToast.showShort(IndianaOrderPayActivity.this, getString(R.string.please_data_wrong));
@@ -105,7 +109,7 @@ public class IndianaOrderPayActivity extends BaseActivity {
                             CustomToast.showShort(IndianaOrderPayActivity.this, payOrderModel.getDetail());
                             return;
                         }
-                        OrderBean orderBean = payOrderModel.getOrder();
+                        final OrderBean orderBean = payOrderModel.getOrder();
                         params.put("code", orderBean.getCode());
 
                         presenter.getDataFromServer(true, HttpRequest.PUT,
@@ -118,6 +122,7 @@ public class IndianaOrderPayActivity extends BaseActivity {
 
                                     @Override
                                     public void onResponse(String response) {
+                                        LogUtil.LogShitou("一元夺宝"+HelpTools.getUrl(CommonConfig.LOTTERY_ORDERS_URL + "/" + orderBean.getCode() + "/checkout"),"=======>"+response);
                                         BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                                         if (baseBean == null) {
                                             CustomToast.showShort(IndianaOrderPayActivity.this, getString(R.string.please_data_wrong));

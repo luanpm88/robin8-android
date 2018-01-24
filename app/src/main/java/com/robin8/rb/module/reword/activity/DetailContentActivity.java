@@ -35,6 +35,8 @@ import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.http.xutil.DefaultHttpCallBack;
+import com.robin8.rb.http.xutil.IHttpCallBack;
 import com.robin8.rb.model.CampaignInviteBean;
 import com.robin8.rb.model.CampaignListBean;
 import com.robin8.rb.model.NotifyMsgEntity;
@@ -42,6 +44,7 @@ import com.robin8.rb.module.mine.model.MessageModel;
 import com.robin8.rb.module.reword.CorrectionRunnable;
 import com.robin8.rb.module.reword.DetailCampaignDownAdapter;
 import com.robin8.rb.module.reword.bean.CampaignMaterialsModel;
+import com.robin8.rb.module.reword.chose_photo.SerializableMap;
 import com.robin8.rb.module.reword.helper.DetailContentHelper;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -55,6 +58,7 @@ import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
 import com.robin8.rb.util.TimerUtil;
 import com.robin8.rb.util.UIUtils;
@@ -64,6 +68,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -156,7 +161,29 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         initView();
         initData();
         // showShadowDialog(DetailContentActivity.this,false,null);
+       // uploadTurnImage(this,"01 演示图片.jpg",new File("/storage/emulated/0/Pictures/01 演示图片.jpg"));
 
+    }
+    public void uploadTurnImage(final Activity activity, String filename, File file) {
+        BasePresenter mBasePresenter = new BasePresenter();
+        LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
+        // ArrayList<File> mScreenList= new ArrayList<>();
+        String urlImg = HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + "1364903" + "/upload_screenshot");
+        requestMap.put("[url]", urlImg);
+        // requestMap.put("[file/image/jpeg]screenshot", mScreenList);
+        requestMap.put("[file/image/jpeg]screenshot", file);
+        mBasePresenter.postImage(true, HttpRequest.PUT, requestMap, new DefaultHttpCallBack(null) {
+
+            @Override
+            public void onComplate(ResponceBean responceBean) {
+                LogUtil.LogShitou("活动上传截图", "===>" + responceBean);
+
+            }
+
+            public void onFailure(IHttpCallBack.ResponceBean responceBean) {
+
+            }
+        });
     }
 
     public void getData() {
@@ -473,7 +500,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
             @Override
             public void onResponse(String response) {
-                //   LogUtil.LogShitou("活动详情数据", response);
+               LogUtil.LogShitou("活动详情数据", response);
                 CampaignInviteBean campaignInviteEntity = GsonTools.jsonToBean(response, CampaignInviteBean.class);
                 if (campaignInviteEntity != null && campaignInviteEntity.getError() == 0) {
                     mCampaignInviteEntity = campaignInviteEntity.getCampaign_invite();
@@ -867,6 +894,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                                         if (mDetailContentHelper == null) {
                                             mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
                                         }
+                                        //01 演示图片.jpg==||||||==/storage/emulated/0/Pictures/01 演示图片.jpg
                                         mDetailContentHelper.uploadTurnImage(DetailContentActivity.this, uploadPicturePath.substring(uploadPicturePath.lastIndexOf("/") + 1), new File(uploadPicturePath));
                                     }
                                 }
@@ -886,14 +914,45 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
                                 @Override
                                 public void run() {
-
                                     if (uploadPicturePath == null)
-                                        CustomToast.showShort(DetailContentActivity.this, "图片不存在,请检查本地路径,重新上传截图");
+                                        CustomToast.showShort(DetailContentActivity.this,getString(R.string.img_empty));
                                     else {
                                         if (mDetailContentHelper == null) {
                                             mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
                                         }
                                         mDetailContentHelper.uploadTurnImage(DetailContentActivity.this, uploadPicturePath.substring(uploadPicturePath.lastIndexOf("/") + 1), new File(uploadPicturePath));
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
+                    break;
+                case DetailContentHelper.IMAGE_REQUEST_MORE_IMG_CODE:
+                    Bundle bundle = data.getExtras();
+                    final SerializableMap mapImages = (SerializableMap) bundle.get(ScreenImgActivity.EXTRA_SCREEN_MAP);
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            UIUtils.runInMainThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    if (mapImages==null){
+                                        CustomToast.showShort(DetailContentActivity.this,getString(R.string.img_empty));
+                                    }else {
+                                        if (mapImages.getMap()==null){
+                                            CustomToast.showShort(DetailContentActivity.this,getString(R.string.img_empty));
+                                        }else {
+                                            if (mapImages.getMap().size()==0){
+                                                CustomToast.showShort(DetailContentActivity.this,getString(R.string.img_empty));
+                                            }else {
+                                                if (mDetailContentHelper == null) {
+                                                    mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
+                                                }
+                                                mDetailContentHelper.uploadTurnImages(DetailContentActivity.this,mapImages);
+                                            }
+                                        }
                                     }
                                 }
                             });

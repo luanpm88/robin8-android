@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.robin8.rb.module.reword.activity.ScreenImgActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_custom"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="注意：请按照截图示例顺序，上传对应图片"
+            android:textColor="@color/white_custom"/>
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/img_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:horizontalSpacing="3dp"
+        android:numColumns="3"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:verticalSpacing="3dp"/>
+
+</LinearLayout>

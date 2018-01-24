@@ -141,6 +141,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 showShadowDialog(MainActivity.this, 0);
             }
         }
+        //01 演示图片.jpg==||||||==/storage/emulated/0/Pictures/01 演示图片.jpg
         //showShadowDialog(MainActivity.this, 0);
 
     }
@@ -183,6 +184,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
         base.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.UPDATE_PROFILE_URL), requestParams, null);
     }
+
 
 
     @Override

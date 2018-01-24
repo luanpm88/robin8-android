@@ -27,6 +27,7 @@ import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
@@ -98,7 +99,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
             @Override
             public void onResponse(String response) {
                 // response = "{\"error\":0,\"continuous_checkin_count\":4,\"today_had_check_in\":true," + "\"checkin_history\":[" + "\"2017-12-07\"," + "\"2017-12-06\"," + "\"2017-12-05\"," + "\"2017-12-04\"," + "\"2017-12-03\"," + "\"2017-12-02\"," + "\"2017-12-01\"," + "\"2017-11-30\"," + "\"2017-11-29\"," + "\"2017-11-16\"," + "\"2017-11-15\"," + "\"2017-11-07\"," + "\"2017-11-06\"," + "\"2017-11-05\"," + "\"2017-11-04\"," + "\"2017-11-03\"," + "\"2017-11-02\"," + "\"2017-11-01\"," + "\"2017-10-29\"," + "\"2017-10-31\"]}";
-               // LogUtil.LogShitou("签到历史" + HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL), response);
+                LogUtil.LogShitou("签到历史" + HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL), response);
               //  response = "{\n" + "    \"error\": 0,\n" + "    \"continuous_checkin_count\": 1,\n" + "    \"today_had_check_in\": true,\n" + "    \"checkin_history\": [\n" + "        {\n" + "            \"created_at\": \"2017-12-08\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-12-07\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-12-06\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "              {\n" + "            \"created_at\": \"2017-12-05\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "      \n" + "        {\n" + "            \"created_at\": \"2017-12-03\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "      \n" + "        {\n" + "            \"created_at\": \"2017-12-01\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-30\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-29\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-28\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-20\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-17\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-14\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-12\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-11\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "       \n" + "        {\n" + "            \"created_at\": \"2017-10-31\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-10-30\",\n" + "            \"is_continuous\": 1\n" + "        }\n" + "    ],\n" + "    \"total_check_in_days\": 167,\n" + "    \"total_check_in_amount\": 24.9,\n" + "    \"today_already_amount\": 0,\n" + "    \"today_can_amount\": 0.2,\n" + "    \"tomorrow_can_amount\": 0.25\n" + "}";
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
@@ -365,9 +366,17 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
      */
     private int isSign(int year, int month, int day) {
         String s = String.valueOf(year + "-" + month + "-" + day);
+//        if (day<10 && month<10) {
+//            s = String.valueOf(year + "-0" + month + "-0" + day);
+//        }else if (day<10 && month>10){
+//            s = String.valueOf(year + "-" + month + "-0" + day);
+//        }else if (day>10 && month<10){
+//            s = String.valueOf(year + "-0" + month + "-" + day);
+//        }
         if (day<10){
             s = String.valueOf(year + "-" + month + "-0" + day);
         }
+
         if (mSignHistoryModel != null && mSignHistoryModel.getCheckin_history() != null && mSignHistoryModel.getCheckin_history().size() > 0) {
             if (listDate.size() != 0) {
                 for (String dates : listDate) {

@@ -398,6 +398,7 @@
     <string name="look_my_create">查看我的创作</string>
     <string name="download_all_images_in_this_paper">下载文章中所有图片</string>
     <string name="pic_download_success">图片下载成功</string>
+    <string name="img_empty">图片不存在,请检查本地路径,重新上传截图</string>
 
     <string name="text_protocol">\u3000\u3000Robin8提醒用户在使用Robin8平台（robin8.com）服务以及robin8 APP（以下简称“Robin8服务”）之前，仔细阅读并理解以下条款，尤其是限制用户权利的条款。使用Robin8服务的行为将视为用户已经同意本声明的全部内容，并将在使用Robin8服务的过程中遵守执行。\n\u3000\u30001、Robin8是供有广告投放推广需求的客户（下称“广告主”）和能够提供广告发布推广服务的自媒体账号或个人账户（以下简称“KOL”）交易的第三方平台。Robin8平台展示广告主提供的广告内容、KOL提供的账号名称、粉丝数等原始数据，供广告主、KOL根据需要甄选符合自己需求的服务对象进行交易。\n\u3000\u30002、Robin8将对广告主的身份、广告内容、KOL的身份信息、账号名称等内容进行审查，筛选出Robin8认为不真实的信息，但由于网络平台的特殊性及微播易的局限性，Robin8无法筛选出所有的不真实信息并做处理，但将尽最大努力保证所有信息的真实性。\n\u3000\u30003、广告主应如实填写广告信息，对广告内容的真实性、准确性、合法性、推广后的影响负责，Robin8倡导各广告主诚信发布广告、遵守法律法规以共同维护网络环境。\n\u3000\u30004、KOL应如实填写并及时更新对应平台的相应数据，包括但不限于账号名称、地域、账号粉丝数、受众信息等，并反馈真实的推广效果，Robin8倡导KOL诚信服务、遵守法律法规以共同维护网络环境。\n\u3000\u30005、KOL应综合考虑广告内容的真实性、准确性、合法性等因素后选择是否接单，一旦选择接单则应自行承担广告内容发布后对其账号造成的一切影响。广告主与KOL因广告发布产生的纠纷由双方自行解决。\n\u3000\u30006、Robin8基于广告主需求向其推荐的账号，仅是微播易基于账号自身数据分析判断做出的推荐，由广告主最终确认是否使用Robin8推荐的账号。\n\u3000\u30007、Robin8将采取必要手段为用户信息保密，但基于技术限制等，Robin8并不能保证用户的信息完全不被泄露。\n\u3000\u30008、用户应同意Robin8有限度的使用其信息，包括但不限于向用户及时发送重要通知或派发订单、Robin8内部进行审计、数据分析和研究等Robin8自行判断为合理使用的情形及法律法规要求等。\n\u3000\u30009、用户认为Robin8的其它用户侵犯其权利的，可向Robin8提供权利证明文件、身份证明文件等，Robin8审核评估后将采取适当措施予以处理。</string>
     <string name="agree">同意</string>
@@ -474,4 +475,18 @@
     <string name="add_tag_error_black_list">该应用已经在黑名单中,请联系售后支持!</string>
     <string name="add_tag_error_exceed">已存 tag 超过限制</string>
     <string name="push_transmission_data">收到一条透传测试消息</string>
+
+    <!--活动多图上传-->
+    <string name="image">图片</string>
+    <string name="all_image">所有图片</string>
+    <string name="preview">预览</string>
+    <string name="msg_no_camera">无法启用系统相机</string>
+    <string name="msg_amount_limit">已经达到最高选择数量</string>
+    <string name="done">完成</string>
+    <string name="done_with_count">完成(%1$d/%2$d)</string>
+    <string name="image_index">%1$d/%2$d</string>
+    <string name="delete">删除</string>
+    <string name="deleted_a_photo">删除了一张图片</string>
+    <string name="confirm_to_delete">确认删除？</string>
+    <string name="undo">撤消</string>
 </resources>

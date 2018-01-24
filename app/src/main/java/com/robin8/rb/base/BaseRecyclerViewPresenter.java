@@ -278,7 +278,7 @@ public class BaseRecyclerViewPresenter extends BasePresenter implements Presente
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("当前是消息"+url,"========>"+response);
+                LogUtil.LogShitou("当前是"+url,"========>"+response);
                 if (mXRefreshView != null) {
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore();

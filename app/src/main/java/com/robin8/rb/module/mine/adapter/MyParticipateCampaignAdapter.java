@@ -74,7 +74,6 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
         if (campaignInviteEntity == null) {
             return;
         }
-
         holder.nameTv.setText(campaignInviteEntity.getCampaign_name());
         String invite_status = campaignInviteEntity.getImg_status();
         String status = campaignInviteEntity.getStatus();
@@ -98,6 +97,37 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                 holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
                 holder.llReason.setClickable(false);
                 holder.nameTv.setClickable(false);
+            }else if (status.equals("approved") || status.equals("finished")){
+               if (invite_status.equals("passed")){
+                   holder.topTv.setText("正在结算");
+                   holder.llReason.setVisibility(View.VISIBLE);
+                   holder.tvReason.setVisibility(View.GONE);
+                   holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+                   holder.bottomTv.setText("¥ " + StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+                   holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+               }else if (invite_status.equals("rejected")){
+                   holder.llReason.setVisibility(View.GONE);
+                   holder.tvReason.setVisibility(View.VISIBLE);
+                   if (TextUtils.isEmpty(campaignInviteEntity.getReject_reason())) {
+                       if (TextUtils.isEmpty(campaignInviteEntity.getScreenshot())) {
+                           holder.tvReason.setText("拒绝原因：没有上传截图");
+                       } else {
+                           holder.tvReason.setText("拒绝原因：该截图不符合要求");
+                       }
+                   } else {
+                       holder.tvReason.setText("拒绝原因：" + campaignInviteEntity.getReject_reason());
+                   }
+               } else {
+                   holder.topTv.setText("即将赚");
+                   holder.llReason.setVisibility(View.VISIBLE);
+                   holder.tvReason.setVisibility(View.GONE);
+                   holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+                   holder.bottomTv.setText("¥ " + StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+                   holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
+               }
+
+                holder.llReason.setClickable(false);
+                holder.nameTv.setClickable(false);
             }else if (invite_status.equals("rejected")){
                 holder.llReason.setVisibility(View.GONE);
                 holder.tvReason.setVisibility(View.VISIBLE);
@@ -110,19 +140,6 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                 } else {
                     holder.tvReason.setText("拒绝原因：" + campaignInviteEntity.getReject_reason());
                 }
-            }else if (status.equals("approved")){
-               if (invite_status.equals("passed")){
-                   holder.topTv.setText("正在结算");
-               }else {
-                   holder.topTv.setText("即将赚");
-               }
-                holder.llReason.setVisibility(View.VISIBLE);
-                holder.tvReason.setVisibility(View.GONE);
-                holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
-                holder.bottomTv.setText("¥ " + StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
-                holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
-                holder.llReason.setClickable(false);
-                holder.nameTv.setClickable(false);
             }else {
                 holder.llReason.setVisibility(View.VISIBLE);
                 holder.tvReason.setVisibility(View.GONE);

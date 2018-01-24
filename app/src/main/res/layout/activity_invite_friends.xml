@@ -93,14 +93,20 @@
 
             </LinearLayout>
 
-            <View
+            <TextView
+                android:id="@+id/tv_invite_code"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="7dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/white_custom"/>
+                android:background="@color/white_custom"
+                android:gravity="center"
+                android:text="1232323232"
+                android:textColor="@color/black_202020"
+                android:textIsSelectable="true"
+                android:textStyle="bold"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -145,9 +151,9 @@
                 android:id="@+id/ll_rule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:background="@color/white_custom"
                 android:orientation="vertical"
-                android:layout_marginBottom="10dp"
                 android:visibility="gone">
 
                 <TextView
@@ -185,6 +191,7 @@
                     android:text="4.好友完成一个活动"
                     android:textColor="@color/sub_gray_custom"
                     android:textSize="@dimen/undefine_font_3"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -220,12 +227,12 @@
 
         <LinearLayout
             android:id="@+id/ll_empty"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white_custom"
+            android:orientation="vertical"
             android:paddingBottom="60dp"
-            android:orientation="vertical">
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -234,27 +241,29 @@
                 android:layout_marginTop="55dp"
                 android:src="@mipmap/logo_empty"
                 />
+
             <TextView
-                android:layout_marginTop="35dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
                 android:gravity="center"
+                android:text="您还未同步手机通讯录，无法获取您的朋友信息"
                 android:textColor="@color/gray_acacac"
-                android:textSize="@dimen/undefine_font_4"
-                android:text="您还未同步手机通讯录，无法获取您的朋友信息"/>
+                android:textSize="@dimen/undefine_font_4"/>
+
             <TextView
                 android:id="@+id/tv_invite_friend"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:text="邀请通讯录好友"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textSize="@dimen/undefine_font_4"
-                android:gravity="center"
-                android:textColor="@color/black_202020"
                 android:layout_gravity="center"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/shape_solid_yellow"/>
+                android:background="@drawable/shape_solid_yellow"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="邀请通讯录好友"
+                android:textColor="@color/black_202020"
+                android:textSize="@dimen/undefine_font_4"/>
         </LinearLayout>
 
         <com.robin8.rb.module.social.view.LinearLayoutForListView

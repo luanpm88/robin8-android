@@ -32,7 +32,9 @@ import com.robin8.rb.module.mine.model.MineShowModel;
 import com.robin8.rb.module.mine.presenter.BindSocialPresenter;
 import com.robin8.rb.module.reword.activity.DetailContentActivity;
 import com.robin8.rb.module.reword.activity.LookScreenImgActivity;
+import com.robin8.rb.module.reword.activity.ScreenImgActivity;
 import com.robin8.rb.module.reword.activity.SignUpRecruitActivity;
+import com.robin8.rb.module.reword.chose_photo.SerializableMap;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -46,6 +48,7 @@ import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 import com.robin8.rb.view.widget.CustomDialog;
@@ -53,6 +56,7 @@ import com.robin8.rb.view.widget.CustomDialogManager;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,6 +64,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -69,6 +74,14 @@ import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static com.robin8.rb.base.BaseApplication.isDoubleClick;
 
@@ -112,6 +125,7 @@ public class DetailContentHelper {
     //  public static final int CLICK_SHARE_NO_IMG = 11;// 截图审核中弹框增加查看截图
     public static final int IMAGE_REQUEST_CODE = 101;
     public static final int IMAGE_REQUEST_LOOK_CODE = 102;
+    public static final int IMAGE_REQUEST_MORE_IMG_CODE = 104;
     private StringBuffer sb = new StringBuffer("");
     private View line;
     private TextView tvRight;
@@ -365,9 +379,9 @@ public class DetailContentHelper {
                 break;
             case STATE_MISSED:// 整个显示 @"活动已错失,无偿转发"
                 setBottomView(false, tvLeft, tvRight, line, R.string.campaign_missed);
-            //    setBottomView(true, tvLeft, tvRight, line, R.string.campaign_missed_forwarding);
-//                mCurrentLeftState = CLICK_SHARE_NO_PAY;
-//                mCurrentRightState = CLICK_SHARE_NO_PAY;
+                //    setBottomView(true, tvLeft, tvRight, line, R.string.campaign_missed_forwarding);
+                //                mCurrentLeftState = CLICK_SHARE_NO_PAY;
+                //                mCurrentRightState = CLICK_SHARE_NO_PAY;
                 mCurrentLeftState = DISALLOW_CLICK;
                 mCurrentRightState = DISALLOW_CLICK;
                 break;
@@ -656,6 +670,7 @@ public class DetailContentHelper {
 
     /**
      上传截图
+     单张
      @param file
      */
     public void uploadTurnImage(final Activity activity, String filename, File file) {
@@ -675,7 +690,7 @@ public class DetailContentHelper {
 
             @Override
             public void onComplate(ResponceBean responceBean) {
-                // LogUtil.LogShitou("活动上传截图", "===>" + responceBean);
+                LogUtil.LogShitou("活动上传截图", "===>" + responceBean);
                 if (mWProgressDialog != null) {
                     try {
                         mWProgressDialog.dismiss();
@@ -720,7 +735,7 @@ public class DetailContentHelper {
                 }
             }
         });
-
+        //===============
         //        mBasePresenter.getDataFromServer(true, HttpRequest.PUT,
         //                HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot"),
         //                "screenshot", filename, file, new RequestCallback() {
@@ -751,6 +766,59 @@ public class DetailContentHelper {
         //                            CustomToast.showShort(activity, baseBean.getDetail());
         //                    }
         //                });
+    }
+
+    /**
+     上传截图
+     多张
+     @param mapImgs
+     */
+    public void uploadTurnImages(final Activity activity, SerializableMap mapImgs) {
+        if (mBasePresenter == null) {
+            mBasePresenter = new BasePresenter();
+        }
+        if (mWProgressDialog == null) {
+            mWProgressDialog = WProgressDialog.createDialog(activity);
+        }
+        mWProgressDialog.show();
+        OkHttpClient client = new OkHttpClient();
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        Map<Integer, String> mapImgsMap = mapImgs.getMap();
+        for (int i = 0; i < mapImgsMap.size(); i++) {
+            File f = new File(mapImgsMap.get(i));
+            if (f != null) {
+                builder.addFormDataPart("screenshot" + i, f.getName(), RequestBody.create(MediaType.parse("image/jpeg"), f));
+            }
+        }
+        MultipartBody requestBody = builder.build();
+        Request request = new Request.Builder().addHeader("Authorization", BaseApplication.getHeader()).url(HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot")).put(requestBody).build();
+
+        client.newCall(request).enqueue(new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if (mWProgressDialog != null) {
+                    try {
+                        mWProgressDialog.dismiss();
+                    } catch (Exception es) {
+                        es.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                LogUtil.LogShitou("活动上传截图-多图", "===>" + response);
+                if (mWProgressDialog != null) {
+                    try {
+                        mWProgressDialog.dismiss();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
     }
 
     /**
@@ -974,7 +1042,7 @@ public class DetailContentHelper {
                 receiveInvite(activity, mCampaignInviteEntity);
                 break;
             case CLICK_CHECK_SCREENSHOT://查看截图
-                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot(), "1");
+                showSnapDialog(activity, mCampaignInviteEntity, "1");
                 break;
             case CLICK_CHECK_REJECT_REASON://审核拒绝-查看原因
                 showRejectDialog(activity, mCampaignInviteEntity);
@@ -1045,7 +1113,7 @@ public class DetailContentHelper {
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
-                    // LogUtil.LogShitou("活动分享获取信息！！！", response);
+                    LogUtil.LogShitou("活动分享获取信息！！！", response);
                     KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
                     if (kolDetailModel != null && kolDetailModel.getError() == 0) {
                         List<SocialAccountsBean> mSocialAccounts = kolDetailModel.getSocial_accounts();
@@ -1171,7 +1239,7 @@ public class DetailContentHelper {
                 receiveInvite(activity, mCampaignInviteEntity);
                 break;
             case CLICK_CHECK_SCREENSHOT://查看截图
-                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot(), "1");
+                showSnapDialog(activity, mCampaignInviteEntity, "1");
                 break;
             case CLICK_CHECK_REJECT_REASON://审核拒绝-查看原因
                 showRejectDialog(activity, mCampaignInviteEntity);
@@ -1410,7 +1478,7 @@ public class DetailContentHelper {
             @Override
             public void onClick(View v) {
                 cdm.dismiss();
-                showSnapDialog(activity, campaignInviteEntity.getCpi_example_screenshot(), "0");
+                showSnapDialog(activity, campaignInviteEntity, "0");
 
             }
         });
@@ -1419,7 +1487,7 @@ public class DetailContentHelper {
             @Override
             public void onClick(View v) {
                 cdm.dismiss();
-                showSnapDialog(activity, campaignInviteEntity.getScreenshot(), "1");
+                showSnapDialog(activity, campaignInviteEntity, "1");
 
             }
         });
@@ -1432,14 +1500,46 @@ public class DetailContentHelper {
     /**
      截图参考
      @param activity
-     @param url
-     @param type 0: 截图参考 ； 1：查看截图
+     @param campaignInviteEntity
+     @param type 0: 截图参考 ； 1：查看截图 ；2:上传截图
      */
-    private void showSnapDialog(Activity activity, String url, String type) {
-        Intent intent = new Intent(activity, LookScreenImgActivity.class);
-        intent.putExtra("img_url", url);
-        intent.putExtra("bottom_isShow", type);
-        activity.startActivityForResult(intent, IMAGE_REQUEST_LOOK_CODE);
+    private void showSnapDialog(Activity activity, CampaignListBean.CampaignInviteEntity campaignInviteEntity, String type) {
+        //        Intent intent = new Intent(activity, LookScreenImgActivity.class);
+        //        intent.putExtra("img_url", url);
+        //        intent.putExtra("bottom_isShow", type);
+        //        activity.startActivityForResult(intent, IMAGE_REQUEST_LOOK_CODE);
+        if ((campaignInviteEntity.getCpi_example_screenshots() == null || campaignInviteEntity.getCpi_example_screenshots().size() <= 0) || (campaignInviteEntity.getScreenshot_comment() == null || campaignInviteEntity.getScreenshot_comment().size() <= 1)) {
+            Intent intent = new Intent(activity, LookScreenImgActivity.class);
+            if (type.equals("0")) {
+                intent.putExtra("img_url", campaignInviteEntity.getCpi_example_screenshot());
+            } else if (type.equals("1")) {
+                intent.putExtra("img_url", campaignInviteEntity.getScreenshot());
+            }
+            intent.putExtra("bottom_isShow", type);
+            activity.startActivityForResult(intent, IMAGE_REQUEST_LOOK_CODE);
+        } else {
+            Intent intent = new Intent(activity, ScreenImgActivity.class);
+            intent.putStringArrayListExtra(ScreenImgActivity.EXTRA_NAME_LIST, (ArrayList<String>) campaignInviteEntity.getScreenshot_comment());
+            if (type.equals("0")) {
+                //标题
+                intent.putExtra(ScreenImgActivity.EXTRA_TITLE, activity.getString(R.string.screenshot_reference));
+                intent.putExtra(ScreenImgActivity.EXTRA_TYPE, "0");
+                //参考图片
+                intent.putStringArrayListExtra(ScreenImgActivity.EXTRA_SCREEN_LISTS, (ArrayList<String>) campaignInviteEntity.getCpi_example_screenshots());
+                activity.startActivity(intent);
+            } else if (type.equals("1")) {
+                intent.putExtra(ScreenImgActivity.EXTRA_TITLE, activity.getString(R.string.look_the_screenshot));
+                intent.putExtra(ScreenImgActivity.EXTRA_TYPE, "1");
+                //已上传图片
+                intent.putStringArrayListExtra(ScreenImgActivity.EXTRA_SCREEN_LISTS, (ArrayList<String>) campaignInviteEntity.getScreenshots());
+                activity.startActivity(intent);
+            }else if (type.equals("2")){
+                intent.putExtra(ScreenImgActivity.EXTRA_TITLE, activity.getString(R.string.upload_screenshot));
+                intent.putExtra(ScreenImgActivity.EXTRA_TYPE, "2");
+                activity.startActivityForResult(intent, IMAGE_REQUEST_MORE_IMG_CODE);
+            }
+
+        }
     }
 
     /**
@@ -1466,7 +1566,7 @@ public class DetailContentHelper {
 
             @Override
             public void onClick(View view) {
-                showSnapDialog(activity, mCampaignInviteEntity.getScreenshot(), "1");
+                showSnapDialog(activity, mCampaignInviteEntity, "1");
                 cdm.dismiss();
             }
         });
@@ -1474,8 +1574,11 @@ public class DetailContentHelper {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);//调用android的图库
-                activity.startActivityForResult(i, IMAGE_REQUEST_CODE);
+                //打开相册
+                showSnapDialog(activity, campaignInviteEntity, "2");
+
+                //                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);//调用android的图库
+//                activity.startActivityForResult(i, IMAGE_REQUEST_CODE);
                 cdm.dismiss();
             }
         });
@@ -1484,8 +1587,9 @@ public class DetailContentHelper {
 
             @Override
             public void onClick(View v) {
-                showSnapDialog(activity, campaignInviteEntity.getCpi_example_screenshot(), "0");
                 cdm.dismiss();
+                showSnapDialog(activity, campaignInviteEntity, "0");
+
             }
         });
 
@@ -1660,7 +1764,7 @@ public class DetailContentHelper {
 
             @Override
             public void onResponse(String response) {
-                //   LogUtil.LogShitou("这里是回调", "==>" + response);
+                LogUtil.LogShitou("这里是回调", "==>" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -1767,7 +1871,7 @@ public class DetailContentHelper {
 
                 @Override
                 public void onResponse(String response) {
-                    // LogUtil.LogShitou("分享结果", response);
+                    LogUtil.LogShitou("分享结果", response);
                     CampaignInviteBean campaignInviteEntity = GsonTools.jsonToBean(response, CampaignInviteBean.class);
                     if (campaignInviteEntity != null && campaignInviteEntity.getError() == 0) {
                         CampaignListBean.CampaignInviteEntity entity = campaignInviteEntity.getCampaign_invite();

@@ -12,6 +12,9 @@ public class CommonConfig {
 
     public static final String HELP_URL = "http://robin8.net/kol_publish_campaign_help";
     public static final String SITE_URL = "http://www.robin8.net";
+    public static final String RONG_CLOUD_KEY = "c9kqb3rdkii8j";
+    public static final String RONG_CLOUD_SECRET = "3Qgy92wONUMc";
+    public static final String RONG_CLOUD_ID = "KEFU151140489031686";
 
     static {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
@@ -29,8 +32,13 @@ public class CommonConfig {
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
 
- //  public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
- public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
+  // public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
+  //public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+  public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+    //public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
+   // public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
+    //public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
+    //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String UpdateUrl = "api/v2/upgrades/check";
     public static final String BIND_IDENTITY_URL = "api/v2/influences/bind_identity";
     public static final String START_URL = "api/v2/influences/start";
@@ -71,16 +79,19 @@ public class CommonConfig {
     public static final String DELIVERY_ADDRESS_URL = " api/v1_3/my/address";
     public static final String UPDATE_PROFILE_URL = "api/v1_3/kols/update_profile";
 
-    public static final String CHECK_IN_HISTORY_URL = "api/v1_3/tasks/check_in_history";//签到历史
-    public static final String CHECK_IN_URL = "api/v1_3/tasks/check_in";//签到
+    //    public static final String CHECK_IN_HISTORY_URL = "api/v1_3/tasks/check_in_history";//签到历史2.2.7
+    //    public static final String CHECK_IN_URL = "api/v1_3/tasks/check_in";//签到2.2.7
+    public static final String CHECK_IN_HISTORY_URL = "api/v1_3/check_tasks/check_in_history";//签到历史2.2.7
+    public static final String CHECK_IN_URL = "api/v1_3/check_tasks/check_in";//签到2.2.7
 
     public static final String FIRST_KOL_LIST_URL = "api/v1_6/big_v";//首页列表数据
     public static final String MY_CARE_URL = "api/v1_6/my/friends";
 
-    public static final String MY_SHOW_URL = "api/v1_6/my/show";
+    public static final String MY_SHOW_URL = "api/v1_6/my/show";//我的界面数据
+    public static final String MY_INVITATION_CODE_URL = "api/v2_0/kols/invite_code";//我的界面数据
     public static final String BIG_V_APPLY_FIRST_URL = "api/v1_6/big_v_applies/update_profile";
     public static final String UPDATE_SOCIAL_URL_OLD = "api/v1_6/big_v_applies/update_social";
-   // public static final String UPDATE_SOCIAL_URL = "api/v1_6/big_v_applies/update_social_v2";//新接口
+    // public static final String UPDATE_SOCIAL_URL = "api/v1_6/big_v_applies/update_social_v2";//新接口
     public static final String UPDATE_SOCIAL_URL = "api/v1_6/big_v_applies/update_social";//新接口
     public static final String SUBMIT_APPLY_URL = "api/v1_6/big_v_applies/submit_apply";
     public static final String CAMPAIGNS_MATERIALS_URL = "api/v1_6/campaigns/materials";
@@ -138,6 +149,14 @@ public class CommonConfig {
     public static final String INVITE_CONTACTS = "api/v2_0/contacts/kol_contacts";
     public static final String INVITE_SEND_SMS = "api/v2_0/contacts/send_invitation";
     public static final String INFLUENCE_SHOW = "api/v2_0/kols/manage_influence_visibility";//get
+
+    //我的-我的活动
+    public static final String MY_CAMPAIGNS = "api/v1/campaign_invites/my_campaigns";//get
+
+    public static final String RONG_CLOUD_URL = "https://api.cn.ronghub.com/user/getToken.json";//融云
+    public static final String UNPAID_URL = "api/v1/campaigns/4440/receive_unpaid";//无偿转发
+
+
 
     //2、api/v2/influences/
     //    send_invite 短信邀请

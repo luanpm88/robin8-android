@@ -4,9 +4,15 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
-
+    <style name="AppSplash" parent="android:Theme">
+        <item name="android:windowBackground">@drawable/splish</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">false</item>
+        <item name="colorPrimary">@color/black_custom</item>
+        <item name="colorPrimaryDark">@color/black_custom</item>
+        <item name="colorAccent">@color/black_custom</item>
     </style>
 
     <style name="bottom_radio_style">
