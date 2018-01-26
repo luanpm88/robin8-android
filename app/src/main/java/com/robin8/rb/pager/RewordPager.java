@@ -30,8 +30,6 @@ import com.robin8.rb.model.CampaignListBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.NotifyMsgEntity;
 import com.robin8.rb.module.first.activity.LaunchRewordFirstActivity;
-import com.robin8.rb.module.reword.banner.CardPagerAdapter;
-import com.robin8.rb.module.reword.banner.ShadowTransformer;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.protocol.RewordProtocol;
 import com.robin8.rb.task.LoginTask;
@@ -82,10 +80,7 @@ public class RewordPager extends BasePager implements Observer {
     private RadioButton rb;
     private LinearLayout mTopPoints;
 
-   // private com.robin8.rb.module.reword.banner.ViewPager mVpAuto;
    private AutoScrollViewPager mVpAuto;
-    private CardPagerAdapter mCardAdapter;
-    private ShadowTransformer mCardShadowTransformer;
     private int mTotalPages;
 
     public RewordPager(FragmentActivity activity) {

@@ -38,6 +38,14 @@ public class BasePresenter implements PresenterI {
         }
     }
 
+    public void getDataFromServer(boolean needHeader, int method, String url,String paramsName,Map<Integer,String> mapImages, RequestCallback callback) {
+        switch (method){
+            case HttpRequest.PUT:
+                HttpRequest.getInstance().put(needHeader,url,paramsName,mapImages,callback);
+                break;
+        }
+    }
+
     public void getDataFromServer(boolean needHeader, int method, String url, String imageKey, String fileName, File file, RequestCallback callback) {
 
         switch (method) {
@@ -49,8 +57,6 @@ public class BasePresenter implements PresenterI {
                 break;
         }
     }
-
-//public void postImages(boolean addHeader,int method,String url,)
 
 
     public void postImage(boolean addHeader, int method,Map<String, Object> requestMap, IHttpCallBack callBack) {

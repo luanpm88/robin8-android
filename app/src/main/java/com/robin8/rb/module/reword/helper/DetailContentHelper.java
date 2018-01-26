@@ -56,7 +56,6 @@ import com.robin8.rb.view.widget.CustomDialogManager;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,7 +63,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -74,14 +72,6 @@ import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 import static com.robin8.rb.base.BaseApplication.isDoubleClick;
 
@@ -780,34 +770,29 @@ public class DetailContentHelper {
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(activity);
         }
-        mWProgressDialog.show();
-        OkHttpClient client = new OkHttpClient();
-        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        Map<Integer, String> mapImgsMap = mapImgs.getMap();
-        for (int i = 0; i < mapImgsMap.size(); i++) {
-            File f = new File(mapImgsMap.get(i));
-            if (f != null) {
-                builder.addFormDataPart("screenshot" + i, f.getName(), RequestBody.create(MediaType.parse("image/jpeg"), f));
-            }
+        if (mapImgs == null) {
+            CustomToast.showShort(activity, activity.getString(R.string.img_empty));
+            return;
         }
-        MultipartBody requestBody = builder.build();
-        Request request = new Request.Builder().addHeader("Authorization", BaseApplication.getHeader()).url(HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot")).put(requestBody).build();
+        mWProgressDialog.show();
 
-        client.newCall(request).enqueue(new Callback() {
+        mBasePresenter.getDataFromServer(true,HttpRequest.PUT,(HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot"))
+                , "screenshot", mapImgs.getMap(), new RequestCallback() {
 
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onError(Exception e) {
                 if (mWProgressDialog != null) {
                     try {
                         mWProgressDialog.dismiss();
                     } catch (Exception es) {
                         es.printStackTrace();
                     }
+
                 }
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(String response) {
                 LogUtil.LogShitou("活动上传截图-多图", "===>" + response);
                 if (mWProgressDialog != null) {
                     try {
@@ -816,9 +801,49 @@ public class DetailContentHelper {
                         e.printStackTrace();
                     }
                 }
-
             }
         });
+        //        OkHttpClient client = new OkHttpClient();
+        //        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        //        Map<Integer, String> mapImgsMap = mapImgs.getMap();
+        //        for (int i = 0; i < mapImgsMap.size(); i++) {
+        //            File f = new File(mapImgsMap.get(i));
+        //            if (f != null) {
+        //                builder.addFormDataPart("screenshot" + i, f.getName(), RequestBody.create(MediaType.parse("image/jpeg"), f));
+        //            }
+        //        }
+        //        MultipartBody requestBody = builder.build();
+        //        Request request = new Request.Builder()
+        //                .addHeader("Authorization", BaseApplication.getHeader())
+        //                .url(HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot"))
+        //                .put(requestBody).build();
+        //
+        //        client.newCall(request).enqueue(new Callback() {
+        //
+        //            @Override
+        //            public void onFailure(Call call, IOException e) {
+        //                if (mWProgressDialog != null) {
+        //                    try {
+        //                        mWProgressDialog.dismiss();
+        //                    } catch (Exception es) {
+        //                        es.printStackTrace();
+        //                    }
+        //                }
+        //            }
+        //
+        //            @Override
+        //            public void onResponse(Call call, Response response) throws IOException {
+        //                LogUtil.LogShitou("活动上传截图-多图", "===>" + response);
+        //                if (mWProgressDialog != null) {
+        //                    try {
+        //                        mWProgressDialog.dismiss();
+        //                    } catch (Exception e) {
+        //                        e.printStackTrace();
+        //                    }
+        //                }
+        //
+        //            }
+        //        });
     }
 
     /**
@@ -1533,7 +1558,7 @@ public class DetailContentHelper {
                 //已上传图片
                 intent.putStringArrayListExtra(ScreenImgActivity.EXTRA_SCREEN_LISTS, (ArrayList<String>) campaignInviteEntity.getScreenshots());
                 activity.startActivity(intent);
-            }else if (type.equals("2")){
+            } else if (type.equals("2")) {
                 intent.putExtra(ScreenImgActivity.EXTRA_TITLE, activity.getString(R.string.upload_screenshot));
                 intent.putExtra(ScreenImgActivity.EXTRA_TYPE, "2");
                 activity.startActivityForResult(intent, IMAGE_REQUEST_MORE_IMG_CODE);
@@ -1578,7 +1603,7 @@ public class DetailContentHelper {
                 showSnapDialog(activity, campaignInviteEntity, "2");
 
                 //                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);//调用android的图库
-//                activity.startActivityForResult(i, IMAGE_REQUEST_CODE);
+                //                activity.startActivityForResult(i, IMAGE_REQUEST_CODE);
                 cdm.dismiss();
             }
         });

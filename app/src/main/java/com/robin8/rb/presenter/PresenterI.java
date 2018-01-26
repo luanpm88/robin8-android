@@ -16,5 +16,4 @@ public interface PresenterI {
      * 网络请求
      */
     void getDataFromServer(boolean needHeader, int method, String url, RequestParams params, RequestCallback callback);
-
 }

@@ -330,7 +330,6 @@ public class PhotoPickerActivity extends BaseActivity {
             if (mFolderPopupWindow.isShowing()) {
                 mFolderPopupWindow.dismiss();
             }
-
             // 重置PopupWindow高度
             int screenHeigh = getResources().getDisplayMetrics().heightPixels;
             mFolderPopupWindow.setHeight(Math.round(screenHeigh * 0.6f));
