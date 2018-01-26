@@ -13,6 +13,7 @@ public class BaseBean implements Serializable {
     private String message;
     private String error_message;
     private String alipay_url;
+    private String alert;
     private float brand_amount;
 
     private int total_pages = 0;
@@ -88,4 +89,11 @@ public class BaseBean implements Serializable {
         this.total_pages = total_pages;
     }
 
+    public String getAlert() {
+        return alert;
+    }
+
+    public void setAlert(String alert) {
+        this.alert = alert;
+    }
 }

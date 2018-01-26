@@ -86,12 +86,18 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
-                <!--https://qa.robin8.net/marketing_dashboard/campaign_invites/pending?q%5Bcampaign_status_eq%5D=executed&q%5Btotal_click_lt%5D=1-->
-                <!--http://blog.csdn.net/suyan_why/article/details/52622289-->
+
+                <!-- https://qa.robin8.net/marketing_dashboard/campaign_invites/pending?q%5Bcampaign_status_eq%5D=executed&q%5Btotal_click_lt%5D=1 -->
+                <!-- http://blog.csdn.net/suyan_why/article/details/52622289 -->
                 <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="blog.csdn.net" android:pathPrefix="/suyan_why/article/details/52622289"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="blog.csdn.net"
+                    android:pathPrefix="/suyan_why/article/details/52622289"
+                    android:scheme="http"/>
             </intent-filter>
         </activity>
         <activity
@@ -687,25 +693,34 @@
 
         <!-- ===============融云================= -->
 
-        <!--多图上传-->
-        <activity android:name=".module.reword.activity.ScreenImgActivity"
-                  android:configChanges="keyboard|orientation"
-                  android:hardwareAccelerated="true"
-                  android:launchMode="singleTop"
-                  android:screenOrientation="portrait"/>
+
+        <!-- 多图上传 -->
+        <activity
+            android:name=".module.reword.activity.ScreenImgActivity"
+            android:configChanges="keyboard|orientation"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".module.reword.chose_photo.PhotoPickerActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".module.reword.chose_photo.PhotoPreviewActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.email.EmailRegiterActivity">
+        </activity>
+        <activity android:name=".activity.email.EmailAddInformationActivity">
+        </activity>
+        <activity
+            android:name=".activity.email.EmailWelcomeActivity"
+            android:label="@string/title_activity_email_welcome">
+        </activity>
     </application>
 
 </manifest>

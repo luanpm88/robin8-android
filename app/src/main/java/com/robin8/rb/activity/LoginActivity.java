@@ -5,12 +5,14 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.presenter.LoginPresenter;
 import com.robin8.rb.util.CustomToast;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.ILoginView;
 
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -39,7 +41,15 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     private View mBTNLogin;
     private LoginPresenter mLoginPresenter;
     private EditText mETInvitationCode;
-
+    private LinearLayout llToEmailRegister;
+    private EditText etEmailNum;
+    private EditText etEmailPwd;
+    private TextView tvToPhoneLogin;
+    private TextView tvToEamaiLogin;
+    private int which = 0;
+    private LinearLayout llEmailLogin;
+    private LinearLayout llPhoneNumLogin;
+    private TextView mTVTourist;
 
     @Override
     public void setTitleView() {
@@ -59,11 +69,23 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mTVCheckNum = (TextView) view.findViewById(R.id.tv_checknum);
         mBTNLogin = view.findViewById(R.id.bt_login);
 
-        View mTVTourist = view.findViewById(R.id.tv_tourist);
+        mTVTourist = (TextView) view.findViewById(R.id.tv_tourist);
         View mIBWeixin = view.findViewById(R.id.ib_weixin);
         View mIBWeibo = view.findViewById(R.id.ib_weibo);
         View mIBQQ = view.findViewById(R.id.ib_qq);
+        //邮箱
+        llPhoneNumLogin = ((LinearLayout) view.findViewById(R.id.ll_phone_login));
+        llEmailLogin = ((LinearLayout) view.findViewById(R.id.ll_email_login));
 
+        tvToPhoneLogin = ((TextView) view.findViewById(R.id.tv_to_phoneNum));
+        llToEmailRegister = ((LinearLayout) view.findViewById(R.id.ll_to_register));
+        etEmailNum = ((EditText) view.findViewById(R.id.et_email_num));
+        etEmailPwd = ((EditText) view.findViewById(R.id.et_password));
+        tvToEamaiLogin = ((TextView) view.findViewById(R.id.tv_to_email));
+
+        tvToEamaiLogin.setOnClickListener(this);
+        tvToPhoneLogin.setOnClickListener(this);
+        llToEmailRegister.setOnClickListener(this);
         mTVCheckNum.setOnClickListener(this);
         mBTNLogin.setOnClickListener(this);
         mTVTourist.setOnClickListener(this);
@@ -84,7 +106,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 mLoginPresenter.getCheckNumber();
                 break;
             case R.id.bt_login:
-                mLoginPresenter.login();
+                mLoginPresenter.login(which);
                 break;
             case R.id.tv_tourist:
                 mLoginPresenter.backMain(0);
@@ -102,6 +124,24 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 break;
             case R.id.iv_back:
                 mLoginPresenter.backMain(0);
+                break;
+            case R.id.ll_to_register:
+                //邮箱注册
+                mLoginPresenter.toEmailRegister();
+                break;
+            case R.id.tv_to_phoneNum:
+                which = 0;
+                llPhoneNumLogin.setVisibility(View.VISIBLE);
+                llEmailLogin.setVisibility(View.GONE);
+                mTVTourist.setVisibility(View.VISIBLE);
+                llToEmailRegister.setVisibility(View.GONE);
+                break;
+            case R.id.tv_to_email:
+                which = 1;
+                llPhoneNumLogin.setVisibility(View.GONE);
+                llEmailLogin.setVisibility(View.VISIBLE);
+                mTVTourist.setVisibility(View.GONE);
+                llToEmailRegister.setVisibility(View.VISIBLE);
                 break;
 
         }
@@ -146,11 +186,30 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
     @Override
     public void clearEdit(int i) {
-        if (i==3){
-            if (mETInvitationCode!=null){
-               mETInvitationCode.setText("");
+        if (i == 3) {
+            if (mETInvitationCode != null) {
+                mETInvitationCode.setText("");
             }
         }
+    }
+
+    @Override
+    public String getEmailNumber() {
+        String emailNum = "";
+        if (etEmailNum != null) {
+            emailNum = etEmailNum.getText().toString().trim();
+        }
+        return emailNum;
+    }
+
+    @Override
+    public String getEmailPwd() {
+        String emailPwd = "";
+        if (etEmailPwd != null) {
+            emailPwd = etEmailPwd.getText().toString().trim();
+        }
+        LogUtil.LogShitou("输入的密码",emailPwd);
+        return emailPwd;
     }
 
     @Override

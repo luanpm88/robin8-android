@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginOtherWithPhoneActivity;
 import com.robin8.rb.activity.MainActivity;
+import com.robin8.rb.activity.email.EmailRegiterActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
@@ -444,9 +445,10 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
     /**
      登录
+     @param which 0:手机号登陆；1：邮箱登陆
      */
-    public void login() {
-
+    public void login(int which) {
+        if (which==0){
         final String phoneNumber = mILoginView.getPhoneNumber();
         String checkCode = mILoginView.getCheckCode();
         String invitationCode = mILoginView.getInvitationCode();
@@ -549,6 +551,101 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                     }
                 }
             }, phoneNumber, checkCode, mKolUuid, invitationCode);
+        }
+        } else if (which==1){
+            final String emailNumber = mILoginView.getEmailNumber();
+            String emailPwd = mILoginView.getEmailPwd();
+            if (! RegExpUtil.checkEmail(emailNumber)) {
+                CustomToast.showShort(mActivity, "请输入正确的邮箱!");
+            }else if (TextUtils.isEmpty(emailPwd)){
+                CustomToast.showShort(mActivity, "请输入密码");
+            }else {
+                if (mWProgressDialog == null) {
+                    mWProgressDialog = WProgressDialog.createDialog(mActivity);
+                }
+                mWProgressDialog.show();
+                BasePresenter mBasePresenter = new BasePresenter();
+                RequestParams mRequestParams = new RequestParams();
+                mRequestParams.put("login",emailNumber);
+                mRequestParams.put("password",emailPwd);
+                mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.EMAIL_LOGIN_URL), mRequestParams, new RequestCallback() {
+
+                    @Override
+                    public void onError(Exception e) {
+                        if (mWProgressDialog != null) {
+                            try {
+                                mWProgressDialog.dismiss();
+                            } catch (Exception es) {
+                                es.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        if (mWProgressDialog != null) {
+                            try {
+                                mWProgressDialog.dismiss();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        LogUtil.LogShitou("邮箱登陆结果",response);
+                      //  TalkingDataAppCpa.onRegister(phoneNumber);
+                      //  TalkingDataAppCpa.onLogin(phoneNumber);
+                        //  LoginHelper.loginSuccess(loginBean, from, mActivity);
+                        LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
+                        if (loginBean == null) {
+                            CustomToast.showShort(mActivity.getApplicationContext(), mActivity.getString(R.string.please_data_wrong));
+                            return;
+                        }
+                        if (loginBean.getError()==0){
+                            HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
+                           // HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+                            BaseApplication.getInstance().setLoginBean(loginBean);
+                            if (BaseApplication.getInstance().hasLogined()) {
+                                NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+                            }
+                            initGetRongCloud(emailNumber,loginBean.getKol().getName(),loginBean.getKol().getAvatar_url());
+                            int is = 0;
+                            if (loginBean.getKol_identities() != null) {
+                                if (loginBean.getKol_identities().size() != 0) {
+                                    for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
+                                        if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
+                                            is = 1;
+                                        }
+                                        if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
+                                            HelpTools.insertCommonXml(HelpTools.IsBind, "is");
+                                        }
+                                    }
+                                    if (is == 1) {
+                                        if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
+                                            //都没有走过，邦过微信／微博，跳过first
+                                            jumpActivity(1);
+                                        } else {
+                                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
+                                                jumpActivity(2);
+                                            } else {
+                                                backMain(1);
+                                            }
+                                        }
+                                    } else {
+                                        jumpActivity(1);
+                                    }
+                                } else {
+                                    //没有绑定
+                                    jumpActivity(1);
+
+                                }
+                            } else {
+                                jumpActivity(2);
+                            }
+                        }
+
+                    }
+                });
+
+            }
         }
     }
 
@@ -743,5 +840,9 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             // mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         }
+    }
+    public void toEmailRegister(){
+        Intent intent = new Intent(mActivity, EmailRegiterActivity.class);
+        mActivity.startActivity(intent);
     }
 }

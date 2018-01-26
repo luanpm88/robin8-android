@@ -84,6 +84,16 @@ public class SetUserPwdActivity extends BaseActivity implements ILoginView {
     }
 
     @Override
+    public String getEmailNumber() {
+        return null;
+    }
+
+    @Override
+    public String getEmailPwd() {
+        return null;
+    }
+
+    @Override
     public View getTv() {
 
         return null;

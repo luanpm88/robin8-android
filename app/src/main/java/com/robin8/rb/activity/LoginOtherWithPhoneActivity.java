@@ -157,6 +157,16 @@ public class LoginOtherWithPhoneActivity extends BaseActivity implements ILoginV
     }
 
     @Override
+    public String getEmailNumber() {
+        return null;
+    }
+
+    @Override
+    public String getEmailPwd() {
+        return null;
+    }
+
+    @Override
     public View getTv() {
 
         return mTVCheckNum;

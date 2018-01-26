@@ -18,7 +18,6 @@ import com.robin8.rb.task.LocationService;
 import com.robin8.rb.util.CrashHandler;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 
 import java.security.MessageDigest;
@@ -162,15 +161,23 @@ public class BaseApplication extends MultiDexApplication {
     public boolean hasLogined() {
 
         LoginBean loginBean = getLoginBean();
-        if (loginBean == null || loginBean.getKol() == null || CommonConfig.TOURIST_PHONE.equals(loginBean.getKol().getMobile_number())) {
+//        if (loginBean == null || loginBean.getKol() == null || CommonConfig.TOURIST_PHONE.equals(loginBean.getKol().getMobile_number())) {
+//            return false;
+//        }
+//
+//        LoginBean.KolEntity kol = loginBean.getKol();
+//        if (TextUtils.isEmpty(kol.getIssue_token()) || TextUtils.isEmpty(kol.getMobile_number())) {
+//            return false;
+//        }
+        if (loginBean == null || loginBean.getKol() == null) {
             return false;
         }
 
         LoginBean.KolEntity kol = loginBean.getKol();
-        if (TextUtils.isEmpty(kol.getIssue_token()) || TextUtils.isEmpty(kol.getMobile_number())) {
+        if (TextUtils.isEmpty(kol.getIssue_token())) {
             return false;
         }
-        LogUtil.logXXfigo("mobile number:" + loginBean.getKol().getMobile_number());
+       // LogUtil.logXXfigo("mobile number:" + loginBean.getKol().getMobile_number());
         return true;
     }
 
