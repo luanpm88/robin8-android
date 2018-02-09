@@ -17,11 +17,6 @@ public class CampaignChoseTypeActivity extends BaseActivity {
     private CheckBox cbWechat;
     private CheckBox cbWeibo;
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_campaign_chose_type);
-//    }
 
     @Override
     public void setTitleView() {

@@ -57,11 +57,7 @@ public class ConversationActivity extends FragmentActivity {
     private void getIntentDate(Intent intent) {
         mTargetId = intent.getData().getQueryParameter("targetId");
         title = intent.getData().getQueryParameter("title");
-        //intent.getData().getLastPathSegment();//获得当前会话类型
-      //  mConversationType = Conversation.ConversationType.valueOf(intent.getData().getLastPathSegment().toUpperCase(Locale.getDefault()));
         mConversationType = Conversation.ConversationType.CUSTOMER_SERVICE;
-
-//        enterFragment(mConversationType, mTargetId);
     }
 
 
@@ -105,7 +101,6 @@ public class ConversationActivity extends FragmentActivity {
 
                 @Override
                 public void onError(RongIMClient.ErrorCode errorCode) {
-                    Log.e("", "连接失败—————>" + errorCode);
                 }
             });
         }
@@ -123,8 +118,6 @@ public class ConversationActivity extends FragmentActivity {
         //push
         if (intent.getData().getScheme().equals("rong") && intent.getData().getQueryParameter("isFromPush") != null) {
             isFromPush = true;
-            Log.e("","isFromPush");
-            //通过intent.getData().getQueryParameter("push") 为true，判断是否是push消息
             if (intent.getData().getQueryParameter("isFromPush").equals("true")) {
                 reconnect(token);
             } else {

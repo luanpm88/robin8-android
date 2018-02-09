@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
@@ -21,7 +19,6 @@ import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.listener.BindSocialPresenterListener;
 import com.robin8.rb.model.BaseBean;
-import com.robin8.rb.model.CampaignListBean;
 import com.robin8.rb.model.IndentyBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.OtherLoginListBean;
@@ -46,7 +43,6 @@ import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.TimerUtilTwo;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.ILoginView;
-import com.robin8.rb.view.widget.CustomDialogManager;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.util.ArrayList;
@@ -118,9 +114,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 final String userGender = platDB.getUserGender();
                 final String userIcon = platDB.getUserIcon();
                 final String userId = platDB.getUserId();
-                //  LogUtil.LogShitou("wechat_userId", userId);
-                //  LogUtil.LogShitou("wechat_token", "===>" + token);
-                //  LogUtil.LogShitou("wechat_userName", "===>" + platDB.getUserName());
                 final String userName = platDB.getUserName();
                 UIUtils.runInMainThread(new Runnable() {
 
@@ -169,8 +162,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         } else if ("Wechat".equals(plat)) {
             requestParams.put("uid", res.get("openid"));
             requestParams.put("unionid", String.valueOf(res.get("unionid")));
-            //LogUtil.LogShitou("wechat_Uid", "==>" + res.get("openid"));
-            // LogUtil.LogShitou("wechat_unionid", "==>" + String.valueOf(res.get("unionid")));
         }
         requestParams.put("province", res.get("province"));
         requestParams.put("city", res.get("city"));
@@ -187,8 +178,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onResponse(String response) {
-             //   LogUtil.LogShitou("第三方登陆啊啊啊啊返回数据==========>", response);
-             //   LogUtil.LogShitou("provider", "===>" + provider);
 
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
@@ -196,31 +185,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 final LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
                 if (loginBean.getError() == 0) {
                     HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));//保存token
-                    //                    if (! TextUtils.isEmpty(loginBean.getKol().getMobile_number())) {//已经绑定了手机号
-                    //                        TalkingDataAppCpa.onLogin(loginBean.getKol().getMobile_number());
-                    //                        HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
-                    //                        BaseApplication.getInstance().setLoginBean(loginBean);
-                    //                        if (BaseApplication.getInstance().hasLogined()) {
-                    //                            NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
-                    //                        }
-                    //-----
-                  //  toBind(provider,plat,token,userGender,userIcon,userId,userName,res,loginBean);
                     afterBind(loginBean);
-                    //----------
-                    //                        Intent intent = new Intent(mActivity, MainActivity.class);
-                    //                        intent.putExtra("register_main", "zhu");
-                    //                        mActivity.startActivity(intent);
-                    //                        mActivity.finish();
-                    //                    } else {//尚未绑定手机号
-                    //                        BaseApplication.getInstance().setLoginBean(loginBean);
-                    //                        Intent intent = new Intent(mActivity, LoginOtherWithPhoneActivity.class);
-                    //                        intent.putExtra("from", from);
-                    //                        if (influence == 1) {
-                    //                            intent.putExtra("influence", StatisticsAgency.INFLUENCE_LIST);
-                    //                        }
-                    //                        mActivity.startActivity(intent);
-                    //                        mActivity.finish();
-                    //                    }
                 } else {
                     if (! TextUtils.isEmpty(loginBean.getDetail())) {
                         CustomToast.showShort(mActivity, loginBean.getDetail());
@@ -269,7 +234,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
               //  LogUtil.LogShitou("第三方绑定登陆成功后======>", response);
                 IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
                 if (indentyBean.getError() == 0) {
-                    //  LogUtil.LogShitou("去绑定===========>", "<=============>" +provider+ plat + userName);
                     if ("wechat".equals(provider)) {
                         mypostData(mActivity.getString(R.string.weixin), userName, loginBean);
                     } else if ("qq".equals(provider)) {
@@ -295,7 +259,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         params.put("price", "0.1");
         params.put("followers_count", "0.1");
         params.put("username", userName);
-        //LogUtil.LogShitou("绑定qq的报价之类的",name+"//"+userName,,qq,姓名);
         url = HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL);
 
         mBasePresenter.getDataFromServer(true, HttpRequest.POST, url, params, new RequestCallback() {
@@ -307,7 +270,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onResponse(String response) {
-                // LogUtil.LogShitou("提交接口", "OK" + response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
 
                 if (bean == null) {
@@ -317,9 +279,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 if (bean.getError() == 0) {
                     //   LogUtil.LogShitou("走到这里没有","直接绑定qq");
                     postData(loginBean);
-                    //  skipToNext();
-                    // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
-                    //finish();
+
                 } else {
                     CustomToast.showShort(mActivity, bean.getDetail());
                 }
@@ -328,10 +288,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
     }
 
     private void postData(final LoginBean loginBean) {
-        //        if (!mGridDataList.get(0).isChecked) {
-        //            CustomToast.showShort(this,getString(R.string.must_bind_weixin));
-        //            return;
-        //        }
+
 
         BasePresenter mBasePresenter = new BasePresenter();
 
@@ -362,10 +319,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 }
 
                 if (bean.getError() == 0) {
-                    //                    Intent intent = new Intent(mActivity, MainActivity.class);
-                    //                    intent.putExtra("register_main", "zhu");
-                    //                    mActivity.startActivity(intent);
-                    //                    mActivity.finish();
                     afterBind(loginBean);
                 } else {
                     CustomToast.showShort(mActivity, bean.getDetail());
@@ -375,7 +328,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
     }
 
     private void afterBind(LoginBean loginBean) {
-        // LogUtil.LogShitou("11111","111111");
         //登陆即绑定然后判断是否绑定手机号
         if (! TextUtils.isEmpty(loginBean.getKol().getMobile_number())) {//已经绑定了手机号
             TalkingDataAppCpa.onLogin(loginBean.getKol().getMobile_number());
@@ -425,9 +377,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             @Override
             public void onResponse(String response) {
 
-             //   LogUtil.LogShitou("验证码数据" + HelpTools.getUrl(CommonConfig.GET_CODE_URL), response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
-              //  CustomToast.showShort(mActivity, bean.getDetail());
                 if (bean!=null){
                     if (bean.getError() == 0) {
                         CustomToast.showShort(mActivity, "验证码发送成功");
@@ -556,9 +506,9 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             final String emailNumber = mILoginView.getEmailNumber();
             String emailPwd = mILoginView.getEmailPwd();
             if (! RegExpUtil.checkEmail(emailNumber)) {
-                CustomToast.showShort(mActivity, "请输入正确的邮箱!");
+                CustomToast.showShort(mActivity, mActivity.getString(R.string.put_right_email_address));
             }else if (TextUtils.isEmpty(emailPwd)){
-                CustomToast.showShort(mActivity, "请输入密码");
+                CustomToast.showShort(mActivity, mActivity.getString(R.string.put_pwd));
             }else {
                 if (mWProgressDialog == null) {
                     mWProgressDialog = WProgressDialog.createDialog(mActivity);
@@ -590,7 +540,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                                 e.printStackTrace();
                             }
                         }
-                        LogUtil.LogShitou("邮箱登陆结果",response);
+                      //  LogUtil.LogShitou("邮箱登陆结果",response);
                       //  TalkingDataAppCpa.onRegister(phoneNumber);
                       //  TalkingDataAppCpa.onLogin(phoneNumber);
                         //  LoginHelper.loginSuccess(loginBean, from, mActivity);
@@ -607,39 +557,9 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                                 NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
                             }
                             initGetRongCloud(emailNumber,loginBean.getKol().getName(),loginBean.getKol().getAvatar_url());
-                            int is = 0;
-                            if (loginBean.getKol_identities() != null) {
-                                if (loginBean.getKol_identities().size() != 0) {
-                                    for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
-                                        if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
-                                            is = 1;
-                                        }
-                                        if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
-                                            HelpTools.insertCommonXml(HelpTools.IsBind, "is");
-                                        }
-                                    }
-                                    if (is == 1) {
-                                        if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
-                                            //都没有走过，邦过微信／微博，跳过first
-                                            jumpActivity(1);
-                                        } else {
-                                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
-                                                jumpActivity(2);
-                                            } else {
-                                                backMain(1);
-                                            }
-                                        }
-                                    } else {
-                                        jumpActivity(1);
-                                    }
-                                } else {
-                                    //没有绑定
-                                    jumpActivity(1);
-
-                                }
-                            } else {
-                                jumpActivity(2);
-                            }
+                            backMain(1);
+                        }else {
+                            CustomToast.showShort(mActivity.getApplicationContext(), loginBean.getDetail());
                         }
 
                     }
@@ -685,12 +605,10 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                         if (kol.getRole_apply_status().equals("pending")) {
                             jumpBeKol(kol.getId());
                         } else {
-                            //  LogUtil.LogShitou("还是这里", ">>>>>>>>>>>>>>>>>");
                             LoginHelper.loginSuccess(null, from, mActivity);
                         }
 
                     }
-                    // mActivity.finish();
                 }
             }
 
@@ -746,46 +664,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         //        intent.putExtra("id", id);
         //        intent.putExtra("jump", "register");
         //        mActivity.startActivity(intent);
-    }
-
-    /**
-     重复登陆弹窗
-     @param activity
-     @param campaignInviteEntity
-     */
-    public void showRejectDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity, String name) {
-        // String rejectReason = campaignInviteEntity.getReject_reason();
-        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_reject_screenshot, null);
-        TextView confirmTV = (TextView) view.findViewById(R.id.tv_confirm);
-        TextView infoTv = (TextView) view.findViewById(R.id.tv_info);
-        TextView rightTv = (TextView) view.findViewById(R.id.tv_right);
-        confirmTV.setText("是，直接登陆");
-        rightTv.setText("否，我要注册");
-        //  infoTv.setText(rejectReason);
-        if (TextUtils.isEmpty(name)) {
-            infoTv.setText("该手机号已被使用\n是否仍要登陆");
-        } else {
-            infoTv.setText("该手机号已绑定账号'" + name + "'\n" + "是否是您的账号？");
-        }
-        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
-        confirmTV.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                cdm.dismiss();
-            }
-        });
-        rightTv.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                cdm.dismiss();
-            }
-        });
-        cdm.dg.setCanceledOnTouchOutside(true);
-        cdm.dg.getWindow().setGravity(Gravity.CENTER);
-        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        cdm.showDialog();
     }
 
     private void jumpActivity(int i) {

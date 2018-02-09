@@ -72,12 +72,12 @@ public class InviteFriendsActivity extends BaseActivity {
 
     @Bind(R.id.tv_reword_info)
     TextView tvRewordInfo;
+    @Bind(R.id.tv_reword_info_two)
+    TextView tvRewordInfoTwo;
     @Bind(R.id.tv_invite_number)
     TextView tvInviteNumber;
     @Bind(R.id.tv_reword_money)
     TextView tvRewordMoney;
-    @Bind(R.id.tv_invite_code)
-    TextView tvInvitedCode;
     private CustomDialogManager mCustomDialogManager;
     private CustomShareHelper mCustomShareHelper;
     private ImageView mImgDown;
@@ -109,7 +109,7 @@ public class InviteFriendsActivity extends BaseActivity {
         mImgDown.setOnClickListener(this);
         mListView = ((LinearLayoutForListView) findViewById(R.id.list_content));
         mEmptyLayout = ((LinearLayout) findViewById(R.id.ll_empty));
-        tvRewordInfo.setText(Html.fromHtml("邀请好友下载并完成一个活动,立得<font color=#ecb200>" + "2元" + "</font>奖励"));
+      //  tvRewordInfo.setText(Html.fromHtml("邀请好友下载并完成一个活动,立得<font color=#ecb200>" + "2元" + "</font>奖励"));
         tvInvite = ((TextView) view.findViewById(R.id.tv_invite_friend));
         tvInvite.setOnClickListener(this);
         //--联系人处理
@@ -133,7 +133,7 @@ public class InviteFriendsActivity extends BaseActivity {
                     }
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -276,13 +276,13 @@ public class InviteFriendsActivity extends BaseActivity {
                 MyListAdapter adapter = new MyListAdapter(mDataList);
                 mListView.setAdapter(adapter);
                 //                LogUtil.LogShitou("联系人", "==>" + mDataList.get(1).getMobile_number().getName());
-//                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                    }
-//                });
+                //   mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                //
+                //     @Override
+                //     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //
+                //       }
+                //  });
             }
         });
 
@@ -305,7 +305,7 @@ public class InviteFriendsActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.logXXfigo("邀请好友+" + response);
+              //  LogUtil.logXXfigo("邀请好友+" + response);
                 InviteFridensModel inviteFridensModel = GsonTools.jsonToBean(response, InviteFridensModel.class);
                 if (inviteFridensModel != null && inviteFridensModel.getError() == 0) {
                     updateView(inviteFridensModel);
@@ -317,8 +317,15 @@ public class InviteFriendsActivity extends BaseActivity {
     private void updateView(InviteFridensModel inviteFridensModel) {
         tvRewordMoney.setText("¥ " + StringUtil.deleteZero(inviteFridensModel.getInvite_amount()));
         tvInviteNumber.setText(String.valueOf(inviteFridensModel.getInvite_count()));
-        tvInvitedCode.setText(String.valueOf(inviteFridensModel.getInvite_code()));
+        if (inviteFridensModel.getInvite_code() == 0) {
+            tvRewordInfo.setText(Html.fromHtml("邀请好友下载并完成一个活动,立得<font color=#ecb200>" + "2元" + "</font>奖励"));
+        } else {
+           // String s = "邀请好友下载登录并完成一个活动";
+            tvRewordInfo.setText(Html.fromHtml("邀请好友下载登录并完成一个<font color=#ecb200>活动</font>"));
+           // StringUtil.setTextViewSpan(tvRewordInfo,0,13,15,getResources().getColor(R.color.yellow_custom));
+            tvRewordInfoTwo.setText(Html.fromHtml("立得 <font color=#ecb200><b>2</b>元</font> 现金奖励（您的邀请码："+String.valueOf(inviteFridensModel.getInvite_code())+"）"));
 
+        }
     }
 
 

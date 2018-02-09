@@ -94,6 +94,9 @@ public class StatisticsAgency {
     public static final String TD_ANALYTICS_APP_ID = "TD_ANALYTICS_APP_ID";
     public static final String TD_ANALYTICS_CHANNEL_ID = "TD_ANALYTICS_CHANNEL_ID";
 
+    //邮箱登陆
+    public static final String EMAIL_LOGIN = "email-login";
+
     public static void init(Context context) {
         TCAgent.LOG_ON = true;
         TalkingDataAppCpa.LOG_NO = true;

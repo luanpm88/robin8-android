@@ -258,13 +258,9 @@ public class SocailPkActivity extends BaseActivity {
                             mImgPhotoBgLeftWhite.setVisibility(View.VISIBLE);
                            // LogUtil.LogShitou("右边赢", "右边！！！");
                         }
-
-                        //  mProLeft.setProgressColor(getResources().getColor(R.color.gray_565656));
                         inAinmationSuccess(success);
                     }
                 });
-                //mProLeft.setProgress(80);
-                // mProLeft.setCurProgress(80);
             }
 
             @Override
@@ -398,10 +394,6 @@ public class SocailPkActivity extends BaseActivity {
 
         AnimatorSet btnSexAnimatorSet = new AnimatorSet();//
         btnSexAnimatorSet.playTogether(animators);
-        //        btnSexAnimatorSet.play(animators.get(0)).with(animators.get(1)).
-        //                after(animators.get(7)).after(animators.get(6)).after(animators.get(5))
-        //                .after(animators.get(4)).after(animators.get(3)).after(animators.get(2)).after(animators.get(8));
-        //   btnSexAnimatorSet.playSequentially(animators);
         btnSexAnimatorSet.setStartDelay(1);
         btnSexAnimatorSet.start();
         btnSexAnimatorSet.addListener(new Animator.AnimatorListener() {
@@ -722,30 +714,12 @@ public class SocailPkActivity extends BaseActivity {
                     holder.proLeft.setProgressColor(getResources().getColor(R.color.gray_acacac));
                 }
             }
-            //            else {
-            //
-            //           }
-
-
-            //            if (begin == true) {
-            //                holder.proLeft.setBegin(begin);
-            //                holder.proLeft.setProgress(90);
-            //                holder.proRight.setBegin(begin);
-            //                holder.proRight.setProgress(22);
-            //            }else {
-            //                holder.proLeft.setProgress(90);
-            //                holder.proRight.setBegin(false);
-            //                holder.proRight.setProgress(22);
-            //            }
             holder.proLeft.setOnAnimationEndListener(new RoundCornerProgressBar.OnAnimationEndListener() {
 
                 @Override
                 public void onAnimationEnd() {
                     holder.proLeft.setBegin(false);
                     holder.proRight.setBegin(false);
-                    //                                        holder.proLeft.setProgress(90);
-                    //
-                    // if                                      holder.proRight.setProgress(22);
                     if (success == 1) {
                         holder.proRight.setProgressColor(getResources().getColor(R.color.gray_acacac));
                     } else if (success == 2) {

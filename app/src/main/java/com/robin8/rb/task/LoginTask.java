@@ -14,7 +14,6 @@ import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 
 import java.util.Arrays;
@@ -64,8 +63,7 @@ public class LoginTask {
 
             @Override
             public void onResponse(String response) {
-
-                LogUtil.LogShitou("登陆interface" + "sign_in", response);
+                //LogUtil.LogShitou("登陆interface" + "sign_in", response);
                 LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
                 if (loginBean != null && loginBean.getError() == 0) {
                     HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));

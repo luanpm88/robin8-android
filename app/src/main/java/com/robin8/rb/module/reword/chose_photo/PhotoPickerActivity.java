@@ -213,7 +213,7 @@ public class PhotoPickerActivity extends BaseActivity {
 
     @Override
     protected void executeOnclickLeftView() {
-
+finish();
     }
 
     @Override
@@ -387,8 +387,6 @@ public class PhotoPickerActivity extends BaseActivity {
         if (resultList.contains("000000")) {
             resultList.remove("000000");
         }
-        // String text = getString(R.string.done_with_count, resultList.size(), mDesireImageCount);
-        //  menuDoneItem.setTitle(text);
         boolean hasSelected = resultList.size() > 0;
         //   menuDoneItem.setVisible(hasSelected);
         if (hasSelected) {

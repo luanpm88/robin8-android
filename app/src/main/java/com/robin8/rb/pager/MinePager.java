@@ -157,7 +157,6 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     @Override
     public View initView() {
-
         LayoutInflater layoutInflater = LayoutInflater.from(mActivity.getApplicationContext());
         mPager = layoutInflater.inflate(R.layout.pager_mine, null);
         initTitleBar();
@@ -166,7 +165,6 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     private void initListView() {
-
         mLVMineList = (ListView) mPager.findViewById(R.id.lv_mine_list);
         mMineListAdapter = new MineListAdapter();
         mLVMineList.setAdapter(mMineListAdapter);
@@ -473,9 +471,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
             @Override
             public void onClick(View v) {
-
-                skipToBeKol();
                 cdm.dismiss();
+                skipToBeKol();
             }
         });
 
@@ -784,12 +781,10 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
             @Override
             public void onTokenIncorrect() {
-                //  Log.e("", "连fgd—————>");
             }
 
             @Override
             public void onSuccess(String s) {
-                // Log.e("", "连接成功—————>" + s);
                 CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
                 CSCustomServiceInfo csInfo = csBuilder.nickName(mActivity.getString(R.string.app_name)).build();
                 RongIM.getInstance().startCustomerServiceChat(mActivity, CommonConfig.RONG_CLOUD_ID, mActivity.getString(R.string.help_online), csInfo);
@@ -797,7 +792,6 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
             @Override
             public void onError(RongIMClient.ErrorCode errorCode) {
-                // Log.e("", "连接失败—————>" + errorCode);
                 CustomToast.showShort(mActivity, mActivity.getString(R.string.no_net));
             }
         });

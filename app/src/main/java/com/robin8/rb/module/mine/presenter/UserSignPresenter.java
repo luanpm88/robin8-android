@@ -221,8 +221,8 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
         tvInfo.setText(s);
        if (mSignHistoryModel!=null){
            int length = String.valueOf(mSignHistoryModel.getContinuous_checkin_count()).trim().length();
-           StringUtil.setTextViewSpan(tvInfo, 32, 5, 9, mActivity.getResources().getColor(R.color.blue_custom));
-           StringUtil.setTextViewSpan(tvInfo, 32, 27, 27+length, mActivity.getResources().getColor(R.color.blue_custom));
+           StringUtil.setTextViewSpan(tvInfo, 33, 5, 9, mActivity.getResources().getColor(R.color.blue_custom));
+           StringUtil.setTextViewSpan(tvInfo, 33, 27, 27+length, mActivity.getResources().getColor(R.color.blue_custom));
        }
         tvKnow.setOnClickListener(new View.OnClickListener() {
 

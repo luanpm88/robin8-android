@@ -308,9 +308,6 @@ public class BeKolSecondDetailActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-
-              //  LogUtil.LogShitou("绑定的当前url",url);
-               // LogUtil.LogShitou("绑定的详情",response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
 
                 if (bean == null) {
@@ -320,13 +317,10 @@ public class BeKolSecondDetailActivity extends BaseActivity {
 
                 if (bean.getError() == 0) {
                     if (mCurrentPageType == TYPE_PERSONAL_SHOW) {
-                      //  LogUtil.LogShitou("看返回","这是1");
                         setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
                     }else {
-                      //  LogUtil.LogShitou("看返回","这是2");
                         setResult(SPConstants.BE_KOL_SECOND_ITEM_SOCIAL, intent);
                     }
-                   // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
                     NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
                     finish();
                 } else {

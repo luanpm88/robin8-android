@@ -174,10 +174,24 @@ public class BaseApplication extends MultiDexApplication {
         }
 
         LoginBean.KolEntity kol = loginBean.getKol();
+        if (CommonConfig.TOURIST_PHONE.equals(loginBean.getKol().getMobile_number())){
+            if (TextUtils.isEmpty(kol.getEmail())){
+                return false;
+            }else {
+                return true;
+            }
+        }
         if (TextUtils.isEmpty(kol.getIssue_token())) {
             return false;
         }
-       // LogUtil.logXXfigo("mobile number:" + loginBean.getKol().getMobile_number());
+        if (TextUtils.isEmpty(kol.getMobile_number())){
+            if (TextUtils.isEmpty(kol.getEmail())){
+                return false;
+            }else {
+                return true;
+            }
+        }
+      //  LogUtil.logXXfigo("mobile number:" + loginBean.getKol().getMobile_number());
         return true;
     }
 

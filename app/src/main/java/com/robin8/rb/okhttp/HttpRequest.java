@@ -219,14 +219,28 @@ public class HttpRequest {
                 }
             }
         }
+        MultipartBody.Builder multipartBodyBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        for (int i = 0; i < mapImages.size(); i++) {
+            if (mapImages.get(i).startsWith("http") || mapImages.get(i).startsWith("https")) {
+                multipartBodyBuilder.addFormDataPart(String.valueOf(paramsName + i), mapImages.get(i));
+            } else {
+                File f = new File(mapImages.get(i));
+                if (f != null) {
+                    multipartBodyBuilder.addFormDataPart(String.valueOf(paramsName + i), f.getName(), RequestBody.create(mediaType, f));
+                }
+            }
+        }
+        //        for (int i = 0; i < mapImages.size(); i++) {
+        //            File f = new File(mapImages.get(i));
+        //            if (f != null) {
+        //                multipartBodyBuilder.addFormDataPart(String.valueOf(paramsName + i), f.getName(), RequestBody.create(mediaType, f));
+        //            }
+        //        }
+        MultipartBody body = multipartBodyBuilder.build();
         Request.Builder builder = new Request.Builder();
         if (needHeader) {
             builder.addHeader(HttpPostKeyConstants.AUTHORIZATION, BaseApplication.getHeader());
         }
-
-        MultipartBody.Builder multipartBodyBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        MultipartBody body = multipartBodyBuilder.build();
-
         switch (method) {
             case PUT:
                 builder.put(body);
@@ -235,15 +249,6 @@ public class HttpRequest {
                 builder.post(body);
                 break;
         }
-
-        for (int i = 0; i < mapImages.size(); i++) {
-            File f = new File(mapImages.get(i));
-            if (f != null) {
-                multipartBodyBuilder.addFormDataPart(String.valueOf(paramsName + i), f.getName(), RequestBody.create(mediaType, f));
-            }
-        }
-
-
         Request request = builder.url(url).build();
         Call call = mOkHttpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -271,6 +276,7 @@ public class HttpRequest {
                     public void run() {
                         if (callback != null) {
                             callback.onError(exception);
+                            LogUtil.LogShitou("失败原因", exception.getMessage());
                         }
                     }
                 });
@@ -419,8 +425,8 @@ public class HttpRequest {
      @param mapImages
      @param callback
      */
-    public void put(boolean needHeader, String url, String paramsName,Map<Integer, String> mapImages, RequestCallback callback) {
-        executeRequestImg(needHeader, Method.PUT, url,paramsName,mapImages, callback);
+    public void put(boolean needHeader, String url, String paramsName, Map<Integer, String> mapImages, RequestCallback callback) {
+        executeRequestImg(needHeader, Method.PUT, url, paramsName, mapImages, callback);
     }
 
     public void put(boolean needHeader, String url, String imageKey, String fileName, File fileValue, HashMap hashMap, RequestCallback callback) {

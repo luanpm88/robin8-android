@@ -47,7 +47,7 @@ public class SocialBindActivity extends BaseActivity {
         tvJump.setOnClickListener(this);
         imgWeibo.setOnClickListener(this);
         imgWeiXin.setOnClickListener(this);
-        tvAgreement.setText(Html.fromHtml("点击登陆即同意<font color=#2dcad0>" + "用户服务协议" + "</font>"));
+        tvAgreement.setText(Html.fromHtml("点击登录即同意<font color=#2dcad0>" + "用户服务协议" + "</font>"));
     }
 
     @Override

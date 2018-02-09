@@ -1,5 +1,6 @@
 package com.robin8.rb.activity;
 
+import android.content.Intent;
 import android.text.Html;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -9,10 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
+import com.robin8.rb.activity.email.ForgetPwdActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.presenter.LoginPresenter;
 import com.robin8.rb.util.CustomToast;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.ILoginView;
 
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -50,6 +51,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     private LinearLayout llEmailLogin;
     private LinearLayout llPhoneNumLogin;
     private TextView mTVTourist;
+    public TextView tvForgetPwd;
+    private View cursorLeft;
+    private View cursorRight;
 
     @Override
     public void setTitleView() {
@@ -76,16 +80,20 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         //邮箱
         llPhoneNumLogin = ((LinearLayout) view.findViewById(R.id.ll_phone_login));
         llEmailLogin = ((LinearLayout) view.findViewById(R.id.ll_email_login));
-
         tvToPhoneLogin = ((TextView) view.findViewById(R.id.tv_to_phoneNum));
         llToEmailRegister = ((LinearLayout) view.findViewById(R.id.ll_to_register));
         etEmailNum = ((EditText) view.findViewById(R.id.et_email_num));
         etEmailPwd = ((EditText) view.findViewById(R.id.et_password));
         tvToEamaiLogin = ((TextView) view.findViewById(R.id.tv_to_email));
+        tvForgetPwd = ((TextView) view.findViewById(R.id.tv_to_forget_pwd));
+        cursorLeft = view.findViewById(R.id.view_left);
+        cursorRight = view.findViewById(R.id.view_right);
 
         tvToEamaiLogin.setOnClickListener(this);
         tvToPhoneLogin.setOnClickListener(this);
         llToEmailRegister.setOnClickListener(this);
+        tvForgetPwd.setOnClickListener(this);
+
         mTVCheckNum.setOnClickListener(this);
         mBTNLogin.setOnClickListener(this);
         mTVTourist.setOnClickListener(this);
@@ -130,18 +138,33 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 mLoginPresenter.toEmailRegister();
                 break;
             case R.id.tv_to_phoneNum:
+                //手机号登陆
                 which = 0;
                 llPhoneNumLogin.setVisibility(View.VISIBLE);
                 llEmailLogin.setVisibility(View.GONE);
                 mTVTourist.setVisibility(View.VISIBLE);
                 llToEmailRegister.setVisibility(View.GONE);
+                cursorLeft.setVisibility(View.VISIBLE);
+                cursorRight.setVisibility(View.INVISIBLE);
+                tvToPhoneLogin.setTextColor(getResources().getColor(R.color.blue_custom));
+                tvToEamaiLogin.setTextColor(getResources().getColor(R.color.black_custom));
                 break;
             case R.id.tv_to_email:
+                //邮箱登陆
                 which = 1;
                 llPhoneNumLogin.setVisibility(View.GONE);
                 llEmailLogin.setVisibility(View.VISIBLE);
                 mTVTourist.setVisibility(View.GONE);
                 llToEmailRegister.setVisibility(View.VISIBLE);
+                cursorLeft.setVisibility(View.INVISIBLE);
+                cursorRight.setVisibility(View.VISIBLE);
+                tvToEamaiLogin.setTextColor(getResources().getColor(R.color.blue_custom));
+                tvToPhoneLogin.setTextColor(getResources().getColor(R.color.black_custom));
+                break;
+            case R.id.tv_to_forget_pwd:
+                //忘记密码
+                Intent intent = new Intent(this, ForgetPwdActivity.class);
+                startActivity(intent);
                 break;
 
         }
@@ -208,7 +231,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         if (etEmailPwd != null) {
             emailPwd = etEmailPwd.getText().toString().trim();
         }
-        LogUtil.LogShitou("输入的密码",emailPwd);
+        //LogUtil.LogShitou("输入的密码",emailPwd);
         return emailPwd;
     }
 

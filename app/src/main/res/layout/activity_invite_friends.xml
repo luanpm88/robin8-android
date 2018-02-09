@@ -11,18 +11,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_reword_info"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:background="@color/white_custom"
             android:gravity="center"
-            android:text=""
-            android:textColor="@color/gray_4b4b4b"
-            android:textSize="@dimen/undefine_font_4"/>
+            android:background="@color/white_custom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_reword_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:lineSpacingExtra="1.5dp"
+                android:text=""
+                android:textColor="@color/gray_4b4b4b"
+                android:textIsSelectable="true"
+                android:textSize="@dimen/undefine_font_3"/>
+            <TextView
+                android:id="@+id/tv_reword_info_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_gravity="center"
+                android:lineSpacingExtra="1.5dp"
+                android:text=""
+                android:textColor="@color/gray_4b4b4b"
+                android:textIsSelectable="true"
+                android:textSize="@dimen/undefine_font_3"/>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/has_invite_friends"
                         android:textColor="@color/sub_gray_custom"
-                        android:textSize="@dimen/undefine_font_5"/>
+                        android:textSize="@dimen/undefine_font_3"/>
                 </LinearLayout>
 
                 <View
@@ -93,20 +115,14 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_invite_code"
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="7dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/white_custom"
-                android:gravity="center"
-                android:text="1232323232"
-                android:textColor="@color/black_202020"
-                android:textIsSelectable="true"
-                android:textStyle="bold"/>
+                android:background="@color/white_custom"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -158,69 +174,44 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="1.点击立即邀请，分享“Robin8-APP”下载页"
-                    android:textColor="@color/sub_gray_custom"
+                    android:paddingLeft="15dp"
+                    android:text="方式1:点击下方立即邀请按钮，分享给朋友完成注册"
+                    android:textColor="@color/black_custom"
                     android:textSize="@dimen/undefine_font_3"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="2.邀请好友下载体验“Robin8-APP”"
-                    android:textColor="@color/sub_gray_custom"
-                    android:textSize="@dimen/undefine_font_3"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="3.好友下载进入“Robin8-APP”完成登陆"
-                    android:textColor="@color/sub_gray_custom"
-                    android:textSize="@dimen/undefine_font_3"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="4.好友完成一个活动"
-                    android:textColor="@color/sub_gray_custom"
-                    android:textSize="@dimen/undefine_font_3"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="5.成功后奖励会进入您的钱包"
-                    android:textColor="@color/sub_gray_custom"
+                    android:paddingLeft="15dp"
+                    android:text="方式2:将您的邀请码告诉朋友，在登录 Robin8 时输入"
+                    android:textColor="@color/black_custom"
                     android:textSize="@dimen/undefine_font_3"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="left"
-                    android:paddingLeft="10dp"
-                    android:text="*每天最多获得五次奖励，邀请成功后奖励会直接进入钱包"
-                    android:textColor="@color/sub_gray_custom"
-                    android:textSize="@dimen/undefine_font_0"/>
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="注意：只有朋友在 Robin8 进行一个活动并且上传截图后才可以获得奖励，每天最多获得 10 次奖励，成功后奖励直接进入您的钱包"
+                    android:textColor="@color/gray_first"
+                    android:textSize="@dimen/undefine_font_2"/>
+
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="left"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="15dp"
                     android:text="*本次活动最终解释权归@Robin8所有"
-                    android:textColor="@color/sub_gray_custom"
-                    android:textSize="@dimen/undefine_font_0"/>
+                    android:textColor="@color/gray_second"
+                    android:textSize="@dimen/undefine_font_2"/>
             </LinearLayout>
 
         </LinearLayout>

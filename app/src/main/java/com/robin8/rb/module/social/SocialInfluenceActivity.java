@@ -84,26 +84,6 @@ public class SocialInfluenceActivity extends BaseActivity {
             return mDataList.get(position);
         }
 
-//        @Override
-//        public int getItemViewType(int position) {
-//
-//            switch (position) {
-//                case ITEM_HEADER:
-//                    return 0;
-//                case ITEM_END:
-//                    return 2;
-//                case ITEM_MIDDLE:
-//                    return 1;
-//                default:
-//                    return 0;
-//            }
-//        }
-//
-//        @Override
-//        public int getViewTypeCount() {
-//
-//            return 3;
-//        }
 
         @Override
         public long getItemId(int position) {

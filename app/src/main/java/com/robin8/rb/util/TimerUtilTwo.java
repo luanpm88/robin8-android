@@ -32,12 +32,14 @@ public class TimerUtilTwo implements Runnable {
                 @Override
                 public void run() {
                     if (view != null) {
-                        view.setText(i+"s后重新获取");
+                       // view.setText(i+"s后重新获取");
+                        view.setText(i+"s");
                         view.setClickable(false);
                     }
 
                     if (v2 != null) {
-                        v2.setText(i+"s后重新获取");
+                       // v2.setText(i+"s后重新获取");
+                        v2.setText(i+"s");
                         v2.setClickable(false);
                     }
 

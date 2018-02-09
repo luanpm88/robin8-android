@@ -32,12 +32,11 @@ public class CommonConfig {
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
 
-  // public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
-  //public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
- // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-  public static String SERVICE = "http://192.168.51.65:3000/";//robin8-测试服务器地址/test server path
+    // public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
+    // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+    //public static String SERVICE = "http://192.168.51.65:3000/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
-   // public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
+     public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String UpdateUrl = "api/v2/upgrades/check";
@@ -162,10 +161,11 @@ public class CommonConfig {
     public static final String EMAIL_LOGIN_URL = "api/v2_0/sessions";//post请求  Parameters:- login (String) (required) password(String)
     public static final String EMAIL_CODE_CHECK_URL = "api/v2_0/registers/valid_email";//post请求  Parameters:- email (String) (required);valid_code (String) (required)
     public static final String EMAIL_REGISTER_URL = "api/v2_0/registers";//post请求   name (String) (required);email (String) (required);password (String) (required)
+    public static final String EMAIL_FIXPWD_URL = "api/v2_0/sessions/update_password";//post请求  vtoken (String) (required);email (String) (required);new_password (String) (required)；new_password_confirmation (String) (required)
 
 
 
-  //2、api/v2/influences/
+    //2、api/v2/influences/
     //    send_invite 短信邀请
     //    post请求 参数：
     //    kol_uuid mobile电话号码

@@ -45,8 +45,6 @@ import java.util.Map;
 
 public class SocialDetailActivity extends BaseActivity {
     public static final String OTHER_DETAIL_TAG = "SocialDetailActivity";
-    // private CardViewPager cardPager;
-    //private List<SocialDetailItem> mDataList;
     private int otherKolId;
     private String url;
 
@@ -205,13 +203,6 @@ public class SocialDetailActivity extends BaseActivity {
                             llHaveResult.setVisibility(View.INVISIBLE);
                             llNoResult.setVisibility(View.VISIBLE);
                             if (overTime == false) {
-                                //                                UIUtils.runInMainThread(new Runnable() {
-                                //
-                                //                                    @Override
-                                //                                    public void run() {
-                                //
-                                //                                    }
-                                //                                });
                                 runnable = new Runnable() {
 
                                     @Override
@@ -342,27 +333,8 @@ public class SocialDetailActivity extends BaseActivity {
                     s[i] = mapCe.get(corList.get(i).getIndustry_name());
                     resultList.add(Float.valueOf(String.valueOf(corList.get(i).getIndustry_score())));
                 }
-//                for (int i = 0; i < resultList.size(); i++) {
-//                    LogUtil.LogShitou("我只想直到走了没有他人影响力大于8个", "===>" + resultList.get(i));
-//                }
-                //                showDataView.setStr(s);
-                //                showDataView.setValue(resultList);
                 handler.sendEmptyMessage(1);
             }
-            //            if (influenceScoreBean.isInfluence_score_visibility()) {
-            //                //对他人隐藏
-            //              //  llIndustry.setVisibility(View.VISIBLE);
-            ////                if (influenceScoreBean.getIndustries().size() == 0) {
-            ////                    llIndustry.setVisibility(View.GONE);
-            ////                } else {
-            ////
-            ////                }
-            //              //  llIndustry.setVisibility(View.VISIBLE);
-            //
-            //            } else {
-            //                llIndustry.setVisibility(View.VISIBLE);
-            //            }
-            //  llIndustry.setVisibility(View.VISIBLE);
         }
     }
 
@@ -375,9 +347,6 @@ public class SocialDetailActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_to_pk:
-                //              right_comment = String.valueOf(((InfluenceScoreBean) right).getAvg_comments());
-                //    right_post = String.valueOf(((InfluenceScoreBean) right).getAvg_posts());
-                //   right_like = String.valueOf(((InfluenceScoreBean) right).getAvg_likes());
                 Intent intent = new Intent(SocialDetailActivity.this, SocailPkActivity.class);
                 intent.putExtra("right_score", String.valueOf(scoreBean.getInfluence_score()));
                 intent.putExtra("right_post", String.valueOf(scoreBean.getAvg_posts()));
@@ -427,40 +396,3 @@ public class SocialDetailActivity extends BaseActivity {
         super.onResume();
     }
 }
-//        viewScoreResult = ((RoundIndicatorView) view.findViewById(R.id.view_score_result));
-//        stickyNavLayout = ((StickyNavLayout) view.findViewById(R.id.sticky_layout));
-//        myTabs = ((EasySlidingTabs) view.findViewById(R.id.id_stickynavlayout_indicator));
-//        myTabs.setUnderlineHeight(1);
-//        mViewPager = ((ViewPager) view.findViewById(R.id.id_stickynavlayout_viewpager));
-// cardPager = ((CardViewPager) findViewById(R.id.card_pager));
-// cardPager.bind(getSupportFragmentManager(), new MyCardHandler(), mDataList);
-//  mDataList = new ArrayList<>();
-// mDataList.add(new SocialDetailItem("微博"));
-// mDataList.add(new SocialDetailItem("微信"));
-//        viewScoreResult.setCurrentValues(80);
-//        viewScoreResult.setTitle("影响力优秀");
-//
-//        mHlistView = ((HorizontalListView) findViewById(R.id.list_recommend));
-//        mDataList = new ArrayList<>();
-//--
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mDataList.add(new UserPhotoBean(R.mipmap.icon_weibo_orange));
-//        mHlistView.setAdapter(new MyHoritalListAdapter(SocialDetailActivity.this,mDataList));
-//        fragments = new LinkedList<>();
-// SocialCardFragment weiBoFg = SocialCardFragment.newInstance(0);
-//  SocialCardFragment weiChatFg = SocialCardFragment.newInstance(1);
-//  fragments.add(weiBoFg);
-// fragments.add(weiChatFg);
-//        titles = new String[]{"微博", "微信"};
-//        this.adapter = new TabsFragmentAdapter(this.getSupportFragmentManager(), titles, this.fragments);
-//        mViewPager.setAdapter(adapter);
-//        myTabs.setViewPager(mViewPager);

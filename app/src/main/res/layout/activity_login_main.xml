@@ -14,34 +14,74 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="15dp"
+        android:layout_marginBottom="20dp"
         android:weightSum="2">
 
-        <TextView
-            android:id="@+id/tv_to_phoneNum"
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="手机号登陆"
-            android:textColor="@color/blue_custom"
-            android:textSize="@dimen/undefine_font_5"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_to_email"
+            <TextView
+                android:id="@+id/tv_to_phoneNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="手机号登录"
+                android:focusable="true"
+                android:textColor="@color/blue_custom"
+                android:textSize="@dimen/undefine_font_5"/>
+
+            <View
+                android:id="@+id/view_left"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/tv_to_phoneNum"
+                android:layout_alignRight="@+id/tv_to_phoneNum"
+                android:layout_below="@+id/tv_to_phoneNum"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/blue_custom"/>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="邮箱登陆"
-            android:textColor="@color/blue_custom"
-            android:textSize="@dimen/undefine_font_5"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_to_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/email_login"
+                android:focusable="false"
+                android:textColor="@color/black_custom"
+                android:textSize="@dimen/undefine_font_5"/>
+
+            <View
+                android:id="@+id/view_right"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/tv_to_email"
+                android:layout_alignRight="@+id/tv_to_email"
+                android:layout_below="@+id/tv_to_email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/blue_custom"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
     </LinearLayout>
     <!--手机号登陆-->
     <LinearLayout
         android:id="@+id/ll_phone_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/et_phonenum"
@@ -150,11 +190,11 @@
 
     <!--邮箱登陆-->
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/ll_email_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/et_email_num"
@@ -183,16 +223,18 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="密码"
             android:layout_marginBottom="13dp"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="13dp"
             android:layout_marginTop="13dp"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:hint="@string/pwd"
             android:singleLine="true"
             android:textColor="@color/gray_custom"
             android:textColorHint="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.4dp"
@@ -202,6 +244,7 @@
             android:background="@color/gray_custom"/>
 
         <EditText
+            android:visibility="gone"
             android:id="@+id/et_email_invitation_code"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -219,6 +262,7 @@
             android:textSize="@dimen/undefine_font_6"/>
 
         <View
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.4dp"
             android:layout_gravity="center"
@@ -226,28 +270,19 @@
             android:layout_marginRight="13dp"
             android:background="@color/gray_custom"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_to_forget_pwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="15dp"
             android:layout_marginTop="5dp"
-            android:paddingTop="5dp"
+            android:alpha="0.7"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:paddingBottom="10dp"
-            android:weightSum="2">
-            <TextView
-                android:id="@+id/tv_to_forget_pwd"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="忘记密码？"
-                android:alpha="0.6"
-                android:textColor="@color/blue_custom"
-                android:textSize="@dimen/undefine_font_1"/>
-
-        </LinearLayout>
+            android:paddingTop="5dp"
+            android:text="忘记密码？"
+            android:textColor="@color/blue_custom"
+            android:textSize="@dimen/undefine_font_2"/>
     </LinearLayout>
     <!--底部布局-->
     <LinearLayout
@@ -270,32 +305,33 @@
             android:visibility="gone"/>
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/ll_to_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="还没有邮箱？"
                 android:layout_gravity="bottom"
-                android:alpha="0.6"
+                android:alpha="0.7"
+                android:text="还没有邮箱？"
                 android:textColor="@color/blue_custom"
-                android:textSize="@dimen/undefine_font_1"/>
+                android:textSize="@dimen/undefine_font_2"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:text="立即注册"
                 android:textColor="@color/blue_custom"
-                android:textSize="@dimen/undefine_font_3"/>
+                android:textSize="@dimen/undefine_font_4"/>
         </LinearLayout>
 
         <TextView
-            android:visibility="visible"
             android:id="@+id/tv_tourist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -305,7 +341,8 @@
             android:gravity="center"
             android:text="进入游客模式   "
             android:textColor="@color/blue_custom"
-            android:textSize="@dimen/undefine_font_3"/>
+            android:textSize="@dimen/undefine_font_3"
+            android:visibility="visible"/>
 
         <Button
             android:id="@+id/bt_login"
@@ -317,7 +354,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/selector_bg_bt"
             android:gravity="center"
-            android:text="登录"
+            android:text="@string/login"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_3"/>
 

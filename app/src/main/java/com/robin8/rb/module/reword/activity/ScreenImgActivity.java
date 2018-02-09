@@ -17,6 +17,7 @@ import com.robin8.rb.module.reword.chose_photo.SerializableMap;
 import com.robin8.rb.module.reword.chose_photo.intent.PhotoPickerIntent;
 import com.robin8.rb.module.reword.chose_photo.intent.PhotoPreviewIntent;
 import com.robin8.rb.module.reword.helper.DetailContentHelper;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
@@ -66,18 +67,20 @@ public class ScreenImgActivity extends BaseActivity {
         }
         screenType = getIntent().getStringExtra(EXTRA_TYPE);
         nameList = getIntent().getStringArrayListExtra(EXTRA_NAME_LIST);
-
-        if (screenType.equals("0") ||screenType.equals("1")){
-            //截图参考||//查看已上传截图
-            LogUtil.LogShitou("---------","哈哈哈");
-            screenList = getIntent().getStringArrayListExtra(EXTRA_SCREEN_LISTS);//审核中的截图/截图示例
+        screenList = getIntent().getStringArrayListExtra(EXTRA_SCREEN_LISTS);//审核中的截图/截图示例
+        if (nameList == null || nameList.size() == 0) {
             for (int i = 0; i < screenList.size(); i++) {
-                imgMap.put(i, screenList.get(i));
+                nameList.add("截图" + i);
             }
-        }else if (screenType.equals("2")){
+        }
+        if (screenType.equals("0") || screenType.equals("1")) {
+            //截图参考||//查看已上传截图
+                for (int i = 0; i < screenList.size(); i++) {
+                    imgMap.put(i, screenList.get(i));
+                }
+        } else if (screenType.equals("2")) {
             //上传截图
-            LogUtil.LogShitou("---------","哈哈哈");
-
+            LogUtil.LogShitou("这是2", "2");
         }
     }
 
@@ -96,15 +99,8 @@ public class ScreenImgActivity extends BaseActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //  String imgs = (String) parent.getItemAtPosition(position);
                 chose_position = position;
                 if (isHaveImg(imgMap, position)) {
-                    //                    if (lookList != null) {
-                    //                        lookList.clear();
-                    //                    }
-                    //                    for (int i = 0; i < imgMap.size(); i++) {
-                    //                        lookList.add(imgMap.get(i));
-                    //                    }
                     if (imgMap.size() != nameList.size()) {
                         if (imgMap.get(position) != null) {
                             PhotoPreviewIntent intent = new PhotoPreviewIntent(ScreenImgActivity.this);
@@ -119,11 +115,6 @@ public class ScreenImgActivity extends BaseActivity {
                         intent.setPhotoMapPaths(imgMap);
                         startActivityForResult(intent, REQUEST_PREVIEW_CODE);
                     }
-                    //缺张预览
-                    //                    PhotoPreviewIntent intent = new PhotoPreviewIntent(ScreenImgActivity.this);
-                    //                    intent.setCurrentItem(position);
-                    //                    intent.setPhotoMapPaths(imgMap);
-                    //                    startActivityForResult(intent, REQUEST_PREVIEW_CODE);
                 } else {
                     PhotoPickerIntent intent = new PhotoPickerIntent(ScreenImgActivity.this);
                     intent.setSelectModel(SelectModel.MULTI);
@@ -135,14 +126,6 @@ public class ScreenImgActivity extends BaseActivity {
                 }
             }
         });
-        //        gridAdapter.setOnClearListener(new GridAdapter.OnClearListener() {
-        //
-        //            @Override
-        //            public void onClick(int position) {
-        //                imgMap.remove(position);
-        //                gridAdapter.setNewData(imgMap);
-        //            }
-        //        });
     }
 
     /**
@@ -170,14 +153,22 @@ public class ScreenImgActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.tv_bottom:
                 //完成后返回
-                SerializableMap map = new SerializableMap();
-                map.setMap(imgMap);
-                Intent intent = new Intent(ScreenImgActivity.this, DetailContentActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(EXTRA_SCREEN_MAP, map);
-                intent.putExtras(bundle);
-                setResult(DetailContentHelper.IMAGE_REQUEST_MORE_IMG_CODE, intent);
-                finish();
+                if (screenType.equals("2") || screenType.equals("1")) {
+                    if (imgMap.size() != nameList.size()) {
+                        CustomToast.showShort(ScreenImgActivity.this, "请上传全部图片！");
+                    } else {
+                        SerializableMap map = new SerializableMap();
+                        map.setMap(imgMap);
+                        Intent intent = new Intent(ScreenImgActivity.this, DetailContentActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(EXTRA_SCREEN_MAP, map);
+                        intent.putExtras(bundle);
+                        setResult(DetailContentHelper.IMAGE_REQUEST_MORE_IMG_CODE, intent);
+                        finish();
+                    }
+                } else {
+                    finish();
+                }
                 break;
         }
     }
@@ -192,11 +183,6 @@ public class ScreenImgActivity extends BaseActivity {
                     ArrayList<String> list = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
                     loadAdpater(list);
                     break;
-                // 预览
-                //                case REQUEST_PREVIEW_CODE:
-                //                    // ArrayList<String> ListExtra = data.getStringArrayListExtra(PhotoPreviewActivity.EXTRA_RESULT);
-                //                    // loadAdpater(ListExtra);
-                //                    break;
             }
         }
     }

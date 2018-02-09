@@ -26,11 +26,7 @@ public class InvitationCodeActivity extends BaseActivity {
 
     private EditText editCode;
     private WProgressDialog mWProgressDialog;
-    //    @Override
-    //    protected void onCreate(Bundle savedInstanceState) {
-    //        super.onCreate(savedInstanceState);
-    //        setContentView(R.layout.activity_invitation_code);
-    //    }
+
 
     @Override
     public void setTitleView() {
@@ -111,11 +107,6 @@ public class InvitationCodeActivity extends BaseActivity {
         });
     }
 
-//    @Override
-//    protected void onResume() {
-//        mPageName = StatisticsAgency.MY_INVITATION_CODE;
-//        super.onResume();
-//    }
 
     @Override
     protected void executeOnclickLeftView() {

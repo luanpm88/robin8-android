@@ -1,6 +1,7 @@
 package com.robin8.rb.activity.email;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
+import com.robin8.rb.util.RegExpUtil;
+import com.robin8.rb.util.TimerUtilTwo;
 
 public class EmailRegiterActivity extends BaseActivity {
 
@@ -58,6 +61,13 @@ public class EmailRegiterActivity extends BaseActivity {
     }
 
     private void getNextStep() {
+        if (! RegExpUtil.checkEmail(etEmailNum.getText().toString().trim())) {
+            CustomToast.showShort(EmailRegiterActivity.this, getString(R.string.put_right_email_address));
+            return;
+        }else if (TextUtils.isEmpty(etEmailCheckNum.getText().toString().trim())){
+            CustomToast.showShort(EmailRegiterActivity.this, getString(R.string.put_pwd));
+            return;
+        }
         if (mBasePresenter == null) {
             mBasePresenter = new BasePresenter();
         }
@@ -83,7 +93,7 @@ public class EmailRegiterActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("验证Email验证码", response);
+              //  LogUtil.LogShitou("验证Email验证码", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -91,7 +101,11 @@ public class EmailRegiterActivity extends BaseActivity {
                 if (baseBean.getError()==0){
                     Intent intent = new Intent(EmailRegiterActivity.this, EmailAddInformationActivity.class);
                     intent.putExtra(EmailAddInformationActivity.EXTRA_EMAIL_NUM,etEmailNum.getText().toString().trim());
+                    intent.putExtra(EmailAddInformationActivity.EXTRA_EMAIL_TOKEN,baseBean.getVtoken());
                     startActivity(intent);
+                    finish();
+                }else {
+                    CustomToast.showShort(EmailRegiterActivity.this,baseBean.getDetail());
                 }
             }
         });
@@ -133,6 +147,9 @@ public class EmailRegiterActivity extends BaseActivity {
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (baseBean.getError() == 0) {
                     CustomToast.showShort(EmailRegiterActivity.this, baseBean.getAlert());
+                    new Thread(new TimerUtilTwo(60, null, tvEmailCheckNum, EmailRegiterActivity.this, "重新获取验证码")).start();
+                }else {
+                    CustomToast.showShort(EmailRegiterActivity.this,baseBean.getDetail());
                 }
             }
         });

@@ -35,8 +35,6 @@ import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
-import com.robin8.rb.http.xutil.DefaultHttpCallBack;
-import com.robin8.rb.http.xutil.IHttpCallBack;
 import com.robin8.rb.model.CampaignInviteBean;
 import com.robin8.rb.model.CampaignListBean;
 import com.robin8.rb.model.NotifyMsgEntity;
@@ -68,7 +66,6 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -160,30 +157,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         getData();
         initView();
         initData();
-        // showShadowDialog(DetailContentActivity.this,false,null);
-       // uploadTurnImage(this,"01 演示图片.jpg",new File("/storage/emulated/0/Pictures/01 演示图片.jpg"));
 
-    }
-    public void uploadTurnImage(final Activity activity, String filename, File file) {
-        BasePresenter mBasePresenter = new BasePresenter();
-        LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
-        // ArrayList<File> mScreenList= new ArrayList<>();
-        String urlImg = HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + "1364903" + "/upload_screenshot");
-        requestMap.put("[url]", urlImg);
-        // requestMap.put("[file/image/jpeg]screenshot", mScreenList);
-        requestMap.put("[file/image/jpeg]screenshot", file);
-        mBasePresenter.postImage(true, HttpRequest.PUT, requestMap, new DefaultHttpCallBack(null) {
-
-            @Override
-            public void onComplate(ResponceBean responceBean) {
-                LogUtil.LogShitou("活动上传截图", "===>" + responceBean);
-
-            }
-
-            public void onFailure(IHttpCallBack.ResponceBean responceBean) {
-
-            }
-        });
     }
 
     public void getData() {
@@ -870,7 +844,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             initData();
             return;
         }
-
         // 结果码不等于取消时候
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
@@ -928,14 +901,12 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                     }).start();
                     break;
                 case DetailContentHelper.IMAGE_REQUEST_MORE_IMG_CODE:
-                    Bundle bundle = data.getExtras();
-                    final SerializableMap mapImages = (SerializableMap) bundle.get(ScreenImgActivity.EXTRA_SCREEN_MAP);
+                    //LogUtil.LogShitou("日什么情况","------------------");
+                    final SerializableMap mapImages = (SerializableMap) (data.getExtras().get(ScreenImgActivity.EXTRA_SCREEN_MAP));
                     new Thread(new Runnable() {
-
                         @Override
                         public void run() {
                             UIUtils.runInMainThread(new Runnable() {
-
                                 @Override
                                 public void run() {
                                     if (mapImages==null){
@@ -950,6 +921,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                                                 if (mDetailContentHelper == null) {
                                                     mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
                                                 }
+
                                                 mDetailContentHelper.uploadTurnImages(DetailContentActivity.this,mapImages);
                                             }
                                         }

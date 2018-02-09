@@ -47,7 +47,8 @@
 
     <!--LoginActivity-->
     <string name="register_or_login">注册/登录</string>
-    <string name="set_pwd">设置密码</string>
+    <string name="forget_pwd">忘记密码</string>
+    <string name="fix_pwd">修改密码</string>
 
     <string name="launch_reword">发布悬赏活动</string>
     <string name="type_count_by_click">按点击次数计费</string>
@@ -91,6 +92,9 @@
     <string name="auth_error">授权操作遇到错误，请阅读Logcat输出</string>
     <string name="auth_complete">授权成功，正在跳转登录操作…</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="put_right_email_address">请输入正确的邮箱!</string>
+    <string name="put_pwd">请输入密码</string>
+
 
     <string name="pickerview_cancel">取消</string>
     <string name="pickerview_submit">确定</string>
@@ -261,6 +265,7 @@
 
     <string name="interest">兴趣</string>
     <string name="user_phone_num">手机号</string>
+    <string name="user_email">E-mail</string>
     <string name="interest_tags">兴趣标签(可选5个)</string>
     <string name="please_write">请填写</string>
     <string name="age">年龄</string>

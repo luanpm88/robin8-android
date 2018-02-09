@@ -579,14 +579,6 @@ public class BeKolSecondActivity extends BaseActivity {
             holder.tvName.setText(item.name);
             holder.tvName.setSelected(item.isChecked);
             holder.tvName.setCompoundDrawablesWithIntrinsicBounds(null, BeKolSecondActivity.this.getResources().getDrawable(item.resId), null, null);
-            //            String provider = mSocialAccounts.get(position).getProvider();
-            //            if (item.isChecked){
-            //                String provider = item.socialAccountsBean.getProvider();
-            //            }
-
-            //            if (TextUtils.isEmpty(provider)){
-            //                CustomToast.showShort(BeKolSecondActivity.this,"空的啊啊啊");
-            //            }
             if (item.isChecked == true && isShow == false) {
                 convertView.setOnClickListener(new MyOnClickListener(item.name, item.id, 1));
             } else if (isShow == true && item.isChecked == true) {
@@ -704,8 +696,6 @@ public class BeKolSecondActivity extends BaseActivity {
                 //未绑定
                 isShow = false;
                 mMyGridBaseAdapter.notifyDataSetChanged();
-                //  CustomToast.showShort(BeKolSecondActivity.this, "没有" + name);
-             //   getBindCount(type, providerName, name, id);
                 skipToDetail(name, id);
             } else if (type == 1) {
                 //已绑定
@@ -713,10 +703,7 @@ public class BeKolSecondActivity extends BaseActivity {
             } else if (type == 2) {
                 //需要解绑
                 //查询解绑次数
-              //  unBind(uid, providerName);
                 getBindCount(type, providerName, name, uid);
-                //  showDialog(BeKolSecondActivity.this, uid, providerName, name);
-                // CustomToast.showShort(BeKolSecondActivity.this, "想要解绑"+name);
             }
 
         }
@@ -766,10 +753,6 @@ public class BeKolSecondActivity extends BaseActivity {
                     if (type == 0) {
                         skipToDetail(names, uid);
                     } else if (type == 2) {
-                        // LogUtil.LogShitou("解绑的api", "===>" + HelpTools.getUrl(CommonConfig.SOCIAL_UNBIND));
-                        //LogUtil.LogShitou("解绑的kolid", "===>" + mKolId);
-                        // LogUtil.LogShitou("解绑的provider", "===>" + providerName);
-                        // LogUtil.LogShitou("解绑的id", "===>" + uid);
                         unBind(uid, providerName);
                     }
                 }
@@ -806,8 +789,6 @@ public class BeKolSecondActivity extends BaseActivity {
 
         mRequestParams.put("kol_id", mKolId);
         mRequestParams.put("provider", provider);
-        //  LogUtil.LogShitou("参数","===>"+mKolId);
-        //  LogUtil.LogShitou("参数2","===>"+provider);
         if (type == 0) {
             myBindUrl = HelpTools.getUrl(CommonConfig.SOCIAL_BIND_COUNT);
         } else if (type == 2) {
@@ -889,9 +870,6 @@ public class BeKolSecondActivity extends BaseActivity {
 
                 @Override
                 public void onResponse(String response) {
-                    //  LogUtil.LogShitou("获取第三方账号url", HelpTools.getUrl(CommonConfig.INFLUENCE_INFO_LIST));
-                   //  LogUtil.LogShitou("社交账号绑定界面获取第三方账号", "===>"+response);
-                   //  LogUtil.LogShitou("社交账号绑定界面获取providerName", "===>"+providerName);
                     try {
                         if (mWProgressDialog != null) {
                             mWProgressDialog.dismiss();
@@ -906,30 +884,20 @@ public class BeKolSecondActivity extends BaseActivity {
                             if (indentyBean.getIdentities() != null) {
 
                                 if (indentyBean.getIdentities().size()==0){
-                                 //  LogUtil.LogShitou("111","1111");
                                     socalUnbind(uid, providerName);
                                 }else {
                                     for (int i = 0; i < indentyBean.getIdentities().size(); i++) {
                                         if ((indentyBean.getIdentities().get(i).getProvider()).equals(providerName)) {
-                                          //  unbindIndenty(indentyBean.getIdentities().get(i).getUid(), uid, providerName);
                                             listWechat.add(indentyBean.getIdentities().get(i).getUid());
                                         }
                                     }
                                     if (listWechat.size()!=0){
-                                     //   LogUtil.LogShitou("222","2222");
                                         unbindIndenty(listWechat.get(0), uid, providerName);
                                     }else {
-                                       // LogUtil.LogShitou("333","3333");
                                         socalUnbind(uid, providerName);
-//                                        try {
-//                                            CustomToast.showShort(BeKolSecondActivity.this, "未查找到该账号信息！");
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
                                     }
                                 }
                             }else {
-                                //LogUtil.LogShitou("44444","44444");
                                 socalUnbind(uid, providerName);
                             }
 
@@ -942,14 +910,12 @@ public class BeKolSecondActivity extends BaseActivity {
 
                         }
                     }else {
-                       // LogUtil.LogShitou("5555","55555");
                         socalUnbind(uid, providerName);
                     }
 
                 }
             });
         } else {
-           // LogUtil.LogShitou("66666","666666");
             socalUnbind(uid, providerName);
         }
     }
@@ -992,7 +958,6 @@ public class BeKolSecondActivity extends BaseActivity {
 
                 KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
                 if (kolDetailModel != null && kolDetailModel.getError() == 0) {
-                    // CustomToast.showShort(BeKolSecondActivity.this, "已经绑定"+name);
                     mSocialAccounts = kolDetailModel.getSocial_accounts();
                     mKolShows = kolDetailModel.getKol_shows();
                     updateData();
@@ -1001,15 +966,12 @@ public class BeKolSecondActivity extends BaseActivity {
                     mMyGridBaseAdapter.notifyDataSetChanged();
                     CustomToast.showShort(BeKolSecondActivity.this, "解绑成功");
                 } else {
-                    // CustomToast.showShort(BeKolSecondActivity.this, "解绑失败，请重新尝试");
                     try {
                         CustomToast.showShort(BeKolSecondActivity.this, kolDetailModel.getDetail());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-                // getDataFromNet();
-                // BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
 
             }
         });
@@ -1035,8 +997,6 @@ public class BeKolSecondActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-               LogUtil.LogShitou("解绑url", HelpTools.getUrl(CommonConfig.INFLUENCE_UNBIND));
-                LogUtil.LogShitou("解绑identity结果", ".=====>" + response);
 
                 try {
                     if (mWProgressDialog != null) {
@@ -1047,68 +1007,16 @@ public class BeKolSecondActivity extends BaseActivity {
                 }
                 IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
                 if (indentyBean.getError() != 0) {
-                    // LogUtil.LogShitou("解绑错误", indentyBean.getDetail());
                     try {
                         CustomToast.showShort(BeKolSecondActivity.this, indentyBean.getDetail());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    // CustomToast.showShort(BeKolSecondActivity.this,indentyBean.getDetail());
                 } else {
-                    LogUtil.LogShitou("啊啊啊啊啊","意外");
                     socalUnbind(socialUid, provider);
                 }
             }
         });
     }
 
-    //    private void bind(final String names) {
-    //        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(),null, names);
-    //        presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
-    //            @Override
-    //            public void onResponse(String name) {
-    //                CustomToast.showLong(BeKolSecondActivity.this,"==bind==>"+name);
-    //                if (names==name){
-    //                    BasePresenter mBasePresenter = new BasePresenter();
-    //                    RequestParams params = new RequestParams();
-    //                        params.put("provider_name", name);
-    //                        params.put("price", "1");
-    //
-    //                    params.put("followers_count", "10");
-    //                    params.put("username", name);
-    //                    mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL), params, new RequestCallback() {
-    //                        @Override
-    //                        public void onError(Exception e) {
-    //
-    //                        }
-    //
-    //                        @Override
-    //                        public void onResponse(String response) {
-    //                            BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
-    //
-    //                            if (bean == null) {
-    //                                CustomToast.showShort(BeKolSecondActivity.this, getString(R.string.please_data_wrong));
-    //                                return;
-    //                            }
-    //
-    //                            if (bean.getError() == 0) {
-    //                                mGridDataList.get(mBackId).isChecked = true;
-    //                                mMyGridBaseAdapter.notifyDataSetChanged();
-    //                            } else {
-    //                                CustomToast.showShort(BeKolSecondActivity.this, bean.getDetail());
-    //                            }
-    //                        }
-    //                    });
-    //                }
-    //            }
-    //        });
-    //        if (getString(R.string.weixin).equals(names)) {
-    //            presenter.authorize(new Wechat(this));
-    //        } else if (getString(R.string.qq).equals(names)) {
-    //            presenter.authorize(new QQ(this));
-    //        } else if (getString(R.string.weibo).equals(names)) {
-    //            presenter.authorize(new SinaWeibo(this));
-    //        }
-    //
-    //    }
 }

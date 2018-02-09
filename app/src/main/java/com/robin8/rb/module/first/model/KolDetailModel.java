@@ -66,6 +66,7 @@ public class KolDetailModel extends BaseBean {
         private String kol_role;
         private String role_apply_status;
         private String role_check_remark;
+        private String email;
         private int gender;
         private String avatar_url;
         /**
@@ -169,6 +170,14 @@ public class KolDetailModel extends BaseBean {
 
         public void setAge(int age) {
             this.age = age;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
         }
 
         public static class TagsBean {

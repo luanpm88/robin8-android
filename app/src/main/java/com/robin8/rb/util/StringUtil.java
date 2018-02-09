@@ -350,7 +350,9 @@ public class StringUtil {
     public static void setTextViewSpan(TextView view, int fontSize, int start, int end, int color) {
 
         Spannable span = new SpannableString(view.getText());
-        span.setSpan(new AbsoluteSizeSpan(fontSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (fontSize!=0){
+            span.setSpan(new AbsoluteSizeSpan(fontSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
         span.setSpan(new ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         view.setText(span);
         //        view.getPaint().setFakeBoldText(true);

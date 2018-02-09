@@ -90,7 +90,7 @@ public class GridAdapter extends BaseAdapter {
                 Glide.with(context).load(imgMap.get(position)).
                         placeholder(R.mipmap.default_error).error(R.mipmap.default_error).centerCrop().crossFade().into(holder.img);
                 holder.llBottom.setVisibility(View.VISIBLE);
-                if (type==1){
+                if (type==1 || type==2){
                     holder.imgClear.setVisibility(View.VISIBLE);
                 }else if (type==0){
                     holder.imgClear.setVisibility(View.GONE);
@@ -115,19 +115,6 @@ public class GridAdapter extends BaseAdapter {
             }
         });
 
-        //        if (imagePaths != null) {
-        //            int size = imagePaths.size();
-        //            if (size != 0) {
-        //                if (chose_position != - 1) {
-        //                    if (position == chose_position) {
-        //                        Glide.with(ScreenImgActivity.this).load(imagePaths.get(0)).
-        //                                placeholder(R.mipmap.default_error).error(R.mipmap.default_error).centerCrop().crossFade().into(holder.img);
-        //                        imgMap.put(position, imagePaths.get(0));
-        //                    }
-        //                }
-        //
-        //            }
-        //        }
         return convertView;
     }
 
