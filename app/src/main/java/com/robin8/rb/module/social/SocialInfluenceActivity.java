@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.MainActivity;
 import com.robin8.rb.base.BaseActivity;
-import com.robin8.rb.module.mine.activity.InviteFriendsActivity;
+import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
 import com.robin8.rb.module.social.view.LinearLayoutForListView;
 import com.robin8.rb.ui.widget.myprogress.RoundIndicatorView;
@@ -121,7 +121,7 @@ public class SocialInfluenceActivity extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         //邀请好友
-                        startActivity(new Intent(SocialInfluenceActivity.this, InviteFriendsActivity.class));
+                        startActivity(new Intent(SocialInfluenceActivity.this, CollectMoneyActivity.class));
                         finish();
                     }
                 });

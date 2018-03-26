@@ -1,30 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <!--<string-array name="mine_list_title">-->
-        <!--<item>我的钱包</item>-->
-        <!--<item>我的活动</item>-->
-        <!--<item>我的产品</item>-->
-        <!--<item>我的关注</item>-->
-        <!--<item>品牌主</item>-->
-        <!--<item>一元夺宝</item>-->
-        <!--<item>每日签到</item>-->
-        <!--<item>邀请好友</item>-->
-        <!--<item>帮助中心</item>-->
-    <!--</string-array>-->
-
     <string-array name="mine_list_title">
-        <item>我的钱包</item>
-        <item>我的活动</item>
-        <item>我的产品</item>
-        <item>我的关注</item>
-        <item>品牌主</item>
-        <item>一元购</item>
-        <item>每日签到</item>
-        <item>收徒赚收益</item>
-        <item>输入邀请码</item>
-        <item>在线客服</item>
-        <item>帮助中心</item>
+        <item>My wallet</item>
+        <item>My campaigns</item>
+        <item>My product</item>
+        <item>My followers</item>
+        <item>Brand manager</item>
+        <item>One dollar purchase</item>
+        <item>Daily check-in</item>
+        <item>Invite friends collect money</item>
+        <item>Input invite code</item>
+        <item>Robin8 online customer services</item>
+        <item>Help</item>
     </string-array>
     <string-array name="social_tag_name">
         <item>其他</item>
@@ -170,30 +158,30 @@
     </string-array>
 
     <string-array name="first_page_tag_item_total">
-        <item>互联网</item>
-        <item>美妆</item>
-        <item>母婴</item>
-        <item>娱乐</item>
-        <item>旅游</item>
-        <item>教育</item>
-        <item>时尚</item>
-        <item>游戏</item>
-        <item>房地产</item>
-        <item>财经</item>
-        <item>数码</item>
-        <item>家电</item>
-        <item>健康</item>
-        <item>图书</item>
-        <item>体育</item>
-        <item>航空</item>
-        <item>家居</item>
-        <item>汽车</item>
-        <item>酒店</item>
-        <item>摄影</item>
-        <item>美食</item>
-        <item>健身</item>
-        <item>音乐</item>
-        <item>综合</item>
+        <item>internet</item>
+        <item>beauty</item>
+        <item>babies</item>
+        <item>entertainment</item>
+        <item>travel</item>
+        <item>education</item>
+        <item>fashion</item>
+        <item>games</item>
+        <item>realestate</item>
+        <item>finance</item>
+        <item>digital</item>
+        <item>appliances</item>
+        <item>health</item>
+        <item>books</item>
+        <item>sports</item>
+        <item>airline</item>
+        <item>furniture</item>
+        <item>auto</item>
+        <item>hotel</item>
+        <item>camera</item>
+        <item>food</item>
+        <item>fitness</item>
+        <item>music</item>
+        <item>overall</item>
     </string-array>
 
     <string-array name="first_page_tag_item_total_en">
@@ -284,17 +272,17 @@
     </string-array>
 
     <string-array name="setting_item_name">
-        <item>开启消息提醒</item>
-        <item>开启摇一摇反馈</item>
-        <item>关于Robin8</item>
+        <item>Allow notification</item>
+        <item>Shake to send feedback</item>
+        <item>About Robin8</item>
     </string-array>
 
     <string-array name="product_order">
-        <item>综合排序</item>
-        <item>按价格从高到低</item>
-        <item>按价格从低到高</item>
-        <item>按提成从高到低</item>
-        <item>按提成从低到高</item>
+        <item>order_overall</item>
+        <item>order_price_desc</item>
+        <item>order_price_asc</item>
+        <item>order_commission_desc</item>
+        <item>order_commission_asc</item>
     </string-array>
 
     <string-array name="product_order_en">

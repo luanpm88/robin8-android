@@ -1,3 +1,4 @@
+
 apply plugin: 'com.android.application'
 apply plugin: 'android'
 
@@ -33,8 +34,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
         //noinspection HighAppVersionCode
-        versionCode 2018020819
-        versionName "2.3.0"
+        versionCode 2018032319
+        versionName "2.3.2"
         multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "IZNLTEcKP29wbXiZVI8414",
@@ -104,40 +105,40 @@ android {
         //应用宝、360市场、百度 豌豆荚  android_yingyongbao android_360 android_baidu android_wandoujia  android_xiaomi
         // android_huawei  android_lianxiang
         // android_meizu  android_oppo  android_vivo
-        android_yingyongbao {
-            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
-        }
-
-        android_360 {
-            manifestPlaceholders = [Td_Channel_Id: "android_360"]
-        }
-
-        android_baidu {
-            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
-        }
-
-        android_wandoujia {
-            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
-        }
-
-        android_huawei {
-            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
-        }
-
-        android_lianxiang {
-            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
-        }
-
-        android_robin8 {
-            manifestPlaceholders = [Td_Channel_Id: "android_robin8"]
-        }
+//        android_yingyongbao {
+//            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
+//        }
+//
+//        android_360 {
+//            manifestPlaceholders = [Td_Channel_Id: "android_360"]
+//        }
+//
+//        android_baidu {
+//            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
+//        }
+//
+//        android_wandoujia {
+//            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
+//        }
+//
+//        android_huawei {
+//            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
+//        }
+//
+//        android_lianxiang {
+//            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
+//        }
+//
+//        android_robin8 {
+//            manifestPlaceholders = [Td_Channel_Id: "android_robin8"]
+//        }
 
 //        android_vivo {
 //            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
 //        }
-        android_oppo {
-            manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
-        }
+//        android_oppo {
+//            manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
+//        }
         android_xiaomi {
             manifestPlaceholders = [Td_Channel_Id: "android_xiaomi"]
         }

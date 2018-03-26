@@ -26,8 +26,8 @@ import com.robin8.rb.model.BannerBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.first.activity.LaunchRewordFirstActivity;
 import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
+import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.HelpCenterActivity;
-import com.robin8.rb.module.mine.activity.InviteFriendsActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
@@ -111,7 +111,7 @@ public class ImagePagerAdapter extends RecyclingPagerAdapter {
                         v.getContext().startActivity(intent);
                         break;
                     case BannerBean.INVITE_FRIEND:
-                        intent = new Intent(v.getContext(), InviteFriendsActivity.class);
+                        intent = new Intent(v.getContext(), CollectMoneyActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         v.getContext().startActivity(intent);
                         break;

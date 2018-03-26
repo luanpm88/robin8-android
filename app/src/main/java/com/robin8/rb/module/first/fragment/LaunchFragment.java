@@ -243,20 +243,21 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             mTvTitle5.setText(mArrayTitle[4]);
             mETConsume5.setHint(getResources().getString(R.string.min_2));
         } else if ("post".equals(mModifyCampaign.getPer_budget_type())) {
+            //cpp
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_kol));
             mTvTitle5.setText(mArrayTitle[5]);
-            mETConsume5.setHint(getResources().getString(R.string.min_20));
+            mETConsume5.setHint(getResources().getString(R.string.min_25));
         } else if ("simple_cpi".equals(mModifyCampaign.getPer_budget_type())) {
             mTVInfo3.setText(getResources().getString(R.string.type_download_by_kol));
             mTvTitle5.setText(mArrayTitle[6]);
             mETConsume5.setHint(getResources().getString(R.string.min_20));
         } else {
-//            mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
-//            mTvTitle5.setText(mArrayTitle[7]);
-//            mETConsume5.setHint(getResources().getString(R.string.min_20));
-            mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
-            mTvTitle5.setText(mArrayTitle[4]);
-            mETConsume5.setHint(getResources().getString(R.string.min_2));
+            mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
+            mTvTitle5.setText(mArrayTitle[7]);
+            mETConsume5.setHint(getResources().getString(R.string.min_3));
+            //            mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
+            //            mTvTitle5.setText(mArrayTitle[4]);
+            //            mETConsume5.setHint(getResources().getString(R.string.min_2));
         }
 
         if (! UN_PAY.equals(mModifyCampaign.getStatus())) {
@@ -355,18 +356,18 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         } else if ("post".equals(budgetType)) {
             mTVInfo3.setText(getResources().getString(R.string.type_count_by_kol));
             mTvTitle5.setText(mArrayTitle[5]);
-            mETConsume5.setHint(getResources().getString(R.string.min_20));
+            mETConsume5.setHint(getResources().getString(R.string.min_25));
         } else if ("simple_cpi".equals(budgetType)) {
             mTVInfo3.setText(getResources().getString(R.string.type_download_by_kol));
             mTvTitle5.setText(mArrayTitle[6]);
             mETConsume5.setHint(getResources().getString(R.string.min_20));
         } else {
-//            mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
-//            mTvTitle5.setText(mArrayTitle[7]);
-//            mETConsume5.setHint(getResources().getString(R.string.min_20));
-            mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
-            mTvTitle5.setText(mArrayTitle[4]);
-            mETConsume5.setHint(getResources().getString(R.string.min_2));
+            mTVInfo3.setText(getResources().getString(R.string.type_task_by_kol));
+            mTvTitle5.setText(mArrayTitle[7]);
+            mETConsume5.setHint(getResources().getString(R.string.min_3));
+            //            mTVInfo3.setText(getResources().getString(R.string.type_count_by_click));
+            //            mTvTitle5.setText(mArrayTitle[4]);
+            //            mETConsume5.setHint(getResources().getString(R.string.min_2));
         }
 
         if (! UN_PAY.equals(status) && status != null) {
@@ -440,9 +441,9 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                     } else {
                         mTVInfoSubType.setText(stChoseType);
                     }
-                    if (pvTime!=null){
+                    if (pvTime != null) {
                         pvTime.clearView();//里面的view==null
-                        pvTime=null;
+                        pvTime = null;
                     }
                     mTVInfo3.setText("");
                     prepareData(1);
@@ -450,12 +451,20 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             }
         }
     }
+
     /**
      检查信息是否完整
      @param showToast
      @return
      */
     private boolean checkInfoCompelete(boolean showToast) {
+        if (TextUtils.isEmpty(mTVInfoSubType.getText().toString().trim())) {
+            if (showToast) {
+                CustomToast.showShort(mActivity, "请选择推广平台");
+            }
+            return false;
+        }
+
         if (TextUtils.isEmpty(mTVInfo3.getText().toString())) {
             if (showToast) {
                 CustomToast.showShort(mActivity, "请选择活动类型");
@@ -469,8 +478,8 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             } else if (getString(R.string.type_download_by_kol).equals(mTVInfo3.getText().toString())) {
                 mCountType = "simple_cpi";
             } else {//任务
-               // mCountType = "cpt";
-               mCountType = "click";
+                 mCountType = "cpt";
+               // mCountType = "click";
             }
         }
 
@@ -651,15 +660,15 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
-              //  mTVInfo3.setText("");
+                //  mTVInfo3.setText("");
                 if (TextUtils.isEmpty(stChoseType)) {
                     CustomToast.showShort(mActivity, "请先选择推广平台");
                 } else {
                     // prepareData();
-//                    if (pvTime!=null){
-//                        pvTime.clearView();
-//                        pvTime=null;
-//                    }
+                    //                    if (pvTime!=null){
+                    //                        pvTime.clearView();
+                    //                        pvTime=null;
+                    //                    }
                     if (stChoseType.equals((mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat) + "," + mActivity.getString(R.string.weibo))) || stChoseType.equals(mActivity.getString(R.string.weibo))) {
                         //微信微博同时选择／选择微博，活动类型只有三个
                         translateY(TimePickerView.ACTIVITY_TYPE_NO_CLICK, TimePickerView.Type.CONSUME_WAY);
@@ -777,17 +786,17 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         if (type == TimePickerView.Type.OTHER) {
             return;
         }
-     //   pvTime = new TimePickerView(mActivity, mConsumeWayList, mDateList, type, mLLWheel, mCurrenetItem);
+        //   pvTime = new TimePickerView(mActivity, mConsumeWayList, mDateList, type, mLLWheel, mCurrenetItem);
         if (pvTime == null) {
             pvTime = new TimePickerView(mActivity, mConsumeWayList, mDateList, type, mLLWheel, mCurrenetItem);
         } else {
-                switch (mCurrenetItem) {
-                    case TimePickerView.ACTIVITY_START:
-                        pvTime.setSelectItem(mStartDateBean.day, mStartDateBean.hour, mStartDateBean.minute, mCurrenetItem);
-                        break;
-                    case TimePickerView.ACTIVITY_END:
-                        pvTime.setSelectItem(mEndDateBean.day, mEndDateBean.hour, mEndDateBean.minute, mCurrenetItem);
-                        break;
+            switch (mCurrenetItem) {
+                case TimePickerView.ACTIVITY_START:
+                    pvTime.setSelectItem(mStartDateBean.day, mStartDateBean.hour, mStartDateBean.minute, mCurrenetItem);
+                    break;
+                case TimePickerView.ACTIVITY_END:
+                    pvTime.setSelectItem(mEndDateBean.day, mEndDateBean.hour, mEndDateBean.minute, mCurrenetItem);
+                    break;
             }
         }
         pvTime.setType(type);
@@ -819,7 +828,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                             mETConsume5.setText(String.valueOf(0.5));
                             mTvTitle5.setText(mArrayTitle[4]);
                         } else if (backStr[1].equals(getString(R.string.type_count_by_kol))) {//转发
-                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setHint(getString(R.string.min_25));
                             mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[5]);
                         } else if (backStr[1].equals(getString(R.string.type_download_by_kol))) {//下载
@@ -827,12 +836,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                             mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[6]);
                         } else {//任务
-//                            mETConsume5.setHint(getString(R.string.min_20));
-//                            mETConsume5.setText(String.valueOf(3));
-//                            mTvTitle5.setText(mArrayTitle[7]);
-                            mETConsume5.setHint(getString(R.string.min_2));
-                            mETConsume5.setText(String.valueOf(0.5));
-                            mTvTitle5.setText(mArrayTitle[4]);
+                            mETConsume5.setHint(getString(R.string.min_3));
+                            mETConsume5.setText(String.valueOf(3));
+                            mTvTitle5.setText(mArrayTitle[7]);
+                            //                            mETConsume5.setHint(getString(R.string.min_2));
+                            //                            mETConsume5.setText(String.valueOf(0.5));
+                            //                            mTvTitle5.setText(mArrayTitle[4]);
                         }
                         break;
                     case TimePickerView.ACTIVITY_TYPE_NO_CLICK:
@@ -842,7 +851,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                             mETConsume5.setText(String.valueOf(0.5));
                             mTvTitle5.setText(mArrayTitle[4]);
                         } else if (backStr[1].equals(getString(R.string.type_count_by_kol))) {//转发
-                            mETConsume5.setHint(getString(R.string.min_20));
+                            mETConsume5.setHint(getString(R.string.min_25));
                             mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[5]);
                         } else if (backStr[1].equals(getString(R.string.type_download_by_kol))) {//下载
@@ -850,12 +859,12 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                             mETConsume5.setText(String.valueOf(3));
                             mTvTitle5.setText(mArrayTitle[6]);
                         } else {//任务
-//                            mETConsume5.setHint(getString(R.string.min_20));
-//                            mETConsume5.setText(String.valueOf(3));
-//                            mTvTitle5.setText(mArrayTitle[7]);
-                            mETConsume5.setHint(getString(R.string.min_2));
-                            mETConsume5.setText(String.valueOf(0.5));
-                            mTvTitle5.setText(mArrayTitle[4]);
+                            mETConsume5.setHint(getString(R.string.min_3));
+                            mETConsume5.setText(String.valueOf(3));
+                            mTvTitle5.setText(mArrayTitle[7]);
+                            //                            mETConsume5.setHint(getString(R.string.min_2));
+                            //                            mETConsume5.setText(String.valueOf(0.5));
+                            //                            mTvTitle5.setText(mArrayTitle[4]);
                         }
                         break;
                 }
@@ -882,15 +891,15 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                 tempList = Arrays.asList(getResources().getStringArray(R.array.launch_reword_consume_way));
             }
         }
-//        if (where == 1) {
-//            if (tempList.size() != 0) {
-//                mTVInfo3.setText(tempList.get(0));
-//                hasTranslateB = true;
-//                onCompelete();
-//            } else {
-//                mTVInfo3.setText("");
-//            }
-//        }
+        //        if (where == 1) {
+        //            if (tempList.size() != 0) {
+        //                mTVInfo3.setText(tempList.get(0));
+        //                hasTranslateB = true;
+        //                onCompelete();
+        //            } else {
+        //                mTVInfo3.setText("");
+        //            }
+        //        }
         mConsumeWayList = new ArrayList<String>();
         mConsumeWayList.clear();
         mConsumeWayList.addAll(tempList);
@@ -956,7 +965,9 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
         cdm.showDialog();
     }
+
     private WProgressDialog mWProgressDialog;
+
     /**
      提交
      */
@@ -976,17 +987,21 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         requestMap.put("per_action_budget", mETConsume5.getText().toString());
         requestMap.put("age", getPostAge(mTVInfoAge.getText().toString()));
         //发布平台sub_type
-        if (stChoseType.equals((mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat) + "," + mActivity.getString(R.string.weibo)))) {
-            String s = "wechat,weibo";
-            //   String [] s = new String[]{"wechat","weibo"};
-            requestMap.put("sub_type", s);
-        } else if (stChoseType.equals(mActivity.getString(R.string.weibo))) {
-            requestMap.put("sub_type", "weibo");
-        } else if (stChoseType.equals(mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat))) {
-            requestMap.put("sub_type", "wechat");
-        } else {
+        if (TextUtils.isEmpty(stChoseType)) {
             CustomToast.showShort(mActivity, "请选择推广平台");
             return;
+        } else {
+            if (stChoseType.equals((mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat) + "," + mActivity.getString(R.string.weibo)))) {
+                String s = "wechat,weibo";
+                //   String [] s = new String[]{"wechat","weibo"};
+                requestMap.put("sub_type", s);
+            } else if (stChoseType.equals(mActivity.getString(R.string.weibo))) {
+                requestMap.put("sub_type", "weibo");
+            } else if (stChoseType.equals(mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat))) {
+                requestMap.put("sub_type", "wechat");
+            } else {
+                requestMap.put("sub_type", "wechat");
+            }
         }
         String gender = "全部";
         if (getString(R.string.male).equals(mTVInfoSex.getText())) {

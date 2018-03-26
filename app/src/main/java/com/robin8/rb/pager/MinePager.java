@@ -35,9 +35,9 @@ import com.robin8.rb.model.NotifyMsgEntity;
 import com.robin8.rb.module.create.activity.FragmentsActivity;
 import com.robin8.rb.module.first.activity.SearchKolActivity;
 import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
+import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.HelpCenterActivity;
 import com.robin8.rb.module.mine.activity.InvitationCodeActivity;
-import com.robin8.rb.module.mine.activity.InviteFriendsActivity;
 import com.robin8.rb.module.mine.activity.SettingActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
 import com.robin8.rb.module.mine.model.MineShowModel;
@@ -583,7 +583,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
      */
     private void skipToInViteFriends() {
         if (isLogined(SPConstants.INVITE_FRIENDS_ACTIVITY)) {
-            Intent intent = new Intent(mActivity, InviteFriendsActivity.class);
+           // Intent intent = new Intent(mActivity, InviteFriendsActivity.class);
+            Intent intent = new Intent(mActivity, CollectMoneyActivity.class);
             intent.putExtra("from", SPConstants.MY_CARE);
             intent.putExtra("url", CommonConfig.MY_CARE_URL);
             intent.putExtra("tag_name_cn", mActivity.getString(R.string.my_concern));

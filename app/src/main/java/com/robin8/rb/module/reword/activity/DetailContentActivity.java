@@ -56,7 +56,6 @@ import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
 import com.robin8.rb.util.TimerUtil;
 import com.robin8.rb.util.UIUtils;
@@ -189,7 +188,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
 
-
     private void shareCtaAndCti(final Activity activity, String info, boolean is) {
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_promit_cpa, null);
         TextView confirmTV = (TextView) view.findViewById(R.id.tv_confirm);
@@ -234,12 +232,13 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     * 从我的活动进入
+     从我的活动进入
      */
     private void initDataMyCampaign() {
         mCampaignId = mBundle.getInt("campaign_id");
         url = CommonConfig.CAMPAIGNS_DETAIL_URL + mCampaignId;
     }
+
     /**
      *
      */
@@ -247,38 +246,38 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
         mCampaignInviteEntity = (CampaignListBean.CampaignInviteEntity) mBundle.getSerializable("bean");
 
-            String perBudgetType = mCampaignInviteEntity.getCampaign().getPer_budget_type();
-            String perActionType = mCampaignInviteEntity.getCampaign().getPer_action_type();
-            String remark = mCampaignInviteEntity.getCampaign().getRemark();
+        String perBudgetType = mCampaignInviteEntity.getCampaign().getPer_budget_type();
+        String perActionType = mCampaignInviteEntity.getCampaign().getPer_action_type();
+        String remark = mCampaignInviteEntity.getCampaign().getRemark();
 
-            if (CAMPAIGN_TYPE_RECRUIT.equals(perBudgetType) || CAMPAIGN_TYPE_INVITE.equals(perBudgetType)) {
-                if (TextUtils.isEmpty(perActionType)) {
-                    mWithWebViewB = false;
-                } else {
-                    mWithWebViewB = true;
-                }
-
-                if (CAMPAIGN_TYPE_RECRUIT.equals(perBudgetType)) {
-                    mPageName = StatisticsAgency.CAMPAIGN_RECRUIT;//招募活动详情
-                } else {
-                    mPageName = StatisticsAgency.CAMPAIGN_INVITE;
-                }
-            }
-            //        else if (CAMPAIGN_TYPE_CPI.equals(perBudgetType)|| CAMPAIGN_TYPE_CPA.equals(perBudgetType)){
-            //            if (!TextUtils.isEmpty(remark)){
-            //                LogUtil.LogShitou("?????","---22---->"+remark);
-            //                shareCtaAndCti(DetailContentActivity.this,remark);
-            //            }
-            //        }
-            else {
+        if (CAMPAIGN_TYPE_RECRUIT.equals(perBudgetType) || CAMPAIGN_TYPE_INVITE.equals(perBudgetType)) {
+            if (TextUtils.isEmpty(perActionType)) {
+                mWithWebViewB = false;
+            } else {
                 mWithWebViewB = true;
-                mPageName = StatisticsAgency.CAMPAIGN_DETAIL;
             }
-            mCampaignId = mCampaignInviteEntity.getCampaign().getId();
-            mCampaignInviteId = mCampaignInviteEntity.getId();
-            url = CommonConfig.CAMPAIGNS_DETAIL_URL + mCampaignId;
-            // LogUtil.LogShitou("通过活动列表进入", url);
-            mWebUrl = mCampaignInviteEntity.getCampaign().getUrl();
+
+            if (CAMPAIGN_TYPE_RECRUIT.equals(perBudgetType)) {
+                mPageName = StatisticsAgency.CAMPAIGN_RECRUIT;//招募活动详情
+            } else {
+                mPageName = StatisticsAgency.CAMPAIGN_INVITE;
+            }
+        }
+        //        else if (CAMPAIGN_TYPE_CPI.equals(perBudgetType)|| CAMPAIGN_TYPE_CPA.equals(perBudgetType)){
+        //            if (!TextUtils.isEmpty(remark)){
+        //                LogUtil.LogShitou("?????","---22---->"+remark);
+        //                shareCtaAndCti(DetailContentActivity.this,remark);
+        //            }
+        //        }
+        else {
+            mWithWebViewB = true;
+            mPageName = StatisticsAgency.CAMPAIGN_DETAIL;
+        }
+        mCampaignId = mCampaignInviteEntity.getCampaign().getId();
+        mCampaignInviteId = mCampaignInviteEntity.getId();
+        url = CommonConfig.CAMPAIGNS_DETAIL_URL + mCampaignId;
+        // LogUtil.LogShitou("通过活动列表进入", url);
+        mWebUrl = mCampaignInviteEntity.getCampaign().getUrl();
     }
 
     //    @Override
@@ -474,7 +473,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
             @Override
             public void onResponse(String response) {
-               LogUtil.LogShitou("活动详情数据", response);
+         //       LogUtil.LogShitou("活动详情数据", response);
                 CampaignInviteBean campaignInviteEntity = GsonTools.jsonToBean(response, CampaignInviteBean.class);
                 if (campaignInviteEntity != null && campaignInviteEntity.getError() == 0) {
                     mCampaignInviteEntity = campaignInviteEntity.getCampaign_invite();
@@ -574,7 +573,9 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         if (mImageView == null || mCampaignInviteEntity == null) {
             return;
         }
-
+        if (TextUtils.isEmpty(mCampaignInviteEntity.getStatus())) {
+            return;
+        }
         if (mWithWebViewB) {
             mTVNextPage.setText(getString(R.string.promote_the_content_page_for_details));
         } else {
@@ -888,7 +889,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                                 @Override
                                 public void run() {
                                     if (uploadPicturePath == null)
-                                        CustomToast.showShort(DetailContentActivity.this,getString(R.string.img_empty));
+                                        CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
                                     else {
                                         if (mDetailContentHelper == null) {
                                             mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
@@ -904,25 +905,27 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                     //LogUtil.LogShitou("日什么情况","------------------");
                     final SerializableMap mapImages = (SerializableMap) (data.getExtras().get(ScreenImgActivity.EXTRA_SCREEN_MAP));
                     new Thread(new Runnable() {
+
                         @Override
                         public void run() {
                             UIUtils.runInMainThread(new Runnable() {
+
                                 @Override
                                 public void run() {
-                                    if (mapImages==null){
-                                        CustomToast.showShort(DetailContentActivity.this,getString(R.string.img_empty));
-                                    }else {
-                                        if (mapImages.getMap()==null){
-                                            CustomToast.showShort(DetailContentActivity.this,getString(R.string.img_empty));
-                                        }else {
-                                            if (mapImages.getMap().size()==0){
-                                                CustomToast.showShort(DetailContentActivity.this,getString(R.string.img_empty));
-                                            }else {
+                                    if (mapImages == null) {
+                                        CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
+                                    } else {
+                                        if (mapImages.getMap() == null) {
+                                            CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
+                                        } else {
+                                            if (mapImages.getMap().size() == 0) {
+                                                CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
+                                            } else {
                                                 if (mDetailContentHelper == null) {
                                                     mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
                                                 }
 
-                                                mDetailContentHelper.uploadTurnImages(DetailContentActivity.this,mapImages);
+                                                mDetailContentHelper.uploadTurnImages(DetailContentActivity.this, mapImages);
                                             }
                                         }
                                     }
@@ -1106,7 +1109,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 } else {
                     if (SinaWeibo.NAME.equals(platName)) {
 
-                       // oks.setText(("#Robin8#" + "「" + mCampaignInviteEntity.getCampaign().getBrand_name() + "「" + mCampaignInviteEntity.getCampaign().getName() + "」」" + (TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId() + "&club=" + HelpTools.getCommonXml(HelpTools.isLeader))));
+                        // oks.setText(("#Robin8#" + "「" + mCampaignInviteEntity.getCampaign().getBrand_name() + "「" + mCampaignInviteEntity.getCampaign().getName() + "」」" + (TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId() + "&club=" + HelpTools.getCommonXml(HelpTools.isLeader))));
                         oks.setText(("#Robin8#" + "「" + "「" + mCampaignInviteEntity.getCampaign().getName() + "」」" + (TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId() + "&club=" + HelpTools.getCommonXml(HelpTools.isLeader))));
                     } else {
                         oks.setText(mCampaignInviteEntity.getCampaign().getDescription());

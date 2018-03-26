@@ -421,7 +421,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
                 @Override
                 public void onResponse(String response) {
-                    // LogUtil.LogShitou("手机号登陆返回数据", response);
+                    LogUtil.LogShitou("手机号登陆返回数据", response);
                     if (mWProgressDialog != null) {
                         try {
                             mWProgressDialog.dismiss();
@@ -540,7 +540,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                                 e.printStackTrace();
                             }
                         }
-                      //  LogUtil.LogShitou("邮箱登陆结果",response);
+                       LogUtil.LogShitou("邮箱登陆结果",response);
                       //  TalkingDataAppCpa.onRegister(phoneNumber);
                       //  TalkingDataAppCpa.onLogin(phoneNumber);
                         //  LoginHelper.loginSuccess(loginBean, from, mActivity);

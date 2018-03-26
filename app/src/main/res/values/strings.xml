@@ -26,6 +26,19 @@
     <string name="mine_task">任务</string>
     <string name="wallet">钱包</string>
     <string name="mine_ad_host">品牌主</string>
+    <string name="max_click_number">最大点击数</string>
+    <string name="history_total_income">历史总收益</string>
+    <string name="max_per_income">最高单笔收益</string>
+    <string name="average_income">平均收益</string>
+
+    <!--收徒-->
+    <string name="apprentice_collect_money">收徒赚收益</string>
+    <string name="apprentice_all_collect_money">收徒总收益</string>
+    <string name="today_apprentices">今日已收徒</string>
+    <string name="reward_rules">奖励规则</string>
+    <string name="yuan">元</string>
+    <string name="people">人</string>
+
 
     <!--BindSocialActivity-->
     <string name="influence_measure">影响力评测</string>
@@ -61,6 +74,7 @@
     <string name="min_2">最低0.2元</string>
     <string name="min_5">最低0.5元</string>
     <string name="min_20">最低2元</string>
+    <string name="min_25">最低2.5元</string>
     <string name="min_3">最低3元</string>
     <string name="min_1">最低1元</string>
 
@@ -201,6 +215,7 @@
     <string name="please_write_telphone">请填写联系电话</string>
     <string name="please_write_address">请填写收货地址</string>
     <string name="help">帮助</string>
+    <!--签到页面-->
     <string name="month_sign_chart">月签到表</string>
     <string name="you_have_sign">您已连续签到</string>
     <string name="day">天</string>
@@ -208,10 +223,7 @@
     <string name="sign_instantly">立即签到</string>
     <string name="sign_successfully">签到成功</string>
     <string name="sign">签到</string>
-    <string name="max_click_number">最大点击数</string>
-    <string name="history_total_income">历史总收益</string>
-    <string name="max_per_income">最高单笔收益</string>
-    <string name="average_income">平均收益</string>
+
     <string name="hot_kol_recommend">热门KOL推荐</string>
     <string name="wechat">朋友圈</string>
     <string name="invite_ta_participate_campaign">给TA发特邀活动</string>
@@ -315,6 +327,7 @@
     <string name="upload_again">再次上传</string>
     <string name="approve_reject_check_reason">审核拒绝-查看原因</string>
     <string name="campaign_missed">活动已错失</string>
+    <string name="campaign_ready_begin">活动未开始</string>
     <string name="sign_up_approve_failed">报名审核失败</string>
     <string name="campaign_approve_failed">活动审核失败</string>
     <string name="campaign_compeleted">活动已完成</string>

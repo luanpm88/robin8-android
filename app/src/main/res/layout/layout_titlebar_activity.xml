@@ -25,7 +25,6 @@
             android:visibility="visible"/>
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/tv_jump"
             android:layout_width="80dp"
             android:layout_height="match_parent"
@@ -33,9 +32,10 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="40dp"
-            android:textColor="#909090"
             android:paddingTop="10dp"
-            android:text="跳过"/>
+            android:text="跳过"
+            android:textColor="#909090"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_center"
@@ -75,17 +75,18 @@
             android:textColor="@color/black_custom"
             android:textSize="@dimen/undefine_font_5"
             android:visibility="gone"/>
+
         <LinearLayout
             android:id="@+id/ll_share"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:visibility="gone"
-            android:paddingRight="20dp"
-            android:paddingLeft="10dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"

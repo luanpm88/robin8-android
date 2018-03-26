@@ -27,6 +27,9 @@
     <string name="wallet">钱包</string>
     <string name="mine_ad_host">品牌主</string>
 
+    <!--收徒-->
+    <string name="apprentice_collect_money">收徒赚收益</string>
+
     <!--BindSocialActivity-->
     <string name="influence_measure">影响力评测</string>
     <string name="bind_social">绑定社交账号,精准评测</string>
@@ -64,6 +67,7 @@
     <string name="min_2">最低0.2元</string>
     <string name="min_5">最低0.5元</string>
     <string name="min_20">最低2元</string>
+    <string name="min_25">最低2.5元</string>
     <string name="min_3">最低3元</string>
     <string name="min_1">最低1元</string>
 

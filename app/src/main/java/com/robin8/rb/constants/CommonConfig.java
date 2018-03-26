@@ -33,10 +33,10 @@ public class CommonConfig {
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
 
     // public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
-    // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-    //public static String SERVICE = "http://192.168.51.65:3000/";//robin8-测试服务器地址/test server path
+    //public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+    //public static String SERVICE = "http://192.168.51.99:3000/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
-     public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
+    public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String UpdateUrl = "api/v2/upgrades/check";
@@ -102,7 +102,6 @@ public class CommonConfig {
     public static final String HELP_CENTER_URL = "api/v1_6/system/account_notice";
     public static final String SWEEP_LOGIN_URL = "api/v1_5/scan_qr_code_and_login";
 
-    public static final String INVITE_FRIENDS_URL = "api/v1_3/tasks/invite_info";
     public static final String OAUTH_LOGIN_URL = "api/v2/kols/oauth_login";
     public static final String BIND_MOBILE_URL = "api/v1/kols/bind_mobile";
     public static final String JOINED_KOLS_URL = "api/v1_4/kol_campaigns/joined_kols";
@@ -163,10 +162,9 @@ public class CommonConfig {
     public static final String EMAIL_REGISTER_URL = "api/v2_0/registers";//post请求   name (String) (required);email (String) (required);password (String) (required)
     public static final String EMAIL_FIXPWD_URL = "api/v2_0/sessions/update_password";//post请求  vtoken (String) (required);email (String) (required);new_password (String) (required)；new_password_confirmation (String) (required)
 
+    //收徒系列
+    public static final String INVITE_FRIENDS_URL = "api/v1_3/tasks/invite_info";
+    public static final String APPRENTICE_COLLECT_MONEY_URL = "api/v2_0/kols/percentage_on_friend";//收徒总收益；get请求  int page
+    public static final String TODAY_GET_APPRENTICE_URL = "api/v2_0/kols/today_friends";//近日已收徒get请求  int page
 
-
-    //2、api/v2/influences/
-    //    send_invite 短信邀请
-    //    post请求 参数：
-    //    kol_uuid mobile电话号码
 }

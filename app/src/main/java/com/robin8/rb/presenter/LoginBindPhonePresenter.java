@@ -64,6 +64,9 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
             case HttpRequest.PUT:
                 HttpRequest.getInstance().put(needHeader, url, params, callback);
                 break;
+            case HttpRequest.POST:
+                HttpRequest.getInstance().post(needHeader, url, params, callback);
+                break;
         }
     }
 
@@ -76,7 +79,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
         //   HelpTools.insertLoginInfo(HelpTools.Token, "");//此时应没有token 手动清理一下
         RequestParams requestParams = new RequestParams();
         requestParams.put("mobile_number", phoneNumber);
-        //        LogUtil.LogShitou("发送的参数num",phoneNumber);
+       // LogUtil.LogShitou("发送的参数num",phoneNumber);
         getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.GET_CODE_URL), requestParams, new RequestCallback() {
 
             @Override
@@ -86,7 +89,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
             @Override
             public void onResponse(String response) {
-           //  LogUtil.LogShitou("验证码数据"+HelpTools.getUrl(CommonConfig.GET_CODE_URL),response);
+          //  LogUtil.LogShitou("验证码数据"+HelpTools.getUrl(CommonConfig.GET_CODE_URL),response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
                // CustomToast.showShort(mActivity, bean.getDetail());
                 if (bean!=null){

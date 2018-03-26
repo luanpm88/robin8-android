@@ -52,8 +52,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -70,14 +68,11 @@ public class InviteFriendsActivity extends BaseActivity {
     private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
     private static final String TITLE_URL = CommonConfig.SERVICE + "/invite?inviter_id=";
 
-    @Bind(R.id.tv_reword_info)
-    TextView tvRewordInfo;
-    @Bind(R.id.tv_reword_info_two)
-    TextView tvRewordInfoTwo;
-    @Bind(R.id.tv_invite_number)
-    TextView tvInviteNumber;
-    @Bind(R.id.tv_reword_money)
-    TextView tvRewordMoney;
+   private TextView tvRewordInfo;
+   private TextView tvRewordInfoTwo;
+   private TextView tvInviteNumber;
+   private TextView tvRewordMoney;
+
     private CustomDialogManager mCustomDialogManager;
     private CustomShareHelper mCustomShareHelper;
     private ImageView mImgDown;
@@ -96,20 +91,22 @@ public class InviteFriendsActivity extends BaseActivity {
     public void setTitleView() {
         mTVCenter.setText(getString(R.string.invite_friends));
     }
-
     @Override
     public void initView() {
-        View view = LayoutInflater.from(this).inflate(R.layout.activity_invite_friends, mLLContent);
-        ButterKnife.bind(this);
-        mBottomTv.setVisibility(View.VISIBLE);
+        View view = LayoutInflater.from(this).inflate(R.layout.activity_invite_friends, mLLContent, true);
+        mBottomTv.setVisibility(View.GONE);
         mBottomTv.setOnClickListener(this);
         mBottomTv.setText(R.string.invite_instantly);
-        mImgDown = ((ImageView) findViewById(R.id.img_down));
-        mRuleLayout = ((LinearLayout) findViewById(R.id.ll_rule));
+        tvRewordMoney = ((TextView) view.findViewById(R.id.tv_reword_money));
+        tvInviteNumber = ((TextView) view.findViewById(R.id.tv_invite_number));
+        tvRewordInfoTwo = ((TextView) view.findViewById(R.id.tv_reword_info_two));
+        tvRewordInfo = ((TextView) view.findViewById(R.id.tv_reword_info));
+        mImgDown = ((ImageView)view.findViewById(R.id.img_down));
+        mRuleLayout = ((LinearLayout)view.findViewById(R.id.ll_rule));
         mImgDown.setOnClickListener(this);
-        mListView = ((LinearLayoutForListView) findViewById(R.id.list_content));
-        mEmptyLayout = ((LinearLayout) findViewById(R.id.ll_empty));
-      //  tvRewordInfo.setText(Html.fromHtml("邀请好友下载并完成一个活动,立得<font color=#ecb200>" + "2元" + "</font>奖励"));
+        mListView = ((LinearLayoutForListView)view.findViewById(R.id.list_content));
+        mEmptyLayout = ((LinearLayout)view.findViewById(R.id.ll_empty));
+      // tvRewordInfo.setText(Html.fromHtml("邀请好友下载并完成一个活动,立得<font color=#ecb200>" + "2元" + "</font>奖励"));
         tvInvite = ((TextView) view.findViewById(R.id.tv_invite_friend));
         tvInvite.setOnClickListener(this);
         //--联系人处理
@@ -265,12 +262,16 @@ public class InviteFriendsActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                LogUtil.LogShitou("上传联系人", response);
+              //  LogUtil.LogShitou("上传联系人", response);
                 final InviteModel inviteModel = GsonTools.jsonToBean(response, InviteModel.class);
-                mListView.setVisibility(View.VISIBLE);
-                mEmptyLayout.setVisibility(View.GONE);
+
                 if (inviteModel.getKol_users().size() == 0) {
                     CustomToast.showShort(InviteFriendsActivity.this, "您尚未添加联系人");
+                    mListView.setVisibility(View.GONE);
+                    mEmptyLayout.setVisibility(View.VISIBLE);
+                }else {
+                    mListView.setVisibility(View.VISIBLE);
+                    mEmptyLayout.setVisibility(View.GONE);
                 }
                 mDataList = inviteModel.getKol_users();
                 MyListAdapter adapter = new MyListAdapter(mDataList);

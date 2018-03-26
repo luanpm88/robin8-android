@@ -12,9 +12,9 @@ import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.first.activity.LaunchRewordFirstActivity;
+import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.HelpCenterActivity;
 import com.robin8.rb.module.mine.activity.InvitationCodeActivity;
-import com.robin8.rb.module.mine.activity.InviteFriendsActivity;
 import com.robin8.rb.module.mine.activity.SettingActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
 import com.robin8.rb.util.CustomToast;
@@ -84,7 +84,7 @@ public class LoginHelper {
                 mActivity.finish();
                 break;
             case SPConstants.INVITE_FRIENDS_ACTIVITY:
-                intent = new Intent(mActivity, InviteFriendsActivity.class);
+                intent = new Intent(mActivity, CollectMoneyActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mActivity.startActivity(intent);
                 mActivity.finish();

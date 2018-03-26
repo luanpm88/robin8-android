@@ -83,6 +83,7 @@ public class StatisticsAgency {
     public static final String MY_INDIANA_PAY = "my-indiana-pay";//我的一元夺宝支付页面
     public static final String MY_INDIANA = "my-indiana";//我的一元夺宝列表
     public static final String MY_INVITE = "my-invite";//我的邀请好友
+    public static final String MY_APPRENTICE = "my-apprentice";//收徒赚收益
     public static final String MY_SIGN = "my-sign";//我的每日签到
     public static final String MY_SETTING = "my-setting";//我的设置
     public static final String MY_MESSAGE = "my-message";//我的消息

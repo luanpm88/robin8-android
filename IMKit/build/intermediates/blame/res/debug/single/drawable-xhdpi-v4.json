@@ -252,12 +252,12 @@
         "source": "/Users/zc/Desktop/studio_demo/robin/IMKit/src/main/res/drawable-xhdpi/u1f62b.png"
     },
     {
-        "merged": "/Users/zc/Desktop/studio_demo/robin/IMKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_back_icon.png",
-        "source": "/Users/zc/Desktop/studio_demo/robin/IMKit/src/main/res/drawable-xhdpi/rc_back_icon.png"
-    },
-    {
         "merged": "/Users/zc/Desktop/studio_demo/robin/IMKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/u1f30f.png",
         "source": "/Users/zc/Desktop/studio_demo/robin/IMKit/src/main/res/drawable-xhdpi/u1f30f.png"
+    },
+    {
+        "merged": "/Users/zc/Desktop/studio_demo/robin/IMKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_back_icon.png",
+        "source": "/Users/zc/Desktop/studio_demo/robin/IMKit/src/main/res/drawable-xhdpi/rc_back_icon.png"
     },
     {
         "merged": "/Users/zc/Desktop/studio_demo/robin/IMKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_ext_plugin_image.png",

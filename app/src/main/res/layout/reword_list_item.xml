@@ -39,24 +39,6 @@
             android:background="@mipmap/icon_task_tag_invite"/>
     </FrameLayout>
 
-    <!--<LinearLayout-->
-    <!--android:id="@+id/ll_count_down"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="32dp"-->
-    <!--android:layout_gravity="center|right|top"-->
-    <!--android:layout_marginRight="10dp"-->
-    <!--android:visibility="gone">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tv_count_down"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center|right"-->
-    <!--android:text="剩余0天0时0分"-->
-    <!--android:textColor="@color/white_custom"-->
-    <!--android:textSize="@dimen/undefine_font_3"/>-->
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -253,6 +235,7 @@
         <!--android:textStyle="bold"/>-->
 
         <LinearLayout
+            android:id="@+id/ll_show_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -281,10 +264,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="925"
+                android:text="0"
                 android:textColor="@color/yellow_custom"
                 android:textSize="@dimen/undefine_font_5"
                 android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_will_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="活动即将开始,请准时参加！"
+                android:textSize="@dimen/undefine_font_3"
+                android:textColor="@color/yellow_custom"/>
         </LinearLayout>
 
     </LinearLayout>

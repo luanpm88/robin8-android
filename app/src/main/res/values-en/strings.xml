@@ -9,23 +9,36 @@
 
     <!--MainActivity-->
     <string name="click_again_go_back">再按一次退出Robin8</string>
-    <string name="text_reword">Sharing activities</string>
+    <string name="text_reword">Campaign</string>
     <string name="text_find">发现</string>
     <string name="text_first">首页</string>
     <string name="text_notification">通知</string>
-    <string name="text_campaign">campaign</string>
+    <string name="text_campaign">Campaign</string>
     <string name="text_product">产品</string>
     <string name="text_create">创作</string>
-    <string name="text_mine">mine</string>
-    <string name="text_social">influence</string>
+    <string name="text_mine">Mine</string>
+    <string name="text_social">Influence</string>
     <string name="text_topnews">头条</string>
     <string name="text_public_number">公众号</string>
     <string name="text_launch_reword">发起悬赏</string>
 
     <!--Mine-->
     <string name="mine_task">任务</string>
-    <string name="wallet">钱包</string>
-    <string name="mine_ad_host">品牌主</string>
+    <string name="wallet">Wallet</string>
+    <string name="mine_ad_host">Advertiser</string>
+    <string name="max_click_number">max clicks</string>
+    <string name="history_total_income">campaign income</string>
+    <string name="max_per_income">max income</string>
+    <string name="average_income">avg income</string>
+    <string name="data_reviewing">资料审核中</string>
+    <string name="click_login">点击登录</string>
+    <string name="login_get_more_campaign">登录获取更多活动</string>
+    <string name="edit_kol_data">KOL Edit</string>
+    <string name="data_rejected">资料审核拒绝</string>
+    <string name="data_reviewing_again">重新审核中</string>
+
+    <!--收徒-->
+    <string name="apprentice_collect_money">Apprentice collect money</string>
 
     <!--BindSocialActivity-->
     <string name="influence_measure">影响力评测</string>
@@ -64,6 +77,7 @@
     <string name="min_2">最低0.2元</string>
     <string name="min_5">最低0.5元</string>
     <string name="min_20">最低2元</string>
+    <string name="min_25">最低2.5元</string>
     <string name="min_3">最低3元</string>
     <string name="min_1">最低1元</string>
 
@@ -121,10 +135,13 @@
     <string name="reword_money">悬赏金额</string>
 
     <!--WalletActivity-->
-    <string name="mine_wallet">我的钱包</string>
-    <string name="was_withdraw">已提现</string>
-    <string name="was_consume">已花费</string>
-    <string name="being_withdraw">提现中</string>
+    <string name="mine_wallet">My wallet</string>
+    <!--已提现-->
+    <string name="was_withdraw">Have withdrawal</string>
+    <!--已花费-->
+    <string name="was_consume">Has cost</string>
+    <!--提现中-->
+    <string name="being_withdraw">Waiting for withdrawal</string>
     <string name="beable_withdraw">可提现</string>
     <string name="days7_income_development">7日收益趋势</string>
     <string name="total">共</string>
@@ -144,8 +161,8 @@
     <string name="please_write_alipay_account">请填写支付宝账号</string>
     <string name="please_write_alipay_name">请填写支付宝姓名</string>
     <string name="please_write_id_number">请填写身份证号码</string>
-    <string name="click">点击</string>
-    <string name="post">转发</string>
+    <string name="click">click</string>
+    <string name="post">forwarding</string>
     <string name="shared_clicked_by_friends">分享后好友点击此文章即获得报酬</string>
     <string name="post_this_page_get_reword">转发此文章立即获得报酬</string>
     <string name="activity_order_pay">活动订单支付</string>
@@ -196,25 +213,22 @@
     <string name="total_need_times">总需人次：</string>
     <string name="add_times">追加</string>
     <string name="delivery_address">收货地址</string>
-    <string name="submit">提交</string>
+    <string name="submit">Submit</string>
     <string name="submit_success">提交成功</string>
     <string name="submit_failed">提交失败</string>
     <string name="please_write_title">请填写标题</string>
     <string name="please_write_name">请填写姓名</string>
     <string name="please_write_telphone">请填写联系电话</string>
     <string name="please_write_address">请填写收货地址</string>
-    <string name="help">帮助</string>
+    <string name="help">Help</string>
     <string name="month_sign_chart">月签到表</string>
     <string name="you_have_sign">您已连续签到</string>
     <string name="day">天</string>
     <string name="sign_was_done">签到已完成</string>
     <string name="sign_instantly">立即签到</string>
     <string name="sign_successfully">签到成功</string>
-    <string name="sign">签到</string>
-    <string name="max_click_number">最大点击数</string>
-    <string name="history_total_income">历史总收益</string>
-    <string name="max_per_income">最高单笔收益</string>
-    <string name="average_income">平均收益</string>
+    <string name="sign">Sign in</string>
+
     <string name="hot_kol_recommend">热门KOL推荐</string>
     <string name="wechat">朋友圈</string>
     <string name="invite_ta_participate_campaign">给TA发特邀活动</string>
@@ -225,7 +239,7 @@
     <string name="please_write_company">请填写公司</string>
     <string name="please_write_email">请填写邮箱</string>
     <string name="search">搜索</string>
-    <string name="cancel">取消</string>
+    <string name="cancel">Cancel</string>
     <string name="clear_history">清空历史</string>
     <string name="search_result_empty">搜索结果为空</string>
     <string name="nickname">昵称</string>
@@ -259,12 +273,12 @@
     <string name="icons_message_open">&#xe616;</string>
     <string name="unselected">&#xe61a;</string>
     <string name="selected">&#xe61e;</string>
-    打开消息
-    <string name="next">下一步</string>
-    <string name="jump">跳过</string>
+    <!--打开消息-->
+    <string name="next">Next step</string>
+    <string name="jump">Ignore</string>
     <string name="invite_friends">邀请好友</string>
     <string name="be_kol_first_compelete_data">资料完善度越高，接受的活动价格越高</string>
-    <string name="confirm">确定</string>
+    <string name="confirm">Confirm</string>
 
     <string name="interest">兴趣</string>
     <string name="user_phone_num">手机号</string>
@@ -294,17 +308,12 @@
     <string name="please_data_wrong">请求参数错误</string>
     <string name="over_time">请求超时</string>
     <string name="unknown">未知</string>
-    <string name="data_reviewing">资料审核中</string>
-    <string name="click_login">点击登录</string>
-    <string name="login_get_more_campaign">登录获取更多活动</string>
-    <string name="edit_kol_data">编辑我的资料</string>
-    <string name="data_rejected">资料审核拒绝</string>
-    <string name="data_reviewing_again">重新审核中</string>
-    <string name="please_write_nick_name">请填写昵称</string>
-    <string name="please_write_age">请填写年龄</string>
-    <string name="please_write_job">请填写职业</string>
-    <string name="please_write_interest">请填写兴趣</string>
-    <string name="please_write_desc">请填写简介</string>
+
+    <string name="please_write_nick_name">please write nick name</string>
+    <string name="please_write_age">please write age</string>
+    <string name="please_write_job">please write job</string>
+    <string name="please_write_interest">please write interest</string>
+    <string name="please_write_desc">please write desc</string>
     <string name="promote_the_content_page_for_details">推广内容详情页</string>
     <string name="campaign_data_download">活动素材下载</string>
     <string name="approved_wait_activity_start">等待活动开始</string>
@@ -342,15 +351,15 @@
     <string name="receive_this_campaign">接受此活动</string>
     <string name="has_invite_friends">已邀请好友</string>
     <string name="invite_instantly">立即邀请</string>
-    <string name="setting">设置</string>
-    <string name="log_out">退出登录</string>
-    <string name="message">消息</string>
+    <string name="setting">Setting</string>
+    <string name="log_out">Login out</string>
+    <string name="message">All Messages</string>
     <string name="all_message_read">所有消息标记为已读</string>
     <string name="feed_back">意见反馈</string>
     <string name="sweep_qr_code">扫一扫二维码登录官网</string>
     <string name="bind_social_account">社交账号绑定</string>
     <string name="social_account">社交账号</string>
-    <string name="help_online">在线客服</string>
+    <string name="help_online">Robin8 online customer service</string>
 
     <string name="viewfinderview_status_text1">将二维码/条码放入取景框内</string>
     <string name="viewfinderview_status_text2">即可自动扫描</string>
@@ -409,8 +418,8 @@
     <string name="img_empty">图片不存在,请检查本地路径,重新上传截图</string>
 
     <string name="text_protocol">\u3000\u3000Robin8提醒用户在使用Robin8平台（robin8.com）服务以及robin8 APP（以下简称“Robin8服务”）之前，仔细阅读并理解以下条款，尤其是限制用户权利的条款。使用Robin8服务的行为将视为用户已经同意本声明的全部内容，并将在使用Robin8服务的过程中遵守执行。\n\u3000\u30001、Robin8是供有广告投放推广需求的客户（下称“广告主”）和能够提供广告发布推广服务的自媒体账号或个人账户（以下简称“KOL”）交易的第三方平台。Robin8平台展示广告主提供的广告内容、KOL提供的账号名称、粉丝数等原始数据，供广告主、KOL根据需要甄选符合自己需求的服务对象进行交易。\n\u3000\u30002、Robin8将对广告主的身份、广告内容、KOL的身份信息、账号名称等内容进行审查，筛选出Robin8认为不真实的信息，但由于网络平台的特殊性及微播易的局限性，Robin8无法筛选出所有的不真实信息并做处理，但将尽最大努力保证所有信息的真实性。\n\u3000\u30003、广告主应如实填写广告信息，对广告内容的真实性、准确性、合法性、推广后的影响负责，Robin8倡导各广告主诚信发布广告、遵守法律法规以共同维护网络环境。\n\u3000\u30004、KOL应如实填写并及时更新对应平台的相应数据，包括但不限于账号名称、地域、账号粉丝数、受众信息等，并反馈真实的推广效果，Robin8倡导KOL诚信服务、遵守法律法规以共同维护网络环境。\n\u3000\u30005、KOL应综合考虑广告内容的真实性、准确性、合法性等因素后选择是否接单，一旦选择接单则应自行承担广告内容发布后对其账号造成的一切影响。广告主与KOL因广告发布产生的纠纷由双方自行解决。\n\u3000\u30006、Robin8基于广告主需求向其推荐的账号，仅是微播易基于账号自身数据分析判断做出的推荐，由广告主最终确认是否使用Robin8推荐的账号。\n\u3000\u30007、Robin8将采取必要手段为用户信息保密，但基于技术限制等，Robin8并不能保证用户的信息完全不被泄露。\n\u3000\u30008、用户应同意Robin8有限度的使用其信息，包括但不限于向用户及时发送重要通知或派发订单、Robin8内部进行审计、数据分析和研究等Robin8自行判断为合理使用的情形及法律法规要求等。\n\u3000\u30009、用户认为Robin8的其它用户侵犯其权利的，可向Robin8提供权利证明文件、身份证明文件等，Robin8审核评估后将采取适当措施予以处理。</string>
-    <string name="agree">同意</string>
-    <string name="reject">拒绝</string>
+    <string name="agree">Agree</string>
+    <string name="reject">Reject</string>
     <string name="robin_disclaimer">Robin8免责申明</string>
     <string name="share_article_tips">文章分享后，您的朋友购买了文章中的商品，您可以获得高额提成</string>
     <string name="expected_income_details"><![CDATA[预计收入详情>]]></string>

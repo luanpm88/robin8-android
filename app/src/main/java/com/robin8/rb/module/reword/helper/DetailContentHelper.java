@@ -99,6 +99,7 @@ public class DetailContentHelper {
     public static final String STATE_MISSED = "missed";
     public static final String STATE_PASSED = "passed";
     public static final String STATE_APPLYING = "applying";
+    public static final String STATE_REAGY_BEGIN = "countdown";
 
     public static final int DISALLOW_CLICK = - 1;
     public static final int CLICK_REJECT_CAMPAIGN = 1;//拒绝此活动
@@ -222,6 +223,11 @@ public class DetailContentHelper {
                 mCurrentLeftState = DISALLOW_CLICK;
                 mCurrentRightState = DISALLOW_CLICK;
                 break;
+            case STATE_REAGY_BEGIN:
+                setBottomView(false, tvLeft, tvRight, line, R.string.campaign_ready_begin);
+                mCurrentLeftState = DISALLOW_CLICK;
+                mCurrentRightState = DISALLOW_CLICK;
+                break;
         }
     }
 
@@ -280,6 +286,11 @@ public class DetailContentHelper {
                 break;
             case STATE_MISSED:// 整个显示 @"活动已错失"
                 setBottomView(false, tvLeft, tvRight, line, R.string.campaign_missed);
+                mCurrentLeftState = DISALLOW_CLICK;
+                mCurrentRightState = DISALLOW_CLICK;
+                break;
+            case STATE_REAGY_BEGIN:
+                setBottomView(false, tvLeft, tvRight, line, R.string.campaign_ready_begin);
                 mCurrentLeftState = DISALLOW_CLICK;
                 mCurrentRightState = DISALLOW_CLICK;
                 break;
@@ -371,6 +382,11 @@ public class DetailContentHelper {
                 //    setBottomView(true, tvLeft, tvRight, line, R.string.campaign_missed_forwarding);
                 //                mCurrentLeftState = CLICK_SHARE_NO_PAY;
                 //                mCurrentRightState = CLICK_SHARE_NO_PAY;
+                mCurrentLeftState = DISALLOW_CLICK;
+                mCurrentRightState = DISALLOW_CLICK;
+                break;
+            case STATE_REAGY_BEGIN:
+                setBottomView(false, tvLeft, tvRight, line, R.string.campaign_ready_begin);
                 mCurrentLeftState = DISALLOW_CLICK;
                 mCurrentRightState = DISALLOW_CLICK;
                 break;
@@ -724,37 +740,6 @@ public class DetailContentHelper {
                 }
             }
         });
-        //===============
-        //        mBasePresenter.getDataFromServer(true, HttpRequest.PUT,
-        //                HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot"),
-        //                "screenshot", filename, file, new RequestCallback() {
-        //
-        //                    @Override
-        //                    public void onError(Exception e) {
-        //                        if (mWProgressDialog != null) {
-        //                            mWProgressDialog.dismiss();
-        //                        }
-        //                        CustomToast.showShort(activity, "上传截图失败,请重试");
-        //                    }
-        //
-        //                    @Override
-        //                    public void onResponse(String response) {
-        //                        if (mWProgressDialog != null) {
-        //                            mWProgressDialog.dismiss();
-        //                        }
-        //                        CampaignInviteBean baseBean = GsonTools.jsonToBean(response, CampaignInviteBean.class);
-        //                        if (baseBean == null) {
-        //                            CustomToast.showShort(activity, activity.getString(R.string.please_data_wrong));
-        //                            return;
-        //                        }
-        //                        if (baseBean.getError() == 0) {
-        //                            CampaignListBean.CampaignInviteEntity entity = baseBean.getCampaign_invite();
-        //                            updateBottomShareView(entity);
-        //                            CustomToast.showShort(activity, "上传截图成功");
-        //                        } else
-        //                            CustomToast.showShort(activity, baseBean.getDetail());
-        //                    }
-        //                });
     }
 
     /**

@@ -15,25 +15,26 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:src="@mipmap/icon_share_campain"/>
+
         <TextView
             android:id="@+id/tv_title"
-            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/img_icon"
             android:text="标题"
             android:textColor="@color/black_202020"
             android:textSize="@dimen/undefine_font_3"/>
 
         <TextView
-            android:layout_below="@+id/tv_title"
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
-            android:layout_toLeftOf="@+id/btn_action"
-            android:layout_alignLeft="@+id/tv_title"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_alignLeft="@+id/tv_title"
+            android:layout_below="@+id/tv_title"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/btn_action"
             android:lineSpacingMultiplier="1.2"
             android:text=""
             android:textColor="@color/gray_969696"
