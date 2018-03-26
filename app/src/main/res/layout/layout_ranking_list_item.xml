@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@mipmap/icon_rank"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="排行榜"
+            android:textColor="@color/black_custom"
+            android:textSize="@dimen/undefine_font_3"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/ll_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/img_rank_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="4"
+                android:textColor="@color/gray_first"
+                android:textSize="@dimen/undefine_font_4"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/img_rank_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_rank_one"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <com.robin8.rb.view.widget.CircleImageView
+            android:id="@+id/img_user_photo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ll_icon"
+            android:background="@mipmap/icon_user_default"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/img_user_photo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kico"
+                android:textColor="@color/black_custom"
+                android:textSize="@dimen/undefine_font_5"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_user_campaign_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已接活动数："
+                android:textColor="@color/gray_first"
+                android:textSize="@dimen/undefine_font_3"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="left"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¥ "
+                android:textColor="@color/black_custom"
+                android:layout_gravity="bottom"
+                android:textSize="@dimen/undefine_font_4"
+               />
+
+            <TextView
+                android:id="@+id/tv_campaign_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="20.20"
+                android:textColor="@color/black_custom"
+                android:textSize="@dimen/undefine_font_8"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        style="@style/Undefined_Line"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:visibility="gone"/>
+</LinearLayout>

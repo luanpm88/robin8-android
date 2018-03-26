@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_custom"
+    android:orientation="vertical"
+    tools:context="com.robin8.rb.module.mine.activity.CollectMoneyActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@mipmap/bg_apprentice_collect_money"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:id="@+id/ll_go_to_all_collect_money"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_all_collect_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow_custom"
+                    android:textSize="@dimen/undefine_font_b"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_all_collect_money"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_all_collect_money"
+                    android:text="@string/yuan"
+                    android:textColor="@color/yellow_custom"
+                    android:textSize="@dimen/undefine_font_4"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/tv_all_collect_money"
+                    android:text="@string/apprentice_all_collect_money"
+                    android:textColor="@color/gray_second"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_left"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:background="@color/gray_second"/>
+
+            <RelativeLayout
+                android:id="@+id/ll_go_to_today_apprentice_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_today_apprentices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow_custom"
+                    android:textSize="@dimen/undefine_font_b"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_today_apprentices"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_today_apprentices"
+                    android:text="@string/people"
+                    android:textColor="@color/yellow_custom"
+                    android:textSize="@dimen/undefine_font_4"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/tv_today_apprentices"
+                    android:text="@string/today_apprentices"
+                    android:textColor="@color/gray_second"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_left"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="0.4"
+            android:gravity="center|left"
+            android:letterSpacing="0.1"
+            android:textColor="@color/gray_first"
+            android:textSize="@dimen/undefine_font_2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/white_custom"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <ImageView
+                    android:id="@+id/img_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_invite_share"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/img_icon"
+                    android:text="分享邀请收徒"
+                    android:textColor="@color/black_202020"
+                    android:textSize="@dimen/undefine_font_4"/>
+
+                <TextView
+                    android:id="@+id/btn_action_share"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/shape_solid_blue"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="去分享"
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_3"/>
+            </RelativeLayout>
+
+            <View
+                style="@style/Undefined_Line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <ImageView
+                    android:id="@+id/img_icon_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_invite_address"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/img_icon_two"
+                    android:text="通讯录邀请收徒"
+                    android:textColor="@color/black_202020"
+                    android:textSize="@dimen/undefine_font_4"/>
+
+                <TextView
+                    android:id="@+id/btn_action_invite"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/shape_solid_blue"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="去邀请"
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_3"/>
+            </RelativeLayout>
+
+            <View
+                style="@style/Undefined_Line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <ImageView
+                    android:id="@+id/img_icon_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_invite_code"/>
+
+
+                <TextView
+                    android:id="@+id/tv_invite_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/img_icon_three"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/black_202020"
+                    android:textSize="@dimen/undefine_font_4"/>
+
+                <TextView
+                    android:id="@+id/btn_action_code"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/shape_solid_blue"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="复制"
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_3"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2.5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@color/white_custom"
+                android:paddingLeft="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="奖励规则"
+                    android:textColor="@color/black_custom"
+                    android:textSize="@dimen/undefine_font_5"/>
+
+                <ImageView
+                    android:id="@+id/img_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:src="@mipmap/icon_invite_up"/>
+            </RelativeLayout>
+
+            <View
+                style="@style/Undefined_Line"/>
+
+            <LinearLayout
+                android:id="@+id/ll_rule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:visibility="visible">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="15dp"
+                        android:text="收徒奖励规则："
+                        android:textColor="@color/blue_custom"
+                        android:textSize="@dimen/undefine_font_4"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.05"
+                        android:lineSpacingExtra="2dp"
+                        android:paddingLeft="15dp"
+                        android:text="满足以下条件即为收徒成功并发放奖励："
+                        android:textColor="@color/gray_first"
+                        android:textSize="@dimen/undefine_font_3"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1.5dp"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.05"
+                        android:lineSpacingExtra="2dp"
+                        android:paddingLeft="15dp"
+                        android:text="1.徒弟注册成为robin8的用户;"
+                        android:textColor="@color/gray_first"
+                        android:textSize="@dimen/undefine_font_3"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1.5dp"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.05"
+                        android:lineSpacingExtra="2dp"
+                        android:paddingLeft="15dp"
+                        android:text="2.完成一个robin8的活动。"
+                        android:textColor="@color/gray_first"
+                        android:textSize="@dimen/undefine_font_3"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="15dp"
+                        android:text="分红奖励规则："
+                        android:textColor="@color/blue_custom"
+                        android:textSize="@dimen/undefine_font_4"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.05"
+                        android:lineSpacingExtra="2dp"
+                        android:paddingLeft="15dp"
+                        android:text="徒弟通过活动收入的5%,单个徒弟可贡献收益上限为50元(收益四舍五入精确到小数点后两位,如0.012为0.01；0.026为0.03),收徒越多奖励越多,徒弟总数量无上限。"
+                        android:textColor="@color/gray_first"
+                        android:textSize="@dimen/undefine_font_3"/>
+                </LinearLayout>
+            </ScrollView>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
