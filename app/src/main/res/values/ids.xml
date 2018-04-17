@@ -29,4 +29,8 @@
   <item name="id_stickynavlayout_indicator" type="id"/>
   <item name="id_stickynavlayout_innerscrollview" type="id"/>
 
+  <!--ExpandableTextView-->
+  <item name="id_source_textview" type="id"></item>
+  <item name="id_expand_textview" type="id"></item>
+
 </resources>

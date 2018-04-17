@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/ll_first_bottom"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="17dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="7dp"
         android:visibility="gone"
         android:src="@mipmap/dialog_bg_first_start_right"/>
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="4">
 
         <ImageView
             android:id="@+id/img_shadow_first"

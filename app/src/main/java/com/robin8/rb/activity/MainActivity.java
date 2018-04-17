@@ -38,7 +38,7 @@ import com.robin8.rb.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.pager.CreatePager;
+import com.robin8.rb.pager.FindPager;
 import com.robin8.rb.pager.FirstPager;
 import com.robin8.rb.pager.InfluencePager;
 import com.robin8.rb.pager.MinePager;
@@ -65,18 +65,21 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     private static final int INFLUENCE_LIST = 1;
     private static final int CAMPAIGN_LIST = 0;
-    private static final int MY = 2;
+    private static final int MY = 3;
+    private static final int FIND = 2;
     private ArrayList<BasePager> mPagerList;
     private RewordPager mRewordPager;
     private FirstPager mFirstPager;
-    private CreatePager mCreatePager;
+    // private CreatePager mCreatePager;
+    private FindPager mFindPager;
     private MinePager mMinePager;
     private MyPagerAdapter mPagerAdapter;
     private ViewPager mVPContentPager;
     private RadioGroup mRGContentBottom;
     private RadioButton mRBBottomFirst;
     private RadioButton mRBBottomCampaign;
-    private RadioButton mRBBottomCreate;
+    // private RadioButton mRBBottomCreate;
+    private RadioButton mRBBottomFind;
     private RadioButton mRBBottomInfluence;
     private RadioButton mRBBottomMine;
     private int mLastPosition;
@@ -126,7 +129,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         //        }
         setContentView(R.layout.activity_main);
         setSwipeBackEnable(false);
-      //  checkNewVersion();
+        checkNewVersion();
         postData();
         startLocate();
         initView();
@@ -142,7 +145,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             }
         }
         //01 演示图片.jpg==||||||==/storage/emulated/0/Pictures/01 演示图片.jpg
-        //showShadowDialog(MainActivity.this, 0);
+      // showShadowDialog(MainActivity.this, 0);
 
     }
 
@@ -184,7 +187,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
         base.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.UPDATE_PROFILE_URL), requestParams, null);
     }
-
 
 
     @Override
@@ -243,12 +245,13 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         //  mRBBottomNotification = (CustomRedDotRadioButton) findViewById(R.id.rb_bottom_notification);
         mRBBottomCampaign = (RadioButton) findViewById(R.id.rb_bottom_campaign);
         mRBBottomInfluence = (RadioButton) findViewById(R.id.rb_bottom_influence);
-        mRBBottomCreate = (RadioButton) findViewById(R.id.rb_bottom_create);
+        //  mRBBottomCreate = (RadioButton) findViewById(R.id.rb_bottom_create);
+        mRBBottomFind = (RadioButton) findViewById(R.id.rb_bottom_find);
         mRBBottomMine = (RadioButton) findViewById(R.id.rb_bottom_mine);
         setRadioButtonDrawableSize(mRBBottomFirst);
         setRadioButtonDrawableSize(mRBBottomInfluence);
         setRadioButtonDrawableSize(mRBBottomCampaign);
-        setRadioButtonDrawableSize(mRBBottomCreate);
+        setRadioButtonDrawableSize(mRBBottomFind);
         setRadioButtonDrawableSize(mRBBottomMine);
     }
 
@@ -266,6 +269,10 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             case R.id.rb_bottom_influence:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_influence_selector);
                 break;
+            case R.id.rb_bottom_find:
+                drawable = ContextCompat.getDrawable(this, R.drawable.bottom_create_selector);
+                break;
+
             case R.id.rb_bottom_mine:
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_mine_selector);
                 break;
@@ -313,9 +320,10 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         if (mInfluencePager == null) {
             mInfluencePager = new InfluencePager(this);
         }
-        //        if (mCreatePager == null) {
-        //            mCreatePager = new CreatePager(this);
-        //        }
+
+        if (mFindPager == null) {
+            mFindPager = new FindPager(this);
+        }
 
         if (mMinePager == null) {
             mMinePager = new MinePager(this);
@@ -330,14 +338,14 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         // mPagerList.add(mNotificationPager);
         mPagerList.add(mRewordPager);
         mPagerList.add(mInfluencePager);
-        // mPagerList.add(mCreatePager);
+        mPagerList.add(mFindPager);
         mPagerList.add(mMinePager);
 
         if (mPagerAdapter == null) {
             mPagerAdapter = new MyPagerAdapter();
         }
         mVPContentPager.setAdapter(mPagerAdapter);
-        mVPContentPager.setOffscreenPageLimit(3);
+        mVPContentPager.setOffscreenPageLimit(4);
         //
         // 设置默认显示的界面 默认显示首页
         // mRGContentBottom.check(R.id.rb_bottom_first);
@@ -364,7 +372,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         // mRBBottomFirst.setOnClickListener(this);
         mRBBottomCampaign.setOnClickListener(this);
         mRBBottomMine.setOnClickListener(this);
-        // mRBBottomCreate.setOnClickListener(this);
+        mRBBottomFind.setOnClickListener(this);
         mRBBottomInfluence.setOnClickListener(this);
     }
 
@@ -447,8 +455,11 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                         mVPContentPager.setCurrentItem(1, false);
                     }
                     break;
-                case R.id.rb_bottom_mine:
+                case R.id.rb_bottom_find:
                     mVPContentPager.setCurrentItem(2, false);
+                    break;
+                case R.id.rb_bottom_mine:
+                    mVPContentPager.setCurrentItem(3, false);
                     break;
             }
         }
@@ -522,6 +533,12 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                     mRBBottomInfluence.setChecked(true);
                     mPagerList.get(INFLUENCE_LIST).initData();
                     break;
+                case FIND:
+                    mPageName = StatisticsAgency.FIND_LIST;
+                    onePageSelected(FIND);
+                    mRBBottomFind.setChecked(true);
+                    mPagerList.get(FIND).initData();
+                    break;
                 case MY:
                     mPageName = StatisticsAgency.MY;
                     onePageSelected(MY);
@@ -569,6 +586,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.CAMPAIGN_LIST);
         } else if (mLastPosition == INFLUENCE_LIST) {
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.INFLUENCE_LIST);
+        } else if (mLastPosition == FIND) {
+            StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.FIND_LIST);
+
         }
     }
 

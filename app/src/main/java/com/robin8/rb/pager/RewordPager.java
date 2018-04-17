@@ -40,6 +40,7 @@ import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,7 +171,7 @@ public class RewordPager extends BasePager implements Observer {
 
             @Override
             public void onResponse(String response) {
-               // LogUtil.LogShitou("获取活动列表数据"+HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL),response);
+                LogUtil.LogShitou("获取活动列表数据"+HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL),response);
                 CacheUtils.putLong(mActivity.getApplicationContext(), SPConstants.TAG_REFRESH_TIME, System.currentTimeMillis());
                 CampaignListBean bean = GsonTools.jsonToBean(response, CampaignListBean.class);
 

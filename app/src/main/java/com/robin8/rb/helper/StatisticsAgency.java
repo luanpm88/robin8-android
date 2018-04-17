@@ -9,8 +9,7 @@ import com.tendcloud.appcpa.TalkingDataAppCpa;
 import com.tendcloud.tenddata.TCAgent;
 
 /**
- * Created by IBM on 2016/8/11.
- */
+ Created by IBM on 2016/8/11. */
 public class StatisticsAgency {
 
     // 首页
@@ -24,7 +23,7 @@ public class StatisticsAgency {
     public static final String KOL_LIST_FOLLOWERS = "kol-list-followers";//KOL关注列表
 
     //通知
-  //  public static final String NOTIFICATION_LIST = "notification-list";//活动首页
+    //  public static final String NOTIFICATION_LIST = "notification-list";//活动首页
     public static final String INFLUENCE_LIST = "My_influence";//影响力
     public static final String PK_INFLUENCE = "Pk_influence";//影响力pk
     public static final String OTHER_INFLUENCE = "Other_people_influence";//他人影响力
@@ -39,6 +38,8 @@ public class StatisticsAgency {
     public static final String CAMPAIGN_RECRUIT = "campaign-recruit";//招募活动详情
     public static final String CITY_LIST = "city-list";//城市列表
     public static final String SIGN_UP_RECRUIT = "sign_up_recruit";//招募活动报名
+    //发现
+    public static final String FIND_LIST = "find_list";
 
     //创作
     public static final String CREATE_LIST = "create_list";
@@ -104,18 +105,15 @@ public class StatisticsAgency {
         TCAgent.setReportUncaughtExceptions(true);
 
         try {
-            ApplicationInfo applicationInfo = context.getPackageManager()
-                    .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             //talking data 应用统计初始化
             String analyticChannelId = applicationInfo.metaData.getString(TD_ANALYTICS_CHANNEL_ID);
             String analyticAppId = applicationInfo.metaData.getString(TD_ANALYTICS_APP_ID);
-            TCAgent.init(context,analyticAppId,analyticChannelId);
+            TCAgent.init(context, analyticAppId, analyticChannelId);
             //talking data 广告检测初始化
             String adAppId = applicationInfo.metaData.getString(TD_AD_ID);
-            LogUtil.LogShitou("埋点的id","++-->"+adAppId);
-            TalkingDataAppCpa.init(context,
-                    adAppId,
-                    TD_AD_CHANNEL_ID);
+            LogUtil.LogShitou("埋点的id", "++-->" + adAppId);
+            TalkingDataAppCpa.init(context, adAppId, TD_AD_CHANNEL_ID);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

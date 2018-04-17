@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <View
+        android:id="@+id/view_bg_type"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_custom"
+        android:alpha="0.4"/>
+    <LinearLayout
+        android:id="@+id/ll_title_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_f2f2f2"
+        android:orientation="horizontal">
+
+        <com.robin8.rb.module.social.view.HorizontalListView
+            android:id="@+id/list_type"
+            android:choiceMode="singleChoice"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+
+    </LinearLayout>
+</RelativeLayout>

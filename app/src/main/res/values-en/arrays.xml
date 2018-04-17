@@ -4,6 +4,7 @@
     <string-array name="mine_list_title">
         <item>My wallet</item>
         <item>My campaigns</item>
+        <item>My collect</item>
         <item>My product</item>
         <item>My followers</item>
         <item>Brand manager</item>
@@ -73,6 +74,7 @@
     </string-array>
     <string-array name="mine_list_icons">
         <item>&#xe60b;</item>
+        <item>&#xe601;</item>
         <item>&#xe601;</item>
         <item>&#xe645;</item>
         <item>&#xe623;</item>

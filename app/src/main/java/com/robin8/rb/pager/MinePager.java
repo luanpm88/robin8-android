@@ -38,6 +38,7 @@ import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
 import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.HelpCenterActivity;
 import com.robin8.rb.module.mine.activity.InvitationCodeActivity;
+import com.robin8.rb.module.mine.activity.MyCollectActivity;
 import com.robin8.rb.module.mine.activity.SettingActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
 import com.robin8.rb.module.mine.model.MineShowModel;
@@ -75,15 +76,16 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private static final int TYPE_NORMAL = 1;
     private static final int MY_WALLET = 1;
     private static final int MY_CAMPAIGN = 2;
-    private static final int MY_PRODUCT = 3;
-    private static final int MY_CARE = 4;
-    private static final int AD_HOST = 5;
-    private static final int ROBIN_INDIANA = 6;
-    private static final int SIGN = 7;
-    private static final int INVITE_FRIENDS = 8;
-    private static final int INVITE_CODE = 9;
-    private static final int RONG_CLOUD = 10;
-    private static final int HELP_CENTER = 11;
+    private static final int MY_COLLECT = 3;
+    private static final int MY_PRODUCT = 4;
+    private static final int MY_CARE = 5;
+    private static final int AD_HOST = 6;
+    private static final int ROBIN_INDIANA = 7;
+    private static final int SIGN = 8;
+    private static final int INVITE_FRIENDS = 9;
+    private static final int INVITE_CODE = 10;
+    private static final int RONG_CLOUD = 11;
+    private static final int HELP_CENTER = 12;
 
     private static final String ROLE_BIG_V = "big_v";
     private static final String ROLE_PUBLIC = "public";
@@ -546,6 +548,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 case MY_CAMPAIGN:
                     skipToCampaign();
                     break;
+                case MY_COLLECT:
+                    skipToCollect();
+                    break;
                 case MY_PRODUCT:
                     skipToProduct();
                     break;
@@ -574,6 +579,16 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     skipToHelpCenter();
                     break;
             }
+        }
+    }
+
+    /**
+     * 我的收藏
+     */
+    private void skipToCollect() {
+        if (isLogined(SPConstants.MAIN_COLLECT)) {
+            Intent intent = new Intent(mActivity, MyCollectActivity.class);
+            mActivity.startActivity(intent);
         }
     }
 
@@ -849,29 +864,30 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 holder.lineDown = convertView.findViewById(R.id.line_down);
                 switch (item.id) {
                     case 0:
-                    case 5:
-                    case 9:
+                    case 6:
+                    case 10:
                         setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE);
                         break;
                     case 1:
                     case 2:
                     case 3:
-                    case 6:
+                    case 4:
                     case 7:
+                    case 8:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.VISIBLE);
                         break;
-                    case 8:
-                    case 10:
+                    case 9:
+                    case 11:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.GONE);
                         break;
                     //                    case 9:
                     //                        setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE);
                     //                        break;
                 }
-//                if (item.name.equals("一元购")) {
-//                    holder.mLlItem.setVisibility(View.GONE);
-//                    holder.lineDown.setVisibility(View.GONE);
-//                }
+                if (item.name.equals("一元购")) {
+                    holder.mLlItem.setVisibility(View.GONE);
+                    holder.lineDown.setVisibility(View.GONE);
+                }
                 //隐藏我的关注
                 if (item.name.equals(mActivity.getResources().getString(R.string.my_concern))) {
                     holder.mLlItem.setVisibility(View.GONE);
@@ -905,7 +921,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_invitation_code);
                 } else if (item.name.equals(mActivity.getString(R.string.help_online))) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_rong_cloud);
-                } else {
+                } else if (item.name.equals(mActivity.getString(R.string.my_collect))){
+                    IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_my_collect);
+                } else{
                     IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);
                 }
 

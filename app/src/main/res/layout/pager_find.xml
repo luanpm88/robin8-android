@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.andview.refreshview.XRefreshView
+            android:id="@+id/xrefreshview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@color/undefined_divide_line"
+                android:dividerHeight="1dp"
+                android:listSelector="@android:color/transparent"/>
+        </com.andview.refreshview.XRefreshView>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/ll_error"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center"
+                  android:orientation="vertical"
+                  android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_error_page"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加载失败,点击重试"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/undefine_font_9"/>
+    </LinearLayout>
+    <View
+        android:visibility="gone"
+        android:id="@+id/view_bg_type"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_custom"
+        android:alpha="0.4"/>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_title_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_f2f2f2"
+        android:orientation="horizontal">
+
+        <com.robin8.rb.module.social.view.HorizontalListView
+            android:id="@+id/list_type"
+            android:choiceMode="singleChoice"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+
+    </LinearLayout>
+
+</FrameLayout>

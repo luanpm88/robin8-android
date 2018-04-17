@@ -230,9 +230,42 @@ public class DateUtil {
         long millionSeconds = getTimeLong(timeU);
         long currentTimeMillis = System.currentTimeMillis();
         int time = (int) ((currentTimeMillis - millionSeconds) / 60000);
+        if (time<1){
+            timeCountdown = "刚刚";
+        }else if (time < 60) {
+            timeCountdown = time+"分钟前";
+        } else if (time < 60 * 24) {
+            timeCountdown = String.valueOf(time / 60) + "小时前";
+        } else if (time < 60 * 24 * 6) {
+            timeCountdown = String.valueOf(time / (60 * 24)) + "天前";
+        } else {
+            timeCountdown = getFormatTime(millionSeconds, "yyyy-MM-dd");
+        }
+        return timeCountdown;
+    }
 
-        if (time < 60) {
-            timeCountdown = "1小时内";
+    public static long getTimeLongMore(String tem,String timeUTC) {
+        long time;
+        SimpleDateFormat format = new SimpleDateFormat(tem);
+        try {
+            Date date = format.parse(timeUTC);
+            time = date.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return System.currentTimeMillis();
+        }
+        return time;
+    }
+
+    public static String getCountdownMore(String tem,String timeU) {
+        String timeCountdown = null;
+        long millionSeconds = getTimeLongMore(tem,timeU);
+        long currentTimeMillis = System.currentTimeMillis();
+        int time = (int) ((currentTimeMillis - millionSeconds) / 60000);
+        if (time<1){
+            timeCountdown = "刚刚";
+        }else if (time < 60) {
+            timeCountdown = time+"分钟前";
         } else if (time < 60 * 24) {
             timeCountdown = String.valueOf(time / 60) + "小时前";
         } else if (time < 60 * 24 * 6) {
@@ -374,6 +407,54 @@ public class DateUtil {
      */
     public static int getMonth() {
         return Calendar.getInstance().get(Calendar.MONTH) + 1;
+    }
+
+
+    private final static long minute = 60 * 1000;// 1分钟
+    private final static long hour = 60 * minute;// 1小时
+    private final static long day = 24 * hour;// 1天
+    private final static long month = 31 * day;// 月
+    private final static long year = 12 * month;// 年
+    /**
+     * 返回文字描述的日期
+     *
+     * @param timeUTC
+     * @return
+     */
+    public static String getTimeFormatText(String timeUTC) {
+        Date date = null;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        try {
+            date = format.parse(timeUTC);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (date == null) {
+            return null;
+        }
+        long diff = new Date().getTime() - date.getTime();
+        long r = 0;
+        if (diff > year) {
+            r = (diff / year);
+            return r + "年前";
+        }
+        if (diff > month) {
+            r = (diff / month);
+            return r + "个月前";
+        }
+        if (diff > day) {
+            r = (diff / day);
+            return r + "天前";
+        }
+        if (diff > hour) {
+            r = (diff / hour);
+            return r + "个小时前";
+        }
+        if (diff > minute) {
+            r = (diff / minute);
+            return r + "分钟前";
+        }
+        return "刚刚";
     }
 
 }

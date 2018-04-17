@@ -31,13 +31,13 @@ public class CommonConfig {
 
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
-
+//18321878526
     // public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
-    //public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-    //public static String SERVICE = "http://192.168.51.99:3000/";//robin8-测试服务器地址/test server path
+   // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+    // public static String SERVICE = "http://192.168.51.99:3000/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
-    public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
-    //public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
+    // public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
+    public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String UpdateUrl = "api/v2/upgrades/check";
     public static final String BIND_IDENTITY_URL = "api/v2/influences/bind_identity";
@@ -166,5 +166,10 @@ public class CommonConfig {
     public static final String INVITE_FRIENDS_URL = "api/v1_3/tasks/invite_info";
     public static final String APPRENTICE_COLLECT_MONEY_URL = "api/v2_0/kols/percentage_on_friend";//收徒总收益；get请求  int page
     public static final String TODAY_GET_APPRENTICE_URL = "api/v2_0/kols/today_friends";//近日已收徒get请求  int page
+
+    //find
+    public static final String FIND_ARTICLE_LIST = "api/v2_0/my/article_lists?_action=collects&";//我的收藏
+    public static final String FIND_ARTICLE = "api/v2_0/articles";//发现|新鲜事hot
+    public static final String FIND_SET = "api/v2_0/articles/set";
 
 }

@@ -1,4 +1,3 @@
-
 apply plugin: 'com.android.application'
 apply plugin: 'android'
 
@@ -34,8 +33,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
         //noinspection HighAppVersionCode
-        versionCode 2018032319
-        versionName "2.3.2"
+        versionCode 2018041621
+        versionName "2.4.0"
         multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "IZNLTEcKP29wbXiZVI8414",
@@ -112,7 +111,7 @@ android {
 //        android_360 {
 //            manifestPlaceholders = [Td_Channel_Id: "android_360"]
 //        }
-//
+
 //        android_baidu {
 //            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
 //        }
@@ -128,20 +127,20 @@ android {
 //        android_lianxiang {
 //            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
 //        }
-//
+
 //        android_robin8 {
 //            manifestPlaceholders = [Td_Channel_Id: "android_robin8"]
 //        }
 
-//        android_vivo {
-//            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
-//        }
+        android_vivo {
+            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
+        }
 //        android_oppo {
 //            manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
 //        }
-        android_xiaomi {
-            manifestPlaceholders = [Td_Channel_Id: "android_xiaomi"]
-        }
+//        android_xiaomi {
+//            manifestPlaceholders = [Td_Channel_Id: "android_xiaomi"]
+//        }
 
 //        android_meizu {
 //            manifestPlaceholders = [Td_Channel_Id: "android_meizu"]
@@ -175,7 +174,7 @@ afterEvaluate {
 dependencies {
     provided fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/AMap_Location_v2.3.0_20160112.jar')
-    compile files('libs/glide-3.6.1.jar')
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile files('libs/gson-2.6.2.jar')
     compile files('libs/jackson-annotations-2.2.1.jar')
     compile files('libs/jackson-core-2.2.1.jar')
@@ -204,6 +203,7 @@ dependencies {
     //compile files('libs/commons-codec-1.4.jar')
     compile files('libs/SaaS_AdTracking_Android_SDK_V4.0.2.jar')
     compile project(':IMKit')
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.moxun:tagcloudlib:1.0.3'

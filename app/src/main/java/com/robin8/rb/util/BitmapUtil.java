@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.robin8.rb.R;
@@ -32,8 +33,7 @@ import java.io.IOException;
 
 
 /**
- * @author Figo
- */
+ @author Figo */
 public class BitmapUtil {
 
     static {
@@ -47,13 +47,12 @@ public class BitmapUtil {
 
     private final static String ALBUM_PATH = Environment.getExternalStorageDirectory() + "/articles_images/";
 
-    private static int arrId[] = {R.mipmap.pic_kol_avatar_0, R.mipmap.pic_kol_avatar_1,
-            R.mipmap.pic_kol_avatar_2, R.mipmap.pic_kol_avatar_3, R.mipmap.pic_kol_avatar_4};
+    private static int arrId[] = {R.mipmap.pic_kol_avatar_0, R.mipmap.pic_kol_avatar_1, R.mipmap.pic_kol_avatar_2, R.mipmap.pic_kol_avatar_3, R.mipmap.pic_kol_avatar_4};
     public static String path;
 
     /**
-     * @param context
-     * @return
+     @param context
+     @return
      */
     public static String getPath(Context context) {
         String path = null;
@@ -66,7 +65,7 @@ public class BitmapUtil {
         }
         File file = new File(path);
         boolean isExist = file.exists();
-        if (!isExist) {
+        if (! isExist) {
             file.mkdirs();
         }
         return file.getPath();
@@ -106,8 +105,7 @@ public class BitmapUtil {
         }
     }
 
-    public static void loadImage(Context context, String mImageUrl, ImageView to, int resid,
-                                 BitmapTransformation transformation) {
+    public static void loadImage(Context context, String mImageUrl, ImageView to, int resid, BitmapTransformation transformation) {
         Glide.with(context).load(mImageUrl).centerCrop().transform(transformation).placeholder(resid)
                 // .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.ALL).into(to);
@@ -122,6 +120,43 @@ public class BitmapUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void loadFindImage(Context context, String mImageUrl, ImageView to, boolean is) {
+        if (TextUtils.isEmpty(mImageUrl) || to == null) {
+            return;
+        }
+        try {
+            if (is) {
+                Glide.with(context)
+                        .load(mImageUrl)
+                        .priority(Priority.IMMEDIATE)
+                        .placeholder(R.drawable.ic_default_color)
+                        .error(R.mipmap.icon_task_default)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .centerCrop()
+                        .into(to);
+            } else {
+                Glide.with(context)
+                        .load(mImageUrl)
+                        .priority(Priority.IMMEDIATE)
+                        .error(R.mipmap.icon_task_default)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(to);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void clear(Context context) {
+        try {
+            Glide.get(context).clearDiskCache();
+            Glide.get(context).clearMemory();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void loadImageNocrop(Context context, String mImageUrl, ImageView to) {
@@ -169,17 +204,16 @@ public class BitmapUtil {
         double w = options.outWidth;
         double h = options.outHeight;
 
-        int lowerBound = (maxNumOfPixels == -1) ? 1 : (int) Math.ceil(Math.sqrt(w * h / maxNumOfPixels));
-        int upperBound = (minSideLength == -1) ? 128 : (int) Math.min(Math.floor(w / minSideLength),
-                Math.floor(h / minSideLength));
+        int lowerBound = (maxNumOfPixels == - 1) ? 1 : (int) Math.ceil(Math.sqrt(w * h / maxNumOfPixels));
+        int upperBound = (minSideLength == - 1) ? 128 : (int) Math.min(Math.floor(w / minSideLength), Math.floor(h / minSideLength));
 
         if (upperBound < lowerBound) {
             return lowerBound;
         }
 
-        if ((maxNumOfPixels == -1) && (minSideLength == -1)) {
+        if ((maxNumOfPixels == - 1) && (minSideLength == - 1)) {
             return 1;
-        } else if (minSideLength == -1) {
+        } else if (minSideLength == - 1) {
             return lowerBound;
         } else {
             return upperBound;
@@ -250,7 +284,7 @@ public class BitmapUtil {
     }
 
     public static String getCompressImagePath(String srcPath) {
-        if (TextUtils.isEmpty(srcPath) || !new File(srcPath).exists())
+        if (TextUtils.isEmpty(srcPath) || ! new File(srcPath).exists())
             return null;
         BitmapFactory.Options newOpts = new BitmapFactory.Options();
         //开始读入图片，此时把options.inJustDecodeBounds 设回true了
@@ -279,9 +313,8 @@ public class BitmapUtil {
     }
 
     /**
-     * 压缩图片
-     *
-     * @return
+     压缩图片
+     @return
      */
     public static String compressImage(String path, Bitmap image) {
 
@@ -361,7 +394,7 @@ public class BitmapUtil {
     }
 
     /**
-     * 保存方法
+     保存方法
      */
     public static String saveBitmap(String path, Bitmap bitmap) {
         try {
@@ -388,7 +421,7 @@ public class BitmapUtil {
     }
 
     /**
-     * 裁剪图片方法实现
+     裁剪图片方法实现
      */
     public static void cropImageUri(Uri uri, int outputX, int outputY, int requestCode, int aspectX, int aspectY, Activity activity) {
         Intent intent = new Intent("com.android.camera.action.CROP");
@@ -399,8 +432,8 @@ public class BitmapUtil {
         intent.putExtra("outputX", outputX);
         intent.putExtra("outputY", outputY);
         intent.putExtra("scale", true);
-       //intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,  Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg"));
+        //intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg"));
         intent.putExtra("scale", true);//黑边
         intent.putExtra("scaleUpIfNeeded", true);//黑边
         intent.putExtra("return-data", false);
@@ -412,7 +445,7 @@ public class BitmapUtil {
     public static Bitmap decodeUriAsBitmap(Uri uri, Activity activity) {
         Bitmap bitmap = null;
         try {
-           // bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(),uri);
+            // bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(),uri);
             bitmap = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(uri));
             //bitmap = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg")));
         } catch (FileNotFoundException e) {

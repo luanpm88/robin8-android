@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_custom">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white_custom"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.robin8.rb.view.widget.CircleImageView
+                android:id="@+id/img_user_photo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:background="@mipmap/icon_user_default"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_user_photo"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/robin8"
+                    android:textColor="@color/black_custom"
+                    android:textSize="@dimen/undefine_font_4"/>
+
+                <TextView
+                    android:id="@+id/tv_article_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text=""
+                    android:textColor="@color/gray_second"
+                    android:textSize="@dimen/undefine_font_2"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_collect"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_bg_yellow_pane_first"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/text_collect"
+                android:textColor="@color/yellow_custom"
+                android:textSize="@dimen/undefine_font_3"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.robin8.rb.module.find.view.ExpandableTextView
+                android:id="@+id/ll_expand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="展开"
+                android:textSize="@dimen/undefine_font_5"
+                android:paddingTop="5dp"
+                android:textColor="@color/yellow_custom"/>
+        </LinearLayout>
+        <!--<com.robin8.rb.module.find.view.ExpandableTextView-->
+        <!--android:id="@+id/ll_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:layout_marginTop="15dp">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/id_source_textview"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="@color/black_custom"-->
+        <!--android:letterSpacing="0.05"-->
+        <!--android:lineSpacingExtra="2dp"-->
+        <!--android:textSize="@dimen/undefine_font_5"/>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/id_expand_textview"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="展开"-->
+        <!--android:paddingTop="5dp"-->
+        <!--android:textColor="@color/yellow_custom"-->
+        <!--android:textSize="@dimen/undefine_font_5"/>-->
+        <!--</com.robin8.rb.module.find.view.ExpandableTextView>-->
+
+        <com.robin8.rb.module.find.view.NineGridView
+            android:id="@+id/img_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            style="@style/Undefined_Line"
+            android:layout_marginTop="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_look_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingTop="13dp"
+                android:text="0次观看"
+                android:textColor="@color/gray_first"
+                android:textSize="@dimen/undefine_font_3"/>
+
+            <LinearLayout
+                android:id="@+id/ll_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/ll_share"
+                android:orientation="horizontal"
+                android:paddingTop="13dp">
+
+                <ImageView
+                    android:id="@+id/img_like_click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="6dp"
+                    android:gravity="center"
+                    android:src="@mipmap/icon_like_no"/>
+
+                <TextView
+                    android:id="@+id/tv_like_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/gray_first"
+                    android:textSize="@dimen/undefine_font_3"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="13dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="6dp"
+                    android:src="@mipmap/icon_like_share"/>
+
+                <TextView
+                    android:id="@+id/tv_like_share_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@color/gray_first"
+                    android:textSize="@dimen/undefine_font_3"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -117,10 +117,6 @@ public class PhotoPreviewActivity extends BaseActivity implements PhotoPagerAdap
         onBackPressed();
     }
 
-    //    public void updateActionBarTitle() {
-    //        getSupportActionBar().setTitle(getString(R.string.image_index, mViewPager.getCurrentItem() + 1, paths.size()));
-    //    }
-
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
@@ -139,63 +135,5 @@ public class PhotoPreviewActivity extends BaseActivity implements PhotoPagerAdap
     protected void executeOnclickRightView() {
 
     }
-    //    @Override
-    //    public boolean onCreateOptionsMenu(Menu menu) {
-    //        getMenuInflater().inflate(R.menu.menu_preview, menu);
-    //        return true;
-    //    }
 
-    //    @Override
-    //    public boolean onOptionsItemSelected(MenuItem item) {
-    //
-    //        if (item.getItemId() == android.R.id.home) {
-    //            onBackPressed();
-    //            return true;
-    //        }
-
-    // 删除当前照片
-    //        if (item.getItemId() == R.id.action_discard) {
-    //            final int index = mViewPager.getCurrentItem();
-    //            final String deletedPath = paths.get(index);
-    //            Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), R.string.deleted_a_photo, Snackbar.LENGTH_LONG);
-    //            if (paths.size() <= 1) {
-    //                // 最后一张照片弹出删除提示
-    //                // show confirm dialog
-    //                new AlertDialog.Builder(this).setTitle(R.string.confirm_to_delete).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-    //
-    //                    @Override
-    //                    public void onClick(DialogInterface dialogInterface, int i) {
-    //                        dialogInterface.dismiss();
-    //                        paths.remove(index);
-    //                        onBackPressed();
-    //                    }
-    //                }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-    //
-    //                    @Override
-    //                    public void onClick(DialogInterface dialogInterface, int i) {
-    //                        dialogInterface.dismiss();
-    //                    }
-    //                }).show();
-    //            } else {
-    //                snackbar.show();
-    //                paths.remove(index);
-    //                mPagerAdapter.notifyDataSetChanged();
-    //            }
-
-    //            snackbar.setAction(R.string.undo, new View.OnClickListener() {
-    //
-    //                @Override
-    //                public void onClick(View view) {
-    //                    if (paths.size() > 0) {
-    //                        paths.add(index, deletedPath);
-    //                    } else {
-    //                        paths.add(deletedPath);
-    //                    }
-    //                    mPagerAdapter.notifyDataSetChanged();
-    //                    mViewPager.setCurrentItem(index, true);
-    //                }
-    //            });
-    //        }
-    //        return super.onOptionsItemSelected(item);
-    //    }
 }

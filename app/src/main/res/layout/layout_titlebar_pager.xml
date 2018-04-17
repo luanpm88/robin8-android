@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_title"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/title_bar_height"
-    android:background="@drawable/shape_border">
+                android:id="@+id/rl_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_bar_height"
+                android:background="@drawable/shape_border">
 
     <TextView
         android:id="@+id/titlebar_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text=""
+        android:text="视频"
         android:textColor="@color/black_custom"
         android:textSize="@dimen/undefine_font_7"
-        android:visibility="gone" />
+        android:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/img_type_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/titlebar_text"
+        android:padding="10dp"
+        android:src="@mipmap/icon_data_down"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/reword_launch_iv"
@@ -22,7 +32,7 @@
         android:layout_centerVertical="true"
         android:padding="12dp"
         android:src="@mipmap/icon_advertiser_create"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/first_left"
@@ -31,38 +41,38 @@
         android:layout_centerVertical="true"
         android:padding="10dp"
         android:src="@mipmap/icon_ark_more"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/first_right"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:padding="10dp"
         android:src="@mipmap/icon_ark_search"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/reword_filter_iv"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:padding="10dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:padding="10dp"
         android:src="@mipmap/reword_filter"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/ll_reword_filter"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:visibility="gone"
-        android:layout_marginRight="20dp"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,17 +82,18 @@
             android:textSize="13sp"/>
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_share"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:visibility="gone"
-        android:paddingRight="20dp"
-        android:paddingLeft="10dp"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"

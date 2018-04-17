@@ -332,7 +332,6 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
             public void onResponse(String response) {
                // LogUtil.LogShitou("影响力第二步接口", "===================>" + response);
                 // CacheUtils.putString(mActivity, SPConstants.INFLUENCE_DATA, response);
-               // LogUtil.LogShitou("看看走了几次", "====>" + count);
                 dealDatas(response);
                 //weiBoFg.myData(response,0);
             }
@@ -488,7 +487,6 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
                 showDataView.setValue(valueList);
             }
         }
-        // LogUtil.LogShitou("走过的卢阿", "3333333");
     }
 
     private boolean isLogined() {

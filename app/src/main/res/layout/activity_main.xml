@@ -17,8 +17,10 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             ></com.robin8.rb.ui.widget.NoScrollViewPager>
+
         <View
-            style="@style/Undefined_Line" />
+            style="@style/Undefined_Line"/>
+
         <RadioGroup
             android:id="@+id/rg_content_bottom"
             android:layout_width="fill_parent"
@@ -30,11 +32,11 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:visibility="gone"
                 android:id="@+id/rb_bottom_first"
                 style="@style/bottom_radio_style"
                 android:drawableTop="@drawable/bottom_first_selector"
-                android:text="@string/text_first"/>
+                android:text="@string/text_first"
+                android:visibility="gone"/>
 
             <RadioButton
                 android:id="@+id/rb_bottom_campaign"
@@ -50,16 +52,23 @@
             <!--android:visibility="gone"/>-->
             <RadioButton
                 android:id="@+id/rb_bottom_influence"
+                style="@style/bottom_radio_style"
                 android:drawableTop="@drawable/bottom_influence_selector"
-                android:text="@string/text_social"
-                style="@style/bottom_radio_style"/>
+                android:text="@string/text_social"/>
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/rb_bottom_create"-->
+                <!--style="@style/bottom_radio_style"-->
+                <!--android:drawableTop="@drawable/bottom_create_selector"-->
+                <!--android:text="@string/text_create"-->
+                <!--android:visibility="gone"/>-->
 
             <RadioButton
-                android:id="@+id/rb_bottom_create"
+                android:id="@+id/rb_bottom_find"
                 style="@style/bottom_radio_style"
-                android:visibility="gone"
                 android:drawableTop="@drawable/bottom_create_selector"
-                android:text="@string/text_create"/>
+                android:text="@string/text_find"
+                android:visibility="visible"/>
 
             <RadioButton
                 android:id="@+id/rb_bottom_mine"
@@ -70,21 +79,23 @@
     </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="60dp">
+
             <com.robin8.rb.ui.widget.myprogress.CircleView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_centerInParent="true"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 custom:titleBackgroundColor="@color/undefined_backgroud"/>
 
             <com.robin8.rb.view.widget.CircleImageView
@@ -93,15 +104,16 @@
                 android:layout_centerInParent="true"
                 android:background="@mipmap/icon_inflence"/>
         </RelativeLayout>
+
         <TextView
-            android:textSize="@dimen/undefine_font_0"
-            android:layout_gravity="center"
-            android:paddingTop="1dp"
-            android:paddingBottom="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingTop="1dp"
+            android:text="影响力"
             android:textColor="@drawable/bottom_text_color"
-            android:text="影响力"/>
+            android:textSize="@dimen/undefine_font_0"/>
     </LinearLayout>
 
 

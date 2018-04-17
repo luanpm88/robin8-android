@@ -51,6 +51,8 @@ public class SPConstants {
     public static final int INVITATION_CODE = 62;//输入邀请码
     public static final int HELP_CENTER = 63;//帮助中心
     public static final int RONG_CLOUD = 64;//融云客服
+    public static final int MAIN_FIND= 65;//首页发现
+    public static final int MAIN_COLLECT= 66;//我的收藏
 
     public static final String SP_SIGN = "robin8_sp";
     public static final String ROBIN_IME = "robin_ime";

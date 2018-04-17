@@ -259,6 +259,11 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+    <!--九宫格图片-->
 
+    <!--顶部弹窗-->
+    <style name="AnimTop" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>
+    </style>
 
 </resources>

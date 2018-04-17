@@ -738,8 +738,19 @@
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
-        <activity android:name=".module.mine.activity.CollectListActivity">
-        </activity>
+        <activity
+            android:name=".module.mine.activity.CollectListActivity"
+            android:configChanges="keyboard|orientation"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.find.activity.ImagePreviewActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.mine.activity.MyCollectActivity"
+            android:configChanges="keyboard|orientation"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -357,15 +357,6 @@ public class InviteFriendsActivity extends BaseActivity {
                 break;
             case R.id.tv_weibo:
                 share(SinaWeibo.NAME);
-                //                ShareParams mShareParams  = new ShareParams();
-                //                mShareParams.setTitle("Title:我是一个兵");
-                //                mShareParams.setImagePath(IMAGE_URL);
-                //                mShareParams.setFrom(1);
-                //                mShareParams.setSubTitle("SubTitle: what a fuck world!");
-                //                mShareParams.setText("Text: 我参加革命十三年，挨过刀，扛过抢，拼过命，逃过场。。。");
-                //                mShareParams.setUrl("www.baidu.com");
-                //                mCustomShareHelper = new CustomShareHelper(this, mShareParams);
-                //                mCustomShareHelper.shareToSina();
                 break;
             case R.id.tv_qq:
                 share(QQ.NAME);
@@ -415,7 +406,9 @@ public class InviteFriendsActivity extends BaseActivity {
 
         oks.setTitleUrl(TITLE_URL + String.valueOf(id));
         oks.setImageUrl(IMAGE_URL);
-        oks.setUrl(TITLE_URL + String.valueOf(id));
+        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)){
+            oks.setUrl(TITLE_URL + String.valueOf(id));
+        }
         oks.setSite(getString(R.string.app_name));
         oks.setSiteUrl(CommonConfig.SITE_URL);
         oks.show(this);

@@ -58,6 +58,8 @@
     <color name="black_custom">#181616</color>
     <color name="gray_first">#777777</color>
     <color name="gray_second">#BBBBBB</color>
+    <color name="gray_f2f2f2">#f2f2f2</color>
+    <color name="gray_e6e6e7">#e6e6e7</color>
     <color name="black_000000">#000000</color>
     <color name="sub_black_custom">#424141</color>
     <color name="black_2e2e2e">#2e2e2e</color>
@@ -95,4 +97,6 @@
     <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
     <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent
     </color>
+
+    <color name="ic_default_bg_color">#33000000</color>
 </resources>

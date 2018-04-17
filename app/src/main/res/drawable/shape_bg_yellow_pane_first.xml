@@ -8,5 +8,5 @@
     <stroke android:width="0.4dp" android:color="@color/mine_yellow_custom"></stroke>
 
     <!-- 矩形的圆角半径 -->
-    <corners android:radius="7dp" />
+    <corners android:radius="3dp" />
 </shape>

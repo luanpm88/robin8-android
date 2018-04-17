@@ -56,6 +56,7 @@ import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
 import com.robin8.rb.util.TimerUtil;
 import com.robin8.rb.util.UIUtils;
@@ -473,7 +474,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
             @Override
             public void onResponse(String response) {
-         //       LogUtil.LogShitou("活动详情数据", response);
+               LogUtil.LogShitou("活动详情数据", response);
                 CampaignInviteBean campaignInviteEntity = GsonTools.jsonToBean(response, CampaignInviteBean.class);
                 if (campaignInviteEntity != null && campaignInviteEntity.getError() == 0) {
                     mCampaignInviteEntity = campaignInviteEntity.getCampaign_invite();

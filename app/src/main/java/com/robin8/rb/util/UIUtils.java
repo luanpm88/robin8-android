@@ -65,6 +65,7 @@ public class UIUtils {
 		}
 	}
 
+
 	/**
 	 * edittext设置光标到末尾
 	 * 
