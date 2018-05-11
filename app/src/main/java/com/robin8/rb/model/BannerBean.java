@@ -1,7 +1,6 @@
 package com.robin8.rb.model;
 
 
-
 public class BannerBean {
 
     public static final int BE_KOL = 1;

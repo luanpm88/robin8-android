@@ -15,6 +15,7 @@ import com.robin8.rb.activity.MainActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
+import com.robin8.rb.module.mine.model.SimpleModel;
 import com.robin8.rb.module.social.view.LinearLayoutForListView;
 import com.robin8.rb.ui.widget.myprogress.RoundIndicatorView;
 import com.robin8.rb.util.BitmapUtil;
@@ -26,7 +27,7 @@ public class SocialInfluenceActivity extends BaseActivity {
 
     private RoundIndicatorView viewResult;
     private LinearLayoutForListView myList;
-    private List<ProveSocialItem> mDataList;
+    private List<SimpleModel> mDataList;
     private RelativeLayout llTitleLayout;
     private ImageView imgPhoto;
 
@@ -43,9 +44,9 @@ public class SocialInfluenceActivity extends BaseActivity {
         imgPhoto = ((ImageView) view.findViewById(R.id.img_user_photo));
         myList = ((LinearLayoutForListView) findViewById(R.id.lv_list));
         mDataList = new ArrayList<>();
-        mDataList.add(new ProveSocialItem(R.mipmap.icon_share_campain,"分享活动","有质量有选择的参与感兴趣的品牌活动，用心的转发语可以显著提升社交媒体中的互动","去分享"));
-        mDataList.add(new ProveSocialItem(R.mipmap.icon_invite_friend,"邀请好友","动员好友加入Robin8，影响力快速升级","去邀请"));
-        mDataList.add(new ProveSocialItem(R.mipmap.icon_sign_social,"签到","时刻查看影响力的动态变化，有助于提高影响力","去签到"));
+        mDataList.add(new SimpleModel(R.mipmap.icon_share_campain,"分享活动","有质量有选择的参与感兴趣的品牌活动，用心的转发语可以显著提升社交媒体中的互动","去分享"));
+        mDataList.add(new SimpleModel(R.mipmap.icon_invite_friend,"邀请好友","动员好友加入Robin8，影响力快速升级","去邀请"));
+        mDataList.add(new SimpleModel(R.mipmap.icon_sign_social,"签到","时刻查看影响力的动态变化，有助于提高影响力","去签到"));
         myList.setAdapter(new MySocialAdapter());
         int v = (int)(Math.random() * (10000 - 10) + 10);
         viewResult.setCurrentValues(50);
@@ -79,7 +80,7 @@ public class SocialInfluenceActivity extends BaseActivity {
         }
 
         @Override
-        public ProveSocialItem getItem(int position) {
+        public SimpleModel getItem(int position) {
 
             return mDataList.get(position);
         }
@@ -99,7 +100,7 @@ public class SocialInfluenceActivity extends BaseActivity {
             }
             final SocialInfluenceActivity.Holder holder = (SocialInfluenceActivity.Holder) convertView.getTag();
 
-            ProveSocialItem item = getItem(position);
+            SimpleModel item = getItem(position);
             holder.imgIcon.setImageResource(item.icon);
             holder.tvTitle.setText(item.title);
             holder.tvContent.setText(item.detail);
@@ -153,21 +154,6 @@ public class SocialInfluenceActivity extends BaseActivity {
             tvContent = ((TextView) view.findViewById(R.id.tv_content));
             btnAction = ((TextView) view.findViewById(R.id.btn_action));
 
-        }
-    }
-    private class ProveSocialItem {
-
-        public int icon;
-        public String title;
-        public String detail;
-        public String btn;
-        public String url;
-
-        public ProveSocialItem(int icon, String title, String detail, String btn) {
-            this.icon = icon;
-            this.title = title;
-            this.detail = detail;
-            this.btn = btn;
         }
     }
 

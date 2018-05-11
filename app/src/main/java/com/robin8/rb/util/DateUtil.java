@@ -12,15 +12,14 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- * @author Figo
- * @Description: 日期工具类
- * @date 2016-6-26
- */
+ @author Figo
+ @Description: 日期工具类
+ @date 2016-6-26 */
 @SuppressLint("SimpleDateFormat")
 public class DateUtil {
 
     /**
-     * 将当天日期格式化，比如2016-4-6
+     将当天日期格式化，比如2016-4-6
      */
     public static String format2String() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -28,29 +27,62 @@ public class DateUtil {
     }
 
     /**
-     * 获取当前时间，如格式是：yyyy-MM-dd HH:mm:ss
+     获取当前时间，如格式是：yyyy-MM-dd HH:mm:ss
      */
     public static String getFormatTime(long time, String format) {
         SimpleDateFormat df = new SimpleDateFormat(format);
         return df.format(new Date(time));
     }
 
- /**
-     * 获取到当前时间的毫秒值
-     * @param format
-     * @return
+    /**
+     获取到当前时间的毫秒值
+     @param format
+     @return
      */
-    public static String getNowTimeMs(String format){
-    SimpleDateFormat format1 = new SimpleDateFormat(format);
-    String format2 = format1.format(new Date());
-    long nowTimes = 0;
-    try {
-        nowTimes = format1.parse(format2).getTime();
-    } catch (ParseException e) {
-        e.printStackTrace();
+    public static String getNowTimeMs(String format) {
+        SimpleDateFormat format1 = new SimpleDateFormat(format);
+        String format2 = format1.format(new Date());
+        long nowTimes = 0;
+        try {
+            nowTimes = format1.parse(format2).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(nowTimes);
     }
-    return String.valueOf(nowTimes);
-}
+    /**
+     获取到当前时间的秒值
+     @param format
+     @return
+     */
+    public static String getNowTimeM(String format) {
+        SimpleDateFormat format1 = new SimpleDateFormat(format);
+        String format2 = format1.format(new Date());
+        long nowTimes = 0;
+        try {
+            nowTimes = format1.parse(format2).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(nowTimes/1000);
+    }
+
+    /**
+     日期转换成秒数
+     */
+    public static long getSecondsFromDate(String expireDate) {
+        if (expireDate == null || expireDate.trim().equals(""))
+            return 0;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+        Date date = null;
+        try {
+            date = sdf.parse(expireDate);
+            return (long) (date.getTime() / 1000);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return 0L;
+        }
+    }
 
     public static void getAllYearDate(List<String> list) throws ParseException {
         String today = getNowTime("yyyy-MM-dd");
@@ -112,11 +144,11 @@ public class DateUtil {
     }
 
     /**
-     * 发布时间的显示格式：
-     * 1.距离发布评论时间 ≤60s，显示已一分钟内
-     * 2.60s＜距离发布时间＜60min，显示1分钟前，2分钟前，3分钟前，n分钟前
-     * 3.1h≤距离发布时间＜24h，显示1小时前，2小时前，n小时前
-     * 4.距离发布时间≥24h，显示时间样式：05-10 21:28
+     发布时间的显示格式：
+     1.距离发布评论时间 ≤60s，显示已一分钟内
+     2.60s＜距离发布时间＜60min，显示1分钟前，2分钟前，3分钟前，n分钟前
+     3.1h≤距离发布时间＜24h，显示1小时前，2小时前，n小时前
+     4.距离发布时间≥24h，显示时间样式：05-10 21:28
      */
     public static String transferToDetailTime(long millionSeconds) {
         String des = "";
@@ -140,11 +172,11 @@ public class DateUtil {
 
 
     /**
-     * 发布时间的显示格式：
-     * 1.1天内显示为：hh：mm
-     * 2.前一天显示为：昨天 hh：mm
-     * 3.前两天显示为：前天 hh：mm
-     * 4.三天前显示为：三天前
+     发布时间的显示格式：
+     1.1天内显示为：hh：mm
+     2.前一天显示为：昨天 hh：mm
+     3.前两天显示为：前天 hh：mm
+     4.三天前显示为：三天前
      */
     public static String transferToRefreshTime(long millionSeconds) {
         String des = "";
@@ -169,20 +201,19 @@ public class DateUtil {
     }
 
     /**
-     * 解析时间 默认输出格式yyyy.MM.dd HH:mm:dd
-     * 想要自定义输出格式
-     *
-     * @param pattern
-     * @param time
-     * @return
-     * @see #formatTime(String, String, String)
+     解析时间 默认输出格式yyyy.MM.dd HH:mm:dd
+     想要自定义输出格式
+     @param pattern
+     @param time
+     @return
+     @see #formatTime(String, String, String)
      */
     public static String formatTime(String pattern, String time) {
         return formatTime(pattern, time, "yyyy.MM.dd HH:mm:dd");
     }
 
     public static String formatTime(String time) {
-        if (TextUtils.isEmpty(time) || !time.contains("T") || !time.contains(".")) {
+        if (TextUtils.isEmpty(time) || ! time.contains("T") || ! time.contains(".")) {
             return "";
         }
         String t = time.replace("T", " ");
@@ -191,12 +222,11 @@ public class DateUtil {
     }
 
     /**
-     * 格式化时间
-     *
-     * @param pattern 解析的格式
-     * @param time    string类型的时间
-     * @param format  输出的格式
-     * @return
+     格式化时间
+     @param pattern 解析的格式
+     @param time string类型的时间
+     @param format 输出的格式
+     @return
      */
     public static String formatTime(String pattern, String time, String format) {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -230,10 +260,10 @@ public class DateUtil {
         long millionSeconds = getTimeLong(timeU);
         long currentTimeMillis = System.currentTimeMillis();
         int time = (int) ((currentTimeMillis - millionSeconds) / 60000);
-        if (time<1){
+        if (time < 1) {
             timeCountdown = "刚刚";
-        }else if (time < 60) {
-            timeCountdown = time+"分钟前";
+        } else if (time < 60) {
+            timeCountdown = time + "分钟前";
         } else if (time < 60 * 24) {
             timeCountdown = String.valueOf(time / 60) + "小时前";
         } else if (time < 60 * 24 * 6) {
@@ -244,7 +274,7 @@ public class DateUtil {
         return timeCountdown;
     }
 
-    public static long getTimeLongMore(String tem,String timeUTC) {
+    public static long getTimeLongMore(String tem, String timeUTC) {
         long time;
         SimpleDateFormat format = new SimpleDateFormat(tem);
         try {
@@ -257,15 +287,15 @@ public class DateUtil {
         return time;
     }
 
-    public static String getCountdownMore(String tem,String timeU) {
+    public static String getCountdownMore(String tem, String timeU) {
         String timeCountdown = null;
-        long millionSeconds = getTimeLongMore(tem,timeU);
+        long millionSeconds = getTimeLongMore(tem, timeU);
         long currentTimeMillis = System.currentTimeMillis();
         int time = (int) ((currentTimeMillis - millionSeconds) / 60000);
-        if (time<1){
+        if (time < 1) {
             timeCountdown = "刚刚";
-        }else if (time < 60) {
-            timeCountdown = time+"分钟前";
+        } else if (time < 60) {
+            timeCountdown = time + "分钟前";
         } else if (time < 60 * 24) {
             timeCountdown = String.valueOf(time / 60) + "小时前";
         } else if (time < 60 * 24 * 6) {
@@ -277,11 +307,10 @@ public class DateUtil {
     }
 
     /**
-     * 根据传入的年份和月份，判断上一个有多少天
-     *
-     * @param year
-     * @param month
-     * @return
+     根据传入的年份和月份，判断上一个有多少天
+     @param year
+     @param month
+     @return
      */
     public static int getLastDaysOfMonth(int year, int month) {
         int lastDaysOfMonth = 0;
@@ -292,12 +321,12 @@ public class DateUtil {
         }
         return lastDaysOfMonth;
     }
+
     /**
-     * 根据传入的年份和月份，判断当前月有多少天
-     *
-     * @param year
-     * @param month
-     * @return
+     根据传入的年份和月份，判断当前月有多少天
+     @param year
+     @param month
+     @return
      */
     public static int getDaysOfMonth(int year, int month) {
         switch (month) {
@@ -321,13 +350,13 @@ public class DateUtil {
             case 11:
                 return 30;
         }
-        return -1;
+        return - 1;
     }
+
     /**
-     * 判断是否为闰年
-     *
-     * @param year
-     * @return
+     判断是否为闰年
+     @param year
+     @return
      */
     public static boolean isLeap(int year) {
         if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
@@ -337,11 +366,10 @@ public class DateUtil {
     }
 
     /**
-     * 根据传入的年份和月份，获取当前月份的日历分布
-     *
-     * @param year
-     * @param month
-     * @return
+     根据传入的年份和月份，获取当前月份的日历分布
+     @param year
+     @param month
+     @return
      */
     public static int[][] getDayOfMonthFormat(int year, int month) {
         Calendar calendar = Calendar.getInstance();
@@ -371,7 +399,7 @@ public class DateUtil {
         return days;
     }
 
-    public static List<Integer> getLastDaysNow(int year, int month){
+    public static List<Integer> getLastDaysNow(int year, int month) {
         List<Integer> list = new ArrayList<>();
         int[] days = new int[42];
         int[][] ints = getDayOfMonthFormat(year, month);
@@ -385,25 +413,24 @@ public class DateUtil {
             }
         }
         for (int i = 0; i < 7; i++) {
-            if (days[i]>20){
+            if (days[i] > 20) {
                 list.add(days[i]);
             }
         }
         return list;
     }
+
     /**
-     * 获取当前年份
-     *
-     * @return
+     获取当前年份
+     @return
      */
     public static int getYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
     }
 
     /**
-     * 获取当前月份
-     *
-     * @return
+     获取当前月份
+     @return
      */
     public static int getMonth() {
         return Calendar.getInstance().get(Calendar.MONTH) + 1;
@@ -415,11 +442,11 @@ public class DateUtil {
     private final static long day = 24 * hour;// 1天
     private final static long month = 31 * day;// 月
     private final static long year = 12 * month;// 年
+
     /**
-     * 返回文字描述的日期
-     *
-     * @param timeUTC
-     * @return
+     返回文字描述的日期
+     @param timeUTC
+     @return
      */
     public static String getTimeFormatText(String timeUTC) {
         Date date = null;

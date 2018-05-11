@@ -10,6 +10,9 @@ import android.widget.GridView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
+import com.robin8.rb.constants.CommonConfig;
+import com.robin8.rb.model.BaseBean;
+import com.robin8.rb.module.mine.activity.NewUserTaskActivity;
 import com.robin8.rb.module.reword.chose_photo.GridAdapter;
 import com.robin8.rb.module.reword.chose_photo.PhotoPickerActivity;
 import com.robin8.rb.module.reword.chose_photo.SelectModel;
@@ -17,7 +20,13 @@ import com.robin8.rb.module.reword.chose_photo.SerializableMap;
 import com.robin8.rb.module.reword.chose_photo.intent.PhotoPickerIntent;
 import com.robin8.rb.module.reword.chose_photo.intent.PhotoPreviewIntent;
 import com.robin8.rb.module.reword.helper.DetailContentHelper;
+import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
+import com.robin8.rb.util.GsonTools;
+import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
@@ -46,6 +55,7 @@ public class ScreenImgActivity extends BaseActivity {
     private int chose_position = - 1;
     private Map<Integer, String> imgMap;
     public String screenType;
+    private WProgressDialog mWProgressDialog;
     // private ArrayList<String> lookList;
 
     @Override
@@ -81,6 +91,14 @@ public class ScreenImgActivity extends BaseActivity {
         } else if (screenType.equals("2")) {
             //上传截图
             LogUtil.LogShitou("这是2", "2");
+        }else if (screenType.equals("3")){
+            //新手查看截图示例
+            for (int i = 0; i < screenList.size(); i++) {
+                imgMap.put(i, screenList.get(i));
+            }
+        }else if (screenType.equals("4")){
+            //新手上传图片
+
         }
     }
 
@@ -166,11 +184,65 @@ public class ScreenImgActivity extends BaseActivity {
                         setResult(DetailContentHelper.IMAGE_REQUEST_MORE_IMG_CODE, intent);
                         finish();
                     }
-                } else {
+                } else if (screenType.equals("3")){
+                    setResult(NewUserTaskActivity.NEW_USER_LOOK_IMG);
+                    finish();
+                }else if (screenType.equals("4")){
+                    if (imgMap.size() != nameList.size()) {
+                        CustomToast.showShort(ScreenImgActivity.this, "请上传图片！");
+                    } else {
+                        upTasks();
+                    }
+                }else {
                     finish();
                 }
                 break;
+            case R.id.iv_back:
+                if (screenType.equals("3")){
+                    setResult(NewUserTaskActivity.NEW_USER_LOOK_IMG);
+                }
+                finish();
+                break;
         }
+    }
+
+    private void upTasks() {
+        if (mWProgressDialog == null) {
+            mWProgressDialog = WProgressDialog.createDialog(ScreenImgActivity.this);
+        }
+        mWProgressDialog.show();
+        BasePresenter mBasePresenter = new BasePresenter();
+        mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.NEW_TASKS_UP_URL), null, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.LogShitou("新手任务提交" + HelpTools.getUrl(CommonConfig.NEW_TASKS_UP_URL), response);
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+                BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
+                if (bean == null) {
+                    CustomToast.showShort(ScreenImgActivity.this, getString(R.string.please_data_wrong));
+                    return;
+                }
+                if (bean.getError() == 0) {
+                    HelpTools.insertCommonXml(HelpTools.ISNEWUSER,"no");
+                    setResult(NewUserTaskActivity.NEW_USER_UP_IMG);
+                    finish();
+                } else {
+                    if (! TextUtils.isEmpty(bean.getDetail())) {
+                        CustomToast.showShort(ScreenImgActivity.this, bean.getDetail());
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -198,6 +270,9 @@ public class ScreenImgActivity extends BaseActivity {
 
     @Override
     protected void executeOnclickLeftView() {
+        if (screenType.equals("3")){
+            setResult(NewUserTaskActivity.NEW_USER_LOOK_IMG);
+        }
         finish();
     }
 
@@ -225,115 +300,4 @@ public class ScreenImgActivity extends BaseActivity {
         int cols = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().densityDpi;
         return cols < 3 ? 3 : cols;
     }
-    //    public class GridAdapter extends BaseAdapter {
-    //        private List<ScreenImgBean> mList;
-    //        private ArrayList<String> list;
-    //        private Context context;
-    //        private int mItemSize;
-    //        private LayoutInflater mInflater;
-    //
-    //        private GridView.LayoutParams mItemLayoutParams;
-    //
-    //        public GridAdapter(List<ScreenImgBean> mList, int itemSize) {
-    //            mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    //            this.mList = mList;
-    //            this.mItemSize = itemSize;
-    //            mItemLayoutParams = new GridView.LayoutParams(mItemSize, mItemSize);
-    //
-    //        }
-    //
-    //        @Override
-    //        public int getCount() {
-    //            return mList.size();
-    //        }
-    //
-    //        @Override
-    //        public Object getItem(int position) {
-    //            return mList.get(position);
-    //        }
-    //
-    //        @Override
-    //        public long getItemId(int position) {
-    //            return position;
-    //        }
-    //
-    //        @Override
-    //        public View getView(final int position, View convertView, final ViewGroup parent) {
-    //            if (convertView == null) {
-    //                convertView = mInflater.inflate(R.layout.screen_img_item, parent, false);
-    //                //convertView = LayoutInflater.from(ScreenImgActivity.this).inflate(R.layout.screen_img_item, parent, false);
-    //                convertView.setTag(new ViewHolder(convertView));
-    //            }
-    //            final ViewHolder holder = (ViewHolder) convertView.getTag();
-    //            holder.tvContent.setText(mList.get(position).getText());//当前上传图片描述
-    //            holder.llBottom.setVisibility(View.GONE);
-    //            holder.imgClear.setVisibility(View.GONE);//清除所选图片
-    //            if (imagePaths != null) {
-    //                int size = imagePaths.size();
-    //                if (size != 0) {
-    //                    if (chose_position != - 1) {
-    //                        if (position == chose_position) {
-    //                            Glide.with(ScreenImgActivity.this).load(imagePaths.get(0)).
-    //                                    placeholder(R.mipmap.default_error).error(R.mipmap.default_error).centerCrop().crossFade().into(holder.img);
-    //                            imgMap.put(position, imagePaths.get(0));
-    //                        }
-    //                    }
-    //
-    //                }
-    //                if (isHaveImg(position)) {
-    //                    holder.llBottom.setVisibility(View.VISIBLE);
-    //                    holder.imgClear.setVisibility(View.VISIBLE);
-    //                    holder.tvName.setText("哇哇哇哇");
-    //                }
-    //            }
-    //            //删除所选择的图片
-    //            holder.imgClear.setOnClickListener(new View.OnClickListener() {
-    //
-    //                @Override
-    //                public void onClick(View view) {
-    //                    LogUtil.LogShitou("这是第几个", "==>" + position + "在map中这是第几" + imgMap.get(position));
-    //                    imgMap.remove(position);
-    //                    LogUtil.LogShitou("移除后", "==>" + position + "在map中这是第几" + imgMap.size());
-    //                    notifyDataSetChanged();
-    //                }
-    //            });
-    //            return convertView;
-    //        }
-    //
-    //        /**
-    //         重置每个Column的Size
-    //         @param columnWidth
-    //         */
-    //        public void setItemSize(int columnWidth) {
-    //
-    //            if (mItemSize == columnWidth) {
-    //                return;
-    //            }
-    //
-    //            mItemSize = columnWidth;
-    //
-    //            mItemLayoutParams = new GridView.LayoutParams(mItemSize, mItemSize);
-    //
-    //            notifyDataSetChanged();
-    //        }
-    //
-    //        class ViewHolder {
-    //
-    //            public final ImageView img;
-    //            public final TextView tvContent;
-    //            public final SquareLayout llScreen;
-    //            public final ImageView imgClear;
-    //            public final RelativeLayout llBottom;
-    //            public final TextView tvName;
-    //
-    //            private ViewHolder(View v) {
-    //                img = ((ImageView) v.findViewById(R.id.img_chose));
-    //                tvContent = ((TextView) v.findViewById(R.id.tv_content));
-    //                llScreen = ((SquareLayout) v.findViewById(R.id.ll_screen));
-    //                imgClear = ((ImageView) v.findViewById(R.id.img_clear));
-    //                llBottom = ((RelativeLayout) v.findViewById(R.id.ll_bottom));
-    //                tvName = ((TextView) v.findViewById(R.id.tv_name));
-    //            }
-    //        }
-    //    }
 }

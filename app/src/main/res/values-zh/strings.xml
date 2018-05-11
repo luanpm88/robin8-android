@@ -214,7 +214,7 @@
     <string name="sign_was_done">签到已完成</string>
     <string name="sign_instantly">立即签到</string>
     <string name="sign_successfully">签到成功</string>
-    <string name="sign">签到</string>
+    <string name="sign">每日任务</string>
     <string name="max_click_number">最大点击数</string>
     <string name="history_total_income">历史总收益</string>
     <string name="max_per_income">最高单笔收益</string>

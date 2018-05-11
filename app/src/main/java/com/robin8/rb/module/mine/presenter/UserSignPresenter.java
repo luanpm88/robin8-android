@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
@@ -16,12 +15,13 @@ import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.mine.adapter.MonthAdapter;
 import com.robin8.rb.module.mine.model.SignHistoryModel;
 import com.robin8.rb.module.mine.view.IUserSignView;
+import com.robin8.rb.module.social.view.LinearLayoutForListView;
+import com.robin8.rb.module.social.view.NoScrollGridView;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.presenter.PresenterI;
-import com.robin8.rb.ui.widget.OtherGridView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DateUtil;
@@ -45,36 +45,37 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
     private final IUserSignView mIUserView;
     private Activity mActivity;
     private WProgressDialog mWProgressDialog;
-    private TextView mBottomTv;
+    // private TextView mBottomTv;
     private SignHistoryModel mSignHistoryModel;
     private List<SignDay> mMonthList;
     private int mMonth;
-    private OtherGridView mGridView;
+    // private OtherGridView mGridView;
     private MonthAdapter mMonthAdapter;
     private int year;
     private int month;
-    public ImageView imgBack;
-    public ImageView imgNext;
     public TextView mEarnAccumulatedTv;
     public TextView mEarnTodayTv;
     private List<String> listDate;
     private Map<String, Integer> mapHistory;
+    private TextView tvSign;
+    private NoScrollGridView mGridView;
+    private LinearLayoutForListView tasksListView;
 
     public UserSignPresenter(Activity activity, IUserSignView userView) {
         mActivity = activity;
         mIUserView = userView;
     }
-
     public void init() {
-        mBottomTv = mIUserView.getBottomTv();
-        mGridView = mIUserView.getMonthGv();
-        imgBack = mIUserView.backLast();
-        imgNext = mIUserView.goNext();
+        tvSign = mIUserView.signTv();
+        mGridView = mIUserView.getSignDayGv();
+        tasksListView = mIUserView.getTasksLv();
         mEarnAccumulatedTv = mIUserView.mEarnAccumulatedTv();
         mEarnTodayTv = mIUserView.getEarnTodayTv();
         listDate = new ArrayList<>();
         mapHistory = new HashMap<>();
+        //更新view
         updateView(0);
+        //获取历史
         getDataFromNet(0);
     }
 
@@ -100,12 +101,12 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
             public void onResponse(String response) {
                 // response = "{\"error\":0,\"continuous_checkin_count\":4,\"today_had_check_in\":true," + "\"checkin_history\":[" + "\"2017-12-07\"," + "\"2017-12-06\"," + "\"2017-12-05\"," + "\"2017-12-04\"," + "\"2017-12-03\"," + "\"2017-12-02\"," + "\"2017-12-01\"," + "\"2017-11-30\"," + "\"2017-11-29\"," + "\"2017-11-16\"," + "\"2017-11-15\"," + "\"2017-11-07\"," + "\"2017-11-06\"," + "\"2017-11-05\"," + "\"2017-11-04\"," + "\"2017-11-03\"," + "\"2017-11-02\"," + "\"2017-11-01\"," + "\"2017-10-29\"," + "\"2017-10-31\"]}";
                 LogUtil.LogShitou("签到历史" + HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL), response);
-              //  response = "{\n" + "    \"error\": 0,\n" + "    \"continuous_checkin_count\": 1,\n" + "    \"today_had_check_in\": true,\n" + "    \"checkin_history\": [\n" + "        {\n" + "            \"created_at\": \"2017-12-08\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-12-07\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-12-06\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "              {\n" + "            \"created_at\": \"2017-12-05\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "      \n" + "        {\n" + "            \"created_at\": \"2017-12-03\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "      \n" + "        {\n" + "            \"created_at\": \"2017-12-01\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-30\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-29\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-28\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-20\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-17\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-14\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-12\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-11\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "       \n" + "        {\n" + "            \"created_at\": \"2017-10-31\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-10-30\",\n" + "            \"is_continuous\": 1\n" + "        }\n" + "    ],\n" + "    \"total_check_in_days\": 167,\n" + "    \"total_check_in_amount\": 24.9,\n" + "    \"today_already_amount\": 0,\n" + "    \"today_can_amount\": 0.2,\n" + "    \"tomorrow_can_amount\": 0.25\n" + "}";
+                //  response = "{\n" + "    \"error\": 0,\n" + "    \"continuous_checkin_count\": 1,\n" + "    \"today_had_check_in\": true,\n" + "    \"checkin_history\": [\n" + "        {\n" + "            \"created_at\": \"2017-12-08\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-12-07\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-12-06\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "              {\n" + "            \"created_at\": \"2017-12-05\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "      \n" + "        {\n" + "            \"created_at\": \"2017-12-03\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "      \n" + "        {\n" + "            \"created_at\": \"2017-12-01\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-30\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-29\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-28\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-20\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-17\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-14\",\n" + "            \"is_continuous\": 0\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-12\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-11-11\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "       \n" + "        {\n" + "            \"created_at\": \"2017-10-31\",\n" + "            \"is_continuous\": 1\n" + "        },\n" + "        {\n" + "            \"created_at\": \"2017-10-30\",\n" + "            \"is_continuous\": 1\n" + "        }\n" + "    ],\n" + "    \"total_check_in_days\": 167,\n" + "    \"total_check_in_amount\": 24.9,\n" + "    \"today_already_amount\": 0,\n" + "    \"today_can_amount\": 0.2,\n" + "    \"tomorrow_can_amount\": 0.25\n" + "}";
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
                 parseJson(response);
-                if (where==1){
+                if (where == 1) {
                     //签到成功弹窗
                     showSuccessDialog();
                 }
@@ -165,7 +166,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
-               // LogUtil.LogShitou("签到" + HelpTools.getUrl(CommonConfig.CHECK_IN_URL), response);
+                LogUtil.LogShitou("签到" + HelpTools.getUrl(CommonConfig.CHECK_IN_URL), response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -198,7 +199,7 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
                     getDataFromNet(1);
 
                 } else {
-                    if (!TextUtils.isEmpty(bean.getDetail())){
+                    if (! TextUtils.isEmpty(bean.getDetail())) {
                         CustomToast.showShort(mActivity, bean.getDetail());
                     }
                 }
@@ -212,18 +213,18 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
         TextView tvInfo = (TextView) view.findViewById(R.id.tv_info);
         TextView tvKnow = (TextView) view.findViewById(R.id.tv_know);
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
-        if (mSignHistoryModel!=null){
-            s = "签到成功，"+StringUtil.addZeroForNum(String.valueOf(mSignHistoryModel.getToday_already_amount()),4)+"元奖励已放入您的钱包！\n您已连续签到"+mSignHistoryModel.getContinuous_checkin_count()+"天，不要间断哦～";
+        if (mSignHistoryModel != null) {
+            s = "签到成功，" + StringUtil.addZeroForNum(String.valueOf(mSignHistoryModel.getToday_already_amount()), 4) + "元奖励已放入您的钱包！\n您已连续签到" + mSignHistoryModel.getContinuous_checkin_count() + "天，不要间断哦～";
 
-        }else {
+        } else {
             s = "签到成功";
         }
         tvInfo.setText(s);
-       if (mSignHistoryModel!=null){
-           int length = String.valueOf(mSignHistoryModel.getContinuous_checkin_count()).trim().length();
-           StringUtil.setTextViewSpan(tvInfo, 33, 5, 9, mActivity.getResources().getColor(R.color.blue_custom));
-           StringUtil.setTextViewSpan(tvInfo, 33, 27, 27+length, mActivity.getResources().getColor(R.color.blue_custom));
-       }
+        if (mSignHistoryModel != null) {
+            int length = String.valueOf(mSignHistoryModel.getContinuous_checkin_count()).trim().length();
+            StringUtil.setTextViewSpan(tvInfo, 33, 5, 9, mActivity.getResources().getColor(R.color.blue_custom));
+            StringUtil.setTextViewSpan(tvInfo, 33, 27, 27 + length, mActivity.getResources().getColor(R.color.blue_custom));
+        }
         tvKnow.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -238,20 +239,20 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
     }
 
 
-    public void lastMouth(int where) {
-        if (where == 0) {
-            //上个月
-            imgBack.setVisibility(View.GONE);
-            imgNext.setVisibility(View.GONE);
-            updateView(- 1);
-        } else {
-            //下个月
-            imgNext.setVisibility(View.GONE);
-            imgBack.setVisibility(View.GONE);
-            updateView(1);
-        }
-
-    }
+    //    public void lastMouth(int where) {
+    //        if (where == 0) {
+    //            //上个月
+    //            imgBack.setVisibility(View.GONE);
+    //            imgNext.setVisibility(View.GONE);
+    //            updateView(- 1);
+    //        } else {
+    //            //下个月
+    //            imgNext.setVisibility(View.GONE);
+    //            imgBack.setVisibility(View.GONE);
+    //            updateView(1);
+    //        }
+    //
+    //    }
 
     private void updateView(int i) {
         if (mSignHistoryModel != null) {
@@ -282,22 +283,20 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
         }
         if (mSignHistoryModel != null && mSignHistoryModel.isToday_had_check_in()) {
             //明日签到可领 0.00 元
-            // mBottomTv.setText(mActivity.getString(R.string.sign_was_done));
-            mBottomTv.setText("明日签到可领 "+mSignHistoryModel.getTomorrow_can_amount()+" 元");
-            mBottomTv.setBackgroundResource(R.color.sub_gray_custom);
+            //  mBottomTv.setText("明日签到可领 "+mSignHistoryModel.getTomorrow_can_amount()+" 元");
+            //  mBottomTv.setBackgroundResource(R.color.sub_gray_custom);
         } else {
             //今日签到可领 0.00 元
-            //  mBottomTv.setText(mActivity.getString(R.string.sign_instantly));
-            mBottomTv.setText("今日签到可领 "+mSignHistoryModel.getToday_can_amount()+" 元");
-            mBottomTv.setBackgroundResource(R.color.blue_custom);
+            // mBottomTv.setText("今日签到可领 "+mSignHistoryModel.getToday_can_amount()+" 元");
+            // mBottomTv.setBackgroundResource(R.color.blue_custom);
         }
         mMonth = month;
-        mIUserView.setMonthTv(String.valueOf(mMonth));
+        //mIUserView.setMonthTv(String.valueOf(mMonth));
 
         if (mMonthList != null && mMonthList.size() > 0) {
             mMonthAdapter = new MonthAdapter(mActivity);
         }
-        mGridView.setAdapter(mMonthAdapter);
+        //  mGridView.setAdapter(mMonthAdapter);
         mMonthAdapter.setMonthList(mMonthList);
     }
 
@@ -366,30 +365,20 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
      */
     private int isSign(int year, int month, int day) {
         String s = String.valueOf(year + "-" + month + "-" + day);
-//        if (day<10 && month<10) {
-//            s = String.valueOf(year + "-0" + month + "-0" + day);
-//        }else if (day<10 && month>10){
-//            s = String.valueOf(year + "-" + month + "-0" + day);
-//        }else if (day>10 && month<10){
-//            s = String.valueOf(year + "-0" + month + "-" + day);
-//        }
-        if (day<10){
+        //        if (day<10 && month<10) {
+        //            s = String.valueOf(year + "-0" + month + "-0" + day);
+        //        }else if (day<10 && month>10){
+        //            s = String.valueOf(year + "-" + month + "-0" + day);
+        //        }else if (day>10 && month<10){
+        //            s = String.valueOf(year + "-0" + month + "-" + day);
+        //        }
+        if (day < 10) {
             s = String.valueOf(year + "-" + month + "-0" + day);
         }
 
         if (mSignHistoryModel != null && mSignHistoryModel.getCheckin_history() != null && mSignHistoryModel.getCheckin_history().size() > 0) {
             if (listDate.size() != 0) {
                 for (String dates : listDate) {
-//                    int j = Integer.parseInt(dates.substring(8));   //  日
-//                    int n = Integer.valueOf((dates.substring(5)).substring(0, 2));// 月
-//                    int m = Integer.valueOf(dates.substring(0, 4));//  年
-//                    if (year == m && month == n && day == j) {
-//                        if (mapHistory != null) {
-//                            return mapHistory.get(String.valueOf(year + "-" + month + "-" + day));
-//                        } else {
-//                            return - 1;
-//                        }
-//                    }
                     if (s.equals(dates)) {
                         //已签到，判读是否连续签到
                         if (mapHistory != null) {

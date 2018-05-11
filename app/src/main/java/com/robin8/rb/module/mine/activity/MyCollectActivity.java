@@ -1,7 +1,12 @@
 package com.robin8.rb.module.mine.activity;
 
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +19,10 @@ import com.robin8.rb.R;
 import com.robin8.rb.adapter.MainFindListAdapter;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.constants.CommonConfig;
+import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.model.BaseBean;
-import com.robin8.rb.module.find.activity.SetResultCallBack;
+import com.robin8.rb.module.find.SetResultCallBack;
+import com.robin8.rb.module.find.activity.FindItemDetailActivity;
 import com.robin8.rb.module.find.model.FindArticleListModel;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -24,10 +31,10 @@ import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.ui.widget.RefreshFooterView;
 import com.robin8.rb.ui.widget.RefreshHeaderView;
 import com.robin8.rb.ui.widget.WProgressDialog;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +77,7 @@ public class MyCollectActivity extends BaseActivity {
         mDataList = new ArrayList<>();
         initRecyclerView();
         getData();
+        registCast();
     }
 
     private void getData() {
@@ -113,7 +121,7 @@ public class MyCollectActivity extends BaseActivity {
                 if (mRefreshHeaderView != null && mCurrentState == INIT_DATA) {
                     mRefreshHeaderView.setRefreshTime(System.currentTimeMillis());
                 }
-                LogUtil.LogShitou("我的收藏文章列表+", response);
+               // LogUtil.LogShitou("我的收藏文章列表+", response);
                 FindArticleListModel model = GsonTools.jsonToBean(response, FindArticleListModel.class);
                 if (model != null) {
                     if (model.getError() == 0) {
@@ -127,11 +135,11 @@ public class MyCollectActivity extends BaseActivity {
                             mDataList.addAll(model.getList());
                             myAdapter.notifyDataSetChanged();
                         } else {
-                            if (mCurrentState !=LOAD_MORE){
+                            if (mCurrentState != LOAD_MORE) {
                                 mDataList.clear();
                             }
                             myAdapter.notifyDataSetChanged();
-                            if (mDataList.size()==0){
+                            if (mDataList.size() == 0) {
                                 mErrorViewLL.setVisibility(View.VISIBLE);
                             }
                         }
@@ -140,6 +148,8 @@ public class MyCollectActivity extends BaseActivity {
             }
         });
     }
+
+    private FindArticleListModel.ListBean listBean;
 
     private void initRecyclerView() {
         mXRefreshView.setPullLoadEnable(true);
@@ -213,8 +223,18 @@ public class MyCollectActivity extends BaseActivity {
             }
 
             @Override
-            public void OnShareClick(View v, int position) {
-
+            public void OnItemClick(View v, int position) {
+                listBean = mDataList.get(position);
+                Intent intent = new Intent(MyCollectActivity.this, FindItemDetailActivity.class);
+                if (listBean != null) {
+                    intent.putExtra(FindItemDetailActivity.FINDDETAIL, listBean);
+                    intent.putExtra(FindItemDetailActivity.FINDDETAPOSITION, position);
+                    intent.putExtra(FindItemDetailActivity.FINDWHERE, "2");
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                } else {
+                    CustomToast.showShort(MyCollectActivity.this, "没有数据没有数据");
+                }
             }
         });
     }
@@ -257,7 +277,7 @@ public class MyCollectActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                LogUtil.LogShitou("find文章设置+", response);
+              //  LogUtil.LogShitou("find文章设置+", response);
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (baseBean.getError() == 0) {
                     if (whith == 0) {
@@ -291,5 +311,47 @@ public class MyCollectActivity extends BaseActivity {
     @Override
     protected void executeOnclickRightView() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unRegistCast();
+    }
+
+    public static String action = "com.bean.refresh.collect";
+    private RefreshCast myReiceiver;
+
+    public class RefreshCast extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (null != intent.getAction()) {
+                if (action.equals(intent.getAction())) {
+                    Bundle data = intent.getBundleExtra("datas");
+                    int position = data.getInt("position");
+                    listBean = (FindArticleListModel.ListBean) data.getSerializable("data");
+                    //listBean =(FindArticleListModel.ListBean) intent.getSerializableExtra("data");
+                    mDataList.set(position, listBean);
+                    myAdapter.notifyDataSetChanged();
+                }
+            }
+        }
+    }
+
+    private void registCast() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(action);
+        myReiceiver = new RefreshCast();
+        registerReceiver(myReiceiver, filter);
+    }
+
+    private void unRegistCast() {
+        unregisterReceiver(myReiceiver);
+    }
+    @Override
+    protected void onResume() {
+        mPageName = StatisticsAgency.FIND_COLLECT;
+        super.onResume();
     }
 }

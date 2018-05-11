@@ -3,55 +3,24 @@
              android:layout_width="fill_parent"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              android:layout_height="wrap_content">
-
-    <com.robin8.rb.autoviewpager.AutoScrollViewPager
-        android:id="@+id/vp_auto"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="144dp" />
-    <!--<com.robin8.rb.module.reword.banner.ViewPager-->
-        <!--android:id="@+id/vp_auto"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="200dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:clipToPadding="false"-->
-        <!--android:overScrollMode="never"-->
-        <!--app:orientation="horizontal"-->
-        <!--android:paddingEnd="@dimen/viewpager_padding"-->
-        <!--android:paddingLeft="@dimen/viewpager_padding"-->
-        <!--android:paddingRight="@dimen/viewpager_padding"-->
-        <!--android:paddingStart="@dimen/viewpager_padding" />-->
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/ll_vp_points"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center_horizontal|bottom"
-        android:gravity="center"
-        android:orientation="horizontal">
-    </LinearLayout>
+        <com.robin8.rb.autoviewpager.AutoScrollViewPager
+            android:id="@+id/vp_auto"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_gray_custom" />
+
+        <LinearLayout
+            android:id="@+id/ll_vp_points"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:translationY="-5dp"></LinearLayout>
+    </RelativeLayout>
 </FrameLayout>
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@color/white_custom">-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:gravity="center"-->
-        <!--&gt;-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="分享品牌活动文章："-->
-            <!--android:textColor="@color/black_custom"-->
-            <!--android:textSize="18sp"-->
-            <!--/>-->
-
-    <!--</LinearLayout>-->
-
-
-<!--</RelativeLayout>-->

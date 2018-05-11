@@ -31,10 +31,10 @@ public class CommonConfig {
 
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
-//18321878526
+    //18321878526
     // public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
-   // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-    // public static String SERVICE = "http://192.168.51.99:3000/";//robin8-测试服务器地址/test server path
+  // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+   //  public static String SERVICE = "http://192.168.51.99:3000/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
     // public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
     public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
@@ -82,7 +82,8 @@ public class CommonConfig {
     //    public static final String CHECK_IN_HISTORY_URL = "api/v1_3/tasks/check_in_history";//签到历史2.2.7
     //    public static final String CHECK_IN_URL = "api/v1_3/tasks/check_in";//签到2.2.7
     public static final String CHECK_IN_HISTORY_URL = "api/v1_3/check_tasks/check_in_history";//签到历史2.2.7
-    public static final String CHECK_IN_URL = "api/v1_3/check_tasks/check_in";//签到2.2.7
+   public static final String CHECK_IN_URL = "api/v1_3/check_tasks/check_in";//签到2.2.7
+   public static final String NEW_TASKS_UP_URL = "api/v2_0/tasks/finish_newbie";//新手任务提交post
 
     public static final String FIRST_KOL_LIST_URL = "api/v1_6/big_v";//首页列表数据
     public static final String MY_CARE_URL = "api/v1_6/my/friends";
@@ -171,5 +172,8 @@ public class CommonConfig {
     public static final String FIND_ARTICLE_LIST = "api/v2_0/my/article_lists?_action=collects&";//我的收藏
     public static final String FIND_ARTICLE = "api/v2_0/articles";//发现|新鲜事hot
     public static final String FIND_SET = "api/v2_0/articles/set";
+    public static final String FIND_READ = "api/v2_0/articles/read";
+    public static final String FIND_ITEM_DETAIL = "api/v2_0/articles/recommends";
+
 
 }

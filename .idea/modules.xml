@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/hellocharts-library/hellocharts-library.iml" filepath="$PROJECT_DIR$/hellocharts-library/hellocharts-library.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multisnaprecyclerview/multisnaprecyclerview.iml" filepath="$PROJECT_DIR$/multisnaprecyclerview/multisnaprecyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/oneshare2/oneshare2.iml" filepath="$PROJECT_DIR$/oneshare2/oneshare2.iml" />
       <module fileurl="file://$PROJECT_DIR$/robin.iml" filepath="$PROJECT_DIR$/robin.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharesdk2/sharesdk2.iml" filepath="$PROJECT_DIR$/sharesdk2/sharesdk2.iml" />

@@ -999,18 +999,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(shareAdapter);
-        //分享活动
-        //        myShareListCampaign = new ArrayList<>();
-        //        myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
-        //        myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
-        //        myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
-        //        ShareAdapter shareAdapterCampaing = new ShareAdapter(myShareListCampaign);
-        //        LinearLayoutManager linearLayoutManagerTwo = new LinearLayoutManager(recyclerViewCampaign.getContext());
-        //        linearLayoutManagerTwo.setOrientation(LinearLayoutManager.HORIZONTAL);
-        //        recyclerViewCampaign.setLayoutManager(linearLayoutManagerTwo);
-        //        recyclerViewCampaign.setAdapter(shareAdapterCampaing);
-
-
 
         mCustomDialogManager = new CustomDialogManager(activity, view);
         shareAdapter.setOnRecyclerViewListener(new ShareAdapter.OnRecyclerViewListener() {
@@ -1163,12 +1151,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             this.onRecyclerViewListener = onRecyclerViewListener;
         }
 
-        //        @Override
-        //        public void onClick(View view) {
-        //            switch (view.getId()) {
-        //
-        //            }
-        //        }
 
         @Override
         public RecyclerView.ViewHolder getViewHolder(View view) {
@@ -1178,7 +1160,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType, boolean isItem) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.campaign_share_item, null);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             view.setLayoutParams(lp);
             mViewHolder = new ViewHolder(view);
             return mViewHolder;
@@ -1234,13 +1216,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 itemIcon = ((ImageView) itemView.findViewById(R.id.img_share_item_icon));
                 itemLayout = ((RelativeLayout) itemView.findViewById(R.id.ll_layout));
             }
-
-            //            @Override
-            //            public void onClick(View v) {
-            //                if (null != onRecyclerViewListener) {
-            //                    onRecyclerViewListener.onItemClick(position);
-            //                }
-            //            }
 
             @Override
             public boolean onLongClick(View v) {
@@ -1300,25 +1275,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 }
             }
         });
-        //        imgBg.setOnClickListener(new View.OnClickListener() {
-        //
-        //            @Override
-        //            public void onClick(View view) {
-        //                // cdm.dismiss();
-        //                imgBg.setVisibility(View.GONE);
-        //                imgBgTwo.setVisibility(View.VISIBLE);
-        //            }
-        //        });
-        //        imgBgTwo.setOnClickListener(new View.OnClickListener() {
-        //
-        //            @Override
-        //            public void onClick(View view) {
-        //                cdm.dismiss();
-        //                if (isShowRequest){
-        //                    shareCtaAndCti(DetailContentActivity.this, mCampaignInviteEntity.getCampaign().getRemark(), true);
-        //                }
-        //            }
-        //        });
+
         Window win = cdm.dg.getWindow();
 
         WindowManager.LayoutParams lp = win.getAttributes();
@@ -1336,189 +1293,5 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         cdm.showDialog();
     }
 
-    //    private static Dialog getCustomDialog(final Activity activity, View view, boolean dismissTouchOutSide, boolean cancelable, int theme) {
-    //        Dialog dialog = new Dialog(activity, R.style.Dialog_FullScreen);
-    //        dialog.setContentView(view);
-    //        dialog.setCancelable(cancelable);
-    //        dialog.setCanceledOnTouchOutside(dismissTouchOutSide);
-    //        Window win = dialog.getWindow();
-    //
-    //        WindowManager.LayoutParams lp = win.getAttributes();
-    //
-    //        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-    //
-    //        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-    //
-    //        lp.dimAmount = 0.2f;
-    //
-    //        win.setAttributes(lp);
-    //        if (! cancelable) {
-    //            dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-    //
-    //                @Override
-    //                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-    //                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-    //                        dialog.dismiss();
-    //                        activity.finish();
-    //                    }
-    //                    return false;
-    //                }
-    //            });
-    //        }
-    //        return dialog;
-    //    }
-
-    //    private static void checklsShowTipsDialog(Activity activity) {
-    //        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_tips, null, true);
-    //        ImageView imageView = (ImageView) view.findViewById(R.id.tips_iv);
-    //        boolean isShow = false;
-    //        // imageView.setBackgroundResource(R.drawable.tips_homepage);
-    //        if (isShow) {
-    //            return;
-    //        }
-    //        final Dialog dialog = getCustomDialog(activity, view, true, true, - 1);
-    //        view.setOnClickListener(new View.OnClickListener() {
-    //
-    //            @Override
-    //            public void onClick(View view) {
-    //                dialog.dismiss();
-    //            }
-    //        });
-    //        dialog.show();
-    //    }
 }
-//    @Override
-//        public boolean onKeyDown(int keyCode, KeyEvent event) {
-//
-//            if (keyCode == KeyEvent.KEYCODE_BACK) {
-//                if (mFrom==SPConstants.PUSH_TO_DETAIL){
-//                    //从推送进入
-//                    LogUtil.LogShitou("推送","back");
-//                    startActivity(new Intent(DetailContentActivity.this, MainActivity.class));
-//                    DetailContentActivity.this.finish();
-//                }else {
-//                    LogUtil.LogShitou("正常","back");
-//                    finish();
-//                }
-//            }
-//            return super.onKeyDown(keyCode, event);
-//        }
 
-
-//    private void bindWechat() {
-//        String string = CacheUtils.getString(DetailContentActivity.this, SPConstants.MINE_DATA, null);
-//        MineShowModel mineShowModel = GsonTools.jsonToBean(string, MineShowModel.class);
-//        if (mineShowModel!=null){
-//            int id = mineShowModel.getKol().getId();
-//            getDataFromNet(id);
-//        }
-//    }
-//    private void getDataFromNet(int id) {
-//        if (mBasePresenter == null) {
-//            mBasePresenter = new BasePresenter();
-//        }
-//
-//        if (mRequestParams == null) {
-//            mRequestParams = new RequestParams();
-//        }
-//
-//        if (mWProgressDialog == null) {
-//            mWProgressDialog = WProgressDialog.createDialog(this);
-//        }
-//        mWProgressDialog.show();
-//
-//        mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.FIRST_KOL_LIST_URL + BACKSLASH + String.valueOf(id) + BACKSLASH + "detail"), mRequestParams, new RequestCallback() {
-//            @Override
-//            public void onError(Exception e) {
-//                if (mWProgressDialog != null) {
-//                    mWProgressDialog.dismiss();
-//                }
-//            }
-//
-//            @Override
-//            public void onResponse(String response) {
-//                if (mWProgressDialog != null) {
-//                    mWProgressDialog.dismiss();
-//                }
-//                //LogUtil.LogShitou("初始信息",response);
-//                KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
-//                if (kolDetailModel != null && kolDetailModel.getError() == 0) {
-//                    List<SocialAccountsBean> mSocialAccounts = kolDetailModel.getSocial_accounts();
-//                    if (mSocialAccounts!=null){
-//                        if (mSocialAccounts.size()!=0){
-//                            for (int i = 0; i <mSocialAccounts.size() ; i++) {
-//                                if (mSocialAccounts.get(i).getProvider_name().equals("微信")
-//                                        ||mSocialAccounts.get(i).getProvider().equals("wechat")){
-//
-//                                }else {
-//                                    bind(getString(R.string.weixin));
-//                                    CustomToast.showShort(DetailContentActivity.this,"去绑定微信吧");
-//                                }
-//                            }
-//                        }else {
-//                            bind(getString(R.string.weixin));
-//                            CustomToast.showShort(DetailContentActivity.this,"不空的");
-//                        }
-//                    }else {
-//                        bind(getString(R.string.weixin));
-//                        CustomToast.showShort(DetailContentActivity.this,"就是空的");
-//                    }
-//                }
-//            }
-//        });
-//    }
-//    private void bind(final String names) {
-//        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), null, names);
-//        presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
-//            @Override
-//            public void onResponse(String name) {
-//                if (null!=name){
-//                    CustomToast.showShort(DetailContentActivity.this,"已成功绑定"+name);
-//                    bindPostData(names,name);
-//                }else {
-//                    CustomToast.showLong(DetailContentActivity.this,"绑定失败，请重试");
-//                }
-//            }
-//        });
-//        if (getString(R.string.weixin).equals(names)) {
-//            presenter.authorize(new Wechat(this));
-//        }
-//
-//    }
-//    private void bindPostData(String name,String userName) {
-//        String url;
-//        BasePresenter mBasePresenter = new BasePresenter();
-//        RequestParams params = new RequestParams();
-//        params.put("provider_name", name);
-//        params.put("price","1");
-//        params.put("followers_count","1");
-//        params.put("username", userName);
-//        //LogUtil.LogShitou("绑定微信的报价之类的",name+"//"+userName);
-//        url = HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL);
-//
-//        mBasePresenter.getDataFromServer(true, HttpRequest.POST, url, params, new RequestCallback() {
-//            @Override
-//            public void onError(Exception e) {
-//
-//            }
-//
-//            @Override
-//            public void onResponse(String response) {
-//                //LogUtil.LogShitou("分享页面提交微信绑定","OK"+response);
-//                BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
-//
-//                if (bean == null) {
-//                    CustomToast.showShort(DetailContentActivity.this, getString(R.string.please_data_wrong));
-//                    return;
-//                }
-//
-//                if (bean.getError() == 0) {
-//                    LogUtil.LogShitou("走到这里没有","直接绑定微信");
-//                    // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
-//                    //finish();
-//                } else {
-//                    CustomToast.showShort(DetailContentActivity.this, bean.getDetail());
-//                }
-//            }
-//        });
-//    }

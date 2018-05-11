@@ -50,6 +50,7 @@ public class BitmapUtil {
     private static int arrId[] = {R.mipmap.pic_kol_avatar_0, R.mipmap.pic_kol_avatar_1, R.mipmap.pic_kol_avatar_2, R.mipmap.pic_kol_avatar_3, R.mipmap.pic_kol_avatar_4};
     public static String path;
 
+
     /**
      @param context
      @return
@@ -117,6 +118,16 @@ public class BitmapUtil {
         }
         try {
             Glide.with(context).load(mImageUrl).centerCrop().into(to);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ public static void loadImageCenter(Context context, String mImageUrl, final ImageView imageView) {
+        if (TextUtils.isEmpty(mImageUrl) || imageView == null) {
+            return;
+        }
+        try {
+            Glide.with(context).load(mImageUrl).into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }

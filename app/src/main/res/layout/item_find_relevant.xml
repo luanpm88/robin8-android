@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white_custom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_relevant"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="?android:selectableItemBackground"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/black_custom"
+                android:textSize="@dimen/undefine_font_4"/>
+
+            <TextView
+                android:id="@+id/tv_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:text="来源于：微博"
+                android:textColor="@color/gray_first"
+                android:textSize="@dimen/undefine_font_3"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

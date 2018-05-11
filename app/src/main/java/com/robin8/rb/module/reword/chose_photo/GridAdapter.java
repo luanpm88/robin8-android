@@ -90,7 +90,7 @@ public class GridAdapter extends BaseAdapter {
                 Glide.with(context).load(imgMap.get(position)).
                         placeholder(R.mipmap.default_error).error(R.mipmap.default_error).centerCrop().crossFade().into(holder.img);
                 holder.llBottom.setVisibility(View.VISIBLE);
-                if (type==1 || type==2){
+                if (type==1 || type==2 || type==4){
                     holder.imgClear.setVisibility(View.VISIBLE);
                 }else if (type==0){
                     holder.imgClear.setVisibility(View.GONE);

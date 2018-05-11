@@ -1,7 +1,10 @@
 package com.robin8.rb.pager;
 
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -25,7 +28,8 @@ import com.robin8.rb.base.BasePager;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.model.BaseBean;
-import com.robin8.rb.module.find.activity.SetResultCallBack;
+import com.robin8.rb.module.find.SetResultCallBack;
+import com.robin8.rb.module.find.activity.FindItemDetailActivity;
 import com.robin8.rb.module.find.model.FindArticleListModel;
 import com.robin8.rb.module.find.view.TopMiddlePopup;
 import com.robin8.rb.module.social.view.HorizontalListView;
@@ -36,6 +40,7 @@ import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.ui.widget.RefreshFooterView;
 import com.robin8.rb.ui.widget.RefreshHeaderView;
 import com.robin8.rb.ui.widget.WProgressDialog;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
@@ -45,6 +50,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.robin8.rb.R.id.xrefreshview;
+import static com.robin8.rb.module.find.activity.FindItemDetailActivity.FINDDETAIL;
 
 /**
  创作
@@ -121,7 +127,7 @@ public class FindPager extends BasePager implements View.OnClickListener {
                     // typeLayout(false);
                 }
             });
-
+            registCast();
         }
     }
 
@@ -172,11 +178,11 @@ public class FindPager extends BasePager implements View.OnClickListener {
                 if (mRefreshHeaderView != null && mCurrentState == INIT_DATA) {
                     mRefreshHeaderView.setRefreshTime(System.currentTimeMillis());
                 }
-//                if (first) {
-//                    LogUtil.LogShitou("find文章+", response);
-//                } else {
-//                    LogUtil.LogShitou("find文章类型+", response);
-//                }
+                if (first) {
+                    LogUtil.LogShitou("find文章+", response);
+                } else {
+                    LogUtil.LogShitou("find文章类型+", response);
+                }
                 FindArticleListModel model = GsonTools.jsonToBean(response, FindArticleListModel.class);
                 if (model != null) {
                     if (model.getError() == 0) {
@@ -189,7 +195,6 @@ public class FindPager extends BasePager implements View.OnClickListener {
                             TITLE_TYPE = model.getLabels().get(0).get(0);
                             mainFindTypeAdapter.setSelect(0);
                             mListViewType.setAdapter(mainFindTypeAdapter);
-
                         }
                         if (model.getList() != null && model.getList().size() != 0) {
                             mErrorViewLL.setVisibility(View.GONE);
@@ -199,11 +204,11 @@ public class FindPager extends BasePager implements View.OnClickListener {
                             mCurrentPage++;
                             mDataList.addAll(model.getList());
                             myAdapter.notifyDataSetChanged();
-                        }else {
+                        } else {
                             mErrorViewLL.setVisibility(View.VISIBLE);
                         }
                     }
-                }else {
+                } else {
                     mErrorViewLL.setVisibility(View.VISIBLE);
                 }
 
@@ -211,6 +216,7 @@ public class FindPager extends BasePager implements View.OnClickListener {
         });
     }
 
+    private FindArticleListModel.ListBean listBean;
 
     private void initRecyclerView() {
         mXRefreshView.setPullLoadEnable(true);
@@ -265,41 +271,54 @@ public class FindPager extends BasePager implements View.OnClickListener {
                 if (! BaseApplication.getInstance().hasLogined()) {
                     login();
                 } else {
-                    switch (v.getId()) {
-                        case R.id.tv_collect:
-                            if (isCollect == false) {
-                                if (mDataList.get(position).isIs_collected() == false) {
-                                    setParams(0, true, mDataList.get(position).getPost_id(), setResultCallBack);
+                    if (mDataList.get(position) != null) {
+                        switch (v.getId()) {
+                            case R.id.tv_collect:
+                                if (isCollect == false) {
+                                    if (mDataList.get(position).isIs_collected() == false) {
+                                        setParams(0, true, mDataList.get(position), setResultCallBack);
+                                    } else {
+                                        setParams(0, false, mDataList.get(position), setResultCallBack);
+                                    }
                                 } else {
-                                    setParams(0, false, mDataList.get(position).getPost_id(), setResultCallBack);
+                                    setParams(0, false, mDataList.get(position), setResultCallBack);
                                 }
-                            } else {
-                                setParams(0, false, mDataList.get(position).getPost_id(), setResultCallBack);
-                            }
-                            break;
-                        case R.id.ll_like:
-                            if (isLike == false) {
-                                if (mDataList.get(position).isIs_liked() == false) {
-                                    setParams(1, true, mDataList.get(position).getPost_id(), setResultCallBack);
+                                break;
+                            case R.id.ll_like:
+                                if (isLike == false) {
+                                    if (mDataList.get(position).isIs_liked() == false) {
+                                        setParams(1, true, mDataList.get(position), setResultCallBack);
+                                    } else {
+                                        setParams(1, false, mDataList.get(position), setResultCallBack);
+                                    }
                                 } else {
-                                    setParams(1, false, mDataList.get(position).getPost_id(), setResultCallBack);
+                                    setParams(1, false, mDataList.get(position), setResultCallBack);
                                 }
-                            } else {
-                                setParams(1, false, mDataList.get(position).getPost_id(), setResultCallBack);
-                            }
-                            break;
-                        default:
-                            setParams(2, true, mDataList.get(position).getPost_id(), setResultCallBack);
-                            break;
+                                break;
+                            default:
+                                setParams(2, true, mDataList.get(position), setResultCallBack);
+                                break;
+                        }
                     }
+
                 }
             }
 
             @Override
-            public void OnShareClick(View v, int position) {
-                if (v.getId() == R.id.ll_share) {
-                }
+            public void OnItemClick(View v, int position) {
+                listBean = mDataList.get(position);
+                Intent intent = new Intent(mActivity, FindItemDetailActivity.class);
+                if (listBean != null) {
+                    intent.putExtra(FINDDETAIL, listBean);
+                    LogUtil.LogShitou("穿过去的position","====>"+position);
+                    intent.putExtra(FindItemDetailActivity.FINDDETAPOSITION, position);
+                    intent.putExtra(FindItemDetailActivity.FINDWHERE, "1");
+                    mActivity.startActivity(intent);
+                    mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
+                } else {
+                    CustomToast.showShort(mActivity, "没有数据");
+                }
             }
         });
     }
@@ -308,10 +327,10 @@ public class FindPager extends BasePager implements View.OnClickListener {
      设置
      @param whith 收藏／喜欢／分享
      @param is 是否收藏
-     @param id id
+     @param listBean listBean
      @param setResultCallBack
      */
-    private void setParams(final int whith, final boolean is, final String id, final SetResultCallBack setResultCallBack) {
+    private void setParams(final int whith, final boolean is, final FindArticleListModel.ListBean listBean, final SetResultCallBack setResultCallBack) {
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(mActivity);
         }
@@ -329,12 +348,13 @@ public class FindPager extends BasePager implements View.OnClickListener {
                 mRequestParams.put("_type", "forward");// like|collect
                 break;
         }
-        mRequestParams.put("post_id", id);
+        mRequestParams.put("post_id", listBean.getPost_id());
         if (is) {
             mRequestParams.put("_action", "add");//add | cancel
         } else {
             mRequestParams.put("_action", "cancel");//add | cancel
         }
+        mRequestParams.put("tag", listBean.getTag());
         mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.FIND_SET), mRequestParams, new RequestCallback() {
 
             @Override
@@ -481,6 +501,51 @@ public class FindPager extends BasePager implements View.OnClickListener {
         bundle.putInt("from", SPConstants.MAIN_FIND);
         intent.putExtras(bundle);
         mActivity.startActivityForResult(intent, SPConstants.MAIN_FIND);
+    }
+
+
+    public static String action = "com.bean.refresh";
+    private RefreshCast myReiceiver;
+
+    public class RefreshCast extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (null != intent.getAction()) {
+                if (action.equals(intent.getAction())) {
+                    Bundle data = intent.getBundleExtra("datas");
+                    int position = data.getInt("position");
+                    listBean = (FindArticleListModel.ListBean) data.getSerializable("data");
+                    LogUtil.LogShitou("看看是为什么","==>"+mDataList.size());
+                   try {
+                       if (mDataList.size()==0){
+                           listBean.setIs_collected(listBean.isIs_collected());
+                           listBean.setIs_liked(listBean.isIs_liked());
+                           myAdapter.notifyDataSetChanged();
+                       }else {
+                           mDataList.set(position, listBean);
+                           myAdapter.notifyDataSetChanged();
+                       }
+                   }catch (Exception e){
+                       e.printStackTrace();
+                       listBean.setIs_collected(listBean.isIs_collected());
+                       listBean.setIs_liked(listBean.isIs_liked());
+                       myAdapter.notifyDataSetChanged();
+                   }
+                }
+            }
+        }
+    }
+
+    private void registCast() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(action);
+        myReiceiver = new RefreshCast();
+        mActivity.registerReceiver(myReiceiver, filter);
+    }
+
+    private void unRegistCast() {
+        mActivity.unregisterReceiver(myReiceiver);
     }
 
 

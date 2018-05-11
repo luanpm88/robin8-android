@@ -28,6 +28,7 @@
     <string name="text_collect">收藏</string>
     <string name="text_collected">已收藏</string>
     <string name="my_collect">我的收藏</string>
+    <string name="content">内容</string>
     <!--Mine-->
     <string name="mine_task">任务</string>
     <string name="wallet">钱包</string>
@@ -228,7 +229,7 @@
     <string name="sign_was_done">签到已完成</string>
     <string name="sign_instantly">立即签到</string>
     <string name="sign_successfully">签到成功</string>
-    <string name="sign">签到</string>
+    <string name="sign">每日任务</string>
 
     <string name="hot_kol_recommend">热门KOL推荐</string>
     <string name="wechat">朋友圈</string>
@@ -475,7 +476,7 @@
     <string name="share_to_qzone">分享到QQ空间</string>
     <string name="share_to_wechat_favorites">分享到微信收藏</string>
     <string name="share_for_money">分享赚收益</string>
-    <string name="known">知道了</string>
+    <string name="known">知道啦</string>
     <string name="screenshot_check_ruler">\u30001.活动保留时间太短\n\u30002.活动被设置了分组\n\u30003.活动含诱导点击文字\n\u30004.没按照参考截图上传\n\u30005.分享了过多相同活动</string>
     <string name="share_success_and_ruler">分享成功啦-《Robin8截图审核规则》</string>
     <string name="campaign_request">活动要求</string>

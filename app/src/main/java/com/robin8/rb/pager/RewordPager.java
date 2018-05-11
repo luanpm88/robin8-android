@@ -16,7 +16,6 @@ import android.widget.RadioGroup;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.ChangeHttpActivity;
 import com.robin8.rb.activity.LoginActivity;
-import com.robin8.rb.adapter.ImagePagerAdapter;
 import com.robin8.rb.adapter.RewordAdapter;
 import com.robin8.rb.autoviewpager.AutoScrollViewPager;
 import com.robin8.rb.base.BaseApplication;
@@ -30,6 +29,7 @@ import com.robin8.rb.model.CampaignListBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.NotifyMsgEntity;
 import com.robin8.rb.module.first.activity.LaunchRewordFirstActivity;
+import com.robin8.rb.module.reword.banner.ImageBannerAdapter;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.protocol.RewordProtocol;
 import com.robin8.rb.task.LoginTask;
@@ -148,7 +148,7 @@ public class RewordPager extends BasePager implements Observer {
         }
 
         String withAnnouncements = null;
-        if (state == INIT_DATA) {
+        if (state != LOAD_MORE) {
             withAnnouncements = "y";
         } else {
             withAnnouncements = "n";
@@ -186,16 +186,16 @@ public class RewordPager extends BasePager implements Observer {
                     }
 
                     List<CampaignListBean.CampaignInviteEntity> campiList = bean.getCampaign_invites();
-                    List<CampaignListBean.AnnouncementEntity> announcementsList = bean.getAnnouncements();
+                    announcementsList = bean.getAnnouncements();
                     switch (state) {
                         case INIT_DATA:
                             mLoadingPage.showSafePage(LoadingPage.STATE_LOAD_SUCCESS);
-                            initVpData();
+                           // initVpData();
                             setVpAuto();
                             break;
                         case REFRESH:
                             mRefreshListView.setRefreshFinshed(true);
-                            initVpData();
+                          //  initVpData();
                             setVpAuto();
                             break;
                         case LOAD_MORE:
@@ -223,6 +223,10 @@ public class RewordPager extends BasePager implements Observer {
                 }
             }
         });
+    }
+    private List<CampaignListBean.AnnouncementEntity> announcementsList;
+    public void newVpData() {
+
     }
 
     public void initVpData() {
@@ -260,7 +264,8 @@ public class RewordPager extends BasePager implements Observer {
      * 设置轮播图
      */
     public void setVpAuto() {
-        int size = mBannerList.size();
+       // int size = mBannerList.size();
+        int size = announcementsList.size();
         if (mVpAuto == null) {
             return;
         }
@@ -270,7 +275,7 @@ public class RewordPager extends BasePager implements Observer {
 //        mVpAuto.setPageTransformer(false, mCardShadowTransformer);
 //        mVpAuto.setOffscreenPageLimit(3);
 //        mCardShadowTransformer.setScale(0.27272727f,true);
-        mVpAuto.setAdapter(new ImagePagerAdapter(mActivity, mBannerList).setInfiniteLoop(true));
+        mVpAuto.setAdapter(new ImageBannerAdapter(mActivity, announcementsList).setInfiniteLoop(true));
         mVpAuto.setOnPageChangeListener(new MyOnPageChangeListener(size, mTopPoints));
         mVpAuto.setInterval(5000);
         mVpAuto.startAutoScroll();
@@ -283,7 +288,7 @@ public class RewordPager extends BasePager implements Observer {
         for (int i = 0; i < size; i++) {
             View view = new View(mActivity);
             view.setBackgroundResource(R.drawable.tab_dot_selector);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) (BaseApplication.mPixelDensityF * 25), (int) (BaseApplication.mPixelDensityF * 7));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) (BaseApplication.mPixelDensityF * 7), (int) (BaseApplication.mPixelDensityF * 7));
             if (i != 0) {
                 params.leftMargin = (int) (BaseApplication.mPixelDensityF * 7);
             }
@@ -342,7 +347,7 @@ public class RewordPager extends BasePager implements Observer {
         mVpAuto.post(new Runnable() {
             @Override
             public void run() {
-                mVpAuto.getLayoutParams().height = DensityUtils.getScreenWidth(mVpAuto.getContext()) * 2 / 5;
+                mVpAuto.getLayoutParams().height = DensityUtils.getScreenWidth(mVpAuto.getContext()) * 7/15;
             }
         });
         mTopPoints = (LinearLayout) header.findViewById(R.id.ll_vp_points);

@@ -181,4 +181,14 @@
             <enum name="grid" value="1"/>
         </attr>
     </declare-styleable>
+    <!--MultiSnapRecyclerView-->
+    <declare-styleable name="MultiSnapRecyclerView">
+        <attr name="msrv_gravity" format="enum">
+            <enum name="center" value="0"/>
+            <enum name="start" value="1"/>
+            <enum name="end" value="2"/>
+        </attr>
+        <attr name="msrv_snap_count" format="integer"/>
+        <attr name="msrv_ms_per_inch" format="float"/>
+    </declare-styleable>
 </resources>

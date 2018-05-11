@@ -568,14 +568,14 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     private void onePageSelected(int position) {
 
-        if (mPageName == StatisticsAgency.CAMPAIGN_LIST) {
-            BasePager basePager = mPagerList.get(CAMPAIGN_LIST);
-            if (basePager instanceof RewordPager) {
-                RewordPager pager = (RewordPager) basePager;
-                pager.initVpData();
-                pager.setVpAuto();
-            }
-        }
+//        if (mPageName == StatisticsAgency.CAMPAIGN_LIST) {
+//            BasePager basePager = mPagerList.get(CAMPAIGN_LIST);
+//            if (basePager instanceof RewordPager) {
+//                RewordPager pager = (RewordPager) basePager;
+//                pager.initVpData();
+//                pager.setVpAuto();
+//            }
+//        }
 
         if (position == mLastPosition) {
             return;

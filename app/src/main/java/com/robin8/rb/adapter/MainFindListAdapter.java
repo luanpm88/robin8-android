@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.robin8.rb.R;
 import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.module.find.activity.SetResultCallBack;
+import com.robin8.rb.module.find.SetResultCallBack;
 import com.robin8.rb.module.find.adapter.NineGridViewClickAdapter;
 import com.robin8.rb.module.find.model.FindArticleListModel;
 import com.robin8.rb.module.find.model.ImageInfo;
@@ -59,7 +59,7 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
 
         void OnSimpleClick(View v, int position, SetResultCallBack setResultCallBack);
 
-        void OnShareClick(View v, int position);
+        void OnItemClick(View v, int position);
     }
 
     public void setClickListener(RecyclerListener listener) {
@@ -127,28 +127,17 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
 
                 @Override
                 public void run() {
-                    if (viewHolder.llExpand.getmExpandText().getLineCount()<=3){
+                    if (viewHolder.llExpand.getmExpandText().getLineCount() <= 3) {
                         viewHolder.tvShow.setVisibility(View.GONE);
-                    }else {
+                    } else {
                         viewHolder.tvShow.setVisibility(View.VISIBLE);
                     }
                 }
             });
-//            UIUtils.runInMainThread(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    if (viewHolder.llExpand.getmExpandText().getLineCount()<=3){
-//                        viewHolder.tvShow.setVisibility(View.GONE);
-//                    }else {
-//                        viewHolder.tvShow.setVisibility(View.VISIBLE);
-//                    }
-//                }
-//            });
 
-            if (viewHolder.llExpand.isShow()==false){
+            if (viewHolder.llExpand.isShow() == false) {
                 viewHolder.tvShow.setText(mContext.getString(R.string.text_show));
-            }else {
+            } else {
                 viewHolder.tvShow.setText(mContext.getString(R.string.text_pack_up));
             }
             viewHolder.tvShow.setOnClickListener(new View.OnClickListener() {
@@ -156,9 +145,9 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
                 @Override
                 public void onClick(View view) {
                     viewHolder.llExpand.switchs();
-                    if (viewHolder.llExpand.isShow()==false){
+                    if (viewHolder.llExpand.isShow() == false) {
                         viewHolder.tvShow.setText(mContext.getString(R.string.text_show));
-                    }else {
+                    } else {
                         viewHolder.tvShow.setText(mContext.getString(R.string.text_pack_up));
                     }
                 }
@@ -259,12 +248,12 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
                             } else {
                                 listModel.setIs_liked(false);
                                 viewHolder.imgClick.setImageResource(R.mipmap.icon_like_no);
-                                if (Integer.valueOf(viewHolder.tvLikeNum.getText().toString())-1<0){
+                                if (Integer.valueOf(viewHolder.tvLikeNum.getText().toString()) - 1 < 0) {
                                     viewHolder.tvLikeNum.setText(0);
                                     listModel.setLikes_count(0);
-                                }else {
-                                    viewHolder.tvLikeNum.setText(String.valueOf((Integer.valueOf(viewHolder.tvLikeNum.getText().toString())-1)));
-                                    listModel.setLikes_count((Integer.valueOf(viewHolder.tvLikeNum.getText().toString())-1));
+                                } else {
+                                    viewHolder.tvLikeNum.setText(String.valueOf((Integer.valueOf(viewHolder.tvLikeNum.getText().toString()) - 1)));
+                                    listModel.setLikes_count((Integer.valueOf(viewHolder.tvLikeNum.getText().toString()) - 1));
                                 }
 
                             }
@@ -315,7 +304,7 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
         public TextView tvShareNum;
         public int position;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             imgUserPhoto = ((CircleImageView) itemView.findViewById(R.id.img_user_photo));
             tvUserName = ((TextView) itemView.findViewById(R.id.tv_user_name));
@@ -331,6 +320,15 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
             tvLikeNum = ((TextView) itemView.findViewById(R.id.tv_like_num));
             llShare = ((LinearLayout) itemView.findViewById(R.id.ll_share));
             tvShareNum = ((TextView) itemView.findViewById(R.id.tv_like_share_num));
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    if (recyclerListener != null) {
+                        recyclerListener.OnItemClick(itemView, position);
+                    }
+                }
+            });
         }
     }
 
@@ -404,8 +402,8 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
                                     break;
                             }
                             if (isShare) {
-                                    holder.tvShareNum.setText(String.valueOf(listModel.getForwards_count() + 1));
-                                    listModel.setForwards_count(listModel.getForwards_count() + 1);
+                                holder.tvShareNum.setText(String.valueOf(listModel.getForwards_count() + 1));
+                                listModel.setForwards_count(listModel.getForwards_count() + 1);
                             }
                         }
 
@@ -417,7 +415,8 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
 
     private String title;
     private String titleAdd;
-private boolean isFirst = false;
+    private boolean isFirst = false;
+
     private void share(String platName, FindArticleListModel.ListBean listModel, String url) {
         if (mCustomDialogManager != null) {
             mCustomDialogManager.dismiss();

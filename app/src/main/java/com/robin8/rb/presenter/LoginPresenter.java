@@ -85,6 +85,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 influence = 1;
             }
         }
+
     }
 
     @Override
@@ -442,6 +443,11 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                         //  LoginHelper.loginSuccess(loginBean, from, mActivity);
                         HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
                         HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+                        if (loginBean.is_new_member()){
+                            HelpTools.insertCommonXml(HelpTools.ISNEWUSER,"is");
+                        }else {
+                            HelpTools.insertCommonXml(HelpTools.ISNEWUSER,"no");
+                        }
                         BaseApplication.getInstance().setLoginBean(loginBean);
                         if (BaseApplication.getInstance().hasLogined()) {
                             NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
@@ -701,11 +707,11 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             } else {
                 //为登陆就返回活动页面
-                Intent intent = new Intent(mActivity, MainActivity.class);
-                intent.putExtra("register_main", "zhu");
-                mActivity.startActivity(intent);
-                mActivity.finish();
-                mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    Intent intent = new Intent(mActivity, MainActivity.class);
+                    intent.putExtra("register_main", "zhu");
+                    mActivity.startActivity(intent);
+                    mActivity.finish();
+                    mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         } else {
             if (i == 1) {
@@ -716,7 +722,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             mActivity.finish();
             //mActivity.finish();
             // mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
         }
     }
     public void toEmailRegister(){

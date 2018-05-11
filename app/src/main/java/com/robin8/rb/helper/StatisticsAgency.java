@@ -40,6 +40,9 @@ public class StatisticsAgency {
     public static final String SIGN_UP_RECRUIT = "sign_up_recruit";//招募活动报名
     //发现
     public static final String FIND_LIST = "find_list";
+    public static final String FIND_COLLECT = "find_collect";
+    public static final String NEWUSERTASK = "new_user_task";
+    public static final String FINDDETAIL = "find_detail";
 
     //创作
     public static final String CREATE_LIST = "create_list";
