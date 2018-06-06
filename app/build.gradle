@@ -104,29 +104,29 @@ android {
         //应用宝、360市场、百度 豌豆荚  android_yingyongbao android_360 android_baidu android_wandoujia  android_xiaomi
         // android_huawei  android_lianxiang
         // android_meizu  android_oppo  android_vivo
-        android_yingyongbao {
-            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
-        }
-
-        android_360 {
-            manifestPlaceholders = [Td_Channel_Id: "android_360"]
-        }
-
-        android_baidu {
-            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
-        }
-
-        android_wandoujia {
-            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
-        }
-
-        android_huawei {
-            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
-        }
-
-        android_lianxiang {
-            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
-        }
+//        android_yingyongbao {
+//            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
+//        }
+//
+//        android_360 {
+//            manifestPlaceholders = [Td_Channel_Id: "android_360"]
+//        }
+//
+//        android_baidu {
+//            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
+//        }
+//
+//        android_wandoujia {
+//            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
+//        }
+//
+//        android_huawei {
+//            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
+//        }
+//
+//        android_lianxiang {
+//            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
+//        }
 
 //        android_vivo {
 //            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
