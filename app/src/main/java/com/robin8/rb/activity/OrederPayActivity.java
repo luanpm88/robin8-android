@@ -175,6 +175,7 @@ public class OrederPayActivity extends BaseActivity {
             RequestParams requestParams = new RequestParams();
             requestParams.put("id", mCampaign.getId());
             requestParams.put("pay_way", BALANCE);
+            requestParams.put("use_credit",false);//是否使用积分抵扣
             mBasePresenter.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.BRAND_AMMOUNT_PAY_URL), requestParams, new RequestCallback() {
                 @Override
                 public void onError(Exception e) {

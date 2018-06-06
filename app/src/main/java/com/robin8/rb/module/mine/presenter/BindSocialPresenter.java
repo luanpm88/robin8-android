@@ -13,6 +13,7 @@ import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.UIUtils;
 
 import java.util.HashMap;
@@ -127,7 +128,7 @@ public class BindSocialPresenter extends BindSocialPresenterListener {
 
                         @Override
                         public void onResponse(String response) {
-                          //  LogUtil.LogShitou("第三方登陆成功后", response);
+                            LogUtil.LogShitou("第三方登陆成功后", response);
                             IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
                             if (indentyBean.getError() == 0) {
                                 //                                List<IndentyBean.IdentitiesBean> identities = indentyBean.getIdentities();

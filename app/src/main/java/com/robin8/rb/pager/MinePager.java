@@ -19,7 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.activity.ADHostActivity;
+import com.robin8.rb.module.mine.activity.ADHostActivity;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.activity.WalletActivity;
 import com.robin8.rb.base.BaseApplication;
@@ -884,35 +884,39 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     //                        setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE);
                     //                        break;
                 }
-                if (item.name.equals("一元购")) {
-                    holder.mLlItem.setVisibility(View.GONE);
-                    holder.lineDown.setVisibility(View.GONE);
-                }
+//                if (item.name.equals("一元购")) {
+//                    holder.mLlItem.setVisibility(View.GONE);
+//                    holder.lineDown.setVisibility(View.GONE);
+//                }
                 //隐藏我的关注
                 if (item.name.equals(mActivity.getResources().getString(R.string.my_concern))) {
                     holder.mLlItem.setVisibility(View.GONE);
                     holder.lineDown.setVisibility(View.GONE);
                 }
-                if (mKolBean != null) {
-                    if (mKolBean.getAdmintag() != null) {
-                        if (mKolBean.getAdmintag().size() == 0) {
-                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                                holder.mLlItem.setVisibility(View.VISIBLE);
-                                holder.lineDown.setVisibility(View.VISIBLE);
-                            }
-                        } else {
-                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                                holder.mLlItem.setVisibility(View.GONE);
-                                holder.lineDown.setVisibility(View.GONE);
-                            }
-                        }
-                    }
-                } else {
-                    if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                        holder.mLlItem.setVisibility(View.GONE);
-                        holder.lineDown.setVisibility(View.GONE);
-                    }
+                if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+                    holder.mLlItem.setVisibility(View.GONE);
+                    holder.lineDown.setVisibility(View.GONE);
                 }
+//                if (mKolBean != null) {
+//                    if (mKolBean.getAdmintag() != null) {
+//                        if (mKolBean.getAdmintag().size() == 0) {
+//                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+//                                holder.mLlItem.setVisibility(View.VISIBLE);
+//                                holder.lineDown.setVisibility(View.VISIBLE);
+//                            }
+//                        } else {
+//                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+//                                holder.mLlItem.setVisibility(View.GONE);
+//                                holder.lineDown.setVisibility(View.GONE);
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+//                        holder.mLlItem.setVisibility(View.GONE);
+//                        holder.lineDown.setVisibility(View.GONE);
+//                    }
+//                }
                 if (item.name.equals("我的产品")) {
                     holder.mLlItem.setVisibility(View.GONE);
                     holder.lineDown.setVisibility(View.GONE);

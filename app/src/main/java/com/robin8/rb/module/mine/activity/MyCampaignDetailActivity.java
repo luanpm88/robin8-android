@@ -28,6 +28,7 @@ import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 
 /**
@@ -145,6 +146,7 @@ public class MyCampaignDetailActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
+                LogUtil.LogShitou("发布过的活动详情"+HelpTools.getUrl(CommonConfig.CAMPAIGN_DETAIL_URL),response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }

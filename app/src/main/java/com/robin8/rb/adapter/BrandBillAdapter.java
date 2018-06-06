@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.robin8.rb.R;
+import com.robin8.rb.model.BrandBillCreditModel;
 import com.robin8.rb.model.BrandBillModel;
 
 import java.util.List;
 
 public class BrandBillAdapter extends BaseRecyclerAdapter {
     private IncomeDetailViewHolder mIncomeDetailViewHolder;
+    private int type;
+    private List<BrandBillCreditModel.CreditsBean> listCredit;
 
     public static interface OnRecyclerViewListener {
         void onItemClick(int position);
@@ -24,8 +27,7 @@ public class BrandBillAdapter extends BaseRecyclerAdapter {
 
     private OnRecyclerViewListener onRecyclerViewListener;
 
-    public void setOnRecyclerViewListener(
-            OnRecyclerViewListener onRecyclerViewListener) {
+    public void setOnRecyclerViewListener(OnRecyclerViewListener onRecyclerViewListener) {
         this.onRecyclerViewListener = onRecyclerViewListener;
     }
 
@@ -35,19 +37,22 @@ public class BrandBillAdapter extends BaseRecyclerAdapter {
         this.mDataList = list;
     }
 
+    public void setCreditDataList(List<BrandBillCreditModel.CreditsBean> listCredit) {
+        this.listCredit = listCredit;
+    }
+
     private List<BrandBillModel.BrandBill> mDataList;
 
-    public BrandBillAdapter(List<BrandBillModel.BrandBill> list) {
+    public BrandBillAdapter(List<BrandBillModel.BrandBill> list, List<BrandBillCreditModel.CreditsBean> listCredit, int type) {
         this.mDataList = list;
+        this.listCredit = listCredit;
+        this.type = type;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i,boolean isItem) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.income_detail_list_item, null);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i, boolean isItem) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.income_detail_list_item, null);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
         mIncomeDetailViewHolder = new IncomeDetailViewHolder(view);
         return mIncomeDetailViewHolder;
@@ -63,19 +68,37 @@ public class BrandBillAdapter extends BaseRecyclerAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, boolean isItem) {
         IncomeDetailViewHolder holder = (IncomeDetailViewHolder) viewHolder;
         holder.position = position;
-        BrandBillModel.BrandBill brandBill = mDataList.get(position);
-        if(brandBill == null){
-            return;
+        if (type == 0) {
+            BrandBillModel.BrandBill brandBill = mDataList.get(position);
+            if (brandBill == null) {
+                return;
+            }
+            holder.dateTv.setText(brandBill.getCreated_at());
+            holder.everydayIncomeTv.setText(brandBill.getCredits());
+            holder.subjectTv.setText(brandBill.getTitle());
+            holder.numtypeTv.setText(brandBill.getDirect_text());
+        }else {
+            BrandBillCreditModel.CreditsBean creditsBean = listCredit.get(position);
+            if (creditsBean == null){
+                return;
+            }
+            holder.dateTv.setText(creditsBean.getShow_time());
+            holder.subjectTv.setText(creditsBean.getRemark());
+            holder.numtypeTv.setText(creditsBean.getDirect());
+            holder.everydayIncomeTv.setText(String.valueOf(creditsBean.getScore()));
         }
-        holder.dateTv.setText(brandBill.getCreated_at());
-        holder.everydayIncomeTv.setText(brandBill.getCredits());
-        holder.subjectTv.setText(brandBill.getTitle());
-        holder.numtypeTv.setText(brandBill.getDirect_text());
+
+
     }
 
     @Override
     public int getAdapterItemCount() {
-        return mDataList.size();
+        if (type == 0) {
+            return mDataList.size();
+        } else {
+            return listCredit.size();
+        }
+
     }
 
     class IncomeDetailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {

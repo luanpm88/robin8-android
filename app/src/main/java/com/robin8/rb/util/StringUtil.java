@@ -17,10 +17,9 @@ public class StringUtil {
     private static final String TAG = StringUtil.class.getCanonicalName();
 
     /**
-     * 字符串转整数
-     *
-     * @param obj
-     * @return 转换异常返回 0
+     字符串转整数
+     @param obj
+     @return 转换异常返回 0
      */
     public static int toInt(String obj) {
 
@@ -33,10 +32,9 @@ public class StringUtil {
     }
 
     /**
-     * 字符串转长整数
-     *
-     * @param obj
-     * @return 转换异常返回 0
+     字符串转长整数
+     @param obj
+     @return 转换异常返回 0
      */
     public static long toLong(String obj) {
         try {
@@ -47,10 +45,9 @@ public class StringUtil {
     }
 
     /**
-     * 字符串转布尔值
-     *
-     * @param b
-     * @return 转换异常返回 false
+     字符串转布尔值
+     @param b
+     @return 转换异常返回 false
      */
     public static boolean toBool(String b) {
         try {
@@ -61,11 +58,10 @@ public class StringUtil {
     }
 
     /**
-     * 字节转为字符串
-     *
-     * @param date
-     * @param charsetName 指定字符集
-     * @return
+     字节转为字符串
+     @param date
+     @param charsetName 指定字符集
+     @return
      */
     public static String byteToString(byte[] date, String charsetName) {
 
@@ -86,16 +82,17 @@ public class StringUtil {
     }
 
     /**
-     * 判断给定字符串是否空白串。 空白串是指由空格、制表符、回车符、换行符组成的字符串。 若输入字符串为null或空白串，返回true。
-     *
-     * @param input
-     * @return boolean
+     判断给定字符串是否空白串。 空白串是指由空格、制表符、回车符、换行符组成的字符串。 若输入字符串为null或空白串，返回true。
+     @param input
+     @return boolean
      */
     public static boolean isEmpty(String input) {
         if (input == null || input.length() <= 0) {
             return true;
         }
-
+        if (TextUtils.isEmpty(input)) {
+            return true;
+        }
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
             if (c != ' ' && c != '\t' && c != '\r' && c != '\n') {
@@ -107,11 +104,11 @@ public class StringUtil {
     }
 
     /**
-     * @param sourceStr 被插入的字符串
-     * @param position  插入的位置
-     * @param insertStr 要插入的字符串
-     * @return 插入后的字符串
-     * @Description 在字符串的指位置插入一个字符串
+     @param sourceStr 被插入的字符串
+     @param position 插入的位置
+     @param insertStr 要插入的字符串
+     @return 插入后的字符串
+     @Description 在字符串的指位置插入一个字符串
      */
     public static String insertString(String sourceStr, int position, String insertStr) {
         int i = position - 1;
@@ -121,15 +118,15 @@ public class StringUtil {
     }
 
     /**
-     * @param sourceStr 被插入的字符串
-     * @param endString 指定的字符串
-     * @return 如果字符串中没有指定的字符串，那么返回原字符串，如果有，就返回截取指定字符串之前的子字符串。
-     * @Description 从字符串中截取指定字符串之前的子字符串
+     @param sourceStr 被插入的字符串
+     @param endString 指定的字符串
+     @return 如果字符串中没有指定的字符串，那么返回原字符串，如果有，就返回截取指定字符串之前的子字符串。
+     @Description 从字符串中截取指定字符串之前的子字符串
      */
     public static String subStringEndString(String sourceStr, String endString) {
 
         int position = sourceStr.indexOf(endString);
-        if (position == -1) {
+        if (position == - 1) {
             return sourceStr;
         }
 
@@ -178,7 +175,7 @@ public class StringUtil {
      *
      * @return
      */
-	/*
+    /*
 	 * public static String getOneChineseChar(Context context) { if (context ==
 	 * null) { return null; }
 	 * 
@@ -206,10 +203,9 @@ public class StringUtil {
 	 */
 
     /**
-     * 把多个字符串相加起来
-     *
-     * @param strings
-     * @return
+     把多个字符串相加起来
+     @param strings
+     @return
      */
     public static String addString(String... strings) {
         String addStr = null;
@@ -228,10 +224,9 @@ public class StringUtil {
     }
 
     /**
-     * 判断一个字符是否是字母
-     *
-     * @param codePoint
-     * @return
+     判断一个字符是否是字母
+     @param codePoint
+     @return
      */
     public static boolean isLetter(int codePoint) {
         if (('A' <= codePoint && codePoint <= 'Z') || ('a' <= codePoint && codePoint <= 'z')) {
@@ -242,27 +237,25 @@ public class StringUtil {
     }
 
     /**
-     * 判断一个字符是否是字母
-     *
-     * @param c
-     * @return
+     判断一个字符是否是字母
+     @param c
+     @return
      */
     public static boolean isLetter(char c) {
         return isLetter((int) c);
     }
 
     /**
-     * 把字符和String.xml里的指定字符串进行拼接
+     把字符和String.xml里的指定字符串进行拼接
      */
     public static String stringFormat(Context context, int StringId, String str) {
         return String.format(context.getString(StringId), str);
     }
 
     /**
-     * 判断字符是大写
-     *
-     * @param str
-     * @return
+     判断字符是大写
+     @param str
+     @return
      */
     public static boolean isAcronym(String str) {
         for (int i = 0; i < str.length(); i++) {
@@ -275,10 +268,9 @@ public class StringUtil {
     }
 
     /**
-     * 如果string为空返回""
-     *
-     * @param s
-     * @return
+     如果string为空返回""
+     @param s
+     @return
      */
     public static String checkString(String s) {
         if (TextUtils.isEmpty(s))
@@ -288,7 +280,7 @@ public class StringUtil {
     }
 
     /**
-     * 去除尾部.0
+     去除尾部.0
      */
     public static String deleteZero(String s) {
         if (TextUtils.isEmpty(s))
@@ -303,7 +295,7 @@ public class StringUtil {
     }
 
     /**
-     * 去除尾部.0
+     去除尾部.0
      */
     public static String deleteZero(float f) {
         String s = String.valueOf(f);
@@ -311,7 +303,7 @@ public class StringUtil {
     }
 
     /**
-     * 去除尾部.0
+     去除尾部.0
      */
     public static String deleteZero(double d) {
         String s = String.valueOf(d);
@@ -332,13 +324,14 @@ public class StringUtil {
 
     public static String getToken(Context context) {
         String clientid = PushManager.getInstance().getClientid(context.getApplicationContext());
-        if(TextUtils.isEmpty(clientid)){
+        if (TextUtils.isEmpty(clientid)) {
             clientid = AppUtils.getImei(context);
-            PushManager.getInstance().bindAlias(context,clientid);
+            PushManager.getInstance().bindAlias(context, clientid);
         }
-        LogUtil.logXXfigo("clientid="+clientid);
+        LogUtil.logXXfigo("clientid=" + clientid);
         return clientid;
     }
+
     /**
      更改字符串的字体大小和粗体，颜色
      @param view
@@ -350,7 +343,7 @@ public class StringUtil {
     public static void setTextViewSpan(TextView view, int fontSize, int start, int end, int color) {
 
         Spannable span = new SpannableString(view.getText());
-        if (fontSize!=0){
+        if (fontSize != 0) {
             span.setSpan(new AbsoluteSizeSpan(fontSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         span.setSpan(new ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -364,10 +357,10 @@ public class StringUtil {
      @param strLength
      @return
      */
-    public static String addZeroForNum(String str,int strLength){
+    public static String addZeroForNum(String str, int strLength) {
         int strLen = str.length();
-        if (strLen<strLength){
-            while (strLen<strLength){
+        if (strLen < strLength) {
+            while (strLen < strLength) {
                 StringBuffer sb = new StringBuffer();
                 sb.append(str).append("0");
                 str = sb.toString();

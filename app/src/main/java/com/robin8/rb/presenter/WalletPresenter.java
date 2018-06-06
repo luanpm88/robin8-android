@@ -73,6 +73,7 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
+                LogUtil.LogShitou("折线图",response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }

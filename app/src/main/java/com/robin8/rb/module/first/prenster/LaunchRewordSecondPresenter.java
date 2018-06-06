@@ -14,6 +14,7 @@ import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.model.LaunchRewordModel;
 import com.robin8.rb.module.first.activity.ModifyRewordActivity;
+import com.robin8.rb.module.mine.model.LaunchRewordPayModel;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -30,9 +31,10 @@ import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.ILaunchRewordSecondView;
 
+import static android.app.Activity.RESULT_CANCELED;
+
 /**
- * @author Figo
- */
+ @author Figo */
 public class LaunchRewordSecondPresenter extends BasePresenter implements PresenterI {
 
     private final ILaunchRewordSecondView mIUserView;
@@ -60,18 +62,18 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
     private void initData() {
         Intent intent = mActivity.getIntent();
         mID = intent.getIntExtra("id", 0);
-        from = intent.getIntExtra("from", -1);
+        from = intent.getIntExtra("from", - 1);
         Object obj = intent.getSerializableExtra("launchrewordmodel");
         if (obj != null && obj instanceof LaunchRewordModel) {
             mLaunchRewordModel = (LaunchRewordModel) intent.getSerializableExtra("launchrewordmodel");
         } else {
             return;
         }
-//        updateView();
+        //        updateView();
     }
 
     /**
-     * 加载网络
+     加载网络
      */
     private void load() {
         mWProgressDialog = WProgressDialog.createDialog(mActivity);
@@ -89,7 +91,7 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("修改活动详情","===>"+response);
+                LogUtil.LogShitou("修改活动详情", "===>" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -119,9 +121,10 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         String countWay = mCampaign.getPer_budget_type();
         String everyConsume = StringUtil.deleteZero(String.valueOf(mCampaign.getPer_action_budget()));
         totalConsume = StringUtil.deleteZero(mCampaign.getBudget());
-
         setBottomView(mCampaign);
-        setSwitchView(mCampaign);
+        // setSwitchView(mCampaign);
+        //setSwitchCredit(mLaunchRewordModel);
+        // setUseKolAmount(true);
         float ammount = mCampaign.getBudget() - mLaunchRewordModel.getKol_amount();
         if (ammount <= 0) {
             mIUserView.setCountTv(String.valueOf(0));
@@ -154,11 +157,33 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         mIUserView.setImageView(path);
         mUseKolAmountB = true;
         mIUserView.setViewSwitch(mUseKolAmountB);
+        float credit = (mLaunchRewordModel.getKol_credit());
+        float amount = mCampaign.getBudget() - credit/10;
+        if (mUseKolAmountB) {
+            if (amount <= 0) {
+                mIUserView.setCountTv(String.valueOf(0));
+                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mCampaign.getBudget()));
+            } else {
+                mIUserView.setCountTv(StringUtil.deleteZero(amount));
+                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10));
+            }
+        }
     }
+
+    /**
+     添加积分
+     @param model
+     */
+    private void setSwitchCredit(LaunchRewordModel model) {
+        SwitchView viewSwitch = mIUserView.getViewSwitch();
+        viewSwitch.setVisibility(View.VISIBLE);
+        mIUserView.setCreditIncomeTv("(可用积分):" + String.valueOf(model.getKol_credit()));
+    }
+
 
     private void setSwitchView(LaunchRewordModel.Campaign mCampaign) {
         SwitchView viewSwitch = mIUserView.getViewSwitch();
-        if ((from == SPConstants.MY_LAUNCH_REWORD_ACTIVITY && !"unpay".equals(mCampaign.getStatus())) || !clickable && !mCampaign.isUsed_voucher()) {
+        if ((from == SPConstants.MY_LAUNCH_REWORD_ACTIVITY && ! "unpay".equals(mCampaign.getStatus())) || ! clickable && ! mCampaign.isUsed_voucher()) {
             viewSwitch.setVisibility(View.INVISIBLE);
             mIUserView.setAccountIncomeTv("¥ " + totalConsume);
         } else {
@@ -227,16 +252,34 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         if (mLaunchRewordModel == null || mCampaign == null) {
             return;
         }
-        float ammount = mCampaign.getBudget() - mLaunchRewordModel.getKol_amount();
+        float credit = (mLaunchRewordModel.getKol_credit());
+        float amount = mCampaign.getBudget()  - credit/10;
         if (mUseKolAmountB) {
-            if (ammount <= 0) {
+            if (amount <= 0) {
                 mIUserView.setCountTv(String.valueOf(0));
+                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mCampaign.getBudget()));
             } else {
-                mIUserView.setCountTv(StringUtil.deleteZero(String.valueOf(ammount)));
+                mIUserView.setCountTv(StringUtil.deleteZero(amount));
+                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10));
             }
         } else {
             mIUserView.setCountTv(StringUtil.deleteZero(String.valueOf(mCampaign.getBudget())));
+            if (amount <= 0) {
+                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mCampaign.getBudget()));
+            } else {
+                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10));
+            }
         }
+        //        float ammount = mCampaign.getBudget() - mLaunchRewordModel.getKol_amount();
+        //        if (mUseKolAmountB) {
+        //            if (ammount <= 0) {
+        //                mIUserView.setCountTv(String.valueOf(0));
+        //            } else {
+        //                mIUserView.setCountTv(StringUtil.deleteZero(String.valueOf(ammount)));
+        //            }
+        //        } else {
+        //            mIUserView.setCountTv(StringUtil.deleteZero(String.valueOf(mCampaign.getBudget())));
+        //        }
     }
 
     @Override
@@ -259,6 +302,7 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         params.put("id", mCampaign.getId());
         params.put("used_voucher", mUseKolAmountB ? 1 : 0);
         getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.PAY_BY_VOUCHER_URL), params, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
 
@@ -266,8 +310,8 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("去支付",HelpTools.getUrl(CommonConfig.PAY_BY_VOUCHER_URL)+response);
-               // Log.e("xxfigo", "PAY_BY_VOUCHER_URL=" + response);
+                LogUtil.LogShitou("去支付", HelpTools.getUrl(CommonConfig.PAY_BY_VOUCHER_URL) + response);
+                // Log.e("xxfigo", "PAY_BY_VOUCHER_URL=" + response);
                 mLaunchRewordModel = GsonTools.jsonToBean(response, LaunchRewordModel.class);
                 if (mLaunchRewordModel == null) {
                     CustomToast.showShort(mActivity, mActivity.getString(R.string.please_data_wrong));
@@ -290,20 +334,61 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         });
     }
 
+    public void newSkipToOrder() {
+        RequestParams params = new RequestParams();
+        params.put("id", mCampaign.getId());
+        params.put("use_credit", mUseKolAmountB ? 1 : 0);
+        LogUtil.LogShitou("提交参数", "===>" + mUseKolAmountB);
+        getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.PAY_BY_CREDIT_URL), params, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.LogShitou("积分／去支付", HelpTools.getUrl(CommonConfig.PAY_BY_CREDIT_URL) + response);
+                LaunchRewordPayModel model = GsonTools.jsonToBean(response, LaunchRewordPayModel.class);
+                if (model == null) {
+                    CustomToast.showShort(mActivity, mActivity.getString(R.string.please_data_wrong));
+                    return;
+                }
+                if (model.getError() == 0) {
+                    LaunchRewordModel.Campaign campaign = mLaunchRewordModel.getCampaign();
+                    if (model.getCampaign() != null && model.getCampaign().getNeed_pay_amount() == 0) {
+                        CustomToast.showShort(mActivity, "支付成功");
+                        mActivity.startActivityForResult(new Intent(mActivity, PaySuccessActivity.class), 0);
+                    } else {
+                        campaign.setAlipay_url(model.getCampaign().getAlipay_url());
+                        campaign.setStatus(model.getCampaign().getStatus());
+                        campaign.setBrand_amount(model.getCampaign().getBrand_amount());
+                        campaign.setNeed_pay_amount(model.getCampaign().getNeed_pay_amount());
+                        Intent intent = new Intent(mActivity, OrederPayActivity.class);
+                        intent.putExtra("campaign", campaign);
+                        mActivity.startActivityForResult(intent, 0);
+                    }
+                } else {
+                    CustomToast.showShort(mActivity, model.getDetail());
+                }
+            }
+        });
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == SPConstants.PAY_SUCCESS_ACTIVITY) {
             mActivity.setResult(SPConstants.PAY_SUCCESS_ACTIVITY);
             mActivity.finish();
-        }
-
-        if (resultCode == SPConstants.LAUNCHREWORDACTIVIRY) {
+        } else if (resultCode == SPConstants.LAUNCHREWORDACTIVIRY) {
             mActivity.setResult(SPConstants.LAUNCH_REWORD_SEOND_ACTIVIRY);
             mActivity.finish();
+        } else if (requestCode == RESULT_CANCELED) {
+            // updateView();
         }
     }
 
     /**
-     * 撤销活动
+     撤销活动
      */
     public void cancelCampaign() {
         mCampaignTask = new CampaignTask(mActivity);
@@ -311,7 +396,7 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
     }
 
     /**
-     * 修改活动
+     修改活动
      */
     public void skipToLaunchReword() {
         if (mCampaign == null) {

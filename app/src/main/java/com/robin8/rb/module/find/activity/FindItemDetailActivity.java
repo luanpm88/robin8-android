@@ -1,9 +1,7 @@
 package com.robin8.rb.module.find.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -192,7 +190,6 @@ public class FindItemDetailActivity extends BaseActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void initData() {
         Intent intent = getIntent();
         listBean = (FindArticleListModel.ListBean) intent.getSerializableExtra(FINDDETAIL);
@@ -218,11 +215,11 @@ public class FindItemDetailActivity extends BaseActivity {
             tvLookNum.setText(String.valueOf(listBean.getReads_count()) + "次观看");
         }
         if (listBean.isIs_collected()) {
-            tvCollect.setBackground(getResources().getDrawable(R.drawable.shape_bg_gray_pane_pane));
+            tvCollect.setBackgroundResource(R.drawable.shape_bg_gray_pane_pane);
             tvCollect.setText(getString(R.string.text_collected));
             tvCollect.setTextColor(getResources().getColor(R.color.gray_first));
         } else {
-            tvCollect.setBackground(getResources().getDrawable(R.drawable.shape_bg_yellow_pane_first));
+            tvCollect.setBackgroundResource(R.drawable.shape_bg_yellow_pane_first);
             tvCollect.setText(getString(R.string.text_collect));
             tvCollect.setTextColor(getResources().getColor(R.color.yellow_custom));
         }
@@ -292,7 +289,6 @@ public class FindItemDetailActivity extends BaseActivity {
                 }
             }
 
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onResponse(String response) {
                 if (mWProgressDialog != null) {
@@ -305,13 +301,13 @@ public class FindItemDetailActivity extends BaseActivity {
                         if (is) {
                             isCollect = true;
                             listBean.setIs_collected(true);
-                            tvCollect.setBackground(getResources().getDrawable(R.drawable.shape_bg_gray_pane_pane));
+                            tvCollect.setBackgroundResource(R.drawable.shape_bg_gray_pane_pane);
                             tvCollect.setText(getString(R.string.text_collected));
                             tvCollect.setTextColor(getResources().getColor(R.color.gray_first));
                         } else {
                             isCollect = false;
                             listBean.setIs_collected(false);
-                            tvCollect.setBackground(getResources().getDrawable(R.drawable.shape_bg_yellow_pane_first));
+                            tvCollect.setBackgroundResource(R.drawable.shape_bg_yellow_pane_first);
                             tvCollect.setText(getString(R.string.text_collect));
                             tvCollect.setTextColor(getResources().getColor(R.color.yellow_custom));
                         }
@@ -419,6 +415,11 @@ public class FindItemDetailActivity extends BaseActivity {
                     holder.imgIcon.setVisibility(View.GONE);
                 }
                 holder.tvTitle.setText(item.getTitle());
+            }
+            if (!TextUtils.isEmpty(item.getUser_name())){
+                holder.tvForm.setText("来源于："+item.getUser_name());
+            }else {
+                holder.tvForm.setText("来源于：微博");
             }
             holder.llRelevant.setOnClickListener(new View.OnClickListener() {
 
@@ -574,5 +575,12 @@ public class FindItemDetailActivity extends BaseActivity {
         Intent intent = new Intent(FindItemDetailActivity.this, LoginActivity.class);
         intent.putExtra("find_detail", "find_detail");
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tvCollect.setBackgroundResource(0);
+        System.gc();
     }
 }

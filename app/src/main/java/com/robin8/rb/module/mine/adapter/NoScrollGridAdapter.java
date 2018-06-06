@@ -1,8 +1,6 @@
 package com.robin8.rb.module.mine.adapter;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +55,7 @@ public class NoScrollGridAdapter extends BaseAdapter {
         return position;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // int viewWidth = screenWidth / 7;
@@ -82,14 +80,14 @@ public class NoScrollGridAdapter extends BaseAdapter {
                     holder.tvDays.setVisibility(View.VISIBLE);
                     holder.llSeven.setVisibility(View.GONE);
                 }
-                holder.tvDays.setBackground(ctx.getDrawable(R.drawable.shape_bg_circle_blue));
+                holder.tvDays.setBackgroundResource(R.drawable.shape_bg_circle_blue);
                 holder.tvDays.setTextColor(ctx.getResources().getColor(R.color.white_custom));
             } else {
                 if (position==6){
                     holder.tvDays.setVisibility(View.GONE);
                     holder.llSeven.setVisibility(View.VISIBLE);
                 }
-                holder.tvDays.setBackground(ctx.getDrawable(R.drawable.shape_circle_white));
+                holder.tvDays.setBackgroundResource(R.drawable.shape_circle_white);
                 holder.tvDays.setTextColor(ctx.getResources().getColor(R.color.gray_first));
             }
         }

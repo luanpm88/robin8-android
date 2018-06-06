@@ -33,8 +33,8 @@ public class CommonConfig {
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
     //18321878526
     // public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
-  // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-   //  public static String SERVICE = "http://192.168.51.99:3000/";//robin8-测试服务器地址/test server path
+    // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+    // public static String SERVICE = "http://192.168.51.99:3001/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
     // public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
     public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
@@ -63,13 +63,17 @@ public class CommonConfig {
     public static final String WITHDRAW_APPLY_URL = "api/v1_3/withdraws/apply";//  提现申请
     public static final String BIND_ALIPAY_URL = "api/v1_3/kols/bind_alipay";// 绑定支付宝账号
     public static final String PAY_BY_VOUCHER_URL = "api/v1_4/kol_campaigns/pay_by_voucher";// 是否 使用任务奖金抵扣
+    public static final String PAY_BY_CREDIT_URL = "api/v1_4/kol_campaigns/pay_by_credit";// 是否 使用积分抵扣
     public static final String CAMPAIGN_CHECK_SUCCESS_BY_ALIPAY_URL = "api/v1_4/kol_campaigns/show";// 付宝支付后 向服务器确认 是否 支付成功:
     public static final String CAMPAIGN_DETAIL_URL = "api/v1_4/kol_campaigns/detail";// 活动详情
     public static final String BRAND_AMMOUNT_PAY_URL = "api/v1_4/kol_campaigns/pay";// 使用 brand 余额 支付
     public static final String BRAND_RECHARGE_URL = "api/v1_4/kol_brand/recharge";// 充值
+    public static final String BRAND_PROMOTIONS_URL = "api/v2_0/promotions";// 充值积分
+    public static final String BRAND_MSG_URL = "api/v1_4/kol_brand/update_profile";// 商户资料
 
     public static final String KOL_BRAND_AMOUNT_URL = "api/v1_4/kol_brand";// 广告主余额
-    public static final String KOL_BRAND_BILL_URL = "api/v1_4/kol_brand/bill";
+    public static final String KOL_BRAND_BILL_URL = "api/v1_4/kol_brand/bill";//广告主资金账单
+    public static final String KOL_BRAND_BILL_CREADIT_URL = "api/v2_0/credits";//广告主流水账单
 
     public static final String KOL_CAMPAIGNS_REVOKE_URL = "api/v1_4/kol_campaigns/revoke";//撤销活动
 
@@ -82,8 +86,8 @@ public class CommonConfig {
     //    public static final String CHECK_IN_HISTORY_URL = "api/v1_3/tasks/check_in_history";//签到历史2.2.7
     //    public static final String CHECK_IN_URL = "api/v1_3/tasks/check_in";//签到2.2.7
     public static final String CHECK_IN_HISTORY_URL = "api/v1_3/check_tasks/check_in_history";//签到历史2.2.7
-   public static final String CHECK_IN_URL = "api/v1_3/check_tasks/check_in";//签到2.2.7
-   public static final String NEW_TASKS_UP_URL = "api/v2_0/tasks/finish_newbie";//新手任务提交post
+    public static final String CHECK_IN_URL = "api/v1_3/check_tasks/check_in";//签到2.2.7
+    public static final String NEW_TASKS_UP_URL = "api/v2_0/tasks/finish_newbie";//新手任务提交post
 
     public static final String FIRST_KOL_LIST_URL = "api/v1_6/big_v";//首页列表数据
     public static final String MY_CARE_URL = "api/v1_6/my/friends";
@@ -174,6 +178,7 @@ public class CommonConfig {
     public static final String FIND_SET = "api/v2_0/articles/set";
     public static final String FIND_READ = "api/v2_0/articles/read";
     public static final String FIND_ITEM_DETAIL = "api/v2_0/articles/recommends";
+    public static final String BANNER_CLICK_URL = "api/v2_0/announcements/click";//点击banner调用
 
 
 }

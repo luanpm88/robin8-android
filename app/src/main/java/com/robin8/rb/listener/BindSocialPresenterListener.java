@@ -63,6 +63,7 @@ public class BindSocialPresenterListener implements PlatformActionListener {
         if (t instanceof WechatClientNotExistException) {
             failtext = "微信客户端不存在";
         } else if (t instanceof WechatTimelineNotSupportedException) {
+            failtext = "请重新尝试";
         } else if (t instanceof QQClientNotExistException) {
             failtext = "QQ客户端不存在";
         }

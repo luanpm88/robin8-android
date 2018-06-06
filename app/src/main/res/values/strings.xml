@@ -476,7 +476,7 @@
     <string name="share_to_qzone">分享到QQ空间</string>
     <string name="share_to_wechat_favorites">分享到微信收藏</string>
     <string name="share_for_money">分享赚收益</string>
-    <string name="known">知道啦</string>
+    <string name="known">我知道了</string>
     <string name="screenshot_check_ruler">\u30001.活动保留时间太短\n\u30002.活动被设置了分组\n\u30003.活动含诱导点击文字\n\u30004.没按照参考截图上传\n\u30005.分享了过多相同活动</string>
     <string name="share_success_and_ruler">分享成功啦-《Robin8截图审核规则》</string>
     <string name="campaign_request">活动要求</string>

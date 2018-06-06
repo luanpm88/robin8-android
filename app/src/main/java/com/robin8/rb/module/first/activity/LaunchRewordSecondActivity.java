@@ -42,6 +42,9 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
     private TextView mPayInstantlyTv;//立即支付
     private TextView mTitleTv;
     private SwitchView mSwitchView;
+    private SwitchView mSwitchCredit;
+    private TextView mCreditIncomeTv;
+
     private ImageView mBackIv;
     private TextView mRightIv;
     private int from;
@@ -66,11 +69,13 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
         mCountWayTv = (TextView) view.findViewById(R.id.tv_count_way);
         mTotalConsumeTv = (TextView) view.findViewById(R.id.tv_total_consume);
         mAccountIncomeTv = (TextView) view.findViewById(R.id.tv_account_income);
+        mCreditIncomeTv = (TextView) view.findViewById(R.id.tv_credit_income);
         mCountTv = (TextView) view.findViewById(R.id.tv_count);
         mPayInstantlyTv = (TextView) view.findViewById(R.id.tv_pay_instantly);
         mTitleTv.setText(this.getText(R.string.launch_reword));
         ((LinearLayout) view.findViewById(R.id.ll_share)).setVisibility(View.GONE);
         mSwitchView = (SwitchView) findViewById(R.id.view_switch);
+        mSwitchCredit = (SwitchView) findViewById(R.id.switch_credit);
         View titlebarDetailContent = findViewById(R.id.titlebar_detail_content);
         mBackIv = (ImageView) titlebarDetailContent.findViewById(R.id.iv_back);
         mRightIv = (TextView) titlebarDetailContent.findViewById(tv_right);
@@ -93,7 +98,7 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
         mLaunchRewordSecondPresenter = new LaunchRewordSecondPresenter(this, this);
         mLaunchRewordSecondPresenter.init();
 
-        mSwitchView.setOnStateChangedListener(new SwitchView.OnStateChangedListener() {
+        mSwitchCredit.setOnStateChangedListener(new SwitchView.OnStateChangedListener() {
 
             @Override
             public void toggleToOn(View view) {
@@ -133,7 +138,8 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_pay_instantly:
-                mLaunchRewordSecondPresenter.skipToOrder();
+              //  mLaunchRewordSecondPresenter.skipToOrder();
+                mLaunchRewordSecondPresenter.newSkipToOrder();
                 break;
             case R.id.iv_back:
                 finish();
@@ -211,6 +217,11 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
     }
 
     @Override
+    public void setCreditIncomeTv(String text) {
+        mCreditIncomeTv.setText(text);
+    }
+
+    @Override
     public void setCountTv(String title) {
         mCountTv.setText("合计: ¥ " + title);
     }
@@ -222,12 +233,12 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
 
     @Override
     public SwitchView getViewSwitch() {
-        return mSwitchView;
+        return mSwitchCredit;
     }
 
     @Override
     public void setViewSwitch(boolean flag) {
-        mSwitchView.toggleSwitch(flag);
+        mSwitchCredit.toggleSwitch(flag);
     }
 
     @Override

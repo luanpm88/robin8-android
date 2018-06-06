@@ -3,6 +3,7 @@
  * trinea.cn ("Confidential Information"). You shall not disclose such Confidential Information and shall use it only in
  * accordance with the terms of the license agreement you entered into with trinea.cn.
  */
+
 package com.robin8.rb.module.reword.banner;
 
 import android.app.Activity;
@@ -27,17 +28,21 @@ import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
 import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
+import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
 import java.util.List;
 
 
 /**
- * ImagePagerAdapter
- */
+ ImagePagerAdapter */
 public class ImageBannerAdapter extends RecyclingPagerAdapter {
 
     private static final String STATE_REJECTED = "rejected";//pending,applying,passed,rejected
@@ -70,8 +75,8 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
             holder = (ViewHolder) view.getTag(R.id.ll_load_more);
         }
         holder.imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        BitmapUtil.loadImageCenter(mActivity,imageIdList.get(p).getBanner_url(),holder.imageView);
-      //  holder.imageView.setBackgroundResource(imageIdList.get(position % size).resId);
+        BitmapUtil.loadImageCenter(mActivity, imageIdList.get(p).getBanner_url(), holder.imageView);
+        //  holder.imageView.setBackgroundResource(imageIdList.get(position % size).resId);
         view.setOnClickListener(new MyOnClickListener(position % size, imageIdList.get(position % size).getDetail_type()));
         return view;
     }
@@ -83,14 +88,17 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
     private class MyOnClickListener implements View.OnClickListener {
 
         private String type;
+        private int position;
 
         public MyOnClickListener(int position, String type) {
             this.type = type;
+            this.position = position;
         }
 
         @Override
         public void onClick(View v) {
             if (BaseApplication.getInstance().hasLogined()) {
+                BannerClick(position);
                 Intent intent = null;
                 switch (type) {
                     case "complete_info":
@@ -134,6 +142,26 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
         }
     }
 
+    private void BannerClick(final int position) {
+        BasePresenter mBasePresenter = new BasePresenter();
+        RequestParams params = new RequestParams();
+        params.put("announcement_id", imageIdList.get(position).getId());
+        params.put("params_json", imageIdList.get(position).getDetail_type());
+
+        mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.BANNER_CLICK_URL), params, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.LogShitou("这是请求", position + response);
+            }
+        });
+    }
+
     private void showRejectedDialog(final LoginBean.KolEntity kol) {
         View view = LayoutInflater.from(mActivity).inflate(R.layout.dialog_reject_kol, null);
         TextView bekolTV = (TextView) view.findViewById(R.id.tv_be_kol);
@@ -142,6 +170,7 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
         reasonTV.setText(kol.getRole_check_remark());
         cancelTV.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 cdm.dismiss();
@@ -149,6 +178,7 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
         });
 
         bekolTV.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 skipToBeKol(kol.getId());
@@ -171,7 +201,7 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
     }
 
     /**
-     * @param isInfiniteLoop the isInfiniteLoop to set
+     @param isInfiniteLoop the isInfiniteLoop to set
      */
     public ImageBannerAdapter setInfiniteLoop(boolean isInfiniteLoop) {
         this.isInfiniteLoop = isInfiniteLoop;

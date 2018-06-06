@@ -1,8 +1,6 @@
 package com.robin8.rb.adapter;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -101,7 +99,6 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
         return mViewHolder;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position, boolean isItem) {
         if (mDataList == null || mDataList.size() == 0 || position < 0 || position >= mDataList.size()) {
@@ -179,11 +176,11 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
         // isCollect = listModel.isIs_collected();
         // isLike = listModel.isIs_liked();
         if (listModel.isIs_collected() == true) {
-            viewHolder.tvCollect.setBackground(mContext.getResources().getDrawable(R.drawable.shape_bg_gray_pane_pane));
+            viewHolder.tvCollect.setBackgroundResource(R.drawable.shape_bg_gray_pane_pane);
             viewHolder.tvCollect.setText(mContext.getString(R.string.text_collected));
             viewHolder.tvCollect.setTextColor(mContext.getResources().getColor(R.color.gray_first));
         } else {
-            viewHolder.tvCollect.setBackground(mContext.getResources().getDrawable(R.drawable.shape_bg_yellow_pane_first));
+            viewHolder.tvCollect.setBackgroundResource(R.drawable.shape_bg_yellow_pane_first);
             viewHolder.tvCollect.setText(mContext.getString(R.string.text_collect));
             viewHolder.tvCollect.setTextColor(mContext.getResources().getColor(R.color.yellow_custom));
         }
@@ -208,12 +205,12 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
                         public void onCollect(boolean isCollect) {
                             if (isCollect) {
                                 listModel.setIs_collected(true);
-                                viewHolder.tvCollect.setBackground(mContext.getResources().getDrawable(R.drawable.shape_bg_gray_pane_pane));
+                                viewHolder.tvCollect.setBackgroundResource(R.drawable.shape_bg_gray_pane_pane);
                                 viewHolder.tvCollect.setText(mContext.getString(R.string.text_collected));
                                 viewHolder.tvCollect.setTextColor(mContext.getResources().getColor(R.color.gray_first));
                             } else {
                                 listModel.setIs_collected(false);
-                                viewHolder.tvCollect.setBackground(mContext.getResources().getDrawable(R.drawable.shape_bg_yellow_pane_first));
+                                viewHolder.tvCollect.setBackgroundResource(R.drawable.shape_bg_yellow_pane_first);
                                 viewHolder.tvCollect.setText(mContext.getString(R.string.text_collect));
                                 viewHolder.tvCollect.setTextColor(mContext.getResources().getColor(R.color.yellow_custom));
                             }

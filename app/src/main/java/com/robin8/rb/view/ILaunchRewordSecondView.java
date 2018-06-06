@@ -22,6 +22,7 @@ public interface ILaunchRewordSecondView {
     void setTotalConsumeTv(String text);//活动总预算
 
     void setAccountIncomeTv(String text);//¥1232（余额：¥1232）
+    void setCreditIncomeTv(String text);//¥1232（余额：¥1232）
 
     void setCountTv(String title);//总计
 

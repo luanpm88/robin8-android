@@ -721,7 +721,6 @@ public class BeKolSecondActivity extends BaseActivity {
      @param type 当前界面状态是解绑还是绑定
      @param names 中文name ：微信
      */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void showMyDialog(final Activity activity, final int uid, final String providerName, String title, String info, final int type, final String names, final boolean is) {
         // String rejectReason = campaignInviteEntity.getReject_reason();
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_reject_screenshot, null);
@@ -740,7 +739,7 @@ public class BeKolSecondActivity extends BaseActivity {
             layoutRight.setVisibility(View.GONE);
             infoTv.setVisibility(View.GONE);
             confirmTV.setText("确定");
-            layoutLeft.setBackground(activity.getResources().getDrawable(R.drawable.shape_corner_bg_bottom));
+            layoutLeft.setBackgroundResource(R.drawable.shape_corner_bg_bottom);
         }
 
         final CustomDialogManager cdm = new CustomDialogManager(activity, view);

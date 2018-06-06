@@ -179,7 +179,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onResponse(String response) {
-
+                LogUtil.LogShitou("第三方", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -232,7 +232,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onResponse(String response) {
-              //  LogUtil.LogShitou("第三方绑定登陆成功后======>", response);
+                LogUtil.LogShitou("第三方绑定登陆成功后======>", response);
                 IndentyBean indentyBean = GsonTools.jsonToBean(response, IndentyBean.class);
                 if (indentyBean.getError() == 0) {
                     if ("wechat".equals(provider)) {
@@ -379,14 +379,14 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             public void onResponse(String response) {
 
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
-                if (bean!=null){
+                if (bean != null) {
                     if (bean.getError() == 0) {
                         CustomToast.showShort(mActivity, "验证码发送成功");
                         new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
                     } else {
                         CustomToast.showShort(mActivity, "验证码发送失败");
                     }
-                }else {
+                } else {
                     CustomToast.showShort(mActivity, "验证码发送失败");
                 }
 
@@ -399,95 +399,95 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
      @param which 0:手机号登陆；1：邮箱登陆
      */
     public void login(int which) {
-        if (which==0){
-        final String phoneNumber = mILoginView.getPhoneNumber();
-        String checkCode = mILoginView.getCheckCode();
-        String invitationCode = mILoginView.getInvitationCode();
-        if (! RegExpUtil.checkMobile(phoneNumber)) {
-            CustomToast.showShort(mActivity, "请输入正确的手机号码!");
-        } else {
-            if (mWProgressDialog == null) {
-                mWProgressDialog = WProgressDialog.createDialog(mActivity);
-            }
-            mWProgressDialog.show();
-
-            LoginTask.newInstance(mActivity.getApplicationContext()).start(new RequestCallback() {
-
-                @Override
-                public void onError(Exception e) {
-                    if (mWProgressDialog != null) {
-                        mWProgressDialog.dismiss();
-                    }
+        if (which == 0) {
+            final String phoneNumber = mILoginView.getPhoneNumber();
+            String checkCode = mILoginView.getCheckCode();
+            String invitationCode = mILoginView.getInvitationCode();
+            if (! RegExpUtil.checkMobile(phoneNumber)) {
+                CustomToast.showShort(mActivity, "请输入正确的手机号码!");
+            } else {
+                if (mWProgressDialog == null) {
+                    mWProgressDialog = WProgressDialog.createDialog(mActivity);
                 }
+                mWProgressDialog.show();
 
-                @Override
-                public void onResponse(String response) {
-                    LogUtil.LogShitou("手机号登陆返回数据", response);
-                    if (mWProgressDialog != null) {
-                        try {
+                LoginTask.newInstance(mActivity.getApplicationContext()).start(new RequestCallback() {
+
+                    @Override
+                    public void onError(Exception e) {
+                        if (mWProgressDialog != null) {
                             mWProgressDialog.dismiss();
-                        } catch (Exception e) {
-                            e.printStackTrace();
                         }
                     }
-                    LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
-                    if (loginBean == null) {
-                        CustomToast.showShort(mActivity.getApplicationContext(), mActivity.getString(R.string.please_data_wrong));
-                        return;
-                    }
-                    // 登陆成功 埋点
-                    if (loginBean.getError() == 0) {// 登陆成功
-                        // talkingData 统计
-                        TalkingDataAppCpa.onRegister(phoneNumber);
-                        TalkingDataAppCpa.onLogin(phoneNumber);
-                        //  LoginHelper.loginSuccess(loginBean, from, mActivity);
-                        HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
-                        HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
-                        if (loginBean.is_new_member()){
-                            HelpTools.insertCommonXml(HelpTools.ISNEWUSER,"is");
-                        }else {
-                            HelpTools.insertCommonXml(HelpTools.ISNEWUSER,"no");
+
+                    @Override
+                    public void onResponse(String response) {
+                        LogUtil.LogShitou("手机号登陆返回数据", response);
+                        if (mWProgressDialog != null) {
+                            try {
+                                mWProgressDialog.dismiss();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
-                        BaseApplication.getInstance().setLoginBean(loginBean);
-                        if (BaseApplication.getInstance().hasLogined()) {
-                            NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+                        LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
+                        if (loginBean == null) {
+                            CustomToast.showShort(mActivity.getApplicationContext(), mActivity.getString(R.string.please_data_wrong));
+                            return;
                         }
-                        initGetRongCloud(loginBean.getKol().getMobile_number(),loginBean.getKol().getName(),loginBean.getKol().getAvatar_url());
-                        //登陆成功之后去绑定社交账号页面
-                        int is = 0;
-                        if (loginBean.getKol_identities() != null) {
-                            if (loginBean.getKol_identities().size() != 0) {
-                                for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
-                                    if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
-                                        is = 1;
-                                    }
-                                    if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
-                                        HelpTools.insertCommonXml(HelpTools.IsBind, "is");
-                                    }
-                                }
-                                if (is == 1) {
-                                    if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
-                                        //都没有走过，邦过微信／微博，跳过first
-                                        jumpActivity(1);
-                                    } else {
-                                        if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
-                                            jumpActivity(2);
-                                        } else {
-                                            backMain(1);
+                        // 登陆成功 埋点
+                        if (loginBean.getError() == 0) {// 登陆成功
+                            // talkingData 统计
+                            TalkingDataAppCpa.onRegister(phoneNumber);
+                            TalkingDataAppCpa.onLogin(phoneNumber);
+                            //  LoginHelper.loginSuccess(loginBean, from, mActivity);
+                            HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
+                            HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+                            if (loginBean.is_new_member()) {
+                                HelpTools.insertCommonXml(HelpTools.ISNEWUSER, "is");
+                            } else {
+                                HelpTools.insertCommonXml(HelpTools.ISNEWUSER, "no");
+                            }
+                            BaseApplication.getInstance().setLoginBean(loginBean);
+                            if (BaseApplication.getInstance().hasLogined()) {
+                                NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+                            }
+                            initGetRongCloud(loginBean.getKol().getMobile_number(), loginBean.getKol().getName(), loginBean.getKol().getAvatar_url());
+                            //登陆成功之后去绑定社交账号页面
+                            int is = 0;
+                            if (loginBean.getKol_identities() != null) {
+                                if (loginBean.getKol_identities().size() != 0) {
+                                    for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
+                                        if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
+                                            is = 1;
+                                        }
+                                        if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
+                                            HelpTools.insertCommonXml(HelpTools.IsBind, "is");
                                         }
                                     }
+                                    if (is == 1) {
+                                        if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
+                                            //都没有走过，邦过微信／微博，跳过first
+                                            jumpActivity(1);
+                                        } else {
+                                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
+                                                jumpActivity(2);
+                                            } else {
+                                                backMain(1);
+                                            }
+                                        }
+                                    } else {
+                                        jumpActivity(1);
+                                    }
                                 } else {
+                                    //没有绑定
                                     jumpActivity(1);
+
                                 }
                             } else {
-                                //没有绑定
                                 jumpActivity(1);
-
                             }
-                        } else {
-                            jumpActivity(1);
-                        }
-                    } else if (loginBean.getError() == 1) {
+                        } else if (loginBean.getError() == 1) {
                             try {
                                 if (! TextUtils.isEmpty(loginBean.getDetail())) {
                                     mILoginView.clearEdit(3);//无效验证码清空edit
@@ -496,34 +496,34 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                    }else {
-                        try {
-                            if (! TextUtils.isEmpty(loginBean.getDetail())) {
-                                CustomToast.showShort(mActivity.getApplicationContext(), loginBean.getDetail());
+                        } else {
+                            try {
+                                if (! TextUtils.isEmpty(loginBean.getDetail())) {
+                                    CustomToast.showShort(mActivity.getApplicationContext(), loginBean.getDetail());
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
                         }
                     }
-                }
-            }, phoneNumber, checkCode, mKolUuid, invitationCode);
-        }
-        } else if (which==1){
+                }, phoneNumber, checkCode, mKolUuid, invitationCode);
+            }
+        } else if (which == 1) {
             final String emailNumber = mILoginView.getEmailNumber();
             String emailPwd = mILoginView.getEmailPwd();
             if (! RegExpUtil.checkEmail(emailNumber)) {
                 CustomToast.showShort(mActivity, mActivity.getString(R.string.put_right_email_address));
-            }else if (TextUtils.isEmpty(emailPwd)){
+            } else if (TextUtils.isEmpty(emailPwd)) {
                 CustomToast.showShort(mActivity, mActivity.getString(R.string.put_pwd));
-            }else {
+            } else {
                 if (mWProgressDialog == null) {
                     mWProgressDialog = WProgressDialog.createDialog(mActivity);
                 }
                 mWProgressDialog.show();
                 BasePresenter mBasePresenter = new BasePresenter();
                 RequestParams mRequestParams = new RequestParams();
-                mRequestParams.put("login",emailNumber);
-                mRequestParams.put("password",emailPwd);
+                mRequestParams.put("login", emailNumber);
+                mRequestParams.put("password", emailPwd);
                 mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.EMAIL_LOGIN_URL), mRequestParams, new RequestCallback() {
 
                     @Override
@@ -546,25 +546,25 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                                 e.printStackTrace();
                             }
                         }
-                       LogUtil.LogShitou("邮箱登陆结果",response);
-                      //  TalkingDataAppCpa.onRegister(phoneNumber);
-                      //  TalkingDataAppCpa.onLogin(phoneNumber);
+                        LogUtil.LogShitou("邮箱登陆结果", response);
+                        //  TalkingDataAppCpa.onRegister(phoneNumber);
+                        //  TalkingDataAppCpa.onLogin(phoneNumber);
                         //  LoginHelper.loginSuccess(loginBean, from, mActivity);
                         LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
                         if (loginBean == null) {
                             CustomToast.showShort(mActivity.getApplicationContext(), mActivity.getString(R.string.please_data_wrong));
                             return;
                         }
-                        if (loginBean.getError()==0){
+                        if (loginBean.getError() == 0) {
                             HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
-                           // HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+                            // HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
                             BaseApplication.getInstance().setLoginBean(loginBean);
                             if (BaseApplication.getInstance().hasLogined()) {
                                 NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
                             }
-                            initGetRongCloud(emailNumber,loginBean.getKol().getName(),loginBean.getKol().getAvatar_url());
+                            initGetRongCloud(emailNumber, loginBean.getKol().getName(), loginBean.getKol().getAvatar_url());
                             backMain(1);
-                        }else {
+                        } else {
                             CustomToast.showShort(mActivity.getApplicationContext(), loginBean.getDetail());
                         }
 
@@ -621,46 +621,49 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
         });
     }
-    private void initGetRongCloud(String id,String name,String imgUrl) {
+
+    private void initGetRongCloud(String id, String name, String imgUrl) {
         BasePresenter base = new BasePresenter();
         RequestParams requestParams = new RequestParams();
-        if (TextUtils.isEmpty(id)){
+        if (TextUtils.isEmpty(id)) {
             //游客
-            requestParams.put("userId",CommonConfig.TOURIST_PHONE);
-            requestParams.put("name","游客");
-            requestParams.put("portraitUri","http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/ad9d7a31d7!avatar");
-        }else {
-            requestParams.put("userId",id);
-            if (TextUtils.isEmpty(name)){
-                requestParams.put("name",id);
-            }else{
-                requestParams.put("name",name);
+            requestParams.put("userId", CommonConfig.TOURIST_PHONE);
+            requestParams.put("name", "游客");
+            requestParams.put("portraitUri", "http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/ad9d7a31d7!avatar");
+        } else {
+            requestParams.put("userId", id);
+            if (TextUtils.isEmpty(name)) {
+                requestParams.put("name", id);
+            } else {
+                requestParams.put("name", name);
             }
-            if (TextUtils.isEmpty(imgUrl)){
-                requestParams.put("portraitUri","http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/22494f2caf!avatar");
-            }else{
-                requestParams.put("portraitUri",imgUrl);
+            if (TextUtils.isEmpty(imgUrl)) {
+                requestParams.put("portraitUri", "http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/22494f2caf!avatar");
+            } else {
+                requestParams.put("portraitUri", imgUrl);
             }
         }
         base.getDataFromServer(false, HttpRequest.POST, CommonConfig.RONG_CLOUD_URL, requestParams, new RequestCallback() {
 
             @Override
             public void onError(Exception e) {
-                CustomToast.showShort(mActivity,mActivity.getResources().getString(R.string.no_net));
+                CustomToast.showShort(mActivity, mActivity.getResources().getString(R.string.no_net));
             }
+
             @Override
             public void onResponse(String response) {
                 RongCloudBean rongCloudBean = GsonTools.jsonToBean(response, RongCloudBean.class);
-                if (rongCloudBean.getCode()==200){
-                    HelpTools.insertCommonXml(HelpTools.CloudToken,rongCloudBean.getToken());
-                }else{
-                    HelpTools.insertCommonXml(HelpTools.CloudToken,"");
+                if (rongCloudBean.getCode() == 200) {
+                    HelpTools.insertCommonXml(HelpTools.CloudToken, rongCloudBean.getToken());
+                } else {
+                    HelpTools.insertCommonXml(HelpTools.CloudToken, "");
                 }
 
             }
         });
 
     }
+
     private void jumpBeKol(int id) {
         //  TalkingDataAppCpa.onCustEvent1();
         Intent intent1 = new Intent(mActivity, MainActivity.class);
@@ -707,11 +710,11 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             } else {
                 //为登陆就返回活动页面
-                    Intent intent = new Intent(mActivity, MainActivity.class);
-                    intent.putExtra("register_main", "zhu");
-                    mActivity.startActivity(intent);
-                    mActivity.finish();
-                    mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                Intent intent = new Intent(mActivity, MainActivity.class);
+                intent.putExtra("register_main", "zhu");
+                mActivity.startActivity(intent);
+                mActivity.finish();
+                mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         } else {
             if (i == 1) {
@@ -724,7 +727,8 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             // mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
-    public void toEmailRegister(){
+
+    public void toEmailRegister() {
         Intent intent = new Intent(mActivity, EmailRegiterActivity.class);
         mActivity.startActivity(intent);
     }

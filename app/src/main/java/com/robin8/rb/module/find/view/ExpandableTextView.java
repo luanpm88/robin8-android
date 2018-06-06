@@ -3,7 +3,6 @@ package com.robin8.rb.module.find.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
@@ -35,8 +34,9 @@ public class ExpandableTextView extends RelativeLayout {
 
     private boolean isExpand = false;
     private boolean isHave = false;
-private TextView show;
+    private TextView show;
     private int myLine;
+
     public ExpandableTextView(Context context) {
         this(context, null);
     }
@@ -119,12 +119,14 @@ private TextView show;
         mText.setEllipsize(ell);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setTextLineSpacingExtra(float spac) {
         mText.setLineSpacing(spac, 1.0f);
-        mText.setLetterSpacing(0.02f);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mText.setLetterSpacing(0.02f);
+            mExpandText.setLetterSpacing(0.02f);
+        }
         mExpandText.setLineSpacing(spac, 1.0f);
-        mExpandText.setLetterSpacing(0.02f);
+
     }
 
     public TextView text() {
@@ -206,10 +208,10 @@ private TextView show;
     public void switchs() {
 
         if (isExpand) {
-           // LogUtil.LogShitou("这是", "isExpand===>" + isExpand);
+            // LogUtil.LogShitou("这是", "isExpand===>" + isExpand);
             shrink();
         } else {
-           // LogUtil.LogShitou("这是走的是", "isExpand===>" + isExpand);
+            // LogUtil.LogShitou("这是走的是", "isExpand===>" + isExpand);
             expand();
         }
     }

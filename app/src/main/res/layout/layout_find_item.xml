@@ -91,31 +91,6 @@
                 android:textColor="@color/yellow_custom"
                 android:textSize="@dimen/undefine_font_5"/>
         </LinearLayout>
-        <!--<com.robin8.rb.module.find.view.ExpandableTextView-->
-        <!--android:id="@+id/ll_content"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="15dp"-->
-        <!--android:layout_marginTop="15dp">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/id_source_textview"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textColor="@color/black_custom"-->
-        <!--android:letterSpacing="0.05"-->
-        <!--android:lineSpacingExtra="2dp"-->
-        <!--android:textSize="@dimen/undefine_font_5"/>-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/id_expand_textview"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="展开"-->
-        <!--android:paddingTop="5dp"-->
-        <!--android:textColor="@color/yellow_custom"-->
-        <!--android:textSize="@dimen/undefine_font_5"/>-->
-        <!--</com.robin8.rb.module.find.view.ExpandableTextView>-->
 
         <com.robin8.rb.module.find.view.NineGridView
             android:id="@+id/img_grid_view"

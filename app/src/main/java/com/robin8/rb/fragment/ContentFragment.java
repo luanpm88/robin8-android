@@ -5,13 +5,11 @@ import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.andview.refreshview.XRefreshView;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.EvaluateActivity;
-import com.robin8.rb.module.first.activity.LaunchRewordSecondActivity;
 import com.robin8.rb.adapter.MyCampaignAdapter;
 import com.robin8.rb.adapter.ViewPagerAdapter;
 import com.robin8.rb.base.BaseFragment;
@@ -19,6 +17,7 @@ import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.model.LaunchRewordModel;
 import com.robin8.rb.model.MyCampaignModel;
+import com.robin8.rb.module.first.activity.LaunchRewordSecondActivity;
 import com.robin8.rb.module.mine.activity.MyCampaignDetailActivity;
 import com.robin8.rb.module.mine.activity.MyLaunchCampaignRejectActivity;
 import com.robin8.rb.okhttp.HttpRequest;
@@ -32,6 +31,7 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -228,7 +228,7 @@ public class ContentFragment extends BaseFragment {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                Log.e("response",response);
+                LogUtil.LogShitou("我发布的活动",response);
                 parseJson(response);
             }
         });

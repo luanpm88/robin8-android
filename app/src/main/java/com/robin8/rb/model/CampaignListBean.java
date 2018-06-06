@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author DLJ
- * @Description ${TODO}
- * @date 2016/1/27 20:17
- */
+ @author DLJ
+ @Description ${TODO}
+ @date 2016/1/27 20:17 */
 public class CampaignListBean extends BaseBean {
     private MsgStatusbean message_stat;
     private List<CampaignInviteEntity> campaign_invites;
@@ -16,6 +15,7 @@ public class CampaignListBean extends BaseBean {
     public List<CampaignInviteEntity> getCampaign_invites() {
         return campaign_invites;
     }
+
     public MsgStatusbean getMessage_stat() {
         return message_stat;
     }
@@ -23,9 +23,11 @@ public class CampaignListBean extends BaseBean {
     public void setMessage_stat(MsgStatusbean message_stat) {
         this.message_stat = message_stat;
     }
+
     public void setCampaign_invites(List<CampaignInviteEntity> campaign_invite) {
         this.campaign_invites = campaign_invite;
     }
+
     public List<AnnouncementEntity> getAnnouncements() {
         return announcements;
     }
@@ -66,7 +68,7 @@ public class CampaignListBean extends BaseBean {
     }
 
     public static class AnnouncementEntity extends BaseBean implements Serializable {
-
+        private int id;
         private String title;
         private String desc;
         private String url;
@@ -112,6 +114,14 @@ public class CampaignListBean extends BaseBean {
         public void setTitle(String title) {
             this.title = title;
         }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
     }
 
     public static class CampaignInviteEntity extends BaseBean implements Serializable {
@@ -137,7 +147,7 @@ public class CampaignListBean extends BaseBean {
         private String uuid;
         private boolean start_upload_screenshot;//是否开始上传截图
         private String cpi_example_screenshot;
-       private List<String> cpi_example_screenshots;
+        private List<String> cpi_example_screenshots;
         private List<String> screenshot_comment;
 
         public List<String> getScreenshot_comment() {
@@ -198,24 +208,24 @@ public class CampaignListBean extends BaseBean {
         }
 
         /**
-         * id : 315
-         * name : test_app
-         * description : test_app
-         * img_url :
-         * status : settled
-         * message : null
-         * url : http://test_app.com
-         * per_budget_type : click
-         * per_action_budget : 0.1
-         * budget : 2
-         * deadline : 2016-01-13T20:57:00+08:00
-         * start_time : 2016-01-11T15:57:00+08:00
-         * avail_click : 0
-         * total_click : 0
-         * take_budget : 0
-         * remain_budget : 2
-         * share_time : 5
-         * interval_time : [1,1,3]
+         id : 315
+         name : test_app
+         description : test_app
+         img_url :
+         status : settled
+         message : null
+         url : http://test_app.com
+         per_budget_type : click
+         per_action_budget : 0.1
+         budget : 2
+         deadline : 2016-01-13T20:57:00+08:00
+         start_time : 2016-01-11T15:57:00+08:00
+         avail_click : 0
+         total_click : 0
+         take_budget : 0
+         remain_budget : 2
+         share_time : 5
+         interval_time : [1,1,3]
          */
 
         private CampaignEntity campaign;

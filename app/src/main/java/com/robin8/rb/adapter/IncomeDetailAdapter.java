@@ -72,7 +72,7 @@ public class IncomeDetailAdapter extends BaseRecyclerAdapter {
         }else {
             holder.everydayIncomeTv.setText("-"+transactionEntity.getCredits());
         }
-        holder.subjectTv.setText(transactionEntity.getSubject());
+        holder.subjectTv.setText(subSelf(transactionEntity.getSubject()));
         holder.numtypeTv.setText(transactionEntity.getDirect());
 //        Log.e("xxfigo","position=" + position + ";size=" + mDataList.size());
 		if(bottomListener!=null){
@@ -83,7 +83,17 @@ public class IncomeDetailAdapter extends BaseRecyclerAdapter {
 			}
 		}
     }
-
+    public String subSelf(String name) {
+        String all = "";
+        if (name.contains("<") || name.contains(">")) {
+            int a = name.indexOf("<");
+            int b = name.indexOf(">");
+            all = name.replaceAll(name.substring(a, b + 1), "");
+            return subSelf(all);
+        } else {
+            return name;
+        }
+    }
     @Override
     public int getAdapterItemCount() {
         return mDataList.size();

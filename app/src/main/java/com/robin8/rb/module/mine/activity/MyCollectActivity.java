@@ -70,7 +70,6 @@ public class MyCollectActivity extends BaseActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.activity_my_collect, mLLContent, true);
         mXRefreshView = (XRefreshView) view.findViewById(xrefreshview);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-        mWProgressDialog = WProgressDialog.createDialog(this);
         mErrorViewLL = (LinearLayout) view.findViewById(R.id.ll_error);
         llList = ((LinearLayout) view.findViewById(R.id.ll_list));
         mErrorViewLL.setOnClickListener(this);
@@ -147,6 +146,7 @@ public class MyCollectActivity extends BaseActivity {
                 }
             }
         });
+
     }
 
     private FindArticleListModel.ListBean listBean;

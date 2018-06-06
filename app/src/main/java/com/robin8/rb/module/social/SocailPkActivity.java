@@ -318,8 +318,8 @@ public class SocailPkActivity extends BaseActivity {
             mLeftSuccLayout.setVisibility(View.VISIBLE);
             mRightSuccLayout.setVisibility(View.INVISIBLE);
             mTvResultRight.setVisibility(View.VISIBLE);
-            mTvResultRight.setBackground(SocailPkActivity.this.getDrawable(R.drawable.shape_gray_rectangular));
-            mTvResultLeft.setBackground(SocailPkActivity.this.getDrawable(R.drawable.shape_yellow_rectangular));
+            mTvResultRight.setBackground(SocailPkActivity.this.getResources().getDrawable(R.drawable.shape_gray_rectangular));
+            mTvResultLeft.setBackground(SocailPkActivity.this.getResources().getDrawable(R.drawable.shape_yellow_rectangular));
             mTvResultLeft.setText("胜");
             mTvResultRight.setText("败");
         } else if (success == 2) {
@@ -327,8 +327,8 @@ public class SocailPkActivity extends BaseActivity {
             mRightSuccLayout.setVisibility(View.VISIBLE);
             mLeftSuccLayout.setVisibility(View.INVISIBLE);
             mTvResultLeft.setVisibility(View.VISIBLE);
-            mTvResultLeft.setBackground(SocailPkActivity.this.getDrawable(R.drawable.shape_gray_rectangular));
-            mTvResultRight.setBackground(SocailPkActivity.this.getDrawable(R.drawable.shape_yellow_rectangular));
+            mTvResultLeft.setBackground(SocailPkActivity.this.getResources().getDrawable(R.drawable.shape_gray_rectangular));
+            mTvResultRight.setBackground(SocailPkActivity.this.getResources().getDrawable(R.drawable.shape_yellow_rectangular));
             mTvResultLeft.setText("败");
             mTvResultRight.setText("胜");
         } else if (success == 3) {
@@ -336,8 +336,8 @@ public class SocailPkActivity extends BaseActivity {
             mRightSuccLayout.setVisibility(View.VISIBLE);
             mLeftSuccLayout.setVisibility(View.VISIBLE);
             mTvResultLeft.setVisibility(View.VISIBLE);
-            mTvResultLeft.setBackground(SocailPkActivity.this.getDrawable(R.drawable.shape_yellow_rectangular));
-            mTvResultRight.setBackground(SocailPkActivity.this.getDrawable(R.drawable.shape_yellow_rectangular));
+            mTvResultLeft.setBackground(SocailPkActivity.this.getResources().getDrawable(R.drawable.shape_yellow_rectangular));
+            mTvResultRight.setBackground(SocailPkActivity.this.getResources().getDrawable(R.drawable.shape_yellow_rectangular));
             mTvResultLeft.setText("平");
             mTvResultRight.setText("平");
         }

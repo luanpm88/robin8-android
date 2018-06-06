@@ -15,6 +15,7 @@
     <color name="yellow_ff8004">#ff8004</color>
     <color name="yellow_ff9b0d">#ff9b0d</color>
     <color name="yellow_ffad4c">#ffad4c</color>
+    <color name="yellow_ffe0a3">#ffe0a3</color>
     <color name="blue_2bdbe2">#2bdbe2</color>
     <color name="red_ff3030">#ff3030</color>
 
@@ -58,12 +59,15 @@
     <color name="black_custom">#181616</color>
     <color name="gray_first">#777777</color>
     <color name="gray_second">#BBBBBB</color>
+    <color name="gray_ebd7b4">#ebd7b4</color>
     <color name="gray_f0f3f4">#f0f3f4</color>
     <color name="gray_f2f2f2">#f2f2f2</color>
+    <color name="gray_f5f5f5">#f5f5f5</color>
     <color name="gray_e6e6e7">#e6e6e7</color>
     <color name="black_000000">#000000</color>
     <color name="sub_black_custom">#424141</color>
     <color name="black_2e2e2e">#2e2e2e</color>
+    <color name="black_734b2b">#734b2b</color>
     <color name="black_202020">#202020</color>
     <color name="black_ececec">#ececec</color>
     <color name="black_686868">#686868</color>
@@ -91,7 +95,7 @@
     <!--all line-->
     <color name="undefined_backgroud">#f2f4f9</color>
     <color name="undefined_navigation_line">#d4d1d2</color>
-    <color name="undefined_divide_line">#E0E0E0</color>
+    <color name="undefined_divide_line">#E9E9E9</color>
 
 
     <color name="round_corner_progress_bar_background_default">#5f5f5f</color>

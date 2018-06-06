@@ -1,11 +1,9 @@
 package com.robin8.rb.pager;
 
-import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -265,7 +263,6 @@ public class FindPager extends BasePager implements View.OnClickListener {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         myAdapter.setClickListener(new MainFindListAdapter.RecyclerListener() {
 
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void OnSimpleClick(View v, int position, SetResultCallBack setResultCallBack) {
                 if (! BaseApplication.getInstance().hasLogined()) {
@@ -516,7 +513,6 @@ public class FindPager extends BasePager implements View.OnClickListener {
                     Bundle data = intent.getBundleExtra("datas");
                     int position = data.getInt("position");
                     listBean = (FindArticleListModel.ListBean) data.getSerializable("data");
-                    LogUtil.LogShitou("看看是为什么","==>"+mDataList.size());
                    try {
                        if (mDataList.size()==0){
                            listBean.setIs_collected(listBean.isIs_collected());

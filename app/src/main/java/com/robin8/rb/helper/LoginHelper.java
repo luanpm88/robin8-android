@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.robin8.rb.R;
-import com.robin8.rb.activity.ADHostActivity;
+import com.robin8.rb.module.mine.activity.ADHostActivity;
 import com.robin8.rb.activity.MyCampaignActivity;
 import com.robin8.rb.activity.WalletActivity;
 import com.robin8.rb.base.BaseRecyclerViewActivity;

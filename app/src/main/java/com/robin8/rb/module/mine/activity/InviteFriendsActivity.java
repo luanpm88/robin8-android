@@ -1,13 +1,11 @@
 package com.robin8.rb.module.mine.activity;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
@@ -43,7 +41,6 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.widget.CustomDialogManager;
@@ -514,7 +511,6 @@ public class InviteFriendsActivity extends BaseActivity {
             return i;
         }
 
-        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         @Override
         public View getView(int i, View convertView, ViewGroup viewGroup) {
             if (convertView == null) {
@@ -542,7 +538,7 @@ public class InviteFriendsActivity extends BaseActivity {
             holder.mTvMobile.setText(item.getMobile_number());
             if (item.getStatus().equals("not_invited")) {
                 holder.mTvStatus.setText("邀请");
-                holder.mTvStatus.setBackground(InviteFriendsActivity.this.getDrawable(R.drawable.shape_solid_blue));
+                holder.mTvStatus.setBackgroundResource(R.drawable.shape_solid_blue);
                 holder.mTvStatus.setClickable(true);
                 holder.mTvStatus.setOnClickListener(new View.OnClickListener() {
 
@@ -561,11 +557,10 @@ public class InviteFriendsActivity extends BaseActivity {
 
                             @Override
                             public void onResponse(String response) {
-                                LogUtil.LogShitou("发送结果", response);
                                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                                 if (baseBean.getError() == 0) {
                                     holder.mTvStatus.setText("已邀请");
-                                    holder.mTvStatus.setBackground(InviteFriendsActivity.this.getDrawable(R.drawable.shape_solid_gray));
+                                    holder.mTvStatus.setBackgroundResource(R.drawable.shape_solid_gray);
                                 } else {
                                     CustomToast.showShort(InviteFriendsActivity.this, "邀请失败");
                                 }
@@ -577,11 +572,11 @@ public class InviteFriendsActivity extends BaseActivity {
                 });
             } else if (item.getStatus().equals("already_invited")) {
                 holder.mTvStatus.setText("已邀请");
-                holder.mTvStatus.setBackground(InviteFriendsActivity.this.getDrawable(R.drawable.shape_solid_gray));
+                holder.mTvStatus.setBackgroundResource(R.drawable.shape_solid_gray);
                 holder.mTvStatus.setClickable(false);
             } else if (item.getStatus().equals("already_kol")) {
                 holder.mTvStatus.setText("KOL");
-                holder.mTvStatus.setBackground(InviteFriendsActivity.this.getDrawable(R.drawable.shape_solid_blue));
+                holder.mTvStatus.setBackgroundResource(R.drawable.shape_solid_blue);
                 holder.mTvStatus.setClickable(false);
             }
 

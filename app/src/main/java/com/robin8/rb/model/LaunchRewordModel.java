@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by IBM on 2016/7/25.
- */
+ Created by IBM on 2016/7/25. */
 public class LaunchRewordModel extends BaseBean {
     public Campaign getCampaign() {
         return campaign;
@@ -25,6 +24,15 @@ public class LaunchRewordModel extends BaseBean {
 
     private Campaign campaign;
     private float kol_amount;
+    private int kol_credit;
+
+    public int getKol_credit() {
+        return kol_credit;
+    }
+
+    public void setKol_credit(int kol_credit) {
+        this.kol_credit = kol_credit;
+    }
 
     public class Campaign implements Serializable {
         private int id;
@@ -43,11 +51,11 @@ public class LaunchRewordModel extends BaseBean {
         private String age;
         private String[][] stats_data;
         private String tag_labels;
-private String sub_type;
+        private String sub_type;
         private String evaluation_status;
         private int effect_score;
         private String review_content;
-
+        private int used_credits;
 
 
         public String getEvaluation_status() {
@@ -318,6 +326,14 @@ private String sub_type;
 
         public void setSub_type(String sub_type) {
             this.sub_type = sub_type;
+        }
+
+        public int getUsed_credits() {
+            return used_credits;
+        }
+
+        public void setUsed_credits(int used_credits) {
+            this.used_credits = used_credits;
         }
     }
 

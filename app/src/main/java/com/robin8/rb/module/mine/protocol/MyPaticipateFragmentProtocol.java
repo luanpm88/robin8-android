@@ -14,6 +14,7 @@ import com.robin8.rb.module.mine.model.MyCampaignModel;
 import com.robin8.rb.module.reword.activity.DetailContentActivity;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.util.GsonTools;
+import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +113,7 @@ public class MyPaticipateFragmentProtocol implements IProtocol {
     }
     @Override
     public void parseJson(String json, int currentState) {
-      //  LogUtil.LogShitou("我的活动","===>>"+json);
+       LogUtil.LogShitou("我的活动","===>>"+json);
         MyCampaignModel campaignListBean= GsonTools.jsonToBean(json, MyCampaignModel.class);
         if (campaignListBean!=null){
             if (campaignListBean.getError() == 0) {

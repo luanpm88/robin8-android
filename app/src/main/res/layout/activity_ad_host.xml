@@ -1,90 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/undefined_backgroud"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/undefined_backgroud"
+              android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_brand_amount"
         android:layout_width="match_parent"
-        android:layout_height="134.4dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="10dp"
-        android:background="@mipmap/pic_income_bg"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:background="@mipmap/bg_ad_host"
+        android:orientation="horizontal"
+        android:paddingBottom="25dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="30dp">
+
+        <com.robin8.rb.view.widget.CircleImageView
+            android:id="@+id/civ_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@mipmap/icon_user_default"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_campany_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxWidth="165dp"
+                android:singleLine="true"
+                android:textColor="@color/yellow_ffe0a3"
+                android:textSize="@dimen/undefine_font_5"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_user_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:singleLine="true"
+                android:textColor="@color/yellow_ffe0a3"
+                android:textSize="@dimen/undefine_font_3"/>
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/icon_income_text_bg"
+            android:background="@drawable/shape_bg_black_pane"
             android:gravity="center"
-            android:text="@string/ad_amount"
-            android:paddingBottom="3.5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/white_custom"
-            android:textSize="@dimen/undefine_font_0" />
+            android:paddingBottom="4dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="4dp"
+            android:text="修改资料"
+            android:textColor="@color/gray_ebd7b4"
+            android:textSize="@dimen/undefine_font_09"/>
 
-        <TextView
-            android:id="@+id/tv_brand_amount"
-            android:layout_width="match_parent"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-35dp"
+        android:background="@mipmap/bg_ad_host_card"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="--"
-            android:textColor="@color/white_custom"
-            android:textSize="@dimen/undefine_font_9" />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_brand_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="25"
+                android:textColor="@color/black_734b2b"
+                android:textSize="@dimen/undefine_font_a"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="品牌主账户"
+                android:textColor="@color/black_custom"
+                android:textSize="@dimen/undefine_font_2"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="@color/undefined_divide_line"/>
+
+        <RelativeLayout
+            android:id="@+id/ll_rule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_brand_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="500"
+                    android:textColor="@color/black_734b2b"
+                    android:textSize="@dimen/undefine_font_a"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="品牌主积分"
+                    android:textColor="@color/black_custom"
+                    android:textSize="@dimen/undefine_font_2"
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ll_point"
+                android:layout_toRightOf="@+id/ll_point"
+                android:src="@mipmap/icon_rule"/>
+        </RelativeLayout>
     </LinearLayout>
 
     <include
         android:id="@+id/layout_recharge_instantly"
-        layout="@layout/ad_host_item" />
+        layout="@layout/ad_host_item"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
+        android:layout_height="1dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/undefined_divide_line" />
+        android:background="@color/undefined_divide_line"/>
 
     <include
         android:id="@+id/layout_my_launch_campaign"
-        layout="@layout/ad_host_item" />
+        layout="@layout/ad_host_item"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="@color/undefined_divide_line" />
+        android:layout_height="1dp"
+        android:background="@color/undefined_divide_line"/>
 
     <include
         android:id="@+id/layout_my_account_menu"
-        layout="@layout/ad_host_item" />
+        layout="@layout/ad_host_item"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="@color/undefined_divide_line" />
+        android:layout_height="1dp"
+        android:background="@color/undefined_divide_line"/>
 
 
     <include
         android:id="@+id/layout_my_sweep"
-        layout="@layout/ad_host_item" />
+        layout="@layout/ad_host_item"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="@color/undefined_divide_line" />
+        android:layout_height="1dp"
+        android:background="@color/undefined_divide_line"/>
+
     <View
-        android:layout_height="0dp"
         android:layout_width="10dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         />
+
     <TextView
         android:id="@+id/tv_launch"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="@string/launch_reword"
-        android:gravity="center"
         android:background="@color/blue_custom"
-        android:textColor="@color/white_custom" />
+        android:gravity="center"
+        android:text="@string/launch_reword"
+        android:textColor="@color/white_custom"/>
 </LinearLayout>

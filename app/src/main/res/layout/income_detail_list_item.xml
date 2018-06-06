@@ -5,62 +5,69 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="13dp"
+        android:paddingLeft="15dp"
         android:background="@color/white_custom"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingLeft="13dp"
         android:paddingRight="15dp"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="07-20"
-            android:textColor="@color/sub_black_custom" />
-
+        android:paddingTop="13dp">
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_weight="1"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/ll_right"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_everyday_income"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="+1.4"
-                android:textColor="@color/black_custom"
-                android:textSize="@dimen/undefine_font_5" />
-
             <TextView
                 android:id="@+id/tv_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="签到"
-                android:textColor="@color/sub_gray_custom"
-                android:textSize="@dimen/undefine_font_0" />
+                android:textColor="@color/black_custom"
+                android:textSize="@dimen/undefine_font_4" />
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="07-20"
+                android:textSize="@dimen/undefine_font_1"
+                android:textColor="@color/gray_first" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_numtype"
+        <LinearLayout
+            android:id="@+id/ll_right"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical"
-            android:text="收入"
-            android:textColor="@color/sub_gray_custom"
-            android:textSize="@dimen/undefine_font_0" />
-    </LinearLayout>
+            android:gravity="right|center"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_everyday_income"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="+1.4"
+                android:textStyle="bold"
+                android:textColor="@color/black_custom"
+                android:textSize="@dimen/undefine_font_6" />
+            <TextView
+                android:id="@+id/tv_numtype"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="收入"
+                android:textColor="@color/gray_first"
+                android:textSize="@dimen/undefine_font_1" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <View
         android:id="@+id/view_line"
         android:layout_width="match_parent"
-        android:layout_height="0.4dp"
+        android:layout_height="1dp"
         android:background="@color/undefined_divide_line" />
 </LinearLayout>

@@ -109,7 +109,7 @@
                         android:ellipsize="end"
                         android:gravity="center"
                         android:maxLines="2"
-                        android:text="【测试】天宫、神州今天凌晨会对接，6张动图"
+                        android:text="这是一个新手教学活动"
                         android:textColor="@color/sub_black_custom"
                         android:textSize="@dimen/undefine_font_6"
                         android:textStyle="bold"/>
@@ -119,7 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="小小"
+                        android:text="Robin8"
                         android:textColor="@color/sub_black_custom"
                         android:textSize="@dimen/undefine_font_1"/>
 
@@ -127,8 +127,7 @@
                         android:id="@+id/tv_activity_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="2018.04.27 10:26:00 - 2018.04.30 00:00:00"
+                        android:text=""
                         android:textColor="@color/sub_black_custom"
                         android:textSize="@dimen/undefine_font_1"/>
                 </LinearLayout>
@@ -138,8 +137,7 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="10dp">
+                android:layout_height="55dp">
 
                 <TextView
                     android:id="@+id/tv_brand_info"
@@ -149,7 +147,7 @@
                     android:lineSpacingExtra="1.5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="今天凌晨，天宫二号和神州一号成功进行了空间交会对接！\n就在刚刚，航天员已经成功进入了天宫二号！\n你在睡梦中错过了？不要紧！小布"
+                    android:text="这是一个新手教学活动，帮助您更好的使用robin8，\n欢迎关注robin8的微信公众号，\n我们会不定时带来更多活动供您转发。"
                     android:textColor="@color/sub_black_custom"
                     android:textIsSelectable="true"
                     android:textSize="@dimen/undefine_font_2"/>
@@ -214,7 +212,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:text="距离结束1天7时43分"
+                        android:text="距离结束100天7时43分"
                         android:textColor="@color/yellow_custom"
                         android:textSize="@dimen/undefine_font_0"
                         android:visibility="visible"/>
@@ -235,7 +233,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:gravity="center"
-                    android:text="已有0人参加"
+                    android:text="已有1000...人参加"
                     android:textSize="@dimen/undefine_font_0"/>
 
                 <LinearLayout

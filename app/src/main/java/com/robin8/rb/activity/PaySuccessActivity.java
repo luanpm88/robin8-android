@@ -13,6 +13,7 @@ import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.module.create.activity.FragmentsActivity;
+import com.robin8.rb.module.mine.activity.ADHostActivity;
 import com.robin8.rb.util.HelpTools;
 
 /**
@@ -97,7 +98,7 @@ public class PaySuccessActivity extends BaseActivity {
 
         NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_PAY_SUCCESSFUL);
         Intent intent = new Intent(PaySuccessActivity.this, ADHostActivity.class);
-        PaySuccessActivity.this.startActivity(intent);
+        PaySuccessActivity.this.startActivityForResult(intent,SPConstants.PAY_SUCCESS_ACTIVITY);
         super.finish();
     }
 

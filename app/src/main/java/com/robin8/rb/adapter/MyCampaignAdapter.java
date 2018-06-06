@@ -24,9 +24,9 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
     public static final String TYPE_RUNNING = "running";
     public static final String TYPE_COMPLETED = "completed";
 
-    public static final String EVALUA_TING ="evaluating";
+    public static final String EVALUA_TING = "evaluating";
     public static final String EVALUAT_ED = "evaluated";
-     private ViewHolder mViewHolder;
+    private ViewHolder mViewHolder;
     private ViewPagerAdapter.SelectItem data;
 
     public void setData(ViewPagerAdapter.SelectItem data) {
@@ -43,8 +43,7 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
 
     private OnRecyclerViewListener onRecyclerViewListener;
 
-    public void setOnRecyclerViewListener(
-            OnRecyclerViewListener onRecyclerViewListener) {
+    public void setOnRecyclerViewListener(OnRecyclerViewListener onRecyclerViewListener) {
         this.onRecyclerViewListener = onRecyclerViewListener;
     }
 
@@ -63,9 +62,7 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i, boolean isItem) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_campaign_list_item, null);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
         mViewHolder = new ViewHolder(view);
         return mViewHolder;
@@ -82,20 +79,25 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
         ViewHolder holder = (ViewHolder) viewHolder;
         holder.position = position;
         LaunchRewordModel.Campaign campaign = mDataList.get(position);
-        holder.dateTv.setText(DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", campaign.getStart_time()) +
-                " - " + DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", campaign.getDeadline()));
+        holder.dateTv.setText(DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", campaign.getStart_time()) + " - " + DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", campaign.getDeadline()));
         setPayInstantlyTv(holder.payInstantlyTv, campaign);
         setCancelTv(holder.cancelTv, holder.viewLine);
-        setEvaluationState(campaign,holder.cancelTv,holder.viewLine);
+        setEvaluationState(campaign, holder.cancelTv, holder.viewLine);
         holder.nameTv.setText(campaign.getName());
-        holder.tvConsumeTv.setText(StringUtil.deleteZero(String.valueOf(campaign.getBudget())));
+        holder.tvConsumeTv.setText("活动预算：¥" + StringUtil.deleteZero(String.valueOf(campaign.getBudget())));
+        if (campaign.getStatus().equals("unpay") ||TextUtils.isEmpty(String.valueOf(campaign.getUsed_credits()))) {
+            holder.tvCreditTv.setVisibility(View.INVISIBLE);
+        }else {
+            holder.tvCreditTv.setVisibility(View.VISIBLE);
+            holder.tvCreditTv.setText("积分："+String.valueOf(campaign.getUsed_credits()));
+        }
         BitmapUtil.loadImage(BaseApplication.getContext(), campaign.getImg_url(), holder.imageIv);
     }
 
     private void setCancelTv(TextView cancelTv, View viewLine) {
         switch (data.campaignType) {
             case TYPE_RUNNING:
-//            case TYPE_COMPLETED:
+                //            case TYPE_COMPLETED:
                 cancelTv.setVisibility(View.GONE);
                 viewLine.setVisibility(View.GONE);
                 break;
@@ -106,13 +108,13 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
         }
     }
 
-    public void setEvaluationState(LaunchRewordModel.Campaign campaign,TextView cancelTv,View viewLine){
-        if (TYPE_COMPLETED.equals(data.campaignType)){
-            if (EVALUA_TING.equals(campaign.getEvaluation_status())){
+    public void setEvaluationState(LaunchRewordModel.Campaign campaign, TextView cancelTv, View viewLine) {
+        if (TYPE_COMPLETED.equals(data.campaignType)) {
+            if (EVALUA_TING.equals(campaign.getEvaluation_status())) {
                 cancelTv.setText("效果评价");
-            }else if(EVALUAT_ED.equals(campaign.getEvaluation_status())){
+            } else if (EVALUAT_ED.equals(campaign.getEvaluation_status())) {
                 cancelTv.setText("查看评价");
-            }else{
+            } else {
                 cancelTv.setVisibility(View.GONE);
                 viewLine.setVisibility(View.GONE);
             }
@@ -159,6 +161,7 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TextView dateTv;// 07-20
         public TextView tvConsumeTv;// 100
+        public TextView tvCreditTv;// 100
         public TextView nameTv;// 名字
         public TextView payInstantlyTv;// 立即支付
         public TextView cancelTv;// 撤销活动
@@ -172,11 +175,12 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
             rlContent = itemView.findViewById(R.id.rl_content);
             dateTv = (TextView) itemView.findViewById(R.id.tv_date);
             tvConsumeTv = (TextView) itemView.findViewById(R.id.tv_consume);
+            tvCreditTv = (TextView) itemView.findViewById(R.id.tv_credit);
             nameTv = (TextView) itemView.findViewById(R.id.tv_name);
             payInstantlyTv = (TextView) itemView.findViewById(R.id.tv_pay_instantly);
             cancelTv = (TextView) itemView.findViewById(R.id.tv_cancel);
             imageIv = (ImageView) itemView.findViewById(R.id.image);
-            viewLine=  itemView.findViewById(R.id.view_line);
+            viewLine = itemView.findViewById(R.id.view_line);
             rlContent.setOnClickListener(this);
             cancelTv.setOnClickListener(this);
             payInstantlyTv.setOnClickListener(this);

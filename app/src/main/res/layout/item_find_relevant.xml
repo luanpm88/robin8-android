@@ -22,12 +22,11 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="210dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:orientation="vertical"
             android:paddingBottom="10dp"
             android:paddingTop="10dp">
 
@@ -37,18 +36,20 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:text="1322"
                 android:textColor="@color/black_custom"
                 android:textSize="@dimen/undefine_font_4"/>
 
             <TextView
                 android:id="@+id/tv_form"
+                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:text="来源于：微博"
                 android:textColor="@color/gray_first"
                 android:textSize="@dimen/undefine_font_3"/>
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

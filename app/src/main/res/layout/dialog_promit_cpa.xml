@@ -81,20 +81,6 @@
                 style="@style/tv_white_with_dialog_positive"
                 android:textSize="@dimen/undefine_font_6" />
 
-            <!--<View-->
-            <!--android:layout_width="0.4dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@color/undefined_divide_line" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/tv_right"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:text="@string/look_the_screenshot"-->
-            <!--android:textColor="@color/sub_gray_custom"-->
-            <!--android:textSize="@dimen/undefine_font_4" />-->
         </LinearLayout>
     </LinearLayout>
 

@@ -27,7 +27,11 @@ public class CustomDialogManager {
      */
     public void showDialog() {
         if (dg != null) {
-            dg.show();
+            try {
+                dg.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -75,7 +79,11 @@ public class CustomDialogManager {
      */
     public void dismiss() {
         if (dg != null && dg.isShowing()) {
-            dg.dismiss();
+            try {
+                dg.dismiss();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

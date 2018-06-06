@@ -396,7 +396,7 @@ finish();
             tvPreview.setText(getResources().getString(R.string.preview));
             tvCompelte.setEnabled(true);
             tvCompelte.setClickable(true);
-            tvCompelte.setBackground(getResources().getDrawable(R.drawable.shape_bg_be_kol));
+            tvCompelte.setBackgroundResource(R.drawable.shape_bg_be_kol);
             tvCompelte.setTextColor(getResources().getColor(R.color.white_custom));
         } else {
             tvPreview.setEnabled(false);
@@ -404,7 +404,7 @@ finish();
             tvCompelte.setEnabled(false);
             tvCompelte.setClickable(false);
             tvCompelte.setTextColor(getResources().getColor(R.color.gray_second));
-            tvCompelte.setBackground(getResources().getDrawable(R.drawable.shape_bg_gray_pane));
+            tvCompelte.setBackgroundResource(R.drawable.shape_bg_gray_pane);
         }
     }
 

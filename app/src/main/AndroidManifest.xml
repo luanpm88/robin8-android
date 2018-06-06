@@ -197,7 +197,7 @@
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.ADHostActivity"
+            android:name=".module.mine.activity.ADHostActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
@@ -756,7 +756,13 @@
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.mine.activity.NewUserTaskActivity">
+        <activity
+            android:name=".module.mine.activity.NewUserTaskActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".module.mine.activity.ADHostMsgActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

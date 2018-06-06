@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="@color/bg_custom"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+        <com.robin8.rb.module.social.view.EasySlidingTabs
+            android:id="@+id/my_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_custom"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            app:easyIndicatorColor="@color/blue_custom"
+            app:easySelectedTagTextColor="@color/black_202020"
+            app:easyTabTextColor="@color/gray_second"
+            app:easyUnderlineColor="@color/undefined_divide_line"/>
+
+        <android.support.v4.view.ViewPager
+        android:id="@+id/my_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

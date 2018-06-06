@@ -23,6 +23,7 @@ import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.RegExpUtil;
 import com.robin8.rb.util.TimerUtilTwo;
 import com.robin8.rb.view.ILoginView;
@@ -89,7 +90,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
             @Override
             public void onResponse(String response) {
-          //  LogUtil.LogShitou("验证码数据"+HelpTools.getUrl(CommonConfig.GET_CODE_URL),response);
+            LogUtil.LogShitou("验证码数据"+HelpTools.getUrl(CommonConfig.GET_CODE_URL),response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
                // CustomToast.showShort(mActivity, bean.getDetail());
                 if (bean!=null){
@@ -144,7 +145,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
             @Override
             public void onResponse(String response) {
-                //                LogUtil.LogShitou("绑定手机号api/v1/kols/bind_mobile",response);
+                LogUtil.LogShitou("绑定手机号api/v1/kols/bind_mobile",response);
                 parseJson(response);
             }
         });
