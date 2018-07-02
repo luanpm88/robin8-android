@@ -39,6 +39,7 @@ public class HelpTools {
     public static final String isLeader = "isLeader";
     public static final String SERVER = "Service";
     public static final String ISNEWUSER = "isNewUser";
+    public static final String REDNUM = "redNum";
 
 
     public static final String LOGININFO = "loginInfo";// 本地存储文件名字

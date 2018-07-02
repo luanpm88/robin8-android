@@ -36,6 +36,7 @@ import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 import com.robin8.rb.view.widget.CustomDialogManager;
@@ -116,6 +117,7 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
         getHistory(0);
 
         mTaskList.add(new SimpleModel(R.mipmap.icon_share_campain, "活动分享(0/4)", "奖励：视活动而定", "去完成"));
+        mTaskList.add(new SimpleModel(R.mipmap.icon_article_social, "内容挖掘(0/10)", "奖励：海量现金红包砸中你", "去阅读"));
         mTaskList.add(new SimpleModel(R.mipmap.icon_invite_friends, "邀请好友(0/10)", "奖励：¥ 2.00", "去完成"));
         myTaskAdapter = new MyTaskAdapter();
         myList.setAdapter(myTaskAdapter);
@@ -136,7 +138,7 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
         if (bean != null && bean.getKol() != null) {
             mUserNameTv.setText(bean.getKol().getName());
             BitmapUtil.loadImage(this, bean.getKol().getAvatar_url(), mCircleImageView);
-            if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ISNEWUSER))) {
+            if (! TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ISNEWUSER))) {
                 if (HelpTools.getCommonXml(HelpTools.ISNEWUSER).equals("is")) {
                     llTasks.setVisibility(View.VISIBLE);
                 } else {
@@ -170,35 +172,39 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-               // LogUtil.LogShitou("签到历史" + HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL), response);
+                LogUtil.LogShitou("签到历史" + HelpTools.getUrl(CommonConfig.CHECK_IN_HISTORY_URL), response);
                 bean = GsonTools.jsonToBean(response, SignDayHistory.class);
                 if (bean != null) {
                     if (bean.getError() == 0) {
+                        if (bean.is_show_newbie() == true) {
+                            llTasks.setVisibility(View.GONE);
+                        }
                         mEarnAccumulatedTv.setText(String.valueOf(bean.getTotal_check_in_amount()));
                         mEarnTodayTv.setText(String.valueOf(bean.getToday_already_amount()));
                         if (bean.isToday_had_check_in()) {
                             tvSign.setClickable(false);
                             tvSign.setText("  已签到  ");
-//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                                    tvSign.setBackground(getDrawable(R.drawable.shape_solid_gray));
-//                                }
-//                            }
+                            //                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            //                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            //                                    tvSign.setBackground(getDrawable(R.drawable.shape_solid_gray));
+                            //                                }
+                            //                            }
                             tvSign.setBackgroundResource(R.drawable.shape_solid_gray);
                             mHasSignedDaysTv.setText("已连续签到" + bean.getContinuous_checkin_count() + "天,明日签到可赚" + bean.getTomorrow_can_amount() + "元");
                         } else {
                             tvSign.setClickable(true);
                             tvSign.setText("签到领奖励");
-//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                                    tvSign.setBackground(getDrawable(R.drawable.shape_solid_blue));
-//                                }else {
-//                                }
-//                            }
+                            //                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            //                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            //                                    tvSign.setBackground(getDrawable(R.drawable.shape_solid_blue));
+                            //                                }else {
+                            //                                }
+                            //                            }
                             tvSign.setBackgroundResource(R.drawable.shape_solid_blue);
                             mHasSignedDaysTv.setText("已连续签到" + bean.getContinuous_checkin_count() + "天,今日签到可赚" + bean.getToday_can_amount() + "元");
                         }
                         tasksTitles.add("活动分享(" + bean.getCampaign_invites_count() + "/4)");
+                        tasksTitles.add("内容挖掘(" + bean.getRed_money_count() + "/10)");
                         tasksTitles.add("邀请好友(" + bean.getInvite_friends() + "/10)");
                         myTaskAdapter.setTitle(tasksTitles);
                         myTaskAdapter.notifyDataSetChanged();
@@ -265,7 +271,7 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
 
             @Override
             public void onResponse(String response) {
-              //  LogUtil.LogShitou("签到" + HelpTools.getUrl(CommonConfig.CHECK_IN_URL), response);
+                //  LogUtil.LogShitou("签到" + HelpTools.getUrl(CommonConfig.CHECK_IN_URL), response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -321,7 +327,7 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
         TextView tvKnow = (TextView) view.findViewById(R.id.tv_know);
         final CustomDialogManager cdm = new CustomDialogManager(UserSignActivity.this, view);
         if (bean != null) {
-            s = "签到成功，" + StringUtil.addZeroForNum(String.valueOf(bean.getToday_can_amount()), 4) + "元奖励已放入您的钱包！\n您已连续签到" + (bean.getContinuous_checkin_count()+1) + "天，不要间断哦～";
+            s = "签到成功，" + StringUtil.addZeroForNum(String.valueOf(bean.getToday_can_amount()), 4) + "元奖励已放入您的钱包！\n您已连续签到" + (bean.getContinuous_checkin_count() + 1) + "天，不要间断哦～";
 
         } else {
             s = "签到成功";
@@ -424,7 +430,19 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
                         finish();
                     }
                 });
-            } else {
+            } else if (position==1){
+                holder.btnAction.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(UserSignActivity.this, MainActivity.class);
+                        intent.putExtra("register_main", "read");
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    }
+                });
+            }else {
                 holder.btnAction.setOnClickListener(new View.OnClickListener() {
 
                     @Override

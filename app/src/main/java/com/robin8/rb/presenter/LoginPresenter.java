@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
@@ -43,6 +46,7 @@ import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.TimerUtilTwo;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.ILoginView;
+import com.robin8.rb.view.widget.CustomDialogManager;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.util.ArrayList;
@@ -455,37 +459,41 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                             initGetRongCloud(loginBean.getKol().getMobile_number(), loginBean.getKol().getName(), loginBean.getKol().getAvatar_url());
                             //登陆成功之后去绑定社交账号页面
                             int is = 0;
-                            if (loginBean.getKol_identities() != null) {
-                                if (loginBean.getKol_identities().size() != 0) {
-                                    for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
-                                        if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
-                                            is = 1;
-                                        }
-                                        if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
-                                            HelpTools.insertCommonXml(HelpTools.IsBind, "is");
-                                        }
-                                    }
-                                    if (is == 1) {
-                                        if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
-                                            //都没有走过，邦过微信／微博，跳过first
-                                            jumpActivity(1);
-                                        } else {
-                                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
-                                                jumpActivity(2);
-                                            } else {
-                                                backMain(1);
+                            if (TextUtils.isEmpty(loginBean.getAlert())) {
+                                if (loginBean.getKol_identities() != null) {
+                                    if (loginBean.getKol_identities().size() != 0) {
+                                        for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
+                                            if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
+                                                is = 1;
+                                            }
+                                            if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
+                                                HelpTools.insertCommonXml(HelpTools.IsBind, "is");
                                             }
                                         }
+                                        if (is == 1) {
+                                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
+                                                //都没有走过，邦过微信／微博，跳过first
+                                                jumpActivity(1);
+                                            } else {
+                                                if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
+                                                    jumpActivity(2);
+                                                } else {
+                                                    backMain(1);
+                                                }
+                                            }
+                                        } else {
+                                            jumpActivity(1);
+                                        }
                                     } else {
+                                        //没有绑定
                                         jumpActivity(1);
+
                                     }
                                 } else {
-                                    //没有绑定
                                     jumpActivity(1);
-
                                 }
                             } else {
-                                jumpActivity(1);
+                                showGgGet(loginBean);
                             }
                         } else if (loginBean.getError() == 1) {
                             try {
@@ -575,6 +583,64 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         }
     }
 
+    /**
+     给gg使用的奖励
+     @param loginBean
+     */
+    private void showGgGet(final LoginBean loginBean) {
+
+        View view = LayoutInflater.from(mActivity).inflate(R.layout.dialog_gg_rule, null);
+        TextView infoTv = (TextView) view.findViewById(R.id.tv_rule);
+        LinearLayout llBg = (LinearLayout) view.findViewById(R.id.layout_bg);
+        TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
+        infoTv.setText(loginBean.getAlert());
+        tvTitle.setVisibility(View.VISIBLE);
+        final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
+        llBg.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                cdm.dismiss();
+                int is = 0;
+                if (loginBean.getKol_identities() != null) {
+                    if (loginBean.getKol_identities().size() != 0) {
+                        for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
+                            if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
+                                is = 1;
+                            }
+                            if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
+                                HelpTools.insertCommonXml(HelpTools.IsBind, "is");
+                            }
+                        }
+                        if (is == 1) {
+                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
+                                //都没有走过，邦过微信／微博，跳过first
+                                jumpActivity(1);
+                            } else {
+                                if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
+                                    jumpActivity(2);
+                                } else {
+                                    backMain(1);
+                                }
+                            }
+                        } else {
+                            jumpActivity(1);
+                        }
+                    } else {
+                        //没有绑定
+                        jumpActivity(1);
+
+                    }
+                } else {
+                    jumpActivity(1);
+                }
+            }
+        });
+        cdm.dg.setCanceledOnTouchOutside(false);
+        cdm.dg.getWindow().setGravity(Gravity.CENTER);
+        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+        cdm.showDialog();
+    }
 
     private void judgeIskol() {
         if (mWProgressDialog == null) {

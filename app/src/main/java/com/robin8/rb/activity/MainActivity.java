@@ -122,6 +122,8 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 mPageName = StatisticsAgency.CAMPAIGN_LIST;
             } else if (register_main.equals("influence")) {
                 mPageName = StatisticsAgency.INFLUENCE_LIST;
+            }else if (register_main.equals("read")){
+                mPageName = StatisticsAgency.FIND_LIST;
             }
         }
         //        else {
@@ -145,8 +147,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             }
         }
         //01 演示图片.jpg==||||||==/storage/emulated/0/Pictures/01 演示图片.jpg
-      // showShadowDialog(MainActivity.this, 0);
-
+        // showShadowDialog(MainActivity.this, 0);
     }
 
     private void startLocate() {
@@ -201,6 +202,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             mCheckVersionHandler.removeCallbacksAndMessages(null);
             mCheckVersionHandler = null;
         }
+
     }
 
     public void checkNewVersion() {
@@ -357,7 +359,10 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 mRGContentBottom.check(R.id.rb_bottom_influence);
                 mVPContentPager.setCurrentItem(1);
                 // mPagerList.get(2).initData();
-            } else {
+            } else if (register_main.equals("read")){
+                mRGContentBottom.check(R.id.rb_bottom_find);
+                mVPContentPager.setCurrentItem(2);
+            }else {
                 mRGContentBottom.check(R.id.rb_bottom_campaign);
             }
         } else {
@@ -568,14 +573,14 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
     private void onePageSelected(int position) {
 
-//        if (mPageName == StatisticsAgency.CAMPAIGN_LIST) {
-//            BasePager basePager = mPagerList.get(CAMPAIGN_LIST);
-//            if (basePager instanceof RewordPager) {
-//                RewordPager pager = (RewordPager) basePager;
-//                pager.initVpData();
-//                pager.setVpAuto();
-//            }
-//        }
+        //        if (mPageName == StatisticsAgency.CAMPAIGN_LIST) {
+        //            BasePager basePager = mPagerList.get(CAMPAIGN_LIST);
+        //            if (basePager instanceof RewordPager) {
+        //                RewordPager pager = (RewordPager) basePager;
+        //                pager.initVpData();
+        //                pager.setVpAuto();
+        //            }
+        //        }
 
         if (position == mLastPosition) {
             return;
@@ -705,4 +710,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
         cdm.showDialog();
     }
+
+
 }

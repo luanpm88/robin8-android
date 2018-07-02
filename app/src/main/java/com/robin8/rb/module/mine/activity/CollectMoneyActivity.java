@@ -30,6 +30,7 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
@@ -73,6 +74,10 @@ public class CollectMoneyActivity extends BaseActivity {
     TextView btnActionCode;
     @Bind(R.id.tv_detail)
     TextView tvDetail;
+    @Bind(R.id.tv_gg_rule)
+    TextView tvGgRule;
+    @Bind(R.id.ll_share_money_rule)
+    LinearLayout llGgRule;
     private WProgressDialog mWProgressDialog;
     private String invite_amount;
     private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
@@ -88,7 +93,6 @@ public class CollectMoneyActivity extends BaseActivity {
     public void initView() {
         View view = LayoutInflater.from(this).inflate(R.layout.activity_collect_money, mLLContent, true);
         ButterKnife.bind(this);
-        tvDetail.setText(Html.fromHtml("每天前<b><font color=#ecb200><big>" + "10" + "</big></font></b>名徒弟有<b><font color=#ecb200><big>" + "2" + "</big></font></b>元额外奖励"));
 
         imgDown.setOnClickListener(this);
         llGoToAllCollectMoney.setOnClickListener(this);
@@ -119,7 +123,7 @@ public class CollectMoneyActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-             //   LogUtil.LogShitou("邀请好友+", response);
+                LogUtil.LogShitou("收徒好友+", response);
                 InviteFridensModel inviteFridensModel = GsonTools.jsonToBean(response, InviteFridensModel.class);
                 if (inviteFridensModel != null && inviteFridensModel.getError() == 0) {
                     updateView(inviteFridensModel);
@@ -132,6 +136,18 @@ public class CollectMoneyActivity extends BaseActivity {
         tvAllCollectMoney.setText(StringUtil.deleteZero(inviteFridensModel.getInvite_amount()));
         tvTodayApprentices.setText(String.valueOf(inviteFridensModel.getInvite_count()));
         tvInviteCode.setText("邀请码收徒("+String.valueOf(inviteFridensModel.getInvite_code())+")");
+        if (TextUtils.isEmpty(inviteFridensModel.getDesc())){
+            llGgRule.setVisibility(View.GONE);
+        }else {
+            llGgRule.setVisibility(View.VISIBLE);
+            tvGgRule.setText(inviteFridensModel.getDesc());
+        }
+        if (TextUtils.isEmpty(inviteFridensModel.getInvite_desc())){
+            tvDetail.setText(Html.fromHtml("每天前<b><font color=#ecb200><big>" + "10" + "</big></font></b>名徒弟有<b><font color=#ecb200><big>" + "2" + "</big></font></b>元额外奖励"));
+        }else {
+            tvDetail.setText(inviteFridensModel.getInvite_desc());
+        }
+
     }
 
     @Override

@@ -35,6 +35,8 @@ public class SignDayHistory extends BaseBean {
     private int invite_friends;
     private List<CheckinHistoryBean> checkin_history;
     private List<Boolean> check_in_7;
+    private boolean is_show_newbie;
+    private int red_money_count;
 
     public int getContinuous_checkin_count() {
         return continuous_checkin_count;
@@ -122,6 +124,22 @@ public class SignDayHistory extends BaseBean {
 
     public void setCheck_in_7(List<Boolean> check_in_7) {
         this.check_in_7 = check_in_7;
+    }
+
+    public boolean is_show_newbie() {
+        return is_show_newbie;
+    }
+
+    public void setIs_show_newbie(boolean is_show_newbie) {
+        this.is_show_newbie = is_show_newbie;
+    }
+
+    public int getRed_money_count() {
+        return red_money_count;
+    }
+
+    public void setRed_money_count(int red_money_count) {
+        this.red_money_count = red_money_count;
     }
 
     public static class CheckinHistoryBean {

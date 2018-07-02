@@ -19,7 +19,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.module.mine.activity.ADHostActivity;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.activity.WalletActivity;
 import com.robin8.rb.base.BaseApplication;
@@ -34,6 +33,7 @@ import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.NotifyMsgEntity;
 import com.robin8.rb.module.create.activity.FragmentsActivity;
 import com.robin8.rb.module.first.activity.SearchKolActivity;
+import com.robin8.rb.module.mine.activity.ADHostActivity;
 import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
 import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.HelpCenterActivity;
@@ -117,6 +117,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private int isHiddle = 0;
     public ImageView imgDot;
     public boolean has_any_unread_message;
+    private ImageView mImgLogo;
+    private String imgUrl;
     //private int[] socialTagIcon = {R.mipmap.icon_wallet,R.mipmap.,R.mipmap.icon_checkin,R.mipmap.icon_invite,R.mipmap.icon_help_center};
 
     public MinePager(FragmentActivity activity) {
@@ -228,6 +230,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         mApplyTv = (TextView) view.findViewById(R.id.tv_apply);
         mKolCertificationIv = (ImageView) view.findViewById(R.id.iv_kol_certification);
         mKolItemLL = view.findViewById(R.id.ll_kol_item);
+        mImgLogo = ((ImageView) view.findViewById(R.id.img_campaign_logo));
         mKolItemLL.setOnClickListener(this);
     }
 
@@ -252,6 +255,12 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 mAverageNumberTv.setText(StringUtil.deleteZero(kol.getAvg_campaign_credit()));
                 mUserNameTv.setText(kol.getName());
                 mUserTagTv.setText(getTags(kol.getTags()));
+                if (! TextUtils.isEmpty(imgUrl)) {
+                    mImgLogo.setVisibility(View.VISIBLE);
+                    BitmapUtil.loadImage(mActivity, imgUrl, mImgLogo);
+                } else {
+                    mImgLogo.setVisibility(View.GONE);
+                }
                 if (! TextUtils.isEmpty(kol.getAvatar_url())) {
                     BitmapUtil.loadImage(mActivity.getApplicationContext(), kol.getAvatar_url(), mCIVImage);
                 } else {
@@ -372,15 +381,34 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     }
 
+    private String isShowCode;
+
     private void parseJson(String response) {
         MineShowModel mineShowModel = GsonTools.jsonToBean(response, MineShowModel.class);
-        if (mineShowModel != null && mineShowModel.getError() == 0) {
-            CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
-            mKolBean = mineShowModel.getKol();
-            int detail = mineShowModel.getDetail();
-            has_any_unread_message = mineShowModel.isHas_any_unread_message();
-            isHiddle = detail;
-            updateView(mKolBean);
+        if (mineShowModel != null ) {
+            if (mineShowModel.getError() == 0){
+                CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
+                mKolBean = mineShowModel.getKol();
+                int detail = mineShowModel.getDetail();
+                has_any_unread_message = mineShowModel.isHas_any_unread_message();
+                isHiddle = detail;
+                if (! TextUtils.isEmpty(mineShowModel.getIs_show_invite_code())) {
+                    isShowCode = mineShowModel.getIs_show_invite_code();
+                }
+                imgUrl = mineShowModel.getLogo();
+                updateView(mKolBean);
+            }
+//            else {
+//                try {
+//                    if (!TextUtils.isEmpty(mineShowModel.getDetail())){
+//                        if (mineShowModel.getDetail().contains("401")){
+//                            CustomToast.showShort(mActivity,"登陆失效，请重新登陆");
+//                        }
+//                    }
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//            }
         }
     }
 
@@ -583,7 +611,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     * 我的收藏
+     我的收藏
      */
     private void skipToCollect() {
         if (isLogined(SPConstants.MAIN_COLLECT)) {
@@ -598,7 +626,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
      */
     private void skipToInViteFriends() {
         if (isLogined(SPConstants.INVITE_FRIENDS_ACTIVITY)) {
-           // Intent intent = new Intent(mActivity, InviteFriendsActivity.class);
+            // Intent intent = new Intent(mActivity, InviteFriendsActivity.class);
             Intent intent = new Intent(mActivity, CollectMoneyActivity.class);
             intent.putExtra("from", SPConstants.MY_CARE);
             intent.putExtra("url", CommonConfig.MY_CARE_URL);
@@ -894,29 +922,45 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     holder.lineDown.setVisibility(View.GONE);
                 }
                 if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                    holder.mLlItem.setVisibility(View.GONE);
-                    holder.lineDown.setVisibility(View.GONE);
+                    if (! TextUtils.isEmpty(isShowCode)) {
+                        if (isShowCode.equals("1")) {
+
+                            holder.mLlItem.setVisibility(View.VISIBLE);
+                            holder.lineDown.setVisibility(View.VISIBLE);
+                        } else {
+                            holder.mLlItem.setVisibility(View.GONE);
+                            holder.lineDown.setVisibility(View.GONE);
+                        }
+                    } else {
+                        holder.mLlItem.setVisibility(View.GONE);
+                        holder.lineDown.setVisibility(View.GONE);
+                    }
                 }
-//                if (mKolBean != null) {
-//                    if (mKolBean.getAdmintag() != null) {
-//                        if (mKolBean.getAdmintag().size() == 0) {
-//                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-//                                holder.mLlItem.setVisibility(View.VISIBLE);
-//                                holder.lineDown.setVisibility(View.VISIBLE);
-//                            }
-//                        } else {
-//                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-//                                holder.mLlItem.setVisibility(View.GONE);
-//                                holder.lineDown.setVisibility(View.GONE);
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-//                        holder.mLlItem.setVisibility(View.GONE);
-//                        holder.lineDown.setVisibility(View.GONE);
-//                    }
-//                }
+
+                //                if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+                //                    holder.mLlItem.setVisibility(View.GONE);
+                //                    holder.lineDown.setVisibility(View.GONE);
+                //                }
+                //                if (mKolBean != null) {
+                //                    if (mKolBean.getAdmintag() != null) {
+                //                        if (mKolBean.getAdmintag().size() == 0) {
+                //                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+                //                                holder.mLlItem.setVisibility(View.VISIBLE);
+                //                                holder.lineDown.setVisibility(View.VISIBLE);
+                //                            }
+                //                        } else {
+                //                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+                //                                holder.mLlItem.setVisibility(View.GONE);
+                //                                holder.lineDown.setVisibility(View.GONE);
+                //                            }
+                //                        }
+                //                    }
+                //                } else {
+                //                    if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
+                //                        holder.mLlItem.setVisibility(View.GONE);
+                //                        holder.lineDown.setVisibility(View.GONE);
+                //                    }
+                //                }
                 if (item.name.equals("我的产品")) {
                     holder.mLlItem.setVisibility(View.GONE);
                     holder.lineDown.setVisibility(View.GONE);
@@ -925,9 +969,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_invitation_code);
                 } else if (item.name.equals(mActivity.getString(R.string.help_online))) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_rong_cloud);
-                } else if (item.name.equals(mActivity.getString(R.string.my_collect))){
+                } else if (item.name.equals(mActivity.getString(R.string.my_collect))) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_my_collect);
-                } else{
+                } else {
                     IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);
                 }
 

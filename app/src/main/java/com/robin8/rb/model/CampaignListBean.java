@@ -5,12 +5,12 @@ import java.util.List;
 
 /**
  @author DLJ
- @Description ${TODO}
  @date 2016/1/27 20:17 */
 public class CampaignListBean extends BaseBean {
     private MsgStatusbean message_stat;
     private List<CampaignInviteEntity> campaign_invites;
     private List<AnnouncementEntity> announcements;
+   // private String alert;
 
     public List<CampaignInviteEntity> getCampaign_invites() {
         return campaign_invites;
@@ -35,6 +35,15 @@ public class CampaignListBean extends BaseBean {
     public void setAnnouncements(List<AnnouncementEntity> announcements) {
         this.announcements = announcements;
     }
+
+//    public String getAlert() {
+//        return alert;
+//    }
+//
+//    public void setAlert(String alert) {
+//        this.alert = alert;
+//    }
+
 
     public static class MsgStatusbean {
         private String unread_message_count;

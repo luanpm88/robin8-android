@@ -15,6 +15,9 @@ public class InviteFridensModel extends BaseBean {
     private int invite_count;
     private String invite_amount;
     private int invite_code;
+    private boolean is_show_newbie;
+    private String invite_desc;
+    private String desc;
 
     public int getInvite_count() {
         return invite_count;
@@ -38,6 +41,30 @@ public class InviteFridensModel extends BaseBean {
 
     public void setInvite_code(int invite_code) {
         this.invite_code = invite_code;
+    }
+
+    public boolean is_show_newbie() {
+        return is_show_newbie;
+    }
+
+    public void setIs_show_newbie(boolean is_show_newbie) {
+        this.is_show_newbie = is_show_newbie;
+    }
+
+    public String getInvite_desc() {
+        return invite_desc;
+    }
+
+    public void setInvite_desc(String invite_desc) {
+        this.invite_desc = invite_desc;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     /**

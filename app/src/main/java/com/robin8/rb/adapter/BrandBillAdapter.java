@@ -1,6 +1,7 @@
 package com.robin8.rb.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +85,11 @@ public class BrandBillAdapter extends BaseRecyclerAdapter {
             }
             holder.dateTv.setText(creditsBean.getShow_time());
             holder.subjectTv.setText(creditsBean.getRemark());
-            holder.numtypeTv.setText(creditsBean.getDirect());
+            if (TextUtils.isEmpty(creditsBean.getDirect())){
+                holder.numtypeTv.setVisibility(View.INVISIBLE);
+            }else {
+                holder.numtypeTv.setText(creditsBean.getDirect());
+            }
             holder.everydayIncomeTv.setText(String.valueOf(creditsBean.getScore()));
         }
 

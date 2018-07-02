@@ -48,10 +48,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * 活动页面
- *
- * @author Figo
- */
+ 活动页面
+ @author Figo */
 public class RewordPager extends BasePager implements Observer {
 
     private static final int INIT_DATA = 0;
@@ -80,7 +78,7 @@ public class RewordPager extends BasePager implements Observer {
     private RadioButton rb;
     private LinearLayout mTopPoints;
 
-   private AutoScrollViewPager mVpAuto;
+    private AutoScrollViewPager mVpAuto;
     private int mTotalPages;
 
     public RewordPager(FragmentActivity activity) {
@@ -103,9 +101,10 @@ public class RewordPager extends BasePager implements Observer {
     private void initLogin(final int status) {
 
         mLoadingPage.showSafePage(LoadingPage.STATE_LOADING);
-        if (!BaseApplication.getInstance().hasLogined()) {
+        if (! BaseApplication.getInstance().hasLogined()) {
             LoginTask loginTask = LoginTask.newInstance(mActivity.getApplicationContext());
             loginTask.start(new RequestCallback() {
+
                 @Override
                 public void onError(Exception e) {
                     if (mInviteEntityList == null || mInviteEntityList.size() == 0) {
@@ -119,7 +118,7 @@ public class RewordPager extends BasePager implements Observer {
                 public void onResponse(String response) {
                     loadData(status);
                 }
-            }, CommonConfig.TOURIST_PHONE, CommonConfig.TOURIST_CODE, null,null);
+            }, CommonConfig.TOURIST_PHONE, CommonConfig.TOURIST_CODE, null, null);
         } else {
             loadData(INIT_DATA);
         }
@@ -154,6 +153,7 @@ public class RewordPager extends BasePager implements Observer {
             withAnnouncements = "n";
         }
         mRewordProtocol.getRewordTasks(HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL), filterStringArray[mCurrentFilter], mCurrentPage, withAnnouncements, new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
                 switch (state) {
@@ -171,11 +171,19 @@ public class RewordPager extends BasePager implements Observer {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("获取活动列表数据"+HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL),response);
+                LogUtil.LogShitou("获取活动列表数据" + HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL), response);
                 CacheUtils.putLong(mActivity.getApplicationContext(), SPConstants.TAG_REFRESH_TIME, System.currentTimeMillis());
                 CampaignListBean bean = GsonTools.jsonToBean(response, CampaignListBean.class);
 
-                if (bean != null && !TextUtils.isEmpty(bean.getDetail()) && bean.getDetail().contains("401")) {
+                if (bean != null) {
+                    if (! TextUtils.isEmpty(bean.getDetail())) {
+                        if (bean.getDetail().contains("401")) {
+                            CustomToast.showShort(mActivity, "登陆失效，请重新登陆");
+                            return;
+                        }
+                    }
+                }
+                if (bean != null && ! TextUtils.isEmpty(bean.getDetail()) && bean.getDetail().contains("401")) {
                     initLogin(INIT_DATA);
                     return;
                 }
@@ -190,12 +198,12 @@ public class RewordPager extends BasePager implements Observer {
                     switch (state) {
                         case INIT_DATA:
                             mLoadingPage.showSafePage(LoadingPage.STATE_LOAD_SUCCESS);
-                           // initVpData();
+                            // initVpData();
                             setVpAuto();
                             break;
                         case REFRESH:
                             mRefreshListView.setRefreshFinshed(true);
-                          //  initVpData();
+                            //  initVpData();
                             setVpAuto();
                             break;
                         case LOAD_MORE:
@@ -221,10 +229,13 @@ public class RewordPager extends BasePager implements Observer {
                         mRewordAdapter.notifyDataSetChanged(mInviteEntityList);
                     }
                 }
+
             }
         });
     }
+
     private List<CampaignListBean.AnnouncementEntity> announcementsList;
+
     public void newVpData() {
 
     }
@@ -233,7 +244,7 @@ public class RewordPager extends BasePager implements Observer {
         mBannerList.clear();
         BannerBean bean1 = new BannerBean();
         LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
-        if (loginBean != null && loginBean.getKol() != null && !TextUtils.isEmpty(loginBean.getKol().getRole_apply_status())) {
+        if (loginBean != null && loginBean.getKol() != null && ! TextUtils.isEmpty(loginBean.getKol().getRole_apply_status())) {
             switch (loginBean.getKol().getRole_apply_status()) {
                 case STATE_PENDING:
                     bean1.resId = R.mipmap.pic_kol_banner_apply_kol;
@@ -260,21 +271,22 @@ public class RewordPager extends BasePager implements Observer {
         mBannerList.add(bean1);
         mBannerList.add(bean2);
     }
+
     /**
-     * 设置轮播图
+     设置轮播图
      */
     public void setVpAuto() {
-       // int size = mBannerList.size();
+        // int size = mBannerList.size();
         int size = announcementsList.size();
         if (mVpAuto == null) {
             return;
         }
-//        mCardAdapter = new CardPagerAdapter(mActivity,mBannerList);
-//        mCardShadowTransformer = new ShadowTransformer(mVpAuto, mCardAdapter);
-//        mVpAuto.setAdapter(mCardAdapter);
-//        mVpAuto.setPageTransformer(false, mCardShadowTransformer);
-//        mVpAuto.setOffscreenPageLimit(3);
-//        mCardShadowTransformer.setScale(0.27272727f,true);
+        //        mCardAdapter = new CardPagerAdapter(mActivity,mBannerList);
+        //        mCardShadowTransformer = new ShadowTransformer(mVpAuto, mCardAdapter);
+        //        mVpAuto.setAdapter(mCardAdapter);
+        //        mVpAuto.setPageTransformer(false, mCardShadowTransformer);
+        //        mVpAuto.setOffscreenPageLimit(3);
+        //        mCardShadowTransformer.setScale(0.27272727f,true);
         mVpAuto.setAdapter(new ImageBannerAdapter(mActivity, announcementsList).setInfiniteLoop(true));
         mVpAuto.setOnPageChangeListener(new MyOnPageChangeListener(size, mTopPoints));
         mVpAuto.setInterval(5000);
@@ -306,33 +318,35 @@ public class RewordPager extends BasePager implements Observer {
         mTitleBarText.setText(mActivity.getText(R.string.text_reword));
         mTitleBarText.setVisibility(View.VISIBLE);
         mRewordFilterLl.setVisibility(View.VISIBLE);
-       mRewordLaunchIv.setVisibility(View.GONE);
+        mRewordLaunchIv.setVisibility(View.GONE);
         mTitleBarText.setOnClickListener(new View.OnClickListener() {
+
             final static int COUNTS = 8;//点击次数
             final static long DURATION = 3 * 1000;//规定有效时间
             long[] mHits = new long[COUNTS];
+
             @Override
             public void onClick(View view) {
 
-                        /**
-                         * 实现双击方法
-                         * src 拷贝的源数组
-                         * srcPos 从源数组的那个位置开始拷贝.
-                         * dst 目标数组
-                         * dstPos 从目标数组的那个位子开始写数据
-                         * length 拷贝的元素的个数
-                         */
-                        System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
-                        //实现左移，然后最后一个位置更新距离开机的时间，如果最后一个时间和最开始时间小于DURATION，即连续5次点击
-                        mHits[mHits.length - 1] = SystemClock.uptimeMillis();
-                        if (mHits[0] >= (SystemClock.uptimeMillis() - DURATION)) {
-                            //  String tips = "您已在[" + DURATION + "]ms内连续点击【" + mHits.length + "】次了！！！";
-                            //  Toast.makeText(SettingActivity.this, tips, Toast.LENGTH_SHORT).show();
-                           mActivity.startActivity(new Intent(mActivity, ChangeHttpActivity.class));
-                        }
+                /**
+                 * 实现双击方法
+                 * src 拷贝的源数组
+                 * srcPos 从源数组的那个位置开始拷贝.
+                 * dst 目标数组
+                 * dstPos 从目标数组的那个位子开始写数据
+                 * length 拷贝的元素的个数
+                 */
+                System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+                //实现左移，然后最后一个位置更新距离开机的时间，如果最后一个时间和最开始时间小于DURATION，即连续5次点击
+                mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+                if (mHits[0] >= (SystemClock.uptimeMillis() - DURATION)) {
+                    //  String tips = "您已在[" + DURATION + "]ms内连续点击【" + mHits.length + "】次了！！！";
+                    //  Toast.makeText(SettingActivity.this, tips, Toast.LENGTH_SHORT).show();
+                    mActivity.startActivity(new Intent(mActivity, ChangeHttpActivity.class));
+                }
             }
         });
-       // mRewordLaunchIv.setVisibility(View.VISIBLE);
+        // mRewordLaunchIv.setVisibility(View.VISIBLE);
     }
 
     public void addView() {
@@ -345,9 +359,10 @@ public class RewordPager extends BasePager implements Observer {
         View header = View.inflate(mActivity, R.layout.reword_header, null);
         mVpAuto = (AutoScrollViewPager) header.findViewById(R.id.vp_auto);
         mVpAuto.post(new Runnable() {
+
             @Override
             public void run() {
-                mVpAuto.getLayoutParams().height = DensityUtils.getScreenWidth(mVpAuto.getContext()) * 7/15;
+                mVpAuto.getLayoutParams().height = DensityUtils.getScreenWidth(mVpAuto.getContext()) * 7 / 15;
             }
         });
         mTopPoints = (LinearLayout) header.findViewById(R.id.ll_vp_points);
@@ -358,6 +373,7 @@ public class RewordPager extends BasePager implements Observer {
         mRefreshListView.setOnRefreshListener(new MyOnRefreshListener());
 
         mLoadingPage = new LoadingPage(mActivity.getApplicationContext()) {
+
             @Override
             public void onLoad() {
                 initLogin(INIT_DATA);
@@ -369,18 +385,18 @@ public class RewordPager extends BasePager implements Observer {
             }
         };
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         mLLContent.addView(mLoadingPage, layoutParams);
     }
 
 
     /**
-     * 设置控件点击事件
+     设置控件点击事件
      */
     private void initViewSettings() {
 
         mRewordLaunchIv.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
@@ -398,6 +414,7 @@ public class RewordPager extends BasePager implements Observer {
         });
 
         mRewordFilterLl.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 showDialog();
@@ -425,6 +442,7 @@ public class RewordPager extends BasePager implements Observer {
         radioButtons.add(rb4);
         radioButtons.add(rb5);
         View.OnClickListener onClickListener = new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 mRewordFilterDialog.dismiss();
@@ -483,7 +501,7 @@ public class RewordPager extends BasePager implements Observer {
                     default:
                         break;
                 }
-                if (!clickItSelf) {
+                if (! clickItSelf) {
                     loadData(REFRESH);
                 }
             }

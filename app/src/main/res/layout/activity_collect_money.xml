@@ -122,6 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_weight="0.4"
             android:gravity="center|left"
             android:letterSpacing="0.1"
@@ -307,83 +308,95 @@
                 android:background="@color/white_custom"
                 android:orientation="vertical"
                 android:visibility="visible">
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
+
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="15dp"
-                        android:text="收徒奖励规则："
-                        android:textColor="@color/blue_custom"
-                        android:textSize="@dimen/undefine_font_4"/>
+                    android:layout_height="match_parent">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.05"
-                        android:lineSpacingExtra="2dp"
-                        android:paddingLeft="15dp"
-                        android:text="满足以下条件即为收徒成功并发放奖励："
-                        android:textColor="@color/gray_first"
-                        android:textSize="@dimen/undefine_font_3"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1.5dp"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.05"
-                        android:lineSpacingExtra="2dp"
-                        android:paddingLeft="15dp"
-                        android:text="1.徒弟注册成为robin8的用户;"
-                        android:textColor="@color/gray_first"
-                        android:textSize="@dimen/undefine_font_3"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp"
+                            android:text="收徒奖励规则："
+                            android:textColor="@color/blue_custom"
+                            android:textSize="@dimen/undefine_font_4"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1.5dp"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.05"
-                        android:lineSpacingExtra="2dp"
-                        android:paddingLeft="15dp"
-                        android:text="2.完成一个robin8的活动。"
-                        android:textColor="@color/gray_first"
-                        android:textSize="@dimen/undefine_font_3"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="0.05"
+                            android:lineSpacingExtra="2dp"
+                            android:paddingLeft="15dp"
+                            android:text="满足以下条件即为收徒成功并发放奖励："
+                            android:textColor="@color/gray_first"
+                            android:textSize="@dimen/undefine_font_3"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="15dp"
-                        android:text="分红奖励规则："
-                        android:textColor="@color/blue_custom"
-                        android:textSize="@dimen/undefine_font_4"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1.5dp"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="0.05"
+                            android:lineSpacingExtra="2dp"
+                            android:paddingLeft="15dp"
+                            android:text="1.徒弟注册成为robin8的用户;"
+                            android:textColor="@color/gray_first"
+                            android:textSize="@dimen/undefine_font_3"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_vertical"
-                        android:letterSpacing="0.05"
-                        android:lineSpacingExtra="2dp"
-                        android:paddingLeft="15dp"
-                        android:text="徒弟通过活动收入的5%,单个徒弟可贡献收益上限为50元(收益四舍五入精确到小数点后两位,如0.012为0.01；0.026为0.03),收徒越多奖励越多,徒弟总数量无上限。"
-                        android:textColor="@color/gray_first"
-                        android:textSize="@dimen/undefine_font_3"/>
-                </LinearLayout>
-            </ScrollView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1.5dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="0.05"
+                            android:lineSpacingExtra="2dp"
+                            android:paddingLeft="15dp"
+                            android:text="2.完成一个robin8的活动。"
+                            android:textColor="@color/gray_first"
+                            android:textSize="@dimen/undefine_font_3"/>
+
+                        <LinearLayout
+                            android:id="@+id/ll_share_money_rule"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="15dp"
+                                android:text="分红奖励规则："
+                                android:textColor="@color/blue_custom"
+                                android:textSize="@dimen/undefine_font_4"/>
+
+                            <TextView
+                                android:id="@+id/tv_gg_rule"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center_vertical"
+                                android:letterSpacing="0.05"
+                                android:lineSpacingExtra="2dp"
+                                android:paddingLeft="15dp"
+                                android:paddingRight="15dp"
+                                android:textColor="@color/gray_first"
+                                android:textSize="@dimen/undefine_font_3"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </ScrollView>
 
 
             </LinearLayout>

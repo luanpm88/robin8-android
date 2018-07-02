@@ -1,7 +1,14 @@
 package com.robin8.rb.base;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,8 +16,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.util.ActivityManagerUtils;
+import com.robin8.rb.view.widget.CustomDialogManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -33,10 +42,11 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.layout_titlebar_activity);
-        ActivityManagerUtils.getInstance().addActivity(this);
+       // ActivityManagerUtils.getInstance().addActivity(this);
         initBaseView();
         setTitleView();
         initView();
+      //  showMyDialog();
     }
 
     /**
@@ -105,6 +115,50 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
 
     @Override
     public void update(Observable observable, Object data) {
+
+    }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        AppManager.getAppManager().finishActivity(this);
+//    }
+
+    private void showMyDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_red_layout, null);
+        ImageView imgRed = (ImageView) view.findViewById(R.id.img_red);
+        List<Animator> animators = new ArrayList<>();
+        ObjectAnimator translationXAnim = ObjectAnimator.ofFloat(imgRed, "rotation", 2, 10, 2, - 10, 2);
+        translationXAnim.setDuration(200);
+        translationXAnim.setRepeatCount(10);//无限循环
+        translationXAnim.setRepeatMode(ValueAnimator.RESTART);
+        translationXAnim.start();
+        animators.add(translationXAnim);
+
+        ObjectAnimator translationYAnim = ObjectAnimator.ofFloat(imgRed, "rotation", - 2, - 10, - 2, 10, - 2);
+        translationYAnim.setDuration(200);
+        translationYAnim.setRepeatCount(10);
+        translationYAnim.setRepeatMode(ValueAnimator.RESTART);
+        translationYAnim.start();
+        animators.add(translationYAnim);
+        AnimatorSet btnSexAnimatorSet = new AnimatorSet();//
+        btnSexAnimatorSet.playTogether(animators);
+        btnSexAnimatorSet.setStartDelay(1);
+        btnSexAnimatorSet.start();
+        CustomDialogManager cdm = new CustomDialogManager(this, view);
+        cdm.dg.setCanceledOnTouchOutside(false);
+        Window window = cdm.dg.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.alpha = 1.0f;
+        lp.dimAmount = 0.0f;
+        window.setAttributes(lp);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.RIGHT | Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.AnimLeft);
+        window.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        // cdm.dg.setCancelable(false);
+        cdm.dg.show();
 
     }
 }

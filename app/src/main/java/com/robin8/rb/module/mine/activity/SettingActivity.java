@@ -20,6 +20,7 @@ import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.IconFontHelper;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.module.find.FloatAction.FloatActionController;
 import com.robin8.rb.ui.widget.SwitchView;
 import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
@@ -211,6 +212,8 @@ public class SettingActivity extends BaseActivity {
                         HelpTools.insertCommonXml(HelpTools.PagerData, "");
                         HelpTools.insertCommonXml(HelpTools.isLeader, "");
                         HelpTools.insertCommonXml(HelpTools.CloudToken, "");
+                        HelpTools.insertCommonXml(HelpTools.REDNUM, "");
+                        FloatActionController.getInstance().stopMonkServer(SettingActivity.this);
                         intent = new Intent(SettingActivity.this, LoginActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putInt("from", SPConstants.MAINACTIVITY);

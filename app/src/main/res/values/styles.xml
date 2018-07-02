@@ -266,4 +266,10 @@
         <item name="android:windowEnterAnimation">@anim/pop_in</item>
     </style>
 
+    <style name="AnimLeft" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_right_red</item>
+    </style>
+    <style name="AnimCenter" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_center</item>
+    </style>
 </resources>

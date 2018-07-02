@@ -21,7 +21,9 @@ import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.model.BaseBean;
+import com.robin8.rb.module.find.FloatAction.FloatActionController;
 import com.robin8.rb.module.find.adapter.NineGridViewClickAdapter;
+import com.robin8.rb.module.find.model.ArticleReadTimeModel;
 import com.robin8.rb.module.find.model.FindArticleListModel;
 import com.robin8.rb.module.find.model.ImageInfo;
 import com.robin8.rb.module.find.view.NineGridView;
@@ -250,7 +252,22 @@ public class FindItemDetailActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-               // LogUtil.LogShitou("find文章阅读时间+", response);
+                LogUtil.LogShitou("find文章阅读时间+", response);
+                ArticleReadTimeModel model = GsonTools.jsonToBean(response, ArticleReadTimeModel.class);
+//                HelpTools.insertCommonXml(HelpTools.REDNUM,String.valueOf(11.0));
+//                FloatActionController.getInstance().startMonkServer(FindItemDetailActivity.this);
+                if (model!=null){
+                    if (model.getError()==0){
+                        if (model.getRed_money()!=0){
+                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.REDNUM))&& BaseApplication.getInstance().hasLogined()){
+                                HelpTools.insertCommonXml(HelpTools.REDNUM,String.valueOf(model.getRed_money()));
+                                FloatActionController.getInstance().startMonkServer(FindItemDetailActivity.this);
+                            }
+                        }else {
+                            HelpTools.insertCommonXml(HelpTools.REDNUM,"");
+                        }
+                    }
+                }
             }
         });
     }
@@ -346,13 +363,14 @@ public class FindItemDetailActivity extends BaseActivity {
     protected void onStop() {
         super.onStop();
        // LogUtil.LogShitou("当前时5", "====》" + Integer.valueOf(DateUtil.getNowTimeM("yyyy-MM-dd HH-mm-ss")));
-        readTime = Integer.valueOf(DateUtil.getNowTimeM("yyyy-MM-dd HH-mm-ss")) - startTime;
-        if (readTime < 1) {
-            readTime(1);
-        } else {
-            readTime(readTime);
+        if (BaseApplication.getInstance().hasLogined()){
+            readTime = Integer.valueOf(DateUtil.getNowTimeM("yyyy-MM-dd HH-mm-ss")) - startTime;
+            if (readTime < 1) {
+                readTime(1);
+            } else {
+                readTime(readTime);
+            }
         }
-
     }
 
 
@@ -583,4 +601,5 @@ public class FindItemDetailActivity extends BaseActivity {
         tvCollect.setBackgroundResource(0);
         System.gc();
     }
+
 }

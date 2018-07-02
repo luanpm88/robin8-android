@@ -126,6 +126,7 @@ public class DetailContentHelper {
     private WProgressDialog mWProgressDialog;
     private String mCampaignInviteEntityId;
     private CampaignListBean.CampaignInviteEntity mCampaignInviteEntity;
+    private CampaignListBean mEntity;
     private RequestParams mRequestParams;
     private final String BACKSLASH = "/";
     private String TAG = "null";
@@ -1093,7 +1094,7 @@ public class DetailContentHelper {
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
-                  //  LogUtil.LogShitou("活动分享获取信息！！！", response);
+                   LogUtil.LogShitou("活动分享获取信息！！！", response);
                     KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
                     if (kolDetailModel != null && kolDetailModel.getError() == 0) {
                         List<SocialAccountsBean> mSocialAccounts = kolDetailModel.getSocial_accounts();
@@ -1109,6 +1110,7 @@ public class DetailContentHelper {
                                     CustomToast.showShort(activity, "正在前往微信中");
                                     bind(activity, activity.getString(R.string.weixin), type, wechatType);
                                 } else {
+                                   // LogUtil.LogShitou("type","====>"+type);
                                     if (type == 0) {
                                         share(activity, mCampaignInviteEntity, wechatEn, wechatType);
                                     } else {
@@ -1613,7 +1615,7 @@ public class DetailContentHelper {
 
 
     /**
-     title右上角分享的弹窗
+     分享
      @param activity
      @param mCampaignInviteEntity
      @param i
@@ -1659,6 +1661,7 @@ public class DetailContentHelper {
                 if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
                     if (position == 0) {//朋友圈
                         if (agreeProtocol) {
+                        //    LogUtil.LogShitou("是不是走这里了","---------1-------------");
                             bindWechat(activity, i, 0);
                         } else {
                             popProtocolDialog(activity, mCampaignInviteEntity, wechatEn, 0);
@@ -1670,7 +1673,6 @@ public class DetailContentHelper {
                             popProtocolDialog(activity, mCampaignInviteEntity, wechatEn, 1);
                         }
                     }
-
                 } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
                     if (agreeProtocol) {
                         share(activity, mCampaignInviteEntity, wechatEn, - 1);
@@ -1752,7 +1754,7 @@ public class DetailContentHelper {
                     mCampaignInviteEntityId = String.valueOf(entity.getId());
                     shareSuccess(activity, entity, shareType, wechatType);
                 } else {
-                    CustomToast.showShort(activity, bean.getDetail());
+                    CustomToast.showShort(activity, bean.getMessage());
                 }
             }
         });
@@ -1795,6 +1797,7 @@ public class DetailContentHelper {
                 }
             }
         }
+
         CustomToast.showShort(activity, "正在前往分享...");
         ShareSDK.initSDK(activity);
         OnekeyShare oks = new OnekeyShare();
@@ -1824,6 +1827,13 @@ public class DetailContentHelper {
         oks.show(activity);
     }
 
+    /**
+     分享成功
+     @param activity
+     @param mCampaignInviteEntity
+     @param plat
+     @param wechatType
+     */
     private void shareSuccess(final Activity activity, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final String plat, final int wechatType) {
         //分享成功 如果是第一次分享 调用share接口 此时活动状态将变为approved
         if (mCampaignInviteEntity.getStatus().equals("running") || CAMPAIGN_TYPE_RECRUIT.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())) {
@@ -1849,8 +1859,9 @@ public class DetailContentHelper {
 
                 @Override
                 public void onResponse(String response) {
-                    LogUtil.LogShitou("分享结果", response);
+                    LogUtil.LogShitou("转发分享结果", response);
                     CampaignInviteBean campaignInviteEntity = GsonTools.jsonToBean(response, CampaignInviteBean.class);
+                    listBean = GsonTools.jsonToBean(response, CampaignListBean.class);
                     if (campaignInviteEntity != null && campaignInviteEntity.getError() == 0) {
                         CampaignListBean.CampaignInviteEntity entity = campaignInviteEntity.getCampaign_invite();
                         // updateBottomShareView(entity);
@@ -1870,6 +1881,7 @@ public class DetailContentHelper {
     }
 
     private CampaignListBean.CampaignInviteEntity bean;
+    private CampaignListBean listBean;
     private String entityId;
 
     /**
@@ -1904,6 +1916,31 @@ public class DetailContentHelper {
             @Override
             public void onClick(View v) {
 
+                cdm.dismiss();
+            }
+        });
+        cdm.dg.setCanceledOnTouchOutside(true);
+        cdm.dg.getWindow().setGravity(Gravity.CENTER);
+        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+        cdm.showDialog();
+    }
+
+    /**
+     给gg使用的弹窗
+     @param activity
+     @param str
+     */
+    private void showGgDialog(final Activity activity, String str) {
+
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_gg_rule, null);
+        TextView infoTv = (TextView) view.findViewById(R.id.tv_rule);
+        LinearLayout llBg = (LinearLayout) view.findViewById(R.id.layout_bg);
+        infoTv.setText(str);
+        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
+        llBg.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
                 cdm.dismiss();
             }
         });
@@ -1968,19 +2005,47 @@ public class DetailContentHelper {
 
         @Override
         public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+
             if (mCampaignInviteEntity.getStatus().equals("running") || CAMPAIGN_TYPE_RECRUIT.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())) {
                 if (bean != null) {
                     updateBottomShareView(bean);
                     NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_SHARE_SUCCESS);
                     SUCCESS = "success";
                     if (((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
-                        showShareSuccessDialog(activity, bean);
+                       // showShareSuccessDialog(activity, bean);
+                        if (listBean!=null){
+                            if (!TextUtils.isEmpty(listBean.getAlert())){
+                                showGgDialog(activity,listBean.getAlert());
+                            }else {
+                                showShareSuccessDialog(activity, bean);
+                            }
+                        }else {
+                            showShareSuccessDialog(activity, bean);
+                        }
+                    }else {
+                        if (!TextUtils.isEmpty(listBean.getAlert())){
+                            showGgDialog(activity,listBean.getAlert());
+                        }
                     }
                 }
             } else if (mCampaignInviteEntity.getStatus().equals(STATE_APPROVED)) {
                 String screenshot = mCampaignInviteEntity.getScreenshot();
                 if (TextUtils.isEmpty(screenshot) && ((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
-                    showShareSuccessDialog(activity, mCampaignInviteEntity);
+                    if (listBean!=null){
+                        if (!TextUtils.isEmpty(listBean.getAlert())){
+                            showGgDialog(activity,listBean.getAlert());
+                        }else {
+                            showShareSuccessDialog(activity, mCampaignInviteEntity);
+                        }
+                    }else {
+                        showShareSuccessDialog(activity, mCampaignInviteEntity);
+                    }
+                }
+            }else {
+                if (listBean!=null){
+                    if (!TextUtils.isEmpty(listBean.getAlert())){
+                        showGgDialog(activity,listBean.getAlert());
+                    }
                 }
             }
             // 分享活动成功埋点

@@ -33,11 +33,11 @@ public class CommonConfig {
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
     //18321878526
     // public static String SERVICE = "http://qa.robin8.net/";//robin8-测试服务器地址/test server path
-    // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-    // public static String SERVICE = "http://192.168.51.99:3001/";//robin8-测试服务器地址/test server path
+     public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+    // public static String SERVICE = "http://192.168.51.115:3001/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://robin8.net/";//正式服务器地址／the formal server path
     // public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
-    public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
+   // public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String UpdateUrl = "api/v2/upgrades/check";
     public static final String BIND_IDENTITY_URL = "api/v2/influences/bind_identity";
@@ -179,6 +179,7 @@ public class CommonConfig {
     public static final String FIND_READ = "api/v2_0/articles/read";
     public static final String FIND_ITEM_DETAIL = "api/v2_0/articles/recommends";
     public static final String BANNER_CLICK_URL = "api/v2_0/announcements/click";//点击banner调用
+    public static final String SPLIT_RED_URL = "api/v2_0/articles/split_red";//拆红包post
 
 
 }

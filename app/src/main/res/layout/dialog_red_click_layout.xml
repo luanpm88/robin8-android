@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ll_red"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="55dp"
+        android:layout_toLeftOf="@+id/ll_red"
+        android:layout_toStartOf="@+id/ll_red"
+        android:src="@mipmap/bg_star_left"/>
+
+    <RelativeLayout
+        android:id="@+id/ll_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/img_red_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/bg_red_close"
+            android:visibility="visible"/>
+
+        <RelativeLayout
+            android:id="@+id/ll_red_open"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_red_open"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="35dp"
+                        android:text="成功领取红包"
+                        android:textColor="@color/yellow_957144"
+                        android:textSize="@dimen/undefine_font_2"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tv_red_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_red_title"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:text="1"
+                        android:textStyle="bold"
+                        android:textColor="@color/red_f63800"
+                        android:textSize="56sp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_red_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="20dp"
+                        android:textColor="@color/white_custom"
+                        android:textSize="@dimen/undefine_font_3"
+                        />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="@color/gray_ffd6c7"
+                        android:text="每日阅读发现内容可以不定时\n获得红包"
+                        android:textSize="@dimen/undefine_font_1"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ll_red"
+        android:layout_marginBottom="28dp"
+        android:layout_marginLeft="2dp"
+        android:layout_toEndOf="@+id/ll_red"
+        android:layout_toRightOf="@+id/ll_red"
+        android:src="@mipmap/bg_star_right"/>
+
+</RelativeLayout>

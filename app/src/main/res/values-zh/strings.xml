@@ -240,7 +240,7 @@
     <string name="business_submit_success">提交成功，我们会尽快与您联系,请保持电话畅通!</string>
     <string name="my_concern">我的关注</string>
     <string name="edit_invitation_code">输入邀请码</string>
-    <string name="be_kol">我的KOL资料</string>
+    <string name="be_kol">我的资料</string>
     <string name="edit_kol">编辑KOL资料</string>
 
     <string name="icons_favorite_selected">&#xe622;</string>
@@ -301,7 +301,7 @@
     <string name="data_reviewing">资料审核中</string>
     <string name="click_login">点击登录</string>
     <string name="login_get_more_campaign">登录获取更多活动</string>
-    <string name="edit_kol_data">编辑我的资料</string>
+    <string name="edit_kol_data">编辑资料</string>
     <string name="data_rejected">资料审核拒绝</string>
     <string name="data_reviewing_again">重新审核中</string>
     <string name="please_write_nick_name">请填写昵称</string>

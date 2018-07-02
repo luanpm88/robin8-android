@@ -4,16 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by IBM on 2016/8/4.
- */
+ Created by IBM on 2016/8/4. */
 public class MineShowModel implements Serializable {
 
     /**
-     * error : 0
-     * hide : 1
-     * detail : 9
-     * kol : {"id":109050,"name":"159****9098","kol_role":"public","role_apply_status":"pending","role_check_remark":null,"max_campaign_click":null,"max_campaign_earn_money":0,"campaign_total_income":"0.0","avg_campaign_credit":null,"avatar_url":"http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/c1a7dcb670.jpg!avatar","tags":[{"name":"airline","label":"航空"},{"name":"ce","label":"消费电子"},{"name":"appliances","label":"家电"}]}
-     * is_open_indiana : true
+     error : 0
+     hide : 1
+     detail : 9
+     kol : {"id":109050,"name":"159****9098","kol_role":"public","role_apply_status":"pending","role_check_remark":null,"max_campaign_click":null,"max_campaign_earn_money":0,"campaign_total_income":"0.0","avg_campaign_credit":null,"avatar_url":"http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/c1a7dcb670.jpg!avatar","tags":[{"name":"airline","label":"航空"},{"name":"ce","label":"消费电子"},{"name":"appliances","label":"家电"}]}
+     is_open_indiana : true
      */
 
     private int error;
@@ -22,6 +21,9 @@ public class MineShowModel implements Serializable {
     private KolBean kol;
     private boolean is_open_indiana;
     private boolean has_any_unread_message;
+    private String logo;
+    private String is_show_invite_code;
+
 
     public int getError() {
         return error;
@@ -46,6 +48,7 @@ public class MineShowModel implements Serializable {
     public void setDetail(int detail) {
         this.detail = detail;
     }
+
     public boolean isIs_open_indiana() {
         return is_open_indiana;
     }
@@ -70,7 +73,23 @@ public class MineShowModel implements Serializable {
         this.has_any_unread_message = has_any_unread_message;
     }
 
-    public static class KolBean implements Serializable{
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getIs_show_invite_code() {
+        return is_show_invite_code;
+    }
+
+    public void setIs_show_invite_code(String is_show_invite_code) {
+        this.is_show_invite_code = is_show_invite_code;
+    }
+
+    public static class KolBean implements Serializable {
         private int id;
         private String name;
         private String kol_role;
@@ -82,12 +101,12 @@ public class MineShowModel implements Serializable {
         private String avg_campaign_credit = "0";
         private String avatar_url;
         /**
-         * name : food
-         * label : 美食
+         name : food
+         label : 美食
          */
 
         private List<TagsBean> tags;
-       private List<String> admintag;
+        private List<String> admintag;
 
         public int getId() {
             return id;

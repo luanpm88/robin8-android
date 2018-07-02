@@ -122,8 +122,7 @@
             android:layout_gravity="right"
             android:background="@null"
             android:textCursorDrawable="@drawable/bg_cursor"
-
-            android:hint="填写完整抬头或个人"
+            android:hint="填写完整抬头或'个人'"
             android:padding="15dp"
             android:gravity="right"
             android:textColor="@color/black_custom"
