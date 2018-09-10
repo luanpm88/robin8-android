@@ -41,7 +41,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -295,9 +294,9 @@ public class NewUserTaskActivity extends BaseActivity {
             }
         });
         if (activity.getString(R.string.weixin).equals(names)) {
-            presenter.authorize(new Wechat(activity));
+            presenter.authorize(new Wechat());
         } else if (activity.getString(R.string.weibo).equals(names)) {
-            presenter.authorize(new SinaWeibo(activity));
+            presenter.authorize(new SinaWeibo());
         }
     }
 
@@ -360,7 +359,7 @@ public class NewUserTaskActivity extends BaseActivity {
         }
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         CustomToast.showShort(activity, "正在前往分享...");
-        ShareSDK.initSDK(activity);
+        //ShareSDK.initSDK(activity);
         OnekeyShare oks = new OnekeyShare();
         oks.setPlatform(platName);
         MySharedListener mySharedListener = new MySharedListener(activity);

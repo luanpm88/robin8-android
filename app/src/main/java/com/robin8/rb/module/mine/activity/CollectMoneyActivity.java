@@ -42,7 +42,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
@@ -232,12 +231,13 @@ public class CollectMoneyActivity extends BaseActivity {
 
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         CustomToast.showShort(this, "正在前往分享...");
-        ShareSDK.initSDK(this);
+        //ShareSDK.initSDK(this);
         OnekeyShare oks = new OnekeyShare();
-        oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
+       // Platform.ShareParams params = new Platform.ShareParams();
+       // params.setShareType(Platform.SHARE_WEBPAGE);
         if (SinaWeibo.NAME.equals(platName)) {
             oks.setText(getString(R.string.share_invite_friends_text) + TITLE_URL + String.valueOf(id));
         } else {
@@ -250,6 +250,7 @@ public class CollectMoneyActivity extends BaseActivity {
         oks.setUrl(TITLE_URL + String.valueOf(id));
         oks.setSite(getString(R.string.app_name));
         oks.setSiteUrl(CommonConfig.SITE_URL);
+        oks.setCallback(new MySharedListener());
         oks.show(this);
     }
 
@@ -283,6 +284,7 @@ public class CollectMoneyActivity extends BaseActivity {
     private class MySharedListener implements PlatformActionListener {
         @Override
         public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+
             CustomToast.showShort(CollectMoneyActivity.this, "分享成功");
         }
 

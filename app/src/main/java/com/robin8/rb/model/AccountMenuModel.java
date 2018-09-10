@@ -54,6 +54,7 @@ public class AccountMenuModel extends BaseBean {
         private String subject;
         private String direct;
         private String created_at;
+        private String remark;
 
         public String getCredits() {
             return credits;
@@ -109,6 +110,14 @@ public class AccountMenuModel extends BaseBean {
 
         public void setCreated_at(String created_at) {
             this.created_at = created_at;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
         }
     }
 }

@@ -77,9 +77,10 @@
     <QZone
         AppId="1105224850"
         AppKey="olWJgbIKnKUWlZKc"
+        BypassApproval="true"
         Enable="true"
         Id="3"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         SortId="3"/>
 
     <!-- 
@@ -124,6 +125,7 @@
         Enable="true"
         Id="7"
         ShareByAppClient="true"
+        BypassApproval="false"
         SortId="7"/>
 
     <Facebook

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="template language" name="keywords" />
+    <meta content="author" name="author" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" name="viewport" />
+    <meta content="yes" name="mobile-web-app-capable" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>请输入PUT钱包密码</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/keyframes.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/default.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/blockchain_pmes.css">
+  </head>
+
+  <body>
+    <div class="page full-page overflow-hidden pmes-login-page" id="pmes_login_page">
+      <div class="content-panel">
+        <div class="content-body default-form size-b white-bg">
+          <h5 class="form-title text-center">请输入钱包密码</h5>
+          <label class="form-group">
+            <div class="form-input">
+              <input type="password" pattern="\d*" class="form-control login-password" id="login_password" minlength="6" maxlength="6" placeholder="请输入密码" />
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="btn-group mt30">
+        <div class="item pl15 pr15">
+          <button type="button" class="button btn-cyan btn-lg btn-block btn-pmes-submit" id="pmes_login_btn">确定</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="assets/javascripts/plugins/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/plugins/jquery.pwd.js"></script>
+    <script type="text/javascript" src="assets/javascripts/common.js"></script>
+    <script type="text/javascript" src="assets/javascripts/pmes.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/pmes_login.js"></script>
+  </body>
+</html>

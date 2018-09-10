@@ -20,7 +20,7 @@ import java.text.DecimalFormat;
 import lecho.lib.hellocharts.view.LineChartView;
 
 /**
- 钱包页面 */
+ 我的钱包页面 */
 public class WalletActivity extends BaseActivity implements IWalletView {
 
     private WalletPresenter mWalletPresenter;

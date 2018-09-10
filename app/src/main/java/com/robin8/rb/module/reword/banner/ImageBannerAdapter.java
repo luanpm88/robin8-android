@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
+import com.robin8.rb.activity.web.PutWebActivity;
 import com.robin8.rb.autoviewpager.RecyclingPagerAdapter;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BaseRecyclerViewActivity;
@@ -129,6 +130,12 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
                     case "check_in":
                         intent = new Intent(v.getContext(), UserSignActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        v.getContext().startActivity(intent);
+                        break;
+                    case "open_puts_wallet":
+                        intent = new Intent(v.getContext(), PutWebActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(PutWebActivity.PUT_TYPE,"0");
                         v.getContext().startActivity(intent);
                         break;
                 }

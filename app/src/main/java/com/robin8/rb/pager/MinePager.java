@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.activity.WalletActivity;
+import com.robin8.rb.activity.web.PutWebActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BasePager;
 import com.robin8.rb.base.BaseRecyclerViewActivity;
@@ -75,17 +76,18 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_NORMAL = 1;
     private static final int MY_WALLET = 1;
-    private static final int MY_CAMPAIGN = 2;
-    private static final int MY_COLLECT = 3;
-    private static final int MY_PRODUCT = 4;
-    private static final int MY_CARE = 5;
-    private static final int AD_HOST = 6;
-    private static final int ROBIN_INDIANA = 7;
-    private static final int SIGN = 8;
-    private static final int INVITE_FRIENDS = 9;
-    private static final int INVITE_CODE = 10;
-    private static final int RONG_CLOUD = 11;
-    private static final int HELP_CENTER = 12;
+    private static final int MY_PUT_WALLET = 2;
+    private static final int MY_CAMPAIGN = 3;
+    private static final int MY_COLLECT = 4;
+    private static final int MY_PRODUCT = 5;
+    private static final int MY_CARE = 6;
+    private static final int AD_HOST = 7;
+    private static final int ROBIN_INDIANA = 8;
+    private static final int SIGN = 9;
+    private static final int INVITE_FRIENDS = 10;
+    private static final int INVITE_CODE = 11;
+    private static final int RONG_CLOUD = 12;
+    private static final int HELP_CENTER = 13;
 
     private static final String ROLE_BIG_V = "big_v";
     private static final String ROLE_PUBLIC = "public";
@@ -355,12 +357,10 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     @Override
     public void initData() {
-
         if (! BaseApplication.getInstance().hasLogined()) {
             initViewWithoutLogin();
             return;
         }
-
         String mMineData = CacheUtils.getString(mActivity, SPConstants.MINE_DATA, null);
         parseJson(mMineData);
         //kol信息在此
@@ -385,8 +385,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     private void parseJson(String response) {
         MineShowModel mineShowModel = GsonTools.jsonToBean(response, MineShowModel.class);
-        if (mineShowModel != null ) {
-            if (mineShowModel.getError() == 0){
+        if (mineShowModel != null) {
+            if (mineShowModel.getError() == 0) {
                 CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
                 mKolBean = mineShowModel.getKol();
                 int detail = mineShowModel.getDetail();
@@ -395,20 +395,23 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 if (! TextUtils.isEmpty(mineShowModel.getIs_show_invite_code())) {
                     isShowCode = mineShowModel.getIs_show_invite_code();
                 }
+                if (!TextUtils.isEmpty(mineShowModel.getPut_switch())){
+                    HelpTools.insertLoginInfo(HelpTools.ISOPENPUT,mineShowModel.getPut_switch());
+                }
                 imgUrl = mineShowModel.getLogo();
                 updateView(mKolBean);
             }
-//            else {
-//                try {
-//                    if (!TextUtils.isEmpty(mineShowModel.getDetail())){
-//                        if (mineShowModel.getDetail().contains("401")){
-//                            CustomToast.showShort(mActivity,"登陆失效，请重新登陆");
-//                        }
-//                    }
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                }
-//            }
+            //            else {
+            //                try {
+            //                    if (!TextUtils.isEmpty(mineShowModel.getDetail())){
+            //                        if (mineShowModel.getDetail().contains("401")){
+            //                            CustomToast.showShort(mActivity,"登陆失效，请重新登陆");
+            //                        }
+            //                    }
+            //                }catch (Exception e){
+            //                    e.printStackTrace();
+            //                }
+            //            }
         }
     }
 
@@ -512,13 +515,6 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         cdm.showDialog();
     }
 
-    private void skipToAdHost() {
-
-        if (isLogined(SPConstants.AD_HOST_ACTIVITY)) {
-            Intent intent = new Intent(mActivity, ADHostActivity.class);
-            mActivity.startActivity(intent);
-        }
-    }
 
     private boolean isLogined(int from) {
         if (! BaseApplication.getInstance().hasLogined()) {
@@ -572,6 +568,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             switch (position) {
                 case MY_WALLET:
                     skipToWallet();
+                    break;
+                case MY_PUT_WALLET:
+                    skipToPutWallet();
                     break;
                 case MY_CAMPAIGN:
                     skipToCampaign();
@@ -666,8 +665,29 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             intent.putExtras(bundle);
             mActivity.startActivity(intent);
         }
+    }
 
+    /**
+     品牌主
+     */
+    private void skipToAdHost() {
 
+        if (isLogined(SPConstants.AD_HOST_ACTIVITY)) {
+            Intent intent = new Intent(mActivity, ADHostActivity.class);
+            mActivity.startActivity(intent);
+        }
+    }
+
+    /**
+     put钱包
+     */
+    private void skipToPutWallet() {
+
+        if (isLogined(SPConstants.MY_PUT_WALLET)) {
+            Intent intent = new Intent(mActivity, PutWebActivity.class);
+            intent.putExtra(PutWebActivity.PUT_TYPE,"1");
+            mActivity.startActivity(intent);
+        }
     }
 
     /**
@@ -678,6 +698,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             Intent intent = new Intent(mActivity, UserSignActivity.class);
             mActivity.startActivity(intent);
         }
+
     }
 
     /**
@@ -892,39 +913,54 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 holder.lineDown = convertView.findViewById(R.id.line_down);
                 switch (item.id) {
                     case 0:
-                    case 6:
-                    case 10:
+                    case 7:
+                    case 11:
                         setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE);
                         break;
                     case 1:
                     case 2:
                     case 3:
                     case 4:
-                    case 7:
+                    case 5:
                     case 8:
+                    case 9:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.VISIBLE);
                         break;
-                    case 9:
-                    case 11:
+                    case 10:
+                    case 12:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.GONE);
                         break;
                     //                    case 9:
                     //                        setLines(holder, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE);
                     //                        break;
                 }
-//                if (item.name.equals("一元购")) {
-//                    holder.mLlItem.setVisibility(View.GONE);
-//                    holder.lineDown.setVisibility(View.GONE);
-//                }
+                //                if (item.name.equals("一元购")) {
+                //                    holder.mLlItem.setVisibility(View.GONE);
+                //                    holder.lineDown.setVisibility(View.GONE);
+                //                }
                 //隐藏我的关注
                 if (item.name.equals(mActivity.getResources().getString(R.string.my_concern))) {
                     holder.mLlItem.setVisibility(View.GONE);
                     holder.lineDown.setVisibility(View.GONE);
                 }
+                String loginInfo = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
+                if (item.name.equals(mActivity.getString(R.string.put_wallet))) {
+                    if (! TextUtils.isEmpty(loginInfo)) {
+                        if (loginInfo.equals("1")) {
+                            holder.mLlItem.setVisibility(View.VISIBLE);
+                            holder.lineDown.setVisibility(View.VISIBLE);
+                        } else {
+                            holder.mLlItem.setVisibility(View.GONE);
+                            holder.lineDown.setVisibility(View.GONE);
+                        }
+                    } else {
+                        holder.mLlItem.setVisibility(View.GONE);
+                        holder.lineDown.setVisibility(View.GONE);
+                    }
+                }
                 if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
                     if (! TextUtils.isEmpty(isShowCode)) {
                         if (isShowCode.equals("1")) {
-
                             holder.mLlItem.setVisibility(View.VISIBLE);
                             holder.lineDown.setVisibility(View.VISIBLE);
                         } else {
@@ -971,6 +1007,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_rong_cloud);
                 } else if (item.name.equals(mActivity.getString(R.string.my_collect))) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_my_collect);
+                } else if (item.name.equals(mActivity.getString(R.string.put_wallet))) {
+                    IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_put_wallet);
                 } else {
                     IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);
                 }

@@ -9,8 +9,6 @@
 package cn.sharesdk.onekeyshare;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Handler.Callback;
@@ -18,7 +16,8 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.mob.tools.utils.R;
+import com.mob.MobSDK;
+import com.mob.tools.utils.ResHelper;
 import com.mob.tools.utils.UIHandler;
 
 import java.io.File;
@@ -39,10 +38,11 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 	protected boolean silent;
 	protected ArrayList<CustomerLogo> customerLogos;
 	protected HashMap<String, String> hiddenPlatforms;
-	protected PlatformActionListener callback;
 	protected ShareContentCustomizeCallback customizeCallback;
 	protected boolean disableSSO;
 	protected Context context;
+
+	public PlatformActionListener callback;
 
 	public OnekeyShareThemeImpl() {
 		callback = this;
@@ -104,9 +104,9 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 	/** 判断指定平台是否只能使用客户端分享 */
 	final boolean isUseClientToShare(Platform platform) {
 		String name = platform.getName();
-		if ("Wechat".equals(name) || "WechatMoments".equals(name)
+		if ("SinaWeibo".equals(name) || "Wechat".equals(name) || "WechatMoments".equals(name)
 				|| "WechatFavorite".equals(name) || "ShortMessage".equals(name)
-				|| "Email".equals(name) || "GooglePlus".equals(name)
+				|| "Email".equals(name) || "Qzone".equals(name)
 				|| "QQ".equals(name) || "Pinterest".equals(name)
 				|| "Instagram".equals(name) || "Yixin".equals(name)
 				|| "YixinMoments".equals(name) || "QZone".equals(name)
@@ -115,23 +115,24 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 				|| "Bluetooth".equals(name) || "WhatsApp".equals(name)
 				|| "BaiduTieba".equals(name) || "Laiwang".equals(name)
 				|| "LaiwangMoments".equals(name) || "Alipay".equals(name)
-				|| "FacebookMessenger".equals(name)
+				|| "AlipayMoments".equals(name) || "FacebookMessenger".equals(name)
+				|| "GooglePlus".equals(name) || "Dingding".equals(name)
+				|| "Youtube".equals(name) || "Meipai".equals(name)
+				|| "Telegram".equals(name)
 				) {
 			return true;
 		} else if ("Evernote".equals(name)) {
 			if ("true".equals(platform.getDevinfo("ShareByAppClient"))) {
 				return true;
 			}
-		} else if ("SinaWeibo".equals(name)) {
-			if ("true".equals(platform.getDevinfo("ShareByAppClient"))) {
-				Intent test = new Intent(Intent.ACTION_SEND);
-				test.setPackage("com.sina.weibo");
-				test.setType("image/*");
-				ResolveInfo ri = platform.getContext().getPackageManager().resolveActivity(test, 0);
-				return (ri != null);
+		} else if ("Facebook".equals(name)){
+			boolean shareByAppClient = "true".equals(platform.getDevinfo("ShareByAppClient"));
+			if(shareByAppClient && platform.isClientValid()){
+				return true;
+			} else if(shareParamsMap.containsKey("url") && !TextUtils.isEmpty((String)shareParamsMap.get("url"))){
+				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -139,7 +140,7 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 		if (formateShareData(platform)) {
 			ShareParams sp = shareDataToShareParams(platform);
 			if (sp != null) {
-//				toast("ssdk_oks_sharing");
+				toast("ssdk_oks_sharing");
 				if (customizeCallback != null) {
 					customizeCallback.onShare(platform, sp);
 				}
@@ -148,6 +149,8 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 				}
 				platform.setPlatformActionListener(callback);
 				platform.share(sp);
+				callback = null;
+				customizeCallback = null;
 			}
 		}
 	}
@@ -157,11 +160,13 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 			ShareParams sp = shareDataToShareParams(platform);
 			if (sp != null) {
 				// 编辑分享内容的统计
-				ShareSDK.logDemoEvent(3, null);
+				ShareSDK.logDemoEvent(3, platform);
+				sp.setOpenCustomEven(true);
 				if (customizeCallback != null) {
 					customizeCallback.onShare(platform, sp);
 				}
 				showEditPage(context, platform, sp);
+				customizeCallback = null;
 			}
 		}
 	}
@@ -169,13 +174,7 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 	final boolean formateShareData(Platform plat) {
 		String name = plat.getName();
 
-		boolean isGooglePlus = "GooglePlus".equals(name);
-		if (isGooglePlus && !plat.isClientValid()) {
-			toast("ssdk_google_plus_client_inavailable");
-			return false;
-		}
-
-		boolean isAlipay = "Alipay".equals(name);
+		boolean isAlipay = "Alipay".equals(name) || "AlipayMoments".equals(name);
 		if (isAlipay && !plat.isClientValid()) {
 			toast("ssdk_alipay_client_inavailable");
 			return false;
@@ -216,6 +215,11 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 			return false;
 		}
 
+		if ("QZone".equals(name) && !plat.isClientValid()) {
+			toast("ssdk_qq_client_inavailable");
+			return false;
+		}
+
 		boolean isLaiwang = "Laiwang".equals(name);
 		boolean isLaiwangMoments = "LaiwangMoments".equals(name);
 		if(isLaiwang || isLaiwangMoments){
@@ -242,6 +246,11 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 			return false;
 		}
 
+		if ("Telegram".equals(name) && !plat.isClientValid()) {
+			toast("ssdk_telegram_client_inavailable");
+			return false;
+		}
+
 		if (!shareParamsMap.containsKey("shareType")) {
 			int shareType = Platform.SHARE_TEXT;
 			String imagePath = String.valueOf(shareParamsMap.get("imagePath"));
@@ -249,19 +258,19 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 				shareType = Platform.SHARE_IMAGE;
 				if (imagePath.endsWith(".gif") && isWechat) {
 					shareType = Platform.SHARE_EMOJI;
-				} else if (shareParamsMap.containsKey("url") && !TextUtils.isEmpty(shareParamsMap.get("url").toString())) {
+				} else if (shareParamsMap.containsKey("url") && !TextUtils.isEmpty((String)shareParamsMap.get("url"))) {
 					shareType = Platform.SHARE_WEBPAGE;
-					if (shareParamsMap.containsKey("musicUrl") && !TextUtils.isEmpty(shareParamsMap.get("musicUrl").toString()) && isWechat) {
+					if (shareParamsMap.containsKey("musicUrl") && !TextUtils.isEmpty((String)shareParamsMap.get("musicUrl")) && isWechat) {
 						shareType = Platform.SHARE_MUSIC;
 					}
 				}
 			} else {
-				Bitmap viewToShare = R.forceCast(shareParamsMap.get("viewToShare"));
+				Bitmap viewToShare = ResHelper.forceCast(shareParamsMap.get("viewToShare"));
 				if (viewToShare != null && !viewToShare.isRecycled()) {
 					shareType = Platform.SHARE_IMAGE;
-					if (shareParamsMap.containsKey("url") && !TextUtils.isEmpty(shareParamsMap.get("url").toString())) {
+					if (shareParamsMap.containsKey("url") && !TextUtils.isEmpty((String)shareParamsMap.get("url"))) {
 						shareType = Platform.SHARE_WEBPAGE;
-						if (shareParamsMap.containsKey("musicUrl") && !TextUtils.isEmpty(shareParamsMap.get("musicUrl").toString()) && isWechat) {
+						if (shareParamsMap.containsKey("musicUrl") && !TextUtils.isEmpty((String)shareParamsMap.get("musicUrl")) && isWechat) {
 							shareType = Platform.SHARE_MUSIC;
 						}
 					}
@@ -271,10 +280,23 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 						shareType = Platform.SHARE_IMAGE;
 						if (String.valueOf(imageUrl).endsWith(".gif") && isWechat) {
 							shareType = Platform.SHARE_EMOJI;
-						} else if (shareParamsMap.containsKey("url") && !TextUtils.isEmpty(shareParamsMap.get("url").toString())) {
+						} else if (shareParamsMap.containsKey("url") && !TextUtils.isEmpty((String)shareParamsMap.get("url"))) {
 							shareType = Platform.SHARE_WEBPAGE;
-							if (shareParamsMap.containsKey("musicUrl") && !TextUtils.isEmpty(shareParamsMap.get("musicUrl").toString()) && isWechat) {
+							if (shareParamsMap.containsKey("musicUrl") && !TextUtils.isEmpty((String)shareParamsMap.get("musicUrl")) && isWechat) {
 								shareType = Platform.SHARE_MUSIC;
+							}
+						}
+					} else {
+						Bitmap imageData = (Bitmap)shareParamsMap.get("imageData");
+						if(imageData != null){
+							shareType = Platform.SHARE_IMAGE;
+							if (String.valueOf(imageUrl).endsWith(".gif") && isWechat) {
+								shareType = Platform.SHARE_EMOJI;
+							} else if (shareParamsMap.containsKey("url") && !TextUtils.isEmpty((String)shareParamsMap.get("url"))) {
+								shareType = Platform.SHARE_WEBPAGE;
+								if (shareParamsMap.containsKey("musicUrl") && !TextUtils.isEmpty((String)shareParamsMap.get("musicUrl")) && isWechat) {
+									shareType = Platform.SHARE_MUSIC;
+								}
 							}
 						}
 					}
@@ -293,10 +315,10 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 		}
 
 		try {
-			String imagePath = R.forceCast(shareParamsMap.get("imagePath"));
-			Bitmap viewToShare = R.forceCast(shareParamsMap.get("viewToShare"));
+			String imagePath = ResHelper.forceCast(shareParamsMap.get("imagePath"));
+			Bitmap viewToShare = ResHelper.forceCast(shareParamsMap.get("viewToShare"));
 			if (TextUtils.isEmpty(imagePath) && viewToShare != null && !viewToShare.isRecycled()) {
-				String path = R.getCachePath(plat.getContext(), "screenshot");
+				String path = ResHelper.getCachePath(MobSDK.getContext(), "screenshot");
 				File ss = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
 				FileOutputStream fos = new FileOutputStream(ss);
 				viewToShare.compress(CompressFormat.JPEG, 100, fos);
@@ -316,7 +338,7 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 	private void toast(final String resOrName) {
 		UIHandler.sendEmptyMessage(0, new Callback() {
 			public boolean handleMessage(Message msg) {
-				int resId = R.getStringRes(context, resOrName);
+				int resId = ResHelper.getStringRes(context, resOrName);
 				if (resId > 0) {
 					Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
 				} else {
@@ -368,7 +390,7 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 		switch (msg.arg1) {
 			case 1: {
 				// 成功
-				int resId = R.getStringRes(context, "ssdk_oks_share_completed");
+				int resId = ResHelper.getStringRes(context, "ssdk_oks_share_completed");
 				if (resId > 0) {
 					toast(context.getString(resId));
 				}

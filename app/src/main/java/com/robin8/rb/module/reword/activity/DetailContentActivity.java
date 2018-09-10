@@ -29,6 +29,7 @@ import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.activity.MainActivity;
+import com.robin8.rb.activity.web.PutWebActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BaseDataActivity;
 import com.robin8.rb.constants.CommonConfig;
@@ -72,7 +73,6 @@ import java.util.Observer;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
@@ -96,6 +96,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     private WebView mWebView;
     private WebSettings mWebSettings;
     private CampaignListBean.CampaignInviteEntity mCampaignInviteEntity;
+    private CampaignInviteBean mCampaignEntity;
     private ImageView mImageView;
     private ImageView mBackIv;
     private TextView mTVTitleUp;
@@ -149,6 +150,9 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     private LinearLayout llShare;//分享按钮
     private int mInviteesCount = - 1;
     private RelativeLayout llRemark;
+    private LinearLayout mLayoutPut;
+    private TextView mTvPutEnter;
+    private TextView mTvPutResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -348,6 +352,10 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         llShare = (LinearLayout) findViewById(R.id.ll_share);
         llShare.setVisibility(View.VISIBLE);
         llShare.setOnClickListener(this);
+        mLayoutPut = ((LinearLayout) findViewById(R.id.ll_put));
+        mTvPutEnter = ((TextView) findViewById(R.id.tv_put_entry));
+        mTvPutResult = ((TextView) findViewById(R.id.tv_put_result));
+
         if (mWithWebViewB) {
             mLLListInvite.setVisibility(View.VISIBLE);
             LayoutInflater.from(this).inflate(R.layout.detail_content_view_down_webv, mLLContent);
@@ -360,6 +368,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             initWebViewSettings();
             initWebView();
         } else {//招募、特邀活动
+
             mLLListInvite.setVisibility(View.GONE);
             View view = LayoutInflater.from(this).inflate(R.layout.detail_content_view_down, mLLContent);
             mIvBackDown = (ImageView) view.findViewById(R.id.iv_back_down);
@@ -384,6 +393,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         mTVCountTime = (TextView) findViewById(R.id.tv_count_time);
         mTVNextPage = (TextView) findViewById(R.id.tv_next_page);
 
+        mTvPutEnter.setOnClickListener(this);
         mBackIv.setOnClickListener(this);
         mTVNextPage.setOnClickListener(this);
         mIvBackDown.setOnClickListener(this);
@@ -474,11 +484,17 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
             @Override
             public void onResponse(String response) {
-               LogUtil.LogShitou("活动详情数据", response);
+                LogUtil.LogShitou("活动详情数据", response);
                 CampaignInviteBean campaignInviteEntity = GsonTools.jsonToBean(response, CampaignInviteBean.class);
                 if (campaignInviteEntity != null && campaignInviteEntity.getError() == 0) {
                     mCampaignInviteEntity = campaignInviteEntity.getCampaign_invite();
+                    mCampaignEntity = campaignInviteEntity;
                     mInviteBean = campaignInviteEntity.getInvitees();
+                    if (TextUtils.isEmpty(campaignInviteEntity.getPut_switch())) {
+                        HelpTools.insertLoginInfo(HelpTools.ISOPENPUT, "");
+                    } else {
+                        HelpTools.insertLoginInfo(HelpTools.ISOPENPUT, campaignInviteEntity.getPut_switch());
+                    }
                     if (TextUtils.isEmpty(campaignInviteEntity.getLeader_club())) {
                         HelpTools.insertCommonXml(HelpTools.isLeader, "");
                         forLeader(false);
@@ -672,7 +688,30 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         if (mDetailContentHelper == null) {
             mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
         }
-        mDetailContentHelper.setUpCenterView(mCampaignInviteEntity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout, mInviteesCount);
+        String isOpen = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
+        String isPutUser = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
+        if (mCampaignInviteEntity.getCampaign().getPer_budget_type().equals(CAMPAIGN_TYPE_RECRUIT)) {
+            mLayoutPut.setVisibility(View.GONE);
+        } else {
+            if (! TextUtils.isEmpty(isOpen)) {
+                if (isOpen.equals("1")) {
+                    mLayoutPut.setVisibility(View.VISIBLE);
+                    if (! TextUtils.isEmpty(isPutUser)) {
+                        mTvPutResult.setVisibility(View.VISIBLE);
+                        mTvPutEnter.setVisibility(View.GONE);
+                    } else {
+                        mTvPutResult.setVisibility(View.GONE);
+                        mTvPutEnter.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    mLayoutPut.setVisibility(View.GONE);
+                }
+            } else {
+                mLayoutPut.setVisibility(View.GONE);
+            }
+        }
+        mDetailContentHelper.setUpCenterView(mCampaignEntity, mCampaignInviteEntity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout, mInviteesCount, mTvPutResult, mTvPutEnter);
+
     }
 
     public void initWebViewSettings() {
@@ -811,21 +850,22 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 showShareDialog(DetailContentActivity.this);
                 //  checklsShowTipsDialog(DetailContentActivity.this);
                 break;
-            //            case R.id.img_wechat:
-            //                share(Wechat.NAME);
-            //                break;
-            //            case R.id.img_wechat_room:
-            //                share(WechatMoments.NAME);
-            //                break;
-            //            case R.id.img_weibo:
-            //                share(SinaWeibo.NAME);
-            //                break;
-            //            case R.id.img_qq:
-            //                share(QQ.NAME);
-            //                break;
-            //            case R.id.img_qq_room:
-            //                share(QZone.NAME);
-            //                break;
+            case R.id.tv_put_entry:
+                if (BaseApplication.getInstance().hasLogined()) {
+                    Intent intent = new Intent(this, PutWebActivity.class);
+                    intent.putExtra(PutWebActivity.PUT_TYPE, "2");
+                    startActivityForResult(intent, DetailContentHelper.IMAGE_REQUEST_PUT_RESULT);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                } else {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("kol_uuid", HelpTools.getKolUUid());
+                    bundle.putInt("from", SPConstants.DETAILCONTENTACTIVITY);
+                    intent.putExtras(bundle);
+                    startActivityForResult(intent, SPConstants.DETAILCONTENTACTIVITY);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                }
+                break;
         }
     }
 
@@ -903,7 +943,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                     }).start();
                     break;
                 case DetailContentHelper.IMAGE_REQUEST_MORE_IMG_CODE:
-                    //LogUtil.LogShitou("日什么情况","------------------");
                     final SerializableMap mapImages = (SerializableMap) (data.getExtras().get(ScreenImgActivity.EXTRA_SCREEN_MAP));
                     new Thread(new Runnable() {
 
@@ -935,6 +974,13 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                         }
                     }).start();
                     break;
+                case DetailContentHelper.IMAGE_REQUEST_PUT_RESULT:
+                    updateUpView();
+                    break;
+            }
+        } else {
+            if (requestCode == DetailContentHelper.IMAGE_REQUEST_PUT_RESULT) {
+                updateUpView();
             }
         }
     }
@@ -957,7 +1003,11 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                         mDetailContentHelper.updateBottomShareView(entity);
                     } else {
                         //  LogUtil.LogShitou("底部状态栏是否改变", "DetailContentActivity" + "863");
-                        mDetailContentHelper.setUpCenterView(entity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout, mInviteesCount);
+                        if (mCampaignEntity == null) {
+                            initData();
+                        } else {
+                            mDetailContentHelper.setUpCenterView(mCampaignEntity, entity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout, mInviteesCount, mTvPutResult, mTvPutEnter);
+                        }
                     }
                 } else {
                     //  LogUtil.LogShitou("底部状态栏是否改变", "DetailContentActivity" + "866");
@@ -1053,7 +1103,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             mCustomDialogManager.dismiss();
         }
         CustomToast.showShort(DetailContentActivity.this, "前往分享...");
-        ShareSDK.initSDK(DetailContentActivity.this);
+        //ShareSDK.initSDK(DetailContentActivity.this);
         OnekeyShare oks = new OnekeyShare();
         oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);

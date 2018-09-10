@@ -16,6 +16,8 @@ import com.robin8.rb.presenter.LoginPresenter;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.view.ILoginView;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -121,13 +123,14 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 break;
             case R.id.ib_weixin:
                 CustomToast.showShort(this, "前往微信中···");
-                mLoginPresenter.authorize(new Wechat(this));
+                mLoginPresenter.authorize(new Wechat());
                 break;
             case R.id.ib_weibo:
-                mLoginPresenter.authorize(new SinaWeibo(this));
+                mLoginPresenter.authorize(new SinaWeibo());
                 break;
             case R.id.ib_qq:
-                mLoginPresenter.authorize(new QQ(this));
+                Platform platform = ShareSDK.getPlatform(QQ.NAME);
+                mLoginPresenter.authorize(platform);
                 // finish();
                 break;
             case R.id.iv_back:

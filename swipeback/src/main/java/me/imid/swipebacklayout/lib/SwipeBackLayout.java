@@ -315,7 +315,6 @@ public class SwipeBackLayout extends FrameLayout {
 
     /**
      * Set a drawable used for edge shadow.
-     *
      * @param shadow    Drawable to use
      * @param edgeFlags Combination of edge flags describing the edge to set
      * @see #EDGE_LEFT

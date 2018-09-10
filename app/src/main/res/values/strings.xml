@@ -69,6 +69,9 @@
     <string name="register_or_login">注册/登录</string>
     <string name="forget_pwd">忘记密码</string>
     <string name="fix_pwd">修改密码</string>
+    <string name="email_login">邮箱登录</string>
+    <string name="login">登录</string>
+    <string name="pwd">密码</string>
 
     <string name="launch_reword">发布悬赏活动</string>
     <string name="type_count_by_click">按点击次数计费</string>
@@ -167,6 +170,7 @@
     <string name="shared_clicked_by_friends">分享后好友点击此文章即获得报酬</string>
     <string name="post_this_page_get_reword">转发此文章立即获得报酬</string>
     <string name="activity_order_pay">活动订单支付</string>
+    <string name="campaign_offer">促销活动</string>
     <string name="my_launch_activity">我发布的活动</string>
     <string name="order_pay_success">订单支付成功</string>
     <string name="order_pay">订单支付</string>
@@ -187,6 +191,7 @@
     <string name="my_menu">我的账单</string>
     <string name="revoke">撤销</string>
     <string name="revoke_campaign">撤销活动</string>
+    <string name="cash_tranx">资金流水</string>
 
     <string name="robin_indiana">一元购</string>
     <string name="detail_indiana">夺宝详情</string>
@@ -515,4 +520,9 @@
     <string name="confirm_to_delete">确认删除？</string>
     <string name="undo">撤消</string>
     <string name="title_activity_email_welcome">EmailWelcomeActivity</string>
+    <string name="title_activity_web_need">WebNeedActivity</string>
+
+    <!--put金币-->
+    <string name="put_campaign_detail">支付500元以上的活动可获得价值20%的R8币返还</string>
+    <string name="put_wallet">PUT钱包</string>
 </resources>

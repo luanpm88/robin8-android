@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.moxun.tagcloudlib.view.TagCloudView;
 import com.robin8.rb.R;
-import com.robin8.rb.activity.WebViewActivity;
+import com.robin8.rb.activity.web.WebViewActivity;
 import com.robin8.rb.adapter.ViewPagerAdapter;
 import com.robin8.rb.base.BaseFragment;
 import com.robin8.rb.module.first.adapter.TextTagsAdapter;

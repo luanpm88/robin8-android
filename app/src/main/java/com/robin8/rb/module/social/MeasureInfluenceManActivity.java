@@ -112,9 +112,9 @@ public class MeasureInfluenceManActivity extends BaseActivity {
             }
         });
         if (activity.getString(R.string.weibo).equals(providerName)) {
-            presenter.authorize(new SinaWeibo(activity));
+            presenter.authorize(new SinaWeibo());
         } else if (activity.getString(R.string.weixin).equals(providerName)) {
-            presenter.authorize(new Wechat(activity));
+            presenter.authorize(new Wechat());
         }
 
 

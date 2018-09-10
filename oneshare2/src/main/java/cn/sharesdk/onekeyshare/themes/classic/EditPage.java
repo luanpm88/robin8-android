@@ -8,16 +8,17 @@
 
 package cn.sharesdk.onekeyshare.themes.classic;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -26,9 +27,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mob.MobSDK;
 import com.mob.tools.gui.AsyncImageView;
 import com.mob.tools.utils.DeviceHelper;
-import com.mob.tools.utils.R;
+import com.mob.tools.utils.ReflectHelper;
+import com.mob.tools.utils.ResHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +69,6 @@ public class EditPage extends OnekeySharePage implements OnClickListener, TextWa
 	public EditPage(OnekeyShareThemeImpl impl) {
 		super(impl);
 		this.impl = impl;
-
 	}
 
 	public void setPlatform(Platform platform) {
@@ -77,22 +79,21 @@ public class EditPage extends OnekeySharePage implements OnClickListener, TextWa
 		this.sp = sp;
 	}
 
-	public void setActivity(Activity activity) {
-		super.setActivity(activity);
+	@Override
+	protected int onSetTheme(int resid, boolean atLaunch) {
 		if (isDialogMode()) {
-			System.err.println("Theme classic does not support dialog mode!");
-//			activity.setTheme(android.R.style.Theme_Dialog);
-//			activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//			if (Build.VERSION.SDK_INT >= 11) {
-//				try {
-//					ReflectHelper.invokeInstanceMethod(activity, "setFinishOnTouchOutside", false);
-//				} catch (Throwable e) {}
-//			}
+			activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			if (Build.VERSION.SDK_INT >= 11) {
+				try {
+					ReflectHelper.invokeInstanceMethod(activity, "setFinishOnTouchOutside", false);
+				} catch (Throwable e) {}
+			}
+			return android.R.style.Theme_Dialog;
+		} else {
+			activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
+					| WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		}
-
-		activity.getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE |
-				WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+		return super.onSetTheme(resid, atLaunch);
 	}
 
 	public void onCreate() {
@@ -108,7 +109,7 @@ public class EditPage extends OnekeySharePage implements OnClickListener, TextWa
 
 	/** 执行分享时的方法 */
 	private void shareAndFinish() {
-		int resId = R.getStringRes(activity, "ssdk_oks_sharing");
+		int resId = ResHelper.getStringRes(activity, "ssdk_oks_sharing");
 		if (resId > 0) {
 			Toast.makeText(activity, resId, Toast.LENGTH_SHORT).show();
 		}
@@ -118,7 +119,7 @@ public class EditPage extends OnekeySharePage implements OnClickListener, TextWa
 		}
 		platform.setPlatformActionListener(getCallback());
 		platform.share(sp);
-
+		impl.callback = null;
 		finish();
 	}
 
@@ -146,7 +147,7 @@ public class EditPage extends OnekeySharePage implements OnClickListener, TextWa
 			page = new FriendListPageLand(impl);
 		}
 		page.setPlatform(platform);
-		page.showForResult(platform.getContext(), null, this);
+		page.showForResult(MobSDK.getContext(), null, this);
 	}
 
 	public void onResult(HashMap<String, Object> data) {
@@ -214,7 +215,7 @@ public class EditPage extends OnekeySharePage implements OnClickListener, TextWa
 	/** 动态适配编辑界面的高度 */
 	public void run() {
 		int height = svContent.getChildAt(0).getHeight();
-		RelativeLayout.LayoutParams lp = R.forceCast(svContent.getLayoutParams());
+		RelativeLayout.LayoutParams lp = ResHelper.forceCast(svContent.getLayoutParams());
 		if (height > maxBodyHeight && lp.height != maxBodyHeight) {
 			lp.height = maxBodyHeight;
 			svContent.setLayoutParams(lp);

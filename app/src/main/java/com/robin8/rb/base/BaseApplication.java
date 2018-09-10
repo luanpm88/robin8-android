@@ -10,6 +10,8 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
+import com.liulishuo.filedownloader.FileDownloader;
+import com.mob.MobSDK;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.model.ContactBean;
@@ -26,7 +28,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.sharesdk.framework.ShareSDK;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -81,6 +82,7 @@ public class BaseApplication extends MultiDexApplication {
         }
         initConfig();
         initData();
+        FileDownloader.setup(this);
     }
 
     /**
@@ -113,7 +115,7 @@ public class BaseApplication extends MultiDexApplication {
         //        SDKInitializer.initialize(getApplicationContext());
         //埋点初始化
         StatisticsAgency.init(this);
-        ShareSDK.initSDK(this);
+        MobSDK.init(this);
     }
 
     private void initData() {

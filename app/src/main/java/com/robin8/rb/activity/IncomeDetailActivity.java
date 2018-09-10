@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -24,12 +23,13 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
+import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 钱包页面
+ * 我的钱包——账单页面
  */
 public class IncomeDetailActivity extends BaseActivity implements IncomeDetailAdapter.OnBottomListener {
 
@@ -155,8 +155,7 @@ public class IncomeDetailActivity extends BaseActivity implements IncomeDetailAd
         mBasePresenter.getDataFromServer(true, HttpRequest.GET, url, mRequestParams, new RequestCallback() {
             @Override
             public void onError(Exception e) {
-                Log.e("onError","onError");
-
+                LogUtil.LogShitou("onError","onError");
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -168,7 +167,7 @@ public class IncomeDetailActivity extends BaseActivity implements IncomeDetailAd
 
             @Override
             public void onResponse(String response) {
-                Log.e("onResponse","onResponse");
+               LogUtil.LogShitou("账单","---"+response);
                 if (mXRefreshView != null) {
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore();

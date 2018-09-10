@@ -107,11 +107,8 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
     @Override
     public void onComplete(final Platform platform, int action, final HashMap<String, Object> res) {
-
         super.onComplete(platform, action, res);
         //第三方登录成功
-
-        if (action == Platform.ACTION_USER_INFOR) {
             if (action == Platform.ACTION_USER_INFOR) {
                 PlatformDb platDB = platform.getDb();//获取数平台数据DB
                 //通过DB获取各种数据
@@ -124,12 +121,16 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
                     @Override
                     public void run() {
-
                         sendOtherLoginInfo(platform.getName(), token, userGender, userIcon, userId, userName, res);
                     }
                 });
             }
-        }
+    }
+
+    @Override
+    public void onError(Platform platform, int action, Throwable t) {
+        super.onError(platform, action, t);
+
     }
 
     private void sendOtherLoginInfo(final String plat, final String token, final String userGender, final String userIcon, final String userId, final String userName, final HashMap<String, Object> res) {
@@ -183,13 +184,14 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("第三方", response);
+                LogUtil.LogShitou("第三方登陆", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
                 final LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
                 if (loginBean.getError() == 0) {
                     HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));//保存token
+                    HelpTools.insertLoginInfo(HelpTools.WEBADDRESS,loginBean.getKol().getPut_address());
                     afterBind(loginBean);
                 } else {
                     if (! TextUtils.isEmpty(loginBean.getDetail())) {
@@ -447,6 +449,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                             //  LoginHelper.loginSuccess(loginBean, from, mActivity);
                             HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
                             HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+                            HelpTools.insertLoginInfo(HelpTools.WEBADDRESS, loginBean.getKol().getPut_address());//web使用
                             if (loginBean.is_new_member()) {
                                 HelpTools.insertCommonXml(HelpTools.ISNEWUSER, "is");
                             } else {
@@ -565,6 +568,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                         }
                         if (loginBean.getError() == 0) {
                             HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
+                            HelpTools.insertLoginInfo(HelpTools.WEBADDRESS,loginBean.getKol().getPut_address());
                             // HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
                             BaseApplication.getInstance().setLoginBean(loginBean);
                             if (BaseApplication.getInstance().hasLogined()) {

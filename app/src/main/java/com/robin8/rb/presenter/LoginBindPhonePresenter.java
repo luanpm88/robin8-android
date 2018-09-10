@@ -161,6 +161,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
             TalkingDataAppCpa.onRegister(loginBean.getKol().getMobile_number());
             HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
             HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+            HelpTools.insertLoginInfo(HelpTools.WEBADDRESS,loginBean.getKol().getPut_address());
             if (loginBean.is_new_member()){
                 HelpTools.insertCommonXml(HelpTools.ISNEWUSER,"is");
             }else {

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
-import com.robin8.rb.activity.WebViewActivity;
+import com.robin8.rb.activity.web.WebViewActivity;
 import com.robin8.rb.base.BaseRecyclerViewPresenter;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.indiana.protocol.IProtocol;

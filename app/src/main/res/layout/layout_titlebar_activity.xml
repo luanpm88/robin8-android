@@ -46,7 +46,7 @@
             android:gravity="center"
             android:maxWidth="300dp"
             android:singleLine="true"
-            android:text="推广内容详情  "
+            android:text=""
             android:textColor="@color/black_custom"
             android:textSize="@dimen/undefine_font_7"/>
 
@@ -112,7 +112,7 @@
         android:orientation="vertical"></LinearLayout>
 
     <TextView
-        android:id="@id/tv_bottom"
+        android:id="@+id/tv_bottom"
         style="@style/BottomTextViewStyle"
         android:visibility="gone"/>
 </LinearLayout>

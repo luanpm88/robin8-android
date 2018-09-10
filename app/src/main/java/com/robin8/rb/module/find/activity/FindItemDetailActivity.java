@@ -48,7 +48,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
@@ -521,7 +520,8 @@ public class FindItemDetailActivity extends BaseActivity {
         String url = HelpTools.getUrl(listModel.getForward_url());
         titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
         CustomToast.showShort(FindItemDetailActivity.this, "正在前往分享...");
-        ShareSDK.initSDK(FindItemDetailActivity.this);
+
+        //ShareSDK.initSDK(FindItemDetailActivity.this);
         OnekeyShare oks = new OnekeyShare();
         oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);

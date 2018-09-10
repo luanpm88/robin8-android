@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.robin8.rb.R;
-import com.robin8.rb.activity.WebViewActivity;
+import com.robin8.rb.activity.web.WebViewActivity;
 import com.robin8.rb.autoviewpager.AutoScrollViewPager;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;

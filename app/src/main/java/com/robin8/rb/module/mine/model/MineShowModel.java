@@ -24,6 +24,16 @@ public class MineShowModel implements Serializable {
     private String logo;
     private String is_show_invite_code;
 
+    public String getPut_switch() {
+        return put_switch;
+    }
+
+    public void setPut_switch(String put_switch) {
+        this.put_switch = put_switch;
+    }
+
+    private String put_switch;//1显示
+
 
     public int getError() {
         return error;

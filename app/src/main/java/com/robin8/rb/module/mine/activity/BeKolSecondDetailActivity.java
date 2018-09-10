@@ -212,11 +212,11 @@ public class BeKolSecondDetailActivity extends BaseActivity {
             }
         });
         if (getString(R.string.weixin).equals(name)) {
-            presenter.authorize(new Wechat(this));
+            presenter.authorize(new Wechat());
         } else if (getString(R.string.qq).equals(name)) {
-            presenter.authorize(new QQ(this));
+            presenter.authorize(new QQ());
         } else if (getString(R.string.weibo).equals(name)) {
-            presenter.authorize(new SinaWeibo(this));
+            presenter.authorize(new SinaWeibo());
         }
     }
 

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.activity.WebViewActivity;
+import com.robin8.rb.activity.web.WebViewActivity;
 import com.robin8.rb.autoviewpager.RecyclingPagerAdapter;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.module.first.activity.KolDetailContentActivity;

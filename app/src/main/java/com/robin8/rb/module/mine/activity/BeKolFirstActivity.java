@@ -37,6 +37,7 @@ import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
@@ -387,7 +388,7 @@ public class BeKolFirstActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-              //   LogUtil.LogShitou("提交结果","===>"+response);
+                LogUtil.LogShitou("提交结果","===>"+response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }

@@ -165,7 +165,10 @@
     <string name="post">forwarding</string>
     <string name="shared_clicked_by_friends">分享后好友点击此文章即获得报酬</string>
     <string name="post_this_page_get_reword">转发此文章立即获得报酬</string>
-    <string name="activity_order_pay">活动订单支付</string>
+    <!--活动订单支付-->
+    <string name="activity_order_pay">Campaign Payment</string>
+    <!--促销活动-->
+    <string name="campaign_offer">Promotion offer</string>
     <string name="my_launch_activity">我发布的活动</string>
     <string name="order_pay_success">订单支付成功</string>
     <string name="order_pay">订单支付</string>
@@ -186,6 +189,8 @@
     <string name="my_menu">我的账单</string>
     <string name="revoke">撤销</string>
     <string name="revoke_campaign">撤销活动</string>
+    <!--资金流水-->
+    <string name="cash_tranx">Cash tranx</string>
 
     <string name="robin_indiana">一元购</string>
     <string name="detail_indiana">夺宝详情</string>
@@ -379,7 +384,8 @@
     <string name="robin8">ROBIN8</string>
     <string name="please_write_kol">请填写特邀KOL</string>
     <string name="image_check_reject">图片审核不通过:</string>
-    <string name="bill">账单</string>
+    <!--账单-->
+    <string name="bill">Tranx detail</string>
     <string name="no_introduce">未填写KOL简介</string>
     <string name="has_consumed">已花费</string>
     <string name="count_click">计费点击</string>
@@ -507,4 +513,9 @@
     <string name="confirm_to_delete">确认删除？</string>
     <string name="undo">撤消</string>
     <string name="title_activity_email_welcome">EmailWelcomeActivity</string>
+
+    <!--put金币-->
+    <string name="put_campaign_detail">Get 20% PUT rebate for campaign budget over Y500</string>
+    <string name="put_wallet">PUT wallet</string>
+
 </resources>

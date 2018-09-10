@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.activity.WebViewActivity;
+import com.robin8.rb.activity.web.WebViewActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.helper.IconFontHelper;
 import com.robin8.rb.module.reword.bean.CampaignMaterialsModel;

@@ -53,6 +53,8 @@ public class SPConstants {
     public static final int RONG_CLOUD = 64;//融云客服
     public static final int MAIN_FIND= 65;//首页发现
     public static final int MAIN_COLLECT= 66;//我的收藏
+    public static final int MY_PUT_WALLET= 67;//put钱包
+    public static final int MY_PUT_WALLET_RESULT= 68;//put钱包
     public static final int UPDATA_BRAND_MSG= 125;//更新品牌主资料
 
     public static final String SP_SIGN = "robin8_sp";

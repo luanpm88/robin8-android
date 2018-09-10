@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.robin8.rb">
 
     <!--
@@ -22,7 +23,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <!-- 百度定位 -->
@@ -237,7 +238,7 @@
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.WebViewActivity"
+            android:name=".activity.web.WebViewActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait">
@@ -428,21 +429,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize">
 
-            <!--
-            如果集成QQ分享，或者使用QQ客户端来进行QQ空间的
-            分享，须要在此处添加一个对ACTION_VIEW事件的过滤器，
-            其中的scheme是“tencent”前缀再开发者应用的加上appId。
-            如果此过滤器不设置，则分享结束以后不能得到正确的回调
-            -->
-            <intent-filter>
-                <data android:scheme="tencent1105224850"/>
-
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-            </intent-filter>
-
             <!-- 调用新浪原生SDK，需要注册的回调activity -->
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>
@@ -452,12 +438,25 @@
         </activity>
         <!-- 微信分享回调 -->
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.robin8.rb.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
+        <activity
+            android:name="cn.sharesdk.tencent.qq.ReceiveActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="tencent1105224850"/>
+            </intent-filter>
+        </activity>
         <!-- ________________________________ 1、shareSDK配置结束 ________________________________ -->
 
 
@@ -764,7 +763,18 @@
             android:name=".module.mine.activity.ADHostMsgActivity"
             android:screenOrientation="portrait">
         </activity>
+
         <service android:name=".module.find.FloatAction.service.FloatMonkService"/>
+
+        <activity android:name=".activity.web.TextActivity">
+        </activity>
+        <activity android:name=".activity.web.PutWebFirstActivity">
+        </activity>
+        <activity
+            android:name=".activity.web.PutWebActivity"
+            android:label="@string/title_activity_web_need"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

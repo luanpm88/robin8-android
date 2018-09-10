@@ -28,7 +28,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -148,7 +147,7 @@ public class MyHoritalListAdapter extends BaseAdapter {
 
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         CustomToast.showShort(context, "正在前往分享...");
-        ShareSDK.initSDK(context);
+        //ShareSDK.initSDK(context);
         OnekeyShare oks = new OnekeyShare();
         oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);

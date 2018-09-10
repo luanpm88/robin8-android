@@ -74,13 +74,13 @@ public class BindSocialActivity extends BaseActivity implements IBindSocialView 
                // mBindSocialPresenter.startTest();
                 break;
             case R.id.ib_weixin:
-                mBindSocialPresenter.authorize(new Wechat(this));
+                mBindSocialPresenter.authorize(new Wechat());
                 break;
             case R.id.ib_weibo:
-                mBindSocialPresenter.authorize(new SinaWeibo(this));
+                mBindSocialPresenter.authorize(new SinaWeibo());
                 break;
             case R.id.ib_qq:
-                mBindSocialPresenter.authorize(new QQ(this));
+                mBindSocialPresenter.authorize(new QQ());
                 break;
         }
     }

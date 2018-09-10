@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.moxun.tagcloudlib.view.TagCloudView;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
-import com.robin8.rb.activity.WebViewActivity;
+import com.robin8.rb.activity.web.WebViewActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;

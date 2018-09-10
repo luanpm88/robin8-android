@@ -79,7 +79,8 @@ public class RewordPager extends BasePager implements Observer {
     private LinearLayout mTopPoints;
 
     private AutoScrollViewPager mVpAuto;
-    private int mTotalPages;
+    //private int mTotalPages=100;
+    private boolean isLoad=false;
 
     public RewordPager(FragmentActivity activity) {
         super(activity);
@@ -139,7 +140,7 @@ public class RewordPager extends BasePager implements Observer {
                 }
                 break;
             case LOAD_MORE:
-                if (mCurrentPage > mTotalPages) {
+                if (isLoad) {
                     mRefreshListView.setLoadMoreFinished(RefreshListView.LOAD_MORE_NO_DATA);
                     return;
                 }
@@ -188,7 +189,6 @@ public class RewordPager extends BasePager implements Observer {
                     return;
                 }
                 if (bean != null && bean.getError() == 0) {
-                    mTotalPages = bean.getTotal_pages();
                     if (mCurrentState != LOAD_MORE) {
                         mInviteEntityList.clear();
                     }
@@ -216,8 +216,11 @@ public class RewordPager extends BasePager implements Observer {
                     }
 
                     if (campiList != null && campiList.size() >= 0) {
+                        isLoad=false;
                         mCurrentPage++;
                         mInviteEntityList.addAll(campiList);
+                    }else {
+                        isLoad=true;
                     }
 
                     if (mInviteEntityList == null || mInviteEntityList.size() == 0) {

@@ -155,11 +155,43 @@
         android:visibility="gone"/>
 
     <LinearLayout
+        android:id="@+id/ll_put"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_put_entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="请开通PUT钱包,获得额外奖励 >"
+            android:textColor="@color/blue_custom"
+            android:textSize="@dimen/undefine_font_4"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_put_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/black_custom"
+            android:textSize="@dimen/undefine_font_4"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_click"
@@ -167,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginRight="7dp"
-            android:text=""
+            android:text="12331"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5"
             android:visibility="gone"/>
@@ -209,10 +241,11 @@
 
             <TextView
                 android:id="@+id/tv_share_info"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="@color/white_custom"
                 android:textSize="@dimen/undefine_font_5"/>
 

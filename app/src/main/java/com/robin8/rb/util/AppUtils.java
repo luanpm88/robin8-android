@@ -43,16 +43,15 @@ public class AppUtils {
     public static final String TAG = AppUtils.class.getCanonicalName();
 
     /**
-     * 数据加密的可以
+     数据加密的可以
      */
     private static final String ENCRYPT_KEY = "GUANGSU";
 
     /**
-     * 根据Apk的路径获取包名
-     *
-     * @param context
-     * @param apkPath
-     * @return
+     根据Apk的路径获取包名
+     @param context
+     @param apkPath
+     @return
      */
     public static String getApkPackageName(Context context, String apkPath) {
         PackageManager pm = context.getPackageManager();
@@ -71,20 +70,18 @@ public class AppUtils {
     }
 
     /**
-     * 获取本应用的包名
-     *
-     * @param context
-     * @return
+     获取本应用的包名
+     @param context
+     @return
      */
     public static String getPackageName(Context context) {
         return context.getPackageName();
     }
 
     /**
-     * 得到当前版本号
-     *
-     * @param context -- 上下文
-     * @return 当前版本号
+     得到当前版本号
+     @param context -- 上下文
+     @return 当前版本号
      */
     public static int getVersionCode(Context context) {
         PackageManager packageManager = context.getPackageManager();
@@ -102,10 +99,9 @@ public class AppUtils {
     }
 
     /**
-     * 得到当前版本名称
-     *
-     * @param context -- 上下文
-     * @return 当前版本号
+     得到当前版本名称
+     @param context -- 上下文
+     @return 当前版本号
      */
     public static String getVersionName(Context context) {
         PackageManager packageManager = context.getPackageManager();
@@ -122,10 +118,9 @@ public class AppUtils {
     }
 
     /**
-     * 安装apk
-     *
-     * @param context
-     * @param apkPath
+     安装apk
+     @param context
+     @param apkPath
      */
     public static void installApk(Context context, String apkPath) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -138,7 +133,7 @@ public class AppUtils {
          * ，遇到上面那个异常的，都是因为使用了Context的startActivity方法。解决办法是，加一个flag。
          * intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
          */
-        if (!Activity.class.isAssignableFrom(context.getClass())) {
+        if (! Activity.class.isAssignableFrom(context.getClass())) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 
@@ -147,10 +142,9 @@ public class AppUtils {
     }
 
     /**
-     * 根据包名启动应用
-     *
-     * @param context
-     * @param packageName
+     根据包名启动应用
+     @param context
+     @param packageName
      */
     public static void startApk(Context context, String packageName) {
         List<ResolveInfo> matches = findActivitiesForPackage(context, packageName);
@@ -162,11 +156,10 @@ public class AppUtils {
     }
 
     /**
-     * 根据包名、activity名启动应用
-     *
-     * @param context
-     * @param packageName
-     * @param className
+     根据包名、activity名启动应用
+     @param context
+     @param packageName
+     @param className
      */
     public static void startApk(Context context, String packageName, String className) {
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -175,7 +168,7 @@ public class AppUtils {
         ComponentName cn = new ComponentName(packageName, className);
         intent.setComponent(cn);
 
-        if (!Activity.class.isAssignableFrom(context.getClass())) {
+        if (! Activity.class.isAssignableFrom(context.getClass())) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 
@@ -183,11 +176,10 @@ public class AppUtils {
     }
 
     /**
-     * 根据包名，设置应用的启动页面的Intent，然后获取这个Intent的信息。
-     *
-     * @param context
-     * @param packageName
-     * @return
+     根据包名，设置应用的启动页面的Intent，然后获取这个Intent的信息。
+     @param context
+     @param packageName
+     @return
      */
     public static List<ResolveInfo> findActivitiesForPackage(Context context, String packageName) {
         final PackageManager pm = context.getPackageManager();
@@ -199,11 +191,10 @@ public class AppUtils {
     }
 
     /**
-     * 判读apk是否已经安装过了
-     *
-     * @param context
-     * @param apkPackageName
-     * @return
+     判读apk是否已经安装过了
+     @param context
+     @param apkPackageName
+     @return
      */
     public static boolean isInstalledApk(Context context, String apkPackageName) {
 
@@ -229,7 +220,7 @@ public class AppUtils {
      * @return
      */
     /*
-	 * public static HashMap<String, InstalledApkInfo>
+     * public static HashMap<String, InstalledApkInfo>
 	 * getInstalledApkMap(Context context) {
 	 * 
 	 * HashMap<String, InstalledApkInfo> installedApkMap = new HashMap<String,
@@ -259,11 +250,10 @@ public class AppUtils {
 	 */
 
     /**
-     * 遍历本apk下指定的包，返回遍历到的类名列表
-     *
-     * @param context
-     * @param packageName
-     * @return 类名列表
+     遍历本apk下指定的包，返回遍历到的类名列表
+     @param context
+     @param packageName
+     @return 类名列表
      */
     public static List<String> traversePackage(Context context, String packageName) {
         List<String> classNameList = new ArrayList<String>();
@@ -290,11 +280,10 @@ public class AppUtils {
     }
 
     /**
-     * 一次震动
-     *
-     * @param context
-     * @param milliseconds 震动多长时间，单位：毫秒。
-     * @return
+     一次震动
+     @param context
+     @param milliseconds 震动多长时间，单位：毫秒。
+     @return
      */
     public static void vibrate(final Context context, long milliseconds) {
         Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
@@ -302,23 +291,21 @@ public class AppUtils {
     }
 
     /**
-     * 重复震动
-     *
-     * @param context
-     * @param pattern  自定义震动模式 。数组中数字的含义依次是[静止时长，震动时长]时长的单位是毫秒
-     * @param isRepeat 是否反复震动
-     * @return
+     重复震动
+     @param context
+     @param pattern 自定义震动模式 。数组中数字的含义依次是[静止时长，震动时长]时长的单位是毫秒
+     @param isRepeat 是否反复震动
+     @return
      */
     public static void vibrate(final Context context, long[] pattern, boolean isRepeat) {
         Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
-        vib.vibrate(pattern, isRepeat ? 1 : -1);
+        vib.vibrate(pattern, isRepeat ? 1 : - 1);
     }
 
     /**
-     * 获取mac地址
-     *
-     * @param context
-     * @return
+     获取mac地址
+     @param context
+     @return
      */
     public static String getMacAddress(Context context) {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
@@ -329,10 +316,9 @@ public class AppUtils {
     }
 
     /**
-     * 获取AndroidID
-     *
-     * @param context
-     * @return
+     获取AndroidID
+     @param context
+     @return
      */
     public static String getAndroidID(Context context) {
         String androidId = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
@@ -340,9 +326,8 @@ public class AppUtils {
     }
 
     /**
-     * 判断指定的类名是否是当前顶部Activity。
-     *
-     * @return 是，返回ture；否，返回false。
+     判断指定的类名是否是当前顶部Activity。
+     @return 是，返回ture；否，返回false。
      */
     public static boolean isTopActivity(Context context, String classCanonicalName) {
 
@@ -354,11 +339,10 @@ public class AppUtils {
     }
 
     /**
-     * 用来判断服务是否后台运行
-     *
-     * @param context
-     * @param className 判断的服务名字
-     * @return true 在运行 false 不在运行
+     用来判断服务是否后台运行
+     @param context
+     @param className 判断的服务名字
+     @return true 在运行 false 不在运行
      */
     public static boolean isServiceRunning(Context context, String className) {
         boolean IsRunning = false;
@@ -367,7 +351,7 @@ public class AppUtils {
 
         List<ActivityManager.RunningServiceInfo> serviceList = activityManager.getRunningServices(Integer.MAX_VALUE);
 
-        if (!(serviceList.size() > 0)) {
+        if (! (serviceList.size() > 0)) {
             return false;
         }
 
@@ -381,10 +365,9 @@ public class AppUtils {
     }
 
     /**
-     * MD5加密，32位
-     *
-     * @param str
-     * @return
+     MD5加密，32位
+     @param str
+     @return
      */
     public static String toMD5(String str) {
         if (str == null || str.equals("")) {
@@ -417,10 +400,9 @@ public class AppUtils {
     }
 
     /**
-     * MD5加密，16位
-     *
-     * @param str
-     * @return
+     MD5加密，16位
+     @param str
+     @return
      */
     public static String to16MD5(String str) {
         String md5Str = toMD5(str);
@@ -432,10 +414,9 @@ public class AppUtils {
     }
 
     /**
-     * 获取状态栏高度
-     *
-     * @param context
-     * @return
+     获取状态栏高度
+     @param context
+     @return
      */
     public static int getStatusHeight(Context context) {
         int statusHeight = 0;
@@ -465,15 +446,13 @@ public class AppUtils {
     }
 
     /**
-     * 判断网络是否可用
-     *
-     * @param context
-     * @return
+     判断网络是否可用
+     @param context
+     @return
      */
     public static boolean isNetworkConnected(Context context) {
         if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
             if (mNetworkInfo != null) {
                 return mNetworkInfo.isAvailable();
@@ -483,15 +462,13 @@ public class AppUtils {
     }
 
     /**
-     * 判断wifi是否可用
-     *
-     * @param context
-     * @return
+     判断wifi是否可用
+     @param context
+     @return
      */
     public static boolean isWifiConnected(Context context) {
         if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mWiFiNetworkInfo = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             if (mWiFiNetworkInfo != null) {
                 return mWiFiNetworkInfo.isAvailable();
@@ -501,10 +478,9 @@ public class AppUtils {
     }
 
     /**
-     * 判断3G/4G是否可用
-     *
-     * @param context
-     * @return
+     判断3G/4G是否可用
+     @param context
+     @return
      */
     public static boolean is3G4GConnected(Context context) {
         boolean is3G4G = false;
@@ -541,16 +517,24 @@ public class AppUtils {
     }
 
     /**
-     * 获取Imei
-     *
-     * @param context
-     * @return
+     获取Imei
+     @param context
+     @return
      */
     public static String getIMEI(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context
-                .TELEPHONY_SERVICE);
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
 
+    }
+
+    public static String getDeviceId(Context context) {
+        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String deviceId = manager.getDeviceId();
+        if (TextUtils.isEmpty(deviceId)) {
+            return null;
+        } else {
+            return deviceId;
+        }
     }
 
     /**
@@ -560,8 +544,8 @@ public class AppUtils {
      * @return 状态码
      */
     /**
-     * 枚举网络状态 NET_NO：没有网络 NET_2G:2g网络 NET_3G：3g网络 NET_4G：4g网络 NET_WIFI：wifi
-     * NET_UNKNOWN：未知网络
+     枚举网络状态 NET_NO：没有网络 NET_2G:2g网络 NET_3G：3g网络 NET_4G：4g网络 NET_WIFI：wifi
+     NET_UNKNOWN：未知网络
      */
     public static enum NetState {
         NET_NO, NET_2G, NET_3G, NET_4G, NET_WIFI, NET_UNKNOWN
@@ -571,8 +555,7 @@ public class AppUtils {
 
     public static NetState isConnected(Context context) {
         NetState stateCode = NetState.NET_NO;
-        ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (ni != null && ni.isAvailable()) {
             switch (ni.getType()) {
@@ -615,15 +598,13 @@ public class AppUtils {
     }
 
     /**
-     * 判断Mobile网络是否可用
-     *
-     * @param context
-     * @return
+     判断Mobile网络是否可用
+     @param context
+     @return
      */
     public static boolean isMobileConnected(Context context) {
         if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mMobileNetworkInfo = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
             if (mMobileNetworkInfo != null) {
                 return mMobileNetworkInfo.isAvailable();
@@ -633,60 +614,53 @@ public class AppUtils {
     }
 
     /**
-     * 获取当前连接的网络类型
-     *
-     * @param context
-     * @return
+     获取当前连接的网络类型
+     @param context
+     @return
      */
     public static int getConnectedNetType(Context context) {
         if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
             if (mNetworkInfo != null && mNetworkInfo.isAvailable()) {
                 return mNetworkInfo.getType();
             }
         }
-        return -1;
+        return - 1;
     }
 
     /**
-     * 获取手机型号
-     *
-     * @return
+     获取手机型号
+     @return
      */
     public static String getPhoneModel() {
         return android.os.Build.MODEL;
     }
 
     /**
-     * 获取当前系统名
-     *
-     * @return
+     获取当前系统名
+     @return
      */
     public static String getSystemName() {
         return android.os.Build.MANUFACTURER;
     }
 
     /**
-     * 获取系统版本
-     *
-     * @return
+     获取系统版本
+     @return
      */
     public static String getSystemVersion() {
         return android.os.Build.VERSION.RELEASE;
     }
 
     /**
-     * 获取渠道名称
-     *
-     * @param context
-     * @return
+     获取渠道名称
+     @param context
+     @return
      */
     public static String getChannelName(Context context) {
         try {
-            ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(),
-                    PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
 
             String channelNumber = appInfo.metaData.getString("InstallChannel");
             return channelNumber;
@@ -698,10 +672,9 @@ public class AppUtils {
     }
 
     /**
-     * 获取手机号码
-     *
-     * @param context
-     * @return
+     获取手机号码
+     @param context
+     @return
      */
     public static String getPhoneNumber(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -709,12 +682,11 @@ public class AppUtils {
     }
 
     /**
-     * 测量能够画在指定宽度内字符串的字体大小
-     *
-     * @param text        字符串
-     * @param width       指定的宽度
-     * @param maxTextSize 最大的字体大小
-     * @return
+     测量能够画在指定宽度内字符串的字体大小
+     @param text 字符串
+     @param width 指定的宽度
+     @param maxTextSize 最大的字体大小
+     @return
      */
 
     public static float measureTextSize(String text, int width, float maxTextSize) {
@@ -737,10 +709,9 @@ public class AppUtils {
     }
 
     /**
-     * 对字节数据进行加密：加密算法是异或，所以加密和解密是一样的。
-     *
-     * @param buff
-     * @return
+     对字节数据进行加密：加密算法是异或，所以加密和解密是一样的。
+     @param buff
+     @return
      */
     public static byte[] decryptOrEncryptByteData(byte[] buff) {
         if (buff == null) {
@@ -761,10 +732,9 @@ public class AppUtils {
     }
 
     /**
-     * 正则表达式 判断是否是手机号
-     *
-     * @param mobiles
-     * @return
+     正则表达式 判断是否是手机号
+     @param mobiles
+     @return
      */
     public static boolean isMobileNO(String mobiles) {
         // Pattern p =
@@ -775,10 +745,9 @@ public class AppUtils {
     }
 
     /**
-     * 正则表达式 判断是否是email
-     *
-     * @param email
-     * @return
+     正则表达式 判断是否是email
+     @param email
+     @return
      */
     public static boolean isEmail(String email) {
         String stre = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
@@ -788,10 +757,9 @@ public class AppUtils {
     }
 
     /**
-     * 正则表达式判断是否为汉字
-     *
-     * @param text
-     * @return
+     正则表达式判断是否为汉字
+     @param text
+     @return
      */
     public static boolean isChineseCharacters(String text) {
         Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
@@ -801,7 +769,7 @@ public class AppUtils {
     }
 
     /**
-     * 正则表达式判断是否为数字
+     正则表达式判断是否为数字
      */
     public final static String REG_DIGIT = "[0-9]*";
 
@@ -816,10 +784,9 @@ public class AppUtils {
     }
 
     /**
-     * 2.判断一个字符串的首字符是否为字母
-     *
-     * @param s
-     * @return
+     2.判断一个字符串的首字符是否为字母
+     @param s
+     @return
      */
     public static boolean startIsChar(String s) {
         char c = s.charAt(0);
@@ -848,8 +815,7 @@ public class AppUtils {
         context = context.getApplicationContext();
         String ime = CacheUtils.getString(context, SPConstants.ROBIN_IME, null);
         if (TextUtils.isEmpty(ime)) {
-            TelephonyManager TelephonyMgr = (TelephonyManager) context
-                    .getSystemService(context.TELEPHONY_SERVICE);
+            TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
             ime = calculateIme(TelephonyMgr.getDeviceId());
             CacheUtils.putString(context, SPConstants.ROBIN_IME, ime);
         }
@@ -857,10 +823,9 @@ public class AppUtils {
     }
 
     public static String calculateIme(String ime) {
-        if (!isfit(ime)) {
+        if (! isfit(ime)) {
             StringBuffer sb = new StringBuffer();
-            sb.append(System.currentTimeMillis()).append(
-                    (int) (Math.random() * 900) + 100);
+            sb.append(System.currentTimeMillis()).append((int) (Math.random() * 900) + 100);
             ime = sb.toString();
             return ime;
         }
@@ -884,19 +849,16 @@ public class AppUtils {
     }
 
     /**
-     * 获取androidmefest下application节点下的mete-data数据
-     *
-     * @param context
-     * @param meteName
-     * @return
+     获取androidmefest下application节点下的mete-data数据
+     @param context
+     @param meteName
+     @return
      */
     public static String getApplicationMeteData(Context context, String meteName) {
         String msg = "";
         ApplicationInfo info = null;
         try {
-            info = context.getPackageManager()
-                    .getApplicationInfo(context.getPackageName(),
-                            PackageManager.GET_META_DATA);
+            info = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             if (info == null || info.metaData == null) {
                 return msg;
             }
@@ -908,34 +870,29 @@ public class AppUtils {
     }
 
     /**
-     * 判断应用是否已经启动
-     * @param context 一个context
-     * @param packageName 要判断应用的包名
-     * @return boolean
+     判断应用是否已经启动
+     @param context 一个context
+     @param packageName 要判断应用的包名
+     @return boolean
      */
-    public static boolean isAppAlive(Context context, String packageName){
-        ActivityManager activityManager =
-                (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> processInfos
-                = activityManager.getRunningAppProcesses();
-        for(int i = 0; i < processInfos.size(); i++){
-            if(processInfos.get(i).processName.equals(packageName)){
-                Log.i("NotificationLaunch",
-                        String.format("the %s is running, isAppAlive return true", packageName));
+    public static boolean isAppAlive(Context context, String packageName) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> processInfos = activityManager.getRunningAppProcesses();
+        for (int i = 0; i < processInfos.size(); i++) {
+            if (processInfos.get(i).processName.equals(packageName)) {
+                Log.i("NotificationLaunch", String.format("the %s is running, isAppAlive return true", packageName));
                 return true;
             }
         }
-        Log.i("NotificationLaunch",
-                String.format("the %s is not running, isAppAlive return false", packageName));
+        Log.i("NotificationLaunch", String.format("the %s is not running, isAppAlive return false", packageName));
         return false;
     }
 
 
     /**
-     * 获取已安装应用商店的包名列表
-     *
-     * @param context
-     * @return
+     获取已安装应用商店的包名列表
+     @param context
+     @return
      */
     public static ArrayList<String> queryInstalledMarketPkgs(Context context) {
         ArrayList<String> pkgs = new ArrayList<String>();
@@ -957,7 +914,7 @@ public class AppUtils {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (!TextUtils.isEmpty(pkgName))
+            if (! TextUtils.isEmpty(pkgName))
                 pkgs.add(pkgName);
 
         }
@@ -965,15 +922,12 @@ public class AppUtils {
     }
 
     /**
-     * 过滤出已经安装的包名集合
-     *
-     * @param context
-     * @param pkgs
-     *            待过滤包名集合
-     * @return 已安装的包名集合
+     过滤出已经安装的包名集合
+     @param context
+     @param pkgs 待过滤包名集合
+     @return 已安装的包名集合
      */
-    public static ArrayList<String> filterInstalledPkgs(Context context,
-                                                        ArrayList<String> pkgs) {
+    public static ArrayList<String> filterInstalledPkgs(Context context, ArrayList<String> pkgs) {
         ArrayList<String> empty = new ArrayList<String>();
         if (context == null || pkgs == null || pkgs.size() == 0)
             return empty;
@@ -1001,13 +955,11 @@ public class AppUtils {
         }
         return empty;
     }
+
     /**
-     * 启动到app详情界面
-     *
-     * @param appPkg
-     *            App的包名
-     * @param marketPkg
-     *            应用商店包名 ,如果为""则由系统弹出应用商店列表供用户选择,否则调转到目标市场的应用详情界面，某些应用商店可能会失败
+     启动到app详情界面
+     @param appPkg App的包名
+     @param marketPkg 应用商店包名 ,如果为""则由系统弹出应用商店列表供用户选择,否则调转到目标市场的应用详情界面，某些应用商店可能会失败
      */
     public static void launchAppDetail(String appPkg, String marketPkg) {
         try {
@@ -1015,15 +967,14 @@ public class AppUtils {
                 return;
             Uri uri = Uri.parse("market://details?id=" + appPkg);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            if (!TextUtils.isEmpty(marketPkg))
+            if (! TextUtils.isEmpty(marketPkg))
                 intent.setPackage(marketPkg);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-           //.startActivity(intent);
+            //.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 
 }

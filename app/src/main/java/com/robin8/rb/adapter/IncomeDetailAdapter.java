@@ -15,7 +15,7 @@ import com.robin8.rb.util.DateUtil;
 
 import java.util.List;
 
-public class IncomeDetailAdapter extends BaseRecyclerAdapter {
+public class   IncomeDetailAdapter extends BaseRecyclerAdapter {
     private IncomeDetailViewHolder mIncomeDetailViewHolder;
 
     public static interface OnRecyclerViewListener {
@@ -70,9 +70,17 @@ public class IncomeDetailAdapter extends BaseRecyclerAdapter {
         if(TextUtils.equals("收入",transactionEntity.getDirect())){
             holder.everydayIncomeTv.setText("+"+transactionEntity.getCredits());
         }else {
-            holder.everydayIncomeTv.setText("-"+transactionEntity.getCredits());
+            if (TextUtils.isEmpty(transactionEntity.getRemark())){
+                holder.everydayIncomeTv.setText("-"+transactionEntity.getCredits());
+            }else {
+                holder.everydayIncomeTv.setText("+"+transactionEntity.getCredits());
+            }
         }
-        holder.subjectTv.setText(subSelf(transactionEntity.getSubject()));
+        if (TextUtils.isEmpty(transactionEntity.getRemark())){
+            holder.subjectTv.setText(subSelf(transactionEntity.getSubject()));
+        }else {
+            holder.subjectTv.setText("拒绝原因："+transactionEntity.getRemark());
+        }
         holder.numtypeTv.setText(transactionEntity.getDirect());
 //        Log.e("xxfigo","position=" + position + ";size=" + mDataList.size());
 		if(bottomListener!=null){

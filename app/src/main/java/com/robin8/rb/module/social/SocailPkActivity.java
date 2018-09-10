@@ -47,7 +47,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
@@ -782,7 +781,7 @@ public class SocailPkActivity extends BaseActivity {
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         String url_share = TITLE_URL + String.valueOf(id) + "/kol_pk";
         CustomToast.showShort(SocailPkActivity.this, "正在前往分享...");
-        ShareSDK.initSDK(SocailPkActivity.this);
+        //ShareSDK.initSDK(SocailPkActivity.this);
         OnekeyShare oks = new OnekeyShare();
         oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);

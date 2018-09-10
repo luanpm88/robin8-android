@@ -1,0 +1,201 @@
+.pmes-intro-page {
+  background-color: #fff;
+}
+
+.pmes-intro-page .banner-img {
+  width: 100%;
+}
+
+.put-intro-container {
+  margin-top: 10%;
+}
+
+.put-intro-container .item {
+  padding: 20px 40px;
+}
+
+.put-intro-container .item .media-left + .media-body, .put-intro-container .item .media-body + .media-right {
+  padding-left: 16px;
+}
+
+.put-intro-container .item .icon {
+  width: 51px;
+  height: 51px;
+}
+
+.put-intro-container .item .info {
+  font-size: 1.3rem;
+  color: #777;
+}
+
+.put-intro-container .item .title {
+  font-size: 1.7rem;
+  color: #333;
+}
+
+.put-intro-foot {
+  position: absolute;
+  bottom: 6%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.put-intro-foot .protocol {
+  margin-bottom: 14px;
+  font-size: 1rem;
+}
+
+.put-intro-foot .protocol .checkbox {
+  display: inline-block;
+  margin: -2px 4px 0 0;
+  vertical-align: middle;
+}
+
+.put-intro-foot .btn-pmes-submit {
+  width: 54%;
+}
+
+.pmes-login-page {
+  background-color: #fff;
+}
+
+.pmes-statistics-page {
+  background-color: #fff;
+}
+
+.pmes-statistics-page .about-put {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.pmes-statistics-page .about-put a {
+  color: #777;
+}
+
+.pmes-statistics-page .about-put .icon-question {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin: -4px 0 0 4px;
+  vertical-align: center;
+}
+
+.btn-pmes-submit {
+  border-radius: 22px;
+}
+
+.put-balance-card {
+  position: relative;
+  height: 180px;
+  padding: 18px;
+  margin: 15px;
+  color: #fff;
+  background: url('../images/balance_card.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.put-balance-card .card-title {
+  margin-top: 10px;
+  font-size: 1.6rem;
+}
+
+.put-balance-card .balance-num {
+  margin-top: 4px;
+  font-size: 4rem;
+}
+
+.put-balance-card .balance-status {
+  position: absolute;
+  bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.put-balance-card .balance-status .num {
+  margin-left: 10px;
+  font-size: 2.4rem;
+}
+
+.put-balance-card .balance-status.left {
+  left: 18px;
+}
+
+.put-balance-card .balance-status.right {
+  right: 18px;
+}
+
+.put-trend-card {
+  height: 280px;
+  padding: 18px;
+  margin: 15px;
+  background-color: #fff;
+}
+
+.put-trend-card .card-title {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  color: #777;
+}
+
+.pmes-qa-page {
+  background-color: #fff;
+}
+
+.put-qa-list {
+  padding: 0 15px;
+}
+
+.put-qa-list-item {
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.put-qa-list .default-list-item {
+  padding: 20px 0;
+}
+
+.put-qa-info {
+  padding: 10px 0 20px;
+  text-align: justify;
+}
+
+@media all and (max-width:360px) {
+  .put-intro-container {
+    margin-top: 6%;
+  }
+
+  .put-intro-container .item {
+    padding: 12px 40px;
+  }
+
+  .put-intro-container .item .info {
+    font-size: 1.2rem;
+  }
+
+  .put-intro-container .item .title {
+    font-size: 1.4rem;
+  }
+
+  .put-intro-foot {
+    bottom: 4%;
+  }
+
+  .put-intro-foot .protocol {
+    margin-bottom: 10px;
+  }
+
+  .put-intro-foot .btn-pmes-submit {
+    width: 48%;
+    padding: 6px 14px;
+    border-radius: 17px;
+    font-size: 1.4rem;
+  }
+
+}

@@ -51,7 +51,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
@@ -388,7 +387,7 @@ public class InviteFriendsActivity extends BaseActivity {
 
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         CustomToast.showShort(this, "正在前往分享...");
-        ShareSDK.initSDK(this);
+        //ShareSDK.initSDK(this);
         OnekeyShare oks = new OnekeyShare();
         oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);

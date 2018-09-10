@@ -55,6 +55,15 @@ public class UserAccountBean extends BaseBean {
         private String total_withdraw ="";
         private float today_income;
         private String total_expense;//已花费
+        private String remark;//拒绝原因
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
 
         public String getAmount() {
             return amount;

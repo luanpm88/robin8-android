@@ -33,8 +33,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
         //noinspection HighAppVersionCode
-        versionCode 2018062621
-        versionName "2.4.3"
+        versionCode 2018090719
+        versionName "2.4.5"
         multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "IZNLTEcKP29wbXiZVI8414",
@@ -134,9 +134,9 @@ android {
         android_oppo {
             manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
         }
-        android_xiaomi {
-            manifestPlaceholders = [Td_Channel_Id: "android_xiaomi"]
-        }
+//        android_xiaomi {
+//            manifestPlaceholders = [Td_Channel_Id: "android_xiaomi"]
+//        }
 //        android_robin8 {
 //            manifestPlaceholders = [Td_Channel_Id: "android_robin8"]
 //        }
@@ -211,4 +211,5 @@ dependencies {
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.github.chrisbanes.photoview:library:+'
     compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.liulishuo.filedownloader:library:1.7.4'
 }

@@ -499,7 +499,7 @@ public class SinaShareActivity extends BaseDataActivity implements OnClickListen
 				if (progressDialog != null) {
 					progressDialog.dismiss();
 				}
-				platformActionListener.onComplete(new SinaWeibo(SinaShareActivity.this), 0, null);
+				platformActionListener.onComplete(new SinaWeibo(), 0, null);
 				SinaShareActivity.this.finish();
 			}
 		}
@@ -511,7 +511,7 @@ public class SinaShareActivity extends BaseDataActivity implements OnClickListen
 			if (progressDialog != null) {
 				progressDialog.dismiss();
 			}
-			platformActionListener.onError(new SinaWeibo(SinaShareActivity.this), 0, null);
+			platformActionListener.onError(new SinaWeibo(), 0, null);
 		}
 	};
 }

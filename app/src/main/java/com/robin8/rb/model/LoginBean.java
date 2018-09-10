@@ -97,6 +97,7 @@ public class LoginBean extends BaseBean {
         private boolean selected_like_articles;
         private String issue_token;
         private String kol_uuid;
+        private String put_address;
 
 
         public int getId() {
@@ -268,6 +269,14 @@ public class LoginBean extends BaseBean {
 
         public void setTags(List<TagListBean.TagsEntity> tags) {
             this.tags = tags;
+        }
+
+        public String getPut_address() {
+            return put_address;
+        }
+
+        public void setPut_address(String put_address) {
+            this.put_address = put_address;
         }
     }
 

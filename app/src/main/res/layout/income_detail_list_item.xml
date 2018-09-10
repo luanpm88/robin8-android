@@ -24,7 +24,7 @@
                 android:id="@+id/tv_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="签到"
+                android:text="null"
                 android:textColor="@color/black_custom"
                 android:textSize="@dimen/undefine_font_4" />
             <TextView
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="07-20"
+                android:text=""
                 android:textSize="@dimen/undefine_font_1"
                 android:textColor="@color/gray_first" />
         </LinearLayout>
@@ -48,7 +48,7 @@
                 android:id="@+id/tv_everyday_income"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="+1.4"
+                android:text=""
                 android:textStyle="bold"
                 android:textColor="@color/black_custom"
                 android:textSize="@dimen/undefine_font_6" />
@@ -58,7 +58,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
-                android:text="收入"
+                android:text=""
                 android:textColor="@color/gray_first"
                 android:textSize="@dimen/undefine_font_1" />
 

@@ -32,7 +32,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
@@ -425,7 +424,7 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
         }
         titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
         CustomToast.showShort(mContext, "正在前往分享...");
-        ShareSDK.initSDK(mContext);
+        //ShareSDK.initSDK(mContext);
         OnekeyShare oks = new OnekeyShare();
         oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);

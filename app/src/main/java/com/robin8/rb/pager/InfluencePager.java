@@ -62,7 +62,6 @@ import java.util.Map;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
@@ -224,26 +223,8 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
 
     @Override
     public void initData() {
-        //        if (! isLogined()) {
-        //            llManNoLogin.setVisibility(View.VISIBLE);
-        //            return;
-        //        } else {
-        //            llManNoLogin.setVisibility(View.GONE);
-        //            loadData();
-        //        }
-        //        if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.IsBind))){
-        //           llManNoLogin.setVisibility(View.VISIBLE);
-        //        }else {
-        //            llManNoLogin.setVisibility(View.GONE);
-        //            loadData();
-        //        }
-        //        if (TextUtils.isEmpty(CacheUtils.getString(mActivity, SPConstants.INFLUENCE_DATA,null))){
-        //            //没有缓存数据
-        //
-        //        }
         BasePresenter mBasePresenter = new BasePresenter();
         mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.INFLUENCE_INFO_LIST), null, new RequestCallback() {
-
             @Override
             public void onError(Exception e) {
             }
@@ -558,9 +539,9 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
             }
         });
         if (activity.getString(R.string.weibo).equals(providerName)) {
-            presenter.authorize(new SinaWeibo(activity));
+            presenter.authorize(new SinaWeibo());
         } else if (activity.getString(R.string.weixin).equals(providerName)) {
-            presenter.authorize(new Wechat(activity));
+            presenter.authorize(new Wechat());
         }
     }
 
@@ -641,7 +622,7 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
 
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         CustomToast.showShort(mActivity, "正在前往分享...");
-        ShareSDK.initSDK(mActivity);
+        //ShareSDK.initSDK(mActivity);
         OnekeyShare oks = new OnekeyShare();
         oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);

@@ -65,7 +65,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
@@ -116,6 +115,7 @@ public class DetailContentHelper {
     public static final int IMAGE_REQUEST_CODE = 101;
     public static final int IMAGE_REQUEST_LOOK_CODE = 102;
     public static final int IMAGE_REQUEST_MORE_IMG_CODE = 114;
+    public static final int IMAGE_REQUEST_PUT_RESULT = 115;
     private StringBuffer sb = new StringBuffer("");
     private View line;
     private TextView tvRight;
@@ -566,7 +566,7 @@ public class DetailContentHelper {
      活动参与状态
      活动参与人员状态
      */
-    public void setUpCenterView(CampaignListBean.CampaignInviteEntity bean, List<CampaignInviteBean.InviteesBean> inviteList, TextView clickView, TextView moneyView, TextView infoView, TextView countView, TextView joinNumberTv, LinearLayout linearLayout, int count) {
+    public void setUpCenterView(CampaignInviteBean baseBean, CampaignListBean.CampaignInviteEntity bean, List<CampaignInviteBean.InviteesBean> inviteList, TextView clickView, TextView moneyView, TextView infoView, TextView countView, TextView joinNumberTv, LinearLayout linearLayout, int count, TextView tvPutResult, TextView tvPutEnter) {
 
         if (bean == null || TextUtils.isEmpty(bean.getInvite_status())) {
             return;
@@ -582,21 +582,23 @@ public class DetailContentHelper {
             }
         }
         initInviteesList(linearLayout, inviteList);
-        setClickView(bean, clickView, moneyView);
+        setClickView(baseBean, bean, clickView, tvPutResult, tvPutEnter);
+
         switch (bean.getInvite_status()) {
             case RUNNING://活动正在进行，且未参加
                 countView.setVisibility(View.VISIBLE);
+                tvPutResult.setText("参加此活动可额外获得PUT奖励");
                 switch (bean.getCampaign().getPer_budget_type()) {
-                    case CAMPAIGN_TYPE_CLICK:
-                        infoView.setText("分享后好友点击此文章即获得报酬");
+                    case CAMPAIGN_TYPE_CLICK://
+                        infoView.setText(Html.fromHtml("分享后，好友每个点击可帮您获得:<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(bean.getCampaign().getPer_action_budget())));
                         countView.setText(getCountDownTime(bean, false));
                         break;
                     case CAMPAIGN_TYPE_CPA:
                         infoView.setText("分享后好友完成指定任务即获得报酬");
                         countView.setText(getCountDownTime(bean, false));
                         break;
-                    case CAMPAIGN_TYPE_POST:
-                        infoView.setText("转发此文章立即获得报酬");
+                    case CAMPAIGN_TYPE_POST://
+                        infoView.setText(Html.fromHtml("分享后，您可通过转发活动获得:<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(bean.getCampaign().getPer_action_budget())));
                         countView.setText(getCountDownTime(bean, false));
                         break;
                     case CAMPAIGN_TYPE_RECRUIT:
@@ -613,8 +615,8 @@ public class DetailContentHelper {
                         countView.setText(getCountDownTime(bean, false));
                         break;
 
-                    case CAMPAIGN_TYPE_CPT:
-                        infoView.setText("分享后完成指定任务即可获得报酬");
+                    case CAMPAIGN_TYPE_CPT://
+                        infoView.setText(Html.fromHtml("分享后，您可通过完成任务获得:<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(bean.getCampaign().getPer_action_budget())));
                         countView.setText(getCountDownTime(bean, false));
                         break;
                 }
@@ -634,11 +636,11 @@ public class DetailContentHelper {
                     String per_budget_type = bean.getCampaign().getPer_budget_type();
                     if (per_budget_type.equals(CAMPAIGN_TYPE_CLICK)) {
                         if (SETTLED.equals(status) || MISSED.equals(status)) {
-                            infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click() + "</font>次点击，已赚<font color=#ecb200>¥</font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click() + "</font>次点击，已赚<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
                         } else if (STATE_APPROVED.equals(status) || STATE_FINISHED.equals(status)) {
-                            infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click() + "</font>次点击，即将赚<font color=#ecb200>¥</font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click() + "</font>次点击，即将赚<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
                         } else if (REJECTED.equals(status)) {
-                            infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click() + "</font>次点击，已赚<font color=#ecb200>¥</font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click() + "</font>次点击，已赚<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
                             //                            if (TextUtils.isEmpty(bean.getReject_reason())){
                             //                                infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click()
                             //                                        + "</font>次点击，已赚<font color=#ecb200>¥</font>"
@@ -648,15 +650,16 @@ public class DetailContentHelper {
                             //                                        + "</font>"));
                             //                            }
                         } else {
-                            infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click() + "</font>次点击，即将赚<font color=#ecb200>¥</font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("已获得<font color=#ecb200>" + bean.getAvail_click() + "</font>次点击，即将赚<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
                         }
                     } else {
                         if (SETTLED.equals(status) || MISSED.equals(status)) {
-                            infoView.setText(Html.fromHtml("已完成，已赚<font color=#ecb200>¥</font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("已完成，已赚<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
                         } else if (STATE_APPROVED.equals(status) || STATE_FINISHED.equals(status)) {
-                            infoView.setText(Html.fromHtml("活动进行中，即将赚<font color=#ecb200>¥</font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("活动进行中，即将赚<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
                         } else if (REJECTED.equals(status)) {
-                            infoView.setText(Html.fromHtml("已完成，已赚<font color=#ecb200>¥</font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("已完成，已赚<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("已完成，已赚<font color=#ecb200>¥ </font>0"));
                             //                            if (TextUtils.isEmpty(bean.getReject_reason())){
                             //                                infoView.setText(Html.fromHtml("已完成，已赚<font color=#ecb200>¥</font>"
                             //                                        + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
@@ -665,7 +668,7 @@ public class DetailContentHelper {
                             //                                        + "</font>"));
                             //                            }
                         } else {
-                            infoView.setText(Html.fromHtml("活动进行中，即将赚<font color=#ecb200>¥</font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
+                            infoView.setText(Html.fromHtml("活动进行中，即将赚<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(String.valueOf(bean.getEarn_money()))));
                         }
                     }
 
@@ -765,7 +768,7 @@ public class DetailContentHelper {
 
             @Override
             public void onError(Exception e) {
-               // LogUtil.LogShitou("走到这里没有","333"+e.getMessage());
+                // LogUtil.LogShitou("走到这里没有","333"+e.getMessage());
                 if (mWProgressDialog != null) {
                     try {
                         mWProgressDialog.dismiss();
@@ -778,7 +781,7 @@ public class DetailContentHelper {
 
             @Override
             public void onResponse(String response) {
-              //  LogUtil.LogShitou("活动上传截图-多图", "===>" + response);
+                //  LogUtil.LogShitou("活动上传截图-多图", "===>" + response);
                 if (mWProgressDialog != null) {
                     try {
                         mWProgressDialog.dismiss();
@@ -836,7 +839,7 @@ public class DetailContentHelper {
         linearLayout.addView(view);
     }
 
-    private void setClickView(CampaignListBean.CampaignInviteEntity bean, TextView clickView, TextView moneyView) {
+    private void setClickView(CampaignInviteBean baseBean, CampaignListBean.CampaignInviteEntity bean, TextView clickView, TextView tvPutResult, TextView tvPutEnter) {
 
         String append = "";
         switch (bean.getCampaign().getPer_budget_type()) {
@@ -862,10 +865,52 @@ public class DetailContentHelper {
                 append = ("任务");
                 break;
         }
+        String status = bean.getStatus();
+        String isOpen = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
+        String isPutUser = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
+        if (bean.getCampaign().getPer_budget_type().equals(CAMPAIGN_TYPE_RECRUIT)) {
+            tvPutResult.setVisibility(View.GONE);
+            tvPutEnter.setVisibility(View.GONE);
+        } else {
+            if (! TextUtils.isEmpty(isOpen)) {
+                if (isOpen.equals("1")) {
+                    if (SETTLED.equals(status)) {
+                        tvPutResult.setVisibility(View.VISIBLE);
+                        tvPutEnter.setVisibility(View.GONE);
+                        if (! TextUtils.isEmpty(isPutUser)) {
+                            tvPutResult.setText("已获得" + baseBean.getPut_count() + "个PUT的额外奖励，请去钱包查看");
+                        } else {
+                            tvPutResult.setText("活动已结束，无法获得额外奖励");
+                        }
+                    } else if (MISSED.equals(status)) {
+                        tvPutEnter.setVisibility(View.GONE);
+                        tvPutResult.setVisibility(View.VISIBLE);
+                        tvPutResult.setText("活动已结束，无法获得额外奖励");
+                    } else if (REJECTED.equals(status)) {
+                        tvPutEnter.setVisibility(View.GONE);
+                        tvPutResult.setVisibility(View.VISIBLE);
+                        if (! TextUtils.isEmpty(isPutUser)) {
+                            tvPutResult.setText("已获得" + baseBean.getPut_count() + "个PUT的额外奖励，请去钱包查看");
+                        } else {
+                            tvPutResult.setText("活动已结束，无法获得额外奖励");
+                        }
+                    } else {
+                        if (! TextUtils.isEmpty(isPutUser)) {
+                            tvPutResult.setVisibility(View.VISIBLE);
+                            tvPutResult.setText("参加此活动可额外获得PUT奖励");
+                            tvPutEnter.setVisibility(View.GONE);
+                        } else {
+                            tvPutResult.setVisibility(View.GONE);
+                            tvPutEnter.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            }
+        }
 
         clickView.setText(append);
-        moneyView.setText("根据你的历史表现，本次" + append + "活动单次可赚:￥ " + StringUtil.deleteZero(bean.getCampaign().getPer_action_budget()));
-        // moneyView.setText("根据你的历史表现，本次活动：");
+
+        // moneyView.setText("根据你的历史表现，本次" + append + "活动单次可赚:￥ " + StringUtil.deleteZero(bean.getCampaign().getPer_action_budget()));
     }
 
     private void countDownTime(CampaignListBean.CampaignInviteEntity bean) {
@@ -1094,7 +1139,7 @@ public class DetailContentHelper {
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
-                   LogUtil.LogShitou("活动分享获取信息！！！", response);
+                    LogUtil.LogShitou("活动分享获取信息！！！", response);
                     KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
                     if (kolDetailModel != null && kolDetailModel.getError() == 0) {
                         List<SocialAccountsBean> mSocialAccounts = kolDetailModel.getSocial_accounts();
@@ -1110,7 +1155,7 @@ public class DetailContentHelper {
                                     CustomToast.showShort(activity, "正在前往微信中");
                                     bind(activity, activity.getString(R.string.weixin), type, wechatType);
                                 } else {
-                                   // LogUtil.LogShitou("type","====>"+type);
+                                    // LogUtil.LogShitou("type","====>"+type);
                                     if (type == 0) {
                                         share(activity, mCampaignInviteEntity, wechatEn, wechatType);
                                     } else {
@@ -1145,10 +1190,10 @@ public class DetailContentHelper {
                 }
             }
         });
-        if (activity.getString(R.string.weixin).equals(names)) {
-            presenter.authorize(new Wechat(activity));
+        if (activity.getString(R.string.weixin).equals(names)){
+            presenter.authorize(new Wechat());
         } else if (activity.getString(R.string.weibo).equals(names)) {
-            presenter.authorize(new SinaWeibo(activity));
+            presenter.authorize(new SinaWeibo());
         }
 
     }
@@ -1165,7 +1210,7 @@ public class DetailContentHelper {
         params.put("price", "1");
         params.put("followers_count", "1");
         params.put("username", userName);
-        //LogUtil.LogShitou("绑定微信的报价之类的", name + "//" + userName);
+        LogUtil.LogShitou("绑定微信", name + "//" + userName);
 
         mBasePresenter.getDataFromServer(true, HttpRequest.POST, (HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL_OLD)), params, new RequestCallback() {
 
@@ -1179,7 +1224,7 @@ public class DetailContentHelper {
 
             @Override
             public void onResponse(String response) {
-                //   LogUtil.LogShitou("分享页面提交微信绑定", "OK" + response);
+                   LogUtil.LogShitou("分享页面提交微信绑定", "OK" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -1661,7 +1706,6 @@ public class DetailContentHelper {
                 if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
                     if (position == 0) {//朋友圈
                         if (agreeProtocol) {
-                        //    LogUtil.LogShitou("是不是走这里了","---------1-------------");
                             bindWechat(activity, i, 0);
                         } else {
                             popProtocolDialog(activity, mCampaignInviteEntity, wechatEn, 0);
@@ -1744,7 +1788,7 @@ public class DetailContentHelper {
 
             @Override
             public void onResponse(String response) {
-              //  LogUtil.LogShitou("这里是回调", "==>" + response);
+                LogUtil.LogShitou("这里是回调", "==>" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -1754,7 +1798,7 @@ public class DetailContentHelper {
                     mCampaignInviteEntityId = String.valueOf(entity.getId());
                     shareSuccess(activity, entity, shareType, wechatType);
                 } else {
-                    CustomToast.showShort(activity, bean.getMessage());
+                    CustomToast.showShort(activity, bean.getDetail());
                 }
             }
         });
@@ -1799,7 +1843,7 @@ public class DetailContentHelper {
         }
 
         CustomToast.showShort(activity, "正在前往分享...");
-        ShareSDK.initSDK(activity);
+        //ShareSDK.initSDK(activity);
         OnekeyShare oks = new OnekeyShare();
         oks.setPlatform(platName);
         MySharedListener mySharedListener = new MySharedListener(activity, campaignInviteEntity);
@@ -2012,39 +2056,39 @@ public class DetailContentHelper {
                     NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_SHARE_SUCCESS);
                     SUCCESS = "success";
                     if (((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
-                       // showShareSuccessDialog(activity, bean);
-                        if (listBean!=null){
-                            if (!TextUtils.isEmpty(listBean.getAlert())){
-                                showGgDialog(activity,listBean.getAlert());
-                            }else {
+                        // showShareSuccessDialog(activity, bean);
+                        if (listBean != null) {
+                            if (! TextUtils.isEmpty(listBean.getAlert())) {
+                                showGgDialog(activity, listBean.getAlert());
+                            } else {
                                 showShareSuccessDialog(activity, bean);
                             }
-                        }else {
+                        } else {
                             showShareSuccessDialog(activity, bean);
                         }
-                    }else {
-                        if (!TextUtils.isEmpty(listBean.getAlert())){
-                            showGgDialog(activity,listBean.getAlert());
+                    } else {
+                        if (! TextUtils.isEmpty(listBean.getAlert())) {
+                            showGgDialog(activity, listBean.getAlert());
                         }
                     }
                 }
             } else if (mCampaignInviteEntity.getStatus().equals(STATE_APPROVED)) {
                 String screenshot = mCampaignInviteEntity.getScreenshot();
                 if (TextUtils.isEmpty(screenshot) && ((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
-                    if (listBean!=null){
-                        if (!TextUtils.isEmpty(listBean.getAlert())){
-                            showGgDialog(activity,listBean.getAlert());
-                        }else {
+                    if (listBean != null) {
+                        if (! TextUtils.isEmpty(listBean.getAlert())) {
+                            showGgDialog(activity, listBean.getAlert());
+                        } else {
                             showShareSuccessDialog(activity, mCampaignInviteEntity);
                         }
-                    }else {
+                    } else {
                         showShareSuccessDialog(activity, mCampaignInviteEntity);
                     }
                 }
-            }else {
-                if (listBean!=null){
-                    if (!TextUtils.isEmpty(listBean.getAlert())){
-                        showGgDialog(activity,listBean.getAlert());
+            } else {
+                if (listBean != null) {
+                    if (! TextUtils.isEmpty(listBean.getAlert())) {
+                        showGgDialog(activity, listBean.getAlert());
                     }
                 }
             }

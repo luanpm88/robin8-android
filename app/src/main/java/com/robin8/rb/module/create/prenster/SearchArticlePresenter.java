@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.andview.refreshview.XRefreshView;
 import com.robin8.rb.R;
-import com.robin8.rb.activity.WebViewActivity;
+import com.robin8.rb.activity.web.WebViewActivity;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.module.create.adapter.SearchArticleAdapter;
 import com.robin8.rb.module.create.model.ArticleListsModel;

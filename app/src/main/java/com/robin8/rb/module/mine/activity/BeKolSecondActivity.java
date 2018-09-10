@@ -342,11 +342,11 @@ public class BeKolSecondActivity extends BaseActivity {
             }
         });
         if (getString(R.string.weixin).equals(names)) {
-            presenter.authorize(new Wechat(this));
+            presenter.authorize(new Wechat());
         } else if (getString(R.string.qq).equals(names)) {
-            presenter.authorize(new QQ(this));
+            presenter.authorize(new QQ());
         } else if (getString(R.string.weibo).equals(names)) {
-            presenter.authorize(new SinaWeibo(this));
+            presenter.authorize(new SinaWeibo());
         } else {
             NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
             Intent intent = new Intent(this, BeKolSecondDetailActivity.class);

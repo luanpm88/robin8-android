@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.igexin.sdk.PushManager;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
-import com.robin8.rb.activity.WebViewActivity;
+import com.robin8.rb.activity.web.WebViewActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
@@ -213,6 +213,7 @@ public class SettingActivity extends BaseActivity {
                         HelpTools.insertCommonXml(HelpTools.isLeader, "");
                         HelpTools.insertCommonXml(HelpTools.CloudToken, "");
                         HelpTools.insertCommonXml(HelpTools.REDNUM, "");
+                        HelpTools.insertLoginInfo(HelpTools.WEBADDRESS, "");
                         FloatActionController.getInstance().stopMonkServer(SettingActivity.this);
                         intent = new Intent(SettingActivity.this, LoginActivity.class);
                         Bundle bundle = new Bundle();

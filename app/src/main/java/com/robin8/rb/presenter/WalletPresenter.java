@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.IncomeDetailActivity;
@@ -22,6 +26,7 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.IWalletView;
+import com.robin8.rb.view.widget.CustomDialogManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +41,8 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.view.LineChartView;
 
 /**
- * @author Figo
- */
+ 我的钱包——presenter
+ @author Figo */
 public class WalletPresenter extends BasePresenter implements PresenterI {
 
     private final IWalletView mIUserView;
@@ -64,6 +69,7 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
         mWProgressDialog.show();
 
         getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.KOLS_ACCOUNT_URL), new RequestParams(), new RequestCallback() {
+
             @Override
             public void onError(Exception e) {
                 if (mWProgressDialog != null) {
@@ -73,7 +79,7 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("折线图",response);
+                LogUtil.LogShitou("我的钱包————折线图", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -113,7 +119,9 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
         mIUserView.setTVIncomes(String.valueOf(mStatsList.get(mStatsList.size() - 1).getCount()));
         mIUserView.setTVTotal(String.valueOf(mStatsList.get(mStatsList.size() - 1).getTotal_amount()));
         mIUserView.setTVTotalIncome(StringUtil.deleteZero(String.valueOf(mUserAccountBean.getKol().getTotal_income())));
-
+//        if (! TextUtils.isEmpty(mUserAccountBean.getKol().getRemark())) {
+//            showRemark(mUserAccountBean.getKol().getRemark());
+//        }
         if (Float.parseFloat(mUserAccountBean.getKol().getAvail_amount()) >= 50) {
             mIUserView.setLLbottom(true);
         } else {
@@ -123,8 +131,28 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
         updateLineChartView();
     }
 
+    private void showRemark(String msg) {
+        View view = LayoutInflater.from(mActivity).inflate(R.layout.dialog_remark, null);
+        TextView tvRemark = (TextView) view.findViewById(R.id.tv_remark);
+        LinearLayout layout = (LinearLayout) view.findViewById(R.id.layout_bg);
+        tvRemark.setText(msg);
+        final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
+        layout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                cdm.dismiss();
+            }
+        });
+
+        cdm.dg.setCanceledOnTouchOutside(true);
+        cdm.dg.getWindow().setGravity(Gravity.CENTER);
+        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+        cdm.showDialog();
+    }
+
     /**
-     * 加载折线图
+     加载折线图
      */
     public void updateLineChartView() {
 
@@ -140,11 +168,11 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
         for (int i = 0; i < size; i++) {
             sum += mStatsList.get(i).getTotal_amount();
             float totalAmount = (float) mStatsList.get(i).getTotal_amount();
-            LogUtil.logXXfigo("totalAmount"+totalAmount);
+            LogUtil.logXXfigo("totalAmount" + totalAmount);
             PointValue pointValue;
-            if(totalAmount==0){
+            if (totalAmount == 0) {
                 pointValue = new PointValue(i, 0.04f);
-            }else {
+            } else {
                 pointValue = new PointValue(i, totalAmount);
             }
 
@@ -228,6 +256,7 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
         mLineChartView.setLineChartData(data);
         mLineChartView.setVisibility(View.VISIBLE);
         mLineChartView.setOnValueTouchListener(new LineChartOnValueSelectListener() {
+
             @Override
             public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
 
@@ -254,7 +283,7 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
     }
 
     /**
-     * 点击总收益跳转
+     点击总收益跳转
      */
     public void checkIncomeDetail() {
         Intent intent = new Intent(mActivity, IncomeDetailActivity.class);
@@ -264,13 +293,13 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
     }
 
     /**
-     * 提现
+     提现
      */
     public void withdrawCash() {
         Intent intent = new Intent(mActivity, WithdrawCashActivity.class);
-        if(mUserAccountBean!=null){
+        if (mUserAccountBean != null) {
             String availAmount = mUserAccountBean.getKol().getAvail_amount();
-            intent.putExtra("avail_amount",availAmount);
+            intent.putExtra("avail_amount", availAmount);
         }
         mActivity.startActivityForResult(intent, SPConstants.WALLETACTIVIRY);
     }
