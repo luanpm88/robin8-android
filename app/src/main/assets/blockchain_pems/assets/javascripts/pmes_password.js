@@ -2,13 +2,6 @@ document.addEventListener('touchstart', function() {}, true);
 
 $(document).ready(function() {
   var get_put_address = '';
-  if (typeof jwPut != 'undefined') {
-    var native_put_address = jwPut.put_put_address();
-    if (native_put_address != '') {
-      get_put_address = native_put_address;
-    }
-  }
-
   var loading = new CreateLoader();
   // 重置密码
   $('#pmes_password_submit_btn').click(function(event) {
@@ -36,6 +29,13 @@ $(document).ready(function() {
     if (mnemonic == '') {
       createAlert('请输入您的安全码');
       return false;
+    }
+
+    if (typeof jwPut != 'undefined') {
+      var native_put_address = jwPut.put_put_address();
+      if (native_put_address != '') {
+        get_put_address = native_put_address;
+      }
     }
     loading.show();
 
