@@ -9,6 +9,7 @@ package com.robin8.rb.module.reword.banner;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
+import com.robin8.rb.activity.web.BannerWebActivity;
 import com.robin8.rb.activity.web.PutWebActivity;
 import com.robin8.rb.autoviewpager.RecyclingPagerAdapter;
 import com.robin8.rb.base.BaseApplication;
@@ -78,7 +80,7 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
         holder.imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         BitmapUtil.loadImageCenter(mActivity, imageIdList.get(p).getBanner_url(), holder.imageView);
         //  holder.imageView.setBackgroundResource(imageIdList.get(position % size).resId);
-        view.setOnClickListener(new MyOnClickListener(position % size, imageIdList.get(position % size).getDetail_type()));
+        view.setOnClickListener(new MyOnClickListener(position % size, imageIdList.get(position % size).getDetail_type(),imageIdList.get(position % size).getUrl()));
         return view;
     }
 
@@ -90,10 +92,12 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
 
         private String type;
         private int position;
+        private String urlJump;
 
-        public MyOnClickListener(int position, String type) {
+        public MyOnClickListener(int position, String type, String urlJump) {
             this.type = type;
             this.position = position;
+            this.urlJump = urlJump;
         }
 
         @Override
@@ -101,43 +105,51 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
             if (BaseApplication.getInstance().hasLogined()) {
                 BannerClick(position);
                 Intent intent = null;
-                switch (type) {
-                    case "complete_info":
-                        LoginBean.KolEntity kol = BaseApplication.getInstance().getLoginBean().getKol();
-                        int id = 0;
-                        if (kol != null) {
-                            id = kol.getId();
-                        }
-                        if (STATE_REJECTED.equals(kol.getRole_apply_status())) {
-                            showRejectedDialog(kol);
-                            return;
-                        }
-                        skipToBeKol(id);
-                        break;
-                    case "invite_friend":
-                        intent = new Intent(v.getContext(), CollectMoneyActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        v.getContext().startActivity(intent);
-                        break;
-                    case "indiana":
-                        intent = new Intent(v.getContext(), BaseRecyclerViewActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("destination", SPConstants.INDIANA_ROBIN);
-                        intent.putExtra("url", HelpTools.getUrl(CommonConfig.LOTTERY_ACTIVITIES_URL));
-                        intent.putExtra("title", v.getContext().getString(R.string.robin_indiana));
-                        v.getContext().startActivity(intent);
-                        break;
-                    case "check_in":
-                        intent = new Intent(v.getContext(), UserSignActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        v.getContext().startActivity(intent);
-                        break;
-                    case "open_puts_wallet":
-                        intent = new Intent(v.getContext(), PutWebActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra(PutWebActivity.PUT_TYPE,"0");
-                        v.getContext().startActivity(intent);
-                        break;
+                if (!TextUtils.isEmpty(type)) {
+                    switch (type) {
+                        case "complete_info":
+                            LoginBean.KolEntity kol = BaseApplication.getInstance().getLoginBean().getKol();
+                            int id = 0;
+                            if (kol != null) {
+                                id = kol.getId();
+                            }
+                            if (STATE_REJECTED.equals(kol.getRole_apply_status())) {
+                                showRejectedDialog(kol);
+                                return;
+                            }
+                            skipToBeKol(id);
+                            break;
+                        case "invite_friend":
+                            intent = new Intent(v.getContext(), CollectMoneyActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            v.getContext().startActivity(intent);
+                            break;
+                        case "indiana":
+                            intent = new Intent(v.getContext(), BaseRecyclerViewActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("destination", SPConstants.INDIANA_ROBIN);
+                            intent.putExtra("url", HelpTools.getUrl(CommonConfig.LOTTERY_ACTIVITIES_URL));
+                            intent.putExtra("title", v.getContext().getString(R.string.robin_indiana));
+                            v.getContext().startActivity(intent);
+                            break;
+                        case "check_in":
+                            intent = new Intent(v.getContext(), UserSignActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            v.getContext().startActivity(intent);
+                            break;
+                        case "open_puts_wallet":
+                            intent = new Intent(v.getContext(), PutWebActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra(PutWebActivity.PUT_TYPE, "0");
+                            v.getContext().startActivity(intent);
+                            break;
+                        case "web":
+                            intent = new Intent(v.getContext(), BannerWebActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra(BannerWebActivity.BANNER, urlJump);
+                            v.getContext().startActivity(intent);
+                            break;
+                    }
                 }
             } else {
                 Intent intent = new Intent(mActivity, LoginActivity.class);

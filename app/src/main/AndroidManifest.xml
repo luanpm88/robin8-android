@@ -438,12 +438,11 @@
         </activity>
         <!-- 微信分享回调 -->
         <activity
-            android:name="com.robin8.rb.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-
         <activity
             android:name="cn.sharesdk.tencent.qq.ReceiveActivity"
             android:launchMode="singleTask"
@@ -774,6 +773,9 @@
             android:name=".activity.web.PutWebActivity"
             android:label="@string/title_activity_web_need"
             android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.web.BannerWebActivity"
+                  android:screenOrientation="portrait">
         </activity>
     </application>
 

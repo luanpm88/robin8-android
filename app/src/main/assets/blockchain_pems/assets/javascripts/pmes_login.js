@@ -2,12 +2,12 @@ document.addEventListener('touchstart', function() {}, true);
 
 $(document).ready(function() {
   // 已有帐号
+  var loading = new CreateLoader();
   $('#login_password').pwd('init');
   $('#pmes_login_btn').click(function(event) {
     var current_date = new Date();
     current_date = current_date.customFormat('#YYYY##MM##DD##hhh##mm#');
     var login_password = $('#login_password').val();
-    var loading = new CreateLoader();
 
     if (login_password == '') {
       createAlert('请输入密码');
@@ -86,9 +86,7 @@ $(document).ready(function() {
       },
       error: function(xhr, type) {
         loading.destroy();
-        createAlert(xhr);
-        createAlert(type);
-        console.log('error');
+        console.log('post data error');
       }
     });
   });

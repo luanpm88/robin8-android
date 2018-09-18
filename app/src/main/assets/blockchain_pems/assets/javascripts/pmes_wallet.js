@@ -14,8 +14,8 @@ $(document).ready(function() {
     }
   }
 
-  var amount_active = (get_native_data.amount_active * 1) / 10 ** 8;
-  var amount_frozen = (get_native_data.amount_frozen * 1) / 10 ** 8;
+  var amount_active = (get_native_data.amount_active * 1) / Math.pow(10, 8);
+  var amount_frozen = (get_native_data.amount_frozen * 1) / Math.pow(10, 8);
 
   $('#amount_active').html(amount_active);
   $('#amount_frozen').html(amount_frozen);

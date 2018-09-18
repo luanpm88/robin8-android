@@ -3,7 +3,6 @@ package com.robin8.rb.indiana.protocol;
 import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,6 +18,7 @@ import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.view.widget.InstantlyIndianaDialog;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class DetailIndianaProtocol implements IProtocol {
 
     @Override
     public RequestParams getRequestParams() {
-        Log.e("夺宝？", "page=" + mCurrentPage + "  mTotalPages=" + mTotalPages);
+        LogUtil.LogShitou("夺宝？", "page=" + mCurrentPage + "  mTotalPages=" + mTotalPages);
         if (mTotalPages != 0 && mCurrentPage > mTotalPages) {
             return null;
         }
@@ -113,7 +113,7 @@ public class DetailIndianaProtocol implements IProtocol {
 
     @Override
     public void parseJson(String json, int currentState) {
-        Log.e("xxfigo", "mCurrentPage1=" + mCurrentPage + "  currentState1=" + currentState + json);
+        LogUtil.LogShitou("parseJson", "mCurrentPage1=" + mCurrentPage + "  currentState1=" + currentState + json);
         DetailModel detailModel = GsonTools.jsonToBean(json, DetailModel.class);
         if (detailModel == null) {
             CustomToast.showShort(mActivity, mActivity.getString(R.string.please_data_wrong));
@@ -123,11 +123,13 @@ public class DetailIndianaProtocol implements IProtocol {
             mTotalPages = detailModel.getTotal_pages();
             List<OrderBean> tempList = detailModel.getOrders();
             if (tempList != null && tempList.size() > 0) {
-                mCurrentPage++;
-                Log.e("xxfigo", "mCurrentPage=" + mCurrentPage);
-                mOrderList.addAll(tempList);
-                mDetailIndianaAdapter.setDataList(mOrderList);
-                mDetailIndianaAdapter.notifyDataSetChanged();
+                if (mCurrentPage<=mTotalPages) {
+                    mCurrentPage++;
+                    LogUtil.LogShitou("xxfigo", "mCurrentPage=" + mCurrentPage);
+                    mOrderList.addAll(tempList);
+                    mDetailIndianaAdapter.setDataList(mOrderList);
+                    mDetailIndianaAdapter.notifyDataSetChanged();
+                }
             }
         } else {
             CustomToast.showShort(mActivity, detailModel.getDetail());
@@ -136,7 +138,7 @@ public class DetailIndianaProtocol implements IProtocol {
 
     @Override
     public void parseHeaderJson(String json, int currentState) {
-        Log.e("xxfigo", "json" + json);
+        LogUtil.LogShitou("parseHeaderJson", "json" + json);
         IndianaDetailBean indianaDetailBean = GsonTools.jsonToBean(json, IndianaDetailBean.class);
 
         if (indianaDetailBean == null) {

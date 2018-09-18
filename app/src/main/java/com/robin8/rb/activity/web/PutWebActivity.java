@@ -43,7 +43,12 @@ public class PutWebActivity extends BaseActivity {
     private String loadReg;
     private String loadWallet;
     private String loadInto;
+    private String loadPwd;
     private static boolean isBack = false;
+    private String myJsonReg;
+    private String myJsonLogin;
+    private String myJsonForGet;
+
     public static final String PUT_TYPE = "type";
 private String extra;
     @Override
@@ -61,6 +66,7 @@ private String extra;
         loadLogin = CommonConfig.WEBPATH + "login.html";
         loadReg = CommonConfig.WEBPATH + "reg.html";
         loadWallet = CommonConfig.WEBPATH + "wallet.html";
+        loadPwd = CommonConfig.WEBPATH + "password.html";
         loadInto = HelpTools.getUrl(CommonConfig.PUT_WALLET);
         LogShitou("putAddress是否存在", "--"+HelpTools.getLoginInfo(HelpTools.WEBADDRESS));
         loadingDialog = MyDialog.createLoadingDialog(PutWebActivity.this);
@@ -101,13 +107,14 @@ private String extra;
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 handler.proceed();
+
                 LogShitou("error", error + "");
             }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                LogShitou("常见问题解答", "==>" + url);
+                LogShitou("开始", "==>" + url);
                 // showLoad();
             }
 
@@ -153,8 +160,7 @@ private String extra;
         }
     }
 
-    private String myJsonReg;
-    private String myJsonLogin;
+
 
     public class JsInterface {
         Context mContext;
@@ -172,7 +178,6 @@ private String extra;
         //注册
         @JavascriptInterface
         public void put_begin() {
-
             handler.sendEmptyMessage(2);
         }
 
@@ -227,7 +232,19 @@ private String extra;
             LogShitou("html调用put_wallet_data", "===>" + key);
             return key;
         }
+        //html获取新的add
+        @JavascriptInterface
+        public String put_put_address(){
+            String put_add = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
+            return put_add;
+        }
 
+        //html忘记密码更新token
+        @JavascriptInterface
+        public void put_recover(String json){
+            myJsonForGet = json;
+            handler.sendEmptyMessage(3);
+        }
 
         //上传本地信息
         @JavascriptInterface
@@ -308,6 +325,21 @@ private String extra;
                     break;
                 case 2:
                     webView.loadUrl(loadReg);
+                    break;
+                case 3:
+                    LogShitou("html get new t and pk===>>",myJsonForGet);
+                    if (!TextUtils.isEmpty(myJsonForGet)){
+                        try {
+                            JSONObject object = new JSONObject(myJsonForGet);
+                            String token = object.getString("token");
+                            String public_key = object.getString("public_key");
+                            HelpTools.insertCommonXml(HelpTools.WEBTOKEN, token);
+                            HelpTools.insertCommonXml(HelpTools.WEBKEY, public_key);
+                            webView.loadUrl(loadLogin);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
                     break;
             }
         }

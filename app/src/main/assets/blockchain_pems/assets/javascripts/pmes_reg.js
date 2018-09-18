@@ -34,13 +34,13 @@ $(document).ready(function() {
     $('#pmes_intro_page').fadeOut();
   });
 
+  var loading = new CreateLoader();
   // 创建帐号
   $('#pmes_reg_submit_btn').click(function(event) {
     var current_date = new Date();
     current_date = current_date.customFormat('#YYYY##MM##DD##hhh##mm#');
     var password = $('#password').val();
     var password_confirm = $('#password_confirm').val();
-    var loading = new CreateLoader();
 
     if (password == '') {
       createAlert('请输入密码');

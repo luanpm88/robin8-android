@@ -32,10 +32,10 @@ public class CommonConfig {
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
     //18321878526
-    //  public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-    // public static String SERVICE = "http://192.168.51.170:3000/";//robin8-测试服务器地址/test server path
+   //public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+     public static String SERVICE = "http://192.168.51.170:3000/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
-    public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
+   // public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String WEBPATH = "file:///android_asset/blockchain_pems/";//本地web路径
     public static final String UpdateUrl = "api/v2/upgrades/check";
@@ -56,6 +56,7 @@ public class CommonConfig {
     public static final String LAUNCH_CAMPAIGNS_URL = "api/v1_4/kol_campaigns";
     public static final String MODIFY_LAUNCH_CAMPAIGNS_URL = "api/v1_4/kol_campaigns/update";
     public static final String KOLS_ACCOUNT_URL = "api/v1/kols/account";
+    public static final String UPDATE_IS_READ_URL = "api/v1/withdraws/update_is_read";//异常状态提示信息已读/无参
     public static final String HELP_INFO_URL = "api/v2/system/account_notice";
     public static final String TRANSACTIONS_URL = "api/v1_3/transactions";
     public static final String KOLS_ALIPAY_URL = "api/v1_3/kols/alipay";//  是否绑定

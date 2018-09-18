@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,6 +101,9 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
             case HttpRequest.POST:
                 HttpRequest.getInstance().post(needHeader, url, params, callback);
                 break;
+            case HttpRequest.PUT:
+                HttpRequest.getInstance().put(needHeader, url, params, callback);
+                break;
         }
     }
 
@@ -119,9 +123,9 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
         mIUserView.setTVIncomes(String.valueOf(mStatsList.get(mStatsList.size() - 1).getCount()));
         mIUserView.setTVTotal(String.valueOf(mStatsList.get(mStatsList.size() - 1).getTotal_amount()));
         mIUserView.setTVTotalIncome(StringUtil.deleteZero(String.valueOf(mUserAccountBean.getKol().getTotal_income())));
-//        if (! TextUtils.isEmpty(mUserAccountBean.getKol().getRemark())) {
-//            showRemark(mUserAccountBean.getKol().getRemark());
-//        }
+        if (! TextUtils.isEmpty(mUserAccountBean.getKol().getRemark())) {
+            showRemark(mUserAccountBean.getKol().getRemark());
+        }
         if (Float.parseFloat(mUserAccountBean.getKol().getAvail_amount()) >= 50) {
             mIUserView.setLLbottom(true);
         } else {
@@ -142,6 +146,7 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
             @Override
             public void onClick(View v) {
                 cdm.dismiss();
+                updateIsRead();
             }
         });
 
@@ -149,6 +154,31 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
         cdm.dg.getWindow().setGravity(Gravity.CENTER);
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
         cdm.showDialog();
+    }
+
+    /**
+     * 账户异常提示提交
+     */
+    private void updateIsRead() {
+        mWProgressDialog = WProgressDialog.createDialog(mActivity);
+        mWProgressDialog.show();
+        getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.UPDATE_IS_READ_URL), null, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.LogShitou("异常信息已读", response);
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+            }
+        });
     }
 
     /**

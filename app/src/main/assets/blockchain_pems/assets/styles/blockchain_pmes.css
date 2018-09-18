@@ -60,6 +60,15 @@
   background-color: #fff;
 }
 
+.forget-password {
+  padding: 0 20px;
+  text-align: right;
+}
+
+.forget-password a {
+  color: #2ecad1;
+}
+
 .pmes-statistics-page {
   background-color: #fff;
 }

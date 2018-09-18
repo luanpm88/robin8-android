@@ -129,7 +129,11 @@ input[type="reset"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner, i
 .default-form .form-group .form-text.block { display: block; }
 .default-form .form-group .form-tail-btn > .button, .default-form .form-group .form-tail-btn > button { width: 100%; height: 44px; line-height: 38px; padding: 0 12px; }
 .default-form .form-group .form-tail-text { height: 44px; line-height: 44px; padding: 0 10px; font-size: 1.4rem; color: #000; }
-.default-form textarea.form-control { display: block; width: 100%; height: auto; line-height: 20px; padding: 0 10px 10px 0; border: none; font-size: 1.4rem; }
+.default-form textarea.form-control { display: block; width: 100%; height: auto; line-height: 20px; padding: 10px; border: none; font-size: 1.4rem; }
+.default-form textarea.form-control::-webkit-input-placeholder { font-size: 1.4rem; }
+.default-form textarea.form-control:-moz-placeholder { font-size: 1.4rem; }
+.default-form textarea.form-control::-moz-placeholder { font-size: 1.4rem; }
+.default-form textarea.form-control:-ms-input-placeholder { font-size: 1.4rem; }
 .default-form .form-area { border-bottom: 1px solid #e2e2e2; background-color: #fff; }
 .default-form .form-area .title { padding: 10px 0; font-size: 1.5rem; color: rgba(0, 0, 0, .8); }
 .default-form .form-area:last-child { border-bottom: none; }
@@ -160,8 +164,8 @@ input[type=radio]:checked:before, input[type=checkbox].round:checked:before { co
 input[type=checkbox]:disabled:before, input[type=radio]:disabled:before, input[type=checkbox]:disabled:checked:before, input[type=radio]:disabled:checked:before { color: #e5e5e5; }
 
 /*pwd styles*/
-.login-password { text-indent: -999em; margin-left: -100%; opacity: 0; }
-.password-input-container { position: absolute; z-index: 1; top: 0; left: 0; width: 100%; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; background-color: #fff; }
+.login-password { position: absolute; top: 0; left: -100%; text-indent: -999em; opacity: 0; }
+.password-input-container { width: 100%; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; background-color: #fff; }
 .password-input-item { position: relative; border: none; border-top: 1px solid #bbb; border-right: 1px solid #bbb; border-bottom: 1px solid #bbb; text-align: center; }
 .password-input-item:first-child { border-left: 1px solid #bbb; }
 .password-input-item.current:after { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width: 8px; height: 8px; border-radius: 50%; background-color: #000; content: ""; }

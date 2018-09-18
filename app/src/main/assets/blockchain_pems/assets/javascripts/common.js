@@ -2,9 +2,9 @@ var verify_phone = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])
 var verify_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // email校验
 var verify_pw = /^\d{6}$/; //密码校验，6位数字
 
-var SERVERHOST = 'https://robin8.net/';
+// var SERVERHOST = 'https://robin8.net/';
 // var SERVERHOST = 'https://qa.robin8.net/';
-// var SERVERHOST = 'http://192.168.51.170:3000/';
+var SERVERHOST = 'http://192.168.51.170:3000/';
 // var URLHOST = 'http://pdms2.robin8.io';
 var URLHOST = 'https://pmes.robin8.io';
 
@@ -523,3 +523,56 @@ PMESCtrl.prototype = {
     that.signature = pmes_sign.signature;
   }
 }
+
+// 复制粘贴优化
+document.querySelectorAll('input, textarea').forEach(function(ele) {
+  ele.addEventListener('paste',
+  function(event) {
+    // 输入框类型
+    var type = this.getAttribute('type') || this.type;
+    // 剪切板数据对象
+    var clipboardData = event.clipboardData || window.clipboardData;
+    // 粘贴内容
+    var paste = '';
+    // 剪切板对象可以获取
+    if (!clipboardData) {
+      return;
+    }
+    // 获取选中的文本内容
+    var userSelection, textSelected = '';
+    if (window.getSelection) {
+      // 现代浏览器
+      // 直接window.getSelection().toString()对于IE的输入框无效
+      textSelected = this.value.slice(ele.selectionStart, ele.selectionEnd);
+    } else if (document.selection) {
+      // 旧IE浏览器
+      textSelected = document.selection.createRange().text;
+    }
+    // 只有输入框没有数据，或全选状态才处理
+    if (this.value.trim() == '' || textSelected === this.value) {
+      // 阻止冒泡和默认粘贴行为
+      event.preventDefault();
+      event.stopPropagation();
+      // 获取粘贴数据
+      paste = clipboardData.getData('text') || '';
+      // 进行如下处理
+      // 除非是password，其他都过滤前后空格
+      if (type != 'password') {
+        paste = paste.trim();
+      }
+      // 邮箱处理，可能会使用#代替@避免被爬虫抓取
+      if (type == 'email') {
+        paste = paste.replace('#', '@');
+      } else if (type == 'tel') {
+        // 手机号处理
+        paste = paste.replace(/^\+86/, '');
+        // 如果此时剩余所有数字正好11位
+        if (paste.match(/\d/) && paste.match(/\d/g).length == 11) {
+          paste = paste.replace(/\D/g, '');
+        }
+      } // 其他类型处理大家自行补充...
+      // 插入
+      this.value = paste;
+    }
+  });
+});
