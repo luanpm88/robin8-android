@@ -4,7 +4,7 @@ var verify_pw = /^\d{6}$/; //密码校验，6位数字
 
 // var SERVERHOST = 'https://robin8.net/';
 // var SERVERHOST = 'https://qa.robin8.net/';
-var SERVERHOST = 'http://192.168.51.170:3000/';
+var SERVERHOST = 'http://192.168.50.176:3000/';
 // var URLHOST = 'http://pdms2.robin8.io';
 var URLHOST = 'https://pmes.robin8.io';
 

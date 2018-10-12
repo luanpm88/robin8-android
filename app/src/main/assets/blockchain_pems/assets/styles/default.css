@@ -235,6 +235,20 @@ input[type=checkbox]:disabled:before, input[type=radio]:disabled:before, input[t
 .lds-rolling div, .lds-rolling div:after { width: 80px; height: 80px; border: 4px solid #2dcad0; border-top-color: transparent; border-radius: 50%; }
 .lds-rolling div { -webkit-animation: lds-rolling 1s linear infinite; animation: lds-rolling 1s linear infinite; }
 
+/*default table styles*/
+.default-table { width: 100%; max-width: 100%; border: 0; border-spacing: 0; border-collapse: collapse; font-size: 1.3rem; }
+.default-table th { background-color: #fff; }
+.default-table tbody tr { background-color: #fff; border-top: 1px solid #ddd; }
+.default-table th, .default-table td { line-height: 20px; padding: 8px; text-align: left; word-break: break-all; }
+.default-table th.text-center, .default-table td.text-center { text-align: center; }
+.default-table th.text-right, .default-table td.text-right { text-align: right; }
+.default-table td.status { padding: 8px 0; font-size: 1.2rem; }
+.default-table td.status.success { color: #2dcad0; }
+.default-table td.status.fail { color: red; }
+.default-table td.status.pending { }
+.default-table td.amount { padding: 8px 0; font-weight: bold; }
+.default-table td .time { font-size: 1rem; }
+
 /*
 **page styles end && class reset begin**
 */

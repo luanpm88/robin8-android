@@ -12,7 +12,7 @@
     <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>PUT钱包</title>
+    <title>提现中PUT</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/iconfont.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/keyframes.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/default.css">
@@ -20,31 +20,21 @@
   </head>
 
   <body>
-    <div class="page full-page overflow-hidden pmes-statistics-page" id="pmes_statistics_page">
-      <div class="default-card put-balance-card">
-        <h5 class="card-title">PUT余额</h5>
-        <div class="balance-num" id="amount_active"></div>
-        <div class="balance-status left"><a href="record.html">提现中PUT<span class="num" id="wallet_amount">0</span></a></div>
-        <div class="balance-status right">即将入账PUT<span class="num" id="amount_frozen"></span></div>
-      </div>
-
-      <!-- <div class="default-card put-trend-card">
-        <h5 class="card-title">PUT价格走势</h5>
-      </div> -->
-
-      <div class="about-put"><a href="qa.html">关于PUT的常见问题解答 <img src="assets/images/icon_question.png" alt="" class="icon-question" /></a></div>
-
-      <!-- <div class="btn-group foot fill">
-        <div class="item">
-          <button type="button" class="button btn-cyan btn-block">PUT兑换</button>
-        </div>
-      </div> -->
+    <div class="page full-page pmes-record-page" id="put_record_page">
+      <table class="default-table">
+        <thead>
+          <tr>
+            <th width="70%">详情</th>
+            <th width="15%" class="text-center">数量</th>
+            <th width="15%" class="text-center">状态</th>
+          </tr>
+        </thead>
+        <tbody id="wallet_unpaid_list"></tbody>
+      </table>
     </div>
 
     <script type="text/javascript" src="assets/javascripts/plugins/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" src="assets/javascripts/plugins/jquery.pwd.js"></script>
     <script type="text/javascript" src="assets/javascripts/common.js"></script>
-    <script type="text/javascript" src="assets/javascripts/pmes.min.js"></script>
-    <script type="text/javascript" src="assets/javascripts/pmes_wallet.js"></script>
+    <script type="text/javascript" src="assets/javascripts/pmes_record.js"></script>
   </body>
 </html>

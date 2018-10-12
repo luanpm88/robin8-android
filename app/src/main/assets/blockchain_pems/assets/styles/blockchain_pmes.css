@@ -112,6 +112,10 @@
   background-size: cover;
 }
 
+.put-balance-card a {
+  color: #fff;
+}
+
 .put-balance-card .card-title {
   margin-top: 10px;
   font-size: 1.6rem;

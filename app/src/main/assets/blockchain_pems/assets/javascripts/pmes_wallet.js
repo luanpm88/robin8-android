@@ -19,7 +19,24 @@ $(document).ready(function() {
 
   $('#amount_active').html(amount_active);
   $('#amount_frozen').html(amount_frozen);
-  loading.destroy();
+
+  $.ajax({
+    url: SERVERHOST + 'api/v2_0/e_wallets/unpaid',
+    type: 'GET',
+    success: function(data) {
+      loading.destroy();
+      console.log(data);
+      if (!!data.amount && data.amount != '') {
+        $('#wallet_amount').html(data.amount);
+      } else {
+        $('#wallet_amount').html('0');
+      }
+    },
+    error: function(xhr, type) {
+      loading.destroy();
+      console.log('post data error');
+    }
+  });
 });
 
 function dataFromNative(demo_data) {
