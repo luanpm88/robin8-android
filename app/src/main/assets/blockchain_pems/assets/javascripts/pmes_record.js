@@ -1,10 +1,21 @@
 $(document).ready(function() {
   var loading = new CreateLoader();
+  var current_token = '';
+
+  if (typeof jwPut != 'undefined') {
+    var native_data = jwPut.current_token_data();
+    if (native_data != '') {
+      current_token = native_data;
+    }
+  }
   loading.show();
 
   $.ajax({
     url: SERVERHOST + 'api/v2_0/e_wallets/unpaid_list',
     type: 'GET',
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('Authorization', current_token);
+    },
     success: function(data) {
       loading.destroy();
       var _data = data.list;

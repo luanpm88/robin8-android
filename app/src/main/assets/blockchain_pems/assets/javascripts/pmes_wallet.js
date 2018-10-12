@@ -4,7 +4,8 @@ $(document).ready(function() {
 
   var get_native_data = {
     amount_active: '',
-    amount_frozen: ''
+    amount_frozen: '',
+    current_token: ''
   };
 
   if (typeof jwPut != 'undefined') {
@@ -23,6 +24,9 @@ $(document).ready(function() {
   $.ajax({
     url: SERVERHOST + 'api/v2_0/e_wallets/unpaid',
     type: 'GET',
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('Authorization', get_native_data.current_token);
+    },
     success: function(data) {
       loading.destroy();
       console.log(data);
