@@ -91,100 +91,91 @@ $(document).ready(function() {
     var mnemonic_tips = '<p>'+ pmes_mnemonic +'</p><br/><p class="font-xs">注意：若不保存，则有账号丢失风险</p>';
     var mnemonic_input = '<textarea class="" rows="4" id="mnemonic_input"></textarea>';
 
-    createConfirm(
-      mnemonic_tips,
-      {
-        title: '<p>请截图保存或纸笔记录此安全码</p><p>用于找回账户</p>',
-        confirm: '已记下',
-        cancel: '取消'
-      },
-      function(type) {
-        if (type == 'confirm') {
-          createConfirm(
-            mnemonic_input,
-            {
-              title: '请输入您的安全码',
-              confirm: '确定',
-              cancel: '重新获取'
-            },
-            function(m_type) {
-              if (m_type == 'confirm') {
-                var mnemonic_input_val = $.trim($('#mnemonic_input').val());
-                console.log(mnemonic_input_val);
-                if (mnemonic_input_val === pmes_mnemonic) {
+    $('#mnemonic_text').html(pmes_mnemonic);
+    $('#pmes_mnemonic_page').fadeIn();
+
+    loading.destroy();
+
+    $('#pmes_mnemonic_get_btn').click(function(event) {
+      createConfirm(
+        mnemonic_input,
+        {
+          title: '请输入您的安全码',
+          confirm: '确认',
+          cancel: '忘记了'
+        },
+        function(type) {
+          if (type == 'confirm') {
+            loading.show();
+
+            var mnemonic_input_val = $.trim($('#mnemonic_input').val());
+            console.log(mnemonic_input_val);
+            if (mnemonic_input_val === pmes_mnemonic) {
+              $.ajax({
+                url: URLHOST + '/api/accounts/',
+                type: 'POST',
+                data: post_data,
+                success: function(data) {
+                  console.log(data);
+                  console.log(JSON.parse(data.wallets));
+
+                  var wallets_data = JSON.parse(data.wallets);
+                  var put_put = '';
+                  $.each(wallets_data, function(index, el) {
+                    if (el.coinid === 'PUT') {
+                      put_put = el;
+                    }
+                  });
+
+                  console.log(put_put.address);
+
                   $.ajax({
-                    url: URLHOST + '/api/accounts/',
+                    url: SERVERHOST + 'pages/bind_e_wallet',
                     type: 'POST',
-                    data: post_data,
+                    beforeSend: function(xhr) {
+                      xhr.setRequestHeader('Authorization', current_token);
+                    },
+                    data: {
+                      put_address: put_put.address
+                    },
                     success: function(data) {
-                      console.log(data);
-                      console.log(JSON.parse(data.wallets));
-
-                      var wallets_data = JSON.parse(data.wallets);
-                      var put_put = '';
-                      $.each(wallets_data, function(index, el) {
-                        if (el.coinid === 'PUT') {
-                          put_put = el;
-                        }
-                      });
-
-                      console.log(put_put.address);
-
-                      $.ajax({
-                        url: SERVERHOST + 'pages/bind_e_wallet',
-                        type: 'POST',
-                        beforeSend: function(xhr) {
-                          xhr.setRequestHeader('Authorization', current_token);
-                        },
-                        data: {
-                          put_address: put_put.address
-                        },
-                        success: function(data) {
-                          loading.destroy();
-                          // createAlert('ruby post success:' + data.put_address);
-                          var post_native_data = {
-                            token: pmes_ctrl.token,
-                            public_key: pmes_ctrl.public_key,
-                            password: password,
-                            put_address: data.put_address,
-                            amount_active: put_put.amount_active,
-                            amount_frozen: put_put.amount_frozen
-                          };
-                          console.log(post_native_data);
-                          post_native_data = JSON.stringify(post_native_data);
-                          if (typeof jwPut != 'undefined') {
-                            jwPut.put_reg(post_native_data);
-                          }
-                        },
-                        error: function(xhr, type) {
-                          loading.destroy();
-                          createAlert('ruby post error');
-                          console.log('error');
-                        }
-                      });
+                      loading.destroy();
+                      // createAlert('ruby post success:' + data.put_address);
+                      var post_native_data = {
+                        token: pmes_ctrl.token,
+                        public_key: pmes_ctrl.public_key,
+                        password: password,
+                        put_address: data.put_address,
+                        amount_active: put_put.amount_active,
+                        amount_frozen: put_put.amount_frozen
+                      };
+                      console.log(post_native_data);
+                      post_native_data = JSON.stringify(post_native_data);
+                      if (typeof jwPut != 'undefined') {
+                        jwPut.put_reg(post_native_data);
+                      }
                     },
                     error: function(xhr, type) {
                       loading.destroy();
-                      createAlert('pmes post error');
+                      createAlert('ruby post error');
                       console.log('error');
-                    }
+                    }
                   });
-                } else {
+                },
+                error: function(xhr, type) {
                   loading.destroy();
-                  createAlert('Mnemonic不正确');
-                }
-              }
-              if (m_type == 'cancel') {
-                loading.destroy();
-              }
+                  createAlert('pmes post error');
+                  console.log('error');
+                }
+              });
+            } else {
+              loading.destroy();
+              createAlert('Mnemonic不正确');
             }
-          )
+          }
         }
-        if (type == 'cancel') {
-          loading.destroy();
-        }
-      }
-    );
+      )
+    });
   });
 });
 
