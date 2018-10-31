@@ -226,6 +226,69 @@
   text-align: justify;
 }
 
+.record-title-bar {
+  background-color: #fff;
+}
+
+.record-title-bar .item {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+}
+
+.record-title-bar .item.detail {
+  width: 80%;
+  padding: 0 8px;
+}
+
+.record-title-bar .item.amout {
+  width: 20%;
+  text-align: center;
+}
+
+.record-title-bar .item.status {
+  width: 18%;
+  text-align: center;
+}
+
+.record-list-item {
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.record-list-item .item {
+  float: left;
+  line-height: 20px;
+  padding: 8px;
+}
+
+.record-list-item .item.detail {
+  width: 80%;
+}
+
+.record-list-item .item.detail .time {
+  font-size: 1rem;
+}
+
+.record-list-item .item.amout {
+  width: 20%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.record-list-item .item.status {
+  width: 18%;
+  text-align: center;
+}
+
+.record-list-item .item.status.success {
+  color: #2dcad0;
+}
+
+.record-list-item .item.status.fail {
+  color: red;
+}
+
 @media all and (max-width:360px) {
   .put-intro-container {
     margin-top: 6%;

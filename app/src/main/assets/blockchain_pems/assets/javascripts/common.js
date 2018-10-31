@@ -2,8 +2,8 @@ var verify_phone = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])
 var verify_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // email校验
 var verify_pw = /^\d{6}$/; //密码校验，6位数字
 
-// var SERVERHOST = 'https://robin8.net/';
-var SERVERHOST = 'https://qa.robin8.net/';
+var SERVERHOST = 'https://robin8.net/';
+// var SERVERHOST = 'https://qa.robin8.net/';
 // var SERVERHOST = 'http://192.168.50.176:3000/';
 // var URLHOST = 'http://pdms2.robin8.io';
 var URLHOST = 'https://pmes.robin8.io';
@@ -427,6 +427,128 @@ var createConfirm = function (message, opt, callback){
   };
   confirmModal.show();
 };
+
+// 拖动刷新加载方法
+function DropLoadCtrl(container, list, url, params, token, create_item, empty_icon) {
+  var that = this;
+  this.page = params.page;
+  this.dropload = $(container).dropload({
+    scrollArea: window,
+    refreshFn: function(me) {
+      params.page = 0;
+      $.ajax({
+        url: url,
+        type: 'GET',
+        data: params,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('Authorization', token);
+        },
+        success: function(data) {
+          var _data = data.list;
+          $(container).find(list).empty();
+          if (!!_data && _data.length > 0) {
+            $.each(_data, function(index, el) {
+              $(container).find(list).append(create_item(el));
+            });
+          } else {
+            me.lock();
+            if (params.page == 0) {
+              me.emptyData();
+              $(container).find(list).append(
+                createEmptyContent(empty_icon)
+              );
+            } else {
+              me.noData();
+            }
+            console.log('no data');
+          }
+          setTimeout(function () {
+            me.resetload();
+            console.log('reset load');
+          }, 1000);
+        },
+        error: function(xhr, type) {
+          console.log('post data error');
+          me.resetload();
+        }
+      });
+    },
+    loadUpFn: function(me) {
+      params.page = 1;
+      $.ajax({
+        url: url,
+        type: 'GET',
+        data: params,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('Authorization', token);
+        },
+        success: function(data) {
+          var _data = data.list;
+          if (!!_data && _data.length > 1) {
+            $(container).find(list).empty();
+            $.each(_data, function(index, el) {
+              $(container).find(list).append(create_item(el));
+            });
+          } else {
+            console.log('no data');
+          }
+          setTimeout(function () {
+            me.resetload();
+            that.page = 1;
+            me.unlock();
+            me.noData(false);
+            console.log('reset load');
+          }, 1000);
+        },
+        error: function(xhr, type) {
+          console.log('post data error');
+          me.resetload();
+        }
+      });
+    },
+    loadDownFn: function (me) {
+      console.log(that.page);
+      params.page = that.page += 1;
+
+      $.ajax({
+        url: url,
+        type: 'GET',
+        data: params,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('Authorization', token);
+        },
+        success: function(data) {
+          var _data = data.list;
+          console.log(_data);
+          if (!!_data && _data.length > 0) {
+            $.each(_data, function(index, el) {
+              $(container).find(list).append(create_item(el));
+            });
+          } else {
+            me.lock();
+            if (params.page == 0) {
+              me.emptyData();
+              $(container).find(list).append(
+                createEmptyContent(empty_icon)
+              );
+            } else {
+              me.noData();
+            }
+            console.log('no data');
+          }
+          setTimeout(function () {
+            me.resetload();
+            console.log('reset load');
+          }, 1000);
+        },
+        error: function(xhr, type) {
+          console.log('post data error');
+          me.resetload();
+        }
+      });
+    }
+  });
+}
 
 // 构建对象
 function buildObjData(key, value) {

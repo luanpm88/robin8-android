@@ -15,25 +15,25 @@
     <title>提现中PUT</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/iconfont.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/keyframes.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/plugins/dropload.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/default.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/blockchain_pmes.css">
   </head>
 
   <body>
-    <div class="page full-page pmes-record-page" id="put_record_page">
-      <table class="default-table">
-        <thead>
-          <tr>
-            <th width="70%">详情</th>
-            <th width="15%" class="text-center">数量</th>
-            <th width="15%" class="text-center">状态</th>
-          </tr>
-        </thead>
-        <tbody id="wallet_unpaid_list"></tbody>
-      </table>
+    <div class="page">
+      <div class="record-title-bar clearfix">
+        <div class="item detail">详情</div>
+        <div class="item amout">数量</div>
+        <!-- <div class="item status">状态</div> -->
+      </div>
+      <div class="record-list-container" id="record_list">
+        <ul class="record-list"></ul>
+      </div>
     </div>
 
     <script type="text/javascript" src="assets/javascripts/plugins/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/plugins/dropload.js"></script>
     <script type="text/javascript" src="assets/javascripts/common.js"></script>
     <script type="text/javascript" src="assets/javascripts/pmes_record.js"></script>
   </body>

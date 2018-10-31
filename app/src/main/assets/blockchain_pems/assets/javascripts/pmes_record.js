@@ -1,6 +1,8 @@
 $(document).ready(function() {
-  var loading = new CreateLoader();
+  // var loading = new CreateLoader();
   var current_token = '';
+  var data_params = {};
+  var dropLoadCtrl;
 
   if (typeof jwPut != 'undefined') {
     var native_data = jwPut.current_token_data();
@@ -8,30 +10,22 @@ $(document).ready(function() {
       current_token = native_data;
     }
   }
-  loading.show();
+  // loading.show();
 
-  $.ajax({
-    url: SERVERHOST + 'api/v2_0/e_wallets/unpaid_list',
-    type: 'GET',
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader('Authorization', current_token);
-    },
-    success: function(data) {
-      loading.destroy();
-      var _data = data.list;
-      console.log(_data);
-      $.each(_data, function(index, el) {
-        $('#wallet_unpaid_list').append(createItem(el));
-      });
-    },
-    error: function(xhr, type) {
-      loading.destroy();
-      console.log('post data error');
-    }
-  });
+  data_params.page = 0;
+  data_params.per_page = 10;
+  dropLoadCtrl = new DropLoadCtrl(
+    '#record_list',
+    '.record-list',
+    SERVERHOST + 'api/v2_0/e_wallets/unpaid_list',
+    data_params,
+    current_token,
+    recordItem,
+    ''
+  );
 });
 
-function createItem(data) {
+function recordItem(data) {
   var _data = data;
   var status_class = '';
   if (_data.status == '待支付') {
@@ -41,14 +35,14 @@ function createItem(data) {
   } else {
     status_class = 'fail';
   }
-  var _ui = '<tr>' +
-              '<td>' +
+  var _ui = '<li class="record-list-item clearfix">' +
+              '<div class="item detail">' +
                 '<p>'+ _data.title +'</p>' +
                 '<p class="time">'+ _data.time +'</p>' +
-              '</td>' +
-              '<td class="amount text-center">'+ _data.amount +'</td>' +
-              '<td class="status text-center '+ status_class +'">'+ _data.status +'</td>' +
-            '</tr>';
+              '</div>' +
+              '<div class="item amout">'+ _data.amount +'</div>' +
+              // '<div class="item status '+ status_class +'">'+ _data.status +'</div>' +
+            '</li>';
 
   return _ui;
 }
