@@ -431,11 +431,10 @@ var createConfirm = function (message, opt, callback){
 // 拖动刷新加载方法
 function DropLoadCtrl(container, list, url, params, token, create_item, empty_icon) {
   var that = this;
-  this.page = params.page;
-  this.dropload = $(container).dropload({
+  that.dropload = $(container).dropload({
     scrollArea: window,
     refreshFn: function(me) {
-      params.page = 0;
+      params.page = 1;
       $.ajax({
         url: url,
         type: 'GET',
@@ -452,7 +451,7 @@ function DropLoadCtrl(container, list, url, params, token, create_item, empty_ic
             });
           } else {
             me.lock();
-            if (params.page == 0) {
+            if (params.page == 1) {
               me.emptyData();
               $(container).find(list).append(
                 createEmptyContent(empty_icon)
@@ -494,7 +493,7 @@ function DropLoadCtrl(container, list, url, params, token, create_item, empty_ic
           }
           setTimeout(function () {
             me.resetload();
-            that.page = 1;
+            params.page = 1;
             me.unlock();
             me.noData(false);
             console.log('reset load');
@@ -507,8 +506,7 @@ function DropLoadCtrl(container, list, url, params, token, create_item, empty_ic
       });
     },
     loadDownFn: function (me) {
-      console.log(that.page);
-      params.page = that.page += 1;
+      params.page = params.page += 1;
 
       $.ajax({
         url: url,
@@ -526,7 +524,7 @@ function DropLoadCtrl(container, list, url, params, token, create_item, empty_ic
             });
           } else {
             me.lock();
-            if (params.page == 0) {
+            if (params.page == 1) {
               me.emptyData();
               $(container).find(list).append(
                 createEmptyContent(empty_icon)
