@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_custom"
+    android:orientation="vertical"
+    tools:context="com.robin8.rb.activity.uesr_msg.UserInfoShowActivity">
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/recycler_view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:cacheColorHint="@android:color/transparent"-->
+    <!--android:divider="@color/undefined_divide_line"-->
+    <!--android:dividerHeight="1dp"-->
+    <!--android:listSelector="@android:color/transparent"/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_custom"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <LinearLayout
+            android:id="@+id/layout_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="头像"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/undefine_font_4"/>
+
+            <com.robin8.rb.view.widget.CircleImageView
+                android:id="@+id/civ_image"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/icon_user_default"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white_eeeeee"/>
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="昵称"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/undefine_font_4"/>
+
+            <EditText
+                android:id="@+id/edit_nick_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="right"
+                android:hint="请填写你的昵称"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textColor="@color/black_000000"
+                android:textColorHint="@color/gray_second"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white_eeeeee"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="手机"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/undefine_font_4"/>
+
+            <TextView
+                android:id="@+id/tv_phone_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="请填写你的手机号"
+                android:textColor="@color/gray_second"
+                android:textSize="@dimen/undefine_font_4"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white_eeeeee"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="E-mail"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/undefine_font_4"/>
+
+            <TextView
+                android:id="@+id/tv_email_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="请填写你的邮箱"
+                android:textColor="@color/gray_second"
+                android:textSize="@dimen/undefine_font_4"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white_eeeeee"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="性别"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/undefine_font_4"/>
+
+            <TextView
+                android:id="@+id/tv_gender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="请选择你的性别"
+                android:textColor="@color/gray_second"
+                android:textSize="@dimen/undefine_font_4"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white_eeeeee"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="生日"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/undefine_font_4"/>
+
+            <TextView
+                android:id="@+id/tv_birth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="请选择你的生日"
+                android:textColor="@color/gray_second"
+                android:textSize="@dimen/undefine_font_4"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white_eeeeee"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="职业"
+                android:textColor="@color/black_000000"
+                android:textSize="@dimen/undefine_font_4"/>
+
+            <EditText
+                android:id="@+id/edit_job"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="right"
+                android:hint="请填写你的职业"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textColor="@color/black_000000"
+                android:textColorHint="@color/gray_second"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

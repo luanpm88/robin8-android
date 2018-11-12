@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.igexin.sdk.PushManager;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class StringUtil {
 
@@ -370,5 +373,18 @@ public class StringUtil {
         return str;
     }
 
+    /**
+     list去重
+     @param list
+     @return
+     */
+    public static ArrayList<String> removeDuplicate(ArrayList<String> list)
+    {
+        Set set = new LinkedHashSet<String>();
+        set.addAll(list);
+        list.clear();
+        list.addAll(set);
+        return list;
+    }
 
 }

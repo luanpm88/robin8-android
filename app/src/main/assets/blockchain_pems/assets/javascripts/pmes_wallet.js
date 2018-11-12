@@ -3,6 +3,7 @@ $(document).ready(function() {
   loading.show();
 
   var get_native_data = {
+   // current_token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcml2YXRlX3Rva2VuIjoiOTI1M2I2N2U2ZGRlNTYyMWM1YjliZjQ1YTc2OThhZWEifQ.IhKLM48y9qulsbnZIC2ZMoArXJDaTbD8zkfZntrlWow'
     current_token: ''
   };
 

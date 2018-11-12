@@ -82,17 +82,18 @@ private String extra;
         // webView.loadUrl(loadurl, map);
         extra = getIntent().getStringExtra(PUT_TYPE);
         String xml = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
-        if (TextUtils.isEmpty(xml)) {
-            if (extra.equals("0")) {
-                webView.loadUrl(loadInto);
-            } else if (extra.equals("1")||extra.equals("2")) {
-                webView.loadUrl(loadReg);
-            } else {
-                webView.loadUrl(loadInto);
-            }
-        } else {
-            webView.loadUrl(loadLogin);
-        }
+//        if (TextUtils.isEmpty(xml)) {
+//            if (extra.equals("0")) {
+//                webView.loadUrl(loadInto);
+//            } else if (extra.equals("1")||extra.equals("2")) {
+//                webView.loadUrl(loadReg);
+//            } else {
+//                webView.loadUrl(loadInto);
+//            }
+//        } else {
+//            webView.loadUrl(loadLogin);
+//        }
+        webView.loadUrl(loadWallet);
         webView.addJavascriptInterface(new JsInterface(), "jwPut");
         webView.setWebChromeClient(new WebChromeClient());
 
@@ -122,7 +123,7 @@ private String extra;
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 mTVCenter.setText(view.getTitle());
-                if (url.endsWith("qa.html")) {
+                if (url.endsWith("record.html") ||url.endsWith("qa.html")) {
                     isBack = true;
                 } else {
                     isBack = false;
@@ -217,14 +218,28 @@ private String extra;
             return key;
         }
 
+        @JavascriptInterface
+        public String current_token_data(){
+            JSONObject  jsonObject = new JSONObject();
+            try {
+                jsonObject.put("current_token", BaseApplication.getInstance().getLoginBean().getKol().getIssue_token());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+           // String key = jsonObject.toString();
+            String key = BaseApplication.getInstance().getLoginBean().getKol().getIssue_token();
+            LogShitou("html调用流水", "===>" + key);
+            return key;
+        }
+
         //html获取登陆后的数据
         @JavascriptInterface
         public String put_wallet_data() {
             jsonObject = new JSONObject();
             try {
-                jsonObject.put("amount_frozen", amount_frozen);
-                jsonObject.put("amount_active", amount_active);
-
+//                jsonObject.put("amount_frozen", amount_frozen);
+//                jsonObject.put("amount_active", amount_active);
+                jsonObject.put("current_token", BaseApplication.getInstance().getLoginBean().getKol().getIssue_token());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

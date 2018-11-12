@@ -243,6 +243,8 @@ public class FindItemDetailActivity extends BaseActivity {
         RequestParams mRequestParams = new RequestParams();
         mRequestParams.put("post_id", listBean.getPost_id());
         mRequestParams.put("stay_time", time);
+        mRequestParams.put("tag",listBean.getTag());
+        mRequestParams.put("title",listBean.getTitle());
         mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.FIND_READ), mRequestParams, new RequestCallback() {
 
             @Override

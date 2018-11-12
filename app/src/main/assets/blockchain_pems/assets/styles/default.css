@@ -249,6 +249,9 @@ input[type=checkbox]:disabled:before, input[type=radio]:disabled:before, input[t
 .default-table td.amount { padding: 8px 0; font-weight: bold; }
 .default-table td .time { font-size: 1rem; }
 
+/*empty content styles*/
+.empty-content { padding: 40px; text-align: center; }
+
 /*
 **page styles end && class reset begin**
 */

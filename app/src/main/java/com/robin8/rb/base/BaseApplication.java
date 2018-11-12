@@ -51,6 +51,7 @@ public class BaseApplication extends MultiDexApplication {
     private List<ContactBean> mContactBeanList;
     public static LocationService locationService;
     public static Vibrator mVibrator;
+    public static Context sInstance;
 
     @Override
     public void onCreate() {
@@ -67,6 +68,7 @@ public class BaseApplication extends MultiDexApplication {
         //            mHandler = new Handler();
         //        }
         // Context
+        sInstance = getApplicationContext();
         mContext = getApplicationContext();
         // 主线程id,获取当前方法运行线程id,此方法运行在主线程中,�?��获取的是主线程id
         mMainThreadIdI = android.os.Process.myTid();

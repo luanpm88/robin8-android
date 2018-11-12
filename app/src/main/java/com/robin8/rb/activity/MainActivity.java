@@ -34,6 +34,7 @@ import com.robin8.rb.base.BasePager;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -389,16 +390,25 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         RequestParams requestParams = new RequestParams();
         if (! TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))) {
             requestParams.put("userId", HelpTools.getLoginInfo(HelpTools.LoginNumber));
-            if (TextUtils.isEmpty(BaseApplication.getInstance().getLoginBean().getKol().getName())) {
+            LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
+            if (loginBean!=null){
+                String name = loginBean.getKol().getName();
+                String avatar_url = loginBean.getKol().getAvatar_url();
+                if (TextUtils.isEmpty(name)) {
+                    requestParams.put("name", HelpTools.getLoginInfo(HelpTools.LoginNumber));
+                } else {
+                    requestParams.put("name", BaseApplication.getInstance().getLoginBean().getKol().getName());
+                }
+                if (TextUtils.isEmpty(avatar_url)) {
+                    requestParams.put("portraitUri", CommonConfig.APP_ICON);
+                } else {
+                    requestParams.put("portraitUri", BaseApplication.getInstance().getLoginBean().getKol().getAvatar_url());
+                }
+            }else {
                 requestParams.put("name", HelpTools.getLoginInfo(HelpTools.LoginNumber));
-            } else {
-                requestParams.put("name", BaseApplication.getInstance().getLoginBean().getKol().getName());
+                requestParams.put("portraitUri", CommonConfig.APP_ICON);
             }
-            if (TextUtils.isEmpty(BaseApplication.getInstance().getLoginBean().getKol().getAvatar_url())) {
-                requestParams.put("portraitUri", "http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/22494f2caf!avatar");
-            } else {
-                requestParams.put("portraitUri", BaseApplication.getInstance().getLoginBean().getKol().getAvatar_url());
-            }
+
 
             base.getDataFromServer(false, HttpRequest.POST, CommonConfig.RONG_CLOUD_URL, requestParams, new RequestCallback() {
 
@@ -609,9 +619,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         //                // onePageSelected(INFLUENCE_LIST);
         //            }
         //        }
-        if (mPageName == StatisticsAgency.MY) {
-            mPagerList.get(MY).initData();
-        }
+//        if (mPageName == StatisticsAgency.MY) {
+//            mPagerList.get(MY).initData();
+//        }
 
         //        if (mPageName == StatisticsAgency.INFLUENCE_LIST) {
         //            if (! TextUtils.isEmpty(register_main)) {

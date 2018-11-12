@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.activity.WalletActivity;
+import com.robin8.rb.activity.uesr_msg.UserInformationActivity;
 import com.robin8.rb.activity.web.PutWebActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BasePager;
@@ -35,19 +36,21 @@ import com.robin8.rb.model.NotifyMsgEntity;
 import com.robin8.rb.module.create.activity.FragmentsActivity;
 import com.robin8.rb.module.first.activity.SearchKolActivity;
 import com.robin8.rb.module.mine.activity.ADHostActivity;
-import com.robin8.rb.module.mine.activity.BeKolFirstActivity;
 import com.robin8.rb.module.mine.activity.CollectMoneyActivity;
 import com.robin8.rb.module.mine.activity.HelpCenterActivity;
 import com.robin8.rb.module.mine.activity.InvitationCodeActivity;
 import com.robin8.rb.module.mine.activity.MyCollectActivity;
 import com.robin8.rb.module.mine.activity.SettingActivity;
 import com.robin8.rb.module.mine.activity.UserSignActivity;
+import com.robin8.rb.module.mine.adapter.UserCheckAdapter;
 import com.robin8.rb.module.mine.model.MineShowModel;
 import com.robin8.rb.module.mine.rongcloud.RongCloudBean;
+import com.robin8.rb.module.social.view.LinearLayoutForListView;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.widget.myprogress.RoundCornerProgressBar;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.CustomToast;
@@ -111,16 +114,20 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private int mTop;
     private ImageView mCIVImage;
     private TextView mUserNameTv;
+    private RoundCornerProgressBar mUserProgress;
     private TextView mUserTagTv;
     private ImageView mKolCertificationIv;
     private TextView mApplyTv;
     private MineShowModel.KolBean mKolBean;
+    private MineShowModel mBean;
     private View mKolItemLL;
     private int isHiddle = 0;
     public ImageView imgDot;
     public boolean has_any_unread_message;
     private ImageView mImgLogo;
     private String imgUrl;
+    private float userProRate;
+    private String isShowCode;
     //private int[] socialTagIcon = {R.mipmap.icon_wallet,R.mipmap.,R.mipmap.icon_checkin,R.mipmap.icon_invite,R.mipmap.icon_help_center};
 
     public MinePager(FragmentActivity activity) {
@@ -228,6 +235,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
         mCIVImage = (ImageView) view.findViewById(R.id.civ_image);
         mUserNameTv = (TextView) view.findViewById(R.id.tv_user_name);
+        mUserProgress = (RoundCornerProgressBar) view.findViewById(R.id.pro_user_info);
         mUserTagTv = (TextView) view.findViewById(R.id.tv_user_tag);
         mApplyTv = (TextView) view.findViewById(R.id.tv_apply);
         mKolCertificationIv = (ImageView) view.findViewById(R.id.iv_kol_certification);
@@ -236,12 +244,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         mKolItemLL.setOnClickListener(this);
     }
 
+    private boolean isFirst = false;
+
     private void updateView(MineShowModel.KolBean kol) {
 
         if (kol == null || mClickNumberTv == null) {
             return;
         }
-
         LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
         if (loginBean != null) {
             if (loginBean.getKol() != null) {
@@ -251,12 +260,19 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 loginBean.setKol(kolEntity);
                 BaseApplication.getInstance().setLoginBean(loginBean);
                 HelpTools.insertCommonXml(HelpTools.MyKolId, String.valueOf(kol.getId()));
-                mClickNumberTv.setText(String.valueOf(kol.getMax_campaign_click()));
+                if (TextUtils.isEmpty(String.valueOf(kol.getMax_campaign_click()))) {
+                    mClickNumberTv.setText("0");
+                } else {
+                    mClickNumberTv.setText(String.valueOf(kol.getMax_campaign_click()));
+                }
                 mTotalNumberTv.setText(StringUtil.deleteZero(kol.getCampaign_total_income()));
                 mMaxNumberTv.setText(StringUtil.deleteZero(kol.getMax_campaign_earn_money()));
                 mAverageNumberTv.setText(StringUtil.deleteZero(kol.getAvg_campaign_credit()));
                 mUserNameTv.setText(kol.getName());
-                mUserTagTv.setText(getTags(kol.getTags()));
+                // mUserTagTv.setText(getTags(kol.getTags()));
+                mUserProgress.setVisibility(View.VISIBLE);
+                mUserProgress.setProgress(Float.valueOf(userProRate * 100));
+                mUserTagTv.setText("个人资料越完善,奖励越丰富");
                 if (! TextUtils.isEmpty(imgUrl)) {
                     mImgLogo.setVisibility(View.VISIBLE);
                     BitmapUtil.loadImage(mActivity, imgUrl, mImgLogo);
@@ -278,6 +294,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     e.printStackTrace();
                 }
                 setApplyTvState(kol.getRole_apply_status(), kol.getKol_role());
+
             }
         }
     }
@@ -317,12 +334,14 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             case STATE_PASSED:
                 // 审核成功 埋点
                 TalkingDataAppCpa.onCustEvent2();
-                if (role.equals(ROLE_BIG_V)) {
-                    mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_certification);
-                    mApplyTv.setText(R.string.edit_kol_data);
-                    mApplyTv.setTextColor(UIUtils.getColor(R.color.mine_yellow_custom));
-                    mApplyTv.setBackgroundResource(R.drawable.shape_bg_yellow_pane);
-                }
+                mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_certification);
+                //
+                //                if (role.equals(ROLE_BIG_V)) {
+                //                    mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_certification);
+                //                    mApplyTv.setText(R.string.edit_kol_data);
+                //                    mApplyTv.setTextColor(UIUtils.getColor(R.color.mine_yellow_custom));
+                //                    mApplyTv.setBackgroundResource(R.drawable.shape_bg_yellow_pane);
+                //                }
                 break;
             case STATE_REJECTED:
                 mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_uncertification);
@@ -375,13 +394,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             @Override
             public void onResponse(String response) {
                 LogUtil.LogShitou("我的页面", "==>" + response);
+                // response = "{\"error\":0,\"hide\":1,\"detail\":\"26\",\"kol\":{\"id\":109050,\"name\":\"啦啦啦哇哇哈哈呵呵啧啧\",\"kol_role\":\"big_v\",\"role_apply_status\":\"passed\",\"role_check_remark\":\"\",\"max_campaign_click\":0,\"max_campaign_earn_money\":10.0,\"campaign_total_income\":\"26.2\",\"avg_campaign_credit\":\"26.2\",\"avatar_url\":\"http://img.robin8.net/uploads/kol/avatar/109050/9e684b637d!avatar\",\"tags\":[{\"name\":\"airline\",\"label\":\"航空\"},{\"name\":\"appliances\",\"label\":\"家电\"}],\"admintag\":[\"Geometry\"]},\"is_open_indiana\":true,\"has_any_unread_message\":false,\"brand_campany_name\":null,\"is_show_invite_code\":\"1\",\"logo\":\"http://img.robin8.net/uploads/admintag_strategy/logo/1/8d0801a583.png\",\"vest_bag_detail\":\"2\",\"put_switch\":\"1\",\"put_count\":\"5\",\"completed_rate\":0.67}";
                 parseJson(response);
             }
         });
 
     }
 
-    private String isShowCode;
 
     private void parseJson(String response) {
         MineShowModel mineShowModel = GsonTools.jsonToBean(response, MineShowModel.class);
@@ -389,16 +408,32 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             if (mineShowModel.getError() == 0) {
                 CacheUtils.putString(mActivity, SPConstants.MINE_DATA, response);
                 mKolBean = mineShowModel.getKol();
+                mBean = mineShowModel;
                 int detail = mineShowModel.getDetail();
                 has_any_unread_message = mineShowModel.isHas_any_unread_message();
+                userProRate = mineShowModel.getCompleted_rate();
+                LogUtil.LogShitou("完成度是多少", "==>" + mineShowModel.getCompleted_rate());
                 isHiddle = detail;
                 if (! TextUtils.isEmpty(mineShowModel.getIs_show_invite_code())) {
                     isShowCode = mineShowModel.getIs_show_invite_code();
                 }
-                if (!TextUtils.isEmpty(mineShowModel.getPut_switch())){
-                    HelpTools.insertLoginInfo(HelpTools.ISOPENPUT,mineShowModel.getPut_switch());
+                if (! TextUtils.isEmpty(mineShowModel.getPut_switch())) {
+                    HelpTools.insertLoginInfo(HelpTools.ISOPENPUT, mineShowModel.getPut_switch());
                 }
                 imgUrl = mineShowModel.getLogo();
+                //身份审核进度
+                if (mBean != null) {
+                    if (!(mBean.getCreator_is_read() == 0 && mBean.getPublic_wechat_account_is_read() == 0 && mBean.getWeibo_account_is_read() == 0)) {
+                        //三身份都不为0显示
+                        if (mBean.getRead_list() != null) {
+                            if (mBean.getRead_list().size() != 0) {
+                                if (isFirst==false){
+                                    showCheckResult(mBean.getRead_list());
+                                }
+                            }
+                        }
+                    }
+                }
                 updateView(mKolBean);
             }
             //            else {
@@ -424,6 +459,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         mUserNameTv.setText(mActivity.getString(R.string.click_login));
         mUserTagTv.setText(mActivity.getString(R.string.login_get_more_campaign));
         mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_uncertification);
+        mUserProgress.setVisibility(View.GONE);
         mApplyTv.setText(mActivity.getString(R.string.be_kol));
         mClickNumberTv.setText(String.valueOf(0));
         mTotalNumberTv.setText(String.valueOf(0));
@@ -439,10 +475,10 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         }
         switch (v.getId()) {
             case R.id.ll_kol_item:
-                if (mKolBean != null && STATE_REJECTED.equals(mKolBean.getRole_apply_status())) {
-                    showRejectedDialog();
-                    return;
-                }
+                //                if (mKolBean != null && STATE_REJECTED.equals(mKolBean.getRole_apply_status())) {
+                //                    showRejectedDialog();
+                //                    return;
+                //                }
                 skipToBeKol();
                 break;
             case R.id.mine_message_tv:
@@ -477,8 +513,17 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         if (isLogined(SPConstants.BE_KOL_ACTIVITY)) {
             // 成为kol埋点
             TalkingDataAppCpa.onCustEvent1();
-            Intent intent = new Intent(mActivity, BeKolFirstActivity.class);
-            intent.putExtra("id", mKolBean.getId());
+            try{
+                if (mCustomDialogManager.isShow()){
+                    mCustomDialogManager.dismiss();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            //            Intent intent = new Intent(mActivity, BeKolFirstActivity.class);
+            //            intent.putExtra("id", mKolBean.getId());
+            //            mActivity.startActivity(intent);
+            Intent intent = new Intent(mActivity, UserInformationActivity.class);
             mActivity.startActivity(intent);
         }
     }
@@ -495,7 +540,6 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
             @Override
             public void onClick(View v) {
-
                 cdm.dismiss();
             }
         });
@@ -532,7 +576,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
      我的钱包
      */
     private void skipToWallet() {
-        //        Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
+        //        Intent intent = new Intent(mActivity, UserBaseMsgActivity.class);
         //        mActivity.startActivity(intent);
         if (isLogined(SPConstants.WALLETACTIVIRY)) {
             Intent intent = new Intent(mActivity, WalletActivity.class);
@@ -548,7 +592,6 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             int type = msgEntity.getCode();
             switch (type) {
                 case NotifyManager.TYPE_LOGIN:
-
                 case NotifyManager.TYPE_LOGIN_OUT:
                 case NotifyManager.TYPE_REFRESH_PROFILE:
                     initData();
@@ -685,7 +728,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
         if (isLogined(SPConstants.MY_PUT_WALLET)) {
             Intent intent = new Intent(mActivity, PutWebActivity.class);
-            intent.putExtra(PutWebActivity.PUT_TYPE,"1");
+            intent.putExtra(PutWebActivity.PUT_TYPE, "1");
             mActivity.startActivity(intent);
         }
     }
@@ -770,6 +813,11 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
      获取融云的token
      */
     private void initGetRongCloud() {
+        try{
+            mCustomDialogManager.dismiss();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         final LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
         String id;
         final String name;
@@ -788,12 +836,12 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             if (! TextUtils.isEmpty(loginBean.getKol().getAvatar_url())) {
                 imgUrl = loginBean.getKol().getAvatar_url();
             } else {
-                imgUrl = "http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/22494f2caf!avatar";
+                imgUrl = CommonConfig.APP_IMG_URL;
             }
         } else {
             id = CommonConfig.TOURIST_PHONE;
             name = "游客";
-            imgUrl = "http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/22494f2caf!avatar";
+            imgUrl = CommonConfig.APP_IMG_URL;
         }
         if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.CloudToken))) {
             BasePresenter base = new BasePresenter();
@@ -805,7 +853,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
                 @Override
                 public void onError(Exception e) {
-                    CustomToast.showShort(mActivity, mActivity.getString(R.string.no_net));
+                   // CustomToast.showShort(mActivity, mActivity.getString(R.string.no_net));
+                    CustomToast.showShort(mActivity, "客服繁忙中，请您稍后再试");
                 }
 
                 @Override
@@ -1059,5 +1108,90 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             this.icons = icons;
             this.name = name;
         }
+    }
+
+    private boolean isTextShow = false;
+    private CustomDialogManager mCustomDialogManager;
+
+    /**
+     用户身份审核结果
+     */
+    private void showCheckResult(List<MineShowModel.ReadListBean> checkBeanList) {
+        View view = LayoutInflater.from(mActivity).inflate(R.layout.dialog_check_result, null);
+        TextView tvOver = (TextView) view.findViewById(R.id.tv_over);
+        LinearLayoutForListView list = (LinearLayoutForListView) view.findViewById(R.id.list_view);
+        mCustomDialogManager = new CustomDialogManager(mActivity, view);
+        if (checkBeanList != null) {
+            if (checkBeanList.size() != 0) {
+                for (int i = 0; i < checkBeanList.size(); i++) {
+                    if (checkBeanList.get(i).getState() == - 1) {
+                        isTextShow = true;
+                    }
+                }
+            }
+        }
+        UserCheckAdapter checkAdapter = new UserCheckAdapter(mActivity, checkBeanList);
+        list.setAdapter(checkAdapter);
+        if (isTextShow == false) {
+            tvOver.setText(mActivity.getResources().getString(R.string.known_la).toString());
+        } else {
+            tvOver.setText("联系客服");
+
+        }
+
+        // 按钮状态0=我知道啦 | 1= 联系客服
+
+        tvOver.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                mCustomDialogManager.dg.dismiss();
+                if (isTextShow == true) {
+                    initGetRongCloud();
+                }
+                postRead();
+            }
+        });
+        mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
+        mCustomDialogManager.dg.getWindow().setGravity(Gravity.CENTER);
+        mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+        if (!mCustomDialogManager.dg.isShowing()){
+            LogUtil.LogShitou("走了几次","??????????????");
+            isFirst=true;
+            mCustomDialogManager.dg.show();
+        }
+
+    }
+
+    /**
+     身份审核进度 已读
+     */
+    private void postRead() {
+        BasePresenter mBasePresenter = new BasePresenter();
+        mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.CHECK_RESULT_URL), null, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.LogShitou("提交已读数据", "==>" + response);
+                try{
+                    if (mCustomDialogManager.isShow()){
+                        mCustomDialogManager.dismiss();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+//                BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
+//                if (baseBean!=null){
+//                    if (baseBean.getError()==0){
+//                        isFirst=false;
+//                    }
+//                }
+
+            }
+        });
     }
 }

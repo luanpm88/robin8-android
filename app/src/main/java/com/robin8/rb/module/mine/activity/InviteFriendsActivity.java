@@ -61,7 +61,7 @@ import cn.sharesdk.wechat.moments.WechatMoments;
 /**
  Created by IBM on 2016/8/14. */
 public class InviteFriendsActivity extends BaseActivity {
-    private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
+    private static final String IMAGE_URL = CommonConfig.APP_ICON;
     private static final String TITLE_URL = CommonConfig.SERVICE + "/invite?inviter_id=";
 
    private TextView tvRewordInfo;

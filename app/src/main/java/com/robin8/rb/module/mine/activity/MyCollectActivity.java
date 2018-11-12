@@ -197,27 +197,27 @@ public class MyCollectActivity extends BaseActivity {
                     case R.id.tv_collect:
                         if (isCollect == false) {
                             if (mDataList.get(position).isIs_collected() == false) {
-                                setParams(0, true, mDataList.get(position).getPost_id(), setResultCallBack);
+                                setParams(0, true, mDataList.get(position), setResultCallBack);
                             } else {
-                                setParams(0, false, mDataList.get(position).getPost_id(), setResultCallBack);
+                                setParams(0, false, mDataList.get(position), setResultCallBack);
                             }
                         } else {
-                            setParams(0, false, mDataList.get(position).getPost_id(), setResultCallBack);
+                            setParams(0, false, mDataList.get(position), setResultCallBack);
                         }
                         break;
                     case R.id.ll_like:
                         if (isLike == false) {
                             if (mDataList.get(position).isIs_liked() == false) {
-                                setParams(1, true, mDataList.get(position).getPost_id(), setResultCallBack);
+                                setParams(1, true, mDataList.get(position), setResultCallBack);
                             } else {
-                                setParams(1, false, mDataList.get(position).getPost_id(), setResultCallBack);
+                                setParams(1, false, mDataList.get(position), setResultCallBack);
                             }
                         } else {
-                            setParams(1, false, mDataList.get(position).getPost_id(), setResultCallBack);
+                            setParams(1, false, mDataList.get(position), setResultCallBack);
                         }
                         break;
                     default:
-                        setParams(2, true, mDataList.get(position).getPost_id(), setResultCallBack);
+                        setParams(2, true, mDataList.get(position), setResultCallBack);
                         break;
                 }
             }
@@ -239,7 +239,7 @@ public class MyCollectActivity extends BaseActivity {
         });
     }
 
-    private void setParams(final int whith, final boolean is, final String id, final SetResultCallBack setResultCallBack) {
+    private void setParams(final int whith, final boolean is, final FindArticleListModel.ListBean listBean, final SetResultCallBack setResultCallBack) {
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(MyCollectActivity.this);
         }
@@ -257,7 +257,9 @@ public class MyCollectActivity extends BaseActivity {
                 mRequestParams.put("_type", "forward");// like|collect
                 break;
         }
-        mRequestParams.put("post_id", id);
+        mRequestParams.put("post_id", listBean.getPost_id());
+        mRequestParams.put("tag",listBean.getTag());
+        mRequestParams.put("title",listBean.getTitle());
         if (is) {
             mRequestParams.put("_action", "add");//add | cancel
         } else {

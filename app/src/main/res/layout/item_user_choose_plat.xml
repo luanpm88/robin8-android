@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.robin8.rb.view.widget.CircleImageView
+            android:id="@+id/civ_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@mipmap/icon_user_default"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="斗鱼"
+            android:textColor="@color/sub_gray_custom"
+            android:textSize="@dimen/undefine_font_3"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_choose"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignEnd="@+id/layout_name"
+        android:layout_alignRight="@+id/layout_name"
+        android:layout_alignTop="@+id/layout_name"
+        android:src="@mipmap/icon_user_no_choose"/>
+
+    <ImageView
+        android:id="@+id/img_choose_yes"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignEnd="@+id/layout_name"
+        android:layout_alignRight="@+id/layout_name"
+        android:layout_alignTop="@+id/layout_name"
+        android:src="@mipmap/icon_user_choose"
+        android:visibility="gone"/>
+</RelativeLayout>

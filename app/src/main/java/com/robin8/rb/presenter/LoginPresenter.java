@@ -14,6 +14,7 @@ import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginOtherWithPhoneActivity;
 import com.robin8.rb.activity.MainActivity;
 import com.robin8.rb.activity.email.EmailRegiterActivity;
+import com.robin8.rb.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
@@ -463,38 +464,44 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                             //登陆成功之后去绑定社交账号页面
                             int is = 0;
                             if (TextUtils.isEmpty(loginBean.getAlert())) {
-                                if (loginBean.getKol_identities() != null) {
-                                    if (loginBean.getKol_identities().size() != 0) {
-                                        for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
-                                            if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
-                                                is = 1;
-                                            }
-                                            if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
-                                                HelpTools.insertCommonXml(HelpTools.IsBind, "is");
-                                            }
-                                        }
-                                        if (is == 1) {
-                                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
-                                                //都没有走过，邦过微信／微博，跳过first
-                                                jumpActivity(1);
-                                            } else {
-                                                if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
-                                                    jumpActivity(2);
-                                                } else {
-                                                    backMain(1);
-                                                }
-                                            }
-                                        } else {
-                                            jumpActivity(1);
-                                        }
-                                    } else {
-                                        //没有绑定
-                                        jumpActivity(1);
-
-                                    }
-                                } else {
-                                    jumpActivity(1);
+                                if (loginBean.is_new_member()){
+                                    jumpActivity(3);
+                                }else {
+                                    jumpActivity(4);
                                 }
+
+//                                if (loginBean.getKol_identities() != null) {
+//                                    if (loginBean.getKol_identities().size() != 0) {
+//                                        for (int i = 0; i < loginBean.getKol_identities().size(); i++) {
+//                                            if (loginBean.getKol_identities().get(i).getProvider().equals("weibo") || loginBean.getKol_identities().get(i).getProvider().equals("wechat")) {
+//                                                is = 1;
+//                                            }
+//                                            if (loginBean.getKol_identities().get(i).getProvider().equals("weibo")) {
+//                                                HelpTools.insertCommonXml(HelpTools.IsBind, "is");
+//                                            }
+//                                        }
+//                                        if (is == 1) {
+//                                            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))) {
+//                                                //都没有走过，邦过微信／微博，跳过first
+//                                                jumpActivity(1);
+//                                            } else {
+//                                                if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))) {
+//                                                    jumpActivity(2);
+//                                                } else {
+//                                                    backMain(1);
+//                                                }
+//                                            }
+//                                        } else {
+//                                            jumpActivity(1);
+//                                        }
+//                                    } else {
+//                                        //没有绑定
+//                                        jumpActivity(1);
+//
+//                                    }
+//                                } else {
+//                                    jumpActivity(1);
+//                                }
                             } else {
                                 showGgGet(loginBean);
                             }
@@ -575,7 +582,13 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                                 NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
                             }
                             initGetRongCloud(emailNumber, loginBean.getKol().getName(), loginBean.getKol().getAvatar_url());
-                            backMain(1);
+                           // backMain(1);
+//                            if (loginBean.is_new_member()){
+//                                jumpActivity(3);
+//                            }else {
+//                                jumpActivity(4);
+//                            }
+                            jumpActivity(4);
                         } else {
                             CustomToast.showShort(mActivity.getApplicationContext(), loginBean.getDetail());
                         }
@@ -761,6 +774,17 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         } else if (i == 2) {
             //跳转到man
             Intent intent = new Intent(mActivity, MeasureInfluenceManActivity.class);
+            mActivity.startActivity(intent);
+            mActivity.finish();
+            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }else if (i==3){
+            Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
+            mActivity.startActivity(intent);
+            mActivity.finish();
+            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }else if (i==4){
+            Intent intent = new Intent(mActivity, MainActivity.class);
+            intent.putExtra("register_main", "zhu");
             mActivity.startActivity(intent);
             mActivity.finish();
             mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

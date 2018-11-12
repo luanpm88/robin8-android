@@ -10,9 +10,11 @@
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/multisnaprecyclerview/multisnaprecyclerview.iml" filepath="$PROJECT_DIR$/multisnaprecyclerview/multisnaprecyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/oneshare2/oneshare2.iml" filepath="$PROJECT_DIR$/oneshare2/oneshare2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/robin.iml" filepath="$PROJECT_DIR$/robin.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharesdk2/sharesdk2.iml" filepath="$PROJECT_DIR$/sharesdk2/sharesdk2.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipeback/swipeback.iml" filepath="$PROJECT_DIR$/swipeback/swipeback.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheelview/wheelview.iml" filepath="$PROJECT_DIR$/wheelview/wheelview.iml" />
     </modules>
   </component>
 </project>

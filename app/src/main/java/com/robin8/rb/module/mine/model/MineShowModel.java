@@ -23,6 +23,73 @@ public class MineShowModel implements Serializable {
     private boolean has_any_unread_message;
     private String logo;
     private String is_show_invite_code;
+    private float completed_rate;
+    private int creator_is_read;
+    private int public_wechat_account_is_read;
+    private int weibo_account_is_read;
+    private List<ReadListBean> read_list;
+    public int getCreator_is_read() {
+        return creator_is_read;
+    }
+
+    public void setCreator_is_read(int creator_is_read) {
+        this.creator_is_read = creator_is_read;
+    }
+
+    public int getPublic_wechat_account_is_read() {
+        return public_wechat_account_is_read;
+    }
+
+    public void setPublic_wechat_account_is_read(int public_wechat_account_is_read) {
+        this.public_wechat_account_is_read = public_wechat_account_is_read;
+    }
+
+    public int getWeibo_account_is_read() {
+        return weibo_account_is_read;
+    }
+
+    public void setWeibo_account_is_read(int weibo_account_is_read) {
+        this.weibo_account_is_read = weibo_account_is_read;
+    }
+    public List<ReadListBean> getRead_list() {
+        return read_list;
+    }
+
+    public void setRead_list(List<ReadListBean> read_list) {
+        this.read_list = read_list;
+    }
+    public static class ReadListBean implements Serializable{
+        /**
+         * state : 1
+         * dsp : 内容创作者身份认证已通过
+         */
+
+        private int state;
+        private String dsp;
+
+        public int getState() {
+            return state;
+        }
+
+        public void setState(int state) {
+            this.state = state;
+        }
+
+        public String getDsp() {
+            return dsp;
+        }
+
+        public void setDsp(String dsp) {
+            this.dsp = dsp;
+        }
+    }
+    public float getCompleted_rate() {
+        return completed_rate;
+    }
+
+    public void setCompleted_rate(float completed_rate) {
+        this.completed_rate = completed_rate;
+    }
 
     public String getPut_switch() {
         return put_switch;
@@ -214,6 +281,7 @@ public class MineShowModel implements Serializable {
             this.admintag = admintag;
         }
 
+
         public static class TagsBean {
             private String name;
             private String label;
@@ -236,4 +304,6 @@ public class MineShowModel implements Serializable {
         }
 
     }
+
+
 }

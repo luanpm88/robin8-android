@@ -482,6 +482,7 @@
     <string name="share_to_wechat_favorites">分享到微信收藏</string>
     <string name="share_for_money">分享赚收益</string>
     <string name="known">我知道了</string>
+    <string name="known_la">我知道啦</string>
     <string name="screenshot_check_ruler">\u30001.活动保留时间太短\n\u30002.活动被设置了分组\n\u30003.活动含诱导点击文字\n\u30004.没按照参考截图上传\n\u30005.分享了过多相同活动</string>
     <string name="share_success_and_ruler">分享成功啦-《Robin8截图审核规则》</string>
     <string name="campaign_request">活动要求</string>
@@ -525,4 +526,20 @@
     <!--put金币-->
     <string name="put_campaign_detail">支付500元以上的活动可获得价值20%的R8币返还</string>
     <string name="put_wallet">PUT钱包</string>
+
+    <!--登陆后用户信息等-->
+    <string name="tv_know_you">让我们了解你</string>
+    <string name="tv_your_choose">根据你的选择，为你匹配不同种类的活动</string>
+    <string name="tv_choose_gender">选择你的性别</string>
+    <string name="tv_choose_id">选择你的身份</string>
+    <string name="tv_birth_year">出生年份</string>
+    <string name="tv_general_user">普通用户</string>
+    <string name="tv_bigV_user">大V用户</string>
+    <string name="tv_content_creator">内容创作者</string>
+    <string name="tv_choose_favorite">选择你感兴趣的圈子</string>
+    <string name="tv_find_for_you">为你匹配最感兴趣的活动</string>
+    <string name="save">保存</string>
+    <string name="tv_know_user_id">了解你的身份</string>
+    <string name="title_activity_creator_msg">CreatorMsgActivity</string>
+
 </resources>

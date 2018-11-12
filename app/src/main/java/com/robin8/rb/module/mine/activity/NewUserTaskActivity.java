@@ -100,7 +100,7 @@ public class NewUserTaskActivity extends BaseActivity {
         imgName = new ArrayList<>();
         imgSimple = new ArrayList<>();
         imgName.add("截图示例");
-        imgSimple.add("http://7xozqe.com1.z0.glb.clouddn.com/wechat_example.jpg");
+        imgSimple.add((CommonConfig.APP_IMG_URL+"wechat_example.jpg"));
         //底部
         tvButtonRight = ((TextView) view.findViewById(R.id.tv_bottom_right));
         tvButtonLeft = ((TextView) view.findViewById(R.id.tv_bottom_left));
@@ -344,7 +344,7 @@ public class NewUserTaskActivity extends BaseActivity {
         });
     }
 
-    private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
+    private static final String IMAGE_URL = CommonConfig.APP_ICON;
     private static final String TITLE_URL = CommonConfig.SERVICE + "/invite?inviter_id=";
     /**
      弹出分享面板

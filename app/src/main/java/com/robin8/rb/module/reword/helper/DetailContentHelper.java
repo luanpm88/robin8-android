@@ -866,45 +866,38 @@ public class DetailContentHelper {
                 break;
         }
         String status = bean.getStatus();
-        String isOpen = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
-        String isPutUser = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
+       // String isOpen = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
+       // String isPutUser = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
         if (bean.getCampaign().getPer_budget_type().equals(CAMPAIGN_TYPE_RECRUIT)) {
             tvPutResult.setVisibility(View.GONE);
             tvPutEnter.setVisibility(View.GONE);
         } else {
-            if (! TextUtils.isEmpty(isOpen)) {
-                if (isOpen.equals("1")) {
-                    if (SETTLED.equals(status)) {
-                        tvPutResult.setVisibility(View.VISIBLE);
-                        tvPutEnter.setVisibility(View.GONE);
-                        if (! TextUtils.isEmpty(isPutUser)) {
-                            tvPutResult.setText("已获得" + baseBean.getPut_count() + "个PUT的额外奖励，请去钱包查看");
-                        } else {
-                            tvPutResult.setText("活动已结束，无法获得额外奖励");
-                        }
-                    } else if (MISSED.equals(status)) {
-                        tvPutEnter.setVisibility(View.GONE);
-                        tvPutResult.setVisibility(View.VISIBLE);
-                        tvPutResult.setText("活动已结束，无法获得额外奖励");
-                    } else if (REJECTED.equals(status)) {
-                        tvPutEnter.setVisibility(View.GONE);
-                        tvPutResult.setVisibility(View.VISIBLE);
-                        if (! TextUtils.isEmpty(isPutUser)) {
-                            tvPutResult.setText("已获得" + baseBean.getPut_count() + "个PUT的额外奖励，请去钱包查看");
-                        } else {
-                            tvPutResult.setText("活动已结束，无法获得额外奖励");
-                        }
-                    } else {
-                        if (! TextUtils.isEmpty(isPutUser)) {
-                            tvPutResult.setVisibility(View.VISIBLE);
-                            tvPutResult.setText("参加此活动可额外获得PUT奖励");
-                            tvPutEnter.setVisibility(View.GONE);
-                        } else {
-                            tvPutResult.setVisibility(View.GONE);
-                            tvPutEnter.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }
+            if (SETTLED.equals(status)) {
+                tvPutResult.setVisibility(View.VISIBLE);
+                tvPutEnter.setVisibility(View.GONE);
+//                if (! TextUtils.isEmpty(isPutUser)) {
+//                } else {
+//                    tvPutResult.setText("活动已结束，无法获得额外奖励");
+//                }
+                tvPutResult.setText("已获得" + baseBean.getPut_count() + "个PUT的额外奖励，请去钱包查看");
+
+            } else if (MISSED.equals(status)) {
+                tvPutEnter.setVisibility(View.GONE);
+                tvPutResult.setVisibility(View.VISIBLE);
+                tvPutResult.setText("活动已结束，无法获得额外奖励");
+            } else if (REJECTED.equals(status)) {
+                tvPutEnter.setVisibility(View.GONE);
+                tvPutResult.setVisibility(View.VISIBLE);
+//                if (! TextUtils.isEmpty(isPutUser)) {
+//                } else {
+//                    tvPutResult.setText("活动已结束，无法获得额外奖励");
+//                }
+                tvPutResult.setText("已获得" + baseBean.getPut_count() + "个PUT的额外奖励，请去钱包查看");
+
+            } else {
+                tvPutResult.setVisibility(View.VISIBLE);
+                tvPutResult.setText("参加此活动可额外获得PUT奖励");
+                tvPutEnter.setVisibility(View.GONE);
             }
         }
 

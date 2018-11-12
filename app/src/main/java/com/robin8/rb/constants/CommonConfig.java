@@ -15,6 +15,8 @@ public class CommonConfig {
     public static final String RONG_CLOUD_KEY = "c9kqb3rdkii8j";
     public static final String RONG_CLOUD_SECRET = "3Qgy92wONUMc";
     public static final String RONG_CLOUD_ID = "KEFU151140489031686";
+    public static final String APP_ICON = "http://img.robin8.net/robin8_icon.png";
+    public static final String APP_IMG_URL = "http://img.robin8.net/";
 
     static {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
@@ -32,10 +34,11 @@ public class CommonConfig {
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
     //18321878526
-   //public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-     public static String SERVICE = "http://192.168.51.170:3000/";//robin8-测试服务器地址/test server path
+  // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+   //  public static String SERVICE = "http://192.168.51.170:3000/";//robin8-测试服务器地址/test server path
+   //  public static String SERVICE = "http://192.168.51.105:3001/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
-   // public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
+    public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String WEBPATH = "file:///android_asset/blockchain_pems/";//本地web路径
     public static final String UpdateUrl = "api/v2/upgrades/check";
@@ -183,5 +186,13 @@ public class CommonConfig {
     public static final String DOWN = "http://192.168.51.115:3001/aa.txt";//下载文件
     public static final String PUT_WALLET = "pages/blockchain_intro";//钱包
 
+    //login_new
+    public static final String UPDATE_BASE_INFO_URL = "api/v2_1/kols/base_info";//更新kol基本资料，post
+    public static final String UPDATE_BASE_INFOS_URL = "api/v2_1/base_infos";//kol圈子，get
+    public static final String USER_MY_SHOW_URL = "api/v2_1/kols/my_show";//我的个人信息，get
+    public static final String UPDATE_WEIBO_INFO_URL = "api/v2_1/kols/applying_weibo_account";//微博信息，post
+    public static final String UPDATE_CREATOR_INFO_URL = "api/v2_1/kols/applying_creator";//内容创作者信息，post
+    public static final String UPDATE_WECHAT_INFO_URL = "api/v2_1/kols/applying_public_wechat_account";//微信信息，post
+    public static final String CHECK_RESULT_URL = "api/v2_1/kols/set_account_is_read";//微信信息，post
 
 }

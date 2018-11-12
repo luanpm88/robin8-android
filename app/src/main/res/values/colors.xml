@@ -5,6 +5,7 @@
     <color name="white_custom">#ffffff</color>
     <color name="green_custom">#37bd64</color>
     <color name="blue_custom">#2dcad0</color>
+    <color name="blue_5583f0">#5583F0</color>
     <color name="blue_transparent_custom">#aa2dcad0</color>
     <color name="yellow_custom">#ecb200</color>
     <color name="yellow_transparent_custom">#aaecb200</color>
@@ -17,9 +18,18 @@
     <color name="yellow_ffad4c">#ffad4c</color>
     <color name="yellow_ffe0a3">#ffe0a3</color>
     <color name="yellow_957144">#957144</color>
+    <color name="yellow_f69849">#f69849</color>
     <color name="blue_2bdbe2">#2bdbe2</color>
+
     <color name="red_ff3030">#ff3030</color>
     <color name="red_f63800">#f63800</color>
+    <color name="orange_ffbfad">#FFBFAD</color>
+    <color name="orange_ffbaab">#FFBAAB</color>
+    <color name="orange_ffb8c6">#FFB8C6</color>
+    <color name="orange_ffc399">#FFC399</color>
+    <color name="pink_fcbaff">#FCBAFF</color>
+    <color name="purple_d7b9ff">#D7B9FF</color>
+    <color name="purple_b6b6ff">#B6B6FF</color>
 
 
     <color name="brown_custom">#ede8dc</color>
@@ -59,6 +69,7 @@
     <color name="tran_dark">#80000000</color>
 
     <color name="black_custom">#181616</color>
+    <color name="black_404040">#404040</color>
     <color name="gray_first">#777777</color>
     <color name="gray_second">#BBBBBB</color>
     <color name="gray_ffd6c7">#ffd6c7</color>
@@ -76,6 +87,7 @@
     <color name="black_686868">#686868</color>
     <color name="black_5a5a5a">#5a5a5a</color>
     <color name="black_3a3a3a">#3a3a3a</color>
+    <color name="black_333333">#333333</color>
     <color name="black_5e5e5e">#5e5e5e</color>
     <color name="black_797979">#797979</color>
     <color name="gray_656565">#656565</color>
@@ -85,12 +97,16 @@
     <color name="gray_acacac">#acacac</color>
     <color name="gray_969696">#969696</color>
     <color name="gray_8a8a8a">#8a8a8a</color>
+    <color name="gray_898989">#898989</color>
     <color name="gray_eeeef2">#eeeef2</color>
     <color name="gray_b6b6b6">#b6b6b6</color>
     <color name="bg_custom">#f5f5f5</color>
     <color name="white_cccccc">#cccccc</color>
     <color name="white_f3f3f3">#f3f3f3</color>
     <color name="white_dfdfdf">#dfdfdf</color>
+    <color name="white_eeeeee">#EEEEEE</color>
+    <color name="blue_2dcad0">#2DCAD0</color>
+
 
     <color name="gray_custom">#5f6060</color>
     <color name="sub_gray_custom">#929292</color>
@@ -99,6 +115,7 @@
     <color name="undefined_backgroud">#f2f4f9</color>
     <color name="undefined_navigation_line">#d4d1d2</color>
     <color name="undefined_divide_line">#E9E9E9</color>
+    <color name="line_ededed">#EDEDED</color>
 
 
     <color name="round_corner_progress_bar_background_default">#5f5f5f</color>

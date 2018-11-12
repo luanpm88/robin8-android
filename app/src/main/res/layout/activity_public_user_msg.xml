@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_custom"
+    android:orientation="vertical"
+    tools:context="com.robin8.rb.activity.uesr_msg.PublicUserMsgActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_item_circle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/white_custom"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/icon_go_next"
+            android:paddingBottom="15dp"
+            android:paddingTop="20dp"
+            android:text="圈子"
+            android:textColor="@color/black_000000"
+            android:textSize="@dimen/undefine_font_7"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/undefined_divide_line"/>
+
+        <TextView
+            android:id="@+id/tv_item_range"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingBottom="20dp"
+            android:paddingTop="15dp"
+            android:text="请选择你感兴趣的圈子"
+            android:textColor="@color/gray_first"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/white_custom"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:text="微信好友数"
+            android:textColor="@color/black_000000"
+            android:textSize="@dimen/undefine_font_7"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/undefined_divide_line"/>
+
+        <EditText
+            android:id="@+id/edit_wechat_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请填写微信好友数"
+            android:maxLength="17"
+            android:inputType="number"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:textColor="@color/gray_first"
+            android:textColorHint="@color/gray_first"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <!--<com.robin8.rb.ui.widget.ClashScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:visibility="gone"-->
+    <!--android:layout_weight="1">-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+    <!--&lt;!&ndash;微博&ndash;&gt;-->
+    <!--<LinearLayout-->
+    <!--android:id="@+id/layout_weibo"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<include layout="@layout/user_social_msg_item"/>-->
+    <!--</LinearLayout>-->
+
+    <!--&lt;!&ndash;微信公众号&ndash;&gt;-->
+    <!--<LinearLayout-->
+    <!--android:id="@+id/layout_wechat"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--android:visibility="gone">-->
+
+    <!--<include layout="@layout/user_social_msg_item"/>-->
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+    <!--</com.robin8.rb.ui.widget.ClashScrollView>-->
+</LinearLayout>

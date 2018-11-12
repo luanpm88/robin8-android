@@ -47,8 +47,8 @@
             android:maxWidth="300dp"
             android:singleLine="true"
             android:text=""
-            android:textColor="@color/black_custom"
-            android:textSize="@dimen/undefine_font_7"/>
+            android:textColor="@color/black_000000"
+            android:textSize="@dimen/undefine_font_8"/>
 
         <TextView
             android:id="@+id/tv_right"
@@ -62,6 +62,19 @@
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_5"
             android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right|center_vertical"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:text="@string/save"
+            android:textColor="@color/black_000000"
+            android:textSize="@dimen/undefine_font_7"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_edit"

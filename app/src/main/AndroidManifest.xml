@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
           package="com.robin8.rb">
 
     <!--
@@ -774,7 +773,60 @@
             android:label="@string/title_activity_web_need"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.web.BannerWebActivity"
+        <activity
+            android:name=".activity.web.BannerWebActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.UserBaseMsgActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.UserInformationActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.ChooseFavoriteActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.PublicUserMsgActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.FirstKnowUserIdActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.PlatChooseActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.choose_city.CityChooseActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.UserSelectActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.CreatorMsgActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.WechatMsgActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.uesr_msg.WeiBoMsgActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.uesr_msg.UserInfoShowActivity"
+                  android:launchMode="standard"
                   android:screenOrientation="portrait">
         </activity>
     </application>

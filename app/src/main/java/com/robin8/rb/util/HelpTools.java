@@ -44,6 +44,7 @@ public class HelpTools {
     public static final String WEBKEY = "webKey";
     public static final String WEBADDRESS = "webAddress";
     public static final String ISOPENPUT = "isopenput";
+    public static final String BASEINFO = "baseinfo";
 
 
     public static final String LOGININFO = "loginInfo";// 本地存储文件名字

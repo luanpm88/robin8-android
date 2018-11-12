@@ -688,27 +688,15 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         if (mDetailContentHelper == null) {
             mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
         }
-        String isOpen = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
-        String isPutUser = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
+//        String isOpen = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
+//        String isPutUser = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
+        //put钱包
         if (mCampaignInviteEntity.getCampaign().getPer_budget_type().equals(CAMPAIGN_TYPE_RECRUIT)) {
             mLayoutPut.setVisibility(View.GONE);
         } else {
-            if (! TextUtils.isEmpty(isOpen)) {
-                if (isOpen.equals("1")) {
-                    mLayoutPut.setVisibility(View.VISIBLE);
-                    if (! TextUtils.isEmpty(isPutUser)) {
-                        mTvPutResult.setVisibility(View.VISIBLE);
-                        mTvPutEnter.setVisibility(View.GONE);
-                    } else {
-                        mTvPutResult.setVisibility(View.GONE);
-                        mTvPutEnter.setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    mLayoutPut.setVisibility(View.GONE);
-                }
-            } else {
-                mLayoutPut.setVisibility(View.GONE);
-            }
+            mLayoutPut.setVisibility(View.VISIBLE);
+            mTvPutResult.setVisibility(View.VISIBLE);
+            mTvPutEnter.setVisibility(View.GONE);
         }
         mDetailContentHelper.setUpCenterView(mCampaignEntity, mCampaignInviteEntity, mInviteBean, mTVClick, mTVMoney, mTVShareInfo, mTVCountTime, mTVJoinNumber, mLinearLayout, mInviteesCount, mTvPutResult, mTvPutEnter);
 
@@ -1088,7 +1076,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         mCustomDialogManager.showDialog();
     }
 
-    private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
+    private static final String IMAGE_URL = CommonConfig.APP_ICON;
     private static final String TITLE_URL = CommonConfig.SERVICE + "invite?inviter_id=";
     private static final String TITLE_URL_CAMPAIGN = CommonConfig.SERVICE + "wechat_campaign/campaign_page?campaign_id=";
     private static final String TITLE_URL_LEADER = CommonConfig.SERVICE + "club_campaign/campaign_page?campaign_id=";

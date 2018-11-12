@@ -16,8 +16,10 @@
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/multisnaprecyclerview" />
             <option value="$PROJECT_DIR$/oneshare2" />
+            <option value="$PROJECT_DIR$/pickerview" />
             <option value="$PROJECT_DIR$/sharesdk2" />
             <option value="$PROJECT_DIR$/swipeback" />
+            <option value="$PROJECT_DIR$/wheelview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

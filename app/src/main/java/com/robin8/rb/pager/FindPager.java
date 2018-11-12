@@ -67,7 +67,7 @@ public class FindPager extends BasePager implements View.OnClickListener {
     private RefreshHeaderView mRefreshHeaderView;
     private RefreshFooterView mRefreshFooterView;
     private int mCurrentPage = 1;
-    private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
+    private static final String IMAGE_URL = CommonConfig.APP_ICON;
     private static final String TITLE_URL = CommonConfig.SERVICE + "/invite?inviter_id=";
 
     private final static int INIT_DATA = 0;
@@ -346,6 +346,8 @@ public class FindPager extends BasePager implements View.OnClickListener {
                 break;
         }
         mRequestParams.put("post_id", listBean.getPost_id());
+        mRequestParams.put("tag",listBean.getTag());
+        mRequestParams.put("title",listBean.getTitle());
         if (is) {
             mRequestParams.put("_action", "add");//add | cancel
         } else {

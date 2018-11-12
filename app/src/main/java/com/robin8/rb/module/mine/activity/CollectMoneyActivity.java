@@ -79,7 +79,7 @@ public class CollectMoneyActivity extends BaseActivity {
     LinearLayout llGgRule;
     private WProgressDialog mWProgressDialog;
     private String invite_amount;
-    private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
+    private static final String IMAGE_URL = CommonConfig.APP_ICON;
     private static final String TITLE_URL = CommonConfig.SERVICE + "/invite?inviter_id=";
     private CustomDialogManager mCustomDialogManager;
     private CustomShareHelper mCustomShareHelper;

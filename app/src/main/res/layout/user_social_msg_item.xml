@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/bg_custom"
+              android:orientation="vertical">
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical">-->
+
+
+            <LinearLayout
+                android:id="@+id/layout_item_first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/tv_item_first_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="昵称"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/undefine_font_7"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_nick_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写你的昵称"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!--item_two-->
+            <LinearLayout
+                android:id="@+id/layout_item_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/tv_choose_range"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/icon_go_next"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="20dp"
+                    android:text="KOL圈子"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/undefine_font_7"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <TextView
+                    android:id="@+id/tv_item_range"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="15dp"
+                    android:text="请选择你的KOL圈子"
+                    android:textColor="@color/gray_first"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <!--item_for_creator-->
+            <LinearLayout
+                android:id="@+id/layout_item_creator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/tv_choose_platform"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/icon_go_next"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="20dp"
+                    android:text="自媒体平台"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/undefine_font_7"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <TextView
+                    android:id="@+id/tv_item_platform"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="15dp"
+                    android:text="请选择自媒体平台"
+                    android:textColor="@color/gray_first"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <!--item_three-->
+            <LinearLayout
+                android:id="@+id/layout_item_third"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="我的报价"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/undefine_font_7"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_first_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写单图文价格"
+                    android:inputType="number"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="14sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_second_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写多图文头条价格"
+                    android:inputType="number"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="14sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_third_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写次条价格"
+                    android:inputType="number"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="14sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_fourth_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写3-N条价格"
+                    android:inputType="number"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!--item_four-->
+            <LinearLayout
+                android:id="@+id/layout_item_fourth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="报价有效期"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/undefine_font_7"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_price_end_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写你的报价"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="@dimen/sp_14"/>
+            </LinearLayout>
+
+            <!--item_five-->
+            <LinearLayout
+                android:id="@+id/layout_item_fifth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="粉丝数量"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/undefine_font_7"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_first_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写粉丝数量"
+                    android:inputType="number"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="14sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <TextView
+                    android:id="@+id/tv_second_choose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/icon_go_next"
+                    android:ellipsize="end"
+                    android:maxLength="17"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:text="请选择主要粉丝性别"
+                    android:textColor="@color/gray_first"
+                    android:textSize="14sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <TextView
+                    android:id="@+id/tv_third_choose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/icon_go_next"
+                    android:ellipsize="end"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:text="请选择地域集中城市(1-3个)"
+                    android:textColor="@color/gray_first"
+                    android:textSize="14sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+            </LinearLayout>
+            <!--item_six-->
+            <LinearLayout
+                android:id="@+id/layout_item_sixth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="作品链接"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/undefine_font_7"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写作品链接"
+                    android:inputType="number"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+            <!--item_seven-->
+            <LinearLayout
+                android:id="@+id/layout_item_seventh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_custom"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="备注(选填)"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/undefine_font_7"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/undefined_divide_line"/>
+
+                <EditText
+                    android:id="@+id/edit_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:background="@null"
+                    android:hint="请填写备注"
+                    android:inputType="number"
+                    android:maxLength="17"
+                    android:textColor="@color/gray_first"
+                    android:textColorHint="@color/gray_first"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_keep"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="35dp"
+                android:layout_marginLeft="37.5dp"
+                android:layout_marginRight="37.5dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/shape_blue_rectangular"
+                android:gravity="center"
+                android:text="@string/save"
+                android:textColor="@color/white_custom"
+                android:textSize="16sp"/>
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
+</LinearLayout>

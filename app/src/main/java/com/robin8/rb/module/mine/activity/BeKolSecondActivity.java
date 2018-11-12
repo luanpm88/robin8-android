@@ -117,15 +117,15 @@ public class BeKolSecondActivity extends BaseActivity {
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
         Serializable obj = intent.getSerializableExtra("social_accounts");
-        Serializable obj2 = intent.getSerializableExtra("kol_shows");
+        // Serializable obj2 = intent.getSerializableExtra("kol_shows");
         mKolId = intent.getIntExtra("kol_id", 0);
         if (obj instanceof List) {
             mSocialAccounts = (List<SocialAccountsBean>) obj;
         }
-
-        if (obj2 instanceof List) {
-            mKolShows = (List<KolDetailModel.KolShowsBean>) obj2;
-        }
+        LogUtil.LogShitou("传过来的数据", "===>" + mSocialAccounts.size());
+        //        if (obj2 instanceof List) {
+        //            mKolShows = (List<KolDetailModel.KolShowsBean>) obj2;
+        //        }
         updateData();
         getDataFromNet();
         //  updateData();
@@ -167,7 +167,7 @@ public class BeKolSecondActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-             //   LogUtil.LogShitou("社交账号数据刷新", response);
+                LogUtil.LogShitou("社交账号数据刷新", response);
                 parseJson(response);
             }
         });
@@ -208,7 +208,7 @@ public class BeKolSecondActivity extends BaseActivity {
             @Override
             public void onResponse(String response) {
                 // LogUtil.LogShitou("获取第三方账号url", HelpTools.getUrl(CommonConfig.INFLUENCE_INFO_LIST));
-             //   LogUtil.LogShitou("获取第三方账号Uid", response);
+                //   LogUtil.LogShitou("获取第三方账号Uid", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -323,8 +323,8 @@ public class BeKolSecondActivity extends BaseActivity {
      @param names
      */
     private void bind(final String names, final int ids) {
-        CustomToast.showShort(BeKolSecondActivity.this, "正在前往"+names+"中...");
-        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), null, names,0);
+        CustomToast.showShort(BeKolSecondActivity.this, "正在前往" + names + "中...");
+        BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), null, names, 0);
         presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
 
             @Override
@@ -370,7 +370,7 @@ public class BeKolSecondActivity extends BaseActivity {
         params.put("price", "0.1");
         params.put("followers_count", "0.1");
         params.put("username", userName);
-      //  LogUtil.LogShitou("绑定qq的报价之类的",name+"//"+userName);
+        //  LogUtil.LogShitou("绑定qq的报价之类的",name+"//"+userName);
         url = HelpTools.getUrl(CommonConfig.UPDATE_SOCIAL_URL);
 
         mBasePresenter.getDataFromServer(true, HttpRequest.POST, url, params, new RequestCallback() {
@@ -382,7 +382,7 @@ public class BeKolSecondActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-              //  LogUtil.LogShitou("提交接口",response);
+                //  LogUtil.LogShitou("提交接口",response);
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
 
                 if (bean == null) {
@@ -411,7 +411,7 @@ public class BeKolSecondActivity extends BaseActivity {
         } else if (resultCode == SPConstants.BE_KOL_SECOND_PERSONAL_SHOW && data != null) {
             int counts = data.getIntExtra("counts", 0);
             mDataList.get(2).content = counts;
-           // mGridDataList.get(mBackId).isChecked = true;
+            // mGridDataList.get(mBackId).isChecked = true;
             mMyListAdapter.notifyDataSetChanged();
         }
 
@@ -779,7 +779,7 @@ public class BeKolSecondActivity extends BaseActivity {
         }
 
         if (mRequestParams == null) {
-            mRequestParams  = new RequestParams();
+            mRequestParams = new RequestParams();
         }
         if (mWProgressDialog == null) {
             mWProgressDialog = WProgressDialog.createDialog(this);
@@ -805,7 +805,7 @@ public class BeKolSecondActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-              //  LogUtil.LogShitou("绑次数查询", response);
+                //  LogUtil.LogShitou("绑次数查询", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -830,7 +830,7 @@ public class BeKolSecondActivity extends BaseActivity {
                         }
 
                     }
-                }else {
+                } else {
                     try {
                         CustomToast.showShort(BeKolSecondActivity.this, "查询失败");
                     } catch (Exception e) {
@@ -882,21 +882,21 @@ public class BeKolSecondActivity extends BaseActivity {
                         if (indentyBean.getError() == 0) {
                             if (indentyBean.getIdentities() != null) {
 
-                                if (indentyBean.getIdentities().size()==0){
+                                if (indentyBean.getIdentities().size() == 0) {
                                     socalUnbind(uid, providerName);
-                                }else {
+                                } else {
                                     for (int i = 0; i < indentyBean.getIdentities().size(); i++) {
                                         if ((indentyBean.getIdentities().get(i).getProvider()).equals(providerName)) {
                                             listWechat.add(indentyBean.getIdentities().get(i).getUid());
                                         }
                                     }
-                                    if (listWechat.size()!=0){
+                                    if (listWechat.size() != 0) {
                                         unbindIndenty(listWechat.get(0), uid, providerName);
-                                    }else {
+                                    } else {
                                         socalUnbind(uid, providerName);
                                     }
                                 }
-                            }else {
+                            } else {
                                 socalUnbind(uid, providerName);
                             }
 
@@ -908,7 +908,7 @@ public class BeKolSecondActivity extends BaseActivity {
                             }
 
                         }
-                    }else {
+                    } else {
                         socalUnbind(uid, providerName);
                     }
 
@@ -946,7 +946,7 @@ public class BeKolSecondActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-               // LogUtil.LogShitou("解绑结果", response);
+                // LogUtil.LogShitou("解绑结果", response);
                 try {
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
@@ -958,7 +958,7 @@ public class BeKolSecondActivity extends BaseActivity {
                 KolDetailModel kolDetailModel = GsonTools.jsonToBean(response, KolDetailModel.class);
                 if (kolDetailModel != null && kolDetailModel.getError() == 0) {
                     mSocialAccounts = kolDetailModel.getSocial_accounts();
-                    mKolShows = kolDetailModel.getKol_shows();
+                    // mKolShows = kolDetailModel.getKol_shows();
                     updateData();
                     isShow = false;
                     mTvEdit.setText("编辑");

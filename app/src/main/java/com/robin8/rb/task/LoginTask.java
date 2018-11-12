@@ -14,6 +14,7 @@ import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 
 import java.util.Arrays;
@@ -54,6 +55,7 @@ public class LoginTask {
         requestParams.put("IMEI", AppUtils.getImei(mContext));
         requestParams.put("utm_source", AppUtils.getApplicationMeteData(mContext, TD_CHANNEL_ID));
 
+        LogUtil.LogShitou("参数值", "mobile_number：" + objects.get(0) + "\n" + "code：" + objects.get(1) + "\n" + "kol_uuid：" + objects.get(2) + "invite_code：" + objects.get(3) + "\n" + "app_platform：" + SPConstants.ANDROID + "\n" + "app_version：" + AppUtils.getVersionName(mContext) + "\n" + "os_version：" + AppUtils.getSystemVersion() + "\n" + "device_model：" + android.os.Build.MODEL + "\n" + "city_name：" + CacheUtils.getString(mContext, SPConstants.LOCATION_CITY, "") + "\n" + "device_token：" + StringUtil.getToken(mContext) + "\n" + "IMEI：" + AppUtils.getImei(mContext) + "\n" + "utm_source：" + AppUtils.getApplicationMeteData(mContext, TD_CHANNEL_ID));
         HttpRequest.getInstance().post(true, HelpTools.getUrl(CommonConfig.SIGN_IN_URL), requestParams, new RequestCallback() {
 
             @Override
@@ -78,20 +80,22 @@ public class LoginTask {
                         //                        mContext.startActivity(intent1);
                     }
                 }
-//                else {
-//                    if (loginBean.getError()==1){
-//
-//                        try {
-//                            if (!TextUtils.isEmpty(loginBean.getDetail())){
-//                                CustomToast.showShort(mContext,loginBean.getDetail());
-//                            }
-//                        }catch (Exception e){
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
+                //                else {
+                //                    if (loginBean.getError()==1){
+                //
+                //                        try {
+                //                            if (!TextUtils.isEmpty(loginBean.getDetail())){
+                //                                CustomToast.showShort(mContext,loginBean.getDetail());
+                //                            }
+                //                        }catch (Exception e){
+                //                            e.printStackTrace();
+                //                        }
+                //                    }
+                //                }
                 callback.onResponse(response);
             }
         });
     }
 }
+
+

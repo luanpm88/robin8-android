@@ -453,9 +453,7 @@ function DropLoadCtrl(container, list, url, params, token, create_item, empty_ic
             me.lock();
             if (params.page == 1) {
               me.emptyData();
-              $(container).find(list).append(
-                createEmptyContent(empty_icon)
-              );
+              $(container).find(list).append('<div class="empty-content">暂无数据</div>');
             } else {
               me.noData();
             }
@@ -526,9 +524,7 @@ function DropLoadCtrl(container, list, url, params, token, create_item, empty_ic
             me.lock();
             if (params.page == 1) {
               me.emptyData();
-              $(container).find(list).append(
-                createEmptyContent(empty_icon)
-              );
+              $(container).find(list).append('<div class="empty-content">暂无数据</div>');
             } else {
               me.noData();
             }

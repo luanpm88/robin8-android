@@ -38,7 +38,7 @@ import cn.sharesdk.wechat.friends.Wechat;
 public class MyHoritalListAdapter extends BaseAdapter {
     private List<InfluenceScoreBean.SimilarKolsBean> mDataList;
     private Context context;
-    private static final String IMAGE_URL = "http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png";
+    private static final String IMAGE_URL = CommonConfig.APP_ICON;
     private static final String TITLE_URL = CommonConfig.SERVICE + "/invite?inviter_id=";
     public MyHoritalListAdapter(Context context, List<InfluenceScoreBean.SimilarKolsBean> mList) {
         this.context = context;

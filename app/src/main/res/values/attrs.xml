@@ -191,4 +191,27 @@
         <attr name="msrv_snap_count" format="integer"/>
         <attr name="msrv_ms_per_inch" format="float"/>
     </declare-styleable>
+    <!--tag——layout-->
+    <declare-styleable name="TagFlowLayout">
+        <attr name="max_select" format="integer"></attr>
+        <attr name="tag_gravity">
+            <enum name="left" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FavoriteButton">
+        <attr name="corner" format="dimension"/>
+        <attr name="press_color" format="reference|color"/>
+        <attr name="normal_color" format="reference|color"/>
+        <attr name="stroke_width" format="dimension"/>
+        <attr name="stroke_color" format="reference|color"/>
+        <attr name="type">
+            <enum name="ok" value="1" />
+            <enum name="info" value="2" />
+            <enum name="warning" value="3" />
+            <enum name="error" value="4" />
+        </attr>
+    </declare-styleable>
 </resources>

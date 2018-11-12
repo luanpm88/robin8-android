@@ -30,6 +30,7 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
     protected LinearLayout mLLContent;
     protected TextView mTVCenter;
     protected TextView mTVRight;
+    protected TextView mTvSave;
     protected ImageView mIVBack;
     protected View mViewLine;
     protected TextView mBottomTv;
@@ -57,6 +58,7 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
         mLLTitleBar = (RelativeLayout) findViewById(R.id.ll_titlebar);
         mTVCenter = (TextView) findViewById(R.id.tv_center);
         mTVRight = (TextView) findViewById(R.id.tv_right);
+        mTvSave = (TextView) findViewById(R.id.tv_save);
         mIVBack = (ImageView) findViewById(R.id.iv_back);
         mLLContent = (LinearLayout) findViewById(R.id.ll_content);
         mViewLine = findViewById(R.id.view_line);
@@ -69,6 +71,7 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
         mIVBack.setOnClickListener(this);
         tvJump.setOnClickListener(this);
         mTvEdit.setOnClickListener(this);
+        mTvSave.setOnClickListener(this);
     }
 
     @Override

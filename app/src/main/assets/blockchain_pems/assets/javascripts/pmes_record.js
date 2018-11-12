@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  // var loading = new CreateLoader();
   var current_token = '';
   var data_params = {};
   var dropLoadCtrl;
@@ -10,19 +9,20 @@ $(document).ready(function() {
       current_token = native_data;
     }
   }
-  // loading.show();
 
-  data_params.page = 0;
-  data_params.per_page = 10;
-  dropLoadCtrl = new DropLoadCtrl(
-    '#record_list',
-    '.record-list',
-    SERVERHOST + 'api/v2_0/e_wallets/unpaid_list',
-    data_params,
-    current_token,
-    recordItem,
-    ''
-  );
+  if (!!current_token && current_token != '') {
+    data_params.page = 0;
+    data_params.per_page = 10;
+    dropLoadCtrl = new DropLoadCtrl(
+      '#record_list',
+      '.record-list',
+      SERVERHOST + 'api/v2_0/e_wallets/unpaid_list',
+      data_params,
+      current_token,
+      recordItem,
+      ''
+    );
+  }
 });
 
 function recordItem(data) {

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/llContent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_city_name"
+        android:layout_width="95dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text=""
+        android:background="@drawable/shape_gray_rectangular_pane"
+        android:textColor="@color/gray_first"
+        android:textSize="@dimen/undefine_font_5"/>
+</LinearLayout>

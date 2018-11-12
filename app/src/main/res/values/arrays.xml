@@ -2,15 +2,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <!--<string-array name="mine_list_title">-->
-        <!--<item>我的钱包</item>-->
-        <!--<item>我的活动</item>-->
-        <!--<item>我的产品</item>-->
-        <!--<item>我的关注</item>-->
-        <!--<item>品牌主</item>-->
-        <!--<item>一元夺宝</item>-->
-        <!--<item>每日签到</item>-->
-        <!--<item>邀请好友</item>-->
-        <!--<item>帮助中心</item>-->
+    <!--<item>我的钱包</item>-->
+    <!--<item>我的活动</item>-->
+    <!--<item>我的产品</item>-->
+    <!--<item>我的关注</item>-->
+    <!--<item>品牌主</item>-->
+    <!--<item>一元夺宝</item>-->
+    <!--<item>每日签到</item>-->
+    <!--<item>邀请好友</item>-->
+    <!--<item>帮助中心</item>-->
     <!--</string-array>-->
 
     <string-array name="mine_list_title">
@@ -307,6 +307,15 @@
         <item>order_price_asc</item>
         <item>order_commission_desc</item>
         <item>order_commission_asc</item>
+    </string-array>
+    <string-array name="city_title">
+        <item>热门城市</item>
+        <item>A-F</item>
+        <item>GHIJ</item>
+        <item>KLNM</item>
+        <item>OPQR</item>
+        <item>STUV</item>
+        <item>WXYZ</item>
     </string-array>
 
 </resources>

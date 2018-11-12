@@ -54,7 +54,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     public TimePickerView(Context context, ArrayList<String> consumeWayList, List<String> dateList, Type type, LinearLayout rootView, int itmeType) {
         super(context, rootView);
         this.consumeWayList = consumeWayList;
-        LayoutInflater.from(context).inflate(R.layout.pickerview_time, decorView);
+        LayoutInflater.from(context).inflate(R.layout.picker_view_time, decorView);
         tvCompelete = decorView.findViewById(R.id.tv_compelete);//完成
         tvCompelete.setTag(TAG_COMPELETE);
         tvCompelete.setOnClickListener(this);

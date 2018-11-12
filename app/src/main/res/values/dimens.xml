@@ -26,6 +26,8 @@
 
     <!--字体大小-->
     <dimen name="undefine_font_b">24sp</dimen>
+    <dimen name="undefine_font_23">23sp</dimen>
+    <dimen name="undefine_font_22">22sp</dimen>
     <dimen name="undefine_font_a">20sp</dimen>
     <dimen name="undefine_font_9">30sp</dimen>
     <dimen name="undefine_font_8">18sp</dimen>
@@ -75,4 +77,7 @@
 
     <!--MultiSnapRecyclerView-->
     <item name="normal_speed" type="dimen" format="float">100</item>
+
+    <!--favorite_button-->
+    <dimen name="default_con">5dp</dimen>
 </resources>

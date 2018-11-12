@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_content"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:gravity="center_vertical">
+              android:id="@+id/ll_content"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:gravity="center_vertical">
 
     <ImageView
         android:id="@+id/iv_back"
@@ -13,7 +13,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp"
-        android:src="@mipmap/icon_btn_back_white" />
+        android:src="@mipmap/icon_btn_back_white"/>
 
     <TextView
         android:id="@+id/tv_title"
@@ -23,7 +23,7 @@
         android:gravity="center"
         android:text="推广内容详情"
         android:textColor="@color/white_custom"
-        android:textSize="@dimen/undefine_font_7" />
+        android:textSize="@dimen/undefine_font_7"/>
 
     <TextView
         android:id="@+id/tv_right"
@@ -34,16 +34,17 @@
         android:text="撤销"
         android:textColor="@color/white_custom"
         android:textSize="@dimen/undefine_font_3"
-        android:visibility="gone" />
+        android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/ll_share"
         android:layout_width="50dp"
-        android:visibility="invisible"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <ImageView
             android:layout_width="wrap_content"

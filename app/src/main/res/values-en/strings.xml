@@ -518,4 +518,17 @@
     <string name="put_campaign_detail">Get 20% PUT rebate for campaign budget over Y500</string>
     <string name="put_wallet">PUT wallet</string>
 
+    <!--登陆后用户信息等-->
+    <string name="tv_know_you">Let us know you</string>
+    <string name="tv_your_choose">Match different kinds of activities for you according to your choice</string>
+    <string name="tv_choose_gender">Choose your gender</string>
+    <string name="tv_choose_id">Choose your identity</string>
+    <string name="tv_birth_year">Year of birth</string>
+    <string name="tv_general_user">general user</string>
+    <string name="tv_bigV_user">big V user</string>
+    <string name="tv_content_creator">content creator</string>
+    <string name="tv_choose_favorite">Choose the tag you are interested in</string>
+    <string name="tv_find_for_you">Match the activities you are most interested in for you</string>
+    <string name="save">Save</string>
+    <string name="tv_know_user_id">Know your identity</string>
 </resources>

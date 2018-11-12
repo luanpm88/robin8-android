@@ -134,7 +134,7 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
             BitmapUtil.loadImage(mActivity.getApplicationContext(), bean.getAuthor().getAvatar_url(), holder.civUser);
         }else {
             holder.tvUserName.setText("");
-            BitmapUtil.loadImage(mActivity.getApplicationContext(), "http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/59831/0c500643d3.jpg!200", holder.civUser);
+            BitmapUtil.loadImage(mActivity.getApplicationContext(), CommonConfig.APP_ICON, holder.civUser);
         }
 
         holder.tvShareNum.setText(String.valueOf(bean.getCps_article_share_count()));

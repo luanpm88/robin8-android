@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.robin8.rb.R;
+import com.robin8.rb.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
@@ -122,10 +123,15 @@ public class EmailAddInformationActivity extends BaseActivity {
                         NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
                     }
                     initGetRongCloud(textEmailNum,loginBean.getKol().getName(),loginBean.getKol().getAvatar_url());
-                    Intent intent = new Intent(EmailAddInformationActivity.this, EmailWelcomeActivity.class);
-                    intent.putExtra(EmailWelcomeActivity.EXTRA_EMAIL_NAME,etEmailName.getText().toString().trim());
+
+//                    Intent intent = new Intent(EmailAddInformationActivity.this, EmailWelcomeActivity.class);
+//                    intent.putExtra(EmailWelcomeActivity.EXTRA_EMAIL_NAME,etEmailName.getText().toString().trim());
+//                    startActivity(intent);
+//                    finish();
+                    Intent intent = new Intent(EmailAddInformationActivity.this, FirstKnowUserIdActivity.class);
                     startActivity(intent);
                     finish();
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }else {
                     CustomToast.showShort(getApplicationContext(), loginBean.getDetail());
                 }
@@ -149,7 +155,7 @@ public class EmailAddInformationActivity extends BaseActivity {
             //游客
             requestParams.put("userId",CommonConfig.TOURIST_PHONE);
             requestParams.put("name","游客");
-            requestParams.put("portraitUri","http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/ad9d7a31d7!avatar");
+            requestParams.put("portraitUri",CommonConfig.APP_ICON);
         }else {
             requestParams.put("userId",id);
             if (TextUtils.isEmpty(name)){
@@ -158,7 +164,7 @@ public class EmailAddInformationActivity extends BaseActivity {
                 requestParams.put("name",name);
             }
             if (TextUtils.isEmpty(imgUrl)){
-                requestParams.put("portraitUri","http://7xozqe.com2.z0.glb.qiniucdn.com/uploads/kol/avatar/109050/22494f2caf!avatar");
+                requestParams.put("portraitUri",CommonConfig.APP_ICON);
             }else{
                 requestParams.put("portraitUri",imgUrl);
             }

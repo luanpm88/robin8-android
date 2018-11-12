@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.MainActivity;
+import com.robin8.rb.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.helper.NotifyManager;
@@ -191,17 +192,20 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
             //    LoginHelper.loginSuccess(loginBean, from, mActivity);
 
             //==============================
-            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))){
-                //first走过
-                jumpActivity(1);
-            }else if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))){
-                //first和second都走过
-                jumpActivity(2);
-            }else{
-                //从影响力来的就回去影响力，否则回到活动页面
-                backMain();
-            }
-//            Intent intent = new Intent(mActivity, MainActivity.class);
+//            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))){
+//                //first走过
+//                jumpActivity(1);
+//            }else if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))){
+//                //first和second都走过
+//                jumpActivity(2);
+//            }else{
+//                //从影响力来的就回去影响力，否则回到活动页面
+//                backMain();
+//            }
+            //==============new 11-05============
+            jumpActivity(3);
+            //===================================
+            //            Intent intent = new Intent(mActivity, MainActivity.class);
 //            //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 //            intent.putExtra("register_main", "zhu");
 //            mActivity.startActivity(intent);
@@ -226,6 +230,11 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
         } else if (i == 2) {
             //跳转到man
             Intent intent = new Intent(mActivity, MeasureInfluenceManActivity.class);
+            mActivity.startActivity(intent);
+            mActivity.finish();
+            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }else if (i==3){
+            Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
             mActivity.startActivity(intent);
             mActivity.finish();
             mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

@@ -50,6 +50,7 @@ import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.RegExpUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
@@ -68,7 +69,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- 用户发布悬赏活动
+ 发布悬赏活动
  发布活动
  2017／09／19／zc */
 public class LaunchFragment extends BaseFragment implements View.OnClickListener, Observer, View.OnTouchListener {
@@ -1053,6 +1054,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
             @Override
             public void onResponse(String response) {
+                LogUtil.LogShitou("创建活动",response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }

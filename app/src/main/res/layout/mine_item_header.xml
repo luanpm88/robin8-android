@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="@mipmap/pic_income_bg"
               android:orientation="vertical">
 
@@ -65,12 +66,26 @@
                   android:visibility="gone"
                   android:layout_marginLeft="5dp"/>
             </LinearLayout>
-
+            <com.robin8.rb.ui.widget.myprogress.RoundCornerProgressBar
+                android:id="@+id/pro_user_info"
+                android:layout_width="150dp"
+                android:layout_height="6dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                app:rcBackgroundPadding="0dp"
+                app:rcMax="100"
+                app:rcProgress="0"
+                app:rcBackgroundColor="@color/gray_898989"
+                app:rcProgressColor="@color/yellow_ffc701"
+                app:rcRadius="10dp"
+                app:rcRadiusBg="10dp"
+                app:rcSecondaryProgress="100"
+                app:rcSecondaryProgressColor="@color/gray_898989"/>
             <TextView
                 android:id="@+id/tv_user_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="3dp"
                 android:singleLine="true"
                 android:text="@string/login_get_more_campaign"
                 android:textColor="@color/white_custom"
@@ -78,6 +93,7 @@
         </LinearLayout>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
