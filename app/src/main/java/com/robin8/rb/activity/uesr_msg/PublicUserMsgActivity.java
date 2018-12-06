@@ -35,6 +35,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 普通用户
+ */
 public class PublicUserMsgActivity extends BaseActivity {
 
     public static final String PUBLIC = "public_user";

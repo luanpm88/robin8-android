@@ -46,6 +46,9 @@ import java.util.LinkedHashMap;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 用户个人信息详情
+ */
 public class UserInfoShowActivity extends BaseActivity {
     @Bind(R.id.civ_image)
     CircleImageView civImage;

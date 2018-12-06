@@ -36,6 +36,7 @@ import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.util.BitmapUtil;
+import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
 import com.robin8.rb.util.LogUtil;
@@ -147,6 +148,13 @@ public class ImageBannerAdapter extends RecyclingPagerAdapter {
                             intent = new Intent(v.getContext(), BannerWebActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra(BannerWebActivity.BANNER, urlJump);
+                            v.getContext().startActivity(intent);
+                            break;
+                        case "vote":
+                            intent = new Intent(v.getContext(), BannerWebActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra(BannerWebActivity.BANNER, urlJump+"?access_token="+ BaseApplication.getInstance().getLoginBean().getKol().getIssue_token());
+                            intent.putExtra(BannerWebActivity.BANNER_BEAN, CacheUtils.getString(mActivity, SPConstants.MINE_DATA,null));
                             v.getContext().startActivity(intent);
                             break;
                     }

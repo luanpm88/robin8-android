@@ -34,6 +34,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 新用户注册信息填写／身份选择
+ */
 public class UserBaseMsgActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvGeneralUser;

@@ -41,6 +41,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 选择圈子
+ */
 public class ChooseFavoriteActivity extends AppCompatActivity {
     @Bind(R.id.tv_jump)
     TextView tvJump;

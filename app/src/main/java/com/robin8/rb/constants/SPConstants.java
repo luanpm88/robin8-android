@@ -60,10 +60,11 @@ public class SPConstants {
     public static final int PLAT_CHOOSE= 128;//user平台选择
     public static final int USER_NEW_INFO= 129;//user信息更新
     public static final int CITY_CHOOSE= 130;//user城市选择
-    public static final int UPDATA_PLAT_DATA= 131;//微信微博数据更新
+    public static final int UPDATA_PLAT_DATA= 131;//user平台数据更新
     public static final int CLOSE= 132;//微信微博数据更新
     public static final int CLOSE_ONE= 133;//微信微博数据更新
     public static final int CLOSE_TWO= 134;//微信微博数据更新
+    public static final int ME_BANNER= 135;//我的页面广告banner
 
     public static final String SP_SIGN = "robin8_sp";
     public static final String ROBIN_IME = "robin_ime";

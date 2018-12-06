@@ -68,7 +68,7 @@
             </LinearLayout>
             <com.robin8.rb.ui.widget.myprogress.RoundCornerProgressBar
                 android:id="@+id/pro_user_info"
-                android:layout_width="150dp"
+                android:layout_width="170dp"
                 android:layout_height="6dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="2dp"

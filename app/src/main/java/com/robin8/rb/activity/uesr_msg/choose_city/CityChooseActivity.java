@@ -152,7 +152,6 @@ public class CityChooseActivity extends BaseActivity {
                                     }else {
                                         cityList.get(position).setSelect(false);
                                     }
-
                                 }
 
                                 //                        if (cityList.get(position).getStr().equals("北京")) {

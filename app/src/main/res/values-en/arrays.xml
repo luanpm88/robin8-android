@@ -2,6 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string-array name="mine_list_title">
+        <item>Banner enter</item>
         <item>My wallet</item>
         <item>My PUT wallet</item>
         <item>My campaigns</item>
@@ -74,6 +75,7 @@
         <item>internet</item>
     </string-array>
     <string-array name="mine_list_icons">
+        <item>&#xe60b;</item>
         <item>&#xe60b;</item>
         <item>&#xe601;</item>
         <item>&#xe601;</item>

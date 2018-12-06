@@ -39,6 +39,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 用户认证信息
+ */
 public class UserInformationActivity extends BaseActivity {
 
     @Bind(R.id.civ_image)

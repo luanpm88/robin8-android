@@ -17,7 +17,7 @@
 
             <LinearLayout
                 android:id="@+id/ll_total_income"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="134.4dp"
                 android:background="@mipmap/pic_income_bg"
                 android:gravity="center"

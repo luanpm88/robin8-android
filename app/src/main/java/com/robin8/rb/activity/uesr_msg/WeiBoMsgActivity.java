@@ -47,6 +47,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 微博认证
+ */
 public class WeiBoMsgActivity extends BaseActivity {
     @Bind(R.id.tv_item_first_title)
     TextView tvItemFirstTitle;
@@ -107,9 +110,7 @@ public class WeiBoMsgActivity extends BaseActivity {
     private String txThirdChoose;
 
     private List<UserCircleBean.CirclesListBean> circlesList;//数据圈子
-    private List<UserCircleBean.TerracesListBean> platList;//数据平台
     private List<UserShowBean.CirclesBean> initCirclesList;//接口圈子
-    private List<String> weibo_auth_list;//微博认证类型
     private ArrayList<Integer> circleIdList;
     private ArrayList<String> cityNameList;
     private List<String> circleNameList;
@@ -267,7 +268,6 @@ public class WeiBoMsgActivity extends BaseActivity {
                         if (bean.getError() == 0) {
                             CacheUtils.putString(WeiBoMsgActivity.this, HelpTools.BASEINFO, response);
                             circlesList = bean.getCircles_list();
-                            weibo_auth_list = bean.getWeibo_auth_list();
                         }
                     }
                 }
@@ -277,7 +277,6 @@ public class WeiBoMsgActivity extends BaseActivity {
             if (bean != null) {
                 if (bean.getError() == 0) {
                     circlesList = bean.getCircles_list();
-                    weibo_auth_list = bean.getWeibo_auth_list();
                 }
             }
         }
@@ -595,9 +594,6 @@ public class WeiBoMsgActivity extends BaseActivity {
                     if (!TextUtils.isEmpty(time)){
                         tvPriceEndTime.setText(time.substring(0,time.indexOf("T")));
                     }
-                   // tvPriceEndTime.setText(wechatAccountBean.getQuote_expired_at());//"2018-11-01T08:00:00.000+08:00"需要处理
-                    //String s = DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", wechatAccountBean.getQuote_expired_at());
-                    //tvPriceEndTime.setText(s);
                     editFirstNum.setText(editShow(false, String.valueOf(wechatAccountBean.getFans_count()), editFifthBegin));
                     TYPE_TWO = wechatAccountBean.getGender();
                     if (TYPE_TWO == 1) {

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_custom"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_top_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:text="邀请好友"
+        android:textColor="@color/black_202020"
+        android:textSize="@dimen/undefine_font_6"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tv_wechat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@mipmap/social_weixin_on"
+            android:gravity="center"
+            android:text="@string/weixin"
+            android:textColor="@color/black_5e5e5e"
+            android:textSize="@dimen/undefine_font_3"/>
+
+
+        <TextView
+            android:id="@+id/tv_wechatmoments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@mipmap/icon_social_wechatmoments_on"
+            android:gravity="center"
+            android:text="@string/wechat"
+            android:textColor="@color/black_5e5e5e"
+            android:textSize="@dimen/undefine_font_3"/>
+
+
+        <TextView
+            android:id="@+id/tv_qq"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@mipmap/social_qq_on"
+            android:gravity="center"
+            android:text="@string/qq"
+            android:textColor="@color/black_5e5e5e"
+            android:textSize="@dimen/undefine_font_3"/>
+    </LinearLayout>
+
+    <View
+        style="@style/Undefined_Line"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white_custom"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/black_3a3a3a"
+        android:textSize="@dimen/undefine_font_5"/>
+</LinearLayout>

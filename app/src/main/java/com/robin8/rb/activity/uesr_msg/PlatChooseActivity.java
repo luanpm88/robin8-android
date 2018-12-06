@@ -35,6 +35,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 平台选择
+ */
 public class PlatChooseActivity extends BaseActivity {
 
     @Bind(R.id.gv_social)

@@ -14,6 +14,7 @@
     <!--</string-array>-->
 
     <string-array name="mine_list_title">
+        <item>BannerEnter</item>
         <item>我的钱包</item>
         <item>PUT钱包</item>
         <item>我的活动</item>
@@ -86,6 +87,7 @@
         <item>internet</item>
     </string-array>
     <string-array name="mine_list_icons">
+        <item>&#xe60b;</item>
         <item>&#xe60b;</item>
         <item>&#xe601;</item>
         <item>&#xe601;</item>

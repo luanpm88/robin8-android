@@ -28,6 +28,16 @@ public class MineShowModel implements Serializable {
     private int public_wechat_account_is_read;
     private int weibo_account_is_read;
     private List<ReadListBean> read_list;
+    private List<VoteInfosBean> vote_infos;
+
+    public List<VoteInfosBean> getVote_infos() {
+        return vote_infos;
+    }
+
+    public void setVote_infos(List<VoteInfosBean> vote_infos) {
+        this.vote_infos = vote_infos;
+    }
+
     public int getCreator_is_read() {
         return creator_is_read;
     }
@@ -51,6 +61,7 @@ public class MineShowModel implements Serializable {
     public void setWeibo_account_is_read(int weibo_account_is_read) {
         this.weibo_account_is_read = weibo_account_is_read;
     }
+
     public List<ReadListBean> getRead_list() {
         return read_list;
     }
@@ -58,10 +69,11 @@ public class MineShowModel implements Serializable {
     public void setRead_list(List<ReadListBean> read_list) {
         this.read_list = read_list;
     }
-    public static class ReadListBean implements Serializable{
+
+    public static class ReadListBean implements Serializable {
         /**
-         * state : 1
-         * dsp : 内容创作者身份认证已通过
+         state : 1
+         dsp : 内容创作者身份认证已通过
          */
 
         private int state;
@@ -83,6 +95,7 @@ public class MineShowModel implements Serializable {
             this.dsp = dsp;
         }
     }
+
     public float getCompleted_rate() {
         return completed_rate;
     }
@@ -164,6 +177,69 @@ public class MineShowModel implements Serializable {
 
     public void setIs_show_invite_code(String is_show_invite_code) {
         this.is_show_invite_code = is_show_invite_code;
+    }
+
+    public static class VoteInfosBean {
+        /**
+         is_show : 2018-11-24
+         banner_url : http://img.robin8.net/kol_banner.png
+         url : https://qa.robin8.netvote?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcml2YXRlX3Rva2VuIjoiNTRjODVkYjgwZTRjMTQzNmNmYzVkNTg2NzdmNmUyZjgifQ.AhC4m6vuRF2aB3cWUgVgn8e8XTrZzerLUGolpqi4hrs
+         */
+
+        private String is_show;
+        private String banner_url;
+        private String url;
+        private String icon_url;
+        private String title;
+        private String desc;
+
+        public String getIs_show() {
+            return is_show;
+        }
+
+        public void setIs_show(String is_show) {
+            this.is_show = is_show;
+        }
+
+        public String getBanner_url() {
+            return banner_url;
+        }
+
+        public void setBanner_url(String banner_url) {
+            this.banner_url = banner_url;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getIcon_url() {
+            return icon_url;
+        }
+
+        public void setIcon_url(String icon_url) {
+            this.icon_url = icon_url;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
     }
 
     public static class KolBean implements Serializable {

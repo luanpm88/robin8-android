@@ -47,6 +47,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 微信公众号认证
+ */
 public class WechatMsgActivity extends BaseActivity {
     @Bind(R.id.tv_item_first_title)
     TextView tvItemFirstTitle;

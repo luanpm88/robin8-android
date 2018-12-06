@@ -49,6 +49,9 @@ import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
+/**
+ * 收徒
+ */
 public class CollectMoneyActivity extends BaseActivity {
 
     @Bind(R.id.tv_all_collect_money)
