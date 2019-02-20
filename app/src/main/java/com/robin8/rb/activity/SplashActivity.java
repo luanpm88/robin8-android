@@ -1,5 +1,6 @@
 package com.robin8.rb.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,9 +21,14 @@ import com.robin8.rb.receiver.DemoIntentService;
 import com.robin8.rb.receiver.DemoPushService;
 import com.robin8.rb.task.ContactNativeTask;
 import com.robin8.rb.util.CacheUtils;
+import com.robin8.rb.util.CustomToast;
+import com.robin8.rb.util.DialogUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.LogUtil;
+import com.robin8.rb.util.RequestCode;
 import com.robin8.rb.util.UIUtils;
+import com.robin8.rb.util.XPermissionUtils;
 
 import java.util.List;
 
@@ -35,34 +41,48 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        XPermissionUtils.requestPermissions(this, RequestCode.MORE,
+                new String[] { Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_SMS },
+                new XPermissionUtils.OnPermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+                        LogUtil.LogShitou("onPermissionGranted", "获取联系人,短信权限成功");
+                    }
+
+                    @Override
+                    public void onPermissionDenied(String[] deniedPermissions, boolean alwaysDenied) {
+                        StringBuilder sBuilder = new StringBuilder();
+                        for (String deniedPermission : deniedPermissions) {
+                            if (deniedPermission.equals(Manifest.permission.WRITE_CONTACTS)) {
+                                sBuilder.append("联系人");
+                                sBuilder.append(",");
+                            }
+                            if (deniedPermission.equals(Manifest.permission.READ_SMS)) {
+                                sBuilder.append("短信");
+                                sBuilder.append(",");
+                            }
+                        }
+                        if (sBuilder.length() > 0) {
+                            sBuilder.deleteCharAt(sBuilder.length() - 1);
+                        }
+                        CustomToast.showShort(SplashActivity.this, "获取" + sBuilder.toString() + "权限失败");
+                        if (alwaysDenied) {
+                            DialogUtil.showPermissionManagerDialog(SplashActivity.this, sBuilder.toString());
+                        }
+                    }
+                });
+
+
         HelpTools.getKoluuidFromNet();
-        // PushManager.getInstance().initialize(this.getApplicationContext());
         if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SERVER))){
             CommonConfig.SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
         }
         PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
-       // HelpTools.insertCommonXml(HelpTools.NATIVE,"");
+
         getContacts();
         getLocation();
-        //        Intent intent = getIntent();
-        //        if (intent!=null){
-        //            Bundle extras = intent.getExtras();
-        //            if (extras!=null){
-        //                int unread = extras.getInt("unread");
-        //                if (unread==2){
-        //                    goToNextPage(2);
-        //                }else {
-        //                    LogUtil.LogShitou("推送会不会为1","+++>"+unread);
-        //                    goToNextPage(0);
-        //                }
-        //            }else {
-        //                goToNextPage(0);
-        //            }
-        //
-        //        }else {
-        //            goToNextPage(0);
-        //        }
         goToNextPage(0);
 
     }
@@ -94,36 +114,6 @@ public class SplashActivity extends Activity {
                         SplashActivity.this.startActivity(intent);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         SplashActivity.this.finish();
-//                        new Handler().postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                SplashActivity.this.finish();
-//                            }
-//                        }, 500);
-
-                        //                        if (i == 2) {
-                        //                            Intent intent = new Intent(SplashActivity.this, DetailContentActivity.class);
-                        //                            SplashActivity.this.startActivity(addBundle(intent));
-                        //                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        //                            new Handler().postDelayed(new Runnable() {
-                        //
-                        //                                @Override
-                        //                                public void run() {
-                        //                                    SplashActivity.this.finish();
-                        //                                }
-                        //                            }, 500);
-                        //                        } else {
-                        //                            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                        //                            SplashActivity.this.startActivity(intent);
-                        //                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        //                            new Handler().postDelayed(new Runnable() {
-                        //
-                        //                                @Override
-                        //                                public void run() {
-                        //                                    SplashActivity.this.finish();
-                        //                                }
-                        //                            }, 500);
-                        //                        }
 
                     }
                 }, 500);

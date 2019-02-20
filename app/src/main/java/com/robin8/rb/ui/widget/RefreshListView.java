@@ -221,11 +221,15 @@ public class RefreshListView extends ListView {
 
     private boolean isSecondHeaderDisplay() {
         int[] location = new int[2];
-        secondHeader.getLocationInWindow(location);
-        int secondHeaderY = location[1];// 第二个头布局的高度位置
-        this.getLocationInWindow(location);
-        int listviewY = location[1];// 获取Listview的高度位置
-        return secondHeaderY >= listviewY;
+        if (location[0]==0 && location[1]==0){
+            return true;
+        }else {
+            secondHeader.getLocationInWindow(location);
+            int secondHeaderY = location[1];// 第二个头布局的高度位置
+            this.getLocationInWindow(location);
+            int listviewY = location[1];// 获取Listview的高度位置
+            return secondHeaderY >= listviewY;
+        }
     }
 
     // 外界通知我已经完成服务服务器的刷新动作

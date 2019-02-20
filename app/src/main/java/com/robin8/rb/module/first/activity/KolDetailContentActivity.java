@@ -40,7 +40,6 @@ import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 
@@ -440,38 +439,6 @@ public class KolDetailContentActivity extends BaseActivity {
                 break;
         }
         super.onClick(v);
-    }
-
-    private void influencePk() {
-        BasePresenter mBasePresenter = new BasePresenter();
-        RequestParams params = new RequestParams();
-        params.put("provider", "weibo");
-        mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.CALCULATE_INFLUENCE_SCORE), params, new RequestCallback() {
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-
-            @Override
-            public void onResponse(String response) {
-                LogUtil.LogShitou("影响力第一个接口", "==>" + response);
-//                BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
-//                if (baseBean!=null){
-//                    if (baseBean.getError() == 0) {
-//                        loadDataTwo();
-//                    } else {
-//                        CustomToast.showShort(mActivity, baseBean.getMessage());
-//                    }
-//                }else {
-//                    LogUtil.LogShitou("为什么？？","======");
-//                    llHaveResult.setVisibility(View.GONE);
-//                    llNoResult.setVisibility(View.VISIBLE);
-//                }
-
-
-            }
-        });
     }
 
     private boolean isLogined(int from) {

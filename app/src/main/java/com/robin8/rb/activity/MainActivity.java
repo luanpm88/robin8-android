@@ -1,16 +1,22 @@
 package com.robin8.rb.activity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -39,9 +45,9 @@ import com.robin8.rb.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.pager.BigVPager;
 import com.robin8.rb.pager.FindPager;
 import com.robin8.rb.pager.FirstPager;
-import com.robin8.rb.pager.InfluencePager;
 import com.robin8.rb.pager.MinePager;
 import com.robin8.rb.pager.RewordPager;
 import com.robin8.rb.presenter.BasePresenter;
@@ -53,18 +59,25 @@ import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DensityUtils;
+import com.robin8.rb.util.DialogUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
+import com.robin8.rb.util.PermissionHelper;
+import com.robin8.rb.util.RequestCode;
 import com.robin8.rb.util.StringUtil;
+import com.robin8.rb.util.XPermissionUtils;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
 import java.util.ArrayList;
 
+import static com.igexin.sdk.GTServiceManager.context;
+
 public class MainActivity extends BaseBackHomeActivity implements View.OnClickListener {
 
-    private static final int INFLUENCE_LIST = 1;
+    //  private static final int INFLUENCE_LIST = 1;
+    private static final int BIGV_LIST = 1;
     private static final int CAMPAIGN_LIST = 0;
     private static final int MY = 3;
     private static final int FIND = 2;
@@ -106,8 +119,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     private double latitude = UNKNOW;
     private double longitude = UNKNOW;
     //  private NotificationPager mNotificationPager;
-    private InfluencePager mInfluencePager;
+    //private InfluencePager mInfluencePager;
     // private CustomRedDotRadioButton mRBBottomNotification;
+    private BigVPager mBigVPager;
     private Intent intent;
     private String register_main;
 
@@ -121,9 +135,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         if (! TextUtils.isEmpty(register_main)) {
             if (register_main.equals("zhu")) {
                 mPageName = StatisticsAgency.CAMPAIGN_LIST;
-            } else if (register_main.equals("influence")) {
-                mPageName = StatisticsAgency.INFLUENCE_LIST;
-            }else if (register_main.equals("read")){
+            } else if (register_main.equals("big_v")) {
+                mPageName = StatisticsAgency.BIGV_LIST;
+            } else if (register_main.equals("read")) {
                 mPageName = StatisticsAgency.FIND_LIST;
             }
         }
@@ -132,7 +146,8 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         //        }
         setContentView(R.layout.activity_main);
         setSwipeBackEnable(false);
-        checkNewVersion();
+        checkPermissionCamera();
+        //  checkNewVersion();
         postData();
         startLocate();
         initView();
@@ -215,7 +230,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
 
                 @Override
                 public void run() {
-
                     mCheckVersionHandler.sendEmptyMessage(0);
                 }
             }, 1000);
@@ -281,7 +295,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 break;
         }
         if (drawable != null) {
-            drawable.setBounds(0, 0, DensityUtils.dp2px(this, 25), DensityUtils.dp2px(this, 25));
+            drawable.setBounds(0, 0, DensityUtils.dp2px(this, 23), DensityUtils.dp2px(this, 23));
             radioButton.setCompoundDrawables(null, drawable, null, null);
         }
 
@@ -320,8 +334,8 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             mRewordPager = new RewordPager(this);
         }
 
-        if (mInfluencePager == null) {
-            mInfluencePager = new InfluencePager(this);
+        if (mBigVPager == null) {
+            mBigVPager = new BigVPager(this);
         }
 
         if (mFindPager == null) {
@@ -340,7 +354,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         //mPagerList.add(mFirstPager);
         // mPagerList.add(mNotificationPager);
         mPagerList.add(mRewordPager);
-        mPagerList.add(mInfluencePager);
+        mPagerList.add(mBigVPager);
         mPagerList.add(mFindPager);
         mPagerList.add(mMinePager);
 
@@ -356,14 +370,14 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             if (register_main.equals("zhu")) {
                 mRGContentBottom.check(R.id.rb_bottom_campaign);
                 mVPContentPager.setCurrentItem(0);
-            } else if (register_main.equals("influence")) {
+            } else if (register_main.equals("big_v")) {
                 mRGContentBottom.check(R.id.rb_bottom_influence);
                 mVPContentPager.setCurrentItem(1);
                 // mPagerList.get(2).initData();
-            } else if (register_main.equals("read")){
+            } else if (register_main.equals("read")) {
                 mRGContentBottom.check(R.id.rb_bottom_find);
                 mVPContentPager.setCurrentItem(2);
-            }else {
+            } else {
                 mRGContentBottom.check(R.id.rb_bottom_campaign);
             }
         } else {
@@ -391,7 +405,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         if (! TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))) {
             requestParams.put("userId", HelpTools.getLoginInfo(HelpTools.LoginNumber));
             LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
-            if (loginBean!=null){
+            if (loginBean != null) {
                 String name = loginBean.getKol().getName();
                 String avatar_url = loginBean.getKol().getAvatar_url();
                 if (TextUtils.isEmpty(name)) {
@@ -404,7 +418,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 } else {
                     requestParams.put("portraitUri", BaseApplication.getInstance().getLoginBean().getKol().getAvatar_url());
                 }
-            }else {
+            } else {
                 requestParams.put("name", HelpTools.getLoginInfo(HelpTools.LoginNumber));
                 requestParams.put("portraitUri", CommonConfig.APP_ICON);
             }
@@ -462,13 +476,14 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                     mVPContentPager.setCurrentItem(0, false);
                     break;
                 case R.id.rb_bottom_influence:
-                    if (! isLogined()) {
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        intent.putExtra("influence", StatisticsAgency.INFLUENCE_LIST);
-                        startActivity(intent);
-                    } else {
-                        mVPContentPager.setCurrentItem(1, false);
-                    }
+                    //                    if (! isLogined()) {
+                    //                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    //                        intent.putExtra("big_v", StatisticsAgency.BIGV_LIST);
+                    //                        startActivity(intent);
+                    //                    } else {
+                    //                        mVPContentPager.setCurrentItem(1, false);
+                    //                    }
+                    mVPContentPager.setCurrentItem(1, false);
                     break;
                 case R.id.rb_bottom_find:
                     mVPContentPager.setCurrentItem(2, false);
@@ -542,11 +557,11 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                     onePageSelected(CAMPAIGN_LIST);
                     mRBBottomCampaign.setChecked(true);
                     break;
-                case INFLUENCE_LIST:
-                    mPageName = StatisticsAgency.INFLUENCE_LIST;
-                    onePageSelected(INFLUENCE_LIST);
+                case BIGV_LIST:
+                    mPageName = StatisticsAgency.BIGV_LIST;
+                    onePageSelected(BIGV_LIST);
                     mRBBottomInfluence.setChecked(true);
-                    mPagerList.get(INFLUENCE_LIST).initData();
+                    //  mPagerList.get(BIGV_LIST).initData();
                     break;
                 case FIND:
                     mPageName = StatisticsAgency.FIND_LIST;
@@ -599,8 +614,8 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.MY);
         } else if (mLastPosition == CAMPAIGN_LIST) {
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.CAMPAIGN_LIST);
-        } else if (mLastPosition == INFLUENCE_LIST) {
-            StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.INFLUENCE_LIST);
+        } else if (mLastPosition == BIGV_LIST) {
+            StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.BIGV_LIST);
         } else if (mLastPosition == FIND) {
             StatisticsAgency.onPageEnd(MainActivity.this, StatisticsAgency.FIND_LIST);
 
@@ -619,9 +634,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         //                // onePageSelected(INFLUENCE_LIST);
         //            }
         //        }
-//        if (mPageName == StatisticsAgency.MY) {
-//            mPagerList.get(MY).initData();
-//        }
+        //        if (mPageName == StatisticsAgency.MY) {
+        //            mPagerList.get(MY).initData();
+        //        }
 
         //        if (mPageName == StatisticsAgency.INFLUENCE_LIST) {
         //            if (! TextUtils.isEmpty(register_main)) {
@@ -721,5 +736,42 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         cdm.showDialog();
     }
 
+    private void checkPermissionCamera() {
+        XPermissionUtils.requestPermissions(this, RequestCode.CAMERA, new String[]{Manifest.permission.CAMERA}, new XPermissionUtils.OnPermissionListener() {
+
+            @Override
+            public void onPermissionGranted() {
+                if (PermissionHelper.isCameraEnable()) {
+                    LogUtil.LogShitou("打开相机", "请求成功");
+                } else {
+                    DialogUtil.showPermissionManagerDialog(MainActivity.this, "相机");
+                }
+            }
+
+            @Override
+            public void onPermissionDenied(final String[] deniedPermissions, boolean alwaysDenied) {
+                CustomToast.showShort(MainActivity.this, "获取相机权限失败");
+                // 拒绝后不再询问 -> 提示跳转到设置
+                if (alwaysDenied) {
+                    DialogUtil.showPermissionManagerDialog(MainActivity.this, "相机");
+                } else {    // 拒绝 -> 提示此公告的意义，并可再次尝试获取权限
+                    new AlertDialog.Builder(context).setTitle("温馨提示").setMessage("我们需要相机权限才能正常使用该功能").setNegativeButton("取消", null).setPositiveButton("验证权限", new DialogInterface.OnClickListener() {
+
+                        @RequiresApi(api = Build.VERSION_CODES.M)
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            XPermissionUtils.requestPermissionsAgain(context, deniedPermissions, RequestCode.CAMERA);
+                        }
+                    }).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        XPermissionUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
 }

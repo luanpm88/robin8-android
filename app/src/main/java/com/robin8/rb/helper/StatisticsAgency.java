@@ -24,7 +24,8 @@ public class StatisticsAgency {
 
     //通知
     //  public static final String NOTIFICATION_LIST = "notification-list";//活动首页
-    public static final String INFLUENCE_LIST = "My_influence";//影响力
+  //  public static final String INFLUENCE_LIST = "My_influence";//影响力
+    public static final String BIGV_LIST = "Big-V_pager";//影响力
     public static final String PK_INFLUENCE = "Pk_influence";//影响力pk
     public static final String OTHER_INFLUENCE = "Other_people_influence";//他人影响力
     public static final String GO_TEST_INFLUENCE = "Go_test_influence";//影响力
@@ -38,6 +39,7 @@ public class StatisticsAgency {
     public static final String CAMPAIGN_RECRUIT = "campaign-recruit";//招募活动详情
     public static final String CITY_LIST = "city-list";//城市列表
     public static final String SIGN_UP_RECRUIT = "sign_up_recruit";//招募活动报名
+    public static final String BIGV_DETAIL = "big_v_detail";//大v活动详情
     //发现
     public static final String FIND_LIST = "find_list";
     public static final String FIND_COLLECT = "find_collect";

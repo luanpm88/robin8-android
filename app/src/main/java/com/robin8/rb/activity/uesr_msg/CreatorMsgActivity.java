@@ -130,6 +130,7 @@ public class CreatorMsgActivity extends BaseActivity {
         cityNameList = new ArrayList<>();
         platNameList = new ArrayList<>();
         agesList=new ArrayList<>();
+
         initData();
         Intent intent = getIntent();
         String extra = intent.getStringExtra(CREATOR);
@@ -524,6 +525,9 @@ public class CreatorMsgActivity extends BaseActivity {
         manager.showDialog();
     }
 
+    /**
+     * 初始化数据
+     */
     private void initData() {
         String data = CacheUtils.getString(CreatorMsgActivity.this, HelpTools.BASEINFO, null);
         if (TextUtils.isEmpty(data)) {
@@ -546,7 +550,6 @@ public class CreatorMsgActivity extends BaseActivity {
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
-                    LogUtil.LogShitou("数据", "==>" + response);
                     UserCircleBean bean = GsonTools.jsonToBean(response, UserCircleBean.class);
                     if (bean != null) {
                         if (bean.getError() == 0) {
@@ -560,7 +563,6 @@ public class CreatorMsgActivity extends BaseActivity {
                 }
             });
         } else {
-            LogUtil.LogShitou("数据", "==>" + data);
             UserCircleBean bean = GsonTools.jsonToBean(data, UserCircleBean.class);
             if (bean != null) {
                 if (bean.getError() == 0) {
@@ -572,7 +574,6 @@ public class CreatorMsgActivity extends BaseActivity {
             }
         }
         if (agesList!=null){
-            LogUtil.LogShitou("是否获得了年龄区间", "" + agesList.size());
             initPicker();
         }
         //        if (circlesList != null && circlesList.size() != 0) {
@@ -585,6 +586,11 @@ public class CreatorMsgActivity extends BaseActivity {
         //        }
     }
 
+    /**
+     检测参数
+     @param show 是否开启toast
+     @return
+     */
     private Boolean checkParams(boolean show) {
         if (TextUtils.isEmpty(txChooseCircle) || txChooseCircle.equals("请选择你的自媒体圈子") || circleIdList.size() == 0) {
             if (show) {
@@ -651,6 +657,9 @@ public class CreatorMsgActivity extends BaseActivity {
         return true;
     }
 
+    /**
+     * 监听Edit的焦点展示hint
+     */
     class MyFocusListener implements View.OnFocusChangeListener {
         private int viewId;
 
@@ -675,6 +684,9 @@ public class CreatorMsgActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 根据Edit变化改变'保存'按键状态
+     */
     class MyTextChange implements TextWatcher {
 
         @Override
@@ -694,6 +706,9 @@ public class CreatorMsgActivity extends BaseActivity {
 
     }
 
+    /**
+     * 保存按键状态改变
+     */
     private void setSave() {
         initText();
         if (checkParams(false) == true) {

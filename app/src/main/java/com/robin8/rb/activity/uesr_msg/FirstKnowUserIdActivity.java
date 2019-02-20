@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.activity.MainActivity;
+import com.robin8.rb.util.IntentUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -39,7 +40,11 @@ public class FirstKnowUserIdActivity extends AppCompatActivity implements View.O
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.layout_next:
-                startActivity(new Intent(this, UserBaseMsgActivity.class));
+              //  startActivity(new Intent(this, UserBaseMsgActivity.class));
+                IntentUtils intentUtils = new IntentUtils(FirstKnowUserIdActivity.this, ChooseFavoriteActivity.class);
+                intentUtils.putExtra("base","base");
+                startActivity(intentUtils);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 break;
         }

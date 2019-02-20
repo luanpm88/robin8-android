@@ -271,18 +271,6 @@ public class StringUtil {
     }
 
     /**
-     如果string为空返回""
-     @param s
-     @return
-     */
-    public static String checkString(String s) {
-        if (TextUtils.isEmpty(s))
-            return "";
-        else
-            return s;
-    }
-
-    /**
      去除尾部.0
      */
     public static String deleteZero(String s) {
@@ -354,6 +342,17 @@ public class StringUtil {
         //        view.getPaint().setFakeBoldText(true);
     }
 
+    /**
+     如果string为空返回""
+     @param s
+     @return
+     */
+    public static String checkString(String s) {
+        if (TextUtils.isEmpty(s))
+            return "";
+        else
+            return s;
+    }
     /**
      补0
      @param str

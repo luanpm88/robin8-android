@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white_custom"
+        android:gravity="center_vertical"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingRight="@dimen/dp_15">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="美宝莲"
+                android:textColor="@color/gray_custom"
+                android:textSize="@dimen/undefine_font_4"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_price"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2.5dp"
+                android:gravity="center"
+                android:text="hahahah "
+                android:textColor="@color/gray_custom"
+                android:textSize="@dimen/undefine_font_3"/>
+
+            <TextView
+                android:id="@+id/tv_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="2.5dp"
+                android:text="caddsvsdvs"
+                android:textColor="@color/gray_custom"
+                android:textSize="@dimen/undefine_font_3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/tv_share_type"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="这是状态"
+                android:textSize="@dimen/undefine_font_4"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/Undefined_Line"/>
+</LinearLayout>

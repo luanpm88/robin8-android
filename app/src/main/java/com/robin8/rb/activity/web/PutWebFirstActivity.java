@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
@@ -30,19 +29,11 @@ import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.util.LogUtil;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLDecoder;
 
 import io.rong.imageloader.utils.L;
 
@@ -114,104 +105,104 @@ public class PutWebFirstActivity extends BaseActivity {
                 t.show();
                 return;
             }
-            DownloaderTask task = new DownloaderTask();
-            task.execute(url);
+//            DownloaderTask task = new DownloaderTask();
+//            task.execute(url);
         }
     }
-
-    //内部类
-    private class DownloaderTask extends AsyncTask<String, Void, String> {
-
-        public DownloaderTask() {
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            // TODO Auto-generated method stub
-            String url = params[0];
-            //          Log.i("tag", "url="+url);
-            String fileName = url.substring(url.lastIndexOf("/") + 1);
-            fileName = URLDecoder.decode(fileName);
-            Log.i("tag", "fileName=" + fileName);
-
-            //   File directory = getExternalFilesDir(null);
-            File directory = Environment.getExternalStorageDirectory();
-
-            File file = new File(directory, fileName);
-            Log.i("tag", "Path111=" + file.getAbsolutePath());
-            Log.i("tag", "Path222=" + file.getPath());
-            if (file.exists()) {
-                Log.i("tag", "The file has already exists.");
-                return fileName;
-            }
-            try {
-                HttpClient client = new DefaultHttpClient();
-                //                client.getParams().setIntParameter("http.socket.timeout",3000);//设置超时
-                HttpGet get = new HttpGet(url);
-                HttpResponse response = client.execute(get);
-                if (HttpStatus.SC_OK == response.getStatusLine().getStatusCode()) {
-                    HttpEntity entity = response.getEntity();
-                    InputStream input = entity.getContent();
-
-                    writeToSDCard(fileName, input);
-
-                    input.close();
-                    //                  entity.consumeContent();
-                    return fileName;
-                } else {
-                    return null;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            // TODO Auto-generated method stub
-            super.onCancelled();
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            // TODO Auto-generated method stub
-            super.onPostExecute(result);
-            closeProgressDialog();
-            if (result == null) {
-                Toast t = Toast.makeText(PutWebFirstActivity.this, "连接错误！请稍后再试！", Toast.LENGTH_LONG);
-                t.setGravity(Gravity.CENTER, 0, 0);
-                t.show();
-                return;
-            }
-
-            Toast t = Toast.makeText(PutWebFirstActivity.this, "已保存到SD卡。", Toast.LENGTH_LONG);
-            t.setGravity(Gravity.CENTER, 0, 0);
-            t.show();
-            // File directory =getExternalFilesDir(null);
-            File directory = Environment.getExternalStorageDirectory();
-            File file = new File(directory, result);
-            Log.i("tag", "Path=" + file.getAbsolutePath());
-
-            Intent intent = getFileIntent(file);
-
-            startActivity(intent);
-
-        }
-
-        @Override
-        protected void onPreExecute() {
-            // TODO Auto-generated method stub
-            super.onPreExecute();
-            showProgressDialog();
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            // TODO Auto-generated method stub
-            super.onProgressUpdate(values);
-        }
-    }
+//
+//    //内部类
+//    private class DownloaderTask extends AsyncTask<String, Void, String> {
+//
+//        public DownloaderTask() {
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... params) {
+//            // TODO Auto-generated method stub
+//            String url = params[0];
+//            //          Log.i("tag", "url="+url);
+//            String fileName = url.substring(url.lastIndexOf("/") + 1);
+//            fileName = URLDecoder.decode(fileName);
+//            Log.i("tag", "fileName=" + fileName);
+//
+//            //   File directory = getExternalFilesDir(null);
+//            File directory = Environment.getExternalStorageDirectory();
+//
+//            File file = new File(directory, fileName);
+//            Log.i("tag", "Path111=" + file.getAbsolutePath());
+//            Log.i("tag", "Path222=" + file.getPath());
+//            if (file.exists()) {
+//                Log.i("tag", "The file has already exists.");
+//                return fileName;
+//            }
+//            try {
+//                HttpClient client = new DefaultHttpClient();
+//                //                client.getParams().setIntParameter("http.socket.timeout",3000);//设置超时
+//                HttpGet get = new HttpGet(url);
+//                HttpResponse response = client.execute(get);
+//                if (HttpStatus.SC_OK == response.getStatusLine().getStatusCode()) {
+//                    HttpEntity entity = response.getEntity();
+//                    InputStream input = entity.getContent();
+//
+//                    writeToSDCard(fileName, input);
+//
+//                    input.close();
+//                    //                  entity.consumeContent();
+//                    return fileName;
+//                } else {
+//                    return null;
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                return null;
+//            }
+//        }
+//
+//        @Override
+//        protected void onCancelled() {
+//            // TODO Auto-generated method stub
+//            super.onCancelled();
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            // TODO Auto-generated method stub
+//            super.onPostExecute(result);
+//            closeProgressDialog();
+//            if (result == null) {
+//                Toast t = Toast.makeText(PutWebFirstActivity.this, "连接错误！请稍后再试！", Toast.LENGTH_LONG);
+//                t.setGravity(Gravity.CENTER, 0, 0);
+//                t.show();
+//                return;
+//            }
+//
+//            Toast t = Toast.makeText(PutWebFirstActivity.this, "已保存到SD卡。", Toast.LENGTH_LONG);
+//            t.setGravity(Gravity.CENTER, 0, 0);
+//            t.show();
+//            // File directory =getExternalFilesDir(null);
+//            File directory = Environment.getExternalStorageDirectory();
+//            File file = new File(directory, result);
+//            Log.i("tag", "Path=" + file.getAbsolutePath());
+//
+//            Intent intent = getFileIntent(file);
+//
+//            startActivity(intent);
+//
+//        }
+//
+//        @Override
+//        protected void onPreExecute() {
+//            // TODO Auto-generated method stub
+//            super.onPreExecute();
+//            showProgressDialog();
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(Void... values) {
+//            // TODO Auto-generated method stub
+//            super.onProgressUpdate(values);
+//        }
+//    }
 
     private ValueCallback<Uri> uploadMessage;
     private ValueCallback<Uri[]> uploadMessageAboveL;

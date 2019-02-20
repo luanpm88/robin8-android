@@ -70,6 +70,7 @@ import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
 /**
+ 2019-01-01废除
  Created by zc on 2017/7/11. */
 
 public class InfluencePager extends BasePager implements View.OnClickListener {
@@ -273,51 +274,46 @@ public class InfluencePager extends BasePager implements View.OnClickListener {
         BasePresenter mBasePresenter = new BasePresenter();
         RequestParams params = new RequestParams();
         params.put("provider", "weibo");
-        mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.CALCULATE_INFLUENCE_SCORE), params, new RequestCallback() {
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-
-            @Override
-            public void onResponse(String response) {
-               // LogUtil.LogShitou("影响力第一个接口", "==>" + response);
-                BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
-                if (baseBean != null) {
-                    if (baseBean.getError() == 0) {
-                        loadDataTwo();
-                    } else {
-                        CustomToast.showShort(mActivity, baseBean.getMessage());
-                    }
-                } else {
-                    // llHaveResult.setVisibility(View.INVISIBLE);
-                    llNoResult.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+//        mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.CALCULATE_INFLUENCE_SCORE), params, new RequestCallback() {
+//
+//            @Override
+//            public void onError(Exception e) {
+//
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
+//                if (baseBean != null) {
+//                    if (baseBean.getError() == 0) {
+//                        loadDataTwo();
+//                    } else {
+//                        CustomToast.showShort(mActivity, baseBean.getMessage());
+//                    }
+//                } else {
+//                    llNoResult.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
     }
 
     private int count = 0;
 
     private void loadDataTwo() {
         BasePresenter mBasePresenter = new BasePresenter();
-        mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.INFLUENCE_SCORE), null, new RequestCallback() {
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-
-            @Override
-            public void onResponse(String response) {
-               // LogUtil.LogShitou("影响力第二步接口", "===================>" + response);
-                // CacheUtils.putString(mActivity, SPConstants.INFLUENCE_DATA, response);
-                dealDatas(response);
-                //weiBoFg.myData(response,0);
-            }
-
-        });
+//        mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.INFLUENCE_SCORE), null, new RequestCallback() {
+//
+//            @Override
+//            public void onError(Exception e) {
+//
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                dealDatas(response);
+//            }
+//
+//        });
     }
 
     private boolean again = false;

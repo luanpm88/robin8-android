@@ -7,6 +7,7 @@ import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.model.Pair;
 import com.robin8.rb.util.CommonUtil;
@@ -68,7 +69,7 @@ public class XUtilsHttpUtils implements IHttpUtils {
         IParamHelper.HttpParamBean paramBean = defaultParamHelper.getParamBean(params);
         if (paramBean != null) {
             paramBean.callback = callBack;
-            httpUtils.send(com.lidroid.xutils.http.client.HttpRequest.HttpMethod.POST, paramBean
+            httpUtils.send(HttpRequest.HttpMethod.POST, paramBean
                     .url, (RequestParams) paramBean
                     .params, getCallBack
                     (params, callBack));
@@ -80,7 +81,7 @@ public class XUtilsHttpUtils implements IHttpUtils {
         IParamHelper.HttpParamBean paramBean = defaultParamHelper.getParamBean(params);
         if (paramBean != null) {
             paramBean.callback = callBack;
-            httpUtils.send(com.lidroid.xutils.http.client.HttpRequest.HttpMethod.GET, paramBean
+            httpUtils.send(HttpRequest.HttpMethod.GET, paramBean
                     .url, (RequestParams) paramBean
                     .params, getCallBack
                     (params, callBack));
@@ -91,7 +92,7 @@ public class XUtilsHttpUtils implements IHttpUtils {
         IParamHelper.HttpParamBean paramBean = defaultParamHelper.getParamBean(params);
         if (paramBean != null) {
             paramBean.callback = callBack;
-            httpUtils.send(com.lidroid.xutils.http.client.HttpRequest.HttpMethod.PUT, paramBean
+            httpUtils.send(HttpRequest.HttpMethod.PUT, paramBean
                     .url, (RequestParams) paramBean.params, getCallBack(params, callBack));
         }
     }

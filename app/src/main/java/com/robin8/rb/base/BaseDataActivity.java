@@ -6,6 +6,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import com.robin8.rb.R;
 import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.util.ActivityManagerUtils;
 import com.robin8.rb.util.ShakeListenerUtils;
@@ -40,6 +41,11 @@ public abstract class BaseDataActivity extends SwipeBackActivity {
         if (!TextUtils.isEmpty(mPageName)) {
             StatisticsAgency.onPageEnd(this, mPageName);
         }
+    }
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override

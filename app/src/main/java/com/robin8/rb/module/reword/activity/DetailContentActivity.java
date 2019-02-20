@@ -456,7 +456,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     private void initData() {
-
         NotifyManager.getNotifyManager().addObserver(this);
         if (mFrom == SPConstants.LAUNCHREWORDACTIVIRY) {
             return;

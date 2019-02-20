@@ -28,7 +28,6 @@ import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
-import com.robin8.rb.view.SerializableMapS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -78,11 +77,11 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
         if (bundle != null) {
             TYPE = 1;
             tvJump.setVisibility(View.INVISIBLE);
-            final SerializableMapS mapPaths = (SerializableMapS) bundle.get(BASE_INFO);
-            if (mapPaths != null) {
-                //取值
-                map = mapPaths.getMap();
-            }
+//            final SerializableMapS mapPaths = (SerializableMapS) bundle.get(BASE_INFO);
+//            if (mapPaths != null) {
+//                //取值
+//                map = mapPaths.getMap();
+//            }
             tvNext.setText("下一步");
         }
         Intent intent = getIntent();
@@ -106,9 +105,6 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
             }
             if (intent.getIntegerArrayListExtra(CHOOSE_LIST) != null) {
                 circlesIdList = intent.getIntegerArrayListExtra(CHOOSE_LIST);
-                for (int i = 0; i < circlesIdList.size(); i++) {
-                    LogUtil.LogShitou("传过来的圈子id", "==>" + circlesIdList.get(i));
-                }
             }
             tvNext.setText("完成");
         }
@@ -194,6 +190,11 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
 
     }
 
+    /**
+     转换筛选
+     @param s
+     @return
+     */
     private ArrayList<Integer> selecId(Set<Integer> s) {
         ArrayList<Integer> list = new ArrayList<>();
         if (circlesIdList != null || circlesIdList.size() != 0) {
@@ -207,7 +208,6 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
             }
         }
         for (int j = 0; j < circlesIdList.size(); j++) {
-            LogUtil.LogShitou("最后选择的ID", "===>" + circlesIdList.get(j));
             list.add(circlesList.get(circlesIdList.get(j)).getId());
         }
 
@@ -275,9 +275,9 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
         mWProgressDialog.show();
         final BasePresenter mBasePresenter = new BasePresenter();
         RequestParams mRequestParams = new RequestParams();
-        mRequestParams.put("gender", map.get("gender"));
+       // mRequestParams.put("gender", map.get("gender"));
+       // mRequestParams.put("kol_role", map.get("kol_role"));
         // mRequestParams.put("age", map.get("age"));
-        mRequestParams.put("kol_role", map.get("kol_role"));
         if (! TextUtils.isEmpty(selectFinal)) {
             if (circlesIdList.size() == 0 && selectFinal.equals("[]")) {
                 CustomToast.showShort(ChooseFavoriteActivity.this, "请选择你感兴趣的圈子");
@@ -321,6 +321,7 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
      初始化数据
      */
     private void initData() {
+        //缓存数据
         String data = CacheUtils.getString(ChooseFavoriteActivity.this, HelpTools.BASEINFO, null);
         if (TextUtils.isEmpty(data)) {
             if (mWProgressDialog == null) {

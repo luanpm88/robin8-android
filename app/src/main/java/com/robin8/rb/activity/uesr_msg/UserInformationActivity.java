@@ -26,9 +26,11 @@ import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CacheUtils;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
+import com.robin8.rb.util.NetworkUtil;
 import com.robin8.rb.view.widget.CircleImageView;
 
 import java.io.Serializable;
@@ -40,8 +42,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 用户认证信息
- */
+ 用户认证信息 */
 public class UserInformationActivity extends BaseActivity {
 
     @Bind(R.id.civ_image)
@@ -119,8 +120,8 @@ public class UserInformationActivity extends BaseActivity {
     private final String allUnPass = "微博／微信公众号大V认证未通过";
     private final String allUnCheck = "微博／微信公众号大V未认证";
 
-    private final String craetorName=  "内容创作者";
-    private final String publicName=  "普通用户";
+    private final String craetorName = "内容创作者";
+    private final String publicName = "普通用户";
 
     @Override
     public void setTitleView() {
@@ -175,6 +176,9 @@ public class UserInformationActivity extends BaseActivity {
         UserShowBean userShowBean = GsonTools.jsonToBean(response, UserShowBean.class);
         if (userShowBean != null) {
             if (userShowBean.getError() == 0) {
+                tvWechatIcon.setSelected(false);
+                tvWeiboIcon.setSelected(false);
+                tvQqIcon.setSelected(false);
                 kolBean = userShowBean.getKol();
                 public_wechat_account = userShowBean.getKol().getPublic_wechat_account();
                 creator = userShowBean.getKol().getCreator();
@@ -341,16 +345,16 @@ public class UserInformationActivity extends BaseActivity {
                                 holder.tvCheckResult.setText(allPass);
                                 holder.vIconReject.setVisibility(View.GONE);
                             } else if (public_wechat_account.getStatus() != 1 && weibo_account.getStatus() == 1) {
-                                if (public_wechat_account.getStatus()==-1){
+                                if (public_wechat_account.getStatus() == - 1) {
                                     holder.vIconReject.setVisibility(View.VISIBLE);
-                                }else {
+                                } else {
                                     holder.vIconReject.setVisibility(View.GONE);
                                 }
                                 holder.tvCheckResult.setText(weiBoPass);
                             } else if (public_wechat_account.getStatus() == 1 && weibo_account.getStatus() != 1) {
-                                if (weibo_account.getStatus()==-1){
+                                if (weibo_account.getStatus() == - 1) {
                                     holder.vIconReject.setVisibility(View.VISIBLE);
-                                }else {
+                                } else {
                                     holder.vIconReject.setVisibility(View.GONE);
                                 }
                                 holder.tvCheckResult.setText(wechatPass);
@@ -376,10 +380,10 @@ public class UserInformationActivity extends BaseActivity {
                                 holder.vIconReject.setVisibility(View.GONE);
                             }
 
-                        }else {
+                        } else {
                             holder.vIconReject.setVisibility(View.GONE);
                         }
-                    }else {
+                    } else {
                         holder.vIconReject.setVisibility(View.GONE);
                     }
                     break;
@@ -392,31 +396,35 @@ public class UserInformationActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View view) {
-                    switch (mDataList.get(position).getName()) {
-                        case publicName:
-                            //传送圈子和微信好友个数
-                            Intent intentP = new Intent(UserInformationActivity.this, PublicUserMsgActivity.class);
-                            intentP.putExtra(PublicUserMsgActivity.PUBLIC, intentInfo);
-                            startActivityForResult(intentP, SPConstants.USER_NEW_INFO);
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                            break;
-                        case bigVName:
-                            Intent intentB = new Intent(UserInformationActivity.this, UserSelectActivity.class);
-                            if (mDataList.get(position).isOpen || public_wechat_account != null || weibo_account != null) {
-                                intentB.putExtra(UserSelectActivity.SELECTPLAT, intentInfo);
-                            }
-                            startActivityForResult(intentB, SPConstants.USER_NEW_INFO);
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                            break;
-                        case craetorName:
-                            Intent intentC = new Intent(UserInformationActivity.this, CreatorMsgActivity.class);
-                            if (mDataList.get(position).isOpen || creator != null) {
-                                intentC.putExtra(CreatorMsgActivity.CREATOR, intentInfo);
-                            }
-                            startActivityForResult(intentC, SPConstants.USER_NEW_INFO);
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                            break;
+                    if (! NetworkUtil.isNetworkAvailable(UserInformationActivity.this)) {
+                        CustomToast.showShort(UserInformationActivity.this, getResources().getString(R.string.no_net).toString());
+                    } else {
+                        switch (mDataList.get(position).getName()) {
+                            case publicName:
+                                //传送圈子和微信好友个数
+                                Intent intentP = new Intent(UserInformationActivity.this, PublicUserMsgActivity.class);
+                                intentP.putExtra(PublicUserMsgActivity.PUBLIC, intentInfo);
+                                startActivityForResult(intentP, SPConstants.USER_NEW_INFO);
+                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                break;
+                            case bigVName:
+                                Intent intentB = new Intent(UserInformationActivity.this, UserSelectActivity.class);
+                                if (mDataList.get(position).isOpen || public_wechat_account != null || weibo_account != null) {
+                                    intentB.putExtra(UserSelectActivity.SELECTPLAT, intentInfo);
+                                }
+                                startActivityForResult(intentB, SPConstants.USER_NEW_INFO);
+                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                break;
+                            case craetorName:
+                                Intent intentC = new Intent(UserInformationActivity.this, CreatorMsgActivity.class);
+                                if (mDataList.get(position).isOpen || creator != null) {
+                                    intentC.putExtra(CreatorMsgActivity.CREATOR, intentInfo);
+                                }
+                                startActivityForResult(intentC, SPConstants.USER_NEW_INFO);
+                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                break;
 
+                        }
                     }
                 }
             });
@@ -527,32 +535,40 @@ public class UserInformationActivity extends BaseActivity {
 
     @OnClick({R.id.iv_back, R.id.layout_header, R.id.layout_public, R.id.layout_bigv, R.id.layout_creator, R.id.layout_bind_social})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_back:
-                finish();
-                break;
-            case R.id.layout_header:
-                Intent intentShow = new Intent(this, UserInfoShowActivity.class);
-                intentShow.putExtra("base", intentInfo);
-                LogUtil.LogShitou("传递的数据", intentInfo);
-                startActivityForResult(intentShow, SPConstants.USER_NEW_INFO);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                break;
-            case R.id.layout_public:
-                break;
-            case R.id.layout_bigv:
-                break;
-            case R.id.layout_creator:
-                break;
-            case R.id.layout_bind_social:
-                Intent intent = new Intent(this, BeKolSecondActivity.class);
-                intent.putExtra("social_accounts", (Serializable) mSocialAccounts);
-                // intent.putExtra("kol_shows", (Serializable) mKolShows);
-                intent.putExtra("kol_id", kolId);
-                startActivityForResult(intent, SPConstants.BE_KOL_BIND_RESULT);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                break;
+        if (! NetworkUtil.isNetworkAvailable(UserInformationActivity.this)) {
+            CustomToast.showShort(UserInformationActivity.this, getResources().getString(R.string.no_net).toString());
+        } else {
+            switch (view.getId()) {
+                case R.id.iv_back:
+                    finish();
+                    break;
+                case R.id.layout_header:
+                    Intent intentShow = new Intent(this, UserInfoShowActivity.class);
+                    intentShow.putExtra("base", intentInfo);
+                    startActivityForResult(intentShow, SPConstants.USER_NEW_INFO);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    break;
+                case R.id.layout_public:
+                    break;
+                case R.id.layout_bigv:
+                    break;
+                case R.id.layout_creator:
+                    break;
+                case R.id.layout_bind_social:
+                    if (TextUtils.isEmpty(intentInfo)) {
+                        CustomToast.showShort(UserInformationActivity.this, "努力请求网络中，请稍后再试！");
+                    } else {
+                        Intent intent = new Intent(this, BeKolSecondActivity.class);
+                        intent.putExtra("social_accounts", (Serializable) mSocialAccounts);
+                        // intent.putExtra("kol_shows", (Serializable) mKolShows);
+                        intent.putExtra("kol_id", kolId);
+                        startActivityForResult(intent, SPConstants.BE_KOL_BIND_RESULT);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    }
+                    break;
+            }
         }
+
     }
 
     @Override

@@ -67,9 +67,6 @@ public class UserInfoShowActivity extends BaseActivity {
     @Bind(R.id.edit_job)
     EditText editJob;
     private WProgressDialog mWProgressDialog;
-    // private RecyclerView mRecycleView;
-    private int mKolId;
-    private final String BACKSLASH = "/";
     private String url;
     private int TYPE_TWO = 0;
     private Bitmap mBitmap;
@@ -85,7 +82,6 @@ public class UserInfoShowActivity extends BaseActivity {
     @Override
     public void initView() {
         View view = LayoutInflater.from(this).inflate(R.layout.activity_user_info_show, mLLContent, true);
-        // mRecycleView = ((RecyclerView) view.findViewById(R.id.recycler_view));
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String base = intent.getStringExtra("base");
@@ -103,8 +99,6 @@ public class UserInfoShowActivity extends BaseActivity {
     }
 
     private void initData(String extra) {
-       LogUtil.LogShitou("传过来的数据呢",extra);
-
         UserShowBean userShowBean = GsonTools.jsonToBean(extra, UserShowBean.class);
         if (userShowBean.getError() == 0) {
             UserShowBean.KolBean kol = userShowBean.getKol();
@@ -149,11 +143,6 @@ public class UserInfoShowActivity extends BaseActivity {
                 }
             }
         }
-    }
-
-
-    private void updateData() {
-
     }
 
     @Override
@@ -207,17 +196,13 @@ public class UserInfoShowActivity extends BaseActivity {
             imageName = mFinalPicturePath.substring(mFinalPicturePath.lastIndexOf("/") + 1);
             file = new File(mFinalPicturePath);
         }
-      //  final BasePresenter mBasePresenter = new BasePresenter();
-      //  RequestParams mRequestParams = new RequestParams();
         LinkedHashMap<String, Object> mRequestParams = new LinkedHashMap<>();
-      //  mRequestParams.put("avatar", file);
         mRequestParams.put("name",editNickName.getText().toString().trim());
         mRequestParams.put("birthday",tvBirth.getText().toString());
         mRequestParams.put("gender",String.valueOf(TYPE_TWO));
         mRequestParams.put("job_info",editJob.getText().toString());
 
         HttpRequest.getInstance().post(true, HelpTools.getUrl(CommonConfig.UPDATE_BASE_INFO_URL), "avatar", imageName, file, mRequestParams, new RequestCallback() {
-       // mBasePresenter.getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.UPDATE_BASE_INFO_URL), mRequestParams, new RequestCallback() {
 
             @Override
             public void onError(Exception e) {
@@ -253,8 +238,6 @@ public class UserInfoShowActivity extends BaseActivity {
                     mImageUri = data.getData();
                     //剪裁
                     BitmapUtil.cropImageUri(mImageUri, 500, 500, SPConstants.RESULT_CROP_CODE, 1, 1, this);
-                    //  BitmapUtil.cropImageUri(mImageUri, 350, 420,  SPConstants.RESULT_CROP_CODE, 5, 6,this);
-
                     break;
                 case SPConstants.RESULT_CROP_CODE:
                     mBitmap = BitmapUtil.decodeUriAsBitmap(mImageUri, this);

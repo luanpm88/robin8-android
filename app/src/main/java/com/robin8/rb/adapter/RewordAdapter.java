@@ -729,18 +729,5 @@ public class RewordAdapter extends BaseAdapter {
         return sb.toString();
 
     }
-    //            if (start_time - now_time > 0) {
-    //                viewHolder.tv_actiontype.setText("距活动开始");
-    //                viewHolder.tv_count_down.setText(count_down(start_time - now_time));
-    //                viewHolder.iv_cover.setBackgroundColor(mActivity.getResources().getColor(R.color.cover_transparent_deep));
-    //                viewHolder.earnLinearLayout.setVisibility(View.VISIBLE);
-    //                viewHolder.ll_show_money.setVisibility(View.GONE);
-    //                viewHolder.ll_will_begin.setVisibility(View.VISIBLE);
-    //            } else {
-    //                viewHolder.earnLinearLayout.setVisibility(View.GONE);
-    //                viewHolder.ll_show_money.setVisibility(View.VISIBLE);
-    //                viewHolder.ll_will_begin.setVisibility(View.GONE);
-    //                setCampaignTypeView(item, viewHolder, judgeActivityStatues(item));
-    //                setCampaignStateView(item, viewHolder, judgeEnterActivity(item), judgeActivityStatues(item));
-    //            }
+
 }

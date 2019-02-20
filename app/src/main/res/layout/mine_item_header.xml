@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="@mipmap/pic_income_bg"
               android:orientation="vertical">
 
@@ -41,14 +41,15 @@
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxWidth="165dp"
                     android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:maxLength="18"
+                    android:maxWidth="165dp"
+                    android:textStyle="bold"
                     android:singleLine="true"
                     android:text="@string/click_login"
-                    android:maxLength="10"
                     android:textColor="@color/white_custom"
-                    android:textSize="@dimen/undefine_font_4"/>
+                    android:textSize="@dimen/undefine_font_6"/>
 
                 <ImageView
                     android:id="@+id/iv_kol_certification"
@@ -58,29 +59,32 @@
                     android:layout_marginLeft="5dp"
                     android:background="@mipmap/icon_kol_uncertification"/>
 
-              <ImageView
-                  android:id="@+id/img_campaign_logo"
-                  android:layout_width="12dp"
-                  android:layout_height="12dp"
-                  android:layout_gravity="center_vertical"
-                  android:visibility="gone"
-                  android:layout_marginLeft="5dp"/>
+                <ImageView
+                    android:id="@+id/img_campaign_logo"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:visibility="gone"/>
             </LinearLayout>
+
             <com.robin8.rb.ui.widget.myprogress.RoundCornerProgressBar
                 android:id="@+id/pro_user_info"
                 android:layout_width="170dp"
+                android:visibility="gone"
                 android:layout_height="6dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="5dp"
+                app:rcBackgroundColor="@color/gray_898989"
                 app:rcBackgroundPadding="0dp"
                 app:rcMax="100"
                 app:rcProgress="0"
-                app:rcBackgroundColor="@color/gray_898989"
                 app:rcProgressColor="@color/yellow_ffc701"
                 app:rcRadius="10dp"
                 app:rcRadiusBg="10dp"
                 app:rcSecondaryProgress="100"
                 app:rcSecondaryProgressColor="@color/gray_898989"/>
+
             <TextView
                 android:id="@+id/tv_user_tag"
                 android:layout_width="wrap_content"
@@ -88,24 +92,38 @@
                 android:layout_marginTop="3dp"
                 android:singleLine="true"
                 android:text="@string/login_get_more_campaign"
-                android:textColor="@color/white_custom"
+                android:textColor="@color/gray_second"
                 android:textSize="@dimen/undefine_font_0"/>
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_tag"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:singleLine="true"-->
+                <!--android:text="点击查看身份信息"-->
+                <!--android:textColor="@color/gray_second"-->
+                <!--android:textSize="@dimen/undefine_font_1"/>-->
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_go_next"/>
+
         <TextView
-            android:visibility="gone"
             android:id="@+id/tv_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_bg_yellow_pane"
             android:gravity="center"
-            android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:paddingLeft="7dp"
             android:paddingRight="7dp"
+            android:paddingTop="3dp"
             android:text="@string/be_kol"
             android:textColor="@color/mine_yellow_custom"
-            android:textSize="@dimen/undefine_font_0"/>
+            android:textSize="@dimen/undefine_font_0"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <View

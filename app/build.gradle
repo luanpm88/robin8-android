@@ -18,7 +18,7 @@ android {
         javaMaxHeapSize "4g"
     }
 
-    compileSdkVersion 22
+    compileSdkVersion 25
     buildToolsVersion '25'
 
     aaptOptions.cruncherEnabled = false
@@ -31,10 +31,11 @@ android {
     defaultConfig {
         applicationId "com.robin8.rb"
         minSdkVersion 17
-        targetSdkVersion 22
+        targetSdkVersion 25
+        useLibrary 'org.apache.http.legacy'
         //noinspection HighAppVersionCode
-        versionCode 2018120112
-        versionName "2.4.9"
+        versionCode 2018122115
+        versionName "2.5.0"
         multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "IZNLTEcKP29wbXiZVI8414",
@@ -104,36 +105,35 @@ android {
         //应用宝、360市场、百度 豌豆荚  android_yingyongbao android_360 android_baidu android_wandoujia  android_xiaomi
         // android_huawei  android_lianxiang
         // android_meizu  android_oppo  android_vivo
-        android_yingyongbao {
-            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
-        }
+//        android_yingyongbao {
+//            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
+//        }
+//
+//        android_baidu {
+//            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
+//        }
+//
+//        android_wandoujia {
+//            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
+//        }
+//
+//        android_huawei {
+//            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
+//        }
+//
+//        android_lianxiang {
+//            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
+//        }
 
-        android_360 {
-            manifestPlaceholders = [Td_Channel_Id: "android_360"]
-        }
-
-        android_baidu {
-            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
-        }
-
-        android_wandoujia {
-            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
-        }
-
-        android_huawei {
-            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
-        }
-
-        android_lianxiang {
-            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
-        }
-
-        android_vivo {
-            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
-        }
-        android_oppo {
-            manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
-        }
+//        android_vivo {
+//            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
+//        }
+//        android_oppo {
+//            manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
+//        }
+//        android_360 {
+//            manifestPlaceholders = [Td_Channel_Id: "android_360"]
+//        }
         android_xiaomi {
             manifestPlaceholders = [Td_Channel_Id: "android_xiaomi"]
         }
@@ -214,4 +214,6 @@ dependencies {
     compile 'com.liulishuo.filedownloader:library:1.7.4'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.google.guava:guava:27.0-android'
+    compile 'com.android.support:cardview-v7:26.0.0-alpha1'
+    compile 'org.apache.httpcomponents:httpcore:4.4.4'
 }

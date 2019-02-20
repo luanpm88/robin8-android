@@ -17,13 +17,17 @@ public class BasePager {
     public View rootView;// 孩子的具体界面内容，是为了ViewPager中的instantiateItem返回View
     protected LinearLayout mLLContent;// 每个孩子的具体内容的容器
     protected TextView mTitleBarText;
+    protected TextView mTvCardTitle;
     protected LinearLayout mRewordFilterLl;
+    protected LinearLayout llCardTitle;
     protected ImageView mRewordLaunchIv;
     protected ImageView firstLeft;
     protected ImageView firstRight;
     protected long lastTime;
     protected ImageView mImgTypeMenu;
     protected RelativeLayout llTitle;
+    protected RelativeLayout llNormalTitle;
+    protected ImageView mBigvFilter;
 
 
     public BasePager() {
@@ -41,6 +45,10 @@ public class BasePager {
     public View initView() {
         View view = View.inflate(mActivity, R.layout.pager_base, null);
         llTitle = ((RelativeLayout) view.findViewById(R.id.rl_title));
+        llNormalTitle = ((RelativeLayout) view.findViewById(R.id.normal_title));
+        llCardTitle = ((LinearLayout) view.findViewById(R.id.card_title));
+        mTvCardTitle = (TextView) view.findViewById(R.id.tv_card_title);
+        mBigvFilter = ((ImageView) view.findViewById(R.id.iv_card_select));
         mLLContent = (LinearLayout) view.findViewById(R.id.fl_basepager_content);
         mTitleBarText = (TextView) view.findViewById(R.id.titlebar_text);
         mImgTypeMenu = ((ImageView) view.findViewById(R.id.img_type_menu));
@@ -48,7 +56,6 @@ public class BasePager {
         mRewordLaunchIv = (ImageView) view.findViewById(R.id.reword_launch_iv);
         firstLeft = (ImageView) view.findViewById(R.id.first_left);
         firstRight = (ImageView) view.findViewById(R.id.first_right);
-
         return view;
     }
 

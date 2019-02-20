@@ -8,11 +8,11 @@ import com.robin8.rb.util.LogUtil;
 /**
  * Created by Figo on 2016/6/30.
  */
-public class BigvProtocol {
+public class ContactProtocol {
     /**
      * 获取活动列表
      */
-    public void getBigvTasks(String url,String filterStr,int currentPage,String withAnnouncements, RequestCallback requestCallback) {
+    public void getContactTasks(String url,String filterStr,int currentPage,String withAnnouncements, RequestCallback requestCallback) {
 
         RequestParams requestParams = new RequestParams();
         requestParams.put("status", filterStr);

@@ -44,7 +44,8 @@ public class UserSelectActivity extends BaseActivity {
     private String initInfoRegister;
     private String fromRegister;
     private boolean isClose = false;
-private boolean isUpdata = false;
+    private boolean isUpdata = false;
+
     @Override
     public void setTitleView() {
         mTVCenter.setText("选择平台");
@@ -78,9 +79,9 @@ private boolean isUpdata = false;
             if (fromRegister.equals(UserBaseMsgActivity.BASEMSG)) {
                 isClose = true;
                 initInfoRegister = getIntent().getStringExtra("register_data");
-                if (!TextUtils.isEmpty(initInfoRegister)){
+                if (! TextUtils.isEmpty(initInfoRegister)) {
                     initData(initInfoRegister);
-                }else {
+                } else {
                     tvWeibo.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.login_weibo), null, null, null);
                     tvWeibo.setTextColor(getResources().getColor(R.color.gray_first));
                     tvWeibo.setText("请填写微博报价");
@@ -183,7 +184,7 @@ private boolean isUpdata = false;
                     intent.putExtra(WechatMsgActivity.WECHAT, initInfo);
                 }
                 if (isClose == true) {
-                    if (!TextUtils.isEmpty(initInfoRegister)){
+                    if (! TextUtils.isEmpty(initInfoRegister)) {
                         intent.putExtra(WechatMsgActivity.WECHAT, initInfoRegister);
                     }
                     startActivityForResult(intent, SPConstants.CLOSE);
@@ -200,7 +201,7 @@ private boolean isUpdata = false;
                     intentWeibo.putExtra(WeiBoMsgActivity.WEIBOMSG, initInfo);
                 }
                 if (isClose == true) {
-                    if (!TextUtils.isEmpty(initInfoRegister)){
+                    if (! TextUtils.isEmpty(initInfoRegister)) {
                         intentWeibo.putExtra(WeiBoMsgActivity.WEIBOMSG, initInfoRegister);
                     }
                     startActivityForResult(intentWeibo, SPConstants.CLOSE);
@@ -212,7 +213,7 @@ private boolean isUpdata = false;
 
                 break;
             case R.id.iv_back:
-                    finish();
+                finish();
                 break;
         }
     }
@@ -226,14 +227,14 @@ private boolean isUpdata = false;
                 initData(updata);
             }
         } else if (requestCode == SPConstants.CLOSE) {
-            isUpdata=false;
+            isUpdata = false;
             if (resultCode == RESULT_OK) {
                 String updata = data.getStringExtra("updata");
                 initInfo = updata;
                 initData(updata);
                 if (! TextUtils.isEmpty(updata)) {
                     Intent intent = new Intent(this, UserBaseMsgActivity.class);
-                    intent.putExtra("data",updata);
+                    intent.putExtra("data", updata);
                     setResult(RESULT_OK, intent);
                     finish();
                 } else {
@@ -252,15 +253,15 @@ private boolean isUpdata = false;
 
     @Override
     protected void executeOnclickLeftView() {
-        if (!TextUtils.isEmpty(initInfo)){
-            if (isUpdata=true){
+        if (! TextUtils.isEmpty(initInfo)) {
+            if (isUpdata = true) {
                 Intent intent = new Intent(UserSelectActivity.this, UserInformationActivity.class);
-                setResult(RESULT_OK,intent);
+                setResult(RESULT_OK, intent);
                 finish();
-            }else {
+            } else {
                 finish();
             }
-        }else {
+        } else {
             finish();
         }
 

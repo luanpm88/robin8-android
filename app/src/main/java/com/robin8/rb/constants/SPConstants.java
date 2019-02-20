@@ -65,6 +65,7 @@ public class SPConstants {
     public static final int CLOSE_ONE= 133;//微信微博数据更新
     public static final int CLOSE_TWO= 134;//微信微博数据更新
     public static final int ME_BANNER= 135;//我的页面广告banner
+    public static final int ADD_PRICE= 136;//添加报价
 
     public static final String SP_SIGN = "robin8_sp";
     public static final String ROBIN_IME = "robin_ime";

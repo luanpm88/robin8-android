@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,9 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
     protected TextView mTvEdit;
     protected TextView tvJump;
     protected LinearLayout mShare;
+    protected CardView mCardTitle;
+    protected ImageView mImgBack;
+    protected TextView mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,9 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
      */
     private void initBaseView() {
         mLLRoot = (LinearLayout) findViewById(R.id.ll_root);
+        mCardTitle = ((CardView) findViewById(R.id.card_view_title));
+        mImgBack = ((ImageView) findViewById(R.id.img_back));
+        mTitle = ((TextView) findViewById(R.id.tv_title));
         mLLTitleBar = (RelativeLayout) findViewById(R.id.ll_titlebar);
         mTVCenter = (TextView) findViewById(R.id.tv_center);
         mTVRight = (TextView) findViewById(R.id.tv_right);
@@ -72,6 +79,7 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
         tvJump.setOnClickListener(this);
         mTvEdit.setOnClickListener(this);
         mTvSave.setOnClickListener(this);
+        mImgBack.setOnClickListener(this);
     }
 
     @Override
@@ -81,6 +89,7 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
                 executeOnclickLeftView();
                 break;
             case R.id.iv_back:
+            case R.id.img_back:
                 executeOnclickLeftView();
                 break;
             case R.id.tv_right:

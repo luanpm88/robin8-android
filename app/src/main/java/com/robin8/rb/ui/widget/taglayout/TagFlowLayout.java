@@ -104,10 +104,10 @@ public class TagFlowLayout extends FlowLayout
 
             } else {
                 ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                lp.setMargins(dip2px(getContext(), 10),
-                        dip2px(getContext(), 6),
+                lp.setMargins(dip2px(getContext(), 11),
+                        dip2px(getContext(), 7),
                         dip2px(getContext(), 5),
-                        dip2px(getContext(), 6));
+                        dip2px(getContext(), 7));
                 tagViewContainer.setLayoutParams(lp);
             }
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);

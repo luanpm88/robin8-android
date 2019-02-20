@@ -79,7 +79,7 @@ public class CreateContentFragment extends BaseFragment {
     private void loadData() {
         switch (mPageName){
             case StatisticsAgency.MY_TASK:
-                mProtocol = new MyPaticipateFragmentProtocol(mActivity,mData,mLLNodata);
+                mProtocol = new MyPaticipateFragmentProtocol(mActivity,mData,mLLNodata,0);
                 break;
             case StatisticsAgency.MY_CREATE:
                 mProtocol = new MyCreateFragmentProtocol(mActivity,mData,mLLNodata);

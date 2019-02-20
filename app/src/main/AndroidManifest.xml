@@ -74,6 +74,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4"/>
+
         <activity
             android:name=".activity.SplashActivity"
             android:configChanges="keyboard|orientation"
@@ -825,9 +829,22 @@
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.uesr_msg.UserInfoShowActivity"
-                  android:launchMode="standard"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".activity.uesr_msg.UserInfoShowActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".module.bigv.activity.BigvCampaignDetailActivity">
+        </activity>
+        <activity android:name=".module.bigv.activity.AddPriceActivity">
+        </activity>
+        <activity android:name=".module.bigv.activity.UploadActivity">
+        </activity>
+        <activity android:name=".module.bigv.activity.ContactListActivity">
+        </activity>
+        <activity android:name=".module.bigv.activity.ChatActivity">
+        </activity>
+        <activity android:name=".module.mine.activity.MyCampaignHistoryActivity">
         </activity>
     </application>
 

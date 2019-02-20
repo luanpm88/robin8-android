@@ -20,7 +20,6 @@ import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.LoginHelper;
 import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.helper.StatisticsAgency;
 import com.robin8.rb.listener.BindSocialPresenterListener;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.IndentyBean;
@@ -28,8 +27,6 @@ import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.OtherLoginListBean;
 import com.robin8.rb.module.mine.model.MineShowModel;
 import com.robin8.rb.module.mine.rongcloud.RongCloudBean;
-import com.robin8.rb.module.social.MeasureInfluenceActivity;
-import com.robin8.rb.module.social.MeasureInfluenceManActivity;
 import com.robin8.rb.module.social.SocialBindActivity;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -85,11 +82,11 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             mKolUuid = rootBundle.getString("kol_uuid", "");
             from = rootBundle.getInt("from", SPConstants.MAINACTIVITY);
         }
-        if (intent.getStringExtra("influence") != null) {
-            if (intent.getStringExtra("influence").equals(StatisticsAgency.INFLUENCE_LIST)) {
-                influence = 1;
-            }
-        }
+//        if (intent.getStringExtra("influence") != null) {
+//            if (intent.getStringExtra("influence").equals(StatisticsAgency.INFLUENCE_LIST)) {
+//                influence = 1;
+//            }
+//        }
 
     }
 
@@ -204,7 +201,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
     }
 
     private void toBind(final String provider, final String plat, final String token, String userGender, final String userIcon, final String userId, final String userName, final HashMap<String, Object> res, final LoginBean loginBean) {
-        LogUtil.LogShitou("11111", "111111");
         RequestParams mRequestParams = new RequestParams();
         mRequestParams.put("provider", provider);
         mRequestParams.put("token", token);
@@ -352,9 +348,9 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             BaseApplication.getInstance().setLoginBean(loginBean);
             Intent intent = new Intent(mActivity, LoginOtherWithPhoneActivity.class);
             intent.putExtra("from", from);
-            if (influence == 1) {
-                intent.putExtra("influence", StatisticsAgency.INFLUENCE_LIST);
-            }
+//            if (influence == 1) {
+//                intent.putExtra("influence", StatisticsAgency.INFLUENCE_LIST);
+//            }
             mActivity.startActivity(intent);
             mActivity.finish();
         }
@@ -765,24 +761,27 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             mActivity.startActivity(intent);
             mActivity.finish();
             mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else if (i == 1) {
-            //有微博或者微信
-            Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
-            mActivity.startActivity(intent);
-            mActivity.finish();
-            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else if (i == 2) {
-            //跳转到man
-            Intent intent = new Intent(mActivity, MeasureInfluenceManActivity.class);
-            mActivity.startActivity(intent);
-            mActivity.finish();
-            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }else if (i==3){
+        }
+//        else if (i == 1) {
+//            //有微博或者微信
+//            Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
+//            mActivity.startActivity(intent);
+//            mActivity.finish();
+//            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//        }
+//        else if (i == 2) {
+//            //跳转到man
+//            Intent intent = new Intent(mActivity, MeasureInfluenceManActivity.class);
+//            mActivity.startActivity(intent);
+//            mActivity.finish();
+//            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//        }
+        else if (i==3){
             Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
             mActivity.startActivity(intent);
             mActivity.finish();
             mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }else if (i==4){
+        }else if (i==4 || i==1 || i==2){
             Intent intent = new Intent(mActivity, MainActivity.class);
             intent.putExtra("register_main", "zhu");
             mActivity.startActivity(intent);
@@ -792,34 +791,12 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
     }
 
     public void backMain(int i) {
-        //  LogUtil.LogShitou("？？？？？？？","=influence==>"+influence+"==i==="+i);
-        if (influence == 1) {
-            //返回影响力界面
-            if (BaseApplication.getInstance().hasLogined()) {
-                //登陆成功就返回影响力界面
-                Intent intent = new Intent(mActivity, MainActivity.class);
-                intent.putExtra("register_main", "influence");
-                mActivity.startActivity(intent);
-                mActivity.finish();
-                mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            } else {
-                //为登陆就返回活动页面
-                Intent intent = new Intent(mActivity, MainActivity.class);
-                intent.putExtra("register_main", "zhu");
-                mActivity.startActivity(intent);
-                mActivity.finish();
-                mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        } else {
-            if (i == 1) {
-                Intent intent = new Intent(mActivity, MainActivity.class);
-                intent.putExtra("register_main", "zhu");
-                mActivity.startActivity(intent);
-            }
-            mActivity.finish();
-            //mActivity.finish();
-            // mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        if (i == 1) {
+            Intent intent = new Intent(mActivity, MainActivity.class);
+            intent.putExtra("register_main", "zhu");
+            mActivity.startActivity(intent);
         }
+        mActivity.finish();
     }
 
     public void toEmailRegister() {

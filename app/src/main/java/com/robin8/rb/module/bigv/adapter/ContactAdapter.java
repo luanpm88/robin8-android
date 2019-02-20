@@ -11,20 +11,21 @@ import android.widget.TextView;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.model.BigvListModel;
+import com.robin8.rb.module.bigv.model.ContactListModel;
 
 import java.util.List;
 
 /**
  Created by zc on 2019/1/7. */
 
-public class ContactListAdapter extends BaseAdapter {
+public class ContactAdapter extends BaseAdapter {
 
-    private final List<BigvListModel> mList;
+    private final List<ContactListModel> mList;
     private final LayoutInflater mLayoutInflater;
     private final Context mActivity;
 
 
-    public ContactListAdapter(Activity activity, List<BigvListModel> list) {
+    public ContactAdapter(Activity activity, List<ContactListModel> list) {
 
         mList = list;
         mActivity = activity;
@@ -38,7 +39,7 @@ public class ContactListAdapter extends BaseAdapter {
     }
 
     @Override
-    public BigvListModel getItem(int position) {
+    public ContactListModel getItem(int position) {
 
         return mList.get(position);
     }
@@ -61,7 +62,7 @@ public class ContactListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final BigvListModel item = getItem(position);
+        final ContactListModel item = getItem(position);
         if (item == null) {
             return null;
         }

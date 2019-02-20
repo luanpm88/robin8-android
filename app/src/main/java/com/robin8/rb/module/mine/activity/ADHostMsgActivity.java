@@ -172,10 +172,6 @@ public class ADHostMsgActivity extends BaseActivity {
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
-
-                    if (! TextUtils.isEmpty(mFinalPicturePath)) {
-                        BitmapUtil.deleteBm(mFinalPicturePath);
-                    }
                     BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                     if (baseBean != null) {
                         if (baseBean.getError() == 0) {
@@ -183,7 +179,6 @@ public class ADHostMsgActivity extends BaseActivity {
                         }else {
                             if(!TextUtils.isEmpty(baseBean.getDetail())){
                                 CustomToast.showShort(ADHostMsgActivity.this,baseBean.getDetail());
-
                             }
                         }
                     }
@@ -261,7 +256,9 @@ public class ADHostMsgActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-
+        if (! TextUtils.isEmpty(mFinalPicturePath)) {
+            BitmapUtil.deleteBm(mFinalPicturePath);
+        }
         if (mBitmap != null) {
             mBitmap.recycle();
             mBitmap = null;

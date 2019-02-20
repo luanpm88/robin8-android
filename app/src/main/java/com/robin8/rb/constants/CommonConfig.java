@@ -34,11 +34,12 @@ public class CommonConfig {
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
     //18321878526
-  // public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
-   //  public static String SERVICE = "http://192.168.51.170:3000/";//robin8-测试服务器地址/test server path
-   //  public static String SERVICE = "http://192.168.51.105:3001/";//robin8-测试服务器地址/test server path
+     public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+    //  public static String SERVICE = "http://192.168.51.170:3000/";//robin8-测试服务器地址/test server path
+    // public static String SERVICE = "http://192.168.50.105:3000/";//robin8-测试服务器地址/test server path
+   // public static String SERVICE = "http://192.168.50.50:3001/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
-    public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
+    // public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String WEBPATH = "file:///android_asset/blockchain_pems/";//本地web路径
     public static final String UpdateUrl = "api/v2/upgrades/check";
@@ -194,5 +195,13 @@ public class CommonConfig {
     public static final String UPDATE_CREATOR_INFO_URL = "api/v2_1/kols/applying_creator";//内容创作者信息，post
     public static final String UPDATE_WECHAT_INFO_URL = "api/v2_1/kols/applying_public_wechat_account";//微信信息，post
     public static final String CHECK_RESULT_URL = "api/v2_1/kols/set_account_is_read";//微信信息，post
+
+
+    public static final String BIGV_LIST_URL = "api/v3_0/creations";//大V列表，GET
+    public static final String BIGV_LIST_DETAIL_URL = "api/v3_0/creations/";//大V详情页，GET
+    public static final String BIGV_LIST_DETAIL_TENDER_URL = "/tender";//大V详情报价，post
+    public static final String BIGV_LIST_DETAIL_LINK_URL = "/upload_links";//大V详情添加报价，post
+    public static final String BIGV_LIST_CAMPAIGN_HISTORY_URL = "api/v3_0/kols/";//大V详情添加报价，post
+
 
 }

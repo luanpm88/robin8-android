@@ -1,10 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.robin8.rb.module.bigv.AddPriceActivity">
+    android:background="@color/bg_custom"
+    android:orientation="vertical"
+    tools:context="com.robin8.rb.module.bigv.activity.AddPriceActivity">
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_result_title"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardBackgroundColor="@color/blue_custom"
+        app:cardCornerRadius="@dimen/dp_10"
+        app:cardElevation="@dimen/dp_5"
+        app:cardMaxElevation="@dimen/dp_5">
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_20">
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="等待品牌方确认"
+                android:textColor="@color/white_custom"
+                android:textSize="@dimen/undefine_font_6"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="作品上传完成后品牌将会进行审核，请按照协商规则完成"
+                android:textColor="@color/white_custom"
+                android:textSize="@dimen/undefine_font_1"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        app:cardBackgroundColor="@color/white_custom"
+        app:cardCornerRadius="@dimen/dp_10"
+        app:cardElevation="@dimen/dp_5"
+        app:cardMaxElevation="@dimen/dp_5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_20">
+
+            <TextView
+                android:id="@+id/tv_add_price_title"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="添加报价"
+                android:textColor="@color/black_4a4a4a"
+                android:textSize="@dimen/undefine_font_6"/>
+
+            <com.robin8.rb.module.social.view.LinearLayoutForListView
+                android:id="@+id/lv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_custom"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:fadingEdge="none"
+                android:scrollingCache="false"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bg_custom"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rc_dimen_size_44"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        app:cardBackgroundColor="@color/blue_custom"
+        app:cardCornerRadius="@dimen/dp_20"
+        app:cardElevation="@dimen/dp_5"
+        app:cardMaxElevation="@dimen/dp_5"
+        >
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/submit"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_4"/>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

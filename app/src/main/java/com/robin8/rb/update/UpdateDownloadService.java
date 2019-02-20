@@ -61,13 +61,8 @@ public class UpdateDownloadService extends Service {
                         PendingIntent contentIntent = PendingIntent.getActivity(
                                 mContext, 0, intent,
                                 PendingIntent.FLAG_UPDATE_CURRENT);
-                        mNotification.setLatestEventInfo(
-                                mContext,
-                                mContext.getResources().getString(
-                                        R.string.update_downfinish),
-                                mContext.getResources().getString(
-                                        R.string.update_apkdownfinish),
-                                contentIntent);
+                      //  mNotification.setLatestEventInfo(mContext, mContext.getResources().getString(R.string.update_downfinish), mContext.getResources().getString(R.string.update_apkdownfinish), contentIntent);
+
                         serviceIsDestroy = true;
                         stopSelf();// 停掉服务自身
                     }
@@ -152,10 +147,15 @@ public class UpdateDownloadService extends Service {
         CharSequence tickerText = mContext.getResources().getString(
                 R.string.update_beginload);
         long when = System.currentTimeMillis();
-        mNotification = new Notification(R.mipmap.ic_launcher, tickerText,
-                when);
+     //   mNotification = new Notification(R.mipmap.ic_launcher, tickerText,when);
+        Notification.Builder builder = new Notification.Builder(mContext);//分版本
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setTicker(tickerText);
+        builder.setWhen(when);
         // 放置在"正在运行"栏目中
-        mNotification.flags = Notification.FLAG_ONGOING_EVENT;
+        builder.setDefaults(Notification.FLAG_ONGOING_EVENT);
+
+        mNotification = builder.build();
 
         RemoteViews contentView = new RemoteViews(getPackageName(),
                 R.layout.update_notification_layout);
@@ -171,7 +171,7 @@ public class UpdateDownloadService extends Service {
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // 指定内容意图
-        mNotification.contentIntent = contentIntent;
+        builder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFY_ID, mNotification);
     }
 

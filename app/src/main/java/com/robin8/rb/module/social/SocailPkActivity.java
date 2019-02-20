@@ -156,7 +156,7 @@ public class SocailPkActivity extends BaseActivity {
         tvToCampaign.setOnClickListener(this);
         tvToWechat.setOnClickListener(this);
 
-        initData();
+       // initData();
 
     }
 
@@ -452,7 +452,7 @@ public class SocailPkActivity extends BaseActivity {
             BitmapUtil.loadImage(getApplicationContext(), right_imgurl, mImgUserPhotoRight);
         }
         myList = new ArrayList<>();
-        loadData();
+     //   loadData();
     }
 
     private void loadData() {
@@ -467,7 +467,6 @@ public class SocailPkActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                //  LogUtil.LogShitou("影响力第一个接口", "==>" + response);
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (baseBean != null) {
                     if (baseBean.getError() == 0) {
@@ -492,8 +491,6 @@ public class SocailPkActivity extends BaseActivity {
                                     myPkListAdapter = new MyPkListAdapter();
                                     mListPk.setAdapter(myPkListAdapter);
                                 } else {
-                                    //获得倒计时
-                                    //   LogUtil.LogShitou("倒计时", "====>");
                                     iszero = 1;
                                     mImgUserPhotoLeft.setImageResource(R.mipmap.logo_circle);
                                     LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
