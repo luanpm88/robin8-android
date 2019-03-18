@@ -14,7 +14,7 @@ buildscript {
 android {
 
     dexOptions {
-        incremental true
+//        incremental true
         javaMaxHeapSize "4g"
     }
 
