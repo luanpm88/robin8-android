@@ -178,8 +178,8 @@ dependencies {
     compile files('libs/jackson-databind-2.2.1.jar')
     compile files('libs/jjwt.0.6.jar')
     compile files('libs/org.bouncycastle.jar')
-    compile files('libs/okhttp-3.2.0.jar')
-    compile files('libs/okio-1.7.0.jar')
+//    compile files('libs/okhttp-3.2.0.jar')
+//    compile files('libs/okio-1.7.0.jar')
     compile files('libs/bus-1.0.2-sources.jar')
     compile project(path: ':library')
     compile project(path: ':oneshare2')
@@ -216,4 +216,7 @@ dependencies {
     compile 'com.google.guava:guava:27.0-android'
     compile 'com.android.support:cardview-v7:26.0.0-alpha1'
     compile 'org.apache.httpcomponents:httpcore:4.4.4'
+    compile 'com.qiniu:qiniu-android-sdk:7.3.15'
+    compile 'com.github.open-android:pinyin4j:2.5.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.20.0'
 }

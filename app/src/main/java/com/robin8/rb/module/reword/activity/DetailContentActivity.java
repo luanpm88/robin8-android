@@ -68,6 +68,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -82,7 +83,8 @@ import cn.sharesdk.wechat.moments.WechatMoments;
 
 
 /**
- 活动详情页面 */
+ * 活动详情页面
+ */
 public class DetailContentActivity extends BaseDataActivity implements View.OnClickListener, Observer {
 
     private static final String CAMPAIGN_TYPE_INVITE = "invite";//邀请
@@ -148,7 +150,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     private final String BACKSLASH = "/";
     private TextView mTvCampaignsRequest;
     private LinearLayout llShare;//分享按钮
-    private int mInviteesCount = - 1;
+    private int mInviteesCount = -1;
     private RelativeLayout llRemark;
     private LinearLayout mLayoutPut;
     private TextView mTvPutEnter;
@@ -237,7 +239,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     从我的活动进入
+     * 从我的活动进入
      */
     private void initDataMyCampaign() {
         mCampaignId = mBundle.getInt("campaign_id");
@@ -320,7 +322,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     从预览进入
+     * 从预览进入
      */
     private void initDataWhenFromLauncher() {
 
@@ -410,7 +412,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     活动素材（招募、特邀）
+     * 活动素材（招募、特邀）
      */
     private void initListView() {
 
@@ -421,7 +423,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     发布悬赏活动--预览
+     * 发布悬赏活动--预览
      */
     private void updateUpFromLaunchView() {
 
@@ -448,7 +450,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 break;
         }
         mTVMoney.setText("¥ " + everyConsume);
-        if (! TextUtils.isEmpty(path) && ! path.startsWith("http://")) {
+        if (!TextUtils.isEmpty(path) && !path.startsWith("http://")) {
             BitmapUtil.loadLocalImage(this, path, mImageView);
         } else {
             BitmapUtil.loadImage(this, path, mImageView);
@@ -522,7 +524,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         requestParams.put("campaign_id", mCampaignId);
         requestParams.put("campaign_invite_id", mCampaignInviteId);
         //获取素材
-        if (! mWithWebViewB) {
+        if (!mWithWebViewB) {
             mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.CAMPAIGNS_MATERIALS_URL), requestParams, new RequestCallback() {
 
                 @Override
@@ -558,7 +560,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     private void initWebView() {
 
         if (mFrom == SPConstants.LAUNCHREWORDACTIVIRY) {
-            if (! TextUtils.isEmpty(address)) {
+            if (!TextUtils.isEmpty(address)) {
                 if (address.startsWith("www.")) {
                     address = "http://" + address;
                 }
@@ -582,7 +584,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     更新上页
+     * 更新上页
      */
     private void updateUpView() {
 
@@ -630,7 +632,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
                 showShadowDialog(DetailContentActivity.this, false, null);
             } else {
-                if (! HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
+                if (!HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
                     showShadowDialog(DetailContentActivity.this, false, null);
                 }
             }
@@ -667,7 +669,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
                 showShadowDialog(DetailContentActivity.this, false, null);
             } else {
-                if (! HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
+                if (!HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
                     showShadowDialog(DetailContentActivity.this, false, null);
                 }
             }
@@ -726,8 +728,9 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     /**
-     leader用户需要显示走马灯
-     @param is
+     * leader用户需要显示走马灯
+     *
+     * @param is
      */
     private void forLeader(boolean is) {
         String mText = "点击右上角分享按钮，将活动分享给你的成员";
@@ -742,7 +745,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 mTVRemark.requestFocus();
             }
         } else {
-            if (! TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.isLeader))) {
+            if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.isLeader))) {
                 llRemark.setVisibility(View.VISIBLE);
                 mTVRemark.setVisibility(View.VISIBLE);
                 mTVRemark.setText(getString(R.string.white_space_ban) + mText + getString(R.string.white_space) + getString(R.string.white_space) + mText + getString(R.string.white_space));
@@ -931,32 +934,44 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                     break;
                 case DetailContentHelper.IMAGE_REQUEST_MORE_IMG_CODE:
                     final SerializableMap mapImages = (SerializableMap) (data.getExtras().get(ScreenImgActivity.EXTRA_SCREEN_MAP));
+                    if (mapImages == null) {
+                        CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
+                        return;
+                    }
+                    if (mapImages.getMap() == null) {
+                        CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
+                        return;
+                    }
+                    if (mapImages.getMap().size() == 0) {
+                        CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
+                        return;
+                    }
                     new Thread(new Runnable() {
 
                         @Override
                         public void run() {
+                            //2019年03月19日11:03:32添加压缩逻辑
+                            final SerializableMap serializableMap = new SerializableMap();
+                            Map<Integer, String> map = new HashMap<>();
+                            for (int index : mapImages.getMap().keySet()
+                            ) {
+                                map.put(index, BitmapUtil.getCompressImagePath(mapImages.getMap().get(index)));
+                            }
+                            serializableMap.setMap(map);
+
                             UIUtils.runInMainThread(new Runnable() {
 
                                 @Override
                                 public void run() {
-                                    if (mapImages == null) {
-                                        CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
-                                    } else {
-                                        if (mapImages.getMap() == null) {
-                                            CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
-                                        } else {
-                                            if (mapImages.getMap().size() == 0) {
-                                                CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
-                                            } else {
-                                                if (mDetailContentHelper == null) {
-                                                    mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
-                                                }
 
-                                                mDetailContentHelper.uploadTurnImages(DetailContentActivity.this, mapImages);
-                                            }
-                                        }
+                                    if (mDetailContentHelper == null) {
+                                        mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
                                     }
+
+                                    mDetailContentHelper.uploadTurnImages(DetailContentActivity.this, serializableMap);
                                 }
+
+
                             });
                         }
                     }).start();
@@ -1012,8 +1027,9 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
 
     /**
-     title右上角分享的弹窗
-     @param activity
+     * title右上角分享的弹窗
+     *
+     * @param activity
      */
     private void showShareDialog(final Activity activity) {
         View view = LayoutInflater.from(activity).inflate(R.layout.campaign_share_bottom_layout, null);
@@ -1081,8 +1097,9 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     private static final String TITLE_URL_LEADER = CommonConfig.SERVICE + "club_campaign/campaign_page?campaign_id=";
 
     /**
-     弹出分享面板：微信朋友圈H5  其他文章内容
-     @param platName
+     * 弹出分享面板：微信朋友圈H5  其他文章内容
+     *
+     * @param platName
      */
     private void share(String platName) {
 

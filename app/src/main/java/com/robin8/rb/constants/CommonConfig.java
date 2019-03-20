@@ -49,6 +49,7 @@ public class CommonConfig {
     public static final String KOLS_IDENTITY_BIND_URL_OLD = "api/v1/kols/identity_bind";
     public static final String KOLS_IDENTITY_BIND_URL = "api/v1/kols/identity_bind_v2";//新接口
     public static final String CAMPAIGN_INVITES_URL = "api/v1/campaign_invites";
+    public static final String CAMPAIGN_INVITES_URL_V3 = "api/v3_0/campaign_invites";
     public static final String SIGN_IN_URL = "api/v2/kols/sign_in";
     public static final String GET_CODE_URL = "api/v1/phones/get_code";
     public static final String FEED_BACK_URL = "api/v1/feedbacks/create";
@@ -202,6 +203,8 @@ public class CommonConfig {
     public static final String BIGV_LIST_DETAIL_TENDER_URL = "/tender";//大V详情报价，post
     public static final String BIGV_LIST_DETAIL_LINK_URL = "/upload_links";//大V详情添加报价，post
     public static final String BIGV_LIST_CAMPAIGN_HISTORY_URL = "api/v3_0/kols/";//大V详情添加报价，post
+
+    public static final String GET_UPLOAD_IMAGE_TOKEN = "api/v3_0/campaign_invites/get_uptoken";//获取七牛的token
 
 
 }

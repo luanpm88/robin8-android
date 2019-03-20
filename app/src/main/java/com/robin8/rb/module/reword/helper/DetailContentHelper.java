@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
@@ -26,6 +28,7 @@ import com.robin8.rb.http.xutil.IHttpCallBack;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.CampaignInviteBean;
 import com.robin8.rb.model.CampaignListBean;
+import com.robin8.rb.model.UploadImageToken;
 import com.robin8.rb.module.first.model.KolDetailModel;
 import com.robin8.rb.module.first.model.SocialAccountsBean;
 import com.robin8.rb.module.mine.model.MineShowModel;
@@ -54,6 +57,8 @@ import com.robin8.rb.view.widget.CustomDialog;
 import com.robin8.rb.view.widget.CustomDialogManager;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -74,7 +79,8 @@ import cn.sharesdk.wechat.moments.WechatMoments;
 import static com.robin8.rb.base.BaseApplication.isDoubleClick;
 
 /**
- 活动详情辅助页面 */
+ * 活动详情辅助页面
+ */
 public class DetailContentHelper {
 
     private static final String CAMPAIGN_TYPE_CPI = "simple_cpi";//cpi
@@ -100,7 +106,7 @@ public class DetailContentHelper {
     public static final String STATE_APPLYING = "applying";
     public static final String STATE_REAGY_BEGIN = "countdown";
 
-    public static final int DISALLOW_CLICK = - 1;
+    public static final int DISALLOW_CLICK = -1;
     public static final int CLICK_REJECT_CAMPAIGN = 1;//拒绝此活动
     public static final int CLICK_UPLOAD_SCREENSHOT = 2;//上传截图
     public static final int CLICK_RECEIVE_CAMPAIGN = 3;//接受此活动
@@ -133,6 +139,10 @@ public class DetailContentHelper {
     public static String SUCCESS = "null";
     private String wechatEn = "wechat";
     private String weiboEn = "weibo";
+    private int currentUploadIndex = 0,currentGetTokenIndex=0;
+    private List<String> uploadFileList;
+    private List<String> tokens;//服务器默认1个小时有效
+    private List<String> keys;
 
     public DetailContentHelper(View line, TextView tvRight, TextView tvLeft) {
 
@@ -185,11 +195,12 @@ public class DetailContentHelper {
     }
 
     /**
-     特邀活动-底部按钮显示逻辑
-     @param bean
-     @param tvLeft
-     @param tvRight
-     @param line
+     * 特邀活动-底部按钮显示逻辑
+     *
+     * @param bean
+     * @param tvLeft
+     * @param tvRight
+     * @param line
      */
     private void updateBottomShareViewInvite(CampaignListBean.CampaignInviteEntity bean, TextView tvLeft, TextView tvRight, View line) {
 
@@ -234,11 +245,12 @@ public class DetailContentHelper {
 
 
     /**
-     招募活动-底部按钮显示逻辑
-     @param bean
-     @param tvLeft
-     @param tvRight
-     @param line
+     * 招募活动-底部按钮显示逻辑
+     *
+     * @param bean
+     * @param tvLeft
+     * @param tvRight
+     * @param line
      */
     private void updateBottomShareViewRecruit(CampaignListBean.CampaignInviteEntity bean, TextView tvLeft, TextView tvRight, View line) {
 
@@ -313,7 +325,7 @@ public class DetailContentHelper {
         } else {
             boolean can_upload_screenshot = bean.isCan_upload_screenshot();
             String screenshot = bean.getScreenshot();
-            if (startTimeL >= System.currentTimeMillis() || TextUtils.isEmpty(screenshot) && ! can_upload_screenshot) {// 整个显示 @ "立即分享"
+            if (startTimeL >= System.currentTimeMillis() || TextUtils.isEmpty(screenshot) && !can_upload_screenshot) {// 整个显示 @ "立即分享"
                 setBottomView(true, tvLeft, tvRight, line, getTextId(bean));
                 mCurrentLeftState = CLICK_SHARE;
                 mCurrentRightState = CLICK_SHARE;
@@ -344,11 +356,12 @@ public class DetailContentHelper {
     }
 
     /**
-     悬赏活动-底部按钮显示逻辑
-     @param bean
-     @param tvLeft
-     @param tvRight
-     @param line
+     * 悬赏活动-底部按钮显示逻辑
+     *
+     * @param bean
+     * @param tvLeft
+     * @param tvRight
+     * @param line
      */
     private void updateBottomShareViewNormal(CampaignListBean.CampaignInviteEntity bean, TextView tvLeft, TextView tvRight, View line) {
 
@@ -421,7 +434,7 @@ public class DetailContentHelper {
                 } else {// 左边显示 @ "%@分%@秒 后请上传截图"     右边显示 @ "再次分享"
                     countDownTime(bean);
                     tvLeft.setText(getTimeLast(bean));
-                    setBottomView(tvLeft, tvRight, line, - 1, R.string.share_again);
+                    setBottomView(tvLeft, tvRight, line, -1, R.string.share_again);
                     mCurrentLeftState = CLICK_UPLOAD_SCREENSHOT;
                     mCurrentRightState = CLICK_SHARE_NO_PAY;
                 }
@@ -490,23 +503,23 @@ public class DetailContentHelper {
     }
 
     /**
-     显示左边View
+     * 显示左边View
      */
     private void setBottomLeftView(boolean leftClickAble, TextView tvLeft, TextView tvRight, View line, int leftText) {
 
-        setBottomView(leftClickAble, false, true, false, tvLeft, tvRight, line, leftText, - 1);
+        setBottomView(leftClickAble, false, true, false, tvLeft, tvRight, line, leftText, -1);
     }
 
     /**
-     显示右边View
+     * 显示右边View
      */
     private void setBottomView(boolean rightClickAble, TextView tvLeft, TextView tvRight, View line, int rightText) {
 
-        setBottomView(false, rightClickAble, false, true, tvLeft, tvRight, line, - 1, rightText);
+        setBottomView(false, rightClickAble, false, true, tvLeft, tvRight, line, -1, rightText);
     }
 
     /**
-     显示两个View（皆可点击）
+     * 显示两个View（皆可点击）
      */
     private void setBottomView(TextView tvLeft, TextView tvRight, View line, int leftText, int rightText) {
 
@@ -514,7 +527,7 @@ public class DetailContentHelper {
     }
 
     /**
-     显示View
+     * 显示View
      */
     private void setBottomView(boolean leftClickAble, boolean rightClickAble, boolean leftShow, boolean rightShow, TextView tvLeft, TextView tvRight, View line, int leftText, int rightText) {
 
@@ -528,7 +541,7 @@ public class DetailContentHelper {
 
         if (leftShow) {
             tvLeft.setVisibility(View.VISIBLE);
-            if (leftText != - 1) {
+            if (leftText != -1) {
                 tvLeft.setText(leftText);
             } else {
                 tvLeft.setClickable(false);
@@ -547,7 +560,7 @@ public class DetailContentHelper {
 
         if (rightShow) {
             tvRight.setVisibility(View.VISIBLE);
-            if (rightText != - 1) {
+            if (rightText != -1) {
                 tvRight.setText(rightText);
             }
         } else {
@@ -562,9 +575,9 @@ public class DetailContentHelper {
     }
 
     /**
-     设置下页中间视图
-     活动参与状态
-     活动参与人员状态
+     * 设置下页中间视图
+     * 活动参与状态
+     * 活动参与人员状态
      */
     public void setUpCenterView(CampaignInviteBean baseBean, CampaignListBean.CampaignInviteEntity bean, List<CampaignInviteBean.InviteesBean> inviteList, TextView clickView, TextView moneyView, TextView infoView, TextView countView, TextView joinNumberTv, LinearLayout linearLayout, int count, TextView tvPutResult, TextView tvPutEnter) {
 
@@ -575,7 +588,7 @@ public class DetailContentHelper {
         if (inviteList == null || inviteList.size() == 0) {
             joinNumberTv.setText("已经有0人参加");
         } else {
-            if (count == - 1) {
+            if (count == -1) {
                 joinNumberTv.setText("已经有" + inviteList.size() + "人参加");
             } else {
                 joinNumberTv.setText("已经有" + count + "人参加");
@@ -678,9 +691,10 @@ public class DetailContentHelper {
     }
 
     /**
-     上传截图
-     单张
-     @param file
+     * 上传截图
+     * 单张
+     *
+     * @param file
      */
     public void uploadTurnImage(final Activity activity, String filename, File file) {
 
@@ -734,7 +748,7 @@ public class DetailContentHelper {
                 }
                 try {
                     BaseBean baseBean = GsonTools.jsonToBean(responceBean.pair.second, BaseBean.class);
-                    if (! TextUtils.isEmpty(baseBean.getDetail())) {
+                    if (!TextUtils.isEmpty(baseBean.getDetail())) {
                         CustomToast.showShort(BaseApplication.getContext(), baseBean.getDetail());
                     } else {
                         CustomToast.showShort(BaseApplication.getContext(), responceBean.pair.second);
@@ -747,9 +761,10 @@ public class DetailContentHelper {
     }
 
     /**
-     上传截图
-     多张
-     @param mapImgs
+     * 上传截图
+     * 多张
+     *
+     * @param mapImgs
      */
     public void uploadTurnImages(final Activity activity, SerializableMap mapImgs) {
         if (mBasePresenter == null) {
@@ -763,32 +778,175 @@ public class DetailContentHelper {
             return;
         }
         mWProgressDialog.show();
+//
+//        mBasePresenter.getDataFromServer(true, HttpRequest.PUT, (HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot")), "screenshot", mapImgs.getMap(), new RequestCallback() {
+//
+//            @Override
+//            public void onError(Exception e) {
+//                // LogUtil.LogShitou("走到这里没有","333"+e.getMessage());
+//                if (mWProgressDialog != null) {
+//                    try {
+//                        mWProgressDialog.dismiss();
+//                    } catch (Exception es) {
+//                        es.printStackTrace();
+//                    }
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                //  LogUtil.LogShitou("活动上传截图-多图", "===>" + response);
+//                if (mWProgressDialog != null) {
+//                    try {
+//                        mWProgressDialog.dismiss();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                CampaignInviteBean baseBean = GsonTools.jsonToBean(response, CampaignInviteBean.class);
+//                if (baseBean == null) {
+//                    CustomToast.showShort(activity, activity.getString(R.string.please_data_wrong));
+//                    return;
+//                }
+//                if (baseBean.getError() == 0) {
+//                    CampaignListBean.CampaignInviteEntity entity = baseBean.getCampaign_invite();
+//                    updateBottomShareView(entity);
+//                    CustomToast.showShort(activity, "上传截图成功");
+//                } else {
+//                    CustomToast.showShort(activity, baseBean.getDetail());
+//                }
+//            }
+//        });
 
-        mBasePresenter.getDataFromServer(true, HttpRequest.PUT, (HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot")), "screenshot", mapImgs.getMap(), new RequestCallback() {
+        uploadFileList = new ArrayList<>();
+        keys = new ArrayList<>();
+        tokens = new ArrayList<>();
+        currentGetTokenIndex = 0;
+        currentUploadIndex = 0;
+        uploadFileList.addAll(mapImgs.getMap().values());
 
+        getQiniuTokenFromServer(uploadFileList.get(0).substring(uploadFileList.get(0).lastIndexOf("/")+1), new UploadImageOrGetTokenListener() {
             @Override
-            public void onError(Exception e) {
-                // LogUtil.LogShitou("走到这里没有","333"+e.getMessage());
-                if (mWProgressDialog != null) {
-                    try {
-                        mWProgressDialog.dismiss();
-                    } catch (Exception es) {
-                        es.printStackTrace();
+            public void onSuccess() {
+                uploadImageToQiniu(uploadFileList.get(0), tokens.get(0), new UploadImageOrGetTokenListener() {
+                    @Override
+                    public void onSuccess() {
+                        commitQiniuImagePathToServer(activity);
+
                     }
 
-                }
+                    @Override
+                    public void onFail() {
+                        dismissDialog();
+                    }
+                });
+            }
+
+            @Override
+            public void onFail() {
+                dismissDialog();
+            }
+        });
+    }
+
+    private void dismissDialog() {
+        if (mWProgressDialog != null) {
+            try {
+                mWProgressDialog.dismiss();
+            } catch (Exception es) {
+                es.printStackTrace();
+            }
+
+        }
+    }
+
+    /**
+     * 从服务获取token(第一步
+     * @param filename
+     * @param listener
+     */
+    private void getQiniuTokenFromServer(String filename, final UploadImageOrGetTokenListener listener) {
+        RequestParams requestParams = new RequestParams();
+        requestParams.put("file_name", filename);
+        mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.GET_UPLOAD_IMAGE_TOKEN), requestParams, new RequestCallback() {
+            @Override
+            public void onError(Exception e) {
+
             }
 
             @Override
             public void onResponse(String response) {
-                //  LogUtil.LogShitou("活动上传截图-多图", "===>" + response);
-                if (mWProgressDialog != null) {
-                    try {
-                        mWProgressDialog.dismiss();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                UploadImageToken imageToken = GsonTools.jsonToBean(response, UploadImageToken.class);
+                if (imageToken == null) {
+                    listener.onFail();
+                    return;
                 }
+                if (imageToken.getError() == 0) {
+                    tokens.add(imageToken.uptoken);
+                    if (uploadFileList.size() <= (currentGetTokenIndex+1)){
+                        listener.onSuccess();
+                    }else {
+                        currentGetTokenIndex++;
+                        getQiniuTokenFromServer(uploadFileList.get(currentGetTokenIndex).substring(uploadFileList.get(currentGetTokenIndex).lastIndexOf("/")+1),listener);
+                    }
+                } else {
+                    listener.onFail();
+                }
+            }
+        });
+    }
+
+    /**
+     * 上传图片到七牛云（第二步
+     *
+     * @param filePath
+     * @param key
+     * @param token
+     */
+    private void uploadImageToQiniu(String filePath, final String token, final UploadImageOrGetTokenListener uploadImageOrGetTokenListener) {
+        BaseApplication.getInstance().getQiniuUploadManager().put(filePath, filePath.substring(filePath.lastIndexOf("/")+1), token, new UpCompletionHandler() {
+            @Override
+            public void complete(String s, ResponseInfo responseInfo, JSONObject jsonObject) {
+
+                if (responseInfo.isOK()) {
+                    keys.add(s);
+                    //success
+                    if (uploadFileList.size() <= (currentUploadIndex + 1)) {
+                        uploadImageOrGetTokenListener.onSuccess();
+                    } else {
+                        currentUploadIndex++;
+                        uploadImageToQiniu(uploadFileList.get(currentUploadIndex), tokens.get(currentUploadIndex), uploadImageOrGetTokenListener);
+                    }
+                } else {
+                    //fail
+                    uploadImageOrGetTokenListener.onFail();
+                }
+            }
+        }, null);
+    }
+
+    /**
+     * 将七牛返回的图片链接提交给服务器（第三步
+     */
+    private void commitQiniuImagePathToServer(final Activity activity) {
+        RequestParams params = new RequestParams();
+        StringBuilder sb = new StringBuilder();
+        for (String key :
+                keys) {
+            sb.append(key).append(",");
+        }
+        params.put("screenshot", sb.substring(0,sb.length()-1));
+        mBasePresenter.getDataFromServer(true, HttpRequest.POST, (HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL_V3 + "/" + mCampaignInviteEntityId + "/upload_screenshot")), params, new RequestCallback() {
+            @Override
+            public void onError(Exception e) {
+                dismissDialog();
+            }
+
+            @Override
+            public void onResponse(String response) {
+                dismissDialog();
+
                 CampaignInviteBean baseBean = GsonTools.jsonToBean(response, CampaignInviteBean.class);
                 if (baseBean == null) {
                     CustomToast.showShort(activity, activity.getString(R.string.please_data_wrong));
@@ -806,9 +964,19 @@ public class DetailContentHelper {
     }
 
     /**
-     活动参与人员显示数量管理
-     @param linearLayout
-     @param inviteList
+     * 图片和获取Token回调（公用
+     */
+    public interface UploadImageOrGetTokenListener {
+        void onSuccess();
+
+        void onFail();
+    }
+
+    /**
+     * 活动参与人员显示数量管理
+     *
+     * @param linearLayout
+     * @param inviteList
      */
     private void initInviteesList(LinearLayout linearLayout, List<CampaignInviteBean.InviteesBean> inviteList) {
 
@@ -866,8 +1034,8 @@ public class DetailContentHelper {
                 break;
         }
         String status = bean.getStatus();
-       // String isOpen = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
-       // String isPutUser = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
+        // String isOpen = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
+        // String isPutUser = HelpTools.getLoginInfo(HelpTools.WEBADDRESS);
         if (bean.getCampaign().getPer_budget_type().equals(CAMPAIGN_TYPE_RECRUIT)) {
             tvPutResult.setVisibility(View.GONE);
             tvPutEnter.setVisibility(View.GONE);
@@ -941,8 +1109,9 @@ public class DetailContentHelper {
     }
 
     /**
-     设置倒计时显示
-     @param bean
+     * 设置倒计时显示
+     *
+     * @param bean
      */
     private String getTimeLast(CampaignListBean.CampaignInviteEntity bean) {
         //设置开始时间
@@ -966,8 +1135,9 @@ public class DetailContentHelper {
     }
 
     /**
-     获取与结束时间的时间差
-     @return
+     * 获取与结束时间的时间差
+     *
+     * @return
      */
     private String getCountDownTime(CampaignListBean.CampaignInviteEntity bean, boolean isRecruit) {
 
@@ -1076,7 +1246,7 @@ public class DetailContentHelper {
                 if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
                     showShareDialog(activity, mCampaignInviteEntity, 1);
                 } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
-                    popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                    popSharedialog(activity, mCampaignInviteEntity, weiboEn, -1);
                 } else {
                     if (TextUtils.isEmpty(mCampaignInviteEntity.getSub_type())) {
                         showShareDialog(activity, mCampaignInviteEntity, 1);
@@ -1084,7 +1254,7 @@ public class DetailContentHelper {
                         if (mCampaignInviteEntity.getSub_type().equals(wechatEn)) {
                             showShareDialog(activity, mCampaignInviteEntity, 1);
                         } else if (mCampaignInviteEntity.getSub_type().equals(weiboEn)) {
-                            popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                            popSharedialog(activity, mCampaignInviteEntity, weiboEn, -1);
                         } else {
                             showShareDialog(activity, mCampaignInviteEntity, 1);
                         }
@@ -1096,9 +1266,9 @@ public class DetailContentHelper {
     }
 
     /**
-     @param activity
-     @param type 0是正常流程，1是无偿转发
-     @param wechatType 0是朋友圈，1是群组
+     * @param activity
+     * @param type       0是正常流程，1是无偿转发
+     * @param wechatType 0是朋友圈，1是群组
      */
     private void bindWechat(final Activity activity, final int type, final int wechatType) {
 
@@ -1183,7 +1353,7 @@ public class DetailContentHelper {
                 }
             }
         });
-        if (activity.getString(R.string.weixin).equals(names)){
+        if (activity.getString(R.string.weixin).equals(names)) {
             presenter.authorize(new Wechat());
         } else if (activity.getString(R.string.weibo).equals(names)) {
             presenter.authorize(new SinaWeibo());
@@ -1217,7 +1387,7 @@ public class DetailContentHelper {
 
             @Override
             public void onResponse(String response) {
-                   LogUtil.LogShitou("分享页面提交微信绑定", "OK" + response);
+                LogUtil.LogShitou("分享页面提交微信绑定", "OK" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -1274,12 +1444,12 @@ public class DetailContentHelper {
                 if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
                     showShareDialog(activity, mCampaignInviteEntity, 1);
                 } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
-                    popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                    popSharedialog(activity, mCampaignInviteEntity, weiboEn, -1);
                 } else {
                     if (mCampaignInviteEntity.getSub_type().equals(wechatEn)) {
                         showShareDialog(activity, mCampaignInviteEntity, 1);
                     } else if (mCampaignInviteEntity.getSub_type().equals(weiboEn)) {
-                        popSharedialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                        popSharedialog(activity, mCampaignInviteEntity, weiboEn, -1);
                     } else {
                         showShareDialog(activity, mCampaignInviteEntity, 1);
                     }
@@ -1294,11 +1464,12 @@ public class DetailContentHelper {
 
 
     /**
-     免责协议
-     @param activity
-     @param campaignInviteEntity
-     @param shareType 分享平台
-     @param wchatType 微信朋友圈／群组
+     * 免责协议
+     *
+     * @param activity
+     * @param campaignInviteEntity
+     * @param shareType            分享平台
+     * @param wchatType            微信朋友圈／群组
      */
     private void popProtocolDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity, final String shareType, final int wchatType) {
 
@@ -1337,9 +1508,10 @@ public class DetailContentHelper {
 
 
     /**
-     接受活动邀请
-     @param campaignInviteEntity
-     @param activity
+     * 接受活动邀请
+     *
+     * @param campaignInviteEntity
+     * @param activity
      */
     private void receiveInvite(final Activity activity, CampaignListBean.CampaignInviteEntity campaignInviteEntity) {
 
@@ -1384,9 +1556,10 @@ public class DetailContentHelper {
     }
 
     /**
-     拒绝特邀活动
-     @param activity
-     @param campaignInviteEntity
+     * 拒绝特邀活动
+     *
+     * @param activity
+     * @param campaignInviteEntity
      */
     private void rejectInvite(final Activity activity, CampaignListBean.CampaignInviteEntity campaignInviteEntity) {
 
@@ -1428,7 +1601,7 @@ public class DetailContentHelper {
     }
 
     /**
-     报名招募活动
+     * 报名招募活动
      */
     private void registrationActivities(final Activity activity, CampaignListBean.CampaignInviteEntity campaignInviteEntity) {
 
@@ -1479,9 +1652,10 @@ public class DetailContentHelper {
     }
 
     /**
-     截图被拒绝
-     @param activity
-     @param campaignInviteEntity
+     * 截图被拒绝
+     *
+     * @param activity
+     * @param campaignInviteEntity
      */
     public void showRejectDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity) {
 
@@ -1518,10 +1692,11 @@ public class DetailContentHelper {
     }
 
     /**
-     截图参考
-     @param activity
-     @param campaignInviteEntity
-     @param type 0: 截图参考 ； 1：查看截图 ；2:上传截图
+     * 截图参考
+     *
+     * @param activity
+     * @param campaignInviteEntity
+     * @param type                 0: 截图参考 ； 1：查看截图 ；2:上传截图
      */
     private void showSnapDialog(Activity activity, CampaignListBean.CampaignInviteEntity campaignInviteEntity, String type) {
 
@@ -1553,10 +1728,11 @@ public class DetailContentHelper {
     }
 
     /**
-     显示上传截图对话框
-     @param activity
-     @param campaignInviteEntity
-     @param isAdd 是否添加查看截图
+     * 显示上传截图对话框
+     *
+     * @param activity
+     * @param campaignInviteEntity
+     * @param isAdd                是否添加查看截图
      */
     private void showSelectImageDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity, boolean isAdd) {
 
@@ -1625,8 +1801,9 @@ public class DetailContentHelper {
     }
 
     /**
-     显示帮助对话框
-     @param activity
+     * 显示帮助对话框
+     *
+     * @param activity
      */
     private void showHelpDialog(Activity activity) {
 
@@ -1653,10 +1830,11 @@ public class DetailContentHelper {
 
 
     /**
-     分享
-     @param activity
-     @param mCampaignInviteEntity
-     @param i
+     * 分享
+     *
+     * @param activity
+     * @param mCampaignInviteEntity
+     * @param i
      */
     private void showShareDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final int i) {
 
@@ -1712,14 +1890,14 @@ public class DetailContentHelper {
                     }
                 } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
                     if (agreeProtocol) {
-                        share(activity, mCampaignInviteEntity, wechatEn, - 1);
+                        share(activity, mCampaignInviteEntity, wechatEn, -1);
                     } else {
-                        popProtocolDialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                        popProtocolDialog(activity, mCampaignInviteEntity, weiboEn, -1);
                     }
                 } else {
                     if (agreeProtocol) {
                         if (position == 0) {
-                            share(activity, mCampaignInviteEntity, weiboEn, - 1);
+                            share(activity, mCampaignInviteEntity, weiboEn, -1);
                         } else if (position == 1) {
                             bindWechat(activity, 0, 0);
                         } else {
@@ -1727,7 +1905,7 @@ public class DetailContentHelper {
                         }
                     } else {
                         if (position == 0) {
-                            popProtocolDialog(activity, mCampaignInviteEntity, weiboEn, - 1);
+                            popProtocolDialog(activity, mCampaignInviteEntity, weiboEn, -1);
                         } else if (position == 1) {
                             popProtocolDialog(activity, mCampaignInviteEntity, wechatEn, 0);
                         } else {
@@ -1755,7 +1933,7 @@ public class DetailContentHelper {
     }
 
     private void share(final Activity activity, final CampaignListBean.CampaignInviteEntity campaignInviteEntity, final String shareType, final int wechatType) {
-        if (! TextUtils.isEmpty(campaignInviteEntity.getUuid())) {//再次分享
+        if (!TextUtils.isEmpty(campaignInviteEntity.getUuid())) {//再次分享
             showShareDialog(activity, campaignInviteEntity, 1);
             // popSharedialog(activity, campaignInviteEntity, shareType, 0);
             return;
@@ -1799,13 +1977,13 @@ public class DetailContentHelper {
 
 
     /**
-     弹出分享面板
+     * 弹出分享面板
      */
     private void popSharedialog(Activity activity, CampaignListBean.CampaignInviteEntity campaignInviteEntity, String shareType, int wechatType) {
         String per_action_type = campaignInviteEntity.getCampaign().getPer_action_type();
         String platName = "";
         String wechat_auth_type = campaignInviteEntity.getCampaign().getWechat_auth_type();
-        if (! TextUtils.isEmpty(wechat_auth_type) && wechat_auth_type.equals("self_info")) {
+        if (!TextUtils.isEmpty(wechat_auth_type) && wechat_auth_type.equals("self_info")) {
             if (wechatType == 0) {
                 platName = WechatMoments.NAME;
             } else {
@@ -1865,11 +2043,12 @@ public class DetailContentHelper {
     }
 
     /**
-     分享成功
-     @param activity
-     @param mCampaignInviteEntity
-     @param plat
-     @param wechatType
+     * 分享成功
+     *
+     * @param activity
+     * @param mCampaignInviteEntity
+     * @param plat
+     * @param wechatType
      */
     private void shareSuccess(final Activity activity, final CampaignListBean.CampaignInviteEntity mCampaignInviteEntity, final String plat, final int wechatType) {
         //分享成功 如果是第一次分享 调用share接口 此时活动状态将变为approved
@@ -1922,9 +2101,10 @@ public class DetailContentHelper {
     private String entityId;
 
     /**
-     分享成功后的截图审核规则
-     @param activity
-     @param entity
+     * 分享成功后的截图审核规则
+     *
+     * @param activity
+     * @param entity
      */
     private void showShareSuccessDialog(final Activity activity, final CampaignListBean.CampaignInviteEntity entity) {
 
@@ -1963,9 +2143,10 @@ public class DetailContentHelper {
     }
 
     /**
-     给gg使用的弹窗
-     @param activity
-     @param str
+     * 给gg使用的弹窗
+     *
+     * @param activity
+     * @param str
      */
     private void showGgDialog(final Activity activity, String str) {
 
@@ -1988,7 +2169,7 @@ public class DetailContentHelper {
     }
 
     /**
-     提示30分钟后上传截图
+     * 提示30分钟后上传截图
      */
     private void show(final Activity activity) {
 
@@ -2009,7 +2190,7 @@ public class DetailContentHelper {
     }
 
     /**
-     显示上传截图帮助对话框
+     * 显示上传截图帮助对话框
      */
     private void showHelpInfoDialog(Activity activity) {
 
@@ -2051,7 +2232,7 @@ public class DetailContentHelper {
                     if (((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
                         // showShareSuccessDialog(activity, bean);
                         if (listBean != null) {
-                            if (! TextUtils.isEmpty(listBean.getAlert())) {
+                            if (!TextUtils.isEmpty(listBean.getAlert())) {
                                 showGgDialog(activity, listBean.getAlert());
                             } else {
                                 showShareSuccessDialog(activity, bean);
@@ -2060,7 +2241,7 @@ public class DetailContentHelper {
                             showShareSuccessDialog(activity, bean);
                         }
                     } else {
-                        if (! TextUtils.isEmpty(listBean.getAlert())) {
+                        if (!TextUtils.isEmpty(listBean.getAlert())) {
                             showGgDialog(activity, listBean.getAlert());
                         }
                     }
@@ -2069,7 +2250,7 @@ public class DetailContentHelper {
                 String screenshot = mCampaignInviteEntity.getScreenshot();
                 if (TextUtils.isEmpty(screenshot) && ((tvLeft.getText().toString().trim().equals(activity.getString(R.string.upload_screenshot))))) {
                     if (listBean != null) {
-                        if (! TextUtils.isEmpty(listBean.getAlert())) {
+                        if (!TextUtils.isEmpty(listBean.getAlert())) {
                             showGgDialog(activity, listBean.getAlert());
                         } else {
                             showShareSuccessDialog(activity, mCampaignInviteEntity);
@@ -2080,7 +2261,7 @@ public class DetailContentHelper {
                 }
             } else {
                 if (listBean != null) {
-                    if (! TextUtils.isEmpty(listBean.getAlert())) {
+                    if (!TextUtils.isEmpty(listBean.getAlert())) {
                         showGgDialog(activity, listBean.getAlert());
                     }
                 }
