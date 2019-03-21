@@ -85,7 +85,7 @@ public class BaseApplication extends MultiDexApplication {
             RongIM.init(this);
             RongIM.getInstance().setMessageAttachedUserInfo(true);
         }
-        initConfig();
+//        initBaiduLocationConfig();
         initData();
         FileDownloader.setup(this);
     }
@@ -130,16 +130,16 @@ public class BaseApplication extends MultiDexApplication {
         return null;
     }
 
-    private void initConfig() {
+    public void initBaiduLocationConfig() {
         /***
          * 初始化定位sdk，建议在Application中创建
          */
-        locationService = new LocationService(getApplicationContext());
-        mVibrator = (Vibrator) getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+        locationService = new LocationService(sInstance);
+        mVibrator = (Vibrator) sInstance.getSystemService(Service.VIBRATOR_SERVICE);
         //        SDKInitializer.initialize(getApplicationContext());
         //埋点初始化
-        StatisticsAgency.init(this);
-        MobSDK.init(this);
+        StatisticsAgency.init(sInstance);
+        MobSDK.init(sInstance);
     }
 
     private void initData() {

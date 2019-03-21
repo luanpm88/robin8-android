@@ -13,8 +13,8 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <!--<uses-permission android:name="android.permission.READ_CONTACTS"/>-->
+    <!--<uses-permission android:name="android.permission.WRITE_CONTACTS"/>-->
     <uses-permission android:name="android.hardware.sensor.accelerometer"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!-- 扫二维码 -->
@@ -77,6 +77,14 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.4"/>
+
+        <!--<activity android:name=".DemoActivity">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
         <activity
             android:name=".activity.SplashActivity"
@@ -834,17 +842,23 @@
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.bigv.activity.BigvCampaignDetailActivity">
+        <activity android:name=".module.bigv.activity.BigvCampaignDetailActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.bigv.activity.AddPriceActivity">
+        <activity android:name=".module.bigv.activity.AddPriceActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.bigv.activity.UploadActivity">
+        <activity android:name=".module.bigv.activity.UploadActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.bigv.activity.ContactListActivity">
+        <activity android:name=".module.bigv.activity.ContactListActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.bigv.activity.ChatActivity">
+        <activity android:name=".module.bigv.activity.ChatActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.mine.activity.MyCampaignHistoryActivity">
+        <activity android:name=".module.mine.activity.MyCampaignHistoryActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

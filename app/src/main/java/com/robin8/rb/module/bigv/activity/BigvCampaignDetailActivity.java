@@ -191,7 +191,7 @@ public class BigvCampaignDetailActivity extends BaseDataActivity implements View
                     }
                     List<BigvDetailModel.CreationBean.BaseInfoBean.TerraceInfosBean> terrace_infos = base_info.getTerrace_infos();
                     if (null != terrace_infos) {
-                        if (mKolList != null) {
+                        if (terraceInfo != null) {
                             terraceInfo.clear();
                         }
                         terraceInfo.addAll(terrace_infos);

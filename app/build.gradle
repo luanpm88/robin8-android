@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android'
 apply plugin: 'android'
 
 buildscript {
+//    ext.kotlin_version = '1.3.21'
     repositories {
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.2'
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -34,8 +38,8 @@ android {
         targetSdkVersion 25
         useLibrary 'org.apache.http.legacy'
         //noinspection HighAppVersionCode
-        versionCode 2018122115
-        versionName "2.5.0"
+        versionCode 2019032015
+        versionName "2.5.2"
         multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "IZNLTEcKP29wbXiZVI8414",
@@ -105,44 +109,44 @@ android {
         //应用宝、360市场、百度 豌豆荚  android_yingyongbao android_360 android_baidu android_wandoujia  android_xiaomi
         // android_huawei  android_lianxiang
         // android_meizu  android_oppo  android_vivo
-//        android_yingyongbao {
-//            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
-//        }
-//
-//        android_baidu {
-//            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
-//        }
-//
-//        android_wandoujia {
-//            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
-//        }
-//
-//        android_huawei {
-//            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
-//        }
-//
-//        android_lianxiang {
-//            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
-//        }
+        android_yingyongbao {
+            manifestPlaceholders = [Td_Channel_Id: "android_yingyongbao"]
+        }
 
-//        android_vivo {
-//            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
-//        }
-//        android_oppo {
-//            manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
-//        }
-//        android_360 {
-//            manifestPlaceholders = [Td_Channel_Id: "android_360"]
-//        }
+        android_baidu {
+            manifestPlaceholders = [Td_Channel_Id: "android_baidu"]
+        }
+
+        android_wandoujia {
+            manifestPlaceholders = [Td_Channel_Id: "android_wandoujia"]
+        }
+
+        android_huawei {
+            manifestPlaceholders = [Td_Channel_Id: "android_huawei"]
+        }
+
+        android_lianxiang {
+            manifestPlaceholders = [Td_Channel_Id: "android_lianxiang"]
+        }
+
+        android_vivo {
+            manifestPlaceholders = [Td_Channel_Id: "android_vivo"]
+        }
+        android_oppo {
+            manifestPlaceholders = [Td_Channel_Id: "android_oppo"]
+        }
+        android_360 {
+            manifestPlaceholders = [Td_Channel_Id: "android_360"]
+        }
         android_xiaomi {
             manifestPlaceholders = [Td_Channel_Id: "android_xiaomi"]
         }
-//        android_robin8 {
-//            manifestPlaceholders = [Td_Channel_Id: "android_robin8"]
-//        }
-//        android_meizu {
-//            manifestPlaceholders = [Td_Channel_Id: "android_meizu"]
-//        }
+        android_robin8 {
+            manifestPlaceholders = [Td_Channel_Id: "android_robin8"]
+        }
+        android_meizu {
+            manifestPlaceholders = [Td_Channel_Id: "android_meizu"]
+        }
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
@@ -171,15 +175,15 @@ afterEvaluate {
 
 dependencies {
     provided fileTree(include: ['*.jar'], dir: 'libs')
-    compile files('libs/AMap_Location_v2.3.0_20160112.jar')
+    //    compile files('libs/AMap_Location_v2.3.0_20160112.jar')
     compile files('libs/gson-2.6.2.jar')
     compile files('libs/jackson-annotations-2.2.1.jar')
     compile files('libs/jackson-core-2.2.1.jar')
     compile files('libs/jackson-databind-2.2.1.jar')
     compile files('libs/jjwt.0.6.jar')
     compile files('libs/org.bouncycastle.jar')
-//    compile files('libs/okhttp-3.2.0.jar')
-//    compile files('libs/okio-1.7.0.jar')
+    //    compile files('libs/okhttp-3.2.0.jar')
+    //    compile files('libs/okio-1.7.0.jar')
     compile files('libs/bus-1.0.2-sources.jar')
     compile project(path: ':library')
     compile project(path: ':oneshare2')
@@ -191,11 +195,10 @@ dependencies {
     compile files('libs/TalkingData_Analytics_Android_SDK_V2.2.30.jar')
     compile files('libs/core-3.0.0.jar')
     //compile files('libs/GetuiExt-2.0.3.jar')
-
     //compile files('libs/GetuiSDK2.7.0.0.jar')
     compile files('libs/GetuiSDK2.10.2.0.jar')
     compile files('libs/BaiduLBS_Android.jar')
-    compile files('libs/xUtils-2.6.14.jar')
+    //    compile files('libs/xUtils-2.6.14.jar')
     compile files('libs/jsoup-1.9.1.jar')
     //compile files('libs/commons-codec-1.4.jar')
     compile files('libs/SaaS_AdTracking_Android_SDK_V4.0.2.jar')
@@ -203,7 +206,7 @@ dependencies {
     //  compile 'com.github.takusemba:multisnaprecyclerview:1.3.3'
     compile project(':pickerview')
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    //    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.moxun:tagcloudlib:1.0.3'
     compile 'com.android.support:multidex:1.0.1'
@@ -219,4 +222,10 @@ dependencies {
     compile 'com.qiniu:qiniu-android-sdk:7.3.15'
     compile 'com.github.open-android:pinyin4j:2.5.0'
     compile 'com.facebook.android:facebook-android-sdk:4.20.0'
+    compile project(':pulltorefresh')
+//    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+}
+repositories {
+    mavenCentral()
 }

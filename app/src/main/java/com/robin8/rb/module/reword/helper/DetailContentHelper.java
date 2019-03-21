@@ -824,7 +824,14 @@ public class DetailContentHelper {
         tokens = new ArrayList<>();
         currentGetTokenIndex = 0;
         currentUploadIndex = 0;
-        uploadFileList.addAll(mapImgs.getMap().values());
+        for (String filepath :
+                mapImgs.getMap().values()) {
+            if (TextUtils.isEmpty(filepath)){
+                continue;
+            }
+            uploadFileList.add(filepath);
+        }
+
 
         getQiniuTokenFromServer(uploadFileList.get(0).substring(uploadFileList.get(0).lastIndexOf("/")+1), new UploadImageOrGetTokenListener() {
             @Override

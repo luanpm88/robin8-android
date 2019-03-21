@@ -70,18 +70,11 @@ import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.XPermissionUtils;
 import com.robin8.rb.view.widget.CustomDialogManager;
 
-import net.sourceforge.pinyin4j.PinyinHelper;
-import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
-import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
-
 import java.util.ArrayList;
 
 import static com.igexin.sdk.GTServiceManager.context;
 
-public class MainActivity extends BaseBackHomeActivity implements View.OnClickListener {
+public class MainActivity extends BaseBackHomeActivity {
 
     //  private static final int INFLUENCE_LIST = 1;
     private static final int BIGV_LIST = 1;
@@ -122,7 +115,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
     };
 
-    private final static double UNKNOW = - 2000;
+    private final static double UNKNOW = -2000;
     private double latitude = UNKNOW;
     private double longitude = UNKNOW;
     //  private NotificationPager mNotificationPager;
@@ -136,10 +129,11 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        BaseApplication.getInstance().initBaiduLocationConfig();
         initNotify();
         intent = getIntent();
         register_main = intent.getStringExtra("register_main");
-        if (! TextUtils.isEmpty(register_main)) {
+        if (!TextUtils.isEmpty(register_main)) {
             if (register_main.equals("zhu")) {
                 mPageName = StatisticsAgency.CAMPAIGN_LIST;
             } else if (register_main.equals("big_v")) {
@@ -148,15 +142,10 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 mPageName = StatisticsAgency.FIND_LIST;
             }
         }
-        //        else {
-        //            mPageName = StatisticsAgency.CAMPAIGN_LIST;
-        //        }
         setContentView(R.layout.activity_main);
         setSwipeBackEnable(false);
         checkPermissionCamera();
-        //  checkNewVersion();
-        postData();
-        startLocate();
+        checkNewVersion();
         initView();
         initData();
         if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.CloudToken))) {
@@ -165,10 +154,24 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         if (TextUtils.isEmpty((HelpTools.getCommonXml(HelpTools.ShadowFirst)))) {
             showShadowDialog(MainActivity.this, 0);
         } else {
-            if (! (HelpTools.getCommonXml(HelpTools.ShadowFirst)).equals(getString(R.string.submit))) {
+            if (!(HelpTools.getCommonXml(HelpTools.ShadowFirst)).equals(getString(R.string.submit))) {
                 showShadowDialog(MainActivity.this, 0);
             }
         }
+        XPermissionUtils.requestPermissions(this, RequestCode.MORE, new String[]{Manifest.permission.READ_PHONE_STATE
+                        , Manifest.permission.ACCESS_COARSE_LOCATION
+                        , Manifest.permission.ACCESS_FINE_LOCATION}
+                , new XPermissionUtils.OnPermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+                        startLocate();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(String[] deniedPermissions, boolean alwaysDenied) {
+
+                    }
+                });
         //01 演示图片.jpg==||||||==/storage/emulated/0/Pictures/01 演示图片.jpg
         // showShadowDialog(MainActivity.this, 0);
     }
@@ -184,47 +187,8 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     }
 
 
-    /**
-     * 将汉字转换为全拼
-     * @param src
-     * @return
-     */
-    public static String getPinYin(String src){
-        char[] hz = null;
-        hz = src.toCharArray();//该方法的作用是返回一个字符数组，该字符数组中存放了当前字符串中的所有字符
-        String[] py = new String[hz.length];//该数组用来存储
-        //设置汉子拼音输出的格式
-        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-        format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        format.setVCharType(HanyuPinyinVCharType.WITH_V);
-
-        String pys = ""; //存放拼音字符串
-        int len = hz.length;
-
-        try {
-            for (int i = 0; i < len ; i++ ){
-                //先判断是否为汉字字符
-                if(Character.toString(hz[i]).matches("[\\u4E00-\\u9FA5]+")){
-                    //将汉字的几种全拼都存到py数组中
-                    py = PinyinHelper.toHanyuPinyinStringArray(hz[i],format);
-                    //取出改汉字全拼的第一种读音，并存放到字符串pys后
-                    pys += py[0];
-                }else{
-                    //如果不是汉字字符，间接取出字符并连接到 pys 后
-                    pys += Character.toString(hz[i]);
-                }
-            }
-        } catch (BadHanyuPinyinOutputFormatCombination e){
-            e.printStackTrace();
-        }
-        return pys;
-    }
-
-
     @Override
     protected void onStop() {
-
         if (locationService != null && mListener != null) {
             locationService.unregisterListener(mListener); //注销掉监听
             locationService.stop(); //停止定位服务
@@ -285,7 +249,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     }
 
     private void initNotify() {
-        //PushManager.getInstance().initialize(this.getApplicationContext());
         PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
         boolean notifyB = CacheUtils.getBoolean(this, SPConstants.NOTIFY_TOGGLE, true);
@@ -297,7 +260,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     }
 
     /**
-     初始化界面
+     * 初始化界面
      */
     @SuppressWarnings("deprecation")
     private void initView() {
@@ -319,8 +282,9 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     }
 
     /**
-     调整bottomButton图片大小
-     @param radioButton
+     * 调整bottomButton图片大小
+     *
+     * @param radioButton
      */
     private void setRadioButtonDrawableSize(RadioButton radioButton) {
 
@@ -340,6 +304,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                 drawable = ContextCompat.getDrawable(this, R.drawable.bottom_mine_selector);
                 break;
         }
+
         if (drawable != null) {
             drawable.setBounds(0, 0, DensityUtils.dp2px(this, 23), DensityUtils.dp2px(this, 23));
             radioButton.setCompoundDrawables(null, drawable, null, null);
@@ -360,7 +325,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     }
 
     /**
-     初始化参数
+     * 初始化参数
      */
     public void initData() {
 
@@ -412,7 +377,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         //
         // 设置默认显示的界面 默认显示首页
         // mRGContentBottom.check(R.id.rb_bottom_first);
-        if (! TextUtils.isEmpty(register_main)) {
+        if (!TextUtils.isEmpty(register_main)) {
             if (register_main.equals("zhu")) {
                 mRGContentBottom.check(R.id.rb_bottom_campaign);
                 mVPContentPager.setCurrentItem(0);
@@ -435,20 +400,15 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         mVPContentPager.setOnPageChangeListener(new MyOnPageChangeListener());
         // 监听底部 页签单选框
         mRGContentBottom.setOnCheckedChangeListener(new MyOnCheckedChangeListener());
-        // mRBBottomFirst.setOnClickListener(this);
-        mRBBottomCampaign.setOnClickListener(this);
-        mRBBottomMine.setOnClickListener(this);
-        mRBBottomFind.setOnClickListener(this);
-        mRBBottomInfluence.setOnClickListener(this);
     }
 
     /**
-     获取融云的token
+     * 获取融云的token
      */
     private void initGetRongCloud() {
         BasePresenter base = new BasePresenter();
         RequestParams requestParams = new RequestParams();
-        if (! TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))) {
+        if (!TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))) {
             requestParams.put("userId", HelpTools.getLoginInfo(HelpTools.LoginNumber));
             LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
             if (loginBean != null) {
@@ -491,27 +451,10 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    //    public void hideNotificationRedDot(boolean b) {
-    //
-    //        if (mRBBottomNotification == null) {
-    //            return;
-    //        }
-    //        if (b) {
-    //            mRBBottomNotification.hidRedDot();
-    //        } else {
-    //            mRBBottomNotification.showRedDot();
-    //        }
-    //    }
-
     class MyOnCheckedChangeListener implements RadioGroup.OnCheckedChangeListener {
 
         /**
-         当rodioButton 切换时回调 点击RadioButton 切换到相应的Pager界面
+         * 当rodioButton 切换时回调 点击RadioButton 切换到相应的Pager界面
          */
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -541,12 +484,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
     }
 
-
-    private boolean isLogined() {
-        BaseApplication baseApplication = BaseApplication.getInstance();
-        return baseApplication.hasLogined();
-    }
-
     class MyPagerAdapter extends PagerAdapter {
 
         @Override
@@ -568,9 +505,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
             View view = pager.rootView;// 根据position获取 3个子界面的一个View
             container.addView(view);
             if (position != 0) {
-                //                                if (position!=2){
-                //                                    mPagerList.get(position).initData();// 让具体的Pager子类加载数据
-                //                                }
                 mPagerList.get(position).initData();// 让具体的Pager子类加载数据
             }
             return view;
@@ -591,7 +525,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
 
         /**
-         当某一个界面被旋转 回调
+         * 当某一个界面被旋转 回调
          */
         @Override
         public void onPageSelected(int position) {
@@ -624,12 +558,10 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
                     if (TextUtils.isEmpty((HelpTools.getCommonXml(HelpTools.ShadowMine)))) {
                         showShadowDialog(MainActivity.this, 4);
                     } else {
-                        if (! (HelpTools.getCommonXml(HelpTools.ShadowMine)).equals(getString(R.string.submit))) {
+                        if (!(HelpTools.getCommonXml(HelpTools.ShadowMine)).equals(getString(R.string.submit))) {
                             showShadowDialog(MainActivity.this, 4);
                         }
                     }
-                    // showShadowDialog(MainActivity.this, 4);
-
                     break;
             }
             StatisticsAgency.onPageStart(MainActivity.this, mPageName);
@@ -643,15 +575,6 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
     }
 
     private void onePageSelected(int position) {
-
-        //        if (mPageName == StatisticsAgency.CAMPAIGN_LIST) {
-        //            BasePager basePager = mPagerList.get(CAMPAIGN_LIST);
-        //            if (basePager instanceof RewordPager) {
-        //                RewordPager pager = (RewordPager) basePager;
-        //                pager.initVpData();
-        //                pager.setVpAuto();
-        //            }
-        //        }
 
         if (position == mLastPosition) {
             return;
@@ -668,45 +591,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //        if (! TextUtils.isEmpty(register_main)) {
-        //            if (register_main.equals("zhu")) {
-        //                LogUtil.LogShitou("是你吗","CAMPAIGN_LIST");
-        //                mPageName = StatisticsAgency.CAMPAIGN_LIST;
-        //            } else if (register_main.equals("influence")) {
-        //                mPageName = StatisticsAgency.INFLUENCE_LIST;
-        //                // onePageSelected(INFLUENCE_LIST);
-        //            }
-        //        }
-        //        if (mPageName == StatisticsAgency.MY) {
-        //            mPagerList.get(MY).initData();
-        //        }
 
-        //        if (mPageName == StatisticsAgency.INFLUENCE_LIST) {
-        //            if (! TextUtils.isEmpty(register_main)) {
-        //               if (register_main.equals("influence")) {
-        //                    mPageName = StatisticsAgency.INFLUENCE_LIST;
-        //                }else {
-        //                   mPagerList.get(INFLUENCE_LIST).pasue();
-        //               }
-        //            }else {
-        //                mPagerList.get(INFLUENCE_LIST).pasue();
-        //            }
-        //        }
-        //        if (mPageName.equals(NOTIFICATION_LIST)) {
-        //            mPagerList.get(NOTIFICATION_LIST).initData();
-        //        }
-        //        if (mPageName.equals(StatisticsAgency.CAMPAIGN_LIST)) {
-        //            mPagerList.get(CAMPAIGN_LIST).initData();
-        //        }
-        //        if (mFirstPager != null) {
-        //            mFirstPager.changeVisibleView();
-        //        }
-    }
-
-    private boolean mHasPostLocation;
     /*****
      * 定位结果回调，重写onReceiveLocation方法，可以直接拷贝如下代码到自己工程中修改
      */
@@ -715,18 +600,17 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         @Override
         public void onReceiveLocation(BDLocation location) {
 
-            if (null != location && location.getLocType() != BDLocation.TypeServerError && ! mHasPostLocation) {
+            if (null != location && location.getLocType() != BDLocation.TypeServerError) {
                 longitude = location.getLongitude();
                 latitude = location.getLatitude();
-                mHasPostLocation = true;
-                if (!TextUtils.isEmpty(location.getCity())){
-                    CacheUtils.putString(MainActivity.this, SPConstants.LOCATION_CITY, getPinYin(location.getCity()));
-                }
-                postData();
+                if (!TextUtils.isEmpty(location.getCity())) {
+                    CacheUtils.putString(MainActivity.this, SPConstants.LOCATION_CITY, AppUtils.getPinYin(location.getCity().replace("市", "")));
+                    postData();
 
-                if (locationService != null && mListener != null) {
-                    locationService.unregisterListener(mListener); //注销掉监听
-                    locationService.stop(); //停止定位服务
+                    if (locationService != null && mListener != null) {
+                        locationService.unregisterListener(mListener); //注销掉监听
+                        locationService.stop(); //停止定位服务
+                    }
                 }
             }
         }
@@ -788,6 +672,7 @@ public class MainActivity extends BaseBackHomeActivity implements View.OnClickLi
         cdm.dg.getWindow().setGravity(Gravity.CENTER);
         cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
         cdm.showDialog();
+
     }
 
     private void checkPermissionCamera() {

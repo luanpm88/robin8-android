@@ -5,7 +5,7 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppSplash" parent="android:Theme">
+    <style name="AppSplash" parent="@style/Theme.AppCompat">
         <item name="android:windowBackground">@drawable/splish</item>
         <item name="android:windowNoTitle">true</item>
     </style>

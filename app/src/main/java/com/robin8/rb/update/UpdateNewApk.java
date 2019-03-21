@@ -62,10 +62,10 @@ public class UpdateNewApk {
 
     public void checkNewVersion(final Boolean isNeedNotice) {
         if (context != null) {
-            LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
-            requestMap.put("[url]", HelpTools.getUrl(CommonConfig.UpdateUrl));
-            requestMap.put("app_platform", "Android");
-            requestMap.put("app_version", AppUtils.getVersionName(context));
+//            LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
+//            requestMap.put("[url]", HelpTools.getUrl(CommonConfig.UpdateUrl));
+//            requestMap.put("app_platform", "Android");
+//            requestMap.put("app_version", AppUtils.getVersionName(context));
             HttpRequest mHttpRequest = HttpRequest.getInstance();
             RequestParams requestParams = new RequestParams();
             requestParams.put("app_platform", "Android");
@@ -143,7 +143,7 @@ public class UpdateNewApk {
         // 更新描述,根据不同的更新要求显示按钮不同的文字
         text_description.setText(describition);
         if (isForced) {
-            tbt_cancel.setText("取消");
+            tbt_cancel.setText("退出");
             tbt_confirm.setText("更新");
             dialog.setCancelable(false);
         } else {

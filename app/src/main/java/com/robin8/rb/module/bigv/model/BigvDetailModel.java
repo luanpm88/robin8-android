@@ -221,7 +221,7 @@ public class BigvDetailModel extends BaseBean {
                 this.status = status;
             }
 
-            public static class BrandInfoBean {
+            public static class BrandInfoBean implements Serializable{
                 /**
                  name : PD
                  avatar_url : null
@@ -247,7 +247,7 @@ public class BigvDetailModel extends BaseBean {
                 }
             }
 
-            public static class TrademarkBean {
+            public static class TrademarkBean implements Serializable{
                 /**
                  id : 1
                  name : YSL
@@ -349,7 +349,7 @@ public class BigvDetailModel extends BaseBean {
             }
         }
 
-        public static class SelectedKolsBean {
+        public static class SelectedKolsBean implements Serializable{
             /**
              kol_id : 116045
              plateform_name : public_wechat_account
@@ -434,7 +434,7 @@ public class BigvDetailModel extends BaseBean {
                 this.tenders = tenders;
             }
 
-            public static class TendersBean {
+            public static class TendersBean implements Serializable{
                 /**
                  id : 1
                  kol_id : 116045

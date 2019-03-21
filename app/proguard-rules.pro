@@ -50,6 +50,7 @@
         -keep public class * extends android.app.backup.BackupAgentHelper
         -keep public class * extends android.preference.Preference
         -keep public class com.android.vending.licensing.ILicensingService
+        -keep public class * extends android.os.AsyncTask{*;}
          #如果引用了v4或者v7包
          -dontwarn android.support.**
 
@@ -73,6 +74,7 @@
         #保留一个完整的包
         -keep class com.lippi.recorder.utils.** { *; }
         -keep class com.lippi.recorder.utils.AudioRecorder{*;}
+        -keep class com.robin8.rb.module.**{*;}
 
         -keep public class * extends android.view.View {*;}
         -keep public class * extends android.view.View {

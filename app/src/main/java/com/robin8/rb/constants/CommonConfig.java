@@ -34,12 +34,13 @@ public class CommonConfig {
     //  public static final String SERVICE="http://restful.mictech.com.cn/";
     //	public static String SERVICE="http://192.168.0.18:8080/watch-http/";
     //18321878526
-     public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+//     public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
+//     public static String SERVICE = "http://192.168.50.87:3001/";//
     //  public static String SERVICE = "http://192.168.51.170:3000/";//robin8-测试服务器地址/test server path
     // public static String SERVICE = "http://192.168.50.105:3000/";//robin8-测试服务器地址/test server path
    // public static String SERVICE = "http://192.168.50.50:3001/";//robin8-测试服务器地址/test server path
     //public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
-    // public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
+     public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
     //public static String SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
     public static final String WEBPATH = "file:///android_asset/blockchain_pems/";//本地web路径
     public static final String UpdateUrl = "api/v2/upgrades/check";

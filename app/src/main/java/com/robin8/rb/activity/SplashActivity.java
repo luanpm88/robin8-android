@@ -2,9 +2,11 @@ package com.robin8.rb.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.igexin.sdk.PushManager;
@@ -42,63 +44,62 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        XPermissionUtils.requestPermissions(this, RequestCode.MORE,
-                new String[] { Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_SMS },
-                new XPermissionUtils.OnPermissionListener() {
-                    @Override
-                    public void onPermissionGranted() {
-                        LogUtil.LogShitou("onPermissionGranted", "获取联系人,短信权限成功");
-                    }
-
-                    @Override
-                    public void onPermissionDenied(String[] deniedPermissions, boolean alwaysDenied) {
-                        StringBuilder sBuilder = new StringBuilder();
-                        for (String deniedPermission : deniedPermissions) {
-                            if (deniedPermission.equals(Manifest.permission.WRITE_CONTACTS)) {
-                                sBuilder.append("联系人");
-                                sBuilder.append(",");
-                            }
-                            if (deniedPermission.equals(Manifest.permission.READ_SMS)) {
-                                sBuilder.append("短信");
-                                sBuilder.append(",");
-                            }
-                        }
-                        if (sBuilder.length() > 0) {
-                            sBuilder.deleteCharAt(sBuilder.length() - 1);
-                        }
-                        CustomToast.showShort(SplashActivity.this, "获取" + sBuilder.toString() + "权限失败");
-                        if (alwaysDenied) {
-                            DialogUtil.showPermissionManagerDialog(SplashActivity.this, sBuilder.toString());
-                        }
-                    }
-                });
-
-
         HelpTools.getKoluuidFromNet();
-        if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SERVER))){
+        if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SERVER))) {
             CommonConfig.SERVICE = HelpTools.getCommonXml(HelpTools.SERVER);
         }
         PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
-
-        getContacts();
+        XPermissionUtils.requestPermissions(this, RequestCode.MORE,
+                new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, permissionListener);
+//        getContacts();
         getLocation();
-        goToNextPage(0);
-
+//        goToNextPage(0);
     }
 
-    /**
-     * 获取联系人
-     */
-    private void getContacts() {
-        if (BaseApplication.getInstance().getContactBeans() == null)//获取通讯录
-            new ContactNativeTask(this, new ContactNativeTask.IGetContactSuccess() {
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        XPermissionUtils.requestPermissions(this, RequestCode.MORE,
+                new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, permissionListener);
+    }
 
-                @Override
-                public void onGetContactSuccess(List<ContactBean> beans) {
+    XPermissionUtils.OnPermissionListener permissionListener = new XPermissionUtils.OnPermissionListener() {
+        @Override
+        public void onPermissionGranted() {
+            goToNextPage(0);
+//                        LogUtil.LogShitou("onPermissionGranted", "获取联系人,短信权限成功");
+        }
+
+        @Override
+        public void onPermissionDenied(String[] deniedPermissions, boolean alwaysDenied) {
+
+            StringBuilder sBuilder = new StringBuilder();
+            for (String deniedPermission : deniedPermissions) {
+                if (deniedPermission.equals(Manifest.permission.READ_PHONE_STATE)) {
+                    sBuilder.append("电话（IMEI）");
+                    sBuilder.append(",");
                 }
-            }, false).execute();
-    }
+                if (deniedPermission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    sBuilder.append("读写");
+                    sBuilder.append(",");
+                }
+            }
+            if (sBuilder.length() > 0) {
+                sBuilder.deleteCharAt(sBuilder.length() - 1);
+            }
+            DialogUtil.showPermissionManagerDialogCallBack(SplashActivity.this, "获取" + sBuilder.toString() + "权限失败", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
+//                        CustomToast.showShort(SplashActivity.this, "获取" + sBuilder.toString() + "权限失败");
+//                        if (alwaysDenied) {
+//                            DialogUtil.showPermissionManagerDialog(SplashActivity.this, sBuilder.toString());
+//                        }
+        }
+    };
 
     private void goToNextPage(final int i) {
 
@@ -149,11 +150,17 @@ public class SplashActivity extends Activity {
             @Override
             public void onResponse(String response) {
                 LocationModel locationModel = GsonTools.jsonToBean(response, LocationModel.class);
-                if (locationModel != null && ! TextUtils.isEmpty(locationModel.getCity())) {
+                if (locationModel != null && !TextUtils.isEmpty(locationModel.getCity())) {
                     CacheUtils.putString(SplashActivity.this, SPConstants.LOCATION_CITY, locationModel.getCity());
                 }
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        XPermissionUtils.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
 
