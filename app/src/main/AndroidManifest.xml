@@ -776,8 +776,6 @@
 
         <service android:name=".module.find.FloatAction.service.FloatMonkService"/>
 
-        <activity android:name=".activity.web.TextActivity">
-        </activity>
         <activity android:name=".activity.web.PutWebFirstActivity">
         </activity>
         <activity

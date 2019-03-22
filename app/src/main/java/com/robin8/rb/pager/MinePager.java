@@ -883,6 +883,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                         connect(rongCloudBean.getToken());
                     } else {
                         HelpTools.insertCommonXml(HelpTools.CloudToken, "");
+                        CustomToast.showShort(mActivity, "客服繁忙中，请您稍后再试");
                     }
 
                 }

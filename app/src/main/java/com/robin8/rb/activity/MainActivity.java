@@ -127,9 +127,7 @@ public class MainActivity extends BaseBackHomeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        BaseApplication.getInstance().initBaiduLocationConfig();
         initNotify();
         intent = getIntent();
         register_main = intent.getStringExtra("register_main");
@@ -158,8 +156,8 @@ public class MainActivity extends BaseBackHomeActivity {
                 showShadowDialog(MainActivity.this, 0);
             }
         }
-        XPermissionUtils.requestPermissions(this, RequestCode.MORE, new String[]{Manifest.permission.READ_PHONE_STATE
-                        , Manifest.permission.ACCESS_COARSE_LOCATION
+        XPermissionUtils.requestPermissions(this, RequestCode.MORE, new String[]{
+                        Manifest.permission.ACCESS_COARSE_LOCATION
                         , Manifest.permission.ACCESS_FINE_LOCATION}
                 , new XPermissionUtils.OnPermissionListener() {
                     @Override
@@ -172,12 +170,11 @@ public class MainActivity extends BaseBackHomeActivity {
 
                     }
                 });
-        //01 演示图片.jpg==||||||==/storage/emulated/0/Pictures/01 演示图片.jpg
-        // showShadowDialog(MainActivity.this, 0);
     }
 
     private void startLocate() {
         // -----------location config ------------
+        BaseApplication.getInstance().initBaiduLocationConfig();
         locationService = BaseApplication.locationService;
         //获取locationservice实例，建议应用中只初始化1个location实例，然后使用，可以参考其他示例的activity，都是通过此种方式获取locationservice实例的
         locationService.registerListener(mListener);
@@ -593,7 +590,7 @@ public class MainActivity extends BaseBackHomeActivity {
 
 
     /*****
-     * 定位结果回调，重写onReceiveLocation方法，可以直接拷贝如下代码到自己工程中修改
+     * 定位结果回调，重写onReceiveLocation方法
      */
     private BDLocationListener mListener = new BDLocationListener() {
 
