@@ -205,8 +205,6 @@ public class NewUserTaskActivity extends BaseActivity {
         }
     }
 
-    private List<DetailContentActivity.ShareBean> myShareListCampaign;
-    private CustomDialogManager mCustomDialogManager;
     private WProgressDialog mWProgressDialog;
 
     private BasePresenter mBasePresenter;

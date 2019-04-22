@@ -239,7 +239,7 @@ public class BeKolFirstActivity extends BaseActivity {
                         item.content = mBigVBean.getName();
                         break;
                     case ITEM_Phone:
-                        if (TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))||(CommonConfig.TOURIST_PHONE.equals(HelpTools.getLoginInfo(HelpTools.LoginNumber)))){
+                        if (TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))){
                             item.content = "未绑定";
                         }else {
                             item.content =  HelpTools.getLoginInfo(HelpTools.LoginNumber);

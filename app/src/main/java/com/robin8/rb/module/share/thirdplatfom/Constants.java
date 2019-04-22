@@ -34,4 +34,7 @@ public class Constants {
 	public static final int TYPE_LOGIN = 0;
 	public static final int TYPE_BIND = 8;
 
+	public static final String FACEBOOK_PACKAGE = "com.facebook.katana";
+	public static final String FACEBOOK_MESSENGER_PACKAGE = "com.facebook.orca";
+
 }

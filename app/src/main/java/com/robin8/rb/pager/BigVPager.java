@@ -98,7 +98,7 @@ public class BigVPager extends BasePager implements Observer {
     private void initLogin(final int status) {
 
         mLoadingPage.showSafePage(LoadingPage.STATE_LOADING);
-        if (! BaseApplication.getInstance().hasLogined()) {
+        if (!BaseApplication.getInstance().hasLogined()) {
             LoginTask loginTask = LoginTask.newInstance(mActivity.getApplicationContext());
             loginTask.start(new RequestCallback() {
 

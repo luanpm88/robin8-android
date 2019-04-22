@@ -36,6 +36,7 @@ import com.robin8.rb.module.mine.presenter.BindSocialPresenter;
 import com.robin8.rb.module.reword.activity.DetailContentActivity;
 import com.robin8.rb.module.reword.activity.ScreenImgActivity;
 import com.robin8.rb.module.reword.activity.SignUpRecruitActivity;
+import com.robin8.rb.module.reword.bean.ShareBean;
 import com.robin8.rb.module.reword.chose_photo.SerializableMap;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -778,46 +779,6 @@ public class DetailContentHelper {
             return;
         }
         mWProgressDialog.show();
-//
-//        mBasePresenter.getDataFromServer(true, HttpRequest.PUT, (HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot")), "screenshot", mapImgs.getMap(), new RequestCallback() {
-//
-//            @Override
-//            public void onError(Exception e) {
-//                // LogUtil.LogShitou("走到这里没有","333"+e.getMessage());
-//                if (mWProgressDialog != null) {
-//                    try {
-//                        mWProgressDialog.dismiss();
-//                    } catch (Exception es) {
-//                        es.printStackTrace();
-//                    }
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onResponse(String response) {
-//                //  LogUtil.LogShitou("活动上传截图-多图", "===>" + response);
-//                if (mWProgressDialog != null) {
-//                    try {
-//                        mWProgressDialog.dismiss();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                CampaignInviteBean baseBean = GsonTools.jsonToBean(response, CampaignInviteBean.class);
-//                if (baseBean == null) {
-//                    CustomToast.showShort(activity, activity.getString(R.string.please_data_wrong));
-//                    return;
-//                }
-//                if (baseBean.getError() == 0) {
-//                    CampaignListBean.CampaignInviteEntity entity = baseBean.getCampaign_invite();
-//                    updateBottomShareView(entity);
-//                    CustomToast.showShort(activity, "上传截图成功");
-//                } else {
-//                    CustomToast.showShort(activity, baseBean.getDetail());
-//                }
-//            }
-//        });
 
         uploadFileList = new ArrayList<>();
         keys = new ArrayList<>();
@@ -908,7 +869,6 @@ public class DetailContentHelper {
      * 上传图片到七牛云（第二步
      *
      * @param filePath
-     * @param key
      * @param token
      */
     private void uploadImageToQiniu(String filePath, final String token, final UploadImageOrGetTokenListener uploadImageOrGetTokenListener) {
@@ -1833,7 +1793,7 @@ public class DetailContentHelper {
     }
 
     private CustomDialogManager mCustomDialogManager;
-    private List<DetailContentActivity.ShareBean> myShareListCampaign;
+    private List<ShareBean> myShareListCampaign;
 
 
     /**
@@ -1860,14 +1820,14 @@ public class DetailContentHelper {
             return;
         } else {
             if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(wechatEn)) {
-                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
-                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
+                myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
+                myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
             } else if (mCampaignInviteEntity.getCampaign().getPer_action_type().equals(weiboEn)) {
-                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
+                myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
             } else {
-                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
-                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
-                myShareListCampaign.add(new DetailContentActivity.ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
+                myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
+                myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
+                myShareListCampaign.add(new ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
 
             }
         }

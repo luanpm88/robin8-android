@@ -26,6 +26,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.MessageDialog;
+import com.facebook.share.widget.ShareDialog;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.LoginActivity;
 import com.robin8.rb.activity.MainActivity;
@@ -43,14 +50,17 @@ import com.robin8.rb.module.mine.model.MessageModel;
 import com.robin8.rb.module.reword.CorrectionRunnable;
 import com.robin8.rb.module.reword.DetailCampaignDownAdapter;
 import com.robin8.rb.module.reword.bean.CampaignMaterialsModel;
+import com.robin8.rb.module.reword.bean.ShareBean;
 import com.robin8.rb.module.reword.chose_photo.SerializableMap;
 import com.robin8.rb.module.reword.helper.DetailContentHelper;
+import com.robin8.rb.module.share.thirdplatfom.Constants;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.ui.widget.SlideDetailsLayout;
 import com.robin8.rb.ui.widget.WProgressDialog;
+import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DateUtil;
@@ -94,6 +104,8 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     private static final String CAMPAIGN_TYPE_CPA = "cpa";//CPA活动
     private static final String CAMPAIGN_TYPE_CPI = "simple_cpi";
     private static final String CAMPAIGN_TYPE_CPT = "cpt";
+    private static final String FACEBOOK_SHARE_TYPE = "facebook";
+    private static final String MESSENGE_SHARE_TYPE = "facebook_messenger";
 
     private WebView mWebView;
     private WebSettings mWebSettings;
@@ -155,6 +167,10 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     private LinearLayout mLayoutPut;
     private TextView mTvPutEnter;
     private TextView mTvPutResult;
+
+    private CallbackManager mCallbackManager;
+    private ShareDialog mShareDialog;
+    private MessageDialog mMessageDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -458,6 +474,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     }
 
     private void initData() {
+        setupFacebookSharing();
         NotifyManager.getNotifyManager().addObserver(this);
         if (mFrom == SPConstants.LAUNCHREWORDACTIVIRY) {
             return;
@@ -556,6 +573,31 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             });
         }
     }
+
+    /**
+     * The method is used to setup FacebookSDK for sharing
+     */
+    private void setupFacebookSharing() {
+        mCallbackManager = CallbackManager.Factory.create();
+        mShareDialog = new ShareDialog(this);
+        mMessageDialog = new MessageDialog(this);
+        mShareDialog.registerCallback(mCallbackManager, shareCallback);
+        mMessageDialog.registerCallback(mCallbackManager, shareCallback);
+    }
+
+    private FacebookCallback<Sharer.Result> shareCallback = new FacebookCallback<Sharer.Result>() {
+        @Override
+        public void onCancel() {
+        }
+
+        @Override
+        public void onError(FacebookException error) {
+        }
+
+        @Override
+        public void onSuccess(Sharer.Result result) {
+        }
+    };
 
     private void initWebView() {
 
@@ -1074,6 +1116,17 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                     case 4:
                         share(QZone.NAME);
                         break;
+                    case 5:
+                        if (AppUtils.isAppInstalled(getApplicationContext(), Constants.FACEBOOK_PACKAGE)) {
+                            share(FACEBOOK_SHARE_TYPE);
+                        } else {
+                            try {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.FACEBOOK_PACKAGE)));
+                            } catch (android.content.ActivityNotFoundException anfe) {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + Constants.FACEBOOK_PACKAGE)));
+                            }
+                        }
+//                        break;
                 }
 
             }
@@ -1118,6 +1171,12 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
             if (SinaWeibo.NAME.equals(platName)) {
                 oks.setText(getResources().getString(R.string.share_invite_friends_text) + TITLE_URL + String.valueOf(id));
+            } else if (FACEBOOK_SHARE_TYPE.equals(platName)) {
+                shareFacebook(TITLE_URL + String.valueOf(id), getString(R.string.share_invite_friends_title), IMAGE_URL);
+                return;
+            } else if (MESSENGE_SHARE_TYPE.equals(platName)) {
+                shareFacebookMessenger(TITLE_URL + String.valueOf(id), getString(R.string.share_invite_friends_title), IMAGE_URL);
+                return;
             } else {
                 oks.setText(getResources().getString(R.string.share_invite_friends_text));
             }
@@ -1125,6 +1184,14 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             oks.setTitleUrl(TITLE_URL + String.valueOf(id));
             oks.setUrl(TITLE_URL + String.valueOf(id));
         } else {
+            if (FACEBOOK_SHARE_TYPE.equals(platName)) {
+                shareFacebook(mCampaignInviteEntity.getCampaign().getUrl(), mCampaignInviteEntity.getCampaign().getName(), IMAGE_URL);
+                return;
+            }
+            if (MESSENGE_SHARE_TYPE.equals(platName)) {
+                shareFacebookMessenger(mCampaignInviteEntity.getCampaign().getUrl(), mCampaignInviteEntity.getCampaign().getName(), IMAGE_URL);
+                return;
+            }
             if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.isLeader))) {
                 if (Wechat.NAME.equals(platName)) {
                     oks.setText(mCampaignInviteEntity.getCampaign().getName());
@@ -1169,6 +1236,42 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         oks.setSiteUrl(CommonConfig.SITE_URL);
         // oks.setSiteUrl(("http://robin8.net/wechat_campaign/campaign_page?campaign_id=3904"));
         oks.show(DetailContentActivity.this);
+    }
+
+    /**
+     * The method is used to share campaign to facebook
+     *
+     * @param shareUrl     campaign url
+     * @param title        campaign title
+     * @param thumbnailUrl campaign thumbnail url
+     */
+    private void shareFacebook(final String shareUrl, final String title, final String thumbnailUrl) {
+        if (mShareDialog != null && ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentUrl(Uri.parse(shareUrl))
+                    .setImageUrl(Uri.parse(thumbnailUrl))
+                    .setContentTitle(title)
+                    .build();
+            mShareDialog.show(linkContent);
+        }
+    }
+
+    /**
+     * The method is used to share campaign to facebook messenger
+     *
+     * @param shareUrl     campaign url
+     * @param title        campaign title
+     * @param thumbnailUrl campaign thumbnail url
+     */
+    private void shareFacebookMessenger(final String shareUrl, final String title, final String thumbnailUrl) {
+        if (mMessageDialog != null && ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentUrl(Uri.parse(shareUrl))
+                    .setImageUrl(Uri.parse(thumbnailUrl))
+                    .setContentTitle(title)
+                    .build();
+            mMessageDialog.show(linkContent);
+        }
     }
 
     private class MySharedListener implements PlatformActionListener {
@@ -1278,31 +1381,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         }
     }
 
-    public static class ShareBean implements Serializable {
-        private String name;
-        private int icon;
-
-        public ShareBean(String name, int icon) {
-            this.name = name;
-            this.icon = icon;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getIcon() {
-            return icon;
-        }
-
-        public void setIcon(int icon) {
-            this.icon = icon;
-        }
-    }
 
     //===================蒙版======================
     public void showShadowDialog(final Activity activity, final boolean isShowRequest, final String content) {

@@ -1,7 +1,9 @@
 package com.robin8.rb.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +11,32 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.robin8.rb.R;
 import com.robin8.rb.activity.email.ForgetPwdActivity;
 import com.robin8.rb.base.BaseActivity;
+import com.robin8.rb.model.sortlist.UserFacebookInfo;
 import com.robin8.rb.presenter.LoginPresenter;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.view.ILoginView;
+
+import org.json.JSONObject;
+
+import java.util.Arrays;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
@@ -57,6 +79,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     private View cursorLeft;
     private View cursorRight;
 
+    private CallbackManager mCallbackManager;
+    private LoginButton mBtnFBRoot;
+
     @Override
     public void setTitleView() {
         mLLTitleBar.setBackgroundResource(android.R.color.transparent);
@@ -69,6 +94,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mLLRoot.setBackgroundResource(R.mipmap.mine_bg);
         mTVCenter.getPaint().setFakeBoldText(true);
         mETPhoneNumber = (EditText) view.findViewById(R.id.et_phonenum);
+        mBtnFBRoot = (LoginButton) view.findViewById(R.id.login_button);
         mETCheckNum = (EditText) view.findViewById(R.id.et_checknum);
         mETInvitationCode = ((EditText) view.findViewById(R.id.et_invitation_code));
         mTVLoginInfo = (TextView) view.findViewById(R.id.tv_login_info);
@@ -79,6 +105,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         View mIBWeixin = view.findViewById(R.id.ib_weixin);
         View mIBWeibo = view.findViewById(R.id.ib_weibo);
         View mIBQQ = view.findViewById(R.id.ib_qq);
+        View mIBFacebook = view.findViewById(R.id.ib_facebook);
         //邮箱
         llPhoneNumLogin = ((LinearLayout) view.findViewById(R.id.ll_phone_login));
         llEmailLogin = ((LinearLayout) view.findViewById(R.id.ll_email_login));
@@ -102,10 +129,12 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mIBWeixin.setOnClickListener(this);
         mIBWeibo.setOnClickListener(this);
         mIBQQ.setOnClickListener(this);
+        mIBFacebook.setOnClickListener(this);
 
         mTVLoginInfo.setText(Html.fromHtml(getString(R.string.click_login_approve) + "<font color=#2dcad0>" + getString(R.string.serviece_protocol) + "</font>"));
         mLoginPresenter = new LoginPresenter(LoginActivity.this, this);
         mLoginPresenter.init();
+        setupFacebook();
     }
 
     @Override
@@ -132,6 +161,12 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 Platform platform = ShareSDK.getPlatform(QQ.NAME);
                 mLoginPresenter.authorize(platform);
                 // finish();
+                break;
+            case R.id.ib_facebook:
+                if (isLoggedIn()) {
+                    LoginManager.getInstance().logOut();
+                }
+                mBtnFBRoot.performClick();
                 break;
             case R.id.iv_back:
                 mLoginPresenter.backMain(0);
@@ -173,6 +208,54 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         }
     }
 
+    /**
+     * The method is used to setup FacebookSDK
+     */
+    private void setupFacebook() {
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+
+        mCallbackManager = CallbackManager.Factory.create();
+        mBtnFBRoot.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
+        // Callback registration
+        mBtnFBRoot.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(final LoginResult loginResult) {
+                // App code
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Gson gson = new GsonBuilder().create();
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson =  parser.parse(object.toString());
+                                UserFacebookInfo userFacebookInfo = gson.fromJson(mJson, UserFacebookInfo.class);
+                                mLoginPresenter.sendOtherLoginFacebookInfo(loginResult.getAccessToken().getToken(), userFacebookInfo);
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,address,birthday,link,name,email,gender,picture,hometown");
+                request.setParameters(parameters);
+                request.executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("fb","cancel");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Log.d("fb","onError");
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
     @Override
     protected void executeOnclickLeftView() {
         //mLoginPresenter.backMain();
@@ -250,5 +333,14 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
             mLoginPresenter.backMain(0);
         }
         return false;
+    }
+    /**
+     * The method is used to check user login facebook status with facebook access token
+     *
+     * @return true if user has login, otherwise return false
+     */
+    public boolean isLoggedIn() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken != null;
     }
 }

@@ -11,7 +11,6 @@ import com.robin8.rb.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.listener.BindSocialPresenterListener;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.module.mine.model.MineShowModel;

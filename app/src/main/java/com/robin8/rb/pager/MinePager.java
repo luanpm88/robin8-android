@@ -92,8 +92,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private static final int SIGN = 10;
     private static final int INVITE_FRIENDS = 11;
     private static final int INVITE_CODE = 12;
-    private static final int RONG_CLOUD = 13;
-    private static final int HELP_CENTER = 14;
+//    private static final int RONG_CLOUD = 13;
+    private static final int HELP_CENTER = 13;
 
     private static final String ROLE_BIG_V = "big_v";
     private static final String ROLE_PUBLIC = "public";
@@ -640,9 +640,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 case INVITE_CODE:
                     skipToInvitationCode();
                     break;
-                case RONG_CLOUD:
-                    skipRongCloud();
-                    break;
+//                case RONG_CLOUD:
+//                    skipRongCloud();
+//                    break;
                 case HELP_CENTER:
                     skipToHelpCenter();
                     break;

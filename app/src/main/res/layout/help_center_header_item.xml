@@ -9,6 +9,7 @@
         style="@style/Undefined_Line"/>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/ll_server"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -41,9 +42,11 @@
     </RelativeLayout>
 
     <View
+        android:visibility="gone"
         android:layout_marginBottom="10dp"
         style="@style/Undefined_Line"/>
     <View
+        android:visibility="gone"
         style="@style/Undefined_Line"/>
 
     <RelativeLayout

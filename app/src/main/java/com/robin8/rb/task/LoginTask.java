@@ -27,7 +27,8 @@ import java.util.List;
  @date 2016/1/25 11:05 */
 public class LoginTask {
 
-    private final static String TD_CHANNEL_ID = "TD_CHANNEL_ID";
+//    private final static String TD_CHANNEL_ID = "TD_CHANNEL_ID";
+    public final static String TD_CHANNEL_ID = "TD_ANALYTICS_CHANNEL_ID";
     private static Context mContext;
 
     private LoginTask() {

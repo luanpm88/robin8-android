@@ -130,11 +130,6 @@ public abstract class BaseActivity extends BaseDataActivity implements View.OnCl
 
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        AppManager.getAppManager().finishActivity(this);
-//    }
 
     private void showMyDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_red_layout, null);

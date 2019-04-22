@@ -20,11 +20,11 @@ import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.LoginHelper;
 import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.listener.BindSocialPresenterListener;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.IndentyBean;
 import com.robin8.rb.model.LoginBean;
 import com.robin8.rb.model.OtherLoginListBean;
+import com.robin8.rb.model.sortlist.UserFacebookInfo;
 import com.robin8.rb.module.mine.model.MineShowModel;
 import com.robin8.rb.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.module.social.SocialBindActivity;
@@ -130,7 +130,84 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         super.onError(platform, action, t);
 
     }
+    public void sendOtherLoginFacebookInfo(final String token, final UserFacebookInfo userFacebookInfo) {
+        if (mWProgressDialog == null) {
+            mWProgressDialog = WProgressDialog.createDialog(mActivity);
+        }
+        mWProgressDialog.show();
+        RequestParams requestParams = new RequestParams();
+        requestParams.put("app_platform", "Android");
+        requestParams.put("app_version", AppUtils.getVersionName(mActivity.getApplicationContext()));
+        requestParams.put("device_token", StringUtil.getToken(mActivity.getApplicationContext()));
+        requestParams.put("os_version", AppUtils.getSystemVersion());
+        requestParams.put("device_model", android.os.Build.MODEL);
+        requestParams.put("IMEI", AppUtils.getIMEI(mActivity.getApplicationContext()));
+        requestParams.put("city_name", CacheUtils.getString(mActivity, SPConstants.LOCATION_CITY, ""));
+        requestParams.put("IDFA", android.os.Build.MODEL);
+        requestParams.put("provider", "facebook");
+        requestParams.put("uid", userFacebookInfo.id);
+        requestParams.put("token", token);
+        requestParams.put("name", userFacebookInfo.name);
+        requestParams.put("gender", userFacebookInfo.gender);
+        requestParams.put("url", userFacebookInfo.link);
+        requestParams.put("avatar_url", userFacebookInfo.picture.pictureDetail.url);
+        requestParams.put("serial_params", "");
+        requestParams.put("utm_source", AppUtils.getApplicationMeteData(mActivity.getApplicationContext(), "TD_CHANNEL_ID"));
 
+        getDataFromServer(true, HttpRequest.POST, HelpTools.getUrl(CommonConfig.OAUTH_LOGIN_URL), requestParams, new RequestCallback() {
+
+            @Override
+            public void onError(Exception e) {
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onResponse(String response) {
+                //   LogUtil.LogShitou("第三方登陆啊啊啊啊返回数据==========>", response);
+                //   LogUtil.LogShitou("provider", "===>" + provider);
+
+                if (mWProgressDialog != null) {
+                    mWProgressDialog.dismiss();
+                }
+                final LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
+                if (loginBean.getError() == 0) {
+                    HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));//保存token
+                    //                    if (! TextUtils.isEmpty(loginBean.getKol().getMobile_number())) {//已经绑定了手机号
+                    //                        TalkingDataAppCpa.onLogin(loginBean.getKol().getMobile_number());
+                    //                        HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+                    //                        BaseApplication.getInstance().setLoginBean(loginBean);
+                    //                        if (BaseApplication.getInstance().hasLogined()) {
+                    //                            NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+                    //                        }
+                    //-----
+                    //  toBind(provider,plat,token,userGender,userIcon,userId,userName,res,loginBean);
+//                    afterBindFacebook(loginBean);
+                    afterBindFacebook(loginBean);
+                    //----------
+                    //                        Intent intent = new Intent(mActivity, MainActivity.class);
+                    //                        intent.putExtra("register_main", "zhu");
+                    //                        mActivity.startActivity(intent);
+                    //                        mActivity.finish();
+                    //                    } else {//尚未绑定手机号
+                    //                        BaseApplication.getInstance().setLoginBean(loginBean);
+                    //                        Intent intent = new Intent(mActivity, LoginOtherWithPhoneActivity.class);
+                    //                        intent.putExtra("from", from);
+                    //                        if (influence == 1) {
+                    //                            intent.putExtra("influence", StatisticsAgency.INFLUENCE_LIST);
+                    //                        }
+                    //                        mActivity.startActivity(intent);
+                    //                        mActivity.finish();
+                    //                    }
+                } else {
+                    if (! TextUtils.isEmpty(loginBean.getDetail())) {
+                        CustomToast.showShort(mActivity, loginBean.getDetail());
+                    }
+                }
+            }
+        });
+    }
     private void sendOtherLoginInfo(final String plat, final String token, final String userGender, final String userIcon, final String userId, final String userName, final HashMap<String, Object> res) {
 
         if (mWProgressDialog == null) {
@@ -155,7 +232,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
         requestParams.put("avatar_url", userIcon);
         requestParams.put("desc", String.valueOf(res.get("description")));
         requestParams.put("serial_params", GsonTools.mapToJson(res));
-        requestParams.put("utm_source", AppUtils.getApplicationMeteData(mActivity.getApplicationContext(), "TD_CHANNEL_ID"));
+        requestParams.put("utm_source", AppUtils.getApplicationMeteData(mActivity.getApplicationContext(), LoginTask.TD_CHANNEL_ID));
 
         if ("SinaWeibo".equals(plat)) {
             requestParams.put("followers_count", res.get("followers_count"));//粉丝数
@@ -354,6 +431,21 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             mActivity.startActivity(intent);
             mActivity.finish();
         }
+    }
+
+    private void afterBindFacebook(LoginBean loginBean) {
+        if (!TextUtils.isEmpty(loginBean.getKol().getMobile_number())) {
+            TalkingDataAppCpa.onLogin(loginBean.getKol().getMobile_number());
+            HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
+        }
+        BaseApplication.getInstance().setLoginBean(loginBean);
+        if (BaseApplication.getInstance().hasLogined()) {
+            NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
+        }
+        Intent intent = new Intent(mActivity, MainActivity.class);
+        intent.putExtra("register_main", "zhu");
+        mActivity.startActivity(intent);
+        mActivity.finish();
     }
 
     /**

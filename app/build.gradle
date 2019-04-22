@@ -222,9 +222,8 @@ dependencies {
     compile 'com.qiniu:qiniu-android-sdk:7.3.15'
     compile 'com.github.open-android:pinyin4j:2.5.0'
     compile 'com.facebook.android:facebook-android-sdk:4.20.0'
-    compile project(':pulltorefresh')
-//    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
+    //    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile project(':baselib')
 }
 repositories {
     mavenCentral()

@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.listener.BindSocialPresenterListener;
+import com.robin8.rb.presenter.BindSocialPresenterListener;
 import com.robin8.rb.model.IndentyBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;

@@ -229,30 +229,30 @@ public class AppUtils {
     /*
      * public static HashMap<String, InstalledApkInfo>
 	 * getInstalledApkMap(Context context) {
-	 * 
+	 *
 	 * HashMap<String, InstalledApkInfo> installedApkMap = new HashMap<String,
 	 * InstalledApkInfo>();
-	 * 
+	 *
 	 * PackageManager packageManager = context.getPackageManager();
 	 * List<PackageInfo> appList = packageManager.getInstalledPackages(0);
-	 * 
+	 *
 	 * for (int i = 0; i < appList.size(); i++) { PackageInfo pinfo =
 	 * appList.get(i); if (pinfo != null) { ApplicationInfo appInfo =
 	 * pinfo.applicationInfo;
-	 * 
+	 *
 	 * InstalledApkInfo installedApkInfo = new InstalledApkInfo();
 	 * installedApkInfo
 	 * .setAppName(packageManager.getApplicationLabel(appInfo).toString());
 	 * installedApkInfo.setPackageName(appInfo.packageName);
 	 * installedApkInfo.setVersionName(pinfo.versionName);
 	 * installedApkInfo.setVersionCode(pinfo.versionCode);
-	 * 
+	 *
 	 * // LogUtil.log(TAG, installedApkInfo.toString());
-	 * 
+	 *
 	 * installedApkMap.put(appInfo.packageName, installedApkInfo); }
-	 * 
+	 *
 	 * }
-	 * 
+	 *
 	 * return installedApkMap; }
 	 */
 

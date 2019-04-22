@@ -26,7 +26,7 @@
         <item>每日任务</item>
         <item>收徒赚收益</item>
         <item>输入邀请码</item>
-        <item>在线客服</item>
+        <!--<item>在线客服</item>-->
         <item>帮助中心</item>
     </string-array>
     <string-array name="social_tag_name">

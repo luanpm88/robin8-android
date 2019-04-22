@@ -81,7 +81,8 @@
 
     <!--第三方logo-->
     <style name="third_logo_style">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:visibility">visible</item>
