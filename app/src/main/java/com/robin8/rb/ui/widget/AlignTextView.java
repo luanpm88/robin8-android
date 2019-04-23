@@ -60,6 +60,8 @@ public class AlignTextView extends TextView {
 
         lineSpacingAdd = arr.getDimensionPixelSize(0, 0);
 
+        arr.recycle();
+
         originalPaddingBottom = getPaddingBottom();
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.AlignTextView);

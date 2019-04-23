@@ -82,8 +82,8 @@ public class BaseApplication extends MultiDexApplication {
             /**
              * IMKit SDK调用第一步 初始化
              */
-            RongIM.init(this);
-            RongIM.getInstance().setMessageAttachedUserInfo(true);
+//            RongIM.init(this);
+//            RongIM.getInstance().setMessageAttachedUserInfo(true);
         }
 //        initBaiduLocationConfig();
         initData();

@@ -1,8 +1,5 @@
 package com.robin8.rb.presenter;
 
-import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.http.xutil.IHttpCallBack;
-import com.robin8.rb.http.xutil.XUtilsHttpUtils;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -55,23 +52,6 @@ public class BasePresenter implements PresenterI {
             case HttpRequest.POST:
                 HttpRequest.getInstance().post(needHeader, url, imageKey, fileName, file, null, callback);
                 break;
-        }
-    }
-
-
-    public void postImage(boolean addHeader, int method,Map<String, Object> requestMap, IHttpCallBack callBack) {
-        if (checkParam(requestMap)) {
-            if (addHeader){
-                requestMap.put("[header]Authorization", BaseApplication.getHeader());
-            }
-            switch (method){
-                case HttpRequest.POST:
-                    XUtilsHttpUtils.getInstance().post(requestMap, callBack);
-                    break;
-                case HttpRequest.PUT:
-                    XUtilsHttpUtils.getInstance().put(requestMap, callBack);
-                    break;
-            }
         }
     }
 

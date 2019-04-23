@@ -1,16 +1,12 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'kotlin-android'
-apply plugin: 'android'
 
 buildscript {
-//    ext.kotlin_version = '1.3.21'
     repositories {
         jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:3.3.2'
 //        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -23,7 +19,7 @@ android {
     }
 
     compileSdkVersion 25
-    buildToolsVersion '25'
+    buildToolsVersion '28.0.3'
 
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
@@ -35,7 +31,7 @@ android {
     defaultConfig {
         applicationId "com.robin8.rb"
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 26
         useLibrary 'org.apache.http.legacy'
         //noinspection HighAppVersionCode
         versionCode 2019032015
@@ -52,6 +48,9 @@ android {
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
         }
+
+        flavorDimensions "default"
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
 
     signingConfigs {
@@ -174,56 +173,51 @@ afterEvaluate {
 }
 
 dependencies {
-    provided fileTree(include: ['*.jar'], dir: 'libs')
-    //    compile files('libs/AMap_Location_v2.3.0_20160112.jar')
-    compile files('libs/gson-2.6.2.jar')
-    compile files('libs/jackson-annotations-2.2.1.jar')
-    compile files('libs/jackson-core-2.2.1.jar')
-    compile files('libs/jackson-databind-2.2.1.jar')
-    compile files('libs/jjwt.0.6.jar')
-    compile files('libs/org.bouncycastle.jar')
-    //    compile files('libs/okhttp-3.2.0.jar')
-    //    compile files('libs/okio-1.7.0.jar')
-    compile files('libs/bus-1.0.2-sources.jar')
-    compile project(path: ':library')
-    compile project(path: ':oneshare2')
-    compile project(path: ':hellocharts-library')
-    compile project(path: ':LRecyclerview_library')
-    compile files('libs/nineoldandroids-2.4.0.jar')
-    compile files('libs/alipaySdk-20160516.jar')
-    compile project(path: ':swipeback')
-    compile files('libs/TalkingData_Analytics_Android_SDK_V2.2.30.jar')
-    compile files('libs/core-3.0.0.jar')
-    //compile files('libs/GetuiExt-2.0.3.jar')
-    //compile files('libs/GetuiSDK2.7.0.0.jar')
-    compile files('libs/GetuiSDK2.10.2.0.jar')
-    compile files('libs/BaiduLBS_Android.jar')
-    //    compile files('libs/xUtils-2.6.14.jar')
-    compile files('libs/jsoup-1.9.1.jar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/gson-2.6.2.jar')
+    implementation files('libs/jackson-annotations-2.2.1.jar')
+    implementation files('libs/jackson-core-2.2.1.jar')
+    implementation files('libs/jackson-databind-2.2.1.jar')
+    implementation files('libs/jjwt.0.6.jar')
+    implementation files('libs/org.bouncycastle.jar')
+    implementation files('libs/bus-1.0.2-sources.jar')
+    implementation project(path: ':library')
+    implementation project(path: ':oneshare2')
+    implementation project(path: ':hellocharts-library')
+    implementation project(path: ':LRecyclerview_library')
+    implementation files('libs/nineoldandroids-2.4.0.jar')
+    implementation files('libs/alipaySdk-20160516.jar')
+    implementation project(path: ':swipeback')
+    implementation files('libs/TalkingData_Analytics_Android_SDK_V2.2.30.jar')
+    implementation files('libs/core-3.0.0.jar')
+    implementation files('libs/GetuiSDK2.10.2.0.jar')
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/jsoup-1.9.1.jar')
     //compile files('libs/commons-codec-1.4.jar')
-    compile files('libs/SaaS_AdTracking_Android_SDK_V4.0.2.jar')
-    compile project(':IMKit')
+    implementation files('libs/SaaS_AdTracking_Android_SDK_V4.0.2.jar')
+    implementation project(':IMKit')
     //  compile 'com.github.takusemba:multisnaprecyclerview:1.3.3'
-    compile project(':pickerview')
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation project(':pickerview')
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
     //    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-    compile 'com.moxun:tagcloudlib:1.0.3'
-    compile 'com.android.support:multidex:1.0.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:22.2.1'
-    compile 'com.github.chrisbanes.photoview:library:+'
-    compile 'com.android.support:recyclerview-v7:25.0.1'
-    compile 'com.liulishuo.filedownloader:library:1.7.4'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.google.guava:guava:27.0-android'
-    compile 'com.android.support:cardview-v7:26.0.0-alpha1'
-    compile 'org.apache.httpcomponents:httpcore:4.4.4'
-    compile 'com.qiniu:qiniu-android-sdk:7.3.15'
-    compile 'com.github.open-android:pinyin4j:2.5.0'
-    compile 'com.facebook.android:facebook-android-sdk:4.20.0'
-    //    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile project(':baselib')
+    implementation 'com.google.android.gms:play-services-appindexing:8.1.0'
+    implementation 'com.moxun:tagcloudlib:1.0.3'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:support-v4:22.2.1'
+    implementation 'com.github.chrisbanes.photoview:library:+'
+    implementation 'com.android.support:recyclerview-v7:25.0.1'
+    implementation 'com.liulishuo.filedownloader:library:1.7.4'
+    implementation 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.google.guava:guava:24.1-android'
+    //    implementation 'com.google.guava:guava:27.0-android'
+    implementation 'com.android.support:cardview-v7:26.0.0-alpha1'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.4'
+    implementation 'com.qiniu:qiniu-android-sdk:7.3.15'
+    implementation 'com.github.open-android:pinyin4j:2.5.0'
+    implementation 'com.facebook.android:facebook-android-sdk:4.20.0'
+    implementation project(':baselib')
+    implementation files('libs/MiPush_SDK_Client_3_6_18.jar')
 }
 repositories {
     mavenCentral()

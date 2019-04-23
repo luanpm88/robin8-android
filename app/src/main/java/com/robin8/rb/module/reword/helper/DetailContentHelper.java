@@ -23,8 +23,6 @@ import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.constants.CommonConfig;
 import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.http.xutil.DefaultHttpCallBack;
-import com.robin8.rb.http.xutil.IHttpCallBack;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.CampaignInviteBean;
 import com.robin8.rb.model.CampaignListBean;
@@ -60,13 +58,11 @@ import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import org.json.JSONObject;
 
-import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import cn.sharesdk.framework.Platform;
@@ -689,76 +685,6 @@ public class DetailContentHelper {
                 }
                 break;
         }
-    }
-
-    /**
-     * 上传截图
-     * 单张
-     *
-     * @param file
-     */
-    public void uploadTurnImage(final Activity activity, String filename, File file) {
-
-        if (mBasePresenter == null) {
-            mBasePresenter = new BasePresenter();
-        }
-        if (mWProgressDialog == null) {
-            mWProgressDialog = WProgressDialog.createDialog(activity);
-        }
-        mWProgressDialog.show();
-        LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
-        String urlImg = HelpTools.getUrl(CommonConfig.CAMPAIGN_INVITES_URL + "/" + mCampaignInviteEntityId + "/upload_screenshot");
-        requestMap.put("[url]", urlImg);
-        requestMap.put("[file/image/jpeg]screenshot", file);
-        mBasePresenter.postImage(true, HttpRequest.PUT, requestMap, new DefaultHttpCallBack(null) {
-
-            @Override
-            public void onComplate(ResponceBean responceBean) {
-                LogUtil.LogShitou("活动上传截图", "===>" + responceBean);
-                if (mWProgressDialog != null) {
-                    try {
-                        mWProgressDialog.dismiss();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                CampaignInviteBean baseBean = GsonTools.jsonToBean(responceBean.pair.second, CampaignInviteBean.class);
-                if (baseBean == null) {
-                    CustomToast.showShort(activity, activity.getString(R.string.please_data_wrong));
-                    return;
-                }
-                if (baseBean.getError() == 0) {
-                    CampaignListBean.CampaignInviteEntity entity = baseBean.getCampaign_invite();
-                    updateBottomShareView(entity);
-                    CustomToast.showShort(activity, "上传截图成功");
-                } else {
-                    CustomToast.showShort(activity, baseBean.getDetail());
-                }
-
-            }
-
-            public void onFailure(IHttpCallBack.ResponceBean responceBean) {
-
-                if (mWProgressDialog != null) {
-                    try {
-                        mWProgressDialog.dismiss();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-                try {
-                    BaseBean baseBean = GsonTools.jsonToBean(responceBean.pair.second, BaseBean.class);
-                    if (!TextUtils.isEmpty(baseBean.getDetail())) {
-                        CustomToast.showShort(BaseApplication.getContext(), baseBean.getDetail());
-                    } else {
-                        CustomToast.showShort(BaseApplication.getContext(), responceBean.pair.second);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     /**

@@ -33,10 +33,8 @@ import com.robin8.rb.constants.SPConstants;
 import com.robin8.rb.helper.IconFontHelper;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
-import com.robin8.rb.http.xutil.DefaultHttpCallBack;
 import com.robin8.rb.model.BaseBean;
 import com.robin8.rb.model.NotifyMsgEntity;
-import com.robin8.rb.module.create.model.PostImageBean;
 import com.robin8.rb.module.create.model.ProductListModel;
 import com.robin8.rb.module.reword.helper.DetailContentHelper;
 import com.robin8.rb.okhttp.HttpRequest;
@@ -370,42 +368,42 @@ public class EditCreateActivity extends BaseActivity {
         LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
         requestMap.put("[url]", HelpTools.getUrl(CommonConfig.IMAGES_UPLOAD_URL));
         requestMap.put("[file/image/jpeg]file", file);
-        mBasePresenter.postImage(true, HttpRequest.POST, requestMap, new DefaultHttpCallBack(null) {
-
-            @Override
-            public void onComplate(ResponceBean responceBean) {
-                if (mWProgressDialog != null) {
-                    mWProgressDialog.dismiss();
-                }
-                PostImageBean bean = GsonTools.jsonToBean(responceBean.pair.second, PostImageBean.class);
-                if (bean == null) {
-                    CustomToast.showShort(EditCreateActivity.this, EditCreateActivity.this.getString(R.string.please_data_wrong));
-                    return;
-                }
-                if (bean.getError() == 0) {
-                    String url = bean.getUrl();
-                    mDataList.add(mCursor + 1, new Item(TYPE_PIC, url, "", null));
-                    mDataList.add(mCursor + 2, new Item(TYPE_ET, "", "", null));
-                    fillLinearLayout();
-                } else
-                    CustomToast.showShort(EditCreateActivity.this, bean.getDetail());
-            }
-
-            public void onFailure(ResponceBean responceBean) {
-                if (mWProgressDialog != null) {
-                    mWProgressDialog.dismiss();
-                }
-                try {
-                    BaseBean baseBean = GsonTools.jsonToBean(responceBean.pair.second, BaseBean.class);
-                    if (!TextUtils.isEmpty(baseBean.getDetail()))
-                        CustomToast.showShort(BaseApplication.getContext(), baseBean.getDetail());
-                    else
-                        CustomToast.showShort(BaseApplication.getContext(), responceBean.pair.second);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        mBasePresenter.postImage(true, HttpRequest.POST, requestMap, new DefaultHttpCallBack(null) {
+//
+//            @Override
+//            public void onComplate(ResponceBean responceBean) {
+//                if (mWProgressDialog != null) {
+//                    mWProgressDialog.dismiss();
+//                }
+//                PostImageBean bean = GsonTools.jsonToBean(responceBean.pair.second, PostImageBean.class);
+//                if (bean == null) {
+//                    CustomToast.showShort(EditCreateActivity.this, EditCreateActivity.this.getString(R.string.please_data_wrong));
+//                    return;
+//                }
+//                if (bean.getError() == 0) {
+//                    String url = bean.getUrl();
+//                    mDataList.add(mCursor + 1, new Item(TYPE_PIC, url, "", null));
+//                    mDataList.add(mCursor + 2, new Item(TYPE_ET, "", "", null));
+//                    fillLinearLayout();
+//                } else
+//                    CustomToast.showShort(EditCreateActivity.this, bean.getDetail());
+//            }
+//
+//            public void onFailure(ResponceBean responceBean) {
+//                if (mWProgressDialog != null) {
+//                    mWProgressDialog.dismiss();
+//                }
+//                try {
+//                    BaseBean baseBean = GsonTools.jsonToBean(responceBean.pair.second, BaseBean.class);
+//                    if (!TextUtils.isEmpty(baseBean.getDetail()))
+//                        CustomToast.showShort(BaseApplication.getContext(), baseBean.getDetail());
+//                    else
+//                        CustomToast.showShort(BaseApplication.getContext(), responceBean.pair.second);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
 

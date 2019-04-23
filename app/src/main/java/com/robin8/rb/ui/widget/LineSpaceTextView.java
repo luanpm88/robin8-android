@@ -36,6 +36,7 @@ public class LineSpaceTextView extends TextView {
     private void init(Context context, AttributeSet attrs) {
         TypedArray mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.space_divider_textview);
         letterSpacing = mTypedArray.getDimension(R.styleable.space_divider_textview_letterSpacing, 0);
+        mTypedArray.recycle();
     }
 
     public float getLetterSpacing() {

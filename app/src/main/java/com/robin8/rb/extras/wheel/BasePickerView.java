@@ -20,7 +20,6 @@ public class BasePickerView
 	protected ViewGroup decorView;// activity的根View
 	private ViewGroup rootView;// 附加View 的 根View
 
-	private OnDismissListener onDismissListener;
 	private boolean isDismissing;
 
 //	private Animation outAnim;
@@ -147,11 +146,6 @@ public class BasePickerView
 		return AnimationUtils.loadAnimation(context, res);
 	}
 
-	public BasePickerView setOnDismissListener(OnDismissListener onDismissListener)
-	{
-		this.onDismissListener = onDismissListener;
-		return this;
-	}
 
 	public BasePickerView setCancelable(boolean isCancelable)
 	{

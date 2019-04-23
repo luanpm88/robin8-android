@@ -921,59 +921,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         // 结果码不等于取消时候
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
-                case DetailContentHelper.IMAGE_REQUEST_CODE:
-                    Uri selectedImage = data.getData();
-                    final String finalPicturePath = FileUtils.getAbsoluteImagePath(this, selectedImage);
-                    new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-
-                            final String uploadPicturePath = BitmapUtil.getCompressImagePath(finalPicturePath);
-                            UIUtils.runInMainThread(new Runnable() {
-
-                                @Override
-                                public void run() {
-
-                                    if (uploadPicturePath == null)
-                                        CustomToast.showShort(DetailContentActivity.this, "图片不存在,请检查本地路径");
-                                    else {
-                                        if (mDetailContentHelper == null) {
-                                            mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
-                                        }
-                                        //01 演示图片.jpg==||||||==/storage/emulated/0/Pictures/01 演示图片.jpg
-                                        mDetailContentHelper.uploadTurnImage(DetailContentActivity.this, uploadPicturePath.substring(uploadPicturePath.lastIndexOf("/") + 1), new File(uploadPicturePath));
-                                    }
-                                }
-                            });
-                        }
-                    }).start();
-                    break;
-                case DetailContentHelper.IMAGE_REQUEST_LOOK_CODE:
-                    final String backPicturePath = data.getStringExtra("look_back_img");
-                    new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-
-                            final String uploadPicturePath = BitmapUtil.getCompressImagePath(backPicturePath);
-                            UIUtils.runInMainThread(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    if (uploadPicturePath == null)
-                                        CustomToast.showShort(DetailContentActivity.this, getString(R.string.img_empty));
-                                    else {
-                                        if (mDetailContentHelper == null) {
-                                            mDetailContentHelper = new DetailContentHelper(mViewLine, mTVBottomRight, mTVBottomLeft);
-                                        }
-                                        mDetailContentHelper.uploadTurnImage(DetailContentActivity.this, uploadPicturePath.substring(uploadPicturePath.lastIndexOf("/") + 1), new File(uploadPicturePath));
-                                    }
-                                }
-                            });
-                        }
-                    }).start();
-                    break;
                 case DetailContentHelper.IMAGE_REQUEST_MORE_IMG_CODE:
                     final SerializableMap mapImages = (SerializableMap) (data.getExtras().get(ScreenImgActivity.EXTRA_SCREEN_MAP));
                     if (mapImages == null) {
@@ -1089,6 +1036,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         myShareList.add(new ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
         myShareList.add(new ShareBean("QQ好友", R.mipmap.login_qq));
         myShareList.add(new ShareBean("QQ空间", R.mipmap.login_kongjian));
+        myShareList.add(new ShareBean("FaceBook", R.mipmap.ic_facebook));
         ShareAdapter shareAdapter = new ShareAdapter(myShareList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

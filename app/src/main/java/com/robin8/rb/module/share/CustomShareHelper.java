@@ -65,23 +65,4 @@ public class CustomShareHelper {
 
     }
 
-
-    /**
-     * 分享到新浪微博
-     */
-    public void shareToSina() {
-        if (!AppUtils.isNetworkConnected(mContext)) {
-            CustomToast.showShort(mContext, R.string.no_net);
-            return;
-        }
-        Intent intent = new Intent();
-        intent.putExtra("share_title", mShareParams.getText());
-        intent.putExtra("share_img", mShareParams.getImageUrl());
-        intent.putExtra("share_url", mShareParams.getUrl());
-        intent.putExtra("from", mShareParams.getFrom());
-        intent.setClass(mContext, SinaShareActivity.class);
-        mContext.startActivity(intent);
-        IS_SHARING = true;
-    }
-
 }

@@ -126,6 +126,7 @@ public class WheelView extends View
 			textColorOut = a.getColor(R.styleable.wheelview_textColorOut, textColorOut);
 			textColorCenter = a.getColor(R.styleable.wheelview_textColorCenter, textColorCenter);
 			dividerColor = a.getColor(R.styleable.wheelview_dividerColor, dividerColor);
+			a.recycle();
 		}
 		initLoopView(context);
 	}
