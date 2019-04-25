@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="200dp">
 
-        <com.robin8.rb.autoviewpager.AutoScrollViewPager
+        <com.robin8.rb.ui.widget.autoviewpager.AutoScrollViewPager
             android:id="@+id/vp_auto"
             android:layout_width="fill_parent"
             android:layout_height="200dp"

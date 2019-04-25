@@ -1,6 +1,6 @@
 package com.robin8.rb.helper;
 
-import com.robin8.rb.model.NotifyMsgEntity;
+import com.robin8.rb.ui.model.NotifyMsgEntity;
 import com.robin8.rb.util.UIUtils;
 
 import java.util.Observable;

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.constants.SPConstants;
+import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.util.CacheUtils;
 
 import java.text.SimpleDateFormat;

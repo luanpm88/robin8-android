@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         >
 
-        <com.robin8.rb.autoviewpager.AutoScrollViewPager
+        <com.robin8.rb.ui.widget.autoviewpager.AutoScrollViewPager
             android:id="@+id/auto_scroll_view_pager"
             android:layout_width="match_parent"
             android:layout_height="131.5dp"

@@ -12,11 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.activity.IncomeDetailActivity;
-import com.robin8.rb.activity.WithdrawCashActivity;
-import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.constants.SPConstants;
-import com.robin8.rb.model.UserAccountBean;
+import com.robin8.rb.ui.activity.IncomeDetailActivity;
+import com.robin8.rb.ui.activity.WithdrawCashActivity;
+import com.robin8.rb.base.constants.CommonConfig;
+import com.robin8.rb.base.constants.SPConstants;
+import com.robin8.rb.ui.model.UserAccountBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -27,7 +27,7 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.view.IWalletView;
-import com.robin8.rb.view.widget.CustomDialogManager;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 
 import java.util.ArrayList;
 import java.util.List;

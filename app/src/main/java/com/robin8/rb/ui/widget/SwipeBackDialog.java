@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.robin8.rb.view.widget.CustomDialog;
+import com.robin8.rb.ui.dialog.CustomDialog;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 

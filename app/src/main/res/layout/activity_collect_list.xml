@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
-    tools:context="com.robin8.rb.module.mine.activity.CollectListActivity">
+    tools:context=".ui.module.mine.activity.CollectListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

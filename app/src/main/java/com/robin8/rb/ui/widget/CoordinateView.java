@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.robin8.rb.R;
-import com.robin8.rb.model.Point;
+import com.robin8.rb.ui.model.Point;
 
 import java.util.ArrayList;
 

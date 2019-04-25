@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg_custom"
-    tools:context="com.robin8.rb.activity.uesr_msg.PlatChooseActivity">
+    tools:context=".ui.activity.uesr_msg.PlatChooseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

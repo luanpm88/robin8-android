@@ -18,7 +18,7 @@
             android:layout_marginLeft="20dp"
             android:text="您的关键词"/>
 
-        <com.robin8.rb.module.social.view.ShowDataView
+        <com.robin8.rb.ui.module.social.view.ShowDataView
             android:id="@+id/show_my_data"
             android:layout_width="250dp"
             android:layout_height="250dp"

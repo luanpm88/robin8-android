@@ -7,8 +7,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.constants.HttpPostKeyConstants;
+import com.robin8.rb.base.constants.CommonConfig;
+import com.robin8.rb.base.constants.HttpPostKeyConstants;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.LogUtil;

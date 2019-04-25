@@ -8,7 +8,7 @@ import android.os.Environment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
-import com.robin8.rb.module.find.ImageDownLoadCallBack;
+import com.robin8.rb.ui.module.find.ImageDownLoadCallBack;
 
 import java.io.File;
 import java.io.FileNotFoundException;

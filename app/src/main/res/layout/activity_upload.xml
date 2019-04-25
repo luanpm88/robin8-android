@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.module.bigv.activity.UploadActivity">
+    tools:context=".ui.module.bigv.activity.UploadActivity">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                 android:textColor="@color/black_4a4a4a"
                 android:textSize="@dimen/undefine_font_6"/>
 
-            <com.robin8.rb.module.social.view.LinearLayoutForListView
+            <com.robin8.rb.ui.module.social.view.LinearLayoutForListView
                 android:id="@+id/lv_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

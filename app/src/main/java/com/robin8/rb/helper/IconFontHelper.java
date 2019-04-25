@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 
 import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.constants.SPConstants;
+import com.robin8.rb.base.constants.SPConstants;
 
 /**
  * Created by IBM on 2016/8/12.

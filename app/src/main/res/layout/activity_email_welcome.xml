@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/measure_influence_women_bg"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.activity.email.EmailWelcomeActivity">
+    tools:context=".ui.activity.email.EmailWelcomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

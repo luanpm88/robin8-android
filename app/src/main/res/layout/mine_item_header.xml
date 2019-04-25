@@ -18,7 +18,7 @@
         android:paddingRight="15dp"
         android:paddingTop="25dp">
 
-        <com.robin8.rb.view.widget.CircleImageView
+        <com.robin8.rb.ui.widget.CircleImageView
             android:id="@+id/civ_image"
             android:layout_width="55dp"
             android:layout_height="55dp"

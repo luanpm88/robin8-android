@@ -60,7 +60,7 @@
                 android:visibility="gone"/>
         </RelativeLayout>
 
-        <com.robin8.rb.view.widget.CircleImageView
+        <com.robin8.rb.ui.widget.CircleImageView
             android:id="@+id/img_user_photo"
             android:layout_width="45dp"
             android:layout_height="45dp"

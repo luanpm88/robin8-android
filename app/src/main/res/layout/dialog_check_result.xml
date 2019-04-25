@@ -25,7 +25,7 @@
             android:textSize="@dimen/undefine_font_7"
             />
 
-        <com.robin8.rb.module.social.view.LinearLayoutForListView
+        <com.robin8.rb.ui.module.social.view.LinearLayoutForListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

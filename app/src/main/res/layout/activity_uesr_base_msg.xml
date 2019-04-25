@@ -7,7 +7,7 @@
     android:background="@color/white_custom"
     android:orientation="vertical"
     android:weightSum="5"
-    tools:context="com.robin8.rb.activity.uesr_msg.UserBaseMsgActivity">
+    tools:context=".ui.activity.uesr_msg.UserBaseMsgActivity">
 
     <TextView
         android:id="@+id/tv_jump"

@@ -2,7 +2,7 @@ package com.robin8.rb.util;
 
 import android.text.TextUtils;
 
-import com.robin8.rb.module.create.model.Image;
+import com.robin8.rb.ui.module.create.model.Image;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

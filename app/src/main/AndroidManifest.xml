@@ -91,7 +91,7 @@
         <!--</activity>-->
 
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"
@@ -117,108 +117,108 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".module.social.MeasureInfluenceActivity"
+            android:name=".ui.module.social.MeasureInfluenceActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
         <activity
-            android:name=".module.social.BindSocialActivity"
+            android:name=".ui.module.social.BindSocialActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.reword.activity.DetailContentActivity"
+            android:name=".ui.module.reword.activity.DetailContentActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.first.activity.ModifyRewordActivity"
+            android:name=".ui.module.first.activity.ModifyRewordActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".module.mine.activity.MyCampaignDetailActivity"
+            android:name=".ui.module.mine.activity.MyCampaignDetailActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".activity.RegistrationActivitiy"
+            android:name=".ui.activity.RegistrationActivitiy"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".activity.WalletActivity"
+            android:name=".ui.activity.WalletActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".activity.HelpInfoActivity"
+            android:name=".ui.activity.HelpInfoActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.IncomeDetailActivity"
+            android:name=".ui.activity.IncomeDetailActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.WithdrawCashActivity"
+            android:name=".ui.activity.WithdrawCashActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.BindAlipayActivity"
+            android:name=".ui.activity.BindAlipayActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.first.activity.LaunchRewordSecondActivity"
+            android:name=".ui.module.first.activity.LaunchRewordSecondActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.OrederPayActivity"
+            android:name=".ui.activity.OrederPayActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.MyCampaignActivity"
+            android:name=".ui.activity.MyCampaignActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.PaySuccessActivity"
+            android:name=".ui.activity.PaySuccessActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.RechargeActivity"
+            android:name=".ui.activity.RechargeActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.ADHostActivity"
+            android:name=".ui.module.mine.activity.ADHostActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.BrandBillActivity"
+            android:name=".ui.activity.BrandBillActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
@@ -228,32 +228,32 @@
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".indiana.activity.GoodsDetailActivity"
+            android:name=".ui.indiana.activity.GoodsDetailActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".indiana.activity.IndianaCountActivity"
+            android:name=".ui.indiana.activity.IndianaCountActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".indiana.activity.IndianaMineActivity"
+            android:name=".ui.indiana.activity.IndianaMineActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".indiana.activity.ReceiveAddressActivity"
+            android:name=".ui.indiana.activity.ReceiveAddressActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".indiana.activity.IndianaOrderPayActivity"
+            android:name=".ui.indiana.activity.IndianaOrderPayActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.web.WebViewActivity"
+            android:name=".ui.activity.web.WebViewActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait">
@@ -273,77 +273,77 @@
 
         </activity>
         <activity
-            android:name=".module.mine.activity.UserSignActivity"
+            android:name=".ui.module.mine.activity.UserSignActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.first.activity.KolDetailContentActivity"
+            android:name=".ui.module.first.activity.KolDetailContentActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.first.activity.BusinessCooperationActivity"
-            android:configChanges="keyboard|orientation"
-            android:hardwareAccelerated="true"
-            android:launchMode="standard"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".module.first.activity.SearchKolActivity"
+            android:name=".ui.module.first.activity.BusinessCooperationActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.create.activity.ProductListActivity"
+            android:name=".ui.module.first.activity.SearchKolActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.InviteFriendsActivity"
+            android:name=".ui.module.create.activity.ProductListActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.BeKolFirstActivity"
+            android:name=".ui.module.mine.activity.InviteFriendsActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.BeKolSecondActivity"
+            android:name=".ui.module.mine.activity.BeKolFirstActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.BeKolThirdActivity"
+            android:name=".ui.module.mine.activity.BeKolSecondActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.BeKolDetailActivity"
+            android:name=".ui.module.mine.activity.BeKolThirdActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.BeKolSecondDetailActivity"
+            android:name=".ui.module.mine.activity.BeKolDetailActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.SettingActivity"
+            android:name=".ui.module.mine.activity.BeKolSecondDetailActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.FeedBackActivity"
+            android:name=".ui.module.mine.activity.SettingActivity"
+            android:configChanges="keyboard|orientation"
+            android:hardwareAccelerated="true"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.module.mine.activity.FeedBackActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
@@ -355,80 +355,80 @@
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.reword.activity.PostInviteesActivity"
+            android:name=".ui.module.reword.activity.PostInviteesActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.reword.activity.InviteesActivity"
+            android:name=".ui.module.reword.activity.InviteesActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.HelpCenterActivity"
+            android:name=".ui.module.mine.activity.HelpCenterActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.MyLaunchCampaignRejectActivity"
+            android:name=".ui.module.mine.activity.MyLaunchCampaignRejectActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.LoginOtherWithPhoneActivity"
+            android:name=".ui.activity.LoginOtherWithPhoneActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.create.activity.ArticleListsActivity"
+            android:name=".ui.module.create.activity.ArticleListsActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.create.activity.FragmentsActivity"
+            android:name=".ui.module.create.activity.FragmentsActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.first.activity.CityListActivity"
+            android:name=".ui.module.first.activity.CityListActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.create.activity.EditCreateActivity"
+            android:name=".ui.module.create.activity.EditCreateActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnspecified|adjustResize"/>
         <activity
-            android:name=".module.first.activity.LaunchRewordActivity"
+            android:name=".ui.module.first.activity.LaunchRewordActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.first.activity.LaunchRewordFirstActivity"
+            android:name=".ui.module.first.activity.LaunchRewordFirstActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.reword.activity.SignUpRecruitActivity"
+            android:name=".ui.module.reword.activity.SignUpRecruitActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
 
-        <service android:name=".update.UpdateDownloadService"/>
+        <service android:name=".util.update.UpdateDownloadService"/>
 
         <!-- ________________________________ 1、shareSDK配置开始 ________________________________ -->
         <!-- QQ客户端回调 2.6.3开始独立添加activity来处理QQ客户端的回调 -->
@@ -591,10 +591,10 @@
             android:value="SO2h1AiknvpiUGoN3SBk5i9phFWx0TdL"/>
         <!-- ________________________________ 百度Sdk 配置结束 ________________________________ -->
 
-        <activity android:name=".activity.EvaluateActivity"/>
-        <activity android:name=".activity.email.ForgetPwdActivity">
+        <activity android:name=".ui.activity.EvaluateActivity"/>
+        <activity android:name=".ui.activity.email.ForgetPwdActivity">
         </activity>
-        <activity android:name=".module.social.SocialInfluenceActivity">
+        <activity android:name=".ui.module.social.SocialInfluenceActivity">
         </activity>
 
         <receiver
@@ -604,47 +604,47 @@
         </receiver>
 
         <activity
-            android:name=".module.social.SocailPkActivity"
+            android:name=".ui.module.social.SocailPkActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".module.social.SocialBindActivity"
+            android:name=".ui.module.social.SocialBindActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".module.social.SocialDetailActivity"
+            android:name=".ui.module.social.SocialDetailActivity"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
-        <activity android:name=".module.social.UserFirstSocialResult">
+        <activity android:name=".ui.module.social.UserFirstSocialResult">
         </activity>
         <activity
-            android:name=".module.social.MeasureInfluenceManActivity"
+            android:name=".ui.module.social.MeasureInfluenceManActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".module.mine.activity.CampaignChoseTypeActivity"
+            android:name=".ui.module.mine.activity.CampaignChoseTypeActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".module.mine.activity.InvitationCodeActivity"
+            android:name=".ui.module.mine.activity.InvitationCodeActivity"
             android:configChanges="keyboard|orientation"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.ChangeHttpActivity"
+            android:name=".ui.activity.ChangeHttpActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
@@ -665,7 +665,7 @@
 
         <!-- 聊天界面 -->
         <activity
-            android:name=".module.mine.rongcloud.ConversationActivity"
+            android:name=".ui.module.mine.rongcloud.ConversationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
@@ -681,7 +681,7 @@
         </activity>
 
         <receiver
-            android:name=".module.mine.receiver.SealNotificationReceiver"
+            android:name=".ui.module.mine.receiver.SealNotificationReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="io.rong.push.intent.MESSAGE_ARRIVED"/>
@@ -696,151 +696,151 @@
 
         <!-- 多图上传 -->
         <activity
-            android:name=".module.reword.activity.ScreenImgActivity"
+            android:name=".ui.module.reword.activity.ScreenImgActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.reword.chose_photo.PhotoPickerActivity"
+            android:name=".ui.module.reword.chose_photo.PhotoPickerActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.reword.chose_photo.PhotoPreviewActivity"
+            android:name=".ui.module.reword.chose_photo.PhotoPreviewActivity"
             android:configChanges="keyboard|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.email.EmailRegiterActivity"
+            android:name=".ui.activity.email.EmailRegiterActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.email.EmailAddInformationActivity"
+            android:name=".ui.activity.email.EmailAddInformationActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.email.EmailWelcomeActivity"
+            android:name=".ui.activity.email.EmailWelcomeActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.email.FixPwdActivity"
+            android:name=".ui.activity.email.FixPwdActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.CollectMoneyActivity"
+            android:name=".ui.module.mine.activity.CollectMoneyActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.CollectListActivity"
+            android:name=".ui.module.mine.activity.CollectListActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.find.activity.ImagePreviewActivity"
+            android:name=".ui.module.find.activity.ImagePreviewActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.MyCollectActivity"
+            android:name=".ui.module.mine.activity.MyCollectActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.find.activity.FindItemDetailActivity"
+            android:name=".ui.module.find.activity.FindItemDetailActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".module.mine.activity.NewUserTaskActivity"
+            android:name=".ui.module.mine.activity.NewUserTaskActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".module.mine.activity.ADHostMsgActivity"
+            android:name=".ui.module.mine.activity.ADHostMsgActivity"
             android:screenOrientation="portrait">
         </activity>
 
-        <service android:name=".module.find.FloatAction.service.FloatMonkService"/>
+        <service android:name=".ui.module.find.FloatAction.service.FloatMonkService"/>
 
-        <activity android:name=".activity.web.PutWebFirstActivity">
+        <activity android:name=".ui.activity.web.PutWebFirstActivity">
         </activity>
         <activity
-            android:name=".activity.web.PutWebActivity"
+            android:name=".ui.activity.web.PutWebActivity"
             android:label="@string/title_activity_web_need"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.web.BannerWebActivity"
+            android:name=".ui.activity.web.BannerWebActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.UserBaseMsgActivity"
+            android:name=".ui.activity.uesr_msg.UserBaseMsgActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.UserInformationActivity"
+            android:name=".ui.activity.uesr_msg.UserInformationActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.ChooseFavoriteActivity"
+            android:name=".ui.activity.uesr_msg.ChooseFavoriteActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.PublicUserMsgActivity"
+            android:name=".ui.activity.uesr_msg.PublicUserMsgActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.FirstKnowUserIdActivity"
+            android:name=".ui.activity.uesr_msg.FirstKnowUserIdActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.PlatChooseActivity"
+            android:name=".ui.activity.uesr_msg.PlatChooseActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.choose_city.CityChooseActivity"
+            android:name=".ui.activity.uesr_msg.choose_city.CityChooseActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.UserSelectActivity"
+            android:name=".ui.activity.uesr_msg.UserSelectActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.CreatorMsgActivity"
+            android:name=".ui.activity.uesr_msg.CreatorMsgActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.WechatMsgActivity"
+            android:name=".ui.activity.uesr_msg.WechatMsgActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.WeiBoMsgActivity"
+            android:name=".ui.activity.uesr_msg.WeiBoMsgActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.uesr_msg.UserInfoShowActivity"
+            android:name=".ui.activity.uesr_msg.UserInfoShowActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.bigv.activity.BigvCampaignDetailActivity"
+        <activity android:name=".ui.module.bigv.activity.BigvCampaignDetailActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.bigv.activity.AddPriceActivity"
+        <activity android:name=".ui.module.bigv.activity.AddPriceActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.bigv.activity.UploadActivity"
+        <activity android:name=".ui.module.bigv.activity.UploadActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.mine.activity.MyCampaignHistoryActivity"
+        <activity android:name=".ui.module.mine.activity.MyCampaignHistoryActivity"
             android:screenOrientation="portrait">
         </activity>
     

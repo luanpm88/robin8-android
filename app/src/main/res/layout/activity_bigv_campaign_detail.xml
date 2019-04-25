@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
-    tools:context="com.robin8.rb.module.bigv.activity.BigvCampaignDetailActivity">
+    tools:context=".ui.module.bigv.activity.BigvCampaignDetailActivity">
 
     <com.robin8.rb.ui.widget.ClashScrollView
         android:layout_width="match_parent"

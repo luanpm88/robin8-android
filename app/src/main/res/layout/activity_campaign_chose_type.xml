@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.module.mine.activity.CampaignChoseTypeActivity">
+    tools:context=".ui.module.mine.activity.CampaignChoseTypeActivity">
 
     <RelativeLayout
         android:id="@+id/ll_chose_wechat"

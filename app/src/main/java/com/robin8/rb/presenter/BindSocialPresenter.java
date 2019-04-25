@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.robin8.rb.R;
-import com.robin8.rb.module.social.SocialInfluenceActivity;
+import com.robin8.rb.ui.module.social.SocialInfluenceActivity;
 import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.model.OtherLoginListBean;
+import com.robin8.rb.base.constants.CommonConfig;
+import com.robin8.rb.ui.model.OtherLoginListBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -30,7 +30,7 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.IBindSocialView;
-import com.robin8.rb.view.widget.CustomDialogManager;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

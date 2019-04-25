@@ -8,7 +8,7 @@
     android:background="@color/white_custom"
     android:orientation="vertical"
 
-    tools:context="com.robin8.rb.activity.uesr_msg.UserInformationActivity">
+    tools:context=".ui.activity.uesr_msg.UserInformationActivity">
 
     <LinearLayout
         android:id="@+id/layout_header"
@@ -20,7 +20,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp">
 
-        <com.robin8.rb.view.widget.CircleImageView
+        <com.robin8.rb.ui.widget.CircleImageView
             android:id="@+id/civ_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -72,7 +72,7 @@
         android:orientation="vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp">
-        <com.robin8.rb.module.social.view.LinearLayoutForListView
+        <com.robin8.rb.ui.module.social.view.LinearLayoutForListView
             android:id="@+id/lv_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:layout_weight="2"
             android:orientation="horizontal">
 
-            <com.robin8.rb.view.widget.CircleImageView
+            <com.robin8.rb.ui.widget.CircleImageView
                 android:id="@+id/civ_general_image"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
@@ -164,7 +164,7 @@
             android:layout_weight="2"
             android:orientation="horizontal">
 
-            <com.robin8.rb.view.widget.CircleImageView
+            <com.robin8.rb.ui.widget.CircleImageView
                 android:id="@+id/civ_bigv_image"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
@@ -243,7 +243,7 @@
             android:layout_weight="2"
             android:orientation="horizontal">
 
-            <com.robin8.rb.view.widget.CircleImageView
+            <com.robin8.rb.ui.widget.CircleImageView
                 android:id="@+id/civ_creator_image"
                 android:layout_width="42dp"
                 android:layout_height="42dp"

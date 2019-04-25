@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.robin8.rb.module.social.UserFirstSocialResult">
+    tools:context=".ui.module.social.UserFirstSocialResult">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:textColor="@color/black_202020"
                 android:textSize="@dimen/undefine_font_4"/>
 
-            <com.robin8.rb.module.social.view.HorizontalListView
+            <com.robin8.rb.ui.module.social.view.HorizontalListView
                 android:id="@+id/list_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -75,7 +75,7 @@
             android:paddingRight="15dp"
             android:paddingTop="20dp">
 
-            <com.robin8.rb.autoviewpager.AutoScrollViewPager
+            <com.robin8.rb.ui.widget.autoviewpager.AutoScrollViewPager
                 android:id="@+id/vp_auto"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"

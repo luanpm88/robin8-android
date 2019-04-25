@@ -44,7 +44,7 @@
             android:textColor="@color/gray_custom"
             android:textSize="@dimen/undefine_font_5"/>
 
-        <com.robin8.rb.view.widget.CircleImageView
+        <com.robin8.rb.ui.widget.CircleImageView
             android:id="@+id/civ_image"
             android:layout_width="50dp"
             android:layout_height="50dp"

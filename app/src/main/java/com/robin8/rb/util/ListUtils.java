@@ -2,7 +2,7 @@ package com.robin8.rb.util;
 
 import android.text.TextUtils;
 
-import com.robin8.rb.module.first.model.SocialAccountsBean;
+import com.robin8.rb.ui.module.first.model.SocialAccountsBean;
 
 import java.util.ArrayList;
 import java.util.List;

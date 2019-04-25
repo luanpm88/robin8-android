@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.module.mine.activity.ADHostMsgActivity">
+    tools:context=".ui.module.mine.activity.ADHostMsgActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:alpha="0.4"
                 android:background="@drawable/shape_ring_ad_gray"/>
 
-            <com.robin8.rb.view.widget.CircleImageView
+            <com.robin8.rb.ui.widget.CircleImageView
                 android:id="@+id/civ_image"
                 android:layout_width="39dp"
                 android:layout_height="39dp"

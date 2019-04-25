@@ -8,8 +8,8 @@ import android.util.AttributeSet;
 import android.view.SurfaceView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.model.Point;
-import com.robin8.rb.module.first.model.PieDataBean;
+import com.robin8.rb.ui.model.Point;
+import com.robin8.rb.ui.module.first.model.PieDataBean;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;

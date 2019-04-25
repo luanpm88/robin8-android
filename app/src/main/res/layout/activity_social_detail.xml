@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.module.social.SocialDetailActivity">
+    tools:context=".ui.module.social.SocialDetailActivity">
     <RelativeLayout
         android:id="@+id/layout_have_result"
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:visibility="invisible"
         android:layout_weight="1">
 
-        <com.robin8.rb.module.first.widget.ScrollViewExtend
+        <com.robin8.rb.ui.module.first.widget.ScrollViewExtend
             android:id="@+id/scroll_extend"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -85,7 +85,7 @@
                             android:textColor="@color/black_202020"
                             android:textSize="@dimen/undefine_font_4"/>
 
-                        <com.robin8.rb.module.social.view.HorizontalListView
+                        <com.robin8.rb.ui.module.social.view.HorizontalListView
                             android:id="@+id/list_recommend"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <com.robin8.rb.module.social.view.EasySlidingTabs
+                        <com.robin8.rb.ui.module.social.view.EasySlidingTabs
                             android:id="@+id/my_indicator"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                         <!--android:id="@+id/my_vp"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="400dp"/>-->
-                        <com.robin8.rb.module.social.view.CustomViewPager
+                        <com.robin8.rb.ui.module.social.view.CustomViewPager
                             android:id="@+id/my_vp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -147,7 +147,7 @@
                             android:text="Ta的兴趣"
                             android:textColor="@color/black_202020"/>
 
-                        <com.robin8.rb.module.social.view.ShowDataView
+                        <com.robin8.rb.ui.module.social.view.ShowDataView
                             android:id="@+id/show_my_data"
                             android:layout_width="240dp"
                             android:layout_height="240dp"
@@ -155,7 +155,7 @@
                             />
                     </LinearLayout>
                 </LinearLayout>
-        </com.robin8.rb.module.first.widget.ScrollViewExtend>
+        </com.robin8.rb.ui.module.first.widget.ScrollViewExtend>
     </RelativeLayout>
     <Button
         android:id="@+id/btn_to_pk"
@@ -202,7 +202,7 @@
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent"-->
     <!--android:orientation="vertical">-->
-    <!--<com.robin8.rb.module.social.view.StickyNavLayout-->
+    <!--<com.robin8.rb.ui.module.social.view.StickyNavLayout-->
         <!--android:id="@+id/sticky_layout"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="0dp"-->
@@ -281,7 +281,7 @@
                         <!--android:textColor="@color/black_202020"-->
                         <!--android:textSize="@dimen/undefine_font_4"/>-->
 
-                    <!--<com.robin8.rb.module.social.view.HorizontalListView-->
+                    <!--<com.robin8.rb.ui.module.social.view.HorizontalListView-->
                         <!--android:id="@+id/list_recommend"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="60dp"-->
@@ -298,7 +298,7 @@
 
         <!--</LinearLayout>-->
 
-        <!--<com.robin8.rb.module.social.view.EasySlidingTabs-->
+        <!--<com.robin8.rb.ui.module.social.view.EasySlidingTabs-->
             <!--android:id="@+id/id_stickynavlayout_indicator"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
@@ -314,10 +314,10 @@
             <!--android:id="@id/id_stickynavlayout_viewpager"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent"/>-->
-    <!--</com.robin8.rb.module.social.view.StickyNavLayout>-->
+    <!--</com.robin8.rb.ui.module.social.view.StickyNavLayout>-->
 
 
-    <!--<com.robin8.rb.module.social.view.CardViewPager-->
+    <!--<com.robin8.rb.ui.module.social.view.CardViewPager-->
     <!--android:id="@+id/card_pager"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
@@ -338,7 +338,7 @@
     <!--android:layout_marginBottom="15dp"-->
     <!--android:text="您的关键词"/>-->
 
-    <!--<com.robin8.rb.module.social.view.ShowDataView-->
+    <!--<com.robin8.rb.ui.module.social.view.ShowDataView-->
     <!--android:id="@+id/show_my_data"-->
     <!--android:layout_width="250dp"-->
     <!--android:layout_gravity="center"-->

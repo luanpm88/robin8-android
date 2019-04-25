@@ -3,10 +3,10 @@ package com.robin8.rb.task;
 import android.content.Context;
 
 import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.constants.SPConstants;
+import com.robin8.rb.base.constants.CommonConfig;
+import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.model.LoginBean;
+import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;

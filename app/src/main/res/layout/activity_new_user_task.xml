@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.robin8.rb.module.mine.activity.NewUserTaskActivity">
+    tools:context=".ui.module.mine.activity.NewUserTaskActivity">
 
     <RelativeLayout
         android:id="@+id/ll_campaign"
@@ -244,7 +244,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <com.robin8.rb.view.widget.CircleImageView
+                    <com.robin8.rb.ui.widget.CircleImageView
                         android:id="@+id/civ_image"
                         android:layout_width="40dp"
                         android:layout_height="40dp"

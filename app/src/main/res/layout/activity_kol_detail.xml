@@ -4,7 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <com.robin8.rb.module.first.widget.ScrollViewExtend
+    <com.robin8.rb.ui.module.first.widget.ScrollViewExtend
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -210,7 +210,7 @@
                 app:radiusPercent="0.5"
                 app:scrollSpeed="2"/>
         </LinearLayout>
-    </com.robin8.rb.module.first.widget.ScrollViewExtend>
+    </com.robin8.rb.ui.module.first.widget.ScrollViewExtend>
 
     <RelativeLayout
         android:layout_width="match_parent"

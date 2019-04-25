@@ -68,7 +68,7 @@
                             android:layout_centerInParent="true"
                             android:background="@drawable/shape_ring_sub_gray"/>
 
-                        <com.robin8.rb.view.widget.CircleImageView
+                        <com.robin8.rb.ui.widget.CircleImageView
                             android:id="@+id/civ_image"
                             android:layout_width="67dp"
                             android:layout_height="67dp"
@@ -195,7 +195,7 @@
                     android:layout_marginTop="22dp"
                     android:background="@color/gray_f0f3f4"/>
 
-                <com.robin8.rb.module.social.view.NoScrollGridView
+                <com.robin8.rb.ui.module.social.view.NoScrollGridView
                     android:id="@+id/sign_girdview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -414,7 +414,7 @@
                 android:textColor="@color/black_custom"
                 android:textSize="@dimen/undefine_font_2"/>
 
-            <com.robin8.rb.module.social.view.LinearLayoutForListView
+            <com.robin8.rb.ui.module.social.view.LinearLayoutForListView
                 android:id="@+id/lv_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

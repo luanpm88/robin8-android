@@ -23,7 +23,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.module.create.model.ProductPopItem;
+import com.robin8.rb.ui.module.create.model.ProductPopItem;
 import com.robin8.rb.util.DensityUtils;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.UIUtils;

@@ -5,7 +5,7 @@
               android:layout_height="50dp"
               android:layout_gravity="center"
               android:gravity="center">
-    <com.robin8.rb.view.widget.CircleImageView
+    <com.robin8.rb.ui.widget.CircleImageView
         android:id="@+id/civ_image"
         android:layout_width="45dp"
         android:layout_height="45dp"

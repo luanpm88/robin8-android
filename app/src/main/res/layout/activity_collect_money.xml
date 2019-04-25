@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.module.mine.activity.CollectMoneyActivity">
+    tools:context=".ui.module.mine.activity.CollectMoneyActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

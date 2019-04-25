@@ -15,7 +15,7 @@
         android:background="@color/gray_f2f2f2"
         android:orientation="horizontal">
 
-        <com.robin8.rb.module.social.view.HorizontalListView
+        <com.robin8.rb.ui.module.social.view.HorizontalListView
             android:id="@+id/list_type"
             android:choiceMode="singleChoice"
             android:layout_width="match_parent"

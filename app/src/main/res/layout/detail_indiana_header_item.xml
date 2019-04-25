@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         >
 
-        <com.robin8.rb.autoviewpager.AutoScrollViewPager
+        <com.robin8.rb.ui.widget.autoviewpager.AutoScrollViewPager
             android:id="@+id/vp_auto"
             android:layout_width="fill_parent"
             android:layout_height="200dp"
@@ -166,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="70dp">
 
-                <com.robin8.rb.view.widget.CircleImageView
+                <com.robin8.rb.ui.widget.CircleImageView
                     android:id="@+id/civ_image"
                     android:layout_width="70dp"
                     android:layout_height="70dp"

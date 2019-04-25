@@ -1,6 +1,6 @@
 package com.robin8.rb.ui.widget.citylist;
 
-import com.robin8.rb.model.CityItem;
+import com.robin8.rb.ui.model.CityItem;
 import com.robin8.rb.ui.widget.pinyin.PinYin;
 
 import org.json.JSONArray;

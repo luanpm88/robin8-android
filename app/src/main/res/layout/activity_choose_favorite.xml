@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.activity.uesr_msg.ChooseFavoriteActivity">
+    tools:context=".ui.activity.uesr_msg.ChooseFavoriteActivity">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <com.robin8.rb.module.reword.chose_photo.widget.ViewPagerFixed
+    <com.robin8.rb.ui.module.reword.chose_photo.widget.ViewPagerFixed
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

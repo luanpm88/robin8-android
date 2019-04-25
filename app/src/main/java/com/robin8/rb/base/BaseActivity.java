@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.view.widget.CustomDialogManager;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 
 import java.util.ArrayList;
 import java.util.List;

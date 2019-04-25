@@ -3,7 +3,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@color/bg_custom"
-             tools:context="com.robin8.rb.fragment.BrandBillFragment">
+             tools:context=".ui.fragment.BrandBillFragment">
     <LinearLayout
         android:id="@+id/ll_list"
         android:layout_width="match_parent"

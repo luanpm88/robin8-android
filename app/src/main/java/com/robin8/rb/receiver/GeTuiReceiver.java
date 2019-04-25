@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.robin8.rb.activity.SplashActivity;
+import com.robin8.rb.ui.activity.SplashActivity;
 
 public class GeTuiReceiver extends BroadcastReceiver {
 

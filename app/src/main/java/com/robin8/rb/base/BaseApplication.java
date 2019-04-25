@@ -15,10 +15,10 @@ import com.mob.MobSDK;
 import com.qiniu.android.common.FixedZone;
 import com.qiniu.android.storage.Configuration;
 import com.qiniu.android.storage.UploadManager;
-import com.robin8.rb.constants.CommonConfig;
+import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.helper.StatisticsAgency;
-import com.robin8.rb.model.ContactBean;
-import com.robin8.rb.model.LoginBean;
+import com.robin8.rb.ui.model.ContactBean;
+import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.task.LocationService;
 import com.robin8.rb.util.CrashHandler;
 import com.robin8.rb.util.GsonTools;
@@ -36,7 +36,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClaims;
 import io.jsonwebtoken.impl.TextCodec;
-import io.rong.imkit.RongIM;
 
 public class BaseApplication extends MultiDexApplication {
 

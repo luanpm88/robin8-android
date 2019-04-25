@@ -25,7 +25,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.robin8.rb.constants.SPConstants;
+import com.robin8.rb.base.constants.SPConstants;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;

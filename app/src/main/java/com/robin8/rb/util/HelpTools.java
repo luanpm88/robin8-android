@@ -8,9 +8,9 @@ import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 
 import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.constants.SPConstants;
-import com.robin8.rb.model.OtherLoginListBean;
+import com.robin8.rb.base.constants.CommonConfig;
+import com.robin8.rb.base.constants.SPConstants;
+import com.robin8.rb.ui.model.OtherLoginListBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.module.social.SocailPkActivity">
+    tools:context=".ui.module.social.SocailPkActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -176,7 +176,7 @@
                         android:layout_centerInParent="true"
                         custom:titleBackgroundColor="@color/yellow_ffc130"/>
 
-                    <com.robin8.rb.view.widget.CircleImageView
+                    <com.robin8.rb.ui.widget.CircleImageView
                         android:id="@+id/img_user_left"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -387,7 +387,7 @@
                         custom:titleBackgroundColor="@color/yellow_ffc130"
                         />
 
-                    <com.robin8.rb.view.widget.CircleImageView
+                    <com.robin8.rb.ui.widget.CircleImageView
                         android:id="@+id/img_user_right"
                         android:layout_width="50dp"
                         android:layout_height="50dp"

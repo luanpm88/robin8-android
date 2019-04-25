@@ -74,7 +74,7 @@
         #保留一个完整的包
         -keep class com.lippi.recorder.utils.** { *; }
         -keep class com.lippi.recorder.utils.AudioRecorder{*;}
-        -keep class com.robin8.rb.module.**{*;}
+        -keep class com.robin8.rb.ui.module.**{*;}
 
         -keep public class * extends android.view.View {*;}
         -keep public class * extends android.view.View {
@@ -136,14 +136,14 @@
         -keep class com.google.gson.examples.android.model.** { *; }
 
         #javabean
-        -keep class com.robin8.rb.model.** { *; }
-        -keep class com.robin8.rb.model.sortlist.** { *; }
-        -keep class com.robin8.rb.indiana.model.** { *; }
-        -keep class com.robin8.rb.module.first.model.** { *; }
-        -keep class com.robin8.rb.module.mine.model.** { *; }
-        -keep class com.robin8.rb.module.reword.bean.** { *; }
+        -keep class com.robin8.rb.ui.model.** { *; }
+        -keep class com.robin8.rb.ui.model.sortlist.** { *; }
+        -keep class com.robin8.rb.ui.indiana.model.** { *; }
+        -keep class com.robin8.rb.ui.module.first.model.** { *; }
+        -keep class com.robin8.rb.ui.module.mine.model.** { *; }
+        -keep class com.robin8.rb.ui.module.reword.bean.** { *; }
          -keep class com.robin8.rb.base.** { *; }
-          -keep class com.robin8.rb.module.create.model.** { *; }
+          -keep class com.robin8.rb.ui.module.create.model.** { *; }
 
          #支付宝
          -keep class com.alipay.android.app.IAlixPay{*;}

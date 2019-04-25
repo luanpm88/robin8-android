@@ -53,7 +53,7 @@
         android:textSize="18sp"
         android:textColor="@color/black_333333"
         android:text="@string/cancel"/>
-    <!--<com.robin8.rb.module.social.view.LinearLayoutForListView-->
+    <!--<com.robin8.rb.ui.module.social.view.LinearLayoutForListView-->
         <!--android:id="@+id/list_view"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
     android:orientation="vertical"
-    tools:context="com.robin8.rb.module.social.SocialInfluenceActivity">
+    tools:context=".ui.module.social.SocialInfluenceActivity">
 
     <include layout="@layout/social_result_title"/>
 
@@ -22,7 +22,7 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-            <com.robin8.rb.module.social.view.LinearLayoutForListView
+            <com.robin8.rb.ui.module.social.view.LinearLayoutForListView
                 android:id="@+id/lv_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

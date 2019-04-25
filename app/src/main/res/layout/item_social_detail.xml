@@ -7,7 +7,7 @@
     android:orientation="horizontal"
     android:paddingLeft="15dp">
 
-    <com.robin8.rb.view.widget.CircleImageView
+    <com.robin8.rb.ui.widget.CircleImageView
         android:id="@+id/civ_image"
         android:layout_width="36dp"
         android:layout_height="36dp"

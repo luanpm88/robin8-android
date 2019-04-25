@@ -10,8 +10,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 import com.robin8.rb.base.BaseApplication;
-import com.robin8.rb.constants.SPConstants;
-import com.robin8.rb.module.mine.activity.FeedBackActivity;
+import com.robin8.rb.base.constants.SPConstants;
+import com.robin8.rb.ui.module.mine.activity.FeedBackActivity;
 
 /**
  * 摇一摇管理

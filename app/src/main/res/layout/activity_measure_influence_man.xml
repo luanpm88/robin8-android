@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_custom"
-    tools:context="com.robin8.rb.module.social.MeasureInfluenceManActivity">
+    tools:context=".ui.module.social.MeasureInfluenceManActivity">
 
       <RelativeLayout
           android:layout_width="match_parent"

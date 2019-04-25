@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.robin8.rb.adapter.ViewPagerAdapter;
+import com.robin8.rb.ui.adapter.ViewPagerAdapter;
 
 public abstract class BaseFragment extends Fragment {
     protected Activity mActivity;

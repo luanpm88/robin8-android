@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.robin8.rb.view.widget.CircleImageView
+            <com.robin8.rb.ui.widget.CircleImageView
                 android:id="@+id/img_user_photo"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -75,7 +75,7 @@
             android:layout_marginTop="15dp"
             android:orientation="vertical">
 
-            <com.robin8.rb.module.find.view.ExpandableTextView
+            <com.robin8.rb.ui.module.find.view.ExpandableTextView
                 android:id="@+id/ll_expand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -92,7 +92,7 @@
                 android:textSize="@dimen/undefine_font_5"/>
         </LinearLayout>
 
-        <com.robin8.rb.module.find.view.NineGridView
+        <com.robin8.rb.ui.module.find.view.NineGridView
             android:id="@+id/img_grid_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

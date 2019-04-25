@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.robin8.rb.activity.web.PutWebFirstActivity">
+    tools:context=".ui.activity.web.PutWebFirstActivity">
 <WebView
     android:id="@+id/webview"
     android:layout_width="match_parent"

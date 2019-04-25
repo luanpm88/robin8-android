@@ -32,7 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.adapter.ViewPagerAdapter;
+import com.robin8.rb.ui.adapter.ViewPagerAdapter;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.util.UIUtils;
 

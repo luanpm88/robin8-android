@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.SurfaceView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.module.first.model.ColumnarDataBean;
+import com.robin8.rb.ui.module.first.model.ColumnarDataBean;
 
 import java.util.ArrayList;
 import java.util.List;

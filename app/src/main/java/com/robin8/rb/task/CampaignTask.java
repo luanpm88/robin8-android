@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.robin8.rb.constants.CommonConfig;
-import com.robin8.rb.constants.SPConstants;
-import com.robin8.rb.fragment.ContentFragment;
-import com.robin8.rb.model.BaseBean;
-import com.robin8.rb.model.LaunchRewordModel;
+import com.robin8.rb.base.constants.CommonConfig;
+import com.robin8.rb.base.constants.SPConstants;
+import com.robin8.rb.ui.fragment.ContentFragment;
+import com.robin8.rb.ui.model.BaseBean;
+import com.robin8.rb.ui.model.LaunchRewordModel;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
@@ -20,7 +20,7 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.view.widget.CustomDialogManager;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 
 import com.robin8.rb.R;
 
