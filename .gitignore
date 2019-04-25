@@ -17,4 +17,5 @@ hellocharts-library/build
 
 rc_picsel_grid_camera.xml
 IMKit/build
-IMLib
+IMLib/build
+pulltorefresh/build
