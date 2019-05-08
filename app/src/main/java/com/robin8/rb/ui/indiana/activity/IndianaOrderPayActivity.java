@@ -59,7 +59,7 @@ public class IndianaOrderPayActivity extends BaseActivity {
         name = intent.getStringExtra("name");
 
         tv_name.setText(name);
-        tv_issue.setText("期号：" + code);
+        tv_issue.setText(getString(R.string.robin367,code));
         tv_times.setText(String.valueOf(times));
         tv_money.setText(String.valueOf(times));
         BitmapUtil.loadImage(this.getApplicationContext(), url, iv);

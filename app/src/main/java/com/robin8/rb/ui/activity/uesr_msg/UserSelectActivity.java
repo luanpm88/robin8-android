@@ -48,7 +48,7 @@ public class UserSelectActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText("选择平台");
+        mTVCenter.setText(R.string.robin357);
     }
 
     @Override
@@ -64,13 +64,13 @@ public class UserSelectActivity extends BaseActivity {
         } else {
             tvWeibo.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.login_weibo), null, null, null);
             tvWeibo.setTextColor(getResources().getColor(R.color.gray_first));
-            tvWeibo.setText("请填写微博报价");
+            tvWeibo.setText(R.string.robin358);
             tvIconWeibo.setVisibility(View.GONE);
             imgGoWechat.setVisibility(View.VISIBLE);
 
             tvWeixin.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.social_weixin_on), null, null, null);
             tvWeixin.setTextColor(getResources().getColor(R.color.gray_first));
-            tvWeixin.setText("请填写微信报价");
+            tvWeixin.setText(R.string.robin359);
             tvIconWechat.setVisibility(View.GONE);
             imgGoWeibo.setVisibility(View.VISIBLE);
         }
@@ -84,13 +84,13 @@ public class UserSelectActivity extends BaseActivity {
                 } else {
                     tvWeibo.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.login_weibo), null, null, null);
                     tvWeibo.setTextColor(getResources().getColor(R.color.gray_first));
-                    tvWeibo.setText("请填写微博报价");
+                    tvWeibo.setText(R.string.robin358);
                     tvIconWeibo.setVisibility(View.GONE);
                     imgGoWechat.setVisibility(View.VISIBLE);
 
                     tvWeixin.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.social_weixin_on), null, null, null);
                     tvWeixin.setTextColor(getResources().getColor(R.color.gray_first));
-                    tvWeixin.setText("请填写微信报价");
+                    tvWeixin.setText(R.string.robin359);
                     tvIconWechat.setVisibility(View.GONE);
                     imgGoWeibo.setVisibility(View.VISIBLE);
                 }
@@ -111,7 +111,7 @@ public class UserSelectActivity extends BaseActivity {
                     tvWeixin.setTextColor(getResources().getColor(R.color.gray_first));
                     tvWeixin.setText(public_wechat_account.getNickname());
                     tvIconWechat.setVisibility(View.VISIBLE);
-                    tvIconWechat.setText("审核中");
+                    tvIconWechat.setText(R.string.checking);
                     tvIconWechat.setTextColor(getResources().getColor(R.color.blue_2dcad0));
                     imgGoWechat.setVisibility(View.GONE);
                 } else if (public_wechat_account.getStatus() == 1) {
@@ -125,7 +125,7 @@ public class UserSelectActivity extends BaseActivity {
                     //审核拒绝
                     tvWeixin.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.social_weixin), null, null, null);
                     tvWeixin.setTextColor(getResources().getColor(R.color.red_custom));
-                    tvWeixin.setText("审核未通过,请联系客服");
+                    tvWeixin.setText(R.string.robin360);
                     tvIconWechat.setVisibility(View.GONE);
                     imgGoWechat.setVisibility(View.VISIBLE);
                 }
@@ -133,7 +133,7 @@ public class UserSelectActivity extends BaseActivity {
                 //未开通
                 tvWeixin.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.social_weixin_on), null, null, null);
                 tvWeixin.setTextColor(getResources().getColor(R.color.gray_first));
-                tvWeixin.setText("请填写微信报价");
+                tvWeixin.setText(R.string.robin358);
                 tvIconWechat.setVisibility(View.GONE);
                 imgGoWechat.setVisibility(View.VISIBLE);
             }
@@ -144,7 +144,7 @@ public class UserSelectActivity extends BaseActivity {
                     tvWeibo.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.social_weibo), null, null, null);
                     tvWeibo.setTextColor(getResources().getColor(R.color.gray_first));
                     tvWeibo.setText(weibo_account.getNickname());
-                    tvIconWeibo.setText("审核中");
+                    tvIconWeibo.setText(R.string.checking);
                     tvIconWeibo.setTextColor(getResources().getColor(R.color.blue_2dcad0));
                     tvIconWeibo.setVisibility(View.VISIBLE);
                     imgGoWeibo.setVisibility(View.GONE);
@@ -159,14 +159,14 @@ public class UserSelectActivity extends BaseActivity {
                     //审核拒绝
                     tvWeibo.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.social_weibo), null, null, null);
                     tvWeibo.setTextColor(getResources().getColor(R.color.red_custom));
-                    tvWeibo.setText("审核未通过,请联系客服");
+                    tvWeibo.setText(R.string.robin360);
                     tvIconWeibo.setVisibility(View.GONE);
                     imgGoWeibo.setVisibility(View.VISIBLE);
                 }
             } else {
                 tvWeibo.setCompoundDrawablesWithIntrinsicBounds(this.getResources().getDrawable(R.mipmap.login_weibo), null, null, null);
                 tvWeibo.setTextColor(getResources().getColor(R.color.gray_first));
-                tvWeibo.setText("请填写微博报价");
+                tvWeibo.setText(R.string.robin358);
                 tvIconWeibo.setVisibility(View.GONE);
                 imgGoWeibo.setVisibility(View.VISIBLE);
             }

@@ -24,13 +24,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.ui.activity.LoginActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BaseRecyclerViewActivity;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
+import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.activity.LoginActivity;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.robin8.rb.ui.model.CampaignInviteBean;
 import com.robin8.rb.ui.model.NotifyMsgEntity;
 import com.robin8.rb.ui.module.create.MediaScanner;
@@ -42,10 +47,7 @@ import com.robin8.rb.ui.module.create.model.ProductListModel;
 import com.robin8.rb.ui.module.create.model.ShareResultModel;
 import com.robin8.rb.ui.module.first.activity.SearchKolActivity;
 import com.robin8.rb.ui.module.reword.activity.PostInviteesActivity;
-import com.robin8.rb.okhttp.HttpRequest;
-import com.robin8.rb.okhttp.RequestCallback;
-import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.BitmapUtil;
@@ -56,25 +58,16 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.HtmlUtils;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
-import com.robin8.rb.ui.widget.CircleImageView;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.util.share.RobinShareDialog;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -84,7 +77,7 @@ import okhttp3.ResponseBody;
 /**
  * webview
  */
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity extends BaseActivity{
     public static final int TYPE_DOC = 0;
     public static final int TYPE_DOCX = 1;
     public static final int TYPE_XLS = 2;
@@ -101,8 +94,8 @@ public class WebViewActivity extends BaseActivity {
     private int id;
     private List<CpsArticleSharesBean> mCpsArticleSharesList;
     private BasePresenter mBasePresenter;
-    private CustomDialogManager mCustomDialogManager;
     private String mShareUrl;
+    private RobinShareDialog shareDialog;
     private String mImgUrl;
     private String mShareTitle;
     private String category;
@@ -294,21 +287,21 @@ public class WebViewActivity extends BaseActivity {
                 case R.id.tv_expected_income:
                     skipToDetail();
                     break;
-                case R.id.tv_weixin:
-                    share(mShareUrl, mImgUrl, Wechat.NAME);
-                    break;
-                case R.id.tv_wechatmoments:
-                    share(mShareUrl, mImgUrl, WechatMoments.NAME);
-                    break;
-                case R.id.tv_weibo:
-                    share(mShareUrl, mImgUrl, SinaWeibo.NAME);
-                    break;
-                case R.id.tv_qq:
-                    share(mShareUrl, mImgUrl, QQ.NAME);
-                    break;
-                case R.id.tv_qonze:
-                    share(mShareUrl, mImgUrl, QZone.NAME);
-                    break;
+//                case R.id.tv_weixin:
+//                    share(mShareUrl, mImgUrl, Wechat.NAME);
+//                    break;
+//                case R.id.tv_wechatmoments:
+//                    share(mShareUrl, mImgUrl, WechatMoments.NAME);
+//                    break;
+//                case R.id.tv_weibo:
+//                    share(mShareUrl, mImgUrl, SinaWeibo.NAME);
+//                    break;
+//                case R.id.tv_qq:
+//                    share(mShareUrl, mImgUrl, QQ.NAME);
+//                    break;
+//                case R.id.tv_qonze:
+//                    share(mShareUrl, mImgUrl, QZone.NAME);
+//                    break;
             }
         }
     }
@@ -475,32 +468,17 @@ public class WebViewActivity extends BaseActivity {
      * 弹分享框
      */
     private void popShareDialog() {
-        View view = LayoutInflater.from(this).inflate(R.layout.invite_friends_dialog, null);
-        TextView weixinTV = (TextView) view.findViewById(R.id.tv_weixin);
-        TextView wechatmomentsTV = (TextView) view.findViewById(R.id.tv_wechatmoments);
-        TextView weiboTV = (TextView) view.findViewById(R.id.tv_weibo);
-        TextView qqTV = (TextView) view.findViewById(R.id.tv_qq);
-        TextView qonzeTV = (TextView) view.findViewById(R.id.tv_qonze);
-        TextView cancelTV = (TextView) view.findViewById(R.id.tv_cancel);
-        TextView expectedIncomeTV = (TextView) view.findViewById(R.id.tv_expected_income);
-        mCustomDialogManager = new CustomDialogManager(this, view);
-        expectedIncomeTV.setVisibility(View.VISIBLE);
-        expectedIncomeTV.setOnClickListener(this);
-        weixinTV.setOnClickListener(this);
-        wechatmomentsTV.setOnClickListener(this);
-        weiboTV.setOnClickListener(this);
-        qqTV.setOnClickListener(this);
-        qonzeTV.setOnClickListener(this);
-        cancelTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCustomDialogManager.dismiss();
-            }
-        });
-        mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
-        mCustomDialogManager.dg.getWindow().setGravity(Gravity.BOTTOM);
-        mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        mCustomDialogManager.showDialog();
+        shareDialog = new RobinShareDialog(this);
+        shareDialog.shareFacebook(mShareUrl,mShareTitle,"",mImgUrl);
+        shareDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (shareDialog != null){
+            shareDialog.onActivityResult(requestCode,resultCode,data);
+        }
     }
 
     /**
@@ -509,23 +487,19 @@ public class WebViewActivity extends BaseActivity {
      * @param shareUrl
      */
     private void share(String shareUrl, String imgUrl, String platName) {
-        if (mCustomDialogManager != null) {
-            mCustomDialogManager.dismiss();
-        }
 
-        CustomToast.showShort(this, "正在前往分享...");
+        CustomToast.showShort(this, R.string.robin435);
         //ShareSDK.initSDK(this);
         OnekeyShare oks = new OnekeyShare();
-        oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
         oks.setTitle(mShareTitle);
-        if (SinaWeibo.NAME.equals(platName)) {
-            oks.setText(mShareTitle + shareUrl);
-        } else {
-            oks.setText(mShareTitle);
-        }
+//        if (SinaWeibo.NAME.equals(platName)) {
+//            oks.setText(mShareTitle + shareUrl);
+//        } else {
+//            oks.setText(mShareTitle);
+//        }
         oks.setTitleUrl(shareUrl);
         oks.setImageUrl(imgUrl);
         oks.setUrl(shareUrl);
@@ -534,22 +508,6 @@ public class WebViewActivity extends BaseActivity {
         oks.show(this);
     }
 
-    private class MySharedListener implements PlatformActionListener {
-        @Override
-        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            CustomToast.showShort(WebViewActivity.this, "分享成功");
-        }
-
-        @Override
-        public void onError(Platform platform, int i, Throwable throwable) {
-            CustomToast.showShort(WebViewActivity.this, "分享失败");
-        }
-
-        @Override
-        public void onCancel(Platform platform, int i) {
-            CustomToast.showShort(WebViewActivity.this, "分享取消");
-        }
-    }
 
     private void skipToShareDetail() {
         Intent intent = new Intent(this, PostInviteesActivity.class);

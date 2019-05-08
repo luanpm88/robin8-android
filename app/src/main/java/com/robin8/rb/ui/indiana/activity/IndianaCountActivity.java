@@ -67,7 +67,7 @@ public class IndianaCountActivity extends BaseActivity {
                         if(bean.getError()==0){
                             tv_lucky_number.setText(bean.getLucky_number());
                             tv_order_sum.setText("="+bean.getOrder_sum());
-                            tv_lottery.setText("="+bean.getLottery_number()+"(第"+bean.getLottery_issue()+"期)");
+                            tv_lottery.setText("="+bean.getLottery_number()+getString(R.string.robin366,bean.getLottery_issue()));
                             tv_tips.setText(IndianaCountActivity.this.getString(R.string.lucky_number)+bean.getLucky_number());
                         }else {
                             CustomToast.showShort(IndianaCountActivity.this, bean.getDetail());

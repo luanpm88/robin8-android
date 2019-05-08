@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="当前页面无数据，试试别的页面吧"
+            android:text="@string/no_data_try_others"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6"/>
     </LinearLayout>

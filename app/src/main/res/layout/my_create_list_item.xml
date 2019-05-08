@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -42,9 +43,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/iv_pic"
-            android:text="即将赚："
+            android:text="@string/earning"
             android:textColor="@color/sub_black_custom"
-            android:textSize="@dimen/undefine_font_3" />
+            android:textSize="@dimen/undefine_font_3"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_earned"
@@ -54,7 +56,8 @@
             android:layout_alignParentRight="true"
             android:text="已赚："
             android:textColor="@color/sub_black_custom"
-            android:textSize="@dimen/undefine_font_3" />
+            android:textSize="@dimen/undefine_font_3"
+            tools:ignore="HardcodedText" />
     </RelativeLayout>
 
     <View
@@ -69,5 +72,6 @@
         android:text="审核拒绝理由：和法尔考"
         android:gravity="center"
         android:textColor="@color/red_custom"
-        android:textSize="@dimen/undefine_font_3" />
+        android:textSize="@dimen/undefine_font_3"
+        tools:ignore="HardcodedText" />
 </LinearLayout>

@@ -181,8 +181,7 @@
                 android:textSize="@dimen/undefine_font_4"/>
 
             <RelativeLayout
-                android:id="@+id/ll_info"
-                android:layout_width="match_parent"
+	            android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -267,8 +266,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_turn"
-            android:layout_width="match_parent"
+	        android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
@@ -623,8 +621,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/img_first_step"
-            android:layout_width="match_parent"
+	        android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@mipmap/img_first_step"/>

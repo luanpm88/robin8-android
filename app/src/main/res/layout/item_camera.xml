@@ -13,7 +13,7 @@
         android:drawablePadding="10dp"
         android:drawableTop="@mipmap/asy"
         android:gravity="center_horizontal"
-        android:text="拍摄照片"
+        android:text="@string/robin252"
         android:textColor="#CDCECE"
         android:textSize="14sp"/>
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
     <LinearLayout
@@ -35,7 +36,8 @@
             android:gravity="center"
             android:text="0.10"
             android:textSize="@dimen/undefine_font_1"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_week"
@@ -47,7 +49,7 @@
             android:text="1天"
             android:textColor="@color/gray_first"
             android:textSize="@dimen/undefine_font_1"
-            />
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 

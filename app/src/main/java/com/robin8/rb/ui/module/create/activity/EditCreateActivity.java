@@ -441,7 +441,7 @@ public class EditCreateActivity extends BaseActivity {
                                 @Override
                                 public void run() {
                                     if (uploadPicturePath == null)
-                                        CustomToast.showShort(EditCreateActivity.this, "图片不存在,请检查本地路径");
+                                        CustomToast.showShort(EditCreateActivity.this, R.string.img_empty);
                                     else {
                                         postImage(new File(uploadPicturePath), bitmap);
                                     }

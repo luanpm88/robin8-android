@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="注意：请按照截图示例顺序，上传对应图片"
+            android:text="@string/robin184"
             android:textColor="@color/white_custom"/>
     </LinearLayout>
 

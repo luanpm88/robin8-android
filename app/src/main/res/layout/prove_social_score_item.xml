@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
     <LinearLayout
-        android:id="@+id/ll_first"
-        android:layout_width="match_parent"
+	    android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="15dp"
         android:paddingLeft="15dp"
@@ -21,12 +21,12 @@
             android:gravity="center"
             android:textSize="@dimen/undefine_font_2"
             android:text="以下方式可提升影响力"
-            android:textColor="@color/black_202020"/>
+            android:textColor="@color/black_202020"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/ll_second"
-        android:layout_width="match_parent"
+	    android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp">
 
@@ -45,7 +45,8 @@
             android:layout_toRightOf="@+id/img_icon"
             android:text="标题"
             android:textColor="@color/black_202020"
-            android:textSize="@dimen/undefine_font_3"/>
+            android:textSize="@dimen/undefine_font_3"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_content"
@@ -71,7 +72,7 @@
             android:background="@drawable/shape_solid_blue"
             android:gravity="center"
             android:padding="5dp"
-            android:text="去分享"
+            android:text="@string/robin063"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_2"/>
     </RelativeLayout>

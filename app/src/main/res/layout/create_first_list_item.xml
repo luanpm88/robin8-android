@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -28,7 +29,8 @@
             android:gravity="center_horizontal"
             android:text="--"
             android:textColor="@color/white_custom"
-            android:textSize="@dimen/undefine_font_5" />
+            android:textSize="@dimen/undefine_font_5"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_expected"
@@ -37,7 +39,7 @@
             android:layout_below="@+id/tv_title"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text="预计提成"
+            android:text="@string/expected_cut"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -66,7 +68,8 @@
                 android:gravity="center_horizontal"
                 android:text="user"
                 android:textColor="@color/white_custom"
-                android:textSize="@dimen/undefine_font_3" />
+                android:textSize="@dimen/undefine_font_3"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_share_num"
@@ -77,7 +80,8 @@
                 android:gravity="center_horizontal"
                 android:text="2133"
                 android:textColor="@color/white_custom"
-                android:textSize="@dimen/undefine_font_3" />
+                android:textSize="@dimen/undefine_font_3"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_share_icon"
@@ -90,7 +94,8 @@
                 android:gravity="center_horizontal"
                 android:text="user"
                 android:textColor="@color/white_custom"
-                android:textSize="@dimen/undefine_font_3" />
+                android:textSize="@dimen/undefine_font_3"
+                tools:ignore="HardcodedText" />
         </RelativeLayout>
     </RelativeLayout>
 

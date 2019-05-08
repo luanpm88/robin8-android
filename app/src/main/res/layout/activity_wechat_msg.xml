@@ -36,7 +36,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="昵称"
+                        android:text="@string/nickname"
                         android:textColor="@color/black_000000"
                         android:textSize="@dimen/undefine_font_7"/>
 
@@ -50,7 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="请填写你的昵称"
+                        android:hint="@string/robin022"
                         android:maxLength="17"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
@@ -77,7 +77,7 @@
                         android:drawableRight="@mipmap/icon_go_next"
                         android:paddingBottom="15dp"
                         android:paddingTop="20dp"
-                        android:text="KOL圈子"
+                        android:text="@string/robin217"
                         android:textColor="@color/black_000000"
                         android:textSize="@dimen/undefine_font_7"/>
 
@@ -94,7 +94,7 @@
                         android:maxLines="1"
                         android:paddingBottom="20dp"
                         android:paddingTop="15dp"
-                        android:text="请选择你的KOL圈子"
+                        android:text="@string/robin218"
                         android:textColor="@color/gray_first"
                         android:textSize="14sp"/>
                 </LinearLayout>
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="我的报价"
+                        android:text="@string/robin077"
                         android:textColor="@color/black_000000"
                         android:textSize="@dimen/undefine_font_7"/>
 
@@ -131,7 +131,7 @@
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
                         android:background="@null"
-                        android:hint="请填写单图文价格"
+                        android:hint="@string/robin219"
                         android:inputType="number"
                         android:maxLength="17"
                         android:textColor="@color/gray_first"
@@ -150,7 +150,7 @@
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
                         android:background="@null"
-                        android:hint="请填写多图文头条价格"
+                        android:hint="@string/robin220"
                         android:inputType="number"
                         android:maxLength="17"
                         android:textColor="@color/gray_first"
@@ -169,7 +169,7 @@
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
                         android:background="@null"
-                        android:hint="请填写次条价格"
+                        android:hint="@string/robin221"
                         android:inputType="number"
                         android:maxLength="17"
                         android:textColor="@color/gray_first"
@@ -188,7 +188,7 @@
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
                         android:background="@null"
-                        android:hint="请填写3-N条价格"
+                        android:hint="@string/robin222"
                         android:inputType="number"
                         android:maxLength="17"
                         android:textColor="@color/gray_first"
@@ -212,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="报价有效期"
+                        android:text="@string/robin223"
                         android:textColor="@color/black_000000"
                         android:textSize="@dimen/undefine_font_7"/>
 
@@ -226,7 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="请填写报价有效期"
+                        android:hint="@string/robin224"
                         android:maxLength="17"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
@@ -251,7 +251,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="粉丝属性"
+                        android:text="@string/robin080"
                         android:textColor="@color/black_000000"
                         android:textSize="@dimen/undefine_font_7"/>
 
@@ -265,7 +265,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="请填写粉丝数量"
+                        android:hint="@string/robin081"
                         android:inputType="number"
                         android:maxLength="17"
                         android:paddingBottom="15dp"
@@ -288,7 +288,7 @@
                         android:maxLength="17"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
-                        android:text="请选择主要粉丝性别"
+                        android:text="@string/robin082"
                         android:textColor="@color/gray_first"
                         android:textSize="14sp"/>
 
@@ -305,7 +305,7 @@
                         android:ellipsize="end"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
-                        android:text="请选择地域集中城市(1-3个)"
+                        android:text="@string/robin084"
                         android:textColor="@color/gray_first"
                         android:textSize="14sp"/>
 
@@ -330,7 +330,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="作品链接"
+                        android:text="@string/robin085"
                         android:textColor="@color/black_000000"
                         android:textSize="@dimen/undefine_font_7"/>
 
@@ -344,7 +344,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="请填写作品链接"
+                        android:hint="@string/robin086"
                         android:maxLength="17"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"
@@ -370,7 +370,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="备注(选填)"
+                        android:text="@string/robin087"
                         android:textColor="@color/black_000000"
                         android:textSize="@dimen/undefine_font_7"/>
 
@@ -384,7 +384,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="请填写备注"
+                        android:hint="@string/robin088"
                         android:maxLength="17"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp"

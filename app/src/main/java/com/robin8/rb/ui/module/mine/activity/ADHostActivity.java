@@ -35,7 +35,8 @@ import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.ui.dialog.CustomDialogManager;
 
 /**
- 品牌主 */
+ * 品牌主
+ */
 public class ADHostActivity extends BaseActivity {
 
     private TextView mBrandAmountTv;
@@ -136,7 +137,6 @@ public class ADHostActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("品牌主信息", "response" + response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -144,16 +144,16 @@ public class ADHostActivity extends BaseActivity {
                 if (baseBean != null && baseBean.getError() == 0) {
                     mBrandAmountTv.setText(StringUtil.deleteZero(baseBean.getBrand_amountX()));
                     mBrandPointsTv.setText(StringUtil.deleteZero(baseBean.getBrand_credit()));
-                    if (! TextUtils.isEmpty(baseBean.getAvatar_url())) {
+                    if (!TextUtils.isEmpty(baseBean.getAvatar_url())) {
                         BitmapUtil.loadImage(ADHostActivity.this, baseBean.getAvatar_url(), imgLogo);
                     }
                     if (TextUtils.isEmpty(baseBean.getName())) {
-                        mCampanyNameTv.setText("品牌");
+                        mCampanyNameTv.setText(R.string.robin350);
                     } else {
                         mCampanyNameTv.setText(baseBean.getName());
                     }
                     if (TextUtils.isEmpty(baseBean.getCampany_name())) {
-                        mUserTagTv.setText("公司名称");
+                        mUserTagTv.setText(R.string.robin351);
                     } else {
                         mUserTagTv.setText(baseBean.getCampany_name());
                     }
@@ -246,7 +246,7 @@ public class ADHostActivity extends BaseActivity {
         TextView tvData = (TextView) view.findViewById(R.id.tv_data);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layout_bg);
         if (baseBean != null) {
-            tvRule.setText("您当前积分" + baseBean.getBrand_credit() + "，使用\n积分可抵扣" + baseBean.getBrand_credit() / 10 + "元!");
+            tvRule.setText(getString(R.string.robin260, baseBean.getBrand_credit(), baseBean.getBrand_credit() / 10));
             int length = String.valueOf(baseBean.getBrand_credit()).length();
             int lengthTwo = String.valueOf(baseBean.getBrand_credit() / 10).length();
             StringUtil.setTextViewSpan(tvRule, 0, 5, 5 + length, getResources().getColor(R.color.blue_custom));
@@ -255,10 +255,10 @@ public class ADHostActivity extends BaseActivity {
                 tvData.setVisibility(View.GONE);
             } else {
                 tvData.setVisibility(View.VISIBLE);
-                tvData.setText("积分有效期至：" + baseBean.getBrand_credit_expired_at());
+                tvData.setText(getString(R.string.robin261,baseBean.getBrand_credit_expired_at()));
             }
         } else {
-            tvRule.setText("您当前积分／10可抵扣现金");
+            tvRule.setText(R.string.robin263);
             tvData.setVisibility(View.GONE);
         }
 
@@ -282,9 +282,9 @@ public class ADHostActivity extends BaseActivity {
         TextView leftTv = (TextView) view.findViewById(R.id.tv_left);
         TextView infoTv = (TextView) view.findViewById(R.id.tv_info);
         TextView rightTv = (TextView) view.findViewById(R.id.tv_right);
-        infoTv.setText("请完善品牌主信息");
+        infoTv.setText(R.string.robin264);
         leftTv.setText(R.string.cancel);
-        rightTv.setText("去完善");
+        rightTv.setText(R.string.robin265);
         infoTv.setGravity(Gravity.CENTER);
         final CustomDialogManager cdm = new CustomDialogManager(ADHostActivity.this, view);
         leftTv.setOnClickListener(new View.OnClickListener() {
@@ -331,7 +331,7 @@ public class ADHostActivity extends BaseActivity {
     }
 
     /**
-     发布悬赏活动
+     * 发布悬赏活动
      */
     private void skipToLaunch() {
         Intent intent = new Intent(this, LaunchRewordFirstActivity.class);
@@ -340,7 +340,7 @@ public class ADHostActivity extends BaseActivity {
     }
 
     /**
-     立即充值
+     * 立即充值
      */
     private void skipToRecharge() {
         Intent intent = new Intent(ADHostActivity.this, RechargeActivity.class);

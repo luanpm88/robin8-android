@@ -334,7 +334,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     private boolean checkInfoCompelete(boolean showToast) {
         if (TextUtils.isEmpty(mTVInfo3.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(this, "请选择活动类型");
+                CustomToast.showShort(this, R.string.robin453);
             }
             return false;
         } else {
@@ -351,40 +351,40 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
         if (TextUtils.isEmpty(mETTitle.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(this, "请填写活动标题");
+                CustomToast.showShort(this, R.string.robin126);
             }
             return false;
         }
 
         if (TextUtils.isEmpty(mETIntroduce.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(this, "请填写活动简介");
+                CustomToast.showShort(this, R.string.robin127);
             }
             return false;
         }
 
         if (! mImageLoadB) {
             if (showToast) {
-                CustomToast.showShort(this, "请上传封面图片");
+                CustomToast.showShort(this, R.string.robin128);
             }
             return false;
         }
 
         if (TextUtils.isEmpty(mETAddress.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(this, "请填写活动链接");
+                CustomToast.showShort(this, R.string.robin129);
             }
             return false;
         } else if (! RegExpUtil.isUrl(mETAddress.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(this, "活动链接格式不正确");
+                CustomToast.showShort(this, R.string.robin454);
                 return false;
             }
         }
 
         if (TextUtils.isEmpty(mETConsume4.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(this, "请填写活动总预算");
+                CustomToast.showShort(this, R.string.robin455);
             }
             return false;
         } else {
@@ -407,7 +407,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
         if (TextUtils.isEmpty(mETConsume5.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(this, "请填写单个费用");
+                CustomToast.showShort(this, R.string.robin456);
             }
             return false;
         } else {
@@ -416,13 +416,13 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
                 float oneComsuneF = Float.parseFloat(oneComsuneStr);
                 if (oneComsuneF < 0.2) {
                     if (showToast) {
-                        CustomToast.showShort(this, "单个点击费用最低0.2元");
+                        CustomToast.showShort(this, R.string.robin457);
                     }
                     return false;
                 }
             } catch (Exception e) {
                 if (showToast) {
-                    CustomToast.showShort(this, "单个点击费用格式错误");
+                    CustomToast.showShort(this, R.string.robin458);
                 }
                 return false;
             }
@@ -494,7 +494,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         mTvTitle5 = (TextView) layoutPerConsume.findViewById(R.id.tv_title);
         mETConsume5 = (EditText) layoutPerConsume.findViewById(R.id.et_consume);
 
-        tvTitleSubType.setText("推广平台选择");
+        tvTitleSubType.setText(R.string.robin459);
         tvTitle1.setText(mArrayTitle[0]);
         tvTitle2.setText(mArrayTitle[1]);
         tvTitle3.setText(mArrayTitle[2]);
@@ -529,7 +529,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
             public void onClick(View v) {
                 // translateY(TimePickerView.ACTIVITY_TYPE, TimePickerView.Type.CONSUME_WAY);
                 if (TextUtils.isEmpty((mTVInfoSubType.getText().toString()))) {
-                    CustomToast.showShort(ModifyRewordActivity.this, "请先选择推广平台");
+                    CustomToast.showShort(ModifyRewordActivity.this, R.string.robin460);
                 } else {
                     if ((mTVInfoSubType.getText().toString()).equals((getString(R.string.weixin) + getString(wechat) + "," + getString(R.string.weibo))) || (mTVInfoSubType.getText().toString()).equals(getString(R.string.weibo))) {
                         //微信微博同时选择／选择微博，活动类型只有三个
@@ -1040,11 +1040,11 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
         } else if ((mTVInfoSubType.getText().toString()).equals(getString(R.string.weixin) + getString(wechat))) {
             requestMap.put("sub_type", "wechat");
         } else {
-            CustomToast.showShort(this, "请选择推广平台");
+            CustomToast.showShort(this, R.string.robin460);
             return;
         }
        // LogUtil.LogShitou("这不是空？", "====>" + stChoseType);
-        String gender = "全部";
+        String gender = getString(R.string.all);
         if (getString(R.string.male).equals(mTVInfoSex.getText())) {
             gender = "1";
         } else if (getString(R.string.female).equals(mTVInfoSex.getText())) {

@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string-array name="mine_list_title">
-        <item>Banner enter</item>
+        <item>BannerEnter</item>
         <item>My wallet</item>
         <item>My PUT wallet</item>
         <item>My campaigns</item>
@@ -14,67 +14,11 @@
         <item>Daily check-in</item>
         <item>Invite friends to earn income</item>
         <item>Input invite code</item>
-        <!--<item>Robin8 online customer services</item>-->
+        <item>Robin8 online customer services</item>
         <item>Help</item>
     </string-array>
-    <string-array name="social_tag_name">
-        <item>其他</item>
-        <item>手机</item>
-        <item>美妆</item>
-        <item>母婴</item>
-        <item>娱乐</item>
-        <item>旅游</item>
-        <item>教育</item>
-        <item>时尚</item>
-        <item>游戏</item>
-        <item>房地产</item>
-        <item>财经</item>
-        <item>数码</item>
-        <item>家电</item>
-        <item>健康</item>
-        <item>图书</item>
-        <item>体育</item>
-        <item>航空</item>
-        <item>家居</item>
-        <item>汽车</item>
-        <item>酒店</item>
-        <item>摄影</item>
-        <item>美食</item>
-        <item>健身</item>
-        <item>音乐</item>
-        <item>消费电子</item>
-        <item>互联网</item>
-    </string-array>
-
-    <string-array name="social_tag_english">
-        <item>other</item>
-        <item>mobile</item>
-        <item>beauty</item>
-        <item>babies</item>
-        <item>entertainment</item>
-        <item>travel</item>
-        <item>education</item>
-        <item>fashion</item>
-        <item>games</item>
-        <item>realestate</item>
-        <item>finance</item>
-        <item>digital</item>
-        <item>appliances</item>
-        <item>health</item>
-        <item>books</item>
-        <item>sports</item>
-        <item>airline</item>
-        <item>furniture</item>
-        <item>auto</item>
-        <item>hotel</item>
-        <item>camera</item>
-        <item>food</item>
-        <item>fitness</item>
-        <item>music</item>
-        <item>ce</item>
-        <item>internet</item>
-    </string-array>
-    <string-array name="mine_list_icons">
+	
+	<string-array name="mine_list_icons">
         <item>&#xe60b;</item>
         <item>&#xe60b;</item>
         <item>&#xe601;</item>
@@ -298,5 +242,41 @@
         <item>order_commission_desc</item>
         <item>order_commission_asc</item>
     </string-array>
-
+    <string-array name="task_menu">
+        <item>Reviewing</item>
+        <item>Approved</item>
+        <item>Rejected</item>
+    </string-array>
+    <string-array name="task_menu_2">
+        <item>Waiting</item>
+        <item>Ongoing</item>
+        <item>Completed</item>
+        <item>Refused</item>
+    </string-array>
+    <string-array name="sign_days">
+        <item>1day</item>
+        <item>2day</item>
+        <item>3day</item>
+        <item>4day</item>
+        <item>5day</item>
+        <item>6day</item>
+        <item>7day</item>
+    </string-array>
+    <string-array name="campaignStatus">
+        <item>待付款</item>
+        <item>审核中</item>
+        <item>进行中</item>
+        <item>已完成</item>
+    </string-array>
+    <string-array name="paySuccessItems">
+        <item>我的分享</item>
+        <item>我的创作</item>
+        <item>待审核</item>
+        <item>审核拒绝</item>
+    </string-array>
+    <string-array name="indianaItems">
+        <item>进行中</item>
+        <item>已揭晓</item>
+        <item>中奖纪录</item>
+    </string-array>
 </resources>

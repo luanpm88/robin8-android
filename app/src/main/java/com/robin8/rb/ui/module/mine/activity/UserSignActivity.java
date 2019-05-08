@@ -116,12 +116,12 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
         updateView();
         getHistory(0);
 
-        mTaskList.add(new SimpleModel(R.mipmap.icon_share_campain, "活动分享(0/4)", "奖励：视活动而定", "去完成"));
-        mTaskList.add(new SimpleModel(R.mipmap.icon_article_social, "内容挖掘(0/10)", "奖励：海量现金红包砸中你", "去阅读"));
-        mTaskList.add(new SimpleModel(R.mipmap.icon_invite_friends, "邀请好友(0/10)", "奖励：¥ 2.00", "去完成"));
+        mTaskList.add(new SimpleModel(R.mipmap.icon_share_campain, getString(R.string.robin291,0), getString(R.string.robin286), getString(R.string.robin284)));
+        mTaskList.add(new SimpleModel(R.mipmap.icon_article_social, getString(R.string.robin290,0), getString(R.string.robin287), getString(R.string.robin285)));
+        mTaskList.add(new SimpleModel(R.mipmap.icon_invite_friends, getString(R.string.robin289,0), getString(R.string.robin288), getString(R.string.robin284)));
         myTaskAdapter = new MyTaskAdapter();
         myList.setAdapter(myTaskAdapter);
-
+        weeks = getResources().getStringArray(R.array.sign_days);
         for (int i = 0; i < rewards.length; i++) {
             SignDaysModel signDaysModel = new SignDaysModel();
             signDaysModel.setRewards(rewards[i]);
@@ -183,17 +183,17 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
                         mEarnTodayTv.setText(String.valueOf(bean.getToday_already_amount()));
                         if (bean.isToday_had_check_in()) {
                             tvSign.setClickable(false);
-                            tvSign.setText("  已签到  ");
+                            tvSign.setText(R.string.robin292);
                             //                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                             //                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             //                                    tvSign.setBackground(getDrawable(R.drawable.shape_solid_gray));
                             //                                }
                             //                            }
                             tvSign.setBackgroundResource(R.drawable.shape_solid_gray);
-                            mHasSignedDaysTv.setText("已连续签到" + bean.getContinuous_checkin_count() + "天,明日签到可赚" + bean.getTomorrow_can_amount() + "元");
+                            mHasSignedDaysTv.setText(getString(R.string.robin293,bean.getContinuous_checkin_count(),String.valueOf(bean.getTomorrow_can_amount())));
                         } else {
                             tvSign.setClickable(true);
-                            tvSign.setText("签到领奖励");
+                            tvSign.setText(R.string.robin207);
                             //                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                             //                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             //                                    tvSign.setBackground(getDrawable(R.drawable.shape_solid_blue));
@@ -201,11 +201,11 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
                             //                                }
                             //                            }
                             tvSign.setBackgroundResource(R.drawable.shape_solid_blue);
-                            mHasSignedDaysTv.setText("已连续签到" + bean.getContinuous_checkin_count() + "天,今日签到可赚" + bean.getToday_can_amount() + "元");
+                            mHasSignedDaysTv.setText(getString(R.string.robin294,bean.getContinuous_checkin_count(),String.valueOf(bean.getToday_can_amount())));
                         }
-                        tasksTitles.add("活动分享(" + bean.getCampaign_invites_count() + "/4)");
-                        tasksTitles.add("内容挖掘(" + bean.getRed_money_count() + "/10)");
-                        tasksTitles.add("邀请好友(" + bean.getInvite_friends() + "/10)");
+                        tasksTitles.add(getString(R.string.robin291,bean.getCampaign_invites_count()));
+                        tasksTitles.add(getString(R.string.robin290,bean.getRed_money_count()));
+                        tasksTitles.add(getString(R.string.robin289,bean.getInvite_friends()));
                         myTaskAdapter.setTitle(tasksTitles);
                         myTaskAdapter.notifyDataSetChanged();
                         noScrollGridAdapter.setmSignList(bean.getCheck_in_7());

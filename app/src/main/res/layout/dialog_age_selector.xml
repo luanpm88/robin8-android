@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -20,23 +21,26 @@
         <TextView
             android:id="@+id/tv_part1"
             style="@style/text_selector"
-            android:text="0-20" />
+            android:text="0-20"
+	        tools:ignore="HardcodedText" />
         <View style="@style/Undefined_Line"/>
         <TextView
             android:id="@+id/tv_part2"
             style="@style/text_selector"
-            android:text="20-40" />
+            android:text="20-40"
+	        tools:ignore="HardcodedText" />
         <View style="@style/Undefined_Line"/>
         <TextView
             android:id="@+id/tv_part3"
             style="@style/text_selector"
-            android:text="40-60" />
+            android:text="40-60"
+	        tools:ignore="HardcodedText" />
         <View style="@style/Undefined_Line"/>
         <TextView
             android:id="@+id/tv_part4"
             style="@style/text_selector"
             android:text="60-100"
-            />
+	        tools:ignore="HardcodedText" />
         <View style="@style/Undefined_Line"/>
 
     </LinearLayout>

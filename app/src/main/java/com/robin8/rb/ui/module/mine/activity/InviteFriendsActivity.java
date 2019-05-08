@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -26,37 +27,27 @@ import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.robin8.rb.ui.model.BaseBean;
 import com.robin8.rb.ui.model.OtherLoginListBean;
 import com.robin8.rb.ui.module.mine.model.InviteFridensModel;
 import com.robin8.rb.ui.module.mine.model.InviteModel;
 import com.robin8.rb.ui.module.mine.model.MyInviteModel;
-import com.robin8.rb.ui.module.share.CustomShareHelper;
 import com.robin8.rb.ui.module.social.view.LinearLayoutForListView;
-import com.robin8.rb.okhttp.HttpRequest;
-import com.robin8.rb.okhttp.RequestCallback;
-import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.util.share.RobinShareDialog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
 
 /**
  Created by IBM on 2016/8/14. */
@@ -69,8 +60,7 @@ public class InviteFriendsActivity extends BaseActivity {
    private TextView tvInviteNumber;
    private TextView tvRewordMoney;
 
-    private CustomDialogManager mCustomDialogManager;
-    private CustomShareHelper mCustomShareHelper;
+   private RobinShareDialog shareDialog;
     private ImageView mImgDown;
     private LinearLayout mRuleLayout;
     private LinearLayoutForListView mListView;
@@ -153,7 +143,7 @@ public class InviteFriendsActivity extends BaseActivity {
         int hasWriteContactsPermission = ContextCompat.checkSelfPermission(InviteFriendsActivity.this, Manifest.permission.READ_CONTACTS);
         if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
             if (! ActivityCompat.shouldShowRequestPermissionRationale(InviteFriendsActivity.this, Manifest.permission.READ_CONTACTS)) {
-                showMessageOKCancel("您已勾选不再询问,请您前往'设置-应用管理'允许相应权限,否则该功能将无法正常使用", new DialogInterface.OnClickListener() {
+                showMessageOKCancel(getString(R.string.robin400), new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -162,7 +152,7 @@ public class InviteFriendsActivity extends BaseActivity {
                 });
                 return;
             }
-            showMessageOKCancel("请您允许获取联系人权限,否则此功能将无法正常使用", new DialogInterface.OnClickListener() {
+            showMessageOKCancel(getString(R.string.robin399), new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -176,7 +166,7 @@ public class InviteFriendsActivity extends BaseActivity {
     }
 
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(InviteFriendsActivity.this).setMessage(message).setPositiveButton("确定", okListener).setNegativeButton("取消", null).create().show();
+        new AlertDialog.Builder(InviteFriendsActivity.this).setMessage(message).setPositiveButton(R.string.confirm, okListener).setNegativeButton(R.string.cancel, null).create().show();
     }
 
     @Override
@@ -345,21 +335,6 @@ public class InviteFriendsActivity extends BaseActivity {
             case R.id.tv_bottom:
                 showInviteDialog();
                 break;
-            case R.id.tv_weixin:
-                share(Wechat.NAME);
-                break;
-            case R.id.tv_wechatmoments:
-                share(WechatMoments.NAME);
-                break;
-            case R.id.tv_weibo:
-                share(SinaWeibo.NAME);
-                break;
-            case R.id.tv_qq:
-                share(QQ.NAME);
-                break;
-            case R.id.tv_qonze:
-                share(QZone.NAME);
-                break;
             case R.id.img_down:
                 if (mRuleLayout.getVisibility() == View.VISIBLE) {
                     mImgDown.setImageResource(R.mipmap.icon_down);
@@ -380,77 +355,30 @@ public class InviteFriendsActivity extends BaseActivity {
      @param platName
      */
     private void share(String platName) {
-
-        if (mCustomDialogManager != null) {
-            mCustomDialogManager.dismiss();
-        }
-
-        int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
-        CustomToast.showShort(this, "正在前往分享...");
-        //ShareSDK.initSDK(this);
-        OnekeyShare oks = new OnekeyShare();
-        oks.setCallback(new MySharedListener());
-        oks.setPlatform(platName);
-        //关闭sso授权
-        oks.disableSSOWhenAuthorize();
-        if (SinaWeibo.NAME.equals(platName)) {
-            oks.setText(getString(R.string.share_invite_friends_text) + TITLE_URL + String.valueOf(id));
-        } else {
-            oks.setText(getString(R.string.share_invite_friends_text));
-        }
-        oks.setTitle(getString(R.string.share_invite_friends_title));
-
-        oks.setTitleUrl(TITLE_URL + String.valueOf(id));
-        oks.setImageUrl(IMAGE_URL);
-        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)){
-            oks.setUrl(TITLE_URL + String.valueOf(id));
-        }
-        oks.setSite(getString(R.string.app_name));
-        oks.setSiteUrl(CommonConfig.SITE_URL);
-        oks.show(this);
+//        if (SinaWeibo.NAME.equals(platName)) {
+//            oks.setText(getString(R.string.share_invite_friends_text) + TITLE_URL + String.valueOf(id));
+//        } else {
+//            oks.setText(getString(R.string.share_invite_friends_text));
+//        }
+//        oks.setTitle(getString(R.string.share_invite_friends_title));
+//
+//        oks.setTitleUrl(TITLE_URL + String.valueOf(id));
+//        oks.setImageUrl(IMAGE_URL);
+//        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)){
+//            oks.setUrl(TITLE_URL + String.valueOf(id));
+//        }
     }
 
     private void showInviteDialog() {
-        View view = LayoutInflater.from(this).inflate(R.layout.invite_friends_dialog, null);
-        TextView weixinTV = (TextView) view.findViewById(R.id.tv_weixin);
-        TextView wechatmomentsTV = (TextView) view.findViewById(R.id.tv_wechatmoments);
-        TextView weiboTV = (TextView) view.findViewById(R.id.tv_weibo);
-        TextView qqTV = (TextView) view.findViewById(R.id.tv_qq);
-        TextView qonzeTV = (TextView) view.findViewById(R.id.tv_qonze);
-        TextView cancelTV = (TextView) view.findViewById(R.id.tv_cancel);
-        mCustomDialogManager = new CustomDialogManager(this, view);
-        weixinTV.setOnClickListener(this);
-        wechatmomentsTV.setOnClickListener(this);
-        weiboTV.setOnClickListener(this);
-        qqTV.setOnClickListener(this);
-        qonzeTV.setOnClickListener(this);
-        cancelTV.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                mCustomDialogManager.dismiss();
-            }
-        });
-        mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
-        mCustomDialogManager.dg.getWindow().setGravity(Gravity.BOTTOM);
-        mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        mCustomDialogManager.showDialog();
+        shareDialog = new RobinShareDialog(this);
+//        shareDialog.shareFacebook();
     }
 
-    private class MySharedListener implements PlatformActionListener {
-        @Override
-        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            CustomToast.showShort(InviteFriendsActivity.this, "分享成功");
-        }
-
-        @Override
-        public void onError(Platform platform, int i, Throwable throwable) {
-            CustomToast.showShort(InviteFriendsActivity.this, "分享失败");
-        }
-
-        @Override
-        public void onCancel(Platform platform, int i) {
-            CustomToast.showShort(InviteFriendsActivity.this, "分享取消");
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (shareDialog != null){
+            shareDialog.onActivityResult(requestCode,resultCode,data);
         }
     }
 
@@ -524,7 +452,7 @@ public class InviteFriendsActivity extends BaseActivity {
                         if (! TextUtils.isEmpty(myList.get(i).getMobile())) {
                             if (myList.get(i).getMobile().equals(mDatas.get(i).getMobile_number())) {
                                 if (TextUtils.isEmpty(myList.get(i).getName())) {
-                                    holder.mTvName.setText("空");
+                                    holder.mTvName.setText(R.string.robin372);
                                 } else {
                                     holder.mTvName.setText(myList.get(i).getName());
                                 }
@@ -536,7 +464,7 @@ public class InviteFriendsActivity extends BaseActivity {
 
             holder.mTvMobile.setText(item.getMobile_number());
             if (item.getStatus().equals("not_invited")) {
-                holder.mTvStatus.setText("邀请");
+                holder.mTvStatus.setText(R.string.robin373);
                 holder.mTvStatus.setBackgroundResource(R.drawable.shape_solid_blue);
                 holder.mTvStatus.setClickable(true);
                 holder.mTvStatus.setOnClickListener(new View.OnClickListener() {
@@ -558,7 +486,7 @@ public class InviteFriendsActivity extends BaseActivity {
                             public void onResponse(String response) {
                                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                                 if (baseBean.getError() == 0) {
-                                    holder.mTvStatus.setText("已邀请");
+                                    holder.mTvStatus.setText(R.string.robin374);
                                     holder.mTvStatus.setBackgroundResource(R.drawable.shape_solid_gray);
                                 } else {
                                     CustomToast.showShort(InviteFriendsActivity.this, "邀请失败");
@@ -570,7 +498,7 @@ public class InviteFriendsActivity extends BaseActivity {
                     }
                 });
             } else if (item.getStatus().equals("already_invited")) {
-                holder.mTvStatus.setText("已邀请");
+                holder.mTvStatus.setText(R.string.robin374);
                 holder.mTvStatus.setBackgroundResource(R.drawable.shape_solid_gray);
                 holder.mTvStatus.setClickable(false);
             } else if (item.getStatus().equals("already_kol")) {

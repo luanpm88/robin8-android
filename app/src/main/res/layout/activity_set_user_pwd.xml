@@ -23,7 +23,8 @@
         android:singleLine="true"
         android:textColor="@color/gray_custom"
         android:textColorHint="@color/sub_gray_custom"
-        android:textSize="@dimen/undefine_font_6"/>
+        android:textSize="@dimen/undefine_font_6"
+	    tools:ignore="HardcodedText" />
 
     <View
         android:layout_width="match_parent"
@@ -47,7 +48,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="验证码"
+            android:hint="@string/robin092"
             android:inputType="phone"
             android:maxLength="15"
             android:singleLine="true"
@@ -69,7 +70,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="获取验证码"
+            android:text="@string/robin093"
             android:textColor="@color/color_checknum"
             android:textSize="@dimen/undefine_font_4"
             />
@@ -100,7 +101,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/selector_bg_bt"
         android:gravity="center"
-        android:text="下一步"
+        android:text="@string/robin091"
         android:textColor="@color/white_custom"
         android:textSize="@dimen/undefine_font_4"/>
 

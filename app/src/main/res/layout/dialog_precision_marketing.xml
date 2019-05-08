@@ -22,7 +22,7 @@
             android:padding="15dp"
             android:gravity="center"
             android:lineSpacingExtra="1.5dp"
-            android:text="Robin8优先推送最精准匹配的KOL，6小时后活动未消耗完会进行补推，退送给第二梯队的匹配KOL，以此类推......指导活动结束"
+            android:text="@string/robin244"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5" />
 
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="知道了"
+            android:text="@string/known"
             style="@style/text_view_with_dialog_positive"
             android:textSize="@dimen/undefine_font_5" />
     </LinearLayout>

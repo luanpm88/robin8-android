@@ -26,7 +26,7 @@ public class IndianaMineActivity extends BaseActivity {
     private ArrayList<ViewPagerAdapter.SelectItem> mTitleList = new ArrayList<>();
     private ArrayList<BaseFragment> mFragmentList = new ArrayList<>();
 
-    String nameArr[] = {"进行中", "已揭晓", "中奖纪录"};
+    String nameArr[];
     String campaignTypeArr[] = {"executing", "finished", "win"};
 
     @Override
@@ -53,6 +53,7 @@ public class IndianaMineActivity extends BaseActivity {
     }
 
     private void initData() {
+        nameArr = getResources().getStringArray(R.array.indianaItems);
         for (int i = 0; i < nameArr.length; i++) {
             ViewPagerAdapter.SelectItem selectItem = new ViewPagerAdapter.SelectItem();
             selectItem.name = nameArr[i];

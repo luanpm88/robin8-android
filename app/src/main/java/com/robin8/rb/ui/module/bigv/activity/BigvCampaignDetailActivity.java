@@ -249,7 +249,7 @@ public class BigvCampaignDetailActivity extends BaseDataActivity implements View
                                 setBottomJump(STATE_PASSED);
                             }
                         } else {
-                            CustomToast.showShort(this, "请先认证");
+                            CustomToast.showShort(this, R.string.robin394);
                         }
                     }
                 } else {
@@ -312,15 +312,15 @@ public class BigvCampaignDetailActivity extends BaseDataActivity implements View
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case STATE_REJECTED:
-                tvBottom.setText("不合作");
+                tvBottom.setText(R.string.robin300);
 
                 break;
             case STATE_UNPAY:
-                tvBottom.setText("确认合作，待付款");
+                tvBottom.setText(R.string.robin301);
 
                 break;
             case STATE_APPROVED:
-                tvBottom.setText("验收满意，待结款");
+                tvBottom.setText(R.string.robin302);
 
                 break;
 
@@ -331,51 +331,51 @@ public class BigvCampaignDetailActivity extends BaseDataActivity implements View
     private void setBottom(String status) {
         switch (status) {
             case STATE_PENDING:
-                tvBottom.setText("查看报价");
+                tvBottom.setText(R.string.robin303);
                 break;
             case STATE_PASSED:
-                tvBottom.setText("参加活动");
+                tvBottom.setText(R.string.robin054);
                 break;
             case STATE_UNPASSED:
-                tvBottom.setText("报价被拒绝");
+                tvBottom.setText(R.string.robin304);
                 cardBottom.setCardBackgroundColor(getResources().getColor(R.color.gray_second));
                 cardBottom.setClickable(false);
                 break;
             case STATE_PAID://上传作品
-                tvBottom.setText("上传作品");
+                tvBottom.setText(R.string.robin305);
                 break;
             case STATE_EDNED:
                 //根据报价情况
-                tvBottom.setText("活动已结束");
+                tvBottom.setText(R.string.robin306);
                 cardBottom.setCardBackgroundColor(getResources().getColor(R.color.gray_second));
                 cardBottom.setClickable(false);
                 break;
             case STATE_FINISHED:
 
-                tvBottom.setText("结款成功，合作完成");
+                tvBottom.setText(R.string.robin307);
                 cardBottom.setCardBackgroundColor(getResources().getColor(R.color.gray_second));
                 cardBottom.setClickable(false);
                 break;
             case STATE_CLOSED:
-                tvBottom.setText("活动已关闭");
+                tvBottom.setText(R.string.robin308);
                 cardBottom.setCardBackgroundColor(getResources().getColor(R.color.gray_second));
                 cardBottom.setClickable(false);
                 break;
             case STATE_UPLOADED:
-                tvBottom.setText("作品上传，待验收");
+                tvBottom.setText(R.string.robin309);
                 break;
             case STATE_REJECTED:
-                tvBottom.setText("不合作");
+                tvBottom.setText(R.string.robin310);
                 cardBottom.setCardBackgroundColor(getResources().getColor(R.color.gray_second));
                 cardBottom.setClickable(false);
                 break;
             case STATE_UNPAY:
-                tvBottom.setText("确认合作，待付款");
+                tvBottom.setText(R.string.robin311);
                 cardBottom.setCardBackgroundColor(getResources().getColor(R.color.gray_second));
                 cardBottom.setClickable(false);
                 break;
             case STATE_APPROVED:
-                tvBottom.setText("验收满意，待结款");
+                tvBottom.setText(R.string.robin312);
                 cardBottom.setCardBackgroundColor(getResources().getColor(R.color.gray_second));
                 cardBottom.setClickable(false);
                 break;
@@ -407,7 +407,7 @@ public class BigvCampaignDetailActivity extends BaseDataActivity implements View
         TextView topTv = (TextView) view.findViewById(R.id.tv_top);
         confirmTV.setText(R.string.known);
         infoTv.setText(info);
-        topTv.setText("请注意");
+        topTv.setText(R.string.robin441);
         final CustomDialogManager cdm = new CustomDialogManager(activity, view);
         confirmTV.setOnClickListener(new View.OnClickListener() {
 

@@ -33,7 +33,7 @@ public class EmailRegiterActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText("邮箱注册");
+        mTVCenter.setText(getString(R.string.robin277));
     }
 
     @Override
@@ -147,7 +147,7 @@ public class EmailRegiterActivity extends BaseActivity {
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (baseBean.getError() == 0) {
                     CustomToast.showShort(EmailRegiterActivity.this, baseBean.getAlert());
-                    new Thread(new TimerUtilTwo(60, null, tvEmailCheckNum, EmailRegiterActivity.this, "重新获取验证码")).start();
+                    new Thread(new TimerUtilTwo(60, null, tvEmailCheckNum, EmailRegiterActivity.this, getString(R.string.robin325))).start();
                 }else {
                     CustomToast.showShort(EmailRegiterActivity.this,baseBean.getDetail());
                 }

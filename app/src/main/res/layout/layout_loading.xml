@@ -5,8 +5,7 @@
     android:gravity="center"
     android:orientation="vertical" >
     <ProgressBar
-        android:id="@+id/pb_load_more"
-        style="@style/ProgressBarMockIOS"
+	    style="@style/ProgressBarMockIOS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

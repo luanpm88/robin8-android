@@ -91,7 +91,7 @@ public class ProductListActivity extends BaseDataActivity implements IRobinIndia
         if (!TextUtils.isEmpty(categoriesJson)) {
             CategoriesModel bean = GsonTools.jsonToBean(categoriesJson, CategoriesModel.class);
             mCategories = bean.getCategories();
-            mCategories.add(0, "全部分类");
+            mCategories.add(0, getString(R.string.all_classify));
             mFirstExcuteB = false;
 
             for (int i = 0; i < mCategories.size(); i++) {

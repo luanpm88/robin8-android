@@ -40,7 +40,7 @@
                 android:paddingLeft="@dimen/dp_10"
                 android:paddingRight="@dimen/dp_10"
                 android:paddingTop="@dimen/dp_5"
-                android:text="分享活动"
+                android:text="@string/robin164"
                 android:textColor="@color/white_custom"/>
 
 
@@ -53,7 +53,7 @@
                 android:paddingLeft="@dimen/dp_10"
                 android:paddingRight="@dimen/dp_10"
                 android:paddingTop="@dimen/dp_5"
-                android:text="创作活动"
+                android:text="@string/robin165"
                 android:textColor="@color/blue_custom"/>
         </LinearLayout>
 

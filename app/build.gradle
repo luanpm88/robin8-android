@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 buildscript {
     repositories {
@@ -147,6 +149,9 @@ android {
         android_meizu {
             manifestPlaceholders = [Td_Channel_Id: "android_meizu"]
         }
+        android_global {
+            manifestPlaceholders = [Td_Channel_Id: "android_global"]
+        }
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
@@ -219,6 +224,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:4.20.0'
     implementation project(':baselib')
     implementation files('libs/MiPush_SDK_Client_3_6_18.jar')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 repositories {
     mavenCentral()

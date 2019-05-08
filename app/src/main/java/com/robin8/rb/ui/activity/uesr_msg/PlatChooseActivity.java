@@ -53,7 +53,7 @@ public class PlatChooseActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText("自媒体平台");
+        mTVCenter.setText(R.string.robin075);
         mTvSave.setVisibility(View.VISIBLE);
         mTvSave.setOnClickListener(this);
     }
@@ -150,7 +150,7 @@ public class PlatChooseActivity extends BaseActivity {
                     }
                 }
                 if (platIdList.size()==0){
-                    CustomToast.showShort(this,"请选择平台之后再保存");
+                    CustomToast.showShort(this, R.string.robin428);
                 }else {
                     Intent intent = new Intent(this, CreatorMsgActivity.class);
                     intent.putIntegerArrayListExtra(PLAT_CHOOSE, platIdList);

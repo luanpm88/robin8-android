@@ -1,12 +1,10 @@
 package com.robin8.rb.ui.widget;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.widget.RadioButton;
 
 import com.robin8.rb.util.DensityUtils;
 

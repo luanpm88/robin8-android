@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="头像"
+                android:text="@string/robin012"
                 android:textColor="@color/black_000000"
                 android:textSize="@dimen/undefine_font_4"/>
 
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="昵称"
+                android:text="@string/nickname"
                 android:textColor="@color/black_000000"
                 android:textSize="@dimen/undefine_font_4"/>
 
@@ -77,7 +77,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="right"
-                android:hint="请填写你的昵称"
+                android:hint="@string/robin022"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
                 android:textColor="@color/black_000000"
@@ -100,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="手机"
+                android:text="@string/robin104"
                 android:textColor="@color/black_000000"
                 android:textSize="@dimen/undefine_font_4"/>
 
@@ -112,7 +112,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="请填写你的手机号"
+                android:text="@string/robin021"
                 android:textColor="@color/gray_second"
                 android:textSize="@dimen/undefine_font_4"/>
         </LinearLayout>
@@ -134,7 +134,8 @@
                 android:layout_gravity="center"
                 android:text="E-mail"
                 android:textColor="@color/black_000000"
-                android:textSize="@dimen/undefine_font_4"/>
+                android:textSize="@dimen/undefine_font_4"
+	            tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_email_num"
@@ -144,7 +145,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="请填写你的邮箱"
+                android:text="@string/robin020"
                 android:textColor="@color/gray_second"
                 android:textSize="@dimen/undefine_font_4"/>
         </LinearLayout>
@@ -164,7 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="性别"
+                android:text="@string/robin011"
                 android:textColor="@color/black_000000"
                 android:textSize="@dimen/undefine_font_4"/>
 
@@ -176,7 +177,7 @@
                 android:paddingBottom="15dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="请选择你的性别"
+                android:text="@string/robin019"
                 android:textColor="@color/gray_second"
                 android:textSize="@dimen/undefine_font_4"/>
         </LinearLayout>
@@ -196,7 +197,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="生日"
+                android:text="@string/robin015"
                 android:textColor="@color/black_000000"
                 android:textSize="@dimen/undefine_font_4"/>
 
@@ -208,7 +209,7 @@
                 android:paddingBottom="15dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="请选择你的生日"
+                android:text="@string/robin018"
                 android:textColor="@color/gray_second"
                 android:textSize="@dimen/undefine_font_4"/>
         </LinearLayout>
@@ -228,7 +229,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="职业"
+                android:text="@string/professional"
                 android:textColor="@color/black_000000"
                 android:textSize="@dimen/undefine_font_4"/>
 
@@ -239,7 +240,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="right"
-                android:hint="请填写你的职业"
+                android:hint="@string/robin017"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
                 android:textColor="@color/black_000000"

@@ -12,28 +12,27 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.moxun.tagcloudlib.view.TagCloudView;
 import com.robin8.rb.R;
-import com.robin8.rb.ui.activity.LoginActivity;
-import com.robin8.rb.ui.activity.web.WebViewActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.IconFontHelper;
 import com.robin8.rb.helper.StatisticsAgency;
-import com.robin8.rb.ui.module.first.adapter.RotateYTransformer;
-import com.robin8.rb.ui.module.first.adapter.TextTagsAdapter;
-import com.robin8.rb.ui.module.first.model.KolDetailModel;
-import com.robin8.rb.ui.module.first.model.SocialAccountsBean;
-import com.robin8.rb.ui.module.social.SocialDetailActivity;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.activity.LoginActivity;
+import com.robin8.rb.ui.activity.web.WebViewActivity;
+import com.robin8.rb.ui.module.first.adapter.RotateYTransformer;
+import com.robin8.rb.ui.module.first.adapter.TextTagsAdapter;
+import com.robin8.rb.ui.module.first.model.KolDetailModel;
+import com.robin8.rb.ui.module.first.model.SocialAccountsBean;
+import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.DensityUtils;
@@ -41,7 +40,6 @@ import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
 import com.robin8.rb.util.StringUtil;
-import com.robin8.rb.ui.widget.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,8 +100,6 @@ public class KolDetailContentActivity extends BaseActivity {
     TextView tvKolFrom;
     @Bind(R.id.fl_viewpager)
     FrameLayout flViewpager;
-    @Bind(R.id.ll_look_social_detail)
-    RelativeLayout mLookSocialLayout;
     private BasePresenter mBasePresenter;
     private RequestParams mRequestParams;
     private String url;
@@ -149,7 +145,6 @@ public class KolDetailContentActivity extends BaseActivity {
                 ivCover.getLayoutParams().width = DensityUtils.getScreenWidth(KolDetailContentActivity.this);
             }
         });
-        mLookSocialLayout.setOnClickListener(this);
         tvKolBack.setOnClickListener(this);
         tvFavorite.setOnClickListener(this);
         tvBottom.setOnClickListener(this);
@@ -289,15 +284,6 @@ public class KolDetailContentActivity extends BaseActivity {
             KolDetailModel.BigVBean big_v = kolDetailModel.getBig_v();
             thisId= big_v.getId();
           // mLookSocialLayout.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.MyKolId))){
-                if (HelpTools.getCommonXml(HelpTools.MyKolId).equals(String.valueOf(thisId))){
-                    mLookSocialLayout.setVisibility(View.GONE);
-                }else {
-                    mLookSocialLayout.setVisibility(View.VISIBLE);
-                }
-            }else {
-                mLookSocialLayout.setVisibility(View.GONE);
-            }
             BitmapUtil.loadImage(this, big_v.getAvatar_url(), ivBg, BitmapUtil.getBg());
             tvKolName.setText(big_v.getName());
             if (big_v.getTags() != null && big_v.getTags().size() > 0) {
@@ -425,17 +411,6 @@ public class KolDetailContentActivity extends BaseActivity {
                 break;
             case R.id.tv_bottom:
                 skipToInviteCampaign();
-                break;
-            case R.id.ll_look_social_detail:
-                //跳转去影响力详情
-             //   influencePk();
-                if (!isLogined(0)){
-                    return;
-                }else {
-                    Intent intent = new Intent(KolDetailContentActivity.this, SocialDetailActivity.class);
-                    intent.putExtra(SocialDetailActivity.OTHER_DETAIL_TAG,thisId);
-                    startActivity(intent);
-                }
                 break;
         }
         super.onClick(v);

@@ -12,7 +12,6 @@ import android.os.Message;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -675,18 +674,18 @@ public class MainActivity extends BaseBackHomeActivity {
                 if (PermissionHelper.isCameraEnable()) {
                     LogUtil.LogShitou("打开相机", "请求成功");
                 } else {
-                    DialogUtil.showPermissionManagerDialog(MainActivity.this, "相机");
+                    DialogUtil.showPermissionManagerDialog(MainActivity.this, getString(R.string.robin278));
                 }
             }
 
             @Override
             public void onPermissionDenied(final String[] deniedPermissions, boolean alwaysDenied) {
-                CustomToast.showShort(MainActivity.this, "获取相机权限失败");
+                CustomToast.showShort(MainActivity.this, R.string.robin279);
                 // 拒绝后不再询问 -> 提示跳转到设置
                 if (alwaysDenied) {
-                    DialogUtil.showPermissionManagerDialog(MainActivity.this, "相机");
+                    DialogUtil.showPermissionManagerDialog(MainActivity.this, getString(R.string.robin278));
                 } else {    // 拒绝 -> 提示此公告的意义，并可再次尝试获取权限
-                    new AlertDialog.Builder(context).setTitle("温馨提示").setMessage("我们需要相机权限才能正常使用该功能").setNegativeButton("取消", null).setPositiveButton("验证权限", new DialogInterface.OnClickListener() {
+                    new AlertDialog.Builder(context).setTitle(R.string.robin282).setMessage(R.string.robin280).setNegativeButton(R.string.cancel, null).setPositiveButton(R.string.robin281, new DialogInterface.OnClickListener() {
 
                         @RequiresApi(api = Build.VERSION_CODES.M)
                         @Override

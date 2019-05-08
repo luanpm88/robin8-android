@@ -71,7 +71,7 @@ public class AddPriceActivity extends BaseActivity {
         mLLTitleBar.setVisibility(View.GONE);
         mCardTitle.setVisibility(View.VISIBLE);
         mViewLine.setVisibility(View.GONE);
-        mTitle.setText("添加报价");
+        mTitle.setText(R.string.robin030);
     }
 
     @Override
@@ -85,13 +85,13 @@ public class AddPriceActivity extends BaseActivity {
         }
         if (intent.getExtras().getSerializable(FIX_LIST) != null) {
             cardResultTitle.setVisibility(View.VISIBLE);
-            tvSubmit.setText("修改报价");
-            tvAddPriceTitle.setText("合作报价");
+            tvSubmit.setText(R.string.robin438);
+            tvAddPriceTitle.setText(R.string.robin439);
             myTenders = (List<BigvDetailModel.CreationBean.MyTendersBean>) intent.getExtras().getSerializable(FIX_LIST);
         }else {
             cardResultTitle.setVisibility(View.GONE);
-            tvSubmit.setText("提交");
-            tvAddPriceTitle.setText("添加报价");
+            tvSubmit.setText(R.string.submit);
+            tvAddPriceTitle.setText(R.string.robin030);
         }
 
         LogUtil.LogShitou("传递来的数组的个数", "" + terraceInfo.size());
@@ -176,7 +176,7 @@ public class AddPriceActivity extends BaseActivity {
     private void showMyDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.toast_layout, null);
         TextView infoTv = (TextView) view.findViewById(R.id.toast_msg);
-        infoTv.setText("报价成功，等待品牌主审核");
+        infoTv.setText(R.string.robin440);
         infoTv.setGravity(Gravity.CENTER);
         cdm = new CustomDialogManager(this, view);
         cdm.dg.setCanceledOnTouchOutside(true);
@@ -223,7 +223,7 @@ public class AddPriceActivity extends BaseActivity {
             }
             initData(campaignId, addPriceAdapter.contents);
         } else {
-            CustomToast.showShort(AddPriceActivity.this, "请添加报价");
+            CustomToast.showShort(AddPriceActivity.this, R.string.robin397);
         }
 
     }

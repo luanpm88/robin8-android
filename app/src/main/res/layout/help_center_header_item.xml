@@ -10,8 +10,7 @@
 
     <RelativeLayout
         android:visibility="gone"
-        android:id="@+id/ll_server"
-        android:layout_width="match_parent"
+	    android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="@color/white_custom"

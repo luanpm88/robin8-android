@@ -80,7 +80,6 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("我的钱包————折线图", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -173,7 +172,6 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.LogShitou("异常信息已读", response);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -318,7 +316,7 @@ public class WalletPresenter extends BasePresenter implements PresenterI {
     public void checkIncomeDetail() {
         Intent intent = new Intent(mActivity, IncomeDetailActivity.class);
         intent.putExtra("url", HelpTools.getUrl(CommonConfig.TRANSACTIONS_URL));
-        intent.putExtra("title", mActivity.getString(R.string.account_menu));
+        intent.putExtra("title", mActivity.getString(R.string.bill));
         mActivity.startActivity(intent);
     }
 

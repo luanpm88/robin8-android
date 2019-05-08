@@ -41,8 +41,8 @@ public class MyCampaignHistoryActivity extends BaseActivity {
     private ArrayList<BaseFragment> mFragmentList = new ArrayList<>();
     private ArrayList<BaseFragment> mFragmentListBigV = new ArrayList<>();
 
-    private String nameArr[] = {"审核中", "审核通过", "审核拒绝"};
-    private String nameArrBigV[] = {"待合作", "合作中", "已完成","被拒绝"};
+    private String nameArr[];
+    private String nameArrBigV[] ;
     private String campaignTypeArr[] = {"pending", "passed", "rejected"};
     private String campaignTypeArrTender[] = {"pending", "valid","finished", "rejected"};
 
@@ -94,6 +94,7 @@ public class MyCampaignHistoryActivity extends BaseActivity {
     }
 
     private void initData(String[] arr) {
+        nameArr = getResources().getStringArray(R.array.task_menu);
         for (int i = 0; i < nameArr.length; i++) {
             ViewPagerAdapter.SelectItem selectItem = new ViewPagerAdapter.SelectItem();
             selectItem.name = nameArr[i];
@@ -103,6 +104,7 @@ public class MyCampaignHistoryActivity extends BaseActivity {
     }
 
     private void initDataBigV(String[] arr) {
+        nameArrBigV = getResources().getStringArray(R.array.task_menu_2);
         for (int i = 0; i < nameArrBigV.length; i++) {
             ViewPagerAdapter.SelectItem selectItem = new ViewPagerAdapter.SelectItem();
             selectItem.name = nameArrBigV[i];

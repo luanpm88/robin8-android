@@ -31,29 +31,18 @@ import com.robin8.rb.ui.activity.email.ForgetPwdActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.ui.model.sortlist.UserFacebookInfo;
 import com.robin8.rb.presenter.LoginPresenter;
-import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.view.ILoginView;
 
 import org.json.JSONObject;
 
 import java.util.Arrays;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.wechat.friends.Wechat;
 
 /**
  @author Figo
  @Description 登录
  @date 2016年7月5日 */
 public class LoginActivity extends BaseActivity implements ILoginView, View.OnClickListener {
-    private static final int MSG_USERID_FOUND = 1;
-    private static final int MSG_LOGIN = 2;
-    private static final int MSG_AUTH_CANCEL = 3;
-    private static final int MSG_AUTH_ERROR = 4;
-    private static final int MSG_AUTH_COMPLETE = 5;
 
     private EditText mETPhoneNumber;
     private EditText mETCheckNum;
@@ -102,9 +91,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mBTNLogin = view.findViewById(R.id.bt_login);
 
         mTVTourist = (TextView) view.findViewById(R.id.tv_tourist);
-        View mIBWeixin = view.findViewById(R.id.ib_weixin);
-        View mIBWeibo = view.findViewById(R.id.ib_weibo);
-        View mIBQQ = view.findViewById(R.id.ib_qq);
         View mIBFacebook = view.findViewById(R.id.ib_facebook);
         //邮箱
         llPhoneNumLogin = ((LinearLayout) view.findViewById(R.id.ll_phone_login));
@@ -126,9 +112,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mTVCheckNum.setOnClickListener(this);
         mBTNLogin.setOnClickListener(this);
         mTVTourist.setOnClickListener(this);
-        mIBWeixin.setOnClickListener(this);
-        mIBWeibo.setOnClickListener(this);
-        mIBQQ.setOnClickListener(this);
         mIBFacebook.setOnClickListener(this);
 
         mTVLoginInfo.setText(Html.fromHtml(getString(R.string.click_login_approve) + "<font color=#2dcad0>" + getString(R.string.serviece_protocol) + "</font>"));
@@ -149,18 +132,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 break;
             case R.id.tv_tourist:
                 mLoginPresenter.backMain(0);
-                break;
-            case R.id.ib_weixin:
-                CustomToast.showShort(this, "前往微信中···");
-                mLoginPresenter.authorize(new Wechat());
-                break;
-            case R.id.ib_weibo:
-                mLoginPresenter.authorize(new SinaWeibo());
-                break;
-            case R.id.ib_qq:
-                Platform platform = ShareSDK.getPlatform(QQ.NAME);
-                mLoginPresenter.authorize(platform);
-                // finish();
                 break;
             case R.id.ib_facebook:
                 if (isLoggedIn()) {

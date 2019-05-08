@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/white_custom"
@@ -38,7 +39,8 @@
                 android:maxLines="2"
                 android:text="1322"
                 android:textColor="@color/black_custom"
-                android:textSize="@dimen/undefine_font_4"/>
+                android:textSize="@dimen/undefine_font_4"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_form"
@@ -48,7 +50,8 @@
                 android:ellipsize="end"
                 android:text="来源于：微博"
                 android:textColor="@color/gray_first"
-                android:textSize="@dimen/undefine_font_3"/>
+                android:textSize="@dimen/undefine_font_3"
+                tools:ignore="HardcodedText" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -30,7 +31,8 @@
                 android:layout_height="wrap_content"
                 android:text="甜甜"
                 android:textColor="@color/sub_black_custom"
-                android:textSize="@dimen/undefine_font_3" />
+                android:textSize="@dimen/undefine_font_3"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_times"
@@ -39,7 +41,8 @@
                 android:layout_marginTop="3dp"
                 android:text="参与了3人次"
                 android:textColor="@color/sub_gray_custom"
-                android:textSize="@dimen/undefine_font_0" />
+                android:textSize="@dimen/undefine_font_0"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <TextView
@@ -50,7 +53,8 @@
             android:gravity="bottom|right"
             android:text="2016-06-07 18:09:45"
             android:textColor="@color/sub_gray_custom"
-            android:textSize="@dimen/undefine_font_0" />
+            android:textSize="@dimen/undefine_font_0"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <View

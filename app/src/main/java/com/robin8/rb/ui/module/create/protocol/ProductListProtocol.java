@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.robin8.rb.R;
 import com.robin8.rb.ui.activity.web.WebViewActivity;
 import com.robin8.rb.base.BaseRecyclerViewPresenter;
 import com.robin8.rb.base.constants.SPConstants;
@@ -91,7 +92,7 @@ public class ProductListProtocol implements IProtocol {
         if (obj != null && obj instanceof ProductListModel.CpsMaterialsBean) {
             ProductListModel.CpsMaterialsBean bean = (ProductListModel.CpsMaterialsBean) obj;
             Intent intent = new Intent(mActivity, WebViewActivity.class);
-            intent.putExtra("title", "详情");
+            intent.putExtra("title", mActivity.getString(R.string.robin451));
             intent.putExtra("category", bean.getCategory());
             intent.putExtra("url", bean.getMaterial_url());
             intent.putExtra("bean", bean);

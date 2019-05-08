@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="20dp"
-            android:text="身份信息"/>
+            android:text="@string/robin200"/>
 
         <LinearLayout
             android:id="@+id/layout_public"
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="圈子"
+                    android:text="@string/robin175"
                     android:textColor="@color/gray_first"
                     android:textSize="12sp"/>
             </LinearLayout>
@@ -150,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:text="以下身份未注册"
+            android:text="@string/robin201"
             android:textColor="@color/gray_first"
             android:textSize="13sp"
             android:visibility="gone"/>
@@ -191,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="圈子"
+                    android:text="@string/robin175"
                     android:textColor="@color/gray_first"
                     android:textSize="12sp"/>
             </LinearLayout>
@@ -214,7 +214,7 @@
                 android:paddingLeft="17dp"
                 android:paddingRight="17dp"
                 android:paddingTop="3dp"
-                android:text="开通"
+                android:text="@string/robin202"
                 android:textColor="@color/white_custom"
                 android:textSize="@dimen/undefine_font_3"/>
         </LinearLayout>
@@ -229,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:text="以下身份未注册"
+            android:text="@string/robin201"
             android:textColor="@color/gray_first"
             android:textSize="13sp"
             android:visibility="gone"/>
@@ -270,7 +270,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="圈子"
+                    android:text="@string/robin175"
                     android:textColor="@color/gray_first"
                     android:textSize="12sp"/>
             </LinearLayout>
@@ -292,7 +292,7 @@
                 android:paddingLeft="17dp"
                 android:paddingRight="17dp"
                 android:paddingTop="3dp"
-                android:text="开通"
+                android:text="@string/robin202"
                 android:textColor="@color/white_custom"
                 android:textSize="@dimen/undefine_font_3"/>
         </LinearLayout>
@@ -309,6 +309,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.6"
+        android:visibility="gone"
         android:background="@color/white_custom"
         android:orientation="vertical"
         android:paddingLeft="15dp"
@@ -319,7 +320,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:drawableRight="@mipmap/icon_go_next"
-            android:text="社交账号"
+            android:text="@string/social_account"
             android:textColor="@color/gray_first"
             android:textSize="13sp"/>
 

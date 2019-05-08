@@ -52,7 +52,6 @@ public class BigVPager extends BasePager implements Observer {
 //    private static final String STATE_REJECTED = "rejected";
 
     private String[] filterStringArray = {"all", "passed", "finished", "ended"};
-    private String[] filterString = {"全部","进行中","已完成","已结束"};
     private View mPager;
     private RefreshListView mRefreshListView;
     private BigvProtocol mBigvProtocol;
@@ -107,7 +106,7 @@ public class BigVPager extends BasePager implements Observer {
                     if (listModels == null || listModels.size() == 0) {
                         mLoadingPage.showSafePage(LoadingPage.STATE_LOAD_ERROR);
                     } else {
-                        CustomToast.showShort(mActivity.getApplicationContext(), "网络加载失败");
+                        CustomToast.showShort(mActivity.getApplicationContext(), R.string.robin391);
                     }
                 }
 
@@ -169,7 +168,7 @@ public class BigVPager extends BasePager implements Observer {
                 if (bean != null) {
                     if (! TextUtils.isEmpty(bean.getDetail())) {
                         if (bean.getDetail().contains("401")) {
-                            CustomToast.showShort(mActivity, "登陆失效，请重新登陆");
+                            CustomToast.showShort(mActivity, R.string.robin398);
                             return;
                         }
                     }

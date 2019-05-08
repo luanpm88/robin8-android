@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="125dp"
     android:layout_marginTop="10dp"
@@ -29,7 +30,8 @@
             android:lines="3"
             android:text="fsahksfklaghaaagreeeeeeeeeeeeeeeeeeeeee"
             android:textColor="@color/sub_gray_custom"
-            android:textSize="@dimen/undefine_font_5" />
+            android:textSize="@dimen/undefine_font_5"
+            tools:ignore="HardcodedText" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,7 +45,8 @@
                 android:singleLine="true"
                 android:text="售价"
                 android:textColor="@color/sub_black_custom"
-                android:textSize="@dimen/undefine_font_3" />
+                android:textSize="@dimen/undefine_font_3"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_commission"
@@ -53,7 +56,8 @@
                 android:singleLine="true"
                 android:text="提成"
                 android:textColor="@color/sub_black_custom"
-                android:textSize="@dimen/undefine_font_3" />
+                android:textSize="@dimen/undefine_font_3"
+                tools:ignore="HardcodedText" />
         </RelativeLayout>
     </LinearLayout>
 

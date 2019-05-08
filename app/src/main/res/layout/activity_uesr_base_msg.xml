@@ -17,7 +17,7 @@
         android:layout_weight="0.36"
         android:gravity="center"
         android:paddingRight="20dp"
-        android:text="跳过>"
+        android:text="@string/robin057"
         android:textColor="@color/gray_second"
         android:textSize="@dimen/undefine_font_3"
         />
@@ -214,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="请选择>"/>
+                android:text="@string/robin190"/>
         </LinearLayout>
 
         <View

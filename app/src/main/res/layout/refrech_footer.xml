@@ -48,7 +48,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="一大波活动正在路上，敬请期待"
+            android:text="@string/robin259"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6" />
     </LinearLayout>

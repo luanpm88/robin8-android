@@ -145,7 +145,7 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
 
     private void skipToKolDetail(CpsArticlesBean bean, Context context) {
         Intent intent = new Intent(context, WebViewActivity.class);
-        intent.putExtra("title", "详情");
+        intent.putExtra("title", R.string.robin451);
         intent.putExtra("url", bean.getShow_url());
         intent.putExtra("id", bean.getId());
         intent.putExtra("from", SPConstants.CREATE_FIRST_LIST);

@@ -31,7 +31,6 @@
     </com.robin8.rb.ui.widget.SlideDetailsLayout>
 
     <LinearLayout
-        android:id="@+id/ll_turn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
@@ -45,7 +44,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="上传截图"
+            android:text="@string/upload_screenshot"
             android:visibility="gone"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_3"

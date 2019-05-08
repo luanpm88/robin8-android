@@ -57,7 +57,7 @@
                     android:layout_marginRight="@dimen/dp_15"
                     android:layout_marginTop="@dimen/dp_20"
                     android:lineSpacingExtra="@dimen/dp_3"
-                    android:text="新款梅赛德斯 · 奔驰，追逐现代，天生无畏，给你不一样的体验"
+                    android:text=""
                     android:textColor="@color/black_4a4a4a"
                     android:textSize="@dimen/undefine_font_a"
                     android:textStyle="bold"/>
@@ -82,7 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_10"
-                        android:text="jack branch"
+                        android:text=""
                         android:textColor="@color/gray_999999"
                         android:textSize="@dimen/undefine_font_2"
                         />
@@ -99,7 +99,7 @@
                     android:paddingBottom="@dimen/dp_15"
                     android:paddingLeft="@dimen/dp_15"
                     android:paddingRight="@dimen/dp_15"
-                    android:text="辟疆场，为先锋，梅赛德斯-奔驰GLA SUV，焕新设计, 气场强大，登场即成为众人的领路先锋！ 远离办公室，让久违的越野激情再度迸发，梅赛德斯-奔驰GLA SUV，将探险的乐趣纵情挥洒。 期待您与我们一起逐梦未来！"
+                    android:text=""
                     android:textColor="@color/black_333333"
                     android:textIsSelectable="true"
                     android:textSize="@dimen/undefine_font_2"/>
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/icon_time"
                         android:drawablePadding="@dimen/dp_8"
-                        android:text="活动时间："
+                        android:text="@string/robin047"
                         android:textColor="@color/black_333333"
                         android:textSize="@dimen/undefine_font_4"/>
 
@@ -132,10 +132,10 @@
                         android:id="@+id/tv_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-09-12~2019-12-09"
+                        android:text="--"
                         android:textColor="@color/gray_999999"
                         android:textSize="@dimen/undefine_font_4"
-                        />
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
                 <View
@@ -154,7 +154,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/icon_price"
                         android:drawablePadding="@dimen/dp_8"
-                        android:text="活动价格："
+                        android:text="@string/robin048"
                         android:textColor="@color/black_333333"
                         android:textSize="@dimen/undefine_font_4"/>
 
@@ -162,10 +162,10 @@
                         android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10000000"
+                        android:text="0"
                         android:textColor="@color/gray_999999"
                         android:textSize="@dimen/undefine_font_4"
-                        />
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
                 <View
@@ -184,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/icon_pre_kols_count"
                         android:drawablePadding="@dimen/dp_8"
-                        android:text="招募人数："
+                        android:text="@string/robin049"
                         android:textColor="@color/black_333333"
                         android:textSize="@dimen/undefine_font_4"/>
 
@@ -192,10 +192,10 @@
                         android:id="@+id/tv_pre_kols_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10000000"
+                        android:text="0"
                         android:textColor="@color/gray_999999"
                         android:textSize="@dimen/undefine_font_4"
-                        />
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
                 <View
@@ -214,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/icon_plat"
                         android:drawablePadding="@dimen/dp_8"
-                        android:text="活动平台："
+                        android:text="@string/robin050"
                         android:textColor="@color/black_333333"
                         android:textSize="@dimen/undefine_font_4"/>
 
@@ -222,10 +222,10 @@
                         android:id="@+id/tv_plat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10000000"
+                        android:text="0"
                         android:textColor="@color/gray_999999"
                         android:textSize="@dimen/undefine_font_4"
-                        />
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -241,7 +241,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp_15"
-                    android:text="合作中的KOL"
+                    android:text="@string/robin051"
                     android:textColor="@color/gray_666666"
                     android:textSize="@dimen/undefine_font_3"/>
 
@@ -270,7 +270,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="品牌介绍"
+                    android:text="@string/robin052"
                     android:textColor="@color/gray_666666"
                     android:textSize="@dimen/undefine_font_3"/>
 
@@ -279,7 +279,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:text="品牌名称"
+                    android:text="@string/robin053"
                     android:textColor="@color/black_333333"
                     android:textSize="@dimen/undefine_font_3"/>
 
@@ -290,7 +290,7 @@
                     android:layout_marginTop="@dimen/dp_5"
                     android:letterSpacing="0.1"
                     android:lineSpacingExtra="2dp"
-                    android:text="四个字母分别代表着智能互联、自动驾驶、共享出行、电力驱动，这些趋势正在重塑出行行业的未来。“瞰思未来”是戴姆勒集团的企业发展战略，旨在通过这四大领域的智能整合，为客户带来便捷、安全、舒适的出行。"
+                    android:text=""
                     android:textColor="@color/gray_999999"
                     android:textSize="@dimen/undefine_font_1"/>
 
@@ -319,7 +319,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="参加活动"
+            android:text="@string/robin054"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_4"/>
     </android.support.v7.widget.CardView>

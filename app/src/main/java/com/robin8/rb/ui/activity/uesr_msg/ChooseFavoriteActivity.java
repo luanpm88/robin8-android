@@ -82,14 +82,14 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
 //                //取值
 //                map = mapPaths.getMap();
 //            }
-            tvNext.setText("下一步");
+            tvNext.setText(R.string.next);
         }
         Intent intent = getIntent();
         String extra = intent.getStringExtra(CHOOSE_CIRCLE);
         String base = intent.getStringExtra("base");
         if (! TextUtils.isEmpty(base)) {
             TYPE = 1;
-            tvNext.setText("下一步");
+            tvNext.setText(R.string.next);
             tvJump.setVisibility(View.INVISIBLE);
         }
         if (! TextUtils.isEmpty(extra)) {
@@ -106,7 +106,7 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
             if (intent.getIntegerArrayListExtra(CHOOSE_LIST) != null) {
                 circlesIdList = intent.getIntegerArrayListExtra(CHOOSE_LIST);
             }
-            tvNext.setText("完成");
+            tvNext.setText(R.string.done);
         }
         initData();
     }
@@ -222,7 +222,7 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
                 break;
             case R.id.text_next:
                 if ((TextUtils.isEmpty(selectFinal) || selectFinal.equals("[]")) && circlesIdList.size() == 0) {
-                    CustomToast.showShort(ChooseFavoriteActivity.this, "请选择你感兴趣的圈子");
+                    CustomToast.showShort(ChooseFavoriteActivity.this, getString(R.string.robin176));
                     return;
                 }
                 if (TYPE == 1) {
@@ -280,7 +280,7 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
         // mRequestParams.put("age", map.get("age"));
         if (! TextUtils.isEmpty(selectFinal)) {
             if (circlesIdList.size() == 0 && selectFinal.equals("[]")) {
-                CustomToast.showShort(ChooseFavoriteActivity.this, "请选择你感兴趣的圈子");
+                CustomToast.showShort(ChooseFavoriteActivity.this, getString(R.string.robin176));
                 return;
             } else {
                 LogUtil.LogShitou("选择的数据", "==>" + selecId(selectFinalSet).size());

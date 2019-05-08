@@ -31,7 +31,7 @@ public class MyCampaignActivity extends BaseActivity {
     private ArrayList<ViewPagerAdapter.SelectItem> mTitleList = new ArrayList<>();
     private ArrayList<BaseFragment> mFragmentList = new ArrayList<>();
 
-    String nameArr[] = {"待付款", "审核中", "进行中", "已完成"};
+    String nameArr[];
     String campaignTypeArr[] = {"unpay", "checking", "running", "completed"};
     private int mCurrentPosition;
 
@@ -58,6 +58,7 @@ public class MyCampaignActivity extends BaseActivity {
     }
 
     private void initData() {
+        nameArr = getResources().getStringArray(R.array.campaignStatus);
         for (int i = 0; i < nameArr.length; i++) {
             ViewPagerAdapter.SelectItem selectItem = new ViewPagerAdapter.SelectItem();
             selectItem.name = nameArr[i];

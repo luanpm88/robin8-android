@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,7 +12,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="10dp"
-        android:text="计算公式"
+        android:text="@string/robin107"
         android:textColor="@color/sub_black_custom"
         android:textSize="@dimen/undefine_font_5" />
 
@@ -27,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="[(数值A+数值B)/商品所需人次]取余数+"
+            android:text="@string/robin108"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -37,7 +38,8 @@
             android:layout_height="wrap_content"
             android:text="xxxxxxx"
             android:textColor="@color/sub_gray_custom"
-            android:textSize="@dimen/undefine_font_3" />
+            android:textSize="@dimen/undefine_font_3"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
 
@@ -49,7 +51,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="10dp"
-        android:text="数值A"
+        android:text="@string/robin110"
         android:textColor="@color/sub_black_custom"
         android:textSize="@dimen/undefine_font_5" />
 
@@ -65,7 +67,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="=截止该商品最后夺宝时间最后10条全站参与记录"
+            android:text="@string/robin111"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -75,7 +77,8 @@
             android:layout_height="wrap_content"
             android:text="=xxxxxxxx"
             android:textColor="@color/sub_gray_custom"
-            android:textSize="@dimen/undefine_font_3" />
+            android:textSize="@dimen/undefine_font_3"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <TextView
@@ -86,7 +89,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="10dp"
-        android:text="数值B"
+        android:text="@string/robin118"
         android:textColor="@color/sub_black_custom"
         android:textSize="@dimen/undefine_font_5" />
 
@@ -102,7 +105,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="=最近一期中国福利彩票'老时时彩'的揭晓结果"
+            android:text="@string/robin112"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -112,7 +115,8 @@
             android:layout_height="wrap_content"
             android:text="=xxxxx(第xxxxxxxx期"
             android:textColor="@color/sub_gray_custom"
-            android:textSize="@dimen/undefine_font_3" />
+            android:textSize="@dimen/undefine_font_3"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <TextView
@@ -124,7 +128,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
-        android:text="幸运号码：xxxxxx"
+        android:text="@string/lucky_number"
         android:gravity="center_horizontal"
         android:textColor="@color/white_custom"
         android:background="@color/blue_custom"

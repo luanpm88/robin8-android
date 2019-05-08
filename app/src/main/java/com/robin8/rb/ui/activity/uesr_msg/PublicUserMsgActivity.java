@@ -137,10 +137,10 @@ public class PublicUserMsgActivity extends BaseActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.tv_save:
-                if (TextUtils.isEmpty(tvItemRange.getText().toString().trim()) || tvItemRange.getText().toString().trim().equals("请选择你感兴趣的圈子")) {
-                    CustomToast.showShort(this, "请选择你感兴趣的圈子");
+                if (TextUtils.isEmpty(tvItemRange.getText().toString().trim()) || tvItemRange.getText().toString().trim().equals(getString(R.string.robin176))) {
+                    CustomToast.showShort(this, R.string.robin176);
                 } else if (TextUtils.isEmpty(editWechatNum.getText().toString().trim())) {
-                    CustomToast.showShort(this, "请填写微信好友数");
+                    CustomToast.showShort(this, R.string.robin178);
                 } else {
                     saveData();
                 }
@@ -193,16 +193,16 @@ public class PublicUserMsgActivity extends BaseActivity {
     }
 
     private Boolean checkParams(boolean show) {
-        if (TextUtils.isEmpty(tvItemRange.getText().toString()) || tvItemRange.getText().toString().equals("请选择你感兴趣的圈子") || circleIdList.size() == 0) {
+        if (TextUtils.isEmpty(tvItemRange.getText().toString()) || tvItemRange.getText().toString().equals(getString(R.string.robin176)) || circleIdList.size() == 0) {
             if (show) {
-                CustomToast.showShort(this, "请选择你感兴趣的圈子");
+                CustomToast.showShort(this, R.string.robin176);
             }
             return false;
         }
 
         if (TextUtils.isEmpty(editWechatNum.getText().toString().trim())) {
             if (show) {
-                CustomToast.showShort(this, "请填写微信好友数");
+                CustomToast.showShort(this, R.string.robin178);
             }
             return false;
         }
@@ -225,7 +225,7 @@ public class PublicUserMsgActivity extends BaseActivity {
                         }
                         tvItemRange.setText(Joiner.on(" , ").join(circleNameList));
                     }
-                    editWechatNum.setText("数量：" + kol.getWechat_friends_count());
+                    editWechatNum.setText(getString(R.string.robin418,kol.getWechat_friends_count()));
                 }
             }
         }
@@ -257,7 +257,7 @@ public class PublicUserMsgActivity extends BaseActivity {
                     }
                     tvItemRange.setText(Joiner.on(" ,").join(circleNameList));
                 }else {
-                    tvItemRange.setText("请选择你感兴趣的圈子");
+                    tvItemRange.setText(R.string.robin176);
                 }
             }
             setSave();
@@ -318,7 +318,7 @@ public class PublicUserMsgActivity extends BaseActivity {
         public void onFocusChange(View view, boolean b) {
             switch (viewId) {
                 case R.id.edit_wechat_num:
-                    editShowText(b, editWechatNum, editWechatNum.getText().toString().trim(), "数量：");
+                    editShowText(b, editWechatNum, editWechatNum.getText().toString().trim(), getString(R.string.robin418));
                     break;
             }
         }

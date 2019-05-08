@@ -2,7 +2,6 @@ package com.robin8.rb.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,38 +18,31 @@ import com.robin8.rb.ui.module.find.model.FindArticleListModel;
 import com.robin8.rb.ui.module.find.model.ImageInfo;
 import com.robin8.rb.ui.module.find.view.ExpandableTextView;
 import com.robin8.rb.ui.module.find.view.NineGridView;
+import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.ui.widget.CircleImageView;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.util.share.RobinShareDialog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
 
 /**
  Created by zc on 2018/3/30. */
 
-public class MainFindListAdapter extends BaseRecyclerAdapter {
+public class MainFindListAdapter extends BaseRecyclerAdapter{
     private List<FindArticleListModel.ListBean> mDataList;
     private Context mContext;
     private ViewHolder mViewHolder;
     private RecyclerListener recyclerListener;
     private boolean isCollect;
     private boolean isLike;
-    private CustomDialogManager mCustomDialogManager;
+    private RobinShareDialog shareDialog;
     private static final String IMAGE_URL = CommonConfig.APP_ICON;
+
 
     public interface RecyclerListener {
 
@@ -167,9 +159,9 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
         viewHolder.tvLikeNum.setText(String.valueOf(likes_count));
         viewHolder.tvShareNum.setText(String.valueOf(listModel.getForwards_count()));
         if (listModel.getReads_count() >= 10000) {
-            viewHolder.tvLookNum.setText(String.valueOf(listModel.getReads_count() / 10000) + "万次观看");
+            viewHolder.tvLookNum.setText(mContext.getString(R.string.robin436,String.valueOf(listModel.getReads_count() / 10000)));
         } else {
-            viewHolder.tvLookNum.setText(String.valueOf(listModel.getReads_count()) + "次观看");
+            viewHolder.tvLookNum.setText(mContext.getString(R.string.robin437,String.valueOf(listModel.getReads_count())));
         }
         viewHolder.tvTime.setText(DateUtil.getCountdownMore("yyyy-MM-dd HH:mm:ss", listModel.getPost_date()));
         // isCollect = listModel.isIs_collected();
@@ -329,94 +321,25 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
     }
 
     private void showInviteDialog(FindArticleListModel.ListBean listModel, ViewHolder viewHolder, int position) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.invite_friends_dialog, null);
-        TextView weixinTV = (TextView) view.findViewById(R.id.tv_weixin);
-        TextView wechatmomentsTV = (TextView) view.findViewById(R.id.tv_wechatmoments);
-        TextView weiboTV = (TextView) view.findViewById(R.id.tv_weibo);
-        TextView qqTV = (TextView) view.findViewById(R.id.tv_qq);
-        TextView qonzeTV = (TextView) view.findViewById(R.id.tv_qonze);
-        TextView cancelTV = (TextView) view.findViewById(R.id.tv_cancel);
-        mCustomDialogManager = new CustomDialogManager(mContext, view);
-        viewClick(weixinTV, listModel, viewHolder, position);
-        viewClick(wechatmomentsTV, listModel, viewHolder, position);
-        viewClick(weiboTV, listModel, viewHolder, position);
-        viewClick(qqTV, listModel, viewHolder, position);
-        viewClick(qonzeTV, listModel, viewHolder, position);
-        //        weixinTV.setOnClickListener(this);
-        //        wechatmomentsTV.setOnClickListener(this);
-        //        weiboTV.setOnClickListener(this);
-        //        qqTV.setOnClickListener(this);
-        //        qonzeTV.setOnClickListener(this);
-        cancelTV.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                mCustomDialogManager.dismiss();
-            }
-        });
-        mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
-        mCustomDialogManager.dg.getWindow().setGravity(Gravity.BOTTOM);
-        mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        mCustomDialogManager.showDialog();
+        shareDialog = new RobinShareDialog(mContext);
+        if (listModel != null) {
+            title = "#robin8#" + listModel.getTitle();
+        } else {
+            title = "#robin8#";
+        }
+        titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
+        shareDialog.shareFacebook(HelpTools.getUrl(listModel.getForward_url()),title,mContext.getString(R.string.app_name),IMAGE_URL);
+        shareDialog.show();
+        viewHolder.tvShareNum.setText(String.valueOf(listModel.getForwards_count() + 1));
+        listModel.setForwards_count(listModel.getForwards_count() + 1);
     }
 
-    private void viewClick(TextView view, final FindArticleListModel.ListBean listModel, final ViewHolder holder, final int position) {
-        view.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(final View view) {
-                if (recyclerListener != null) {
-                    recyclerListener.OnSimpleClick(view, position, new SetResultCallBack() {
-
-                        @Override
-                        public void onLike(boolean isLike) {
-
-                        }
-
-                        @Override
-                        public void onCollect(boolean isCollect) {
-
-                        }
-
-                        @Override
-                        public void onShare(boolean isShare) {
-                            switch (view.getId()) {
-                                case R.id.tv_weixin:
-                                    share(Wechat.NAME, listModel, HelpTools.getUrl(listModel.getForward_url()));
-                                    break;
-                                case R.id.tv_wechatmoments:
-                                    share(WechatMoments.NAME, listModel, HelpTools.getUrl(listModel.getForward_url()));
-                                    break;
-                                case R.id.tv_weibo:
-                                    share(SinaWeibo.NAME, listModel, HelpTools.getUrl(listModel.getForward_url()));
-                                    break;
-                                case R.id.tv_qq:
-                                    share(QQ.NAME, listModel, HelpTools.getUrl(listModel.getForward_url()));
-                                    break;
-                                case R.id.tv_qonze:
-                                    share(QZone.NAME, listModel, HelpTools.getUrl(listModel.getForward_url()));
-                                    break;
-                            }
-                            if (isShare) {
-                                holder.tvShareNum.setText(String.valueOf(listModel.getForwards_count() + 1));
-                                listModel.setForwards_count(listModel.getForwards_count() + 1);
-                            }
-                        }
-
-                    });
-                }
-            }
-        });
-    }
 
     private String title;
     private String titleAdd;
     private boolean isFirst = false;
 
     private void share(String platName, FindArticleListModel.ListBean listModel, String url) {
-        if (mCustomDialogManager != null) {
-            mCustomDialogManager.dismiss();
-        }
         if (listModel != null) {
             title = "#robin8#" + listModel.getTitle();
         } else {
@@ -426,42 +349,25 @@ public class MainFindListAdapter extends BaseRecyclerAdapter {
         CustomToast.showShort(mContext, "正在前往分享...");
         //ShareSDK.initSDK(mContext);
         OnekeyShare oks = new OnekeyShare();
-        oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        if (SinaWeibo.NAME.equals(platName)) {
-            oks.setText(title + url + titleAdd);
-        } else {
-            oks.setText(title);
-        }
-        oks.setTitle(title);
-        oks.setTitleUrl(url);
-        oks.setImageUrl(IMAGE_URL);
-        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)) {
-            oks.setUrl(url);
-        }
+//        if (SinaWeibo.NAME.equals(platName)) {
+//            oks.setText(title + url + titleAdd);
+//        } else {
+//            oks.setText(title);
+//        }
+//        oks.setTitle(title);
+//        oks.setTitleUrl(url);
+//        oks.setImageUrl(IMAGE_URL);
+//        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)) {
+//            oks.setUrl(url);
+//        }
         oks.setSite(mContext.getString(R.string.app_name));
         oks.setSiteUrl(CommonConfig.SITE_URL);
         oks.show(mContext);
     }
 
-    private class MySharedListener implements PlatformActionListener {
-        @Override
-        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            CustomToast.showShort(mContext, "分享成功");
 
-        }
-
-        @Override
-        public void onError(Platform platform, int i, Throwable throwable) {
-            CustomToast.showShort(mContext, "分享失败");
-        }
-
-        @Override
-        public void onCancel(Platform platform, int i) {
-            CustomToast.showShort(mContext, "分享取消");
-        }
-    }
 
 }

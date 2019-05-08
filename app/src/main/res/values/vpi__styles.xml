@@ -15,33 +15,8 @@
 -->
 
 <resources>
-    <style name="Theme.PageIndicatorDefaults" parent="android:Theme">
-        <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
-        <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
+	
+	<style name="Widget">
     </style>
 
-    <style name="Widget">
-    </style>
-
-    <style name="Widget.TabPageIndicator" parent="Widget">
-        <item name="android:layout_gravity">center_horizontal</item>
-        <!-- <item name="android:background">@drawable/vpi__tab_indicator</item> -->
-        <item name="android:paddingLeft">30dp</item>
-        <item name="android:paddingRight">30dp</item>
-        <item name="android:layout_marginTop">12dp</item>
-        <item name="android:layout_marginBottom">12dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.TabPageIndicator</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:maxLines">1</item>
-    </style>
-
-    <style name="TextAppearance.TabPageIndicator" parent="Widget">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/tab_text_color</item>
-    </style>
-
-    <style name="Widget.IconPageIndicator" parent="Widget">
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:layout_marginRight">20dp</item>
-    </style>
 </resources>

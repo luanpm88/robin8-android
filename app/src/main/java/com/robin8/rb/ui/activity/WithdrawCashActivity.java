@@ -155,7 +155,7 @@ public class WithdrawCashActivity extends BaseActivity {
         String numberETstr = mNumberEt.getText().toString();
 
         if (TextUtils.isEmpty(numberETstr)) {
-            CustomToast.showShort(this, "请填写提现金额");
+            CustomToast.showShort(this, R.string.robin406);
             return;
         }
 
@@ -163,23 +163,23 @@ public class WithdrawCashActivity extends BaseActivity {
         try {
             number = Float.parseFloat(numberETstr);
         } catch (ParseException e) {
-            CustomToast.showShort(this, "请输入正确格式的金额");
+            CustomToast.showShort(this, R.string.robin407);
             return;
         }
 
         if (number < 50) {
-            CustomToast.showShort(this, "金额满50方可提现");
+            CustomToast.showShort(this, R.string.robin408);
             return;
         }
 
         if (number > mAvailAmountI) {
-            CustomToast.showShort(this, "余额不足");
+            CustomToast.showShort(this, R.string.robin409);
             return;
         }
 
 
         if (!mIsBindedB) {
-            CustomToast.showShort(this, "请您先绑定支付宝账号");
+            CustomToast.showShort(this, R.string.robin410);
             return;
         }
 
@@ -210,7 +210,7 @@ public class WithdrawCashActivity extends BaseActivity {
                     TalkingDataAppCpa.onCustEvent3();
                     mWithCashedB = true;
                     finish();
-                    CustomToast.showShort(WithdrawCashActivity.this, "提现成功");
+                    CustomToast.showShort(WithdrawCashActivity.this, R.string.robin411);
                 }
 
                 if (mWProgressDialog != null) {

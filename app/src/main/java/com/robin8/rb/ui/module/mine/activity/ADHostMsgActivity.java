@@ -60,7 +60,7 @@ public class ADHostMsgActivity extends BaseActivity {
     public void setTitleView() {
         mTVCenter.setText(R.string.mine_ad_host);
         mBottomTv.setVisibility(View.VISIBLE);
-        mBottomTv.setText("保存");
+        mBottomTv.setText(R.string.save);
         mBottomTv.setOnClickListener(this);
     }
 
@@ -194,7 +194,7 @@ public class ADHostMsgActivity extends BaseActivity {
     private void showMyDialog() {
         View view = LayoutInflater.from(ADHostMsgActivity.this).inflate(R.layout.toast_layout, null);
         TextView infoTv = (TextView) view.findViewById(R.id.toast_msg);
-        infoTv.setText("保存成功");
+        infoTv.setText(R.string.robin371);
         infoTv.setGravity(Gravity.CENTER);
         cdm = new CustomDialogManager(ADHostMsgActivity.this, view);
         cdm.dg.setCanceledOnTouchOutside(true);

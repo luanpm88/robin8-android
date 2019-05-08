@@ -148,7 +148,8 @@
                     android:gravity="center_vertical"
                     android:text="共0笔收入"
                     android:textColor="@color/sub_gray_custom"
-                    android:textSize="@dimen/undefine_font_6" />
+                    android:textSize="@dimen/undefine_font_6"
+                    tools:ignore="HardcodedText" />
 
                 <View
                     android:layout_width="0dp"
@@ -162,7 +163,8 @@
                     android:layout_gravity="center_vertical"
                     android:text="合计：¥0"
                     android:textColor="@color/sub_gray_custom"
-                    android:textSize="@dimen/undefine_font_6" />
+                    android:textSize="@dimen/undefine_font_6"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -182,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="预览"
+            android:text="@string/preview"
             android:textColor="@color/white_custom"
             android:visibility="gone" />
 

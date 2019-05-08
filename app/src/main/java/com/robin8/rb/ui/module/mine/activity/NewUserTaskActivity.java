@@ -33,6 +33,10 @@ import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.util.share.ShareInfoBean;
+import com.robin8.rb.util.share.ShareView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,12 +45,9 @@ import java.util.List;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
 
 
-public class NewUserTaskActivity extends BaseActivity {
+public class NewUserTaskActivity extends BaseActivity implements ShareView {
 
     private LinearLayout llFirstStep;
     private RelativeLayout llCampaign;
@@ -290,11 +291,11 @@ public class NewUserTaskActivity extends BaseActivity {
                 }
             }
         });
-        if (activity.getString(R.string.weixin).equals(names)) {
-            presenter.authorize(new Wechat());
-        } else if (activity.getString(R.string.weibo).equals(names)) {
-            presenter.authorize(new SinaWeibo());
-        }
+//        if (activity.getString(R.string.weixin).equals(names)) {
+//            presenter.authorize(new Wechat());
+//        } else if (activity.getString(R.string.weibo).equals(names)) {
+//            presenter.authorize(new SinaWeibo());
+//        }
     }
 
     private void bindPostData(final Activity activity, String name, String userName, final int wechatType) {
@@ -349,11 +350,11 @@ public class NewUserTaskActivity extends BaseActivity {
 
     private void popSharedialog(Activity activity, int wechatType) {
         String platName = "";
-        if (wechatType == 0) {
-            platName = WechatMoments.NAME;
-        } else {
-            platName = Wechat.NAME;
-        }
+//        if (wechatType == 0) {
+//            platName = WechatMoments.NAME;
+//        } else {
+//            platName = Wechat.NAME;
+//        }
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         CustomToast.showShort(activity, "正在前往分享...");
         //ShareSDK.initSDK(activity);
@@ -367,12 +368,23 @@ public class NewUserTaskActivity extends BaseActivity {
 
         oks.setTitleUrl(TITLE_URL + String.valueOf(id));
         oks.setImageUrl(IMAGE_URL);
-        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)){
-            oks.setUrl(TITLE_URL + String.valueOf(id));
-        }
+//        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)){
+//            oks.setUrl(TITLE_URL + String.valueOf(id));
+//        }
         oks.setSite(getString(R.string.app_name));
         oks.setSiteUrl(CommonConfig.SITE_URL);
         oks.show(this);
+    }
+
+    @NotNull
+    @Override
+    public ShareInfoBean getShareBean() {
+        return null;
+    }
+
+    @Override
+    public boolean checkApkInstall(@NotNull String platform) {
+        return false;
     }
 
     public class MySharedListener implements PlatformActionListener {

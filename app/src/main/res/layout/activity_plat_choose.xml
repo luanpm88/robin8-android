@@ -20,7 +20,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="20dp"
-            android:text="选择自媒体平台"
+            android:text="@string/robin172"
             android:textColor="@color/gray_first"
             android:textSize="@dimen/undefine_font_3"/>
         <com.robin8.rb.ui.widget.OtherGridView

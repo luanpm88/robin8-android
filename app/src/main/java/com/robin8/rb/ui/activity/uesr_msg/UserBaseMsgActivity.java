@@ -97,8 +97,8 @@ public class UserBaseMsgActivity extends AppCompatActivity implements View.OnCli
         }).setType(dataType).setDate(startDate).
                 setRangDate(startDate, endDate).
                 setTitleText("").
-                setSubmitText("确定").
-                setCancelText("取消").setLabel("", "", "", "", "", "").setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).setSubCalSize(15).build();
+                setSubmitText(getString(R.string.confirm)).
+                setCancelText(getString(R.string.cancel)).setLabel("", "", "", "", "", "").setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).setSubCalSize(15).build();
     }
 
     private WProgressDialog mWProgressDialog;
@@ -185,7 +185,7 @@ public class UserBaseMsgActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.tv_next_step:
                 if (chooseSex == 0) {
-                    CustomToast.showShort(this, "请选择性别");
+                    CustomToast.showShort(this, R.string.robin419);
                     return;
                 }
 //                if (tag == 0) {

@@ -74,7 +74,7 @@ public class UserInfoShowActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText("资料编辑");
+        mTVCenter.setText(R.string.robin315);
         mTvSave.setVisibility(View.VISIBLE);
         mTvSave.setOnClickListener(this);
     }
@@ -128,12 +128,12 @@ public class UserInfoShowActivity extends BaseActivity {
                     tvBirth.setTextColor(getResources().getColor(R.color.black_000000));
                 }
                 if (kol.getGender() == 1) {
-                    tvGender.setText("男");
+                    tvGender.setText(R.string.male);
                     TYPE_TWO = 1;
                     tvGender.setTextColor(getResources().getColor(R.color.black_000000));
 
                 } else {
-                    tvGender.setText("女");
+                    tvGender.setText(R.string.female);
                     TYPE_TWO = 2;
                     tvGender.setTextColor(getResources().getColor(R.color.black_000000));
 
@@ -269,7 +269,7 @@ public class UserInfoShowActivity extends BaseActivity {
                 tvBirth.setText(getTime(date));
                 tvBirth.setTextColor(getResources().getColor(R.color.black_000000));
             }
-        }).setType(dataType).setDate(selectedDate).setRangDate(startDate, endDate).setTitleText("").setSubmitText("确定").setCancelText("取消").setLabel("年", "月", "日", "", "", "").setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).setSubCalSize(15).build();
+        }).setType(dataType).setDate(selectedDate).setRangDate(startDate, endDate).setTitleText("").setSubmitText(getString(R.string.pickerview_submit)).setCancelText(getString(R.string.pickerview_cancel)).setLabel(getString(R.string.pickerview_year), getString(R.string.pickerview_month), getString(R.string.pickerview_day), "", "", "").setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).setSubCalSize(15).build();
     }
 
     private String getTime(Date date) {//可根据需要自行截取数据显示
@@ -286,15 +286,15 @@ public class UserInfoShowActivity extends BaseActivity {
         TextView tvThird = (TextView) view.findViewById(R.id.tv_third);
         TextView tvCancel = (TextView) view.findViewById(R.id.tv_cancel);
         tvThird.setVisibility(View.GONE);
-        tvFirst.setText("男");
-        tvSecond.setText("女");
+        tvFirst.setText(R.string.male);
+        tvSecond.setText(R.string.female);
         tvFirst.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 manager.dismiss();
                 TYPE_TWO = 1;
-                tvGender.setText("男");
+                tvGender.setText(R.string.male);
                 tvGender.setTextColor(getResources().getColor(R.color.black_000000));
             }
         });
@@ -304,7 +304,7 @@ public class UserInfoShowActivity extends BaseActivity {
             public void onClick(View view) {
                 manager.dismiss();
                 TYPE_TWO = 2;
-                tvGender.setText("女");
+                tvGender.setText(R.string.female);
                 tvGender.setTextColor(getResources().getColor(R.color.black_000000));
             }
         });
@@ -353,7 +353,7 @@ public class UserInfoShowActivity extends BaseActivity {
         }
         if (TextUtils.isEmpty(editJob.getText().toString())) {
             if (show) {
-                CustomToast.showShort(this, "请填写你的职业");
+                CustomToast.showShort(this, R.string.robin017);
             }
             return false;
 

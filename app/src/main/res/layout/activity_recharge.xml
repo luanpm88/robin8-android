@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:text="充值金额"
+            android:text="@string/robin179"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5"/>
 
@@ -59,7 +59,7 @@
             android:background="@null"
             android:gravity="right"
             android:cursorVisible="false"
-            android:hint="最低充值金额500元"
+            android:hint="@string/robin180"
             android:inputType="numberDecimal"
             android:maxLength="12"
             android:padding="15dp"
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:text="邀请码"
+            android:text="@string/robin181"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5"/>
 
@@ -153,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@null"
-            android:hint="可不填写"
+            android:hint="@string/robin182"
             android:inputType="numberDecimal"
             android:maxLength="12"
             android:padding="15dp"
@@ -171,8 +171,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/ll_content4"
-        android:layout_width="match_parent"
+	    android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_content3"
         android:background="@color/white_custom"
@@ -183,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:text="支付方式"
+            android:text="@string/robin183"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5"/>
 
@@ -214,7 +213,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/blue_custom"
         android:gravity="center"
-        android:text="立即充值"
+        android:text="@string/robin169"
         android:textColor="@color/white_custom"
         android:textSize="@dimen/undefine_font_7"/>
 

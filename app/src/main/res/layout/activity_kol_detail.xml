@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
              android:layout_height="match_parent">
 
     <com.robin8.rb.ui.module.first.widget.ScrollViewExtend
@@ -71,7 +72,8 @@
                         android:singleLine="true"
                         android:text="--"
                         android:textColor="@color/white_custom"
-                        android:textSize="@dimen/undefine_font_6"/>
+                        android:textSize="@dimen/undefine_font_6"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="3dp"
@@ -92,37 +94,10 @@
                         android:singleLine="true"
                         android:text="--"
                         android:textColor="@color/white_custom"
-                        android:textSize="@dimen/undefine_font_3"/>
+                        android:textSize="@dimen/undefine_font_3"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/ll_look_social_detail"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:visibility="gone"
-                android:background="@color/white_custom">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:src="@mipmap/icon_social"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    style="@style/textview_center_black"
-                    android:text="查看Ta的影响力"
-                    android:layout_centerInParent="true"
-                    android:layout_height="wrap_content"/>
-                <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_go_next"/>
             </RelativeLayout>
 
             <View

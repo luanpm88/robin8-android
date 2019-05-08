@@ -80,7 +80,7 @@ public class PaySuccessActivity extends BaseActivity {
     public void finish() {
 
         if (from == SPConstants.EDIT_CREATE_ACTIVITY) {
-            String nameArr[] = {"我的分享", "我的创作", "待审核", "审核拒绝"};//待审核、审核通过、审核拒绝, 我的分享
+            String nameArr[] = getResources().getStringArray(R.array.paySuccessItems);//待审核、审核通过、审核拒绝, 我的分享
             String campaignTypeArr[] = {"shares", "passed", "pending", "rejected"};//'pending' , 'passed','rejected', 'shares'
             Intent intent = new Intent(this, FragmentsActivity.class);
             Bundle bundle = new Bundle();

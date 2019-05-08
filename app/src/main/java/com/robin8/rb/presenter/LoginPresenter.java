@@ -11,15 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.ui.activity.LoginOtherWithPhoneActivity;
-import com.robin8.rb.ui.activity.MainActivity;
-import com.robin8.rb.ui.activity.email.EmailRegiterActivity;
-import com.robin8.rb.ui.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.LoginHelper;
 import com.robin8.rb.helper.NotifyManager;
+import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.task.LoginTask;
+import com.robin8.rb.ui.activity.LoginOtherWithPhoneActivity;
+import com.robin8.rb.ui.activity.MainActivity;
+import com.robin8.rb.ui.activity.email.EmailRegiterActivity;
+import com.robin8.rb.ui.activity.uesr_msg.FirstKnowUserIdActivity;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.robin8.rb.ui.model.BaseBean;
 import com.robin8.rb.ui.model.IndentyBean;
 import com.robin8.rb.ui.model.LoginBean;
@@ -27,11 +32,6 @@ import com.robin8.rb.ui.model.OtherLoginListBean;
 import com.robin8.rb.ui.model.sortlist.UserFacebookInfo;
 import com.robin8.rb.ui.module.mine.model.MineShowModel;
 import com.robin8.rb.ui.module.mine.rongcloud.RongCloudBean;
-import com.robin8.rb.ui.module.social.SocialBindActivity;
-import com.robin8.rb.okhttp.HttpRequest;
-import com.robin8.rb.okhttp.RequestCallback;
-import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.task.LoginTask;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
@@ -44,7 +44,6 @@ import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.TimerUtilTwo;
 import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.ILoginView;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.util.ArrayList;
@@ -325,7 +324,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 } else if (indentyBean.getError() == 1) {
                     afterBind(loginBean);
                 } else {
-                    CustomToast.showShort(mActivity, "授权失败，请重试");
+                    CustomToast.showShort(mActivity, R.string.robin420);
                 }
 
             }
@@ -456,7 +455,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
         String phoneNumber = mILoginView.getPhoneNumber();
         if (! RegExpUtil.checkMobile(phoneNumber)) {
-            CustomToast.showShort(mActivity, "请输入正确的手机号码!");
+            CustomToast.showShort(mActivity, R.string.robin329);
             return;
         }
         HelpTools.insertLoginInfo(HelpTools.Token, "");//此时应没有token 手动清理一下
@@ -467,7 +466,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
             @Override
             public void onError(Exception e) {
-                CustomToast.showShort(mActivity, "验证码发送失败!");
+                CustomToast.showShort(mActivity, R.string.robin330);
             }
 
             @Override
@@ -476,13 +475,13 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                 BaseBean bean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (bean != null) {
                     if (bean.getError() == 0) {
-                        CustomToast.showShort(mActivity, "验证码发送成功");
-                        new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
+                        CustomToast.showShort(mActivity, R.string.robin331);
+                        new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, mActivity.getString(R.string.robin325))).start();
                     } else {
-                        CustomToast.showShort(mActivity, "验证码发送失败");
+                        CustomToast.showShort(mActivity, R.string.robin330);
                     }
                 } else {
-                    CustomToast.showShort(mActivity, "验证码发送失败");
+                    CustomToast.showShort(mActivity, R.string.robin330);
                 }
 
             }
@@ -499,7 +498,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
             String checkCode = mILoginView.getCheckCode();
             String invitationCode = mILoginView.getInvitationCode();
             if (! RegExpUtil.checkMobile(phoneNumber)) {
-                CustomToast.showShort(mActivity, "请输入正确的手机号码!");
+                CustomToast.showShort(mActivity, R.string.robin329);
             } else {
                 if (mWProgressDialog == null) {
                     mWProgressDialog = WProgressDialog.createDialog(mActivity);
@@ -517,7 +516,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
 
                     @Override
                     public void onResponse(String response) {
-                        LogUtil.LogShitou("手机号登陆返回数据", response);
                         if (mWProgressDialog != null) {
                             try {
                                 mWProgressDialog.dismiss();
@@ -652,7 +650,6 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
                                 e.printStackTrace();
                             }
                         }
-                        LogUtil.LogShitou("邮箱登陆结果", response);
                         //  TalkingDataAppCpa.onRegister(phoneNumber);
                         //  TalkingDataAppCpa.onLogin(phoneNumber);
                         //  LoginHelper.loginSuccess(loginBean, from, mActivity);
@@ -847,28 +844,7 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
     }
 
     private void jumpActivity(int i) {
-        if (i == 0) {
-            //没有微博或者微信
-            Intent intent = new Intent(mActivity, SocialBindActivity.class);
-            mActivity.startActivity(intent);
-            mActivity.finish();
-            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-//        else if (i == 1) {
-//            //有微博或者微信
-//            Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
-//            mActivity.startActivity(intent);
-//            mActivity.finish();
-//            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//        }
-//        else if (i == 2) {
-//            //跳转到man
-//            Intent intent = new Intent(mActivity, MeasureInfluenceManActivity.class);
-//            mActivity.startActivity(intent);
-//            mActivity.finish();
-//            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//        }
-        else if (i==3){
+        if (i==3){
             Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
             mActivity.startActivity(intent);
             mActivity.finish();

@@ -15,7 +15,7 @@
         android:layout_gravity="right"
         android:gravity="center"
         android:paddingRight="20dp"
-        android:text="跳过>"
+        android:text="@string/robin057"
         android:textColor="@color/gray_second"
         android:textSize="@dimen/undefine_font_3"
         />
@@ -61,7 +61,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="普通用户 (明日之星)"
+                    android:text="@string/robin096"
                     android:textColor="@color/black_000000"
                     android:textSize="15sp"/>
 
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="希望通过Robin8平台发现新鲜事物，并有机会 与各大品牌合作，成为未来的网红新星"
+                    android:text="@string/robin097"
                     android:textColor="@color/gray_first"
                     android:textSize="13sp"/>
             </LinearLayout>
@@ -98,7 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="大V用户 (超级网红)"
+                    android:text="@string/robin098"
                     android:textColor="@color/black_000000"
                     android:textSize="15sp"/>
 
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="已有超过十万粉丝，并有过和品牌合作的经历， 希望通过Robin8获得更广泛的商务合作"
+                    android:text="@string/robin099"
                     android:textColor="@color/gray_first"
                     android:textSize="13sp"/>
             </LinearLayout>
@@ -135,7 +135,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="内容创作者 (创意大咖)"
+                    android:text="@string/robin100"
                     android:textColor="@color/black_000000"
                     android:textSize="15sp"/>
 
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="专注于图文、视频创作的达人，可以发布各种原创内容，有机会与各大品牌合作"
+                    android:text="@string/robin101"
                     android:textColor="@color/gray_first"
                     android:textSize="13sp"/>
             </LinearLayout>

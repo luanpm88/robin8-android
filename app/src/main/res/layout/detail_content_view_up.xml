@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:gravity="center_horizontal"
               android:orientation="vertical">
@@ -72,7 +73,7 @@
             android:gravity="center"
             android:paddingRight="15dp"
             android:paddingTop="10dp"
-            android:text="活动要求"
+            android:text="@string/campaign_request"
             android:textSize="@dimen/undefine_font_3"
             android:visibility="gone"
             />
@@ -169,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:text="请开通PUT钱包,获得额外奖励 >"
+            android:text="@string/robin233"
             android:textColor="@color/blue_custom"
             android:textSize="@dimen/undefine_font_4"
             android:visibility="gone"/>
@@ -203,7 +204,8 @@
             android:text="12331"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -212,7 +214,8 @@
             android:text="|"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_money"
@@ -227,8 +230,7 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/ll_info"
-        android:layout_width="match_parent"
+	    android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"

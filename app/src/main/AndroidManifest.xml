@@ -117,22 +117,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.module.social.MeasureInfluenceActivity"
-            android:configChanges="keyboard|orientation"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme"/>
-        <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
-        <activity
-            android:name=".ui.module.social.BindSocialActivity"
-            android:configChanges="keyboard|orientation"
-            android:launchMode="standard"
-            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.module.reword.activity.DetailContentActivity"
             android:configChanges="keyboard|orientation"
@@ -151,12 +140,6 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ui.module.mine.activity.MyCampaignDetailActivity"
-            android:configChanges="keyboard|orientation"
-            android:launchMode="standard"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".ui.activity.RegistrationActivitiy"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
             android:screenOrientation="portrait"
@@ -445,26 +428,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <!-- 微信分享回调 -->
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <activity
-            android:name="cn.sharesdk.tencent.qq.ReceiveActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data android:scheme="tencent1105224850"/>
-            </intent-filter>
-        </activity>
+     
         <!-- ________________________________ 1、shareSDK配置结束 ________________________________ -->
 
 
@@ -594,43 +558,12 @@
         <activity android:name=".ui.activity.EvaluateActivity"/>
         <activity android:name=".ui.activity.email.ForgetPwdActivity">
         </activity>
-        <activity android:name=".ui.module.social.SocialInfluenceActivity">
-        </activity>
 
         <receiver
             android:name=".receiver.GeTuiReceiver"
             android:enabled="true"
             android:exported="true">
         </receiver>
-
-        <activity
-            android:name=".ui.module.social.SocailPkActivity"
-            android:configChanges="keyboard|orientation"
-            android:hardwareAccelerated="true"
-            android:launchMode="standard"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".ui.module.social.SocialBindActivity"
-            android:configChanges="keyboard|orientation"
-            android:hardwareAccelerated="true"
-            android:launchMode="standard"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".ui.module.social.SocialDetailActivity"
-            android:hardwareAccelerated="true"
-            android:launchMode="standard"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.module.social.UserFirstSocialResult">
-        </activity>
-        <activity
-            android:name=".ui.module.social.MeasureInfluenceManActivity"
-            android:configChanges="keyboard|orientation"
-            android:hardwareAccelerated="true"
-            android:launchMode="standard"
-            android:screenOrientation="portrait">
-        </activity>
         <activity
             android:name=".ui.module.mine.activity.CampaignChoseTypeActivity"
             android:configChanges="keyboard|orientation"
@@ -771,7 +704,6 @@
         </activity>
         <activity
             android:name=".ui.activity.web.PutWebActivity"
-            android:label="@string/title_activity_web_need"
             android:screenOrientation="portrait">
         </activity>
         <activity

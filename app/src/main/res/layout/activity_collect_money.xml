@@ -46,7 +46,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/tv_all_collect_money"
-                    android:text="@string/yuan"
+                    android:text="@string/robin061"
                     android:textColor="@color/yellow_custom"
                     android:textSize="@dimen/undefine_font_4"/>
 
@@ -96,7 +96,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/tv_today_apprentices"
-                    android:text="@string/people"
+                    android:text="@string/robin059"
                     android:textColor="@color/yellow_custom"
                     android:textSize="@dimen/undefine_font_4"/>
 
@@ -159,7 +159,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/img_icon"
-                    android:text="分享邀请收徒"
+                    android:text="@string/robin062"
                     android:textColor="@color/black_202020"
                     android:textSize="@dimen/undefine_font_4"/>
 
@@ -172,7 +172,7 @@
                     android:background="@drawable/shape_solid_blue"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="去分享"
+                    android:text="@string/robin063"
                     android:textColor="@color/white_custom"
                     android:textSize="@dimen/undefine_font_3"/>
             </RelativeLayout>
@@ -202,7 +202,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/img_icon_two"
-                    android:text="通讯录邀请收徒"
+                    android:text="@string/robin064"
                     android:textColor="@color/black_202020"
                     android:textSize="@dimen/undefine_font_4"/>
 
@@ -215,7 +215,7 @@
                     android:background="@drawable/shape_solid_blue"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="去邀请"
+                    android:text="@string/robin065"
                     android:textColor="@color/white_custom"
                     android:textSize="@dimen/undefine_font_3"/>
             </RelativeLayout>
@@ -259,7 +259,7 @@
                     android:background="@drawable/shape_solid_blue"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="复制"
+                    android:text="@string/robin066"
                     android:textColor="@color/white_custom"
                     android:textSize="@dimen/undefine_font_3"/>
             </RelativeLayout>
@@ -283,7 +283,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="奖励规则"
+                    android:text="@string/robin067"
                     android:textColor="@color/black_custom"
                     android:textSize="@dimen/undefine_font_5"/>
 
@@ -324,7 +324,7 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center_vertical"
                             android:paddingLeft="15dp"
-                            android:text="收徒奖励规则："
+                            android:text="@string/robin068"
                             android:textColor="@color/blue_custom"
                             android:textSize="@dimen/undefine_font_4"/>
 
@@ -336,7 +336,7 @@
                             android:letterSpacing="0.05"
                             android:lineSpacingExtra="2dp"
                             android:paddingLeft="15dp"
-                            android:text="满足以下条件即为收徒成功并发放奖励："
+                            android:text="@string/robin069"
                             android:textColor="@color/gray_first"
                             android:textSize="@dimen/undefine_font_3"/>
 
@@ -348,7 +348,7 @@
                             android:letterSpacing="0.05"
                             android:lineSpacingExtra="2dp"
                             android:paddingLeft="15dp"
-                            android:text="1.徒弟注册成为robin8的用户;"
+                            android:text="@string/robin070"
                             android:textColor="@color/gray_first"
                             android:textSize="@dimen/undefine_font_3"/>
 
@@ -361,7 +361,7 @@
                             android:letterSpacing="0.05"
                             android:lineSpacingExtra="2dp"
                             android:paddingLeft="15dp"
-                            android:text="2.完成一个robin8的活动。"
+                            android:text="@string/robin071"
                             android:textColor="@color/gray_first"
                             android:textSize="@dimen/undefine_font_3"/>
 
@@ -376,7 +376,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="15dp"
-                                android:text="分红奖励规则："
+                                android:text="@string/robin072"
                                 android:textColor="@color/blue_custom"
                                 android:textSize="@dimen/undefine_font_4"/>
 

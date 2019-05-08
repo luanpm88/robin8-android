@@ -173,7 +173,7 @@ public class ScreenImgActivity extends BaseActivity {
                 //完成后返回
                 if (screenType.equals("2") || screenType.equals("1")) {
                     if (imgMap.size() != nameList.size()) {
-                        CustomToast.showShort(ScreenImgActivity.this, "请上传全部图片！");
+                        CustomToast.showShort(ScreenImgActivity.this, R.string.robin381);
                     } else {
                         SerializableMap map = new SerializableMap();
                         map.setMap(imgMap);
@@ -189,7 +189,7 @@ public class ScreenImgActivity extends BaseActivity {
                     finish();
                 }else if (screenType.equals("4")){
                     if (imgMap.size() != nameList.size()) {
-                        CustomToast.showShort(ScreenImgActivity.this, "请上传图片！");
+                        CustomToast.showShort(ScreenImgActivity.this, R.string.robin382);
                     } else {
                         upTasks();
                     }

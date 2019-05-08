@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="15dp"
-            android:text="KOL资质审核拒绝"
+            android:text="@string/robin247"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5" />
 
@@ -29,7 +29,7 @@
             android:gravity="center"
             android:paddingBottom="15dp"
             android:paddingTop="5dp"
-            android:text="头像不符合要求"
+            android:text="@string/robin248"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_0" />
 
@@ -46,7 +46,7 @@
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="重新申请成为KOL"
+            android:text="@string/robin249"
             android:textColor="@color/blue_custom"
             android:textSize="@dimen/undefine_font_5" />
 
@@ -63,7 +63,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="取消"
+            android:text="@string/cancel"
             style="@style/text_view_with_dialog_positive"
             android:textSize="@dimen/undefine_font_5" />
     </LinearLayout>

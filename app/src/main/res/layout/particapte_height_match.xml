@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -12,7 +13,8 @@
         android:layout_marginBottom="3dp"
         android:text="最大fdfee"
         android:textColor="@color/sub_black_custom"
-        android:textSize="@dimen/undefine_font_0" />
+        android:textSize="@dimen/undefine_font_0"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_item_number"
@@ -21,5 +23,6 @@
         android:text="0"
         android:singleLine="true"
         android:textColor="@color/sub_black_custom"
-        android:textSize="@dimen/undefine_font_3" />
+        android:textSize="@dimen/undefine_font_3"
+        tools:ignore="HardcodedText" />
 </LinearLayout>

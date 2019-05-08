@@ -33,7 +33,7 @@
                 android:gravity="center"
                 android:paddingBottom="15dp"
                 android:paddingTop="20dp"
-                android:text="填写微博报价"
+                android:text="@string/robin203"
                 android:textColor="@color/gray_first"/>
 
             <RelativeLayout
@@ -83,7 +83,7 @@
                 android:gravity="center"
                 android:paddingBottom="15dp"
                 android:paddingTop="20dp"
-                android:text="填写微信报价"
+                android:text="@string/robin204"
                 android:textColor="@color/gray_first"/>
 
             <RelativeLayout

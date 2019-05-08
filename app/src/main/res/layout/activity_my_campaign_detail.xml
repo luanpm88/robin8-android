@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sv_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -50,7 +51,8 @@
                 android:layout_marginTop="20dp"
                 android:text="---"
                 android:textColor="@color/sub_black_custom"
-                android:textSize="@dimen/undefine_font_5" />
+                android:textSize="@dimen/undefine_font_5"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_activity_time"
@@ -88,7 +90,8 @@
                 android:paddingRight="10dp"
                 android:text="点击  |  ¥ 0.5"
                 android:textColor="@color/sub_black_custom"
-                android:textSize="@dimen/undefine_font_5" />
+                android:textSize="@dimen/undefine_font_5"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,7 +114,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="活动总预算"
+                    android:text="@string/robin159"
                     android:textColor="@color/sub_black_custom"
                     android:textSize="@dimen/undefine_font_5" />
 
@@ -126,7 +129,8 @@
                     android:layout_height="wrap_content"
                     android:text="¥ 100"
                     android:textColor="@color/black_custom"
-                    android:textSize="@dimen/undefine_font_5" />
+                    android:textSize="@dimen/undefine_font_5"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
             <View style="@style/Undefined_Line" />
@@ -144,7 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="查看活动页面"
+                    android:text="@string/robin160"
                     android:textColor="@color/sub_black_custom"
                     android:textSize="@dimen/undefine_font_5" />
 
@@ -174,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="查看参与人员页面"
+                    android:text="@string/robin161"
                     android:textColor="@color/sub_black_custom"
                     android:textSize="@dimen/undefine_font_5" />
 

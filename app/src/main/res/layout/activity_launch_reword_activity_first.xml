@@ -14,7 +14,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="13dp"
             android:gravity="center_vertical"
-            android:text="填写文章链接"
+            android:text="@string/robin136"
             android:textColor="@color/gray_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
                 android:background="@null"
-                android:hint="复制链接，即可自动填写【建议发布微信文章】"
+                android:hint="@string/robin137"
                 android:inputType="text"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
@@ -61,7 +61,7 @@
             android:layout_below="@+id/rl"
             android:layout_marginLeft="13dp"
             android:gravity="center_vertical"
-            android:text="选择期望效果"
+            android:text="@string/robin138"
             android:textColor="@color/gray_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -88,7 +88,7 @@
             android:layout_marginLeft="13dp"
             android:layout_marginRight="13dp"
             android:gravity="center"
-            android:text="Robin8国内首家利用NLP技术进行精准营销只需复制文章链接即可只能发布"
+            android:text="@string/robin139"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_3" />
     </RelativeLayout>

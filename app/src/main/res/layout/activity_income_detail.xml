@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="敬请期待"
+            android:text="@string/robin105"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6" />
     </LinearLayout>
@@ -48,7 +48,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/blue_custom"
         android:gravity="center"
-        android:text="立即夺宝"
+        android:text="@string/robin106"
         android:textColor="@color/white_custom"
         android:textSize="@dimen/undefine_font_5"
         android:visibility="gone" />

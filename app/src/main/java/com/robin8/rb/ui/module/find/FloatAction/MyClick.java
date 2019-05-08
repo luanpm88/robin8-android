@@ -56,7 +56,7 @@ public class MyClick implements View.OnClickListener {
         final CustomDialogManager cdm = new CustomDialogManager(context, view);
         if (! TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.REDNUM))) {
             tvRedNum.setText(HelpTools.getCommonXml(HelpTools.REDNUM));
-            tvRedDetail.setText(HelpTools.getCommonXml(HelpTools.REDNUM)+"元奖励已放入钱包");
+            tvRedDetail.setText(context.getString(R.string.robin452,HelpTools.getCommonXml(HelpTools.REDNUM)));
         }
         imgClose.setOnClickListener(new View.OnClickListener() {
 

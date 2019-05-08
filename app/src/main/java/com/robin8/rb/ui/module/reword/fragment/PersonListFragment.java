@@ -85,7 +85,7 @@ public class PersonListFragment extends BaseFragment {
             @Override
             public void onError(Exception e) {
 
-                CustomToast.showShort(mActivity, "网络连接错误");
+                CustomToast.showShort(mActivity, R.string.robin345);
                 //                if (mWProgressDialog != null) {
                 //                    mWProgressDialog.dismiss();
                 //                }

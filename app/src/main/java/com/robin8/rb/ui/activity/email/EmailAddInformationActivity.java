@@ -73,7 +73,7 @@ public class EmailAddInformationActivity extends BaseActivity {
 
     private void putEmailMsg() {
         if (TextUtils.isEmpty(etEmailName.getText().toString().trim())){
-            CustomToast.showShort(EmailAddInformationActivity.this,"请输入昵称");
+            CustomToast.showShort(EmailAddInformationActivity.this, R.string.robin324);
             return;
         }else if (TextUtils.isEmpty(etEmailPwd.getText().toString().trim())){
             CustomToast.showShort(EmailAddInformationActivity.this,getString(R.string.put_pwd));

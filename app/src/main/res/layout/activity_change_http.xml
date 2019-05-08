@@ -57,7 +57,7 @@
             android:padding="10dp"
             android:singleLine="true"
             android:text=""
-            android:hint="可从粘贴板自动读取"
+            android:hint="@string/robin056"
             android:textColor="@color/pickerview_timebtn_nor"
             android:textColorHint="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6"/>
@@ -93,7 +93,8 @@
             android:lineSpacingMultiplier="1.5"
             android:text="http://"
             android:textColor="@color/black_custom"
-            android:textSize="@dimen/undefine_font_6"/>
+            android:textSize="@dimen/undefine_font_6"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/edit_two"
@@ -105,7 +106,7 @@
             android:maxLength="15"
             android:padding="10dp"
             android:singleLine="true"
-            android:text="12121212"
+            android:text=""
             android:textColor="@color/pickerview_timebtn_nor"
             android:textColorHint="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6"/>
@@ -141,7 +142,8 @@
             android:lineSpacingMultiplier="1.5"
             android:text="https://"
             android:textColor="@color/black_custom"
-            android:textSize="@dimen/undefine_font_6"/>
+            android:textSize="@dimen/undefine_font_6"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/edit_three"
@@ -153,7 +155,7 @@
             android:maxLength="15"
             android:padding="10dp"
             android:singleLine="true"
-            android:text="12121212"
+            android:text=""
             android:textColor="@color/pickerview_timebtn_nor"
             android:textColorHint="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6"/>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.robin8.rb.R;
 import com.robin8.rb.ui.activity.web.WebViewActivity;
 import com.robin8.rb.base.BaseRecyclerViewPresenter;
 import com.robin8.rb.base.constants.SPConstants;
@@ -78,7 +79,7 @@ public class ArticleListsProtocol implements IProtocol {
             ArticleListsModel.ArticlesBean bean = (ArticleListsModel.ArticlesBean) obj;
             Intent intent = new Intent(mActivity, WebViewActivity.class);
             intent.putExtra("from", SPConstants.ARTICLE_LIST);
-            intent.putExtra("title", "详情");
+            intent.putExtra("title", mActivity.getString(R.string.robin451));
             intent.putExtra("url", bean.getArticle_url());
             mActivity.startActivity(intent);
         }

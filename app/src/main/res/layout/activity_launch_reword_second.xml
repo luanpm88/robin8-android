@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/mine_bg"
@@ -52,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="发发发"
+                    android:text="@string/app_name"
                     android:textColor="@color/sub_black_custom"
                     android:textSize="@dimen/undefine_font_5" />
 
@@ -63,7 +64,8 @@
                     android:layout_marginTop="20dp"
                     android:text="2016-2017"
                     android:textColor="@color/sub_black_custom"
-                    android:textSize="@dimen/undefine_font_1" />
+                    android:textSize="@dimen/undefine_font_1"
+                    tools:ignore="HardcodedText" />
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -78,7 +80,7 @@
                         android:lineSpacingExtra="1dp"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:text="暗粉色发沙发杀人官方水水水水水"
+                        android:text="@string/app_name"
                         android:textColor="@color/sub_black_custom"
                         android:textSize="@dimen/undefine_font_2" />
                 </ScrollView>
@@ -94,7 +96,8 @@
                     android:paddingRight="10dp"
                     android:text="点击  |  ¥ 0.5"
                     android:textColor="@color/sub_black_custom"
-                    android:textSize="@dimen/undefine_font_5" />
+                    android:textSize="@dimen/undefine_font_5"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="修改活动信息"
+                        android:text="@string/robin140"
                         android:textColor="@color/sub_black_custom"
                         android:textSize="@dimen/undefine_font_5" />
 
@@ -150,7 +153,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="活动总预算"
+                        android:text="@string/robin141"
                         android:textColor="@color/sub_black_custom"
                         android:textSize="@dimen/undefine_font_5" />
 
@@ -182,7 +185,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="积分抵扣"
+                        android:text="@string/robin142"
                         android:textColor="@color/sub_black_custom"
                         android:textSize="@dimen/undefine_font_5" />
 
@@ -219,7 +222,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="钱包余额抵扣"
+                        android:text="@string/robin143"
                         android:textColor="@color/sub_black_custom"
                         android:textSize="@dimen/undefine_font_5" />
 
@@ -230,7 +233,8 @@
                         android:layout_marginLeft="8dp"
                         android:text="¥ 100(余额：¥ 111)"
                         android:textColor="@color/yellow_custom"
-                        android:textSize="@dimen/undefine_font_5" />
+                        android:textSize="@dimen/undefine_font_5"
+                        tools:ignore="HardcodedText" />
 
                     <View
                         android:layout_width="0dp"
@@ -257,7 +261,8 @@
                     android:layout_marginRight="10dp"
                     android:text="合计：¥ 0"
                     android:textColor="@color/black_custom"
-                    android:textSize="@dimen/undefine_font_5" />
+                    android:textSize="@dimen/undefine_font_5"
+                    tools:ignore="HardcodedText" />
 
                 <View
                     android:layout_width="match_parent"
@@ -274,7 +279,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/blue_custom"
         android:gravity="center"
-        android:text="立即支付"
+        android:text="@string/robin144"
         android:textColor="@color/white_custom"
         android:textSize="@dimen/undefine_font_7" />
 </RelativeLayout>

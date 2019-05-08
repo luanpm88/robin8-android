@@ -123,7 +123,7 @@ public class WeiBoMsgActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText(getResources().getString(R.string.weibo).toString());
+        mTVCenter.setText(getResources().getString(R.string.weibo));
         mTvSave.setVisibility(View.VISIBLE);
         mTvSave.setOnClickListener(this);
     }
@@ -285,48 +285,48 @@ public class WeiBoMsgActivity extends BaseActivity {
     private Boolean checkParams(boolean show) {
         if (TextUtils.isEmpty(txEditNickName)) {
             if (show) {
-                CustomToast.showShort(this, "请填写昵称");
+                CustomToast.showShort(this, R.string.please_write_nick_name);
             }
             return false;
         }
-        if (TextUtils.isEmpty(txChooseCircle) || txChooseCircle.equals("请选择你的kOL圈子")) {
+        if (TextUtils.isEmpty(txChooseCircle) || txChooseCircle.equals(getString(R.string.robin218))) {
             if (show) {
-                CustomToast.showShort(this, "请选择你的kOL圈子");
+                CustomToast.showShort(this, R.string.robin218);
             }
             return false;
         }
         if (TYPE_ONE == 0) {
             if (show) {
-                CustomToast.showShort(this, "请选择你的认证类型");
+                CustomToast.showShort(this, R.string.robin226);
             }
 
             return false;
         }
         if (TextUtils.isEmpty(txEditFirstPrice)) {
             if (show) {
-                CustomToast.showShort(this, "请填写转发价格");
+                CustomToast.showShort(this, R.string.robin227);
             }
 
             return false;
         }
         if (TextUtils.isEmpty(txEditSecondPrice)) {
             if (show) {
-                CustomToast.showShort(this, "请填写直发价格");
+                CustomToast.showShort(this, R.string.robin228);
             }
 
             return false;
         }
         if (TextUtils.isEmpty(txEditThirdPrice)) {
             if (show) {
-                CustomToast.showShort(this, "请填写直播价格");
+                CustomToast.showShort(this, R.string.robin229);
             }
 
             return false;
         }
 
-        if (TextUtils.isEmpty(txPriceEndTime) || txPriceEndTime.equals("请填写报价有效期")) {
+        if (TextUtils.isEmpty(txPriceEndTime) || txPriceEndTime.equals(getString(R.string.robin224))) {
             if (show) {
-                CustomToast.showShort(this, "请填写报价有效期");
+                CustomToast.showShort(this, R.string.robin224);
             }
 
             return false;
@@ -334,7 +334,7 @@ public class WeiBoMsgActivity extends BaseActivity {
 
         if (TextUtils.isEmpty(txEditFirstNum)) {
             if (show) {
-                CustomToast.showShort(this, "请填写粉丝数量");
+                CustomToast.showShort(this, R.string.robin081);
             }
 
             return false;
@@ -342,15 +342,15 @@ public class WeiBoMsgActivity extends BaseActivity {
 
         if (TYPE_TWO == 0) {
             if (show) {
-                CustomToast.showShort(this, "请选择主要粉丝性别");
+                CustomToast.showShort(this, R.string.robin082);
             }
 
             return false;
         }
 
-        if (TextUtils.isEmpty(txThirdChoose) || txThirdChoose.equals("请选择地域集中城市(1-3个)")) {
+        if (TextUtils.isEmpty(txThirdChoose) || txThirdChoose.equals(getString(R.string.robin084))) {
             if (show) {
-                CustomToast.showShort(this, "请选择地域集中城市(1-3个)");
+                CustomToast.showShort(this, R.string.robin084);
             }
 
             return false;
@@ -358,7 +358,7 @@ public class WeiBoMsgActivity extends BaseActivity {
 
         if (TextUtils.isEmpty(txEditLink)) {
             if (show) {
-                CustomToast.showShort(this, "请填写作品链接");
+                CustomToast.showShort(this, R.string.robin086);
             }
             return false;
         }
@@ -388,13 +388,13 @@ public class WeiBoMsgActivity extends BaseActivity {
 //                    tvFirst.setText(weibo_auth_list.get(0));
 //                }
 //            }
-            tvFirst.setText("机构认证");
-            tvSecond.setText("个人认证");
-            tvThird.setText("未认证");
+            tvFirst.setText(R.string.robin352);
+            tvSecond.setText(R.string.robin353);
+            tvThird.setText(R.string.robin354);
         } else {
             tvThird.setVisibility(View.GONE);
-            tvFirst.setText("男");
-            tvSecond.setText("女");
+            tvFirst.setText(R.string.male);
+            tvSecond.setText(R.string.female);
         }
         tvFirst.setOnClickListener(new View.OnClickListener() {
 
@@ -403,10 +403,10 @@ public class WeiBoMsgActivity extends BaseActivity {
                 manager.dismiss();
                 if (type == 1) {
                     TYPE_ONE = 1;
-                    tvItemPlatform.setText("机构认证");
+                    tvItemPlatform.setText(R.string.robin352);
                 } else {
                     TYPE_TWO = 1;
-                    tvSecondChoose.setText("主要粉丝性别：男");
+                    tvSecondChoose.setText(R.string.robin355);
                 }
             }
         });
@@ -417,10 +417,10 @@ public class WeiBoMsgActivity extends BaseActivity {
                 manager.dismiss();
                 if (type == 1) {
                     TYPE_ONE = 2;
-                    tvItemPlatform.setText("个人认证");
+                    tvItemPlatform.setText(R.string.robin353);
                 } else {
                     TYPE_TWO = 2;
-                    tvSecondChoose.setText("主要粉丝性别：女");
+                    tvSecondChoose.setText(R.string.robin356);
                 }
             }
         });
@@ -431,7 +431,7 @@ public class WeiBoMsgActivity extends BaseActivity {
                 manager.dismiss();
                 if (type == 1) {
                     TYPE_ONE = 3;
-                    tvItemPlatform.setText("未认证");
+                    tvItemPlatform.setText(R.string.robin354);
                 }
             }
         });
@@ -531,7 +531,7 @@ public class WeiBoMsgActivity extends BaseActivity {
                     }
                     tvChooseRange.setText(Joiner.on(" ,").join(circleNameList));
                 } else {
-                    tvChooseRange.setText("请选择你的kOL圈子");
+                    tvChooseRange.setText(R.string.robin218);
                     setSave();
                 }
 
@@ -548,7 +548,7 @@ public class WeiBoMsgActivity extends BaseActivity {
                     for (int i = 0; i < listExtra.size(); i++) {
                         cityNameList.add(listExtra.get(i));
                     }
-                    tvThirdChoose.setText("地域集中城市：" + (Joiner.on(" ,").join(cityName(cityNameList))));
+                    tvThirdChoose.setText(getString(R.string.robin269,(Joiner.on(" ,").join(cityName(cityNameList)))));
                 }
             }
         }
@@ -584,11 +584,11 @@ public class WeiBoMsgActivity extends BaseActivity {
                     editThirdPrice.setText(editShow(false, String.valueOf(wechatAccountBean.getLive_price()), editThirdBegin));
                     TYPE_ONE = wechatAccountBean.getAuth_type();
                     if (TYPE_ONE == 1) {
-                        tvItemPlatform.setText("机构认证");
+                        tvItemPlatform.setText(R.string.robin352);
                     } else if (TYPE_ONE == 2) {
-                        tvItemPlatform.setText("个人认证");
+                        tvItemPlatform.setText(R.string.robin353);
                     } else if (TYPE_ONE == 3) {
-                        tvItemPlatform.setText("未认证");
+                        tvItemPlatform.setText(R.string.robin354);
                     }
                     String time = wechatAccountBean.getQuote_expired_at();
                     if (!TextUtils.isEmpty(time)){
@@ -597,9 +597,9 @@ public class WeiBoMsgActivity extends BaseActivity {
                     editFirstNum.setText(editShow(false, String.valueOf(wechatAccountBean.getFans_count()), editFifthBegin));
                     TYPE_TWO = wechatAccountBean.getGender();
                     if (TYPE_TWO == 1) {
-                        tvSecondChoose.setText("主要粉丝性别：男");
+                        tvSecondChoose.setText(R.string.robin355);
                     } else {
-                        tvSecondChoose.setText("主要粉丝性别：女");
+                        tvSecondChoose.setText(R.string.robin356);
                     }
                     //集中城市
                     List<String> cities = wechatAccountBean.getCities();
@@ -607,7 +607,7 @@ public class WeiBoMsgActivity extends BaseActivity {
                         for (int i = 0; i < cities.size(); i++) {
                             cityNameList.add(cities.get(i));
                         }
-                        tvThirdChoose.setText("地域集中城市：" + Joiner.on(" ,").join(cityName(cityNameList)));
+                        tvThirdChoose.setText(getString(R.string.robin269,Joiner.on(" ,").join(cityName(cityNameList))));
                     }
                     editLink.setText(wechatAccountBean.getContent_show());
                     if (! TextUtils.isEmpty(wechatAccountBean.getRemark())) {

@@ -75,8 +75,10 @@ import io.rong.imlib.model.CSCustomServiceInfo;
 import io.rong.imlib.model.UserInfo;
 
 /**
- 我的页面
- @author Figo zc */
+ * 我的页面
+ *
+ * @author Figo zc
+ */
 public class MinePager extends BasePager implements View.OnClickListener, Observer {
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_NORMAL = 1;
@@ -84,16 +86,16 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private static final int MY_WALLET = 2;
     private static final int MY_PUT_WALLET = 3;
     private static final int MY_CAMPAIGN = 4;
-    private static final int MY_COLLECT = 5;
+        private static final int MY_COLLECT = 5;
     private static final int MY_PRODUCT = 6;
     private static final int MY_CARE = 7;
-    private static final int AD_HOST = 8;
+        private static final int AD_HOST = 8;
     private static final int ROBIN_INDIANA = 9;
     private static final int SIGN = 10;
     private static final int INVITE_FRIENDS = 11;
     private static final int INVITE_CODE = 12;
-//    private static final int RONG_CLOUD = 13;
-    private static final int HELP_CENTER = 13;
+        private static final int RONG_CLOUD = 13;
+    private static final int HELP_CENTER = 14;
 
     private static final String ROLE_BIG_V = "big_v";
     private static final String ROLE_PUBLIC = "public";
@@ -133,6 +135,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private String isShowCode;
     private String bannerUrl;
     private String mResponse;
+    private ArrayList<String> hindMenu = new ArrayList<>();
 
     public MinePager(FragmentActivity activity) {
 
@@ -145,6 +148,13 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private void initDataList() {
 
         String[] arrayTitle = mActivity.getResources().getStringArray(R.array.mine_list_title);
+        hindMenu.add(arrayTitle[4]);
+        hindMenu.add(arrayTitle[5]);
+        hindMenu.add(arrayTitle[6]);
+        hindMenu.add(arrayTitle[7]);
+        hindMenu.add(arrayTitle[8]);
+        hindMenu.add(arrayTitle[11]);
+        hindMenu.add(arrayTitle[12]);
         String[] arrayId = mActivity.getResources().getStringArray(R.array.mine_list_icons);
         if (mItemList == null) {
             mItemList = new ArrayList<ItemBean>();
@@ -210,8 +220,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     初始化界面
-     @param view
+     * 初始化界面
+     *
+     * @param view
      */
     private void initView(final View view) {
 
@@ -277,14 +288,14 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 // mUserTagTv.setText(getTags(kol.getTags()));
                 // mUserProgress.setVisibility(View.VISIBLE);
                 mUserProgress.setProgress(Float.valueOf(userProRate * 100));
-                mUserTagTv.setText("点击完善身份信息");
-                if (! TextUtils.isEmpty(imgUrl)) {
+                mUserTagTv.setText(R.string.robin7);
+                if (!TextUtils.isEmpty(imgUrl)) {
                     mImgLogo.setVisibility(View.VISIBLE);
                     BitmapUtil.loadImage(mActivity, imgUrl, mImgLogo);
                 } else {
                     mImgLogo.setVisibility(View.GONE);
                 }
-                if (! TextUtils.isEmpty(kol.getAvatar_url())) {
+                if (!TextUtils.isEmpty(kol.getAvatar_url())) {
                     BitmapUtil.loadImage(mActivity.getApplicationContext(), kol.getAvatar_url(), mCIVImage);
                 } else {
                     mCIVImage.setImageResource(R.mipmap.icon_user_default);
@@ -305,9 +316,10 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     设置Kol审核以及认证状态
-     @param state
-     @param role
+     * 设置Kol审核以及认证状态
+     *
+     * @param state
+     * @param role
      */
     private void setApplyTvState(String state, String role) {
 
@@ -326,7 +338,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 break;
             case STATE_APPLYING:
                 mKolCertificationIv.setBackgroundResource(R.mipmap.icon_kol_uncertification);
-                if (! role.equals(ROLE_BIG_V)) {
+                if (!role.equals(ROLE_BIG_V)) {
                     mApplyTv.setText(R.string.data_reviewing);
                     mApplyTv.setTextColor(UIUtils.getColor(R.color.mine_yellow_custom));
                     mApplyTv.setBackgroundResource(R.drawable.shape_bg_yellow_pane);
@@ -381,7 +393,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     @Override
     public void initData() {
-        if (! BaseApplication.getInstance().hasLogined()) {
+        if (!BaseApplication.getInstance().hasLogined()) {
             initViewWithoutLogin();
             return;
         }
@@ -421,16 +433,16 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 has_any_unread_message = mineShowModel.isHas_any_unread_message();
                 userProRate = mineShowModel.getCompleted_rate();
                 isHiddle = detail;
-                if (! TextUtils.isEmpty(mineShowModel.getIs_show_invite_code())) {
+                if (!TextUtils.isEmpty(mineShowModel.getIs_show_invite_code())) {
                     isShowCode = mineShowModel.getIs_show_invite_code();
                 }
-                if (! TextUtils.isEmpty(mineShowModel.getPut_switch())) {
+                if (!TextUtils.isEmpty(mineShowModel.getPut_switch())) {
                     HelpTools.insertLoginInfo(HelpTools.ISOPENPUT, mineShowModel.getPut_switch());
                 }
                 imgUrl = mineShowModel.getLogo();
                 //身份审核进度
                 if (mBean != null) {
-                    if (! (mBean.getCreator_is_read() == 0 && mBean.getPublic_wechat_account_is_read() == 0 && mBean.getWeibo_account_is_read() == 0)) {
+                    if (!(mBean.getCreator_is_read() == 0 && mBean.getPublic_wechat_account_is_read() == 0 && mBean.getWeibo_account_is_read() == 0)) {
                         //三身份都不为0显示
                         if (mBean.getRead_list() != null) {
                             if (mBean.getRead_list().size() != 0) {
@@ -557,7 +569,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
 
     private boolean isLogined(int from) {
-        if (! BaseApplication.getInstance().hasLogined()) {
+        if (!BaseApplication.getInstance().hasLogined()) {
             Intent intent = new Intent(mActivity, LoginActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt("from", from);
@@ -569,7 +581,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     我的钱包
+     * 我的钱包
      */
     private void skipToWallet() {
 
@@ -640,9 +652,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 case INVITE_CODE:
                     skipToInvitationCode();
                     break;
-//                case RONG_CLOUD:
-//                    skipRongCloud();
-//                    break;
+                case RONG_CLOUD:
+                    skipRongCloud();
+                    break;
                 case HELP_CENTER:
                     skipToHelpCenter();
                     break;
@@ -652,7 +664,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     private void skipToWeb() {
         if (isLogined(SPConstants.ME_BANNER)) {
-            if (! TextUtils.isEmpty(bannerUrl)) {
+            if (!TextUtils.isEmpty(bannerUrl)) {
                 Intent intent = new Intent(mActivity, BannerWebActivity.class);
                 intent.putExtra(BannerWebActivity.BANNER, bannerUrl);
                 intent.putExtra(BannerWebActivity.BANNER_BEAN, mResponse);
@@ -662,7 +674,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     我的收藏
+     * 我的收藏
      */
     private void skipToCollect() {
         if (isLogined(SPConstants.MAIN_COLLECT)) {
@@ -673,7 +685,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
 
     /**
-     我的邀请
+     * 我的邀请
      */
     private void skipToInViteFriends() {
         if (isLogined(SPConstants.INVITE_FRIENDS_ACTIVITY)) {
@@ -687,7 +699,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     我的关注
+     * 我的关注
      */
     private void skipToMyCare() {
         if (isLogined(SPConstants.MY_CAMPAIGN_ACTIVITY)) {
@@ -700,7 +712,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     我的活动
+     * 我的活动
      */
     private void skipToCampaign() {
 
@@ -712,16 +724,16 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             bundle.putStringArray("name", nameArr);
             bundle.putStringArray("type", campaignTypeArr);
             bundle.putString("page_name", StatisticsAgency.MY_TASK);
-          //  bundle.putString("title_name", mActivity.getString(R.string.my_capaign));
+            //  bundle.putString("title_name", mActivity.getString(R.string.my_capaign));
             bundle.putString("url", HelpTools.getUrl(CommonConfig.MY_CAMPAIGNS));
-            bundle.putInt("kolId",mKolBean.getId());
+            bundle.putInt("kolId", mKolBean.getId());
             intent.putExtras(bundle);
             mActivity.startActivity(intent);
         }
     }
 
     /**
-     品牌主
+     * 品牌主
      */
     private void skipToAdHost() {
 
@@ -732,7 +744,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     put钱包
+     * put钱包
      */
     private void skipToPutWallet() {
 
@@ -744,7 +756,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     签到
+     * 签到
      */
     private void skipToSign() {
         if (isLogined(SPConstants.USER_SIGN_ACTIVITY)) {
@@ -755,7 +767,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     输入邀请码
+     * 输入邀请码
      */
     private void skipToInvitationCode() {
         if (isLogined(SPConstants.INVITATION_CODE)) {
@@ -765,7 +777,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     一元购
+     * 一元购
      */
     private void skipToRobinIndiana() {
 
@@ -780,7 +792,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
 
     /**
-     我的产品（已屏蔽）
+     * 我的产品（已屏蔽）
      */
     private void skipToProduct() {
 
@@ -800,7 +812,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     帮助中心
+     * 帮助中心
      */
     private void skipToHelpCenter() {
         if (isLogined(SPConstants.USER_SIGN_ACTIVITY)) {
@@ -810,8 +822,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     在线客服
-     融云
+     * 在线客服
+     * 融云
      */
     private void skipRongCloud() {
         if (isLogined(SPConstants.RONG_CLOUD)) {
@@ -820,7 +832,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     获取融云的token
+     * 获取融云的token
      */
     private void initGetRongCloud() {
         try {
@@ -838,12 +850,12 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             } else {
                 id = HelpTools.getLoginInfo(HelpTools.LoginNumber);
             }
-            if (! TextUtils.isEmpty(loginBean.getKol().getName())) {
+            if (!TextUtils.isEmpty(loginBean.getKol().getName())) {
                 name = loginBean.getKol().getName();
             } else {
                 name = "游客";
             }
-            if (! TextUtils.isEmpty(loginBean.getKol().getAvatar_url())) {
+            if (!TextUtils.isEmpty(loginBean.getKol().getAvatar_url())) {
                 imgUrl = loginBean.getKol().getAvatar_url();
             } else {
                 imgUrl = CommonConfig.APP_IMG_URL;
@@ -864,7 +876,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 @Override
                 public void onError(Exception e) {
                     // CustomToast.showShort(mActivity, mActivity.getString(R.string.no_net));
-                    CustomToast.showShort(mActivity, "客服繁忙中，请您稍后再试");
+                    CustomToast.showShort(mActivity, R.string.robin283);
                 }
 
                 @Override
@@ -883,7 +895,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                         connect(rongCloudBean.getToken());
                     } else {
                         HelpTools.insertCommonXml(HelpTools.CloudToken, "");
-                        CustomToast.showShort(mActivity, "客服繁忙中，请您稍后再试");
+                        CustomToast.showShort(mActivity, R.string.robin283);
                     }
 
                 }
@@ -986,6 +998,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     case 4:
                     case 5:
                     case 6:
+                    case 7:
                     case 9:
                     case 10:
                         setLines(holder, View.GONE, View.GONE, View.GONE, View.VISIBLE);
@@ -996,32 +1009,19 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                         break;
 
                 }
-                if (item.name.equals("一元购")) {
+                if (hindMenu.contains(item.name)){
                     holder.mLlItem.setVisibility(View.GONE);
                     holder.lineDown.setVisibility(View.GONE);
                 }
+
                 if (mBean != null) {
                     List<MineShowModel.VoteInfosBean> vote_infos = mBean.getVote_infos();
-                    if (vote_infos != null) {
-                        if (vote_infos.size() != 0) {
-                            if (! TextUtils.isEmpty(vote_infos.get(0).getIs_show())) {
-                                if (item.name.equals("BannerEnter")) {
-                                    holder.mLlItem.setVisibility(View.GONE);
-                                    holder.mLlImg.setVisibility(View.VISIBLE);
-                                    BitmapUtil.loadImageNocrop(mActivity, vote_infos.get(0).getBanner_url(), holder.mImageBg);
-                                    bannerUrl = vote_infos.get(0).getUrl();
-                                }
-                            } else {
-                                if (item.name.equals("BannerEnter")) {
-                                    holder.mLlItem.setVisibility(View.GONE);
-                                    holder.mLlImg.setVisibility(View.GONE);
-                                }
-                            }
-                        } else {
-                            if (item.name.equals("BannerEnter")) {
-                                holder.mLlItem.setVisibility(View.GONE);
-                                holder.mLlImg.setVisibility(View.GONE);
-                            }
+                    if (vote_infos != null && vote_infos.size() != 0 && !TextUtils.isEmpty(vote_infos.get(0).getIs_show())) {
+                        if (item.name.equals("BannerEnter")) {
+                            holder.mLlItem.setVisibility(View.GONE);
+                            holder.mLlImg.setVisibility(View.VISIBLE);
+                            BitmapUtil.loadImageNocrop(mActivity, vote_infos.get(0).getBanner_url(), holder.mImageBg);
+                            bannerUrl = vote_infos.get(0).getUrl();
                         }
                     } else {
                         if (item.name.equals("BannerEnter")) {
@@ -1036,14 +1036,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     }
                 }
 
-                //隐藏我的关注
-                if (item.name.equals(mActivity.getResources().getString(R.string.my_concern))) {
-                    holder.mLlItem.setVisibility(View.GONE);
-                    holder.lineDown.setVisibility(View.GONE);
-                }
                 String loginInfo = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
                 if (item.name.equals(mActivity.getString(R.string.put_wallet))) {
-                    if (! TextUtils.isEmpty(loginInfo)) {
+                    if (!TextUtils.isEmpty(loginInfo)) {
                         if (loginInfo.equals("1")) {
                             holder.mLlItem.setVisibility(View.VISIBLE);
                             holder.lineDown.setVisibility(View.VISIBLE);
@@ -1057,7 +1052,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     }
                 }
                 if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                    if (! TextUtils.isEmpty(isShowCode)) {
+                    if (!TextUtils.isEmpty(isShowCode)) {
                         if (isShowCode.equals("1")) {
                             holder.mLlItem.setVisibility(View.VISIBLE);
                             holder.lineDown.setVisibility(View.VISIBLE);
@@ -1071,34 +1066,6 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     }
                 }
 
-                //                if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                //                    holder.mLlItem.setVisibility(View.GONE);
-                //                    holder.lineDown.setVisibility(View.GONE);
-                //                }
-                //                if (mKolBean != null) {
-                //                    if (mKolBean.getAdmintag() != null) {
-                //                        if (mKolBean.getAdmintag().size() == 0) {
-                //                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                //                                holder.mLlItem.setVisibility(View.VISIBLE);
-                //                                holder.lineDown.setVisibility(View.VISIBLE);
-                //                            }
-                //                        } else {
-                //                            if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                //                                holder.mLlItem.setVisibility(View.GONE);
-                //                                holder.lineDown.setVisibility(View.GONE);
-                //                            }
-                //                        }
-                //                    }
-                //                } else {
-                //                    if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
-                //                        holder.mLlItem.setVisibility(View.GONE);
-                //                        holder.lineDown.setVisibility(View.GONE);
-                //                    }
-                //                }
-                if (item.name.equals("我的产品")) {
-                    holder.mLlItem.setVisibility(View.GONE);
-                    holder.lineDown.setVisibility(View.GONE);
-                }
                 if (item.name.equals(mActivity.getString(R.string.edit_invitation_code))) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_invitation_code);
                 } else if (item.name.equals(mActivity.getString(R.string.help_online))) {
@@ -1165,7 +1132,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private CustomDialogManager mCustomDialogManager;
 
     /**
-     用户身份审核结果
+     * 用户身份审核结果
      */
     private void showCheckResult(List<MineShowModel.ReadListBean> checkBeanList) {
         View view = LayoutInflater.from(mActivity).inflate(R.layout.dialog_check_result, null);
@@ -1175,7 +1142,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         if (checkBeanList != null) {
             if (checkBeanList.size() != 0) {
                 for (int i = 0; i < checkBeanList.size(); i++) {
-                    if (checkBeanList.get(i).getState() == - 1) {
+                    if (checkBeanList.get(i).getState() == -1) {
                         isTextShow = true;
                     }
                 }
@@ -1184,9 +1151,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         UserCheckAdapter checkAdapter = new UserCheckAdapter(mActivity, checkBeanList);
         list.setAdapter(checkAdapter);
         if (isTextShow == false) {
-            tvOver.setText(mActivity.getResources().getString(R.string.known_la).toString());
+            tvOver.setText(mActivity.getResources().getString(R.string.known_la));
         } else {
-            tvOver.setText("联系客服");
+            tvOver.setText(R.string.robin237);
 
         }
 
@@ -1206,7 +1173,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
         mCustomDialogManager.dg.getWindow().setGravity(Gravity.CENTER);
         mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        if (! mCustomDialogManager.dg.isShowing()) {
+        if (!mCustomDialogManager.dg.isShowing()) {
             isFirst = true;
             mCustomDialogManager.dg.show();
         }
@@ -1214,7 +1181,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     }
 
     /**
-     身份审核进度 已读
+     * 身份审核进度 已读
      */
     private void postRead() {
         BasePresenter mBasePresenter = new BasePresenter();

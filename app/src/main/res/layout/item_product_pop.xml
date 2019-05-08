@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50.4dp"
     android:orientation="vertical">
@@ -18,6 +19,7 @@
             android:layout_height="wrap_content"
             android:text="--aa"
             android:textColor="@drawable/selector_product_pop_text_color"
-            android:textSize="@dimen/undefine_font_5" />
+            android:textSize="@dimen/undefine_font_5"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 </LinearLayout>

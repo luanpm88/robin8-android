@@ -34,15 +34,20 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.MessageDialog;
 import com.facebook.share.widget.ShareDialog;
 import com.robin8.rb.R;
-import com.robin8.rb.ui.activity.LoginActivity;
-import com.robin8.rb.ui.activity.MainActivity;
-import com.robin8.rb.ui.activity.web.PutWebActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BaseDataActivity;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.activity.LoginActivity;
+import com.robin8.rb.ui.activity.MainActivity;
+import com.robin8.rb.ui.activity.web.PutWebActivity;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.robin8.rb.ui.model.CampaignInviteBean;
 import com.robin8.rb.ui.model.CampaignListBean;
 import com.robin8.rb.ui.model.NotifyMsgEntity;
@@ -54,10 +59,6 @@ import com.robin8.rb.ui.module.reword.bean.ShareBean;
 import com.robin8.rb.ui.module.reword.chose_photo.SerializableMap;
 import com.robin8.rb.ui.module.reword.helper.DetailContentHelper;
 import com.robin8.rb.ui.module.share.thirdplatfom.Constants;
-import com.robin8.rb.okhttp.HttpRequest;
-import com.robin8.rb.okhttp.RequestCallback;
-import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.ui.widget.SlideDetailsLayout;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.AppUtils;
@@ -70,7 +71,6 @@ import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.NetworkUtil;
 import com.robin8.rb.util.TimerUtil;
 import com.robin8.rb.util.UIUtils;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -83,11 +83,6 @@ import java.util.Observer;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
 
 
 /**
@@ -216,13 +211,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layout_bg);
         //TextView rightTv = (TextView) view.findViewById(R.id.tv_right);
         confirmTV.setText(R.string.known);
-        //        switch (type){
-        //            case CAMPAIGN_TYPE_POST:
-        //                infoTv.setText(info);
-        //                break;
-        //            case
-        //        }
-        // rightTv.setText(R.string.known)
         if (is) {
             new Thread(new TimerUtil(4, null, confirmTV, layout, activity, "知道了", "s", activity.getResources().getColor(R.color.black_686868), activity.getResources().getColor(R.color.white_custom))).start();
         }
@@ -492,7 +480,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             @Override
             public void onError(Exception e) {
 
-                CustomToast.showShort(DetailContentActivity.this, "网络连接错误");
+                CustomToast.showShort(DetailContentActivity.this, R.string.robin345);
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
@@ -545,7 +533,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 @Override
                 public void onError(Exception e) {
 
-                    CustomToast.showShort(DetailContentActivity.this, "网络连接错误");
+                    CustomToast.showShort(DetailContentActivity.this, R.string.robin345);
                     if (mWProgressDialog != null) {
                         mWProgressDialog.dismiss();
                     }
@@ -911,7 +899,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         if (resultCode == SPConstants.REQUEST_DETAILCONTENTACTIVITY) {
             initData();
             return;
@@ -1029,11 +1017,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         llTop.setVisibility(View.VISIBLE);
         llBittom.setVisibility(View.GONE);
         myShareList = new ArrayList<>();
-        myShareList.add(new ShareBean(activity.getResources().getString(R.string.weibo), R.mipmap.login_weibo));
-        myShareList.add(new ShareBean(activity.getResources().getString(R.string.weixin), R.mipmap.login_weixin));
-        myShareList.add(new ShareBean(activity.getResources().getString(R.string.wechat), R.mipmap.icon_social_wechatmoments_on));
-        myShareList.add(new ShareBean("QQ好友", R.mipmap.login_qq));
-        myShareList.add(new ShareBean("QQ空间", R.mipmap.login_kongjian));
         myShareList.add(new ShareBean("FaceBook", R.mipmap.ic_facebook));
         ShareAdapter shareAdapter = new ShareAdapter(myShareList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
@@ -1048,21 +1031,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             public void onItemClick(View v, int position) {
                 switch (position) {
                     case 0:
-                        share(SinaWeibo.NAME);
-                        break;
-                    case 1:
-                        share(Wechat.NAME);
-                        break;
-                    case 2:
-                        share(WechatMoments.NAME);
-                        break;
-                    case 3:
-                        share(QQ.NAME);
-                        break;
-                    case 4:
-                        share(QZone.NAME);
-                        break;
-                    case 5:
                         if (AppUtils.isAppInstalled(getApplicationContext(), Constants.FACEBOOK_PACKAGE)) {
                             share(FACEBOOK_SHARE_TYPE);
                         } else {
@@ -1072,7 +1040,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + Constants.FACEBOOK_PACKAGE)));
                             }
                         }
-//                        break;
+                        break;
                 }
 
             }
@@ -1089,6 +1057,8 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
         mCustomDialogManager.showDialog();
     }
+
+
 
     private static final String IMAGE_URL = CommonConfig.APP_ICON;
     private static final String TITLE_URL = CommonConfig.SERVICE + "invite?inviter_id=";
@@ -1115,9 +1085,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
         if (mCampaignInviteEntity == null) {
             int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
-            if (SinaWeibo.NAME.equals(platName)) {
-                oks.setText(getResources().getString(R.string.share_invite_friends_text) + TITLE_URL + String.valueOf(id));
-            } else if (FACEBOOK_SHARE_TYPE.equals(platName)) {
+            if (FACEBOOK_SHARE_TYPE.equals(platName)) {
                 shareFacebook(TITLE_URL + String.valueOf(id), getString(R.string.share_invite_friends_title), IMAGE_URL);
                 return;
             } else if (MESSENGE_SHARE_TYPE.equals(platName)) {
@@ -1137,43 +1105,6 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             if (MESSENGE_SHARE_TYPE.equals(platName)) {
                 shareFacebookMessenger(mCampaignInviteEntity.getCampaign().getUrl(), mCampaignInviteEntity.getCampaign().getName(), IMAGE_URL);
                 return;
-            }
-            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.isLeader))) {
-                if (Wechat.NAME.equals(platName)) {
-                    oks.setText(mCampaignInviteEntity.getCampaign().getName());
-                    oks.setTitle("Robin8邀请你成为" + mCampaignInviteEntity.getCampaign().getBrand_name() + "品牌代言人");
-                    oks.setTitleUrl(TITLE_URL_CAMPAIGN + mCampaignInviteEntity.getCampaign().getId());
-                    oks.setUrl(TITLE_URL_CAMPAIGN + mCampaignInviteEntity.getCampaign().getId());
-                } else {
-                    if (SinaWeibo.NAME.equals(platName)) {
-                        // oks.setText(mCampaignInviteEntity.getCampaign().getName() + TITLE_URL_CAMPAIGN + mCampaignInviteEntity.getCampaign().getId());
-                        //  oks.setText(mCampaignInviteEntity.getCampaign().getDescription() + mCampaignInviteEntity.getCampaign().getUrl());
-                        oks.setText("#Robin8#" + "「" + mCampaignInviteEntity.getCampaign().getBrand_name() + "「" + mCampaignInviteEntity.getCampaign().getName() + "」」" + mCampaignInviteEntity.getCampaign().getUrl());
-                    } else {
-                        oks.setText(mCampaignInviteEntity.getCampaign().getDescription());
-                    }
-                    oks.setTitle(mCampaignInviteEntity.getCampaign().getName());
-                    oks.setTitleUrl(mCampaignInviteEntity.getCampaign().getUrl());
-                    oks.setUrl(mCampaignInviteEntity.getCampaign().getUrl());
-                }
-            } else {
-                if (Wechat.NAME.equals(platName)) {
-                    oks.setText(mCampaignInviteEntity.getCampaign().getName());
-                    oks.setTitle("Robin8邀请你成为" + mCampaignInviteEntity.getCampaign().getBrand_name() + "品牌代言人");
-                    oks.setTitleUrl(TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId() + "&club=" + HelpTools.getCommonXml(HelpTools.isLeader));
-                    oks.setUrl(TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId() + "&club=" + HelpTools.getCommonXml(HelpTools.isLeader));
-                } else {
-                    if (SinaWeibo.NAME.equals(platName)) {
-
-                        // oks.setText(("#Robin8#" + "「" + mCampaignInviteEntity.getCampaign().getBrand_name() + "「" + mCampaignInviteEntity.getCampaign().getName() + "」」" + (TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId() + "&club=" + HelpTools.getCommonXml(HelpTools.isLeader))));
-                        oks.setText(("#Robin8#" + "「" + "「" + mCampaignInviteEntity.getCampaign().getName() + "」」" + (TITLE_URL_LEADER + mCampaignInviteEntity.getCampaign().getId() + "&club=" + HelpTools.getCommonXml(HelpTools.isLeader))));
-                    } else {
-                        oks.setText(mCampaignInviteEntity.getCampaign().getDescription());
-                    }
-                    oks.setTitle(mCampaignInviteEntity.getCampaign().getName());
-                    oks.setTitleUrl(mCampaignInviteEntity.getCampaign().getUrl());
-                    oks.setUrl(mCampaignInviteEntity.getCampaign().getUrl());
-                }
             }
         }
 

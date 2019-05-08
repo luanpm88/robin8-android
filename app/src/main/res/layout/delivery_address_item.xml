@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -11,7 +12,8 @@
         android:layout_height="wrap_content"
         android:text="姓名"
         android:textColor="@color/sub_black_custom"
-        android:textSize="@dimen/undefine_font_5" />
+        android:textSize="@dimen/undefine_font_5"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/et_content"

@@ -24,7 +24,7 @@
             android:layout_marginRight="13dp"
             android:layout_marginTop="13dp"
             android:background="@null"
-            android:hint="昵称"
+            android:hint="@string/nickname"
             android:maxLength="15"
             android:singleLine="true"
             android:textColor="@color/gray_custom"
@@ -71,7 +71,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/selector_bg_bt"
             android:gravity="center"
-            android:text="下一步"
+            android:text="@string/robin091"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_3"/>
     </LinearLayout>

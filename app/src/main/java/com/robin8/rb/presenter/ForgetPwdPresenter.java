@@ -63,7 +63,7 @@ public class ForgetPwdPresenter extends BindSocialPresenterListener implements P
 
         String emailNumber = mILoginView.getEmailNumber();
         if (! RegExpUtil.checkEmail(emailNumber)) {
-            CustomToast.showShort(mActivity, "请输入正确的邮箱账号!");
+            CustomToast.showShort(mActivity, R.string.robin327);
             return;
         }
         if (mWProgressDialog == null) {
@@ -98,7 +98,7 @@ public class ForgetPwdPresenter extends BindSocialPresenterListener implements P
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (baseBean.getError() == 0) {
                     CustomToast.showShort(mActivity, baseBean.getAlert());
-                    new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
+                    new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, mActivity.getString(R.string.robin325))).start();
                 }else {
                     CustomToast.showShort(mActivity,baseBean.getDetail());
                 }
@@ -110,10 +110,10 @@ public class ForgetPwdPresenter extends BindSocialPresenterListener implements P
         final String etEmailNum = mILoginView.getEmailNumber();
         String etCode = mILoginView.getCheckCode();
         if (!RegExpUtil.checkEmail(etEmailNum)){
-            CustomToast.showShort(mActivity, "请输入正确的邮箱账号!");
+            CustomToast.showShort(mActivity, R.string.robin327);
             return;
         } else if (TextUtils.isEmpty(etCode)) {
-            CustomToast.showShort(mActivity, "请输入验证码!");
+            CustomToast.showShort(mActivity, R.string.robin328);
             return;
         }else {
             if (mWProgressDialog == null) {
@@ -161,16 +161,16 @@ public class ForgetPwdPresenter extends BindSocialPresenterListener implements P
         //确认新密码
         String editUserPwdAgain = mILoginView.getEmailPwd();
         if (TextUtils.isEmpty(editUserPwd)) {
-            CustomToast.showShort(mActivity, "请输入密码");
+            CustomToast.showShort(mActivity, R.string.put_pwd);
             return;
         } else if (TextUtils.isEmpty(editUserPwdAgain)) {
-            CustomToast.showShort(mActivity, "请再次输入密码");
+            CustomToast.showShort(mActivity, R.string.robin103);
             return;
         } else if (! editUserPwd.equals(editUserPwdAgain)) {
-            CustomToast.showShort(mActivity, "两次密码输入不一致");
+            CustomToast.showShort(mActivity, R.string.robin403);
             return;
         } else if (! TextUtils.isEmpty(editUserPwd) && editUserPwd.length() < 6) {
-            CustomToast.showShort(mActivity, "请输入至少6位的密码");
+            CustomToast.showShort(mActivity, R.string.robin404);
             return;
         }else {
             if (mWProgressDialog == null) {

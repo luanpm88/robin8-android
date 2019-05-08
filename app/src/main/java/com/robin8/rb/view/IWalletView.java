@@ -1,9 +1,5 @@
 package com.robin8.rb.view;
 
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-
 import lecho.lib.hellocharts.view.LineChartView;
 
 /**

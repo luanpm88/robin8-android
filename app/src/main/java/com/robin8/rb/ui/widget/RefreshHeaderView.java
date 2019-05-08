@@ -149,18 +149,18 @@ public class RefreshHeaderView extends LinearLayout implements IHeaderCallBack {
             case PULL_DOWN_REFRESH:
                 mRefreshArr.setVisibility(View.VISIBLE);
                 mIVProgress.setVisibility(View.INVISIBLE);
-                mRefreshState.setText("下拉可以刷新");
+                mRefreshState.setText(R.string.robin296);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm");
-                mRefreshUpdatetime.setText("最后更新：" + dateFormat.format(new Date(mRefreshTime)));
+                mRefreshUpdatetime.setText(getContext().getString(R.string.robin298,dateFormat.format(new Date(mRefreshTime))));
                 mRefreshArr.startAnimation(down);
                 break;
             case RELEASE_REFRESH:
-                mRefreshState.setText("松开立即刷新");
+                mRefreshState.setText(R.string.robin297);
                 mRefreshArr.startAnimation(up);
                 break;
             case REFRESHING:
                 mRefreshArr.clearAnimation();
-                mRefreshState.setText("下拉可以刷新");
+                mRefreshState.setText(R.string.robin296);
                 mRefreshArr.setVisibility(View.INVISIBLE);
                 mIVProgress.setVisibility(View.VISIBLE);
                 mIVProgress.setBackgroundDrawable(mAnimation);

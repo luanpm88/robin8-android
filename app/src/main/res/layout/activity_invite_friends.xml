@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/mine_bg">
@@ -72,7 +73,8 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="@color/yellow_custom"
-                        android:textSize="@dimen/undefine_font_8"/>
+                        android:textSize="@dimen/undefine_font_8"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -144,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="奖励规则"
+                    android:text="@string/robin119"
                     android:textColor="@color/sub_gray_custom"
                     android:textSize="@dimen/undefine_font_5"/>
 
@@ -179,7 +181,7 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
-                    android:text="方式1:点击下方立即邀请按钮，分享给朋友完成注册"
+                    android:text="@string/robin120"
                     android:textColor="@color/black_custom"
                     android:textSize="@dimen/undefine_font_3"/>
 
@@ -188,7 +190,7 @@
                     android:layout_height="30dp"
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
-                    android:text="方式2:将您的邀请码告诉朋友，在登录 Robin8 时输入"
+                    android:text="@string/robin121"
                     android:textColor="@color/black_custom"
                     android:textSize="@dimen/undefine_font_3"/>
 
@@ -198,7 +200,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
-                    android:text="注意：只有朋友在 Robin8 进行一个活动并且上传截图后才可以获得奖励，每天最多获得 10 次奖励，成功后奖励直接进入您的钱包"
+                    android:text="@string/robin122"
                     android:textColor="@color/gray_first"
                     android:textSize="@dimen/undefine_font_2"/>
 
@@ -210,7 +212,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="left"
                     android:paddingLeft="15dp"
-                    android:text="*本次活动最终解释权归@Robin8所有"
+                    android:text="@string/robin123"
                     android:textColor="@color/gray_second"
                     android:textSize="@dimen/undefine_font_2"/>
             </LinearLayout>
@@ -239,7 +241,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:gravity="center"
-                android:text="您还未同步手机通讯录，无法获取您的朋友信息"
+                android:text="@string/robin124"
                 android:textColor="@color/gray_acacac"
                 android:textSize="@dimen/undefine_font_4"/>
 
@@ -253,7 +255,7 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="邀请通讯录好友"
+                android:text="@string/robin125"
                 android:textColor="@color/black_202020"
                 android:textSize="@dimen/undefine_font_4"/>
         </LinearLayout>

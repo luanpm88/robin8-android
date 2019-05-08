@@ -184,7 +184,7 @@ public class WalletActivity extends BaseActivity implements IWalletView {
                             values = values.replaceAll("0+?$", "");//去掉后面无用的零
                             values = values.replaceAll("[.]$", "");//如小数点后面全是零则去掉小数点
                         }
-                        mTVSubmit.setText("还差" + values + "元可以提现");
+                        mTVSubmit.setText(getString(R.string.robin313,values));
                     }
                 } catch (Exception e) {
                     mTVSubmit.setText(getString(R.string.income_info3));

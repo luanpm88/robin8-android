@@ -29,7 +29,8 @@
             android:textColor="@color/white_custom"
             android:text="WELCOME"
             android:alpha="0.8"
-            android:textSize="26sp"/>
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -45,7 +46,8 @@
             android:gravity="center"
             android:text="GO"
             android:textColor="@color/white_custom"
-            android:textSize="@dimen/undefine_font_6"/>
+            android:textSize="@dimen/undefine_font_6"
+            tools:ignore="HardcodedText" />
 
         <View
             android:layout_width="match_parent"

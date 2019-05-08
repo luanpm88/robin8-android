@@ -16,7 +16,7 @@
         android:layout_height="30dp"
         android:paddingLeft="15dp"
         android:gravity="center_vertical"
-        android:text="请选择支付方式"
+        android:text="@string/robin167"
         android:textColor="@color/gray_custom"
         android:textSize="@dimen/undefine_font_5" />
 
@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="广告账户余额支付"
+            android:text="@string/robin168"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5" />
 
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="¥ 9.4"
+            android:text="¥ 0.0"
             android:textColor="@color/yellow_custom"
             android:textSize="@dimen/undefine_font_5" />
 
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="立即充值"
+            android:text="@string/robin169"
             android:textColor="@color/blue_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -87,7 +87,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="支付宝支付"
+            android:text="@string/robin170"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5" />
 

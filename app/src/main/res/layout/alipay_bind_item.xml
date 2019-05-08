@@ -12,7 +12,7 @@
         android:id="@+id/tv_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="提现金额"
+        android:text="@string/robin230"
         android:textColor="@color/sub_black_custom"
         android:textSize="@dimen/undefine_font_5" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@null"
-        android:hint="请填写支付宝账号"
+        android:hint="@string/please_write_alipay_account"
         android:inputType="text"
         android:paddingLeft="13dp"
         android:paddingRight="13dp"

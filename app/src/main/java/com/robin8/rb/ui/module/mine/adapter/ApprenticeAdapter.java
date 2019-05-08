@@ -101,7 +101,7 @@ public class ApprenticeAdapter extends BaseRecyclerAdapter {
                 }
                 BitmapUtil.loadImage(context.getApplicationContext(),mDataList.get(position-1).getAvatar_url(),holder.imgUserPhoto);
                 holder.tvUserName.setText(mDataList.get(position-1).getKol_name());
-                holder.tvUserCampaignNum.setText("已接活动数："+mDataList.get(position-1).getCampaign_invites_count());
+                holder.tvUserCampaignNum.setText(context.getString(R.string.robin266,mDataList.get(position-1).getCampaign_invites_count()));
                 holder.tvCampaignMoney.setText(mDataList.get(position-1).getAmount());
             }
         }else {
@@ -115,7 +115,7 @@ public class ApprenticeAdapter extends BaseRecyclerAdapter {
             }else {
                 holder.tvUserName.setText(mDataList.get(position).getKol_name());
             }
-            holder.tvUserCampaignNum.setText("已接活动数："+mDataList.get(position).getCampaign_invites_count());
+            holder.tvUserCampaignNum.setText(context.getString(R.string.robin266,mDataList.get(position).getCampaign_invites_count()));
             holder.tvCampaignMoney.setText(mDataList.get(position).getAmount());
         }
 

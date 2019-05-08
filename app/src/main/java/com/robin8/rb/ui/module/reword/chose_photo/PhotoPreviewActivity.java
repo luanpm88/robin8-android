@@ -40,7 +40,7 @@ public class PhotoPreviewActivity extends BaseActivity implements PhotoPagerAdap
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText("预览");
+        mTVCenter.setText(R.string.preview);
     }
 
     @Override

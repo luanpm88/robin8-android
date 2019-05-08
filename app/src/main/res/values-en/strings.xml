@@ -1,534 +1,1087 @@
 <resources>
-    <string name="app_name">Robin8</string>
-
-    <!--MeasureInfluenceActivity-->
-    <string name="measure_influence_text1">你, 比想象中更有影响力</string>
-    <string name="measure_influence_text2">Robin8大数据更懂你</string>
-    <string name="measure_influence_text3">测试您的社交价值</string>
-    <string name="tourist">游客</string>
-
-    <!--MainActivity-->
-    <string name="click_again_go_back">再按一次退出Robin8</string>
-    <string name="text_reword">Campaign</string>
-    <string name="text_find">发现</string>
-    <string name="text_first">首页</string>
-    <string name="text_notification">通知</string>
-    <string name="text_campaign">Campaign</string>
-    <string name="text_product">产品</string>
-    <string name="text_create">创作</string>
-    <string name="text_mine">Mine</string>
-    <string name="text_social">Influence</string>
-    <string name="text_topnews">头条</string>
-    <string name="text_public_number">公众号</string>
-    <string name="text_launch_reword">发起悬赏</string>
-
-    <!--Mine-->
-    <string name="mine_task">任务</string>
-    <string name="wallet">Wallet</string>
-    <string name="mine_ad_host">Advertiser</string>
-    <string name="max_click_number">max clicks</string>
-    <string name="history_total_income">campaign income</string>
-    <string name="max_per_income">max income</string>
-    <string name="average_income">avg income</string>
-    <string name="data_reviewing">资料审核中</string>
-    <string name="click_login">点击登录</string>
-    <string name="login_get_more_campaign">登录获取更多活动</string>
-    <string name="edit_kol_data">KOL Edit</string>
-    <string name="data_rejected">资料审核拒绝</string>
-    <string name="data_reviewing_again">重新审核中</string>
-
-    <!--收徒-->
-    <string name="apprentice_collect_money">Apprentice collect money</string>
-
-    <!--BindSocialActivity-->
-    <string name="influence_measure">影响力评测</string>
-    <string name="bind_social">绑定社交账号,精准评测</string>
-    <string name="add_more">添加更多社交账号提升影响能力</string>
-    <string name="start_measure">开始测试</string>
-    <string name="click_approve">*点击开始评测即同意</string>
-    <string name="click_login_approve">*点击登录或社交帐号即同意</string>
-    <string name="serviece_protocol">用户服务协议</string>
-    <string name="welcome_words">让大众分享文章来赚钱</string>
-
-    <string name="more_loading">正在加载更多数据</string>
-    <string name="no_net_click_reload">加载失败，点击重试</string>
-    <string name="no_more_data">无更多数据</string>
-    <string name="aver_repeat">平均转发</string>
-    <string name="aver_comment">平均评论</string>
-    <string name="aver_click">平均点赞</string>
-
-
-    <!--LoginActivity-->
-    <string name="register_or_login">注册/登录</string>
-    <string name="forget_pwd">忘记密码</string>
-    <string name="fix_pwd">修改密码</string>
-    <string name="email_login">Email login</string>
-    <string name="login">Login</string>
-    <string name="pwd">password</string>
-
-    <string name="launch_reword">发布悬赏活动</string>
-    <string name="type_count_by_click">按点击次数计费</string>
-    <string name="type_count_by_kol">按KOL转发计费</string>
-    <string name="type_download_by_kol">按KOL下载计费</string>
-    <string name="type_task_by_kol">按KOL任务计费</string>
-    <!--
-    <string name="min_100">最低100元</string>
+	<string name="app_name">Robin8</string>
+	
+	<!--MainActivity-->
+	<string name="click_again_go_back">Press again to exit Robin8</string>
+	<string name="text_reword">Share</string>
+	<string name="text_find">Find</string>
+	<string name="main_share">Share</string>
+	<string name="text_first">Home</string>
+	<string name="text_campaign">Campaign</string>
+	<string name="text_create">Creation</string>
+	<string name="text_mine">Mine</string>
+	<string name="text_show">expand </string>
+	<string name="text_pack_up"> put away </string>
+	<string name="text_collect">Favorites</string>
+	<string name="text_collected">has been collected </string>
+	<string name="my_collect">My Favorites</string>
+	<string name="content">content </string>
+	<!--Mine-->
+	<string name="mine_ad_host">Advertiser</string>
+	<string name="max_click_number">max clicks</string>
+	<string name="history_total_income">campaign income</string>
+	<string name="max_per_income">max income</string>
+	<string name="average_income">avg income</string>
+	<string name="data_reviewing">Data review</string>
+	<string name="click_login">Click to Login</string>
+	<string name="login_get_more_campaign">Sign in for more events</string>
+	<string name="data_rejected">Data review rejection</string>
+	<string name="data_reviewing_again">Re-review</string>
+	
+	<!--收徒-->
+	<string name="apprentice_collect_money">Apprentice collect money</string>
+	<string name="apprentice_all_collect_money">Total income </string>
+	<string name="today_apprentices">Today\'s accepted </string>
+	<string name="click_login_approve">*Click to sign in or social account to agree</string>
+	<string name="serviece_protocol">User Services Agreement</string>
+	
+	<string name="more_loading">Loading more data</string>
+	<string name="no_net_click_reload">Failed to load, click to try again</string>
+	<string name="no_more_data">No more data</string>
+	
+	
+	<!--LoginActivity-->
+	<string name="register_or_login">Registe/Login</string>
+	<string name="forget_pwd">Forget password</string>
+	<string name="fix_pwd">change password</string>
+	<string name="email_login">Email login</string>
+	<string name="login">Login</string>
+	<string name="pwd">password</string>
+	
+	<string name="launch_reword">Post a reward</string>
+	<string name="type_count_by_click">Billing by clicks</string>
+	<string name="type_count_by_kol">Forward billing by KOL</string>
+	<string name="type_download_by_kol">Download by KOL</string>
+	<string name="type_task_by_kol">Billing by KOL task</string>
+	<!--
+	<string name="min_100">最低100元</string>
 -->
-    <string name="min_2">最低0.2元</string>
-    <string name="min_5">最低0.5元</string>
-    <string name="min_20">最低2元</string>
-    <string name="min_25">最低2.5元</string>
-    <string name="min_3">最低3元</string>
-    <string name="min_1">最低1元</string>
+	<string name="min_2">minimum 0.2 yuan </string>
+	<string name="min_20">minimum 2 yuan </string>
+	<string name="min_25"> minimum 2.5 yuan </string>
+	<string name="min_3">minimum 3 yuan </string>
+	<string name="min_1">minimum 1 yuan </string>
+	
+	<!-- app更新 -->
+	<string name="normal_issue">common problem</string>
+	
+	<string name="update_loading">Downloading···</string>
+	<string name="update_beginload">start download</string>
+	<string name="update_wait">Please wait..</string>
+	<string name="update_ing">Updating for you</string>
+	<string name="update_backupdate">Going to the background to download updates for you···</string>
+	<string name="no_net">Network request failed, please check the network!</string>
+	
+	<string name="put_right_email_address">please enter your vaild email!</string>
+	<string name="put_pwd">Please enter your password</string>
+	
+	
+	<string name="pickerview_cancel">Cancel</string>
+	<string name="pickerview_submit">OK</string>
+	<string name="pickerview_year">Year</string>
+	<string name="pickerview_month">Month</string>
+	<string name="pickerview_day">Day</string>
+	<string name="pickerview_hours">Hours</string>
+	<string name="pickerview_minutes">Minutes</string>
+	<string name="pickerview_seconds">Seconds</string>
+	
+	<string name="name">Name</string>
+	<string name="contact_telphone">contact telephone</string>
+	
+	<!--WalletActivity-->
+	<string name="mine_wallet">My wallet</string>
+	<!--已提现-->
+	<string name="was_withdraw">Withdrawn</string>
+	<!--已花费-->
+	<string name="was_consume">Spented</string>
+	<!--提现中-->
+	<string name="being_withdraw">Pending</string>
+	<string name="beable_withdraw">Available</string>
+	<string name="days7_income_development">The 7 day trend of earnings</string>
+	<string name="total">Total</string>
+	<string name="income_times">transactions</string>
+	<string name="total_count">Total:</string>
+	<string name="total_income">Total ></string>
+	<string name="income_info2">*Figure shows the amount contained \'will earn\'</string>
+	<string name="income_info3">Over 50 yuan can be withdrawn</string>
+	<string name="withdraw">withdraw</string>
+	<string name="withdraw_now">withdraw now</string>
+	<string name="un_binded">Unbound</string>
+	<string name="click_bind">Click binding</string>
+	<string name="alipay_bind">Alipay binding</string>
+	<string name="alipay_account">Alipay account</string>
+	<string name="alipay_name">Alipay name</string>
+	<string name="id_card">identification number</string>
+	<string name="please_write_alipay_account">Please fill in the Alipay account</string>
+	<string name="please_write_alipay_name">Please fill in Alipay name</string>
+	<string name="please_write_id_number">Please fill in the ID number </string>
+	<string name="click">click</string>
+	<string name="post">forwarding</string>
+	<string name="shared_clicked_by_friends">After sharing, friends get paid by clicking this article</string>
+	<string name="post_this_page_get_reword">Forward this article to get paid immediately</string>
+	<!--活动订单支付-->
+	<string name="activity_order_pay">Campaign Payment</string>
+	<!--促销活动-->
+	<string name="my_launch_activity">I posted the event </string>
+	<string name="order_pay_success">order payment success </string>
+	<string name="order_pay">order payment </string>
+	<string name="we_check_it_in_24hours">We will review your activity within 24 hours</string>
+	<string name="look_activity">View activity</string>
+	<string name="recharge">recharge</string>
+	<string name="recharge_instantly">charge now </string>
+	
+	<string name="pay_instantly"> pay now </string>
+	<string name="checking">Reviewing</string>
+	<string name="checked_rejected">Rejected</string>
+	<string name="checked_passed">Approved</string>
+	<string name="executing">in progress</string>
+	    
+	<string name="executed">End of activity </string>
+	    
+	<string name="settled"> settled </string>
+	<string name="no_data_try_others">Nothing here,Try another page</string>
+	<string name="my_menu">My bill </string>
+	    
+	<string name="revoke_campaign">Undo activity </string>
+	<!--资金流水-->
+	
+	<string name="robin_indiana">one dollar purchase </string>
+	    
+	<string name="detail_indiana"> details of the treasure </string>
+	    
+	<string name="participated">Participated </string>
+	    
+	<string name="person_times">person times</string>
+	    
+	<string name="you_not_participated">You did not participate in this event</string>
+	    
+	<string name="this_participated"> participation in this issue: </string>
+	    
+	<string name="this_issue"> current issue number: </string>
+	    
+	<string name="draw_time"> announced time: </string>
+	    
+	<string name="total_consume"> total consumption balance </string>
+	    
+	<string name="current_amount"> yuan (current balance: ¥ </string>
+	<string name="right_">)</string>
+	
+	<string name="count_detail">calculation details </string>
+	    
+	<string name="lucky_number"> lucky number: </string>
+	    
+	<string name="you_participated_times">You are involved: </string>
+	    
+	<string name="my_participated_times">I have participated: </string>
+	    
+	<string name="indiana_number">The treasure number: </string>
+	    
+	<string name="participated_schedule"> participation progress: </string>
+	<string name="percent_sign">%</string>
+	
+	<string name="instantly_indiana"> immediately win the treasure </string>
+	    
+	<string name="has_announced"> has been announced </string>
+	    
+	<string name="total_need_times"> total number of people required: </string>
+	    
+	<string name="delivery_address">receipt address </string>
+	<string name="submit">Submit</string>
+	<string name="submit_success">submit successfully </string>
+	    
+	<string name="submit_failed">submission failed</string>
+	    
+	<string name="please_write_title">Please fill in the title </string>
+	    
+	<string name="please_write_name">Please fill in the name </string>
+	    
+	<string name="please_write_telphone">Please fill in the contact number </string>
+	    
+	<string name="please_write_address">Please fill in the shipping address </string>
+	    
+	<string name="you_have_sign">You have checked in continuously </string>
+	    
+	<string name="day">day</string>
+	    
+	<string name="sign_successfully">sign-in success</string>
+	<string name="sign">Sign in</string>
+	
+	<string name="wechat">Friends circle </string>
+	    
+	<string name="invite_ta_participate_campaign">Send special event to TA</string>
+	    
+	<string name="kol_brief">KOL introduction </string>
+	    
+	<string name="kol_display">KOL show </string>
+	    
+	<string name="kol_tag_cloud">KOL tag cloud</string>
+	    
+	<string name="business_cooperation">Business Cooperation</string>
+	    
+	<string name="please_write_company">Please fill in the company </string>
+	    
+	<string name="please_write_email">Please fill in the mailbox </string>
+	<string name="search">search</string>
+	<string name="cancel">Cancel</string>
+	<string name="clear_history">clear history</string>
+	    
+	<string name="nickname">nickname </string>
+	    
+	<string name="number_of_fans">Number of fans </string>
+	    
+	<string name="number_of_videos">video number </string>
+	    
+	<string name="business_cop_content_fir_from_product_list">I am the brand owner, I want CPS cooperation \\n</string>
+	    
+	<string name="business_cop_content_fir">I am the brand owner, I want to invite KOL\\n</string>
+	    
+	<string name="business_submit_success">Submission is successful, we will contact you as soon as possible, please keep the phone open!</string>
+	<string name="my_concern">My followers</string>
+	<string name="edit_invitation_code">Input invite code</string>
+	<string name="be_kol">My data </string>
+	    
+	<string name="edit_kol">Edit KOL data </string>
+	
+	<string name="icons_favorite_selected">&#xe622;</string>
+	<string name="icons_favorite_unselected">&#xe623;</string>
+	<string name="icons_back">&#xe603;</string>
+	<string name="icons_delete">&#xe618;</string>
+	<string name="icons_delete2">&#xe61b;</string>
+	<string name="icons_message">&#xe625;</string>
+	<string name="icons_setting">&#xe61f;</string>
+	<string name="icons_box_delete">&#xe618;</string>
+	//下拉
+	//下拉30%
+	//向上箭头
+	<string name="arrow_right">&#xe60e;</string>//向右箭头
+	//加好
+	<string name="hook_sign">&#xe61e;</string>//对勾
+	<string name="share_sign">&#xe608;</string>//分享
+	<string name="search_sign">&#xe602;</string>//搜索
+	<string name="icons_message_open">&#xe616;</string>
+	<string name="unselected">&#xe61a;</string>
+	<string name="selected">&#xe61e;</string>
+	<!--打开消息-->
+	<string name="next">Next step</string>
+	<string name="invite_friends">Invite friends</string>
+	<string name="be_kol_first_compelete_data">The higher the data sophistication, the higher the price of the accepted activity</string>
+	<string name="confirm">Confirm</string>
+	
+	<string name="interest">interest</string>
+	<string name="user_phone_num">phone number</string>
+	<string name="user_email">E-mail</string>
+	<string name="interest_tags"> interest tags (optional 5) </string>
+	<string name="please_write">Please fill in </string>
+	<string name="age">age</string>
+	<string name="professional">professional</string>
+	<string name="introduction">introduction</string>
+	<string name="please_write_personal_show">Please fill in your personal highlights</string>
+	<string name="personal_show">personal wonderful display</string>
+	<string name="weixin">Wechat</string>
+	<string name="gongzhonghao">公众号</string>
+	<string name="weibo">weibo</string>
+	<string name="qq">QQ</string>
+	<string name="for_example_address">E.g:http//mp.weixin.qq.com/s?__biz=...</string>
+	<string name="friends_number">number of friends </string>
+	    
+	<string name="offer_unit">quote (yuan/bar) </string>
+	    
+	<string name="please_bind">Please bind </string>
+	    
+	<string name="account">account</string>
+	    
+	<string name="click_open">Click to open</string>
+	     <string name="corresponding_wechat"> corresponding micro signal </string> / / left arrow
+	    
+	<string name="for_example">Example: </string>
+	    
+	<string name="has_binded"> is bound </string>
+	<string name="male">male</string>
+	<string name="female">female</string>
+	<string name="please_data_wrong">Request parameter error </string>
+	    
+	<string name="over_time">Request timeout</string>
+	    
+	<string name="unknown">unknown</string>
+	
+	<string name="please_write_nick_name">please write nick name</string>
+	<string name="please_write_age">please write age</string>
+	<string name="please_write_interest">please write interest</string>
+	<string name="promote_the_content_page_for_details">Campaign Details</string>
+	<string name="campaign_data_download">active material download </string>
+	    
+	<string name="approved_wait_activity_start">waiting for activity to start</string>
+	    
+	<string name="campaign_unstart">activity has not started </string>
+	    
+	<string name="reject_campaign">Reject this activity</string>
+	    
+	<string name="upload_screenshot"> upload screenshot </string>
+	    
+	<string name="approved_check_the_screenshot">Audit Pass - View Screenshot </string>
+	    
+	<string name="approving_check_the_screenshot">Audit - View screenshot </string>
+	    
+	<string name="look_the_screenshot">View screenshot </string>
+	    
+	<string name="upload_again"> upload again </string>
+	    
+	<string name="approve_reject_check_reason">Audit rejection - view reason </string>
+	    
+	<string name="campaign_missed">The event has been missed</string>
+	    
+	<string name="campaign_ready_begin">Activity has not started</string>
+	<string name="sign_up_approve_failed"> registration review failed </string>
+	    
+	<string name="campaign_approve_failed">Activity review failed</string>
+	    
+	<string name="campaign_compeleted">Activity is completed</string>
+	    
+	<string name="campaign_sign_up_checking">The event has been registered, is being reviewed </string>
+	    
+	<string name="sign_up_instantly">Register now </string>
+	    
+	<string name="sign_up_end">registration has ended </string>
+	    
+	<string name="campaign_sign_up_success">Activity registration success </string>
+	    
+	<string name="campaign_sign_up_success_wait_for_auditing">Activity registration is successful, waiting for review </string>
+	    
+	<string name="upload_screenshot_time_end">Upload screenshot time has passed </string>
+	    
+	<string name="share_again">share again</string>
+	    
+	<string name="unknown_state">unknown status </string>
+	    
+	<string name="recurit_process">recruitment activity process</string>
+	    
+	<string name="kol_sign_up">KOL registration activity </string>
+	    
+	<string name="brand_select_kol"> brand owner chooses KOL</string>
+	    
+	<string name="kol_receive_campaign">KOL accepts activities</string>
+	    
+	<string name="download_campaign_material">Download active material </string>
+	    
+	<string name="upload_campaign_screenshot">Upload activity screenshot </string>
+	    
+	<string name="screenshot_check_passed"> screenshot review passed </string>
+	    
+	<string name="my_wallet_to_account">My wallet arrives </string>
+	    
+	<string name="receive_this_campaign">Accept this event</string>
+	    
+	<string name="has_invite_friends">Invited friends</string>
+	    
+	<string name="invite_instantly">Invite now </string>
+	<string name="setting">Setting</string>
+	<string name="log_out">Login out</string>
+	<string name="message">All Messages</string>
+	<string name="all_message_read">Mark all as read</string>
+	<string name="feed_back">Feedback</string>
+	<string name="sweep_qr_code"> scan the QR code to log in to the official website </string>
+	    
+	<string name="bind_social_account">social account binding </string>
+	    
+	<string name="social_account">social account </string>
+	<string name="help_online">Robin8 online customer service</string>
+	
+	<string name="viewfinderview_status_text1"> put the QR code / barcode into the frame </string>
+	    
+	<string name="viewfinderview_status_text2"> can automatically scan </string>
+	<string name="button_ok">OK</string>
+	<string name="msg_camera_framework_bug">Sorry, the Android camera encountered a problem. You may  need to restart the device. </string>
+	<string name="invitees_list">Participant list </string>
+	    
+	<string name="invitees_person">Participants</string>
+	<string name="help_center">Help</string>
+	<string name="sweep_login_success"> scan login successfully </string>
+	    
+	<string name="share_invite_friends_title">I recently found an app that makes money every day. Would you like to try it? </string>
+	    
+	<string name="share_invite_friends_text">Robin8 based on big data social impact platform </string>
+	    
+	<string name="bind_mobile">bind mobile number </string>
+	<string name="robin8">ROBIN8</string>
+	<string name="please_write_kol">Please fill in the special KOL</string>
+	    
+	<string name="image_check_reject">Image review does not pass: </string>
+	<!--账单-->
+	<string name="bill">Bill</string>
+	<string name="no_introduce"> not filled out KOL introduction </string>
+	    
+	<string name="has_consumed"> has been spent </string>
+	    
+	<string name="count_click">Cost Click </string>
+	    
+	<string name="total_clicks">total clicks </string>
+	    
+	<string name="person_number">Number of participants </string>
+	    
+	<string name="participate_crew_list">Participant list </string>
+	    
+	<string name="please_check_id_number">Please fill in the correct ID number </string>
+	    
+	<string name="please_write_sex">gender </string>
+	    
+	<string name="please_write_pic">Please upload an image</string>
+	    
+	<string name="must_bind_weixin"> must be bound to WeChat </string>
+	    
+	<string name="be_kol_get_more_info">KOL can get more activities~</string>
+	    
+	<string name="counts_2to5">The number of interests is at least 2 and up to 5 </string>
+	    
+	<string name="invite_friends_earn_money">Invite friends to get rewards</string>
+	    
+	<string name="checked_rejected_repair">Audit failed, immediately modified </string>
+	    
+	<string name="expected_cut">Expected commission </string>
+	    
+	<string name="product">commodity library</string>
+	    
+	<string name="article">article </string>
+	    
+	<string name="price">price </string>
+	    
+	<string name="commission"> commission </string>
+	    
+	<string name="my_create">My product</string>
+	    
+	<string name="start_create">Start authoring</string>
+	    
+	<string name="release">release </string>
+	    
+	<string name="reject_reason">Review reason for rejection: </string>
+	    
+	<string name="earning">will earn: </string>
+	    
+	<string name="earned"> has earned: </string>
+	    
+	<string name="insert_goods">Insert item </string>
+	    
+	<string name="please_write_article_content">Please fill in the article content </string>
+	    
+	<string name="please_add_one_picture">Please add at least one image </string>
+	    
+	<string name="article_success"> article published successfully </string>
+	    
+	<string name="release_success">release success </string>
+	    
+	<string name="we_will_check_your_create_in_one_day">We will review your creation within 24 hours</string>
+	    
+	<string name="look_my_create">View my creations</string>
+	    
+	<string name="download_all_images_in_this_paper">Download all the pictures in the article</string>
+	    
+	<string name="pic_download_success">Image download success </string>
+	    
+	<string name="img_empty">The picture does not exist, please check the local path and re-upload the screenshot </string>
+	
+	<string name="text_protocol">\u3000\u3000Robin8提醒用户在使用Robin8平台（robin8.com）服务以及robin8 APP（以下简称“Robin8服务”）之前，仔细阅读并理解以下条款，尤其是限制用户权利的条款。使用Robin8服务的行为将视为用户已经同意本声明的全部内容，并将在使用Robin8服务的过程中遵守执行。\n\u3000\u30001、Robin8是供有广告投放推广需求的客户（下称“广告主”）和能够提供广告发布推广服务的自媒体账号或个人账户（以下简称“KOL”）交易的第三方平台。Robin8平台展示广告主提供的广告内容、KOL提供的账号名称、粉丝数等原始数据，供广告主、KOL根据需要甄选符合自己需求的服务对象进行交易。\n\u3000\u30002、Robin8将对广告主的身份、广告内容、KOL的身份信息、账号名称等内容进行审查，筛选出Robin8认为不真实的信息，但由于网络平台的特殊性及微播易的局限性，Robin8无法筛选出所有的不真实信息并做处理，但将尽最大努力保证所有信息的真实性。\n\u3000\u30003、广告主应如实填写广告信息，对广告内容的真实性、准确性、合法性、推广后的影响负责，Robin8倡导各广告主诚信发布广告、遵守法律法规以共同维护网络环境。\n\u3000\u30004、KOL应如实填写并及时更新对应平台的相应数据，包括但不限于账号名称、地域、账号粉丝数、受众信息等，并反馈真实的推广效果，Robin8倡导KOL诚信服务、遵守法律法规以共同维护网络环境。\n\u3000\u30005、KOL应综合考虑广告内容的真实性、准确性、合法性等因素后选择是否接单，一旦选择接单则应自行承担广告内容发布后对其账号造成的一切影响。广告主与KOL因广告发布产生的纠纷由双方自行解决。\n\u3000\u30006、Robin8基于广告主需求向其推荐的账号，仅是微播易基于账号自身数据分析判断做出的推荐，由广告主最终确认是否使用Robin8推荐的账号。\n\u3000\u30007、Robin8将采取必要手段为用户信息保密，但基于技术限制等，Robin8并不能保证用户的信息完全不被泄露。\n\u3000\u30008、用户应同意Robin8有限度的使用其信息，包括但不限于向用户及时发送重要通知或派发订单、Robin8内部进行审计、数据分析和研究等Robin8自行判断为合理使用的情形及法律法规要求等。\n\u3000\u30009、用户认为Robin8的其它用户侵犯其权利的，可向Robin8提供权利证明文件、身份证明文件等，Robin8审核评估后将采取适当措施予以处理。</string>
+	<string name="agree">Agree</string>
+	<string name="reject">Reject</string>
+	<string name="robin_disclaimer">Robin8 Disclaimer </string>
+	    
+	<string name="share_article_tips">After the article is shared, your friend has purchased the item in the article, you can get a high commission </string>
+	    
+	<string name="expected_income_details"><![CDATA[expected income details>]]></string>
+	    
+	<string name="realese_article_tips">Unable to modify after the article is published, the goods in the article are purchased, you can get a high commission </string>
+	    
+	<string name="finish_article_tips">The current article has not been released, is it out of editing? </string>
+	<string name="white_space">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</string>
+	<string name="white_space_ban">\t\t\t\t\t\t\t\t\t\t\t</string>
+	<string name="sign_end">End of registration </string>
+	    
+	<string name="ending"> is accounting </string>
+	    
+	<string name="has_been_end">end</string>
+	    
+	<string name="kol_age">KOL age </string>
+	    
+	<string name="kol_sex">KOL gender </string>
+	    
+	<string name="kol_classify">KOL classification </string>
+	    
+	<string name="kol_city">KOL city </string>
+	    
+	<string name="all">all </string>
+	    
+	<string name="count_at_least2">Select at least two classifications</string>
+	    
+	<string name="cancel_all"> cancel all </string>
+	    
+	<string name="clear">clear </string>
+	    
+	<string name="select_all">select all </string>
+	    
+	<string name="clear_all"> empty </string>
+	    
+	<string name="please_select_one_city">Select at least one city</string>
+	    
+	<string name="screenshot_reference"> screenshot reference </string>
+	    
+	<string name="validity_of_goods">Product expiration date </string>
+	    
+	<string name="sign_up_recruit">recruitment registration </string>
+	    
+	<string name="download">Download </string>
+	    
+	<string name="task">task </string>
+	    
+	<string name="launch_reword_activity">Initiate a reward event</string>
+	    
+	<string name="intelligent_release">Intelligent Publishing</string>
+	    
+	<string name="please_write_link">Please fill in the activity link </string>
+	    
+	<string name="text_class">Article category </string>
+	    
+	<string name="key_tags">keyword cloud</string>
+	    
+	<string name="sentiment_analysis">Sentiment Analysis</string>
+	    
+	<string name="product_server">product service </string>
+	    
+	<string name="person_brand">character brand </string>
+	    
+	<string name="detail">Article Details>></string>
+	    
+	<string name="all_classify">all categories </string>
+	    
+	<string name="share_to_wechatmoments">Share to WeChat circle</string>
+	    
+	<string name="share_to_weibo">Share to Sina Weibo</string>
+	    
+	<string name="share_for_money">Share earning revenue</string>
+	    
+	<string name="known">know </string>
+	    
+	<string name="known_la">know</string>
+	<string name="campaign_request">activity requirements </string>
+	    
+	<string name="sign_rule">sign-in reward rules </string>
+	<!-- 评价效果 页面-->
+	<string name="effect_evaluate">effect evaluation</string>
+	    
+	<string name="effect_import">Your evaluation is very important to us</string>
+	<!--个推-->
+	<!--活动多图上传-->
+	<string name="all_image">All pictures </string>
+	    
+	<string name="preview">"Preview "</string>
+	    
+	<string name="msg_no_camera">Unable to enable system camera </string>
+	    
+	<string name="msg_amount_limit"> has reached the highest number of choices </string>
+	    
+	<string name="done">Complete </string>
+	<string name="image_index">%1$d/%2$d</string>
+	<!--put金币-->
+	<string name="put_wallet">PUT wallet</string>
+	<!--登陆后用户信息等-->
+	<string name="tv_know_you">Let us know you</string>
+	<string name="tv_your_choose">Match different kinds of activities for you according to your choice</string>
+	<string name="tv_choose_gender">Choose your gender</string>
+	<string name="tv_choose_id">Choose your identity</string>
+	<string name="tv_birth_year">Year of birth</string>
+	<string name="tv_general_user">general user</string>
+	<string name="tv_bigV_user">big V user</string>
+	<string name="tv_content_creator">content creator</string>
+	<string name="tv_choose_favorite">Choose the tag you are interested in</string>
+	<string name="tv_find_for_you">Match the activities you are most interested in for you</string>
+	<string name="save">Save</string>
+	<string name="tv_know_user_id">Know your identity</string>
+	<string name="share_fillter_1">All Campaign</string>
+	<string name="share_fillter_2">New Campaign</string>
+	<string name="share_fillter_3">Ongoing</string>
+	<string name="share_fillter_4">Pending</string>
+	<string name="share_fillter_5">Completed</string>
+	<string name="share_fillter_6">Missed</string>
+	<string name="robin001">Campaign ends in:</string>
+	<string name="robin003">day(s)</string>
+	<string name="robin004">hour(s)</string>
+	<string name="robin005">min(s)</string>
+	<string name="robin008">Max possible earnings:</string>
+	<string name="robin006">Finished</string>
+	<string name="share_fillter_7">end</string>
+	<string name="robin7">Click to Perfect Identity Information</string>
+	<string name="robin011">Gender</string>
+	<string name="robin012">avatar</string>
+	<string name="robin104">Phone</string>
+	<string name="robin015">birthday</string>
+	<string name="robin017">Please fill in your occupation</string>
+	<string name="robin018">Please choose your birthday</string>
+	<string name="robin019">Please select your gender</string>
+	<string name="robin020">Please fill in your email </string>
+	<string name="robin021">Please fill in your mobile phone number</string>
+	<string name="robin022">Please fill in your nickname</string>
+	<string name="robin023">%d kols take the campaign</string>
+	<string name="robin024">Campaign Details</string>
+	<string name="robin025">Modify data</string>
+	<string name="robin026">brand master account</string>
+	<string name="robin027">brand master points</string>
+	<string name="robin028">waiting for brand confirmation</string>
+	<string name="robin029">The brand will be reviewed after the work is uploaded, please follow the negotiation rules</string>
+	<string name="robin030">Add a quote</string>
+	<string name="robin031">Brand Logo</string>
+	<string name="robin032">brand name *</string>
+	<string name="robin033">fill in the brand name</string>
+	<string name="robin034">company name *</string>
+	<string name="robin035">Complete the full header or \'person\'</string>
+	<string name="robin036">official website</string>
+	<string name="robin037">Your company\'s official website</string>
+	<string name="robin038">Brand introduction</string>
+	<string name="robin039">Please fill in your brand introduction</string>
+	<string name="robin040">submit</string>
+	<string name="robin041">Please fill in the age</string>
+	<string name="robin042">Please fill in the introduction</string>
+	<string name="robin043">Please fill in your personal highlights</string>
+	<string name="robin044">Click to open WeChat</string>
+	<string name="robin045">Submit successfully, KOL qualification review! </string>
+	<string name="robin046">Robin8 will review your KOL qualification within 1 business day, please be patient</string>
+	<string name="robin047">activity time：</string>
+	<string name="robin048">activity price：</string>
+	<string name="robin049">recruitment number：</string>
+	<string name="robin050">activity platform：</string>
+	<string name="robin051">KOL in cooperation</string>
+	<string name="robin052">Brand introduction</string>
+	<string name="robin053">brand name</string>
+	<string name="robin054">Participating in the event</string>
+	<string name="robin056"> can be automatically read from the pasteboard </string>
+	    
+	<string name="robin057"><![CDATA[skip>]]></string>
+	    
+	<string name="robin058">total collectors</string>
+	    
+	<string name="robin059">persons</string>
+	    
+	<string name="robin060">total revenue </string>
+	    
+	<string name="robin061">yuan</string>
+	    
+	<string name="robin062">Share invitations </string>
+	    
+	<string name="robin063">to share </string>
+	    
+	<string name="robin064">Contacts invites </string>
+	    
+	<string name="robin065">to invite </string>
+	    
+	<string name="robin066">copy </string>
+	    
+	<string name="robin067">reward rules </string>
+	    
+	<string name="robin068">receiving reward rules: </string>
+	    
+	<string name="robin069">The following conditions are met for the success of the apprentice and the reward: </string>
+	    
+	<string name="robin070">1. Apprentice registration to become a user of robin8; </string>
+	    
+	<string name="robin071">2. Complete a robin8 activity. </string>
+	<string name="robin072">Dividend bonus rules：</string>
+	<string name="robin073">Self-media circle</string>
+	<string name="robin074">Please select your own media circle</string>
+	    
+	<string name="robin075">Self-media platform</string>
+	    
+	<string name="robin076">Please select a self-media platform</string>
+	    
+	<string name="robin077">My offer</string>
+	    
+	<string name="robin078">Please fill in the original graphic quote </string>
+	    
+	<string name="robin079">Please fill in the original video quote </string>
+	    
+	<string name="robin080">Number of fans </string>
+	    
+	<string name="robin081">Please fill in the number of fans </string>
+	    
+	<string name="robin082">Please select the main fan gender</string>
+	    
+	<string name="robin083">Please select the age range </string>
+	    
+	<string name="robin084">Please select a geographically concentrated city (1-3)</string>
+	    
+	<string name="robin085">Work link </string>
+	    
+	<string name="robin086">Please fill in the link to the work </string>
+	    
+	<string name="robin087">Remarks (optional) </string>
+	    
+	<string name="robin088">Please fill in the note </string>
+	    
+	<string name="robin091">Next </string>
+	    
+	<string name="robin092">verification code </string>
+	    
+	<string name="robin093">Get the verification code </string>
+	    
+	<string name="robin094">Please describe the problem you are experiencing</string>
+	    
+	<string name="robin095">Related recommendation</string>
+	    
+	<string name="robin096">Ordinary User (Star of Tomorrow)</string>
+	    
+	<string name="robin097">I hope to discover new things through the Robin8 platform, and have the opportunity to cooperate with major brands to become the future network star </string>
+	    
+	<string name="robin098">large V users (super net red) </string>
+	    
+	<string name="robin099"> has more than 100,000 fans, and has had experience with the brand, hope to get more extensive business cooperation through Robin8 </string>
+	    
+	<string name="robin100">Content Creator (Creative Big Coffee)</string>
+	    
+	<string name="robin101">Focus on graphic and video creation, you can publish a variety of original content, have the opportunity to cooperate with major brands</string>
+	    
+	<string name="robin102">Please enter a new password</string>
+	    
+	<string name="robin103">Please enter the password again </string>
+	    
+	<string name="robin105"> Stay tuned </string>
+	    
+	<string name="robin106">Immediately win the treasure</string>
+	    
+	<string name="robin107">calculation formula </string>
+	    
+	<string name="robin108">[(value A + value B) / goods required number of times] take the remainder + </string>
+	    
+	<string name="robin110">Value A </string>
+	    
+	<string name="robin111">=The last 10 total station participation records for the last time of the item\'s time to win the treasure </string>
+	    
+	<string name="robin112">=The results of the latest issue of China Welfare Lottery\'s old time color\'</string>
+	    
+	<string name="robin114">current participation: </string>
+	    
+	<string name="robin116">Total consumption balance: </string>
+	    
+	<string name="robin117">pay now </string>
+	    
+	<string name="robin118">Value B </string>
+	<string name="robin119">reward rules</string>
+	<string name="robin120">Method 1: Click the invite button below to share with friends to complete registration</string>
+	<string name="robin121">Method 2: Tell your friend about your invitation code and enter when logging in to Robin8</string>
+	<string name="robin122">Note: Only friends who have an activity on Robin8 and upload screenshots will receive a reward, up to 10 rewards per day, and rewards directly into your wallet after success</string>
+	<string name="robin123">*The final interpretation of this event belongs to @Robin8 all</string>
+	<string name="robin124">You have not synced your phone contacts yet, you can\'t get your friend information</string>
+	<string name="robin125">Invite contacts friends</string>
+	<string name="robin126">Please fill in the event title</string>
+	<string name="robin127">Please fill in the activity introduction</string>
+	<string name="robin128">Click to upload cover image</string>
+	<string name="robin129">Please fill in the activity link</string>
+	<string name="robin130">active platform</string>
+	<string name="robin131">activity time</string>
+	<string name="robin132">activity type</string>
+	<string name="robin133">Precision marketing？</string>
+	<string name="robin135">submit</string>
+	<string name="robin136">fill the article link </string>
+	<string name="robin137">Copy the link, you can fill it out automatically 【Recommended to post WeChat article】 </string>
+	<string name="robin138">Select the desired effect</string>
+	<string name="robin139">Robin8 is the first domestic company to use NLP technology for precise marketing. Just copy the article link and you can only publish it.</string>
+	<string name="robin140">Modify event information</string>
+	<string name="robin141">activity total budget</string>
+	<string name="robin142">point deduction</string>
+	<string name="robin143">wallet balance deduction</string>
+	<string name="robin144">pay now</string>
+	<string name="robin145">Mobile number login</string>
+	<string name="robin146">Mobile number</string>
+	<string name="robin147">Enter the invitation code (optional) </string>
+	<string name="robin149">Forgot your password?</string>
+	<string name="robin150">Click on the login or social account to agree to the User Service Agreement</string>
+	<string name="robin151">No mailbox yet?</string>
+	<string name="robin152">Register now</string>
+	<string name="robin153">Enter the visitor mode</string>
+	<string name="robin155">*Click on the login or social account to agree to the User Service Agreement</string>
+	<string name="robin156">or</string>
+	<string name="robin157">In order to provide you with better service, please enter your mobile number</string>
+	<string name="robin158">Impact</string>
+	<string name="robin159">activity total budget</string>
+	<string name="robin160">View event page</string>
+	<string name="robin161">View the participant page</string>
+	<string name="robin163">Review failed reason</string>
+	<string name="robin164">Share event</string>
+	<string name="robin165">creative activity</string>
+	<string name="robin166">The content has not been collected yet, go to the collection~</string>
+	<string name="robin167">Please select the payment method</string>
+	<string name="robin168">Advertising account balance payment</string>
+	<string name="robin169">charge now</string>
+	<string name="robin170">Alipay payment</string>
+	<string name="robin172">Select self-media platform</string>
+	<string name="robin173">all categories</string>
+	<string name="robin174">integrated sorting</string>
+	<string name="robin175">circle</string>
+	<string name="robin176">Please select the circle you are interested in</string>
+	<string name="robin177">WeChat friends number</string>
+	<string name="robin178">Please fill in the number of WeChat friends</string>
+	<string name="robin179">charge amount</string>
+	<string name="robin180">the minimum recharge amount is 500 yuan</string>
+	<string name="robin181">invitation code</string>
+	<string name="robin182">Do not fill</string>
+	<string name="robin183">payment method </string>
+	<string name="robin184">Note: Please upload the corresponding image in the order of the screenshot example</string>
+	<string name="robin185">text description</string>
+	<string name="robin186">picture description</string>
+	<string name="robin187">title</string>
+	<string name="robin188">insert image</string>
+	<string name="robin189">insert item</string>
+	<string name="robin190"><![CDATA[Please select>]]></string>
+	<string name="robin191">Congratulations on your success! ! !</string>
+	<string name="robin192">The brand will be reviewed after the work is uploaded, please follow the negotiation rules</string>
+	<string name="robin193">Add a work link</string>
+	<string name="robin194">activity information</string>
+	<string name="robin195">Work information</string>
+	<string name="robin200">identity information</string>
+	<string name="robin201">The following identity is not registered</string>
+	<string name="robin202">Open</string>
+	<string name="robin203">fill in the microblog quote</string>
+	<string name="robin204">fill in WeChat quotes</string>
+	<string name="robin205">cumulative income</string>
+	<string name="robin206">Today\'s earnings</string>
+	<string name="robin207">sign-in rewards</string>
+	<string name="robin208">novice task</string>
+	<string name="robin209">Complete an activity</string>
+	<string name="robin210">do the task</string>
+	<string name="robin211">Share content for the first time (0/1) Reward:</string>
+	<string name="robin212">View screenshot example (0/1) Reward:</string>
+	<string name="ribin213">First upload screenshot (0/1) Reward:</string>
+	<string name="robin214">daily task</string>
+	<string name="robin215">Share to make money</string>
+	<string name="robin216">Reference article </string>
+	<string name="robin217">KOL circle</string>
+	<string name="robin218">Please select your KOL circle</string>
+	<string name="robin219">Please fill in the single graphic price</string>
+	<string name="robin220">Please fill in the multi-picture headline price</string>
+	<string name="robin221">Please fill in the price of the next</string>
+	<string name="robin222">Please fill in the 3-N price</string>
+	<string name="robin223">quota validity period</string>
+	<string name="robin224">Please fill in the validity period of the quotation</string>
+	<string name="robin225">Authentication Type</string>
+	<string name="robin226">Please select your authentication type</string>
+	<string name="robin227">Please fill in the forwarding price</string>
+	<string name="robin228">Please fill in the straight hair price</string>
+	<string name="robin229">Please fill in the live price</string>
+	<string name="robin230">to raise cash amount</string>
+	<string name="robin231">Last seen here Click to refresh</string>
+	<string name="robin232">Invite friends to make money together</string>
+	<string name="robin233"><![CDATA[Please open the PUT wallet and get extra rewards >]]></string>
+	<string name="robin234">point rules</string>
+	<string name="robin235">Unbind</string>
+	<string name="robin236">identity review progress</string>
+	<string name="robin237">Contact customer service</string>
+	<string name="robin238">Save picture</string>
+	<string name="robin239">Additional rewards</string>
+	<string name="robin240">Participants</string>
+	<string name="robin241">Open album</string>
+	<string name="robin243">Help</string>
+	<string name="robin244">Robin8 gives priority to the most accurate matching KOL. After 6 hours, the activity will not be exhausted, it will be re-submitted, the matching KOL will be returned to the second echelon, and so on... until the event End</string>
+	<string name="robin245">Successful red envelope</string>
+	<string name="robin246">Read daily to find content can be obtained from time to time \n get red packets</string>
+	<string name="robin247">KOL qualification review rejection</string>
+	<string name="robin248">Avatar does not meet the requirements</string>
+	<string name="robin249">Re-apply to become KOL</string>
+	<string name="robin250">Please fill in the quotation</string>
+	<string name="robin251">social account information</string>
+	<string name="robin252">take a photo</string>
+	<string name="robin253">Undo activity</string>
+	<string name="robin254">Winner:</string>
+	<string name="robin255">TA has participated：</string>
+	<string name="robin257">Load failed, click retry</string>
+	<string name="robin258">Notification</string>
+	<string name="robin259">A big wave of activities is on the way, so stay tuned</string>
+	<string name="robin260">Your current score %d, using \n points can deduct %d yuan</string>
+	<string name="robin261">The validity period of the points is up to: %s</string>
+	<string name="robin263">Your current points / 10 can be deducted cash</string>
+	<string name="robin264">Please improve the brand owner information</string>
+	<string name="robin265">to improve</string>
+	<string name="robin266">Number of connected activities: %d</string>
+	<string name="robin267">Invitation code (%d)</string>
+	<string name="robin268">Age range：%s</string>
+	<string name="robin269">Regional concentrated city：%s</string>
+	<string name="robin270">Additional PUT rewards for participating in this event</string>
+	<string name="robin271">After sharing, the friend gets paid for completing the specified task</string>
+	<string name="robin272">Participating in recruitment activities to get rewards</string>
+	<string name="robin273">Participate in the invited event to get rewards</string>
+	<string name="robin274">Open the link after sharing and download the app to get paid</string>
+	<string name="robin275">has received %s PUT extra bonus, please go to the wallet to view</string>
+	<string name="robin276">The event is over and no additional rewards are available</string>
+	<string name="robin277">email registration</string>
+	<string name="robin278">camera</string>
+	<string name="robin279">Failed to get camera permission</string>
+	<string name="robin280">We need camera permissions to use this feature properly</string>
+	<string name="robin281">Verify permissions</string>
+	<string name="robin282">Tips</string>
+	<string name="robin283">Customer service is busy, please try agaiXn later</string>
+	<string name="robin284">go to finish</string>
+	<string name="robin285">go to read</string>
+	<string name="robin286">Reward: depending on the activity </string>
+	<string name="robin287">Reward: Massive cash red envelopes in you </string>
+	<string name="robin288">Reward: ¥ 2.00 </string>
+	<string name="robin289">Invite friends (%d/10)</string>
+	<string name="robin290">Content Mining (%d/10)</string>
+	<string name="robin291">Active sharing (%d/4)</string>
+	<string name="robin292">checked in </string>
+	<string name="robin293"> has been signed to %d days in a row, tomorrow to sign in to earn %s yuan </string>
+	<string name="robin294"> has been signed in %d days, today sign in to earn %s yuan </string>
+	<string name="robin295">Filter</string>
+	<string name="robin296">Pull down can refresh</string>
+	<string name="robin297">release to refresh </string>
+	<string name="robin298">last update: %s</string>
+	<!--<string name="robin298">最后更新：%s</string>-->
+	<string name="robin299">Robin8 engine is running </string>
+	<string name="robin300">not cooperative </string>
+	<string name="robin301">confirm cooperation, pending payment </string>
+	<string name="robin302">Acceptance satisfaction, pending payment </string>
+	<string name="robin303">View the offer</string>
+	<string name="robin304">quote rejected</string>
+	<string name="robin305">Upload the work</string>
+	<string name="robin306">activity has ended</string>
+	<string name="robin307">The payment is successful, the cooperation is completed </string>
+	<string name="robin308">Activity is closed</string>
+	<string name="robin309">Work upload, pending acceptance </string>
+	<string name="robin310">not cooperative </string>
+	<string name="robin311">Confirm cooperation, pending payment </string>
+	<string name="robin312">Acceptance satisfaction, pending payment </string>
+	<string name="robin313"> still %s can be cashed out </string>
+	<string name="robin314">Copy Success</string>
+	<string name="robin315">Data editing</string>
+	<string name="robin316">Personal information</string>
+	<string name="robin317">Rejection reason: no screenshots uploaded </string>
+	<string name="robin318">Rejection reason: This screenshot does not meet the requirements </string>
+	<string name="robin319">from the registration deadline </string>
+	<string name="robin320">Special number of people </string>
+	<string name="robin321">starting from the event </string>
+	<string name="robin322">from the beginning %s</string>
+	<string name="robin323">seconds</string>
+	<string name="robin324">Please enter a nickname </string>
+	<string name="robin325">Re-acquire verification code </string>
+	<string name="robin327">Please enter the correct email account!</string>
+	<string name="robin328">Please enter the verification code!</string>
+	<string name="robin329">Please enter the correct mobile number!</string>
+	<string name="robin330">Certificate code failed to send!</string>
+	<string name="robin331">Verification code sent successfully </string>
+	<string name="robin332">Please enter your mobile number!</string>
+	<string name="robin333"><![CDATA[has got <font color=#ecb200>%d</font> clicks, earned <font color=#ecb200>¥%s </font> ]]> </string>
+	<string name="robin334"><![CDATA[has got <font color=#ecb200>%d</font> clicks, will earn <font color=#ecb200>¥%s </font> ]]> </string>
+	<string name="robin335"><![CDATA[Completed, earned <font color=#ecb200>¥%s</font>]]></string>
+	<string name="robin336"><![CDATA[Event is in progress, will soon earn <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin337">Upload screenshot success</string>
+	<string name="robin338">click </string>
+	<string name="robin339">effect </string>
+	<string name="robin340">forward </string>
+	<string name="robin341">recruitment </string>
+	<string name="robin342">Invited </string>
+	<string name="robin343">Download </string>
+	<string name="robin344">task </string>
+	<string name="robin345">Network connection error </string>
+	<string name="robin346">Activity accepted successfully </string>
+	<string name="robin347">Upload again</string>
+	<string name="robin348">Upload screenshots</string>
+	<string name="robin349">The top 10 apprentices have 2 bonuses per day</string>
+	<string name="robin350">brand </string>
+	<string name="robin351">company name </string>
+	<string name="robin352">Institutional Certification</string>
+	<string name="robin353">personal authentication</string>
+	<string name="robin354">not authenticated</string>
+	<string name="robin355">Main fan gender: male </string>
+	<string name="robin356">Main fan gender: female </string>
+	<string name="robin357">Select platform </string>
+	<string name="robin358">Please fill in the microblog quote </string>
+	<string name="robin359">Please fill in the WeChat quote</string>
+	<string name="robin360">The audit failed, please contact customer service </string>
+	<string name="robin361">Camera film </string>
+	<string name="robin362">activity budget: ¥ %s </string>
+	<string name="robin363">integration: %s</string>
+	<string name="robin364">View evaluation</string>
+	<string name="robin365">Rejection reason: %s</string>
+	<string name="robin366"> (% s) </string>
+	<string name="robin367"> period number: %s</string>
+	<string name="robin368">Recharge %d to receive points</string>
+	<string name="robin369">Note: The bonus time is valid to %s</string>
+	<string name="robin370">edit </string>
+	<string name="robin371">Save successfully </string>
+	<string name="robin372">empty</string>
+	<string name="robin373">invitation </string>
+	<string name="robin374">invited </string>
+	<string name="robin375">payment amount: ¥ %s </string>
+	<string name="robin376">Confirm payment ¥ %s </string>
+	<string name="robin377">new things</string>
+	<string name="robin378">Share failed, please share again</string>
+	<string name="robin379">share success</string>
+	<string name="robin380">cancel sharing</string>
+	<string name="robin381">Please upload all the pictures! </string>
+	<string name="robin382">Please upload an image! </string>
+	<string name="robin383">Untied successfully </string>
+	<string name="robin384">Query failed </string>
+	<string name="robin385">bind %s</string>
+	<string name="robin386">bind failed, please try again</string>
+	<string name="robin387"> has successfully bound %s</string>
+	<string name="robin388">no data</string>
+	<string name="robin389">Invalid invitation code</string>
+	<string name="robin390">Verification success </string>
+	<string name="robin391">Network loading failed</string>
+	<string name="robin392">Invitation code cannot be empty</string>
+	<string name="robin393">Save failed</string>
+	<string name="robin394">Please authenticate first</string>
+	<string name="robin395">Please enter the recharge amount </string>
+	<string name="robin396">Please add a link to the work</string>
+	<string name="robin397">Please add a quote</string>
+	<string name="robin398">Login is invalid, please log in again </string>
+	<string name="robin399">Please allow permission to get contact, otherwise this function will not work properly </string>
+	<string name="robin400">You have checked the box and no longer ask, please go to \'Settings-Application Management\' to allow the corresponding permission, otherwise the function will not work properly</string>
+	<string name="robin401">Please fill in the text </string>
+	<string name="robin402"> login success </string>
+	<string name="robin403">Two password input inconsistencies</string>
+	<string name="robin404">Please enter a password of at least 6 digits </string>
+	<string name="robin405">payment success </string>
+	<string name="robin406">Please fill in the amount of cash </string>
+	<string name="robin407">Please enter the correct amount of the amount </string>
+	<string name="robin408">Amount of 50 can be cashed out </string>
+	<string name="robin409">Insufficient balance </string>
+	<string name="robin410">Please bind the Alipay account first </string>
+	<string name="robin411">drawing success </string>
+	<string name="robin418">Quantity: %d</string>
+	<string name="robin419">Please select gender </string>
+	<string name="robin420">Authorization failed, please try again</string>
+	<string name="robin421">Bind Alipay success </string>
+	<string name="robin422">funds flow </string>
+	<string name="robin423">integration flow </string>
+	<string name="robin424">Please score </string>
+	<string name="robin425">Please enter the evaluation content </string>
+	<string name="robin426">payment result confirmation </string>
+	<string name="robin427">payment failed </string>
+	<string name="robin428">Please select the platform and then save </string>
+	<string name="robin429">Professional Creator Certification</string>
+	<string name="robin430">The professional content creator is not certified</string>
+	<string name="robin431">The professional content creator has been certified</string>
+	<string name="robin432">Professional content creator certification</string>
+	<string name="robin433">Professional content creator certification failed </string>
+	<string name="robin434">WeChat public number </string>
+	<string name="robin435">Going to share...</string>
+	<string name="robin436">%s million views </string>
+	<string name="robin437">%s views </string>
+	<string name="robin438">Modify the offer</string>
+	<string name="robin439">cooperation quote </string>
+	<string name="robin440">Quote is successful, waiting for the brand master review </string>
+	<string name="robin441">Please note </string>
+	<string name="robin442">Modify the link </string>
+	<string name="robin444">Congratulations! Cooperation completed </string>
+	<string name="robin445">Cooperative compensation has been credited to your Robin8 account, please check in my wallet</string>
+	<string name="robin446">waiting for brand master review</string>
+	<string name="robin447">Congratulations on your successful participation, please upload your work</string>
+	<string name="robin448">The submission is successful, waiting for the brand master review </string>
+	<string name="robin449">Please add %s quote</string>
+	<string name="robin450">Please add %s</string>
+	<string name="robin451">details </string>
+	<string name="robin452">%s meta reward has been placed in the wallet </string>
+	<string name="robin453">Please select the activity type </string>
+	<string name="robin454">Active link format is incorrect </string>
+	<string name="robin455">Please fill in the total activity budget </string>
+	<string name="robin456">Please fill in a single fee </string>
+	<string name="robin457">The minimum cost of a single click is 0.2 yuan </string>
+	<string name="robin458"> single click cost format error </string>
+	<string name="robin459">Promotion platform selection </string>
+	<string name="robin460">Please select the promotion platform first</string>
 
-    <!-- app更新 -->
-    <string name="normal_issue">常见问题</string>
-    <string name="account_menu">账单</string>
 
-    <string name="update_downfinish">下载完成</string>
-    <string name="update_apkdownfinish">安装包已下载完毕</string>
-    <string name="update_loading">正在下载···</string>
-    <string name="update_beginload">开始下载</string>
-    <string name="update_wait">请稍候..</string>
-    <string name="update_ing">正在为您更新</string>
-    <string name="update_backupdate">正在为您转入后台下载更新···</string>
-    <string name="no_netInfo">您当前处于离线状态，请检查网络!</string>
-    <string name="no_net">网络请求失败，请检查网络!</string>
-    <string name="waring_net_notice">没有网络时，提示图标</string>
-    <string name="progress_chekNumber">正在验证手机号码···</string>
-    <string name="progress_login">正在登陆···</string>
-    <string name="progress_resetPw">正在重置密码···</string>
-    <string name="progress_readContact">正在读取通讯录信息···</string>
-    <string name="progress_loadInfo">正在加载数据···</string>
-    <string name="progress_postinfo">正在提交数据···</string>
-    <string name="progress_requestnet">正在请求网络···</string>
-
-    <string name="userid_found">用户信息已存在，正在跳转登录操作…</string>
-    <string name="logining">使用%s帐号登录中…</string>
-    <string name="auth_cancel">授权操作已取消</string>
-    <string name="auth_error">授权操作遇到错误，请阅读Logcat输出</string>
-    <string name="auth_complete">授权成功，正在跳转登录操作…</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="put_right_email_address">请输入正确的邮箱!</string>
-    <string name="put_pwd">请输入密码</string>
-
-
-    <string name="pickerview_cancel">取消</string>
-    <string name="pickerview_submit">确定</string>
-    <string name="pickerview_year">年</string>
-    <string name="pickerview_month">月</string>
-    <string name="pickerview_day">日</string>
-    <string name="pickerview_hours">时</string>
-    <string name="pickerview_minutes">分</string>
-    <string name="pickerview_seconds">秒</string>
-
-    <string name="activities_registration">活动报名</string>
-    <string name="name">姓名</string>
-    <string name="contact_telphone">联系电话</string>
-    <string name="wechat_account">微信号</string>
-    <string name="wechat_friends_number">微信好友数</string>
-    <string name="sina">微博</string>
-    <string name="ideal_offer">理想报价</string>
-    <string name="remark_info">备注信息</string>
-    <string name="click_write">点击填写</string>
-
-    <string name="reword_money">悬赏金额</string>
-
-    <!--WalletActivity-->
-    <string name="mine_wallet">My wallet</string>
-    <!--已提现-->
-    <string name="was_withdraw">Have withdrawal</string>
-    <!--已花费-->
-    <string name="was_consume">Has cost</string>
-    <!--提现中-->
-    <string name="being_withdraw">Waiting for withdrawal</string>
-    <string name="beable_withdraw">可提现</string>
-    <string name="days7_income_development">7日收益趋势</string>
-    <string name="total">共</string>
-    <string name="income_times">笔收入</string>
-    <string name="total_count">合计:</string>
-    <string name="total_income">总收益 ></string>
-    <string name="income_info2">*图中显示金额包含预计收入(待审核收入)</string>
-    <string name="income_info3">满50元即可提现</string>
-    <string name="withdraw">提现</string>
-    <string name="withdraw_now">立即提现</string>
-    <string name="un_binded">未绑定</string>
-    <string name="click_bind">点击绑定</string>
-    <string name="alipay_bind">支付宝绑定</string>
-    <string name="alipay_account">支付宝账号</string>
-    <string name="alipay_name">支付宝姓名</string>
-    <string name="id_card">身份证号码</string>
-    <string name="please_write_alipay_account">请填写支付宝账号</string>
-    <string name="please_write_alipay_name">请填写支付宝姓名</string>
-    <string name="please_write_id_number">请填写身份证号码</string>
-    <string name="click">click</string>
-    <string name="post">forwarding</string>
-    <string name="shared_clicked_by_friends">分享后好友点击此文章即获得报酬</string>
-    <string name="post_this_page_get_reword">转发此文章立即获得报酬</string>
-    <!--活动订单支付-->
-    <string name="activity_order_pay">Campaign Payment</string>
-    <!--促销活动-->
-    <string name="campaign_offer">Promotion offer</string>
-    <string name="my_launch_activity">我发布的活动</string>
-    <string name="order_pay_success">订单支付成功</string>
-    <string name="order_pay">订单支付</string>
-    <string name="we_check_it_in_24hours">我们将在24小时内审核您的活动</string>
-    <string name="look_activity">查看活动</string>
-    <string name="recharge">充值</string>
-    <string name="recharge_instantly">立即充值</string>
-
-    <string name="pay_instantly">立即支付</string>
-    <string name="checking">审核中</string>
-    <string name="checked_rejected">审核拒绝</string>
-    <string name="checked_passed">审核通过</string>
-    <string name="executing">进行中</string>
-    <string name="executed">活动结束</string>
-    <string name="settled">已结算</string>
-    <string name="no_data_try_others">当前页面无数据，试试别的页面吧</string>
-    <string name="ad_amount">品牌主账户余额</string>
-    <string name="my_menu">我的账单</string>
-    <string name="revoke">撤销</string>
-    <string name="revoke_campaign">撤销活动</string>
-    <!--资金流水-->
-    <string name="cash_tranx">Cash tranx</string>
-
-    <string name="robin_indiana">一元购</string>
-    <string name="detail_indiana">夺宝详情</string>
-    <string name="participated">参与了</string>
-    <string name="person_times">人次</string>
-    <string name="you_not_participated">您没有参加本次活动</string>
-    <string name="you_participated">本次活动您参加了</string>
-    <string name="this_participated">本期参与：</string>
-    <string name="this_issue">本期期号：</string>
-    <string name="draw_time">揭晓时间：</string>
-    <string name="total_consume">共消耗余额</string>
-    <string name="current_amount">元(当前余额：¥</string>
-    <string name="right_">)</string>
-
-    <string name="count_detail">计算详情</string>
-    <string name="lucky_number">幸运号码：</string>
-    <string name="you_participated_times">您参与了:</string>
-    <string name="my_participated_times">我已参与:</string>
-    <string name="indiana_number">夺宝号码:</string>
-    <string name="participated_schedule">参与进度：</string>
-    <string name="percent_sign">%</string>
-
-    <string name="instantly_indiana">立即夺宝</string>
-    <string name="has_announced">已经揭晓</string>
-    <string name="total_need_times">总需人次：</string>
-    <string name="add_times">追加</string>
-    <string name="delivery_address">收货地址</string>
-    <string name="submit">Submit</string>
-    <string name="submit_success">提交成功</string>
-    <string name="submit_failed">提交失败</string>
-    <string name="please_write_title">请填写标题</string>
-    <string name="please_write_name">请填写姓名</string>
-    <string name="please_write_telphone">请填写联系电话</string>
-    <string name="please_write_address">请填写收货地址</string>
-    <string name="help">Help</string>
-    <string name="month_sign_chart">月签到表</string>
-    <string name="you_have_sign">您已连续签到</string>
-    <string name="day">天</string>
-    <string name="sign_was_done">签到已完成</string>
-    <string name="sign_instantly">立即签到</string>
-    <string name="sign_successfully">签到成功</string>
-    <string name="sign">Sign in</string>
-
-    <string name="hot_kol_recommend">热门KOL推荐</string>
-    <string name="wechat">朋友圈</string>
-    <string name="invite_ta_participate_campaign">给TA发特邀活动</string>
-    <string name="kol_brief">KOL简介</string>
-    <string name="kol_display">KOL展示</string>
-    <string name="kol_tag_cloud">KOL标签云</string>
-    <string name="business_cooperation">商务合作</string>
-    <string name="please_write_company">请填写公司</string>
-    <string name="please_write_email">请填写邮箱</string>
-    <string name="search">搜索</string>
-    <string name="cancel">Cancel</string>
-    <string name="clear_history">清空历史</string>
-    <string name="search_result_empty">搜索结果为空</string>
-    <string name="nickname">昵称</string>
-    <string name="number_of_fans">粉丝数</string>
-    <string name="number_of_videos">视频数</string>
-    <string name="business_cop_content_fir_from_product_list">我是品牌主,我要CPS合作\\n</string>
-    <string name="business_cop_content_fir">我是品牌主,我要特邀KOL\\n</string>
-    <string name="business_submit_success">提交成功，我们会尽快与您联系,请保持电话畅通!</string>
-    <string name="my_concern">我的关注</string>
-    <string name="edit_invitation_code">输入邀请码</string>
-    <string name="be_kol">我的资料</string>
-    <string name="edit_kol">编辑KOL资料</string>
-
-    <string name="icons_favorite_selected">&#xe622;</string>
-    <string name="icons_favorite_unselected">&#xe623;</string>
-    <string name="icons_back">&#xe603;</string>
-    <string name="icons_delete">&#xe618;</string>
-    <string name="icons_delete2">&#xe61b;</string>
-    <string name="icons_message">&#xe625;</string>
-    <string name="icons_setting">&#xe61f;</string>
-    <string name="icons_box_delete">&#xe618;</string>
-    <string name="arrow_down">&#xe613;</string>//下拉
-    <string name="arrow_down_percent30">&#xe600;</string>//下拉30%
-    <string name="arrow_up">&#xe60f;</string>//向上箭头
-    <string name="arrow_right">&#xe60e;</string>//向右箭头
-    <string name="arrow_left">&#xe603;</string>
-    <string name="add_sign">&#xe609;</string>//加好
-    <string name="hook_sign">&#xe61e;</string>//对勾
-    <string name="share_sign">&#xe608;</string>//分享
-    <string name="search_sign">&#xe602;</string>//搜索
-    <string name="icons_message_open">&#xe616;</string>
-    <string name="unselected">&#xe61a;</string>
-    <string name="selected">&#xe61e;</string>
-    <!--打开消息-->
-    <string name="next">Next step</string>
-    <string name="jump">Ignore</string>
-    <string name="invite_friends">邀请好友</string>
-    <string name="be_kol_first_compelete_data">资料完善度越高，接受的活动价格越高</string>
-    <string name="confirm">Confirm</string>
-
-    <string name="interest">兴趣</string>
-    <string name="user_phone_num">手机号</string>
-    <string name="user_email">E-mail</string>
-    <string name="interest_tags">兴趣标签(可选5个)</string>
-    <string name="please_write">请填写</string>
-    <string name="age">年龄</string>
-    <string name="professional">职业</string>
-    <string name="introduction">简介</string>
-    <string name="please_write_personal_show">请填写个人精彩展示</string>
-    <string name="personal_show">个人精彩展示</string>
-    <string name="weixin">微信</string>
-    <string name="gongzhonghao">公众号</string>
-    <string name="weibo">微博</string>
-    <string name="qq">QQ</string>
-    <string name="for_example_address">例如:http//mp.weixin.qq.com/s?__biz=...</string>
-    <string name="friends_number">好友人数</string>
-    <string name="offer_unit">报价(元/条)</string>
-    <string name="please_bind">请绑定</string>
-    <string name="account">账号</string>
-    <string name="click_open">点击打开</string>
-    <string name="corresponding_wechat">对应的微信号</string>//向左箭头
-    <string name="for_example">例如：</string>
-    <string name="has_binded">已绑定</string>
-    <string name="male">男</string>
-    <string name="female">女</string>
-    <string name="please_data_wrong">请求参数错误</string>
-    <string name="over_time">请求超时</string>
-    <string name="unknown">未知</string>
-
-    <string name="please_write_nick_name">please write nick name</string>
-    <string name="please_write_age">please write age</string>
-    <string name="please_write_job">please write job</string>
-    <string name="please_write_interest">please write interest</string>
-    <string name="please_write_desc">please write desc</string>
-    <string name="promote_the_content_page_for_details">推广内容详情页</string>
-    <string name="campaign_data_download">活动素材下载</string>
-    <string name="approved_wait_activity_start">等待活动开始</string>
-    <string name="campaign_unstart">活动未开始</string>
-    <string name="reject_campaign">拒绝此活动</string>
-    <string name="campaign_is_in_the_way">活动进行中</string>
-    <string name="upload_screenshot">上传截图</string>
-    <string name="approved_check_the_screenshot">审核通过-查看截图</string>
-    <string name="approving_check_the_screenshot">审核中-查看截图</string>
-    <string name="look_the_screenshot">查看截图</string>
-    <string name="upload_again">再次上传</string>
-    <string name="approve_reject_check_reason">审核拒绝-查看原因</string>
-    <string name="campaign_missed">活动已错失</string>
-    <string name="sign_up_approve_failed">报名审核失败</string>
-    <string name="campaign_approve_failed">活动审核失败</string>
-    <string name="campaign_compeleted">活动已完成</string>
-    <string name="campaign_sign_up_checking">活动已报名,正在审核</string>
-    <string name="sign_up_instantly">立即报名</string>
-    <string name="sign_up_end">报名已结束</string>
-    <string name="campaign_sign_up_success">活动报名成功</string>
-    <string name="campaign_sign_up_success_wait_for_auditing">活动报名成功,等待审核中</string>
-    <string name="share_instantly">立即分享</string>
-    <string name="campaign_missed_forwarding">活动已错失,无偿转发</string>
-    <string name="upload_screenshot_time_end">上传截图时间已过</string>
-    <string name="share_again">再次分享</string>
-    <string name="unknown_state">未知状态</string>
-    <string name="recurit_process">招募活动流程</string>
-    <string name="kol_sign_up">KOL报名活动</string>
-    <string name="brand_select_kol">品牌主选择KOL</string>
-    <string name="kol_receive_campaign">KOL接受活动</string>
-    <string name="download_campaign_material">下载活动素材</string>
-    <string name="upload_campaign_screenshot">上传活动截图</string>
-    <string name="screenshot_check_passed">截图审核通过</string>
-    <string name="my_wallet_to_account">我的钱包到账</string>
-    <string name="receive_this_campaign">接受此活动</string>
-    <string name="has_invite_friends">已邀请好友</string>
-    <string name="invite_instantly">立即邀请</string>
-    <string name="setting">Setting</string>
-    <string name="log_out">Login out</string>
-    <string name="message">All Messages</string>
-    <string name="all_message_read">所有消息标记为已读</string>
-    <string name="feed_back">意见反馈</string>
-    <string name="sweep_qr_code">扫一扫二维码登录官网</string>
-    <string name="bind_social_account">社交账号绑定</string>
-    <string name="social_account">社交账号</string>
-    <string name="help_online">Robin8 online customer service</string>
-
-    <string name="viewfinderview_status_text1">将二维码/条码放入取景框内</string>
-    <string name="viewfinderview_status_text2">即可自动扫描</string>
-    <string name="button_ok">OK</string>
-    <string name="msg_camera_framework_bug">Sorry, the Android camera encountered a problem. You may  need to restart the device. </string>
-    <string name="invitees_list">参与人员列表</string>
-    <string name="invitees_person">参与人员</string>
-    <string name="help_center">帮助中心</string>
-    <string name="sweep_login_success">扫描登录成功</string>
-    <string name="share_invite_friends_title">我最近发现一款每天都可以赚钱的App,您也来试试？</string>
-    <string name="share_invite_friends_text">Robin8基于大数据的社交影响平台</string>
-    <string name="share_pk_title">快来Robin8测试你的社交账号影响力吧！</string>
-    <string name="share_pk">要和我比拼影响力么？快来Robin8一决高下！</string>
-    <string name="share_pk_text">更有海量现金活动，还能和好友PK社交影响力哟</string>
-    <string name="bind_mobile">绑定手机号码</string>
-    <string name="my_capaign">我的活动</string>
-    <string name="robin8">ROBIN8</string>
-    <string name="please_write_kol">请填写特邀KOL</string>
-    <string name="image_check_reject">图片审核不通过:</string>
-    <!--账单-->
-    <string name="bill">Tranx detail</string>
-    <string name="no_introduce">未填写KOL简介</string>
-    <string name="has_consumed">已花费</string>
-    <string name="count_click">计费点击</string>
-    <string name="total_clicks">总点击数</string>
-    <string name="person_number">参与人数</string>
-    <string name="participate_crew_list">参与人员列表</string>
-    <string name="please_check_id_number">请填写正确的身份证号码</string>
-    <string name="please_write_sex">性别</string>
-    <string name="please_write_pic">请上传图像</string>
-    <string name="must_bind_weixin">必须绑定微信</string>
-    <string name="be_kol_get_more_info">KOL可获取更多活动~</string>
-    <string name="counts_2to5">兴趣个数最少为2最多为5</string>
-    <string name="invite_friends_earn_money">邀请好友得奖励</string>
-    <string name="checked_rejected_repair">审核未通过，立即修改</string>
-    <string name="expected_cut">预计提成 </string>
-    <string name="product">商品库</string>
-    <string name="cooperate_in">入驻</string>
-    <string name="article">文章</string>
-    <string name="price">售价</string>
-    <string name="commission">提成</string>
-    <string name="my_create">我的产品</string>
-    <string name="start_create">开始创作</string>
-    <string name="release">发布</string>
-    <string name="reject_reason">审核拒绝原因：</string>
-    <string name="earning">即将赚：</string>
-    <string name="earned">已赚：</string>
-    <string name="insert_goods">插入商品</string>
-    <string name="please_write_article_content">请填写文章内容</string>
-    <string name="please_add_one_picture">请至少添加一张图片</string>
-    <string name="article_success">文章发表成功</string>
-    <string name="release_success">发布成功</string>
-    <string name="we_will_check_your_create_in_one_day">我们将在24小时内审核您的创作</string>
-    <string name="look_my_create">查看我的创作</string>
-    <string name="download_all_images_in_this_paper">下载文章中所有图片</string>
-    <string name="pic_download_success">图片下载成功</string>
-    <string name="img_empty">图片不存在,请检查本地路径,重新上传截图</string>
-
-    <string name="text_protocol">\u3000\u3000Robin8提醒用户在使用Robin8平台（robin8.com）服务以及robin8 APP（以下简称“Robin8服务”）之前，仔细阅读并理解以下条款，尤其是限制用户权利的条款。使用Robin8服务的行为将视为用户已经同意本声明的全部内容，并将在使用Robin8服务的过程中遵守执行。\n\u3000\u30001、Robin8是供有广告投放推广需求的客户（下称“广告主”）和能够提供广告发布推广服务的自媒体账号或个人账户（以下简称“KOL”）交易的第三方平台。Robin8平台展示广告主提供的广告内容、KOL提供的账号名称、粉丝数等原始数据，供广告主、KOL根据需要甄选符合自己需求的服务对象进行交易。\n\u3000\u30002、Robin8将对广告主的身份、广告内容、KOL的身份信息、账号名称等内容进行审查，筛选出Robin8认为不真实的信息，但由于网络平台的特殊性及微播易的局限性，Robin8无法筛选出所有的不真实信息并做处理，但将尽最大努力保证所有信息的真实性。\n\u3000\u30003、广告主应如实填写广告信息，对广告内容的真实性、准确性、合法性、推广后的影响负责，Robin8倡导各广告主诚信发布广告、遵守法律法规以共同维护网络环境。\n\u3000\u30004、KOL应如实填写并及时更新对应平台的相应数据，包括但不限于账号名称、地域、账号粉丝数、受众信息等，并反馈真实的推广效果，Robin8倡导KOL诚信服务、遵守法律法规以共同维护网络环境。\n\u3000\u30005、KOL应综合考虑广告内容的真实性、准确性、合法性等因素后选择是否接单，一旦选择接单则应自行承担广告内容发布后对其账号造成的一切影响。广告主与KOL因广告发布产生的纠纷由双方自行解决。\n\u3000\u30006、Robin8基于广告主需求向其推荐的账号，仅是微播易基于账号自身数据分析判断做出的推荐，由广告主最终确认是否使用Robin8推荐的账号。\n\u3000\u30007、Robin8将采取必要手段为用户信息保密，但基于技术限制等，Robin8并不能保证用户的信息完全不被泄露。\n\u3000\u30008、用户应同意Robin8有限度的使用其信息，包括但不限于向用户及时发送重要通知或派发订单、Robin8内部进行审计、数据分析和研究等Robin8自行判断为合理使用的情形及法律法规要求等。\n\u3000\u30009、用户认为Robin8的其它用户侵犯其权利的，可向Robin8提供权利证明文件、身份证明文件等，Robin8审核评估后将采取适当措施予以处理。</string>
-    <string name="agree">Agree</string>
-    <string name="reject">Reject</string>
-    <string name="robin_disclaimer">Robin8免责申明</string>
-    <string name="share_article_tips">文章分享后，您的朋友购买了文章中的商品，您可以获得高额提成</string>
-    <string name="expected_income_details"><![CDATA[预计收入详情>]]></string>
-    <string name="realese_article_tips">文章发布后不可修改，文章中的商品被购买，您可以获得高额提成</string>
-    <string name="finish_article_tips">当前文章尚未发布，是否退出编辑？</string>
-    <string name="white_space">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</string>
-    <string name="white_space_ban">\t\t\t\t\t\t\t\t\t\t\t</string>
-    <string name="sign_end">报名结束</string>
-    <string name="ending">正在结算</string>
-    <string name="has_been_end">已结束</string>
-    <string name="kol_age">KOL年龄</string>
-    <string name="kol_sex">KOL性别</string>
-    <string name="kol_classify">KOL分类</string>
-    <string name="kol_city">KOL城市</string>
-    <string name="all">全部</string>
-    <string name="count_at_least2">分类最少选择两个</string>
-    <string name="cancel_all">取消全部</string>
-    <string name="clear">清空</string>
-    <string name="select_all">全选</string>
-    <string name="clear_all">清空</string>
-    <string name="please_select_one_city">至少选择一个城市</string>
-    <string name="screenshot_reference">截图参考</string>
-    <string name="validity_of_goods">商品有效期</string>
-    <string name="sign_up_recruit">招募活动报名</string>
-    <string name="share_success">分享成功</string>
-    <string name="share_error">分享失败</string>
-    <string name="share_cancel">分享取消</string>
-    <string name="share_copy_sucess">分享复制成功</string>
-    <string name="system_not_support">系统不支持复制</string>
-    <string name="share_copy_failure">分享复制失败</string>
-    <string name="download">下载</string>
-    <string name="task">任务</string>
-    <string name="launch_reword_activity">发起悬赏活动</string>
-    <string name="intelligent_release">智能发布</string>
-    <string name="please_write_link">请填写活动链接</string>
-    <string name="text_class">文章类别</string>
-    <string name="key_tags">关键词云</string>
-    <string name="sentiment_analysis">情感分析</string>
-    <string name="product_server">产品服务</string>
-    <string name="person_brand">人物品牌</string>
-    <string name="detail">文章详情>></string>
-    <string name="all_classify">全部分类</string>
-    <string name="share_to_wechat">分享到微信</string>
-    <string name="share_to_wechatmoments">分享到微信朋友圈</string>
-    <string name="share_to_weibo">分享到新浪微博</string>
-    <string name="share_to_qzone">分享到QQ空间</string>
-    <string name="share_to_wechat_favorites">分享到微信收藏</string>
-    <string name="share_for_money">分享赚收益</string>
-    <string name="known">知道了</string>
-    <string name="screenshot_check_ruler">\u30001.活动保留时间太短\n\u30002.活动被设置了分组\n\u30003.活动含诱导点击文字\n\u30004.没按照参考截图上传\n\u30005.分享了过多相同活动</string>
-    <string name="share_success_and_ruler">分享成功啦-《Robin8截图审核规则》</string>
-    <string name="campaign_request">活动要求</string>
-    <string name="sign_rule">签到奖励规则</string>
-
-    <!-- 评价效果 页面-->
-
-    <string name="effect_evaluate">效果评价</string>
-    <string name="effect_import">您的评价对我们非常重要</string>
-
-    <!--个推-->
-    <string name="add_tag">添加标签</string>
-    <string name="add_tag_unknown_exception">设置标签失败，未知异常</string>
-    <string name="add_tag_success">接口调用成功</string>
-    <string name="add_tag_error_count">接口调用失败, tag数量过大, 最大不能超过200个</string>
-    <string name="add_tag_error_frequency">设置标签失败，频率过快</string>
-    <string name="add_tag_error_null">接口调用失败, tag 为空</string>
-    <string name="add_tag_error_repeat">设置标签失败, 标签重复</string>
-    <string name="add_tag_error_unbind">设置标签失败, 服务未初始化成功</string>
-    <string name="add_tag_error_not_online">还未登陆成功</string>
-    <string name="add_tag_error_black_list">该应用已经在黑名单中,请联系售后支持!</string>
-    <string name="add_tag_error_exceed">已存 tag 超过限制</string>
-    <string name="push_transmission_data">收到一条透传测试消息</string>
-
-    <!--活动多图上传-->
-    <string name="image">图片</string>
-    <string name="all_image">所有图片</string>
-    <string name="preview">预览</string>
-    <string name="msg_no_camera">无法启用系统相机</string>
-    <string name="msg_amount_limit">已经达到最高选择数量</string>
-    <string name="done">完成</string>
-    <string name="done_with_count">完成(%1$d/%2$d)</string>
-    <string name="image_index">%1$d/%2$d</string>
-    <string name="delete">删除</string>
-    <string name="deleted_a_photo">删除了一张图片</string>
-    <string name="confirm_to_delete">确认删除？</string>
-    <string name="undo">撤消</string>
-    <string name="title_activity_email_welcome">EmailWelcomeActivity</string>
-
-    <!--put金币-->
-    <string name="put_campaign_detail">Get 20% PUT rebate for campaign budget over Y500</string>
-    <string name="put_wallet">PUT wallet</string>
-
-    <!--登陆后用户信息等-->
-    <string name="tv_know_you">Let us know you</string>
-    <string name="tv_your_choose">Match different kinds of activities for you according to your choice</string>
-    <string name="tv_choose_gender">Choose your gender</string>
-    <string name="tv_choose_id">Choose your identity</string>
-    <string name="tv_birth_year">Year of birth</string>
-    <string name="tv_general_user">general user</string>
-    <string name="tv_bigV_user">big V user</string>
-    <string name="tv_content_creator">content creator</string>
-    <string name="tv_choose_favorite">Choose the tag you are interested in</string>
-    <string name="tv_find_for_you">Match the activities you are most interested in for you</string>
-    <string name="save">Save</string>
-    <string name="tv_know_user_id">Know your identity</string>
 </resources>

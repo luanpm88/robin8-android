@@ -84,12 +84,12 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
         setCancelTv(holder.cancelTv, holder.viewLine);
         setEvaluationState(campaign, holder.cancelTv, holder.viewLine);
         holder.nameTv.setText(campaign.getName());
-        holder.tvConsumeTv.setText("活动预算：¥" + StringUtil.deleteZero(String.valueOf(campaign.getBudget())));
+        holder.tvConsumeTv.setText(holder.tvConsumeTv.getContext().getString(R.string.robin362,StringUtil.deleteZero(String.valueOf(campaign.getBudget()))));
         if (campaign.getStatus().equals("unpay") ||TextUtils.isEmpty(String.valueOf(campaign.getUsed_credits()))) {
             holder.tvCreditTv.setVisibility(View.INVISIBLE);
         }else {
             holder.tvCreditTv.setVisibility(View.VISIBLE);
-            holder.tvCreditTv.setText("积分："+String.valueOf(campaign.getUsed_credits()));
+            holder.tvCreditTv.setText(holder.tvCreditTv.getContext().getString(R.string.robin363,String.valueOf(campaign.getUsed_credits())));
         }
         BitmapUtil.loadImage(BaseApplication.getContext(), campaign.getImg_url(), holder.imageIv);
     }
@@ -111,9 +111,9 @@ public class MyCampaignAdapter extends BaseRecyclerAdapter {
     public void setEvaluationState(LaunchRewordModel.Campaign campaign, TextView cancelTv, View viewLine) {
         if (TYPE_COMPLETED.equals(data.campaignType)) {
             if (EVALUA_TING.equals(campaign.getEvaluation_status())) {
-                cancelTv.setText("效果评价");
+                cancelTv.setText(R.string.effect_evaluate);
             } else if (EVALUAT_ED.equals(campaign.getEvaluation_status())) {
-                cancelTv.setText("查看评价");
+                cancelTv.setText(R.string.robin364);
             } else {
                 cancelTv.setVisibility(View.GONE);
                 viewLine.setVisibility(View.GONE);

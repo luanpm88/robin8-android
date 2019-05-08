@@ -184,7 +184,7 @@ public class SignUpRecruitActivity extends BaseActivity {
             if (!TextUtils.isEmpty(etWordStr)) {
                 requestMap.put("note", etWordStr);
             } else {
-                CustomToast.showShort(this, "请填写文字");
+                CustomToast.showShort(this, R.string.robin401);
                 return;
             }
         }
@@ -196,7 +196,7 @@ public class SignUpRecruitActivity extends BaseActivity {
                 imageName = mFinalPicturePath.substring(mFinalPicturePath.lastIndexOf("/") + 1);
                 file = new File(mFinalPicturePath);
             } else {
-                CustomToast.showShort(this, "请上传图片");
+                CustomToast.showShort(this, R.string.robin382);
                 return;
             }
         }

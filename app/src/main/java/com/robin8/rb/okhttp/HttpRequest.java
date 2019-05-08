@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.robin8.rb.R;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.HttpPostKeyConstants;
@@ -103,7 +104,7 @@ public class HttpRequest {
     private void executeRequest(boolean needHeader, Method method, String url, RequestParams params, final RequestCallback callback) {
 
         if (! NetworkUtil.isNetworkAvailable(BaseApplication.getContext())) {
-            CustomToast.showShort(BaseApplication.getContext(), "网络加载失败");
+            CustomToast.showShort(BaseApplication.getContext(), R.string.robin391);
         }
         if (TextUtils.isEmpty(url)) {
             return;
@@ -199,7 +200,7 @@ public class HttpRequest {
      */
     private void executeRequestImg(boolean needHeader, Method method, String url, String paramsName, Map<Integer, String> mapImages, final RequestCallback callback) {
         if (! NetworkUtil.isNetworkAvailable(BaseApplication.getContext())) {
-            CustomToast.showShort(BaseApplication.getContext(), "网络加载失败");
+            CustomToast.showShort(BaseApplication.getContext(), R.string.robin391);
         }
 
         if (TextUtils.isEmpty(url)) {
@@ -276,7 +277,6 @@ public class HttpRequest {
                     public void run() {
                         if (callback != null) {
                             callback.onError(exception);
-                            LogUtil.LogShitou("失败原因", exception.getMessage());
                         }
                     }
                 });
@@ -288,7 +288,7 @@ public class HttpRequest {
     private void executeRequestPostImage(boolean needHeader, Method method, String url, String imageKey, String fileName, File fileValue, HashMap hashMap, final RequestCallback callback) {
 
         if (! NetworkUtil.isNetworkAvailable(BaseApplication.getContext())) {
-            CustomToast.showShort(BaseApplication.getContext(), "网络加载失败");
+            CustomToast.showShort(BaseApplication.getContext(), R.string.robin391);
         }
 
         if (TextUtils.isEmpty(url)) {

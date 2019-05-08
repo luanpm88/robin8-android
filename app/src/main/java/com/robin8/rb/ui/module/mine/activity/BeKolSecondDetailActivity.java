@@ -25,19 +25,20 @@ import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
+import com.robin8.rb.util.share.ShareInfoBean;
+import com.robin8.rb.util.share.ShareView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.wechat.friends.Wechat;
 
 /**
  * 成为KOL
  */
-public class BeKolSecondDetailActivity extends BaseActivity {
+public class BeKolSecondDetailActivity extends BaseActivity implements ShareView {
 
     private static final int TYPE_PERSONAL_SHOW = 0;
     private static final int TYPE_BIND = 1;
@@ -211,13 +212,13 @@ public class BeKolSecondDetailActivity extends BaseActivity {
                 userName = name;
             }
         });
-        if (getString(R.string.weixin).equals(name)) {
-            presenter.authorize(new Wechat());
-        } else if (getString(R.string.qq).equals(name)) {
-            presenter.authorize(new QQ());
-        } else if (getString(R.string.weibo).equals(name)) {
-            presenter.authorize(new SinaWeibo());
-        }
+//        if (getString(R.string.weixin).equals(name)) {
+//            presenter.authorize(new Wechat());
+//        } else if (getString(R.string.qq).equals(name)) {
+//            presenter.authorize(new QQ());
+//        } else if (getString(R.string.weibo).equals(name)) {
+//            presenter.authorize(new SinaWeibo());
+//        }
     }
 
     private void submit() {
@@ -338,5 +339,16 @@ public class BeKolSecondDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @NotNull
+    @Override
+    public ShareInfoBean getShareBean() {
+        return null;
+    }
+
+    @Override
+    public boolean checkApkInstall(@NotNull String platform) {
+        return false;
     }
 }

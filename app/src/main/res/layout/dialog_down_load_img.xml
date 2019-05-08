@@ -13,7 +13,7 @@
         android:gravity="center"
         android:padding="18dp"
         android:textColor="@color/black_custom"
-        android:text="保存图片"/>
+        android:text="@string/robin238"/>
     <View
         style="@style/Undefined_Line"/>
     <TextView

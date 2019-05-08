@@ -43,6 +43,10 @@ import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.ListUtils;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.util.share.ShareInfoBean;
+import com.robin8.rb.util.share.ShareView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,13 +54,10 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.wechat.friends.Wechat;
 
 /**
  成为KOL */
-public class BeKolSecondActivity extends BaseActivity {
+public class BeKolSecondActivity extends BaseActivity implements ShareView {
 
     private static final int TYPE_HEADER = 0;//简介
     private static final int TYPE_GRID = 1;//社交账号信息
@@ -330,24 +331,25 @@ public class BeKolSecondActivity extends BaseActivity {
             @Override
             public void onResponse(String name) {
                 if (null != name) {
-                    CustomToast.showShort(BeKolSecondActivity.this, "已成功绑定" + names);
+                    CustomToast.showShort(BeKolSecondActivity.this, getString(R.string.robin387,names));
                     userNames = name;
                     socialName = names;
                     mypostData(names, name);
                     mGridDataList.get(ids).isChecked = true;
                     mMyGridBaseAdapter.notifyDataSetChanged();
                 } else {
-                    CustomToast.showShort(BeKolSecondActivity.this, "绑定失败，请重试");
+                    CustomToast.showShort(BeKolSecondActivity.this, R.string.robin386);
                 }
             }
         });
-        if (getString(R.string.weixin).equals(names)) {
-            presenter.authorize(new Wechat());
-        } else if (getString(R.string.qq).equals(names)) {
-            presenter.authorize(new QQ());
-        } else if (getString(R.string.weibo).equals(names)) {
-            presenter.authorize(new SinaWeibo());
-        } else {
+//        if (getString(R.string.weixin).equals(names)) {
+//            presenter.authorize(new Wechat());
+//        } else if (getString(R.string.qq).equals(names)) {
+//            presenter.authorize(new QQ());
+//        } else if (getString(R.string.weibo).equals(names)) {
+//            presenter.authorize(new SinaWeibo());
+//        } else
+            {
             NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
             Intent intent = new Intent(this, BeKolSecondDetailActivity.class);
             mBackName = names;
@@ -396,7 +398,7 @@ public class BeKolSecondActivity extends BaseActivity {
                     // setResult(SPConstants.BE_KOL_SECOND_PERSONAL_SHOW, intent);
                     //finish();
                 } else {
-                    CustomToast.showShort(BeKolSecondActivity.this, "提交失败");
+                    CustomToast.showShort(BeKolSecondActivity.this, R.string.submit_failed);
                 }
             }
         });
@@ -445,15 +447,26 @@ public class BeKolSecondActivity extends BaseActivity {
             case R.id.tv_edit:
                 // CustomToast.showShort(BeKolSecondActivity.this, "编辑");
                 if (isShow) {
-                    mTvEdit.setText("编辑");
+                    mTvEdit.setText(R.string.robin370);
                     isShow = false;
                 } else {
-                    mTvEdit.setText("取消");
+                    mTvEdit.setText(R.string.cancel);
                     isShow = true;
                 }
                 mMyGridBaseAdapter.notifyDataSetChanged();
                 break;
         }
+    }
+
+    @NotNull
+    @Override
+    public ShareInfoBean getShareBean() {
+        return null;
+    }
+
+    @Override
+    public boolean checkApkInstall(@NotNull String platform) {
+        return false;
     }
 
     class MyListAdapter extends BaseAdapter {
@@ -699,7 +712,7 @@ public class BeKolSecondActivity extends BaseActivity {
                 skipToDetail(name, id);
             } else if (type == 1) {
                 //已绑定
-                CustomToast.showShort(BeKolSecondActivity.this, "已绑定" + name);
+                CustomToast.showShort(BeKolSecondActivity.this, getString(R.string.robin385,name));
             } else if (type == 2) {
                 //需要解绑
                 //查询解绑次数
@@ -732,13 +745,13 @@ public class BeKolSecondActivity extends BaseActivity {
         LinearLayout layoutRight = (LinearLayout) view.findViewById(R.id.layout_right);
         tvTop.setText(title);
         if (is) {
-            confirmTV.setText("确定");
-            rightTv.setText("取消");
+            confirmTV.setText(R.string.confirm);
+            rightTv.setText(R.string.cancel);
             infoTv.setText(info);
         } else {
             layoutRight.setVisibility(View.GONE);
             infoTv.setVisibility(View.GONE);
-            confirmTV.setText("确定");
+            confirmTV.setText(R.string.confirm);
             layoutLeft.setBackgroundResource(R.drawable.shape_corner_bg_bottom);
         }
 
@@ -832,7 +845,7 @@ public class BeKolSecondActivity extends BaseActivity {
                     }
                 } else {
                     try {
-                        CustomToast.showShort(BeKolSecondActivity.this, "查询失败");
+                        CustomToast.showShort(BeKolSecondActivity.this, R.string.robin384);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -961,9 +974,9 @@ public class BeKolSecondActivity extends BaseActivity {
                     // mKolShows = kolDetailModel.getKol_shows();
                     updateData();
                     isShow = false;
-                    mTvEdit.setText("编辑");
+                    mTvEdit.setText(R.string.robin370);
                     mMyGridBaseAdapter.notifyDataSetChanged();
-                    CustomToast.showShort(BeKolSecondActivity.this, "解绑成功");
+                    CustomToast.showShort(BeKolSecondActivity.this, R.string.robin383);
                 } else {
                     try {
                         CustomToast.showShort(BeKolSecondActivity.this, kolDetailModel.getDetail());

@@ -237,7 +237,7 @@ public class RefreshListView extends ListView {
         if (success) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm");
             long time = CacheUtils.getLong(BaseApplication.getContext(), SPConstants.TAG_REFRESH_TIME, System.currentTimeMillis());
-            refresh_updatetime.setText("最后更新：" + dateFormat.format(new Date(time)));
+            refresh_updatetime.setText(getContext().getString(R.string.robin298,dateFormat.format(new Date(time))));
         }
         CURRENT_STATE = STATE_IDLE;
         moveLinePath(0, -header_height, new AccelerateInterpolator(0.6f), true, 350);
@@ -315,19 +315,19 @@ public class RefreshListView extends ListView {
             case PULL_DOWN_REFRESH:
                 refresh_arr.setVisibility(View.VISIBLE);
                 iv_progress.setVisibility(View.INVISIBLE);
-                refresh_state.setText("下拉可以刷新");
+                refresh_state.setText(R.string.robin296);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm");
                 long time = CacheUtils.getLong(BaseApplication.getContext(), SPConstants.TAG_REFRESH_TIME, System.currentTimeMillis());
-                refresh_updatetime.setText("最后更新：" + dateFormat.format(new Date(time)));
+                refresh_updatetime.setText(getContext().getString(R.string.robin298,dateFormat.format(new Date(time))));
                 refresh_arr.startAnimation(down);
                 break;
             case RELEASE_REFRESH:
-                refresh_state.setText("松开立即刷新");
+                refresh_state.setText(R.string.robin297);
                 refresh_arr.startAnimation(up);
                 break;
             case REFRESHING:
                 refresh_arr.clearAnimation();
-                refresh_state.setText("Robin8引擎发动中");
+                refresh_state.setText(R.string.robin299);
                 refresh_arr.setVisibility(View.INVISIBLE);
                 iv_progress.setVisibility(View.VISIBLE);
                 iv_progress.setBackgroundDrawable(mAnimationUp);

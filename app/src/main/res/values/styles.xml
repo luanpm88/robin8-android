@@ -35,13 +35,8 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
     </style>
-
-    <style name="WeslyDialog2" parent="@android:style/Theme.Holo.DialogWhenLarge">
-        <item name="android:windowBackground">@color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <style name="ProgressBarMockIOS">
+	
+	<style name="ProgressBarMockIOS">
         <item name="android:indeterminateDrawable">@drawable/mock_ios_progressbar</item>
         <item name="android:indeterminate">false</item>
         <item name="android:maxHeight">48dip</item>
@@ -64,13 +59,8 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
-
-    <style name="WeslyDialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <!--homepage页面过滤器对话框-->
+	
+	<!--homepage页面过滤器对话框-->
     <style name="text_diaglog_filter">
         <item name="android:background">@drawable/bg_dialog_filter</item>
         <item name="android:gravity">center</item>
@@ -108,18 +98,9 @@
     </style>
 
     <!-- 自定义进度条样式 -->
-    <style name="ProgressBar_Mini" parent="@android:style/Widget.ProgressBar.Horizontal">
-        <item name="android:indeterminateOnly">false</item>
-        <!-- <item name="android:progressDrawable">@drawable/progressbar_mini</item> -->
-        <item name="android:indeterminateDrawable">
-            @android:drawable/progress_indeterminate_horizontal
-        </item>
-        <item name="android:minHeight">4dip</item>
-        <item name="android:maxHeight">4dip</item>
-    </style>
-
-
-    <style name="Undefined_Line">
+	
+	
+	<style name="Undefined_Line">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/undefined_divide_line</item>
@@ -132,18 +113,8 @@
         <item name="android:textColor">@color/gray_custom</item>
         <item name="android:textSize">@dimen/undefine_font_5</item>
     </style>
-
-    <style name="item_task_center_week">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/sub_black_custom</item>
-    </style>
-
-    <style name="BottomTextViewStyle">
+	
+	<style name="BottomTextViewStyle">
         <item name="android:layout_height">50dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center</item>
@@ -198,39 +169,16 @@
         <item name="android:background">@color/white_custom</item>
         <item name="android:drawableBottom">@mipmap/icon_full_arrow_down</item>
     </style>
-
-    <style name="text_view_with_normal">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="text_view_with_single_line">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/black_custom</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textStyle"></item>
-        <item name="android:layout_marginBottom">3dp</item>
-        <item name="android:includeFontPadding">false</item>
-    </style>
-
-    <style name="text_view_with_dialog_positive">
+	
+	<style name="text_view_with_dialog_positive">
         <item name="android:textColor">@color/blue_custom</item>
     </style>
 
     <style name="tv_white_with_dialog_positive">
         <item name="android:textColor">@color/white_custom</item>
     </style>
-
-    <style name="tv_with_dialog_positive">
-        <item name="android:textColor">@color/pickerview_wheelview_textcolor_center</item>
-    </style>
-
-    <style name="share_textview">
+	
+	<style name="share_textview">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">80dp</item>
@@ -242,27 +190,8 @@
     </style>
 
     <!--首页kol横条 -->
-    <style name="is_kol_row">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:background">@drawable/shape_border</item>
-        <item name="android:layout_marginBottom">10dp</item>
-    </style>
-    <!--蒙版-->
-    <style name="Dialog.FullScreen" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@android:color/transparent</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:backgroundDimEnabled">true</item>
-    </style>
-    <!--九宫格图片-->
+	<!--蒙版-->
+	<!--九宫格图片-->
 
     <!--顶部弹窗-->
     <style name="AnimTop" parent="@android:style/Animation">
@@ -285,5 +214,20 @@
         <item name="android:windowBackground">@mipmap/loading_bg</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    
+    <style name="umeng_socialize_dialog_anim_fade">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_fade_out</item>
+    </style>
+    
+    <style name="umeng_socialize_dialog_animations">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_slide_out_from_bottom</item>
+    </style>
+    
+    <style name="umeng_socialize_shareboard_animation">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_shareboard_animation_in</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_shareboard_animation_out</item>
     </style>
 </resources>

@@ -95,9 +95,9 @@ public class EvaluateActivity extends BaseActivity {
             public void onClick(View view) {
                String  evaluateValue = evaluateContent.getText().toString();
                 if (mark == 0){
-                    CustomToast.showShort(EvaluateActivity.this, "请打分");
+                    CustomToast.showShort(EvaluateActivity.this, R.string.robin424);
                 }else if(TextUtils.isEmpty(evaluateValue)){
-                    CustomToast.showShort(EvaluateActivity.this, "请输入请假内容");
+                    CustomToast.showShort(EvaluateActivity.this, R.string.robin425);
                 }else{
                     postEvaluate(evaluateValue,mark);
                 }

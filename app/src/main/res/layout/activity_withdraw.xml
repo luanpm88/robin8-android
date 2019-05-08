@@ -31,7 +31,7 @@
                 android:id="@+id/tv_bind_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="未绑定"
+                android:text="@string/un_binded"
                 android:textColor="@color/sub_gray_custom"
                 android:textSize="@dimen/undefine_font_3" />
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="点击绑定"
+                android:text="@string/click_bind"
                 android:textColor="@color/sub_black_custom"
                 android:textSize="@dimen/undefine_font_5" />
         </LinearLayout>
@@ -68,7 +68,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="提现金额"
+            android:text="@string/robin230"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_5" />
 
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="满50元即可提现"
+            android:hint="@string/income_info3"
             android:inputType="numberDecimal"
             android:maxLength="12"
             android:paddingLeft="13dp"
@@ -102,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_bg_blue_pane"
-        android:text="提交"
+        android:text="@string/submit"
         android:textColor="@color/blue_custom"
         android:textSize="@dimen/undefine_font_5" />
 

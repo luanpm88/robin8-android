@@ -125,7 +125,7 @@ public class SearchArticlePresenter implements PresenterI {
             ArticleListsModel.ArticlesBean bean = (ArticleListsModel.ArticlesBean) obj;
             Intent intent = new Intent(mContext, WebViewActivity.class);
             intent.putExtra("from", SPConstants.ARTICLE_LIST);
-            intent.putExtra("title", "详情");
+            intent.putExtra("title",  mContext.getResources().getString(R.string.robin451));
             intent.putExtra("url", bean.getArticle_url());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);

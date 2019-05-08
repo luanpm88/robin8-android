@@ -115,21 +115,6 @@ public class SplashActivity extends Activity {
         });
     }
 
-    private Intent addBundle(Intent intent) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("from", SPConstants.PUSH_TO_DETAIL);
-        bundle.putString("path", "http://baidu.com");
-        bundle.putString("title", "nihao");
-        bundle.putString("start_time", "140023020");
-        bundle.putString("end_time", "1343455454");
-        bundle.putString("introduce", "wa");
-        bundle.putString("count_way", "click");
-        bundle.putString("every_consume", "麦克布莱德");
-        bundle.putString("address", "从 v不，、");
-        bundle.putString("total_consume", "女款的地方");
-        return intent.putExtras(bundle);
-    }
-
 
     public void getLocation() {
         BasePresenter presenter = new BasePresenter();

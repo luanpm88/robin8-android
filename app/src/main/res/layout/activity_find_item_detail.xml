@@ -113,7 +113,8 @@
                         android:padding="13dp"
                         android:text="0次观看"
                         android:textColor="@color/gray_first"
-                        android:textSize="@dimen/undefine_font_3"/>
+                        android:textSize="@dimen/undefine_font_3"
+                        tools:ignore="HardcodedText" />
 
                     <LinearLayout
                         android:id="@+id/ll_like"
@@ -189,7 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:text="相关推荐"/>
+                    android:text="@string/robin095"/>
 
                 <View
                     style="@style/Undefined_Line"

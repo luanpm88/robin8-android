@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="通知"
+            android:text="@string/robin258"
             android:textSize="17sp"
             android:textColor="@color/black_custom"
             android:layout_centerInParent="true" />
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="加载失败,点击重试"
+                android:text="@string/robin257"
                 android:textSize="@dimen/undefine_font_9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
             android:paddingRight="45dp"
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
-            android:text="点击登录"
+            android:text="@string/click_login"
             android:textSize="16sp"
             android:layout_centerInParent="true"
             android:background="@drawable/shape_bg_be_kol"

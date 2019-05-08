@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="分享赚钱" />
+            android:text="@string/robin215" />
     </LinearLayout>
 
     <LinearLayout
@@ -54,7 +54,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="开始创作"
+            android:text="@string/start_create"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_5" />
 
@@ -71,7 +71,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="参考文章"
+            android:text="@string/robin216"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_5" />
     </LinearLayout>

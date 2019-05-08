@@ -72,10 +72,10 @@ public class RechargeActivity extends BaseActivity {
                 // 判断resultStatus 为非"9000"则代表可能支付失败
                 // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                 if (TextUtils.equals(resultStatus, "8000")) {
-                    CustomToast.showShort(RechargeActivity.this, "支付结果确认中");
+                    CustomToast.showShort(RechargeActivity.this, R.string.robin426);
                 } else {
                     // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-                    CustomToast.showShort(RechargeActivity.this, "支付失败,请确保已安装支付宝");
+                    CustomToast.showShort(RechargeActivity.this, R.string.robin427);
                 }
             }
         }
@@ -163,9 +163,9 @@ public class RechargeActivity extends BaseActivity {
                         minCount = bean.getMin_credit();
                         tvTitle.setText(bean.getTitle());
                         tvContant.setText(bean.getDescription());
-                        tvPoints.setText("充值"+minCount+"元可获赠积分");
+                        tvPoints.setText(getString(R.string.robin368,minCount));
                         tvPoints.setTextColor(RechargeActivity.this.getResources().getColor(R.color.gray_second));
-                        tvNotice.setText("注意:  此次赠送积分有效使用时间至" + bean.getExpired_at());
+                        tvNotice.setText(getString(R.string.robin369,bean.getExpired_at()));
                     }else {
                         llBanner.setVisibility(View.GONE);
                         llContent.setVisibility(View.GONE);
@@ -195,7 +195,7 @@ public class RechargeActivity extends BaseActivity {
                         if (s.toString().trim().length() != 0) {
                             if (minCount!=0){
                                 if (Double.valueOf(s.toString().trim()) < minCount) {
-                                    tvPoints.setText("充值"+minCount+"元可获赠积分");
+                                    tvPoints.setText(getString(R.string.robin368,minCount));
                                     tvPoints.setTextColor(RechargeActivity.this.getResources().getColor(R.color.gray_second));
                                 } else {
                                     double v = Double.valueOf(s.toString().trim()) * rate;
@@ -205,7 +205,7 @@ public class RechargeActivity extends BaseActivity {
                                 }
                             }else {
                                 if (Double.valueOf(s.toString().trim()) < 1000) {
-                                    tvPoints.setText("充值"+minCount+"元可获赠积分");
+                                    tvPoints.setText(getString(R.string.robin368,minCount));
                                     tvPoints.setTextColor(RechargeActivity.this.getResources().getColor(R.color.gray_second));
                                 } else {
                                     double v = Double.valueOf(s.toString().trim()) * rate;
@@ -244,15 +244,15 @@ public class RechargeActivity extends BaseActivity {
 
     private void skipToRecharge() {
         String rechargeNumber = mNumberEt.getText().toString();
-        if (TextUtils.isEmpty(rechargeNumber)) {
-            CustomToast.showShort(this, "请输入充值金额");
-            return;
-        }
+
         float rechargeNumberI = 0;
         try {
             rechargeNumberI = Float.parseFloat(rechargeNumber);
         } catch (Exception e) {
-            CustomToast.showShort(this, "请检查充值金额格式");
+        }
+
+        if (rechargeNumberI == 0) {
+            CustomToast.showShort(this, R.string.robin395);
             return;
         }
 

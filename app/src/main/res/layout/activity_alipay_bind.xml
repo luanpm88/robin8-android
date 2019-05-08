@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_bg_blue_pane"
-        android:text="提交"
+        android:text="@string/robin040"
         android:textColor="@color/blue_custom"
         android:textSize="@dimen/undefine_font_5" />
 </LinearLayout>

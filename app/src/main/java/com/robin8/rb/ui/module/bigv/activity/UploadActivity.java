@@ -76,7 +76,7 @@ public class UploadActivity extends BaseActivity {
         mLLTitleBar.setVisibility(View.GONE);
         mCardTitle.setVisibility(View.VISIBLE);
         mViewLine.setVisibility(View.GONE);
-        mTitle.setText("上传作品");
+        mTitle.setText(R.string.robin305);
     }
 
     @Override
@@ -91,10 +91,10 @@ public class UploadActivity extends BaseActivity {
             terraceInfo = new ArrayList<>();
         }
         if (intent.getExtras().getSerializable(FIX_LIST) != null) {
-            tvSubmit.setText("修改链接");
+            tvSubmit.setText(R.string.robin442);
             myTenders = (List<BigvDetailModel.CreationBean.MyTendersBean>) intent.getExtras().getSerializable(FIX_LIST);
         } else {
-            tvSubmit.setText("上传作品");
+            tvSubmit.setText(R.string.robin305);
         }
         String extra = intent.getStringExtra(STATUS);
         if (!TextUtils.isEmpty(extra)){
@@ -103,18 +103,18 @@ public class UploadActivity extends BaseActivity {
                 llOver.setVisibility(View.VISIBLE);
                 cardAddLink.setVisibility(View.GONE);
                 cardSubmit.setVisibility(View.GONE);
-                tvResult.setText("恭喜您！合作完成");
-                tvResultText.setText("合作酬劳已打入您的Robin8账户，请在我的钱包中查看");
+                tvResult.setText(R.string.robin444);
+                tvResultText.setText(R.string.robin445);
             }else if (extra.equals("STATE_UPLOADED")){
                 llOver.setVisibility(View.GONE);
                 cardAddLink.setVisibility(View.VISIBLE);
-                tvResult.setText("等待品牌主审核");
-                tvResultText.setText("作品上传完成后品牌将会进行审核，请按照协商规则完成");
+                tvResult.setText(R.string.robin446);
+                tvResultText.setText(R.string.robin029);
             }else {
                 llOver.setVisibility(View.GONE);
                 cardAddLink.setVisibility(View.VISIBLE);
-                tvResult.setText("恭喜您成功参与活动，请上传作品");
-                tvResultText.setText("作品上传完成后品牌将会进行审核，请按照协商规则完成");
+                tvResult.setText(R.string.robin447);
+                tvResultText.setText(R.string.robin029);
             }
         }else {
             llOver.setVisibility(View.GONE);
@@ -200,7 +200,7 @@ public class UploadActivity extends BaseActivity {
     private void showMyDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.toast_layout, null);
         TextView infoTv = (TextView) view.findViewById(R.id.toast_msg);
-        infoTv.setText("作品提交成功，等待品牌主审核");
+        infoTv.setText(R.string.robin448);
         infoTv.setGravity(Gravity.CENTER);
         cdm = new CustomDialogManager(this, view);
         cdm.dg.setCanceledOnTouchOutside(true);
@@ -247,7 +247,7 @@ public class UploadActivity extends BaseActivity {
             }
             initData(campaignId, addPriceAdapter.contents);
         } else {
-            CustomToast.showShort(UploadActivity.this, "请添加作品链接");
+            CustomToast.showShort(UploadActivity.this, R.string.robin396);
         }
     }
 }

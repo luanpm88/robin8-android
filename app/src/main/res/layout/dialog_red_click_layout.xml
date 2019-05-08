@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
@@ -50,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="35dp"
-                        android:text="成功领取红包"
+                        android:text="@string/robin245"
                         android:textColor="@color/yellow_957144"
                         android:textSize="@dimen/undefine_font_2"
                         />
@@ -67,7 +68,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/red_f63800"
                         android:textSize="56sp"
-                        />
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,7 +98,7 @@
                         android:gravity="center"
                         android:layout_marginBottom="15dp"
                         android:textColor="@color/gray_ffd6c7"
-                        android:text="每日阅读发现内容可以不定时\n获得红包"
+                        android:text="@string/robin246"
                         android:textSize="@dimen/undefine_font_1"
                         />
                 </LinearLayout>

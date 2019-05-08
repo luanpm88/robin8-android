@@ -349,33 +349,6 @@ public class PutWebFirstActivity extends BaseActivity {
 
     private ProgressDialog mDialog;
 
-    private void showProgressDialog() {
-        if (mDialog == null) {
-            mDialog = new ProgressDialog(PutWebFirstActivity.this);
-            mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);//设置风格为圆形进度条
-            mDialog.setMessage("正在加载 ，请等待...");
-            mDialog.setIndeterminate(false);//设置进度条是否为不明确
-            mDialog.setCancelable(true);//设置进度条是否可以按退回键取消
-            mDialog.setCanceledOnTouchOutside(false);
-            mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    // TODO Auto-generated method stub
-                    mDialog = null;
-                }
-            });
-            mDialog.show();
-
-        }
-    }
-
-    private void closeProgressDialog() {
-        if (mDialog != null) {
-            mDialog.dismiss();
-            mDialog = null;
-        }
-    }
 
     public Intent getFileIntent(File file) {
         //       Uri uri = Uri.parse("http://m.ql18.com.cn/hpf10/1.pdf");

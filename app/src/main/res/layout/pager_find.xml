@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="加载失败,点击重试"
+            android:text="@string/robin257"
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/undefine_font_9"/>
     </LinearLayout>

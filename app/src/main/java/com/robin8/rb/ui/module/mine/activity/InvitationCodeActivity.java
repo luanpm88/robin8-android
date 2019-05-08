@@ -59,7 +59,7 @@ public class InvitationCodeActivity extends BaseActivity {
 
     private void loadData() {
         if (TextUtils.isEmpty(editCode.getText().toString().trim())) {
-            CustomToast.showShort(this, "邀请码不能为空");
+            CustomToast.showShort(this, R.string.robin392);
             return;
         }
         if (mWProgressDialog == null) {
@@ -77,7 +77,7 @@ public class InvitationCodeActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                CustomToast.showShort(getApplicationContext(), "网络加载失败");
+                CustomToast.showShort(getApplicationContext(), R.string.robin391);
 
             }
 
@@ -90,7 +90,7 @@ public class InvitationCodeActivity extends BaseActivity {
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (baseBean != null) {
                     if (baseBean.getError() == 0) {
-                        CustomToast.showShort(InvitationCodeActivity.this, "验证成功");
+                        CustomToast.showShort(InvitationCodeActivity.this, R.string.robin390);
                         finish();
                     } else if (baseBean.getError() == 1) {
                         //无效的验证码
@@ -98,7 +98,7 @@ public class InvitationCodeActivity extends BaseActivity {
                         if (baseBean.getDetail() != null) {
                             CustomToast.showShort(InvitationCodeActivity.this, baseBean.getDetail());
                         } else {
-                            CustomToast.showShort(InvitationCodeActivity.this, "邀请码无效");
+                            CustomToast.showShort(InvitationCodeActivity.this, R.string.robin389);
                         }
                     }
                 }

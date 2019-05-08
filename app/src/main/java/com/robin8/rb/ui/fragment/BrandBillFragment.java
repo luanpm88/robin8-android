@@ -42,7 +42,7 @@ import static com.robin8.rb.R.id.xrefreshview;
 public class BrandBillFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM = "TYPE";
     private ViewPager vp;
-    private String[] name = {"资金流水", "积分流水"};
+    private String[] name;
     private String type;
 
     private XRefreshView mXRefreshView;
@@ -86,6 +86,7 @@ public class BrandBillFragment extends BaseFragment implements View.OnClickListe
         if (getArguments() != null) {
             int anInt = getArguments().getInt(ARG_PARAM);
             typeNum = anInt;
+            name =new String[]{getString(R.string.robin422), getString(R.string.robin423)};
             type = name[anInt];
         }
     }

@@ -233,7 +233,7 @@ public class MyCollectActivity extends BaseActivity {
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 } else {
-                    CustomToast.showShort(MyCollectActivity.this, "没有数据没有数据");
+                    CustomToast.showShort(MyCollectActivity.this, R.string.robin388);
                 }
             }
         });

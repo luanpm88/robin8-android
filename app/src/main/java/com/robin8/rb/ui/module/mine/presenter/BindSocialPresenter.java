@@ -50,12 +50,6 @@ public class BindSocialPresenter extends BindSocialPresenterListener {
         this.name = name;
         this.ver = ver;
     }
-
-    //public BindSocialPresenter(Context context,String name){
-    //    super(context);
-    //    mContext = context;
-    //    this.name = name;
-    //}
     public void getDataFromServer(boolean needHeader, int method, String url, RequestParams params, RequestCallback callback) {
 
         switch (method) {

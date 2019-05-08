@@ -79,7 +79,7 @@ public class   IncomeDetailAdapter extends BaseRecyclerAdapter {
         if (TextUtils.isEmpty(transactionEntity.getRemark())){
             holder.subjectTv.setText(subSelf(transactionEntity.getSubject()));
         }else {
-            holder.subjectTv.setText("拒绝原因："+transactionEntity.getRemark());
+            holder.subjectTv.setText(holder.subjectTv.getContext().getString(R.string.robin365,transactionEntity.getRemark()));
         }
         holder.numtypeTv.setText(transactionEntity.getDirect());
 //        Log.e("xxfigo","position=" + position + ";size=" + mDataList.size());

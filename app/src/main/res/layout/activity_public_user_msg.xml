@@ -24,7 +24,7 @@
             android:drawableRight="@mipmap/icon_go_next"
             android:paddingBottom="15dp"
             android:paddingTop="20dp"
-            android:text="圈子"
+            android:text="@string/robin175"
             android:textColor="@color/black_000000"
             android:textSize="@dimen/undefine_font_7"/>
 
@@ -41,7 +41,7 @@
             android:maxLines="1"
             android:paddingBottom="20dp"
             android:paddingTop="15dp"
-            android:text="请选择你感兴趣的圈子"
+            android:text="@string/robin176"
             android:textColor="@color/gray_first"
             android:textSize="14sp"/>
     </LinearLayout>
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="20dp"
-            android:text="微信好友数"
+            android:text="@string/robin177"
             android:textColor="@color/black_000000"
             android:textSize="@dimen/undefine_font_7"/>
 
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:hint="请填写微信好友数"
+            android:hint="@string/robin178"
             android:maxLength="17"
             android:inputType="number"
             android:paddingBottom="15dp"

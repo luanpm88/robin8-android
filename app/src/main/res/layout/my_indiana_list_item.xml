@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_custom"
@@ -34,7 +35,8 @@
                 android:layout_height="match_parent"
                 android:text="有意思的夺宝活动"
                 android:textColor="@color/sub_black_custom"
-                android:textSize="@dimen/undefine_font_5" />
+                android:textSize="@dimen/undefine_font_5"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_issue"
@@ -44,7 +46,8 @@
                 android:layout_marginTop="13dp"
                 android:text="期号：200000393"
                 android:textColor="@color/sub_gray_custom"
-                android:textSize="@dimen/undefine_font_0" />
+                android:textSize="@dimen/undefine_font_0"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_mine_times"
@@ -53,7 +56,8 @@
                 android:layout_marginTop="3dp"
                 android:text="我已参与：1人次"
                 android:textColor="@color/gray_custom"
-                android:textSize="@dimen/undefine_font_0" />
+                android:textSize="@dimen/undefine_font_0"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
     </LinearLayout>
 
@@ -81,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:text="参与进度： 5%"
                 android:textColor="@color/sub_gray_custom"
-                android:textSize="@dimen/undefine_font_0" />
+                android:textSize="@dimen/undefine_font_0"
+                tools:ignore="HardcodedText" />
 
             <ProgressBar
                 android:id="@+id/pb_compelete"
@@ -105,7 +110,8 @@
             android:paddingTop="5dp"
             android:text="追加"
             android:textColor="@color/blue_custom"
-            android:textSize="@dimen/undefine_font_5" />
+            android:textSize="@dimen/undefine_font_5"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <LinearLayout
@@ -121,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="获奖者："
+            android:text="@string/robin254"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -131,14 +137,15 @@
             android:layout_height="wrap_content"
             android:text="朱丽叶"
             android:textColor="@color/sub_black_custom"
-            android:textSize="@dimen/undefine_font_3" />
+            android:textSize="@dimen/undefine_font_3"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="TA已参与："
+            android:text="@string/robin255"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_3" />
 
@@ -148,12 +155,13 @@
             android:layout_height="wrap_content"
             android:text="4"
             android:textColor="@color/red_custom"
-            android:textSize="@dimen/undefine_font_3" />
+            android:textSize="@dimen/undefine_font_3"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="人次"
+            android:text="@string/person_times"
             android:textColor="@color/sub_black_custom"
             android:textSize="@dimen/undefine_font_3" />
     </LinearLayout>

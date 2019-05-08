@@ -171,12 +171,12 @@ public class CreatorMsgActivity extends BaseActivity {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 TYPE_ONE = options1;
-                tvYearChoose.setText("年龄区间：" + agesList.get(options1));
+                tvYearChoose.setText(getString(R.string.robin268,agesList.get(options1)));
             }
         }).setContentTextSize(16)//设置滚轮文字大小
                 .setDividerColor(Color.LTGRAY)//设置分割线的颜色
                 .setSelectOptions(1, 0)//默认选中项
-                .setTitleText("").setSubmitText("确定").setCancelText("取消").isRestoreItem(false)//切换时是否还原，设置默认选中第一项。
+                .setTitleText("").setSubmitText(getString(R.string.confirm)).setCancelText(getString(R.string.cancel)).isRestoreItem(false)//切换时是否还原，设置默认选中第一项。
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .setLabels("", "", "").setBackgroundId(0x00000000) //设置外部遮罩颜色
                 .setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).build();
@@ -385,7 +385,7 @@ public class CreatorMsgActivity extends BaseActivity {
                     if (circleNameList.size() != 0) {
                         circleNameList.clear();
                     }
-                    tvChooseRange.setText("请选择你的自媒体圈子");
+                    tvChooseRange.setText(R.string.robin074);
                     setSave();
                 }
 
@@ -402,7 +402,7 @@ public class CreatorMsgActivity extends BaseActivity {
                     for (int i = 0; i < listExtra.size(); i++) {
                         cityNameList.add(listExtra.get(i));
                     }
-                    tvThirdChoose.setText("地域集中城市：" + (Joiner.on(" ,").join(cityName(StringUtil.removeDuplicate(cityNameList)))));
+                    tvThirdChoose.setText(getString(R.string.robin269,(Joiner.on(" ,").join(cityName(StringUtil.removeDuplicate(cityNameList))))));
                 }
             }
             setSave();
@@ -457,13 +457,13 @@ public class CreatorMsgActivity extends BaseActivity {
                     TYPE_TWO = creator.getGender();
                     TYPE_ONE = creator.getAge_range();
                     if (TYPE_TWO == 1) {
-                        tvSecondChoose.setText("主要粉丝性别：男");
+                        tvSecondChoose.setText(R.string.robin355);
                     } else {
-                        tvSecondChoose.setText("主要粉丝性别：女");
+                        tvSecondChoose.setText(R.string.robin356);
                     }
                     if (agesList != null) {
                         if (agesList.size() != 0) {
-                            tvYearChoose.setText("年龄区间：" + agesList.get(TYPE_ONE));
+                            tvYearChoose.setText(getString(R.string.robin268,agesList.get(TYPE_ONE)));
                         }
                     }
 
@@ -473,7 +473,7 @@ public class CreatorMsgActivity extends BaseActivity {
                         for (int i = 0; i < cities.size(); i++) {
                             cityNameList.add(cities.get(i));
                         }
-                        tvThirdChoose.setText("地域集中城市：" + Joiner.on(" ,").join(cityName(cityNameList)));
+                        tvThirdChoose.setText(getString(R.string.robin269,Joiner.on(" ,").join(cityName(cityNameList))));
                     }
                     editLink.setText(creator.getContent_show());
                     if (! TextUtils.isEmpty(creator.getRemark())) {
@@ -492,15 +492,15 @@ public class CreatorMsgActivity extends BaseActivity {
         TextView tvThird = (TextView) view.findViewById(R.id.tv_third);
         TextView tvCancel = (TextView) view.findViewById(R.id.tv_cancel);
         tvThird.setVisibility(View.GONE);
-        tvFirst.setText("男");
-        tvSecond.setText("女");
+        tvFirst.setText(R.string.male);
+        tvSecond.setText(R.string.female);
         tvFirst.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 manager.dismiss();
                 TYPE_TWO = 1;
-                tvSecondChoose.setText("主要粉丝性别：男");
+                tvSecondChoose.setText(R.string.robin355);
             }
         });
         tvSecond.setOnClickListener(new View.OnClickListener() {
@@ -509,7 +509,7 @@ public class CreatorMsgActivity extends BaseActivity {
             public void onClick(View view) {
                 manager.dismiss();
                 TYPE_TWO = 2;
-                tvSecondChoose.setText("主要粉丝性别：女");
+                tvSecondChoose.setText(R.string.robin356);
             }
         });
         tvCancel.setOnClickListener(new View.OnClickListener() {
@@ -592,57 +592,57 @@ public class CreatorMsgActivity extends BaseActivity {
      @return
      */
     private Boolean checkParams(boolean show) {
-        if (TextUtils.isEmpty(txChooseCircle) || txChooseCircle.equals("请选择你的自媒体圈子") || circleIdList.size() == 0) {
+        if (TextUtils.isEmpty(txChooseCircle) || txChooseCircle.equals(getString(R.string.robin074)) || circleIdList.size() == 0) {
             if (show) {
-                CustomToast.showShort(this, "请选择你的自媒体圈子");
+                CustomToast.showShort(this, R.string.robin074);
             }
             return false;
         }
-        if (TextUtils.isEmpty(txPlatform) || txChooseCircle.equals("请选择自媒体平台") || platIdList.size() == 0) {
+        if (TextUtils.isEmpty(txPlatform) || txChooseCircle.equals(getString(R.string.robin076)) || platIdList.size() == 0) {
             if (show) {
-                CustomToast.showShort(this, "请选择自媒体平台");
+                CustomToast.showShort(this, R.string.robin076);
             }
             return false;
         }
         if (TextUtils.isEmpty(txEditFirstPrice)) {
             if (show) {
-                CustomToast.showShort(this, "请填写原创图文报价");
+                CustomToast.showShort(this, R.string.robin078);
             }
             return false;
         }
         if (TextUtils.isEmpty(txEditSecondPrice)) {
             if (show) {
-                CustomToast.showShort(this, "请填写原创视频");
+                CustomToast.showShort(this, R.string.robin079);
             }
             return false;
         }
 
         if (TextUtils.isEmpty(txEditFirstNum)) {
             if (show) {
-                CustomToast.showShort(this, "请填写粉丝数量");
+                CustomToast.showShort(this, R.string.robin081);
             }
             return false;
         }
 
         if (TYPE_TWO == 0) {
             if (show) {
-                CustomToast.showShort(this, "请选择主要粉丝性别");
+                CustomToast.showShort(this, R.string.robin082);
             }
             return false;
         }
 
-        if (TextUtils.isEmpty(txChooseYear) || txChooseYear.equals("请选择年龄区间")) {
+        if (TextUtils.isEmpty(txChooseYear) || txChooseYear.equals(getString(R.string.robin083))) {
 
             if (show) {
-                CustomToast.showShort(this, "请选择年龄区间");
+                CustomToast.showShort(this, R.string.robin083);
             }
             return false;
         }
 
-        if (TextUtils.isEmpty(txThirdChoose) || txThirdChoose.equals("请选择地域集中城市(1-3个)") || cityNameList.size() == 0) {
+        if (TextUtils.isEmpty(txThirdChoose) || txThirdChoose.equals(getString(R.string.robin084)) || cityNameList.size() == 0) {
 
             if (show) {
-                CustomToast.showShort(this, "请选择地域集中城市(1-3个)");
+                CustomToast.showShort(this, R.string.robin084);
             }
             return false;
         }
@@ -650,7 +650,7 @@ public class CreatorMsgActivity extends BaseActivity {
         if (TextUtils.isEmpty(txEditLink)) {
 
             if (show) {
-                CustomToast.showShort(this, "请填写作品链接");
+                CustomToast.showShort(this, R.string.robin086);
             }
             return false;
         }

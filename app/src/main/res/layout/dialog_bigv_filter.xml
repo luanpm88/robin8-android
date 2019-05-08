@@ -11,7 +11,7 @@
         style="@style/text_diaglog_filter"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:text="全部"
+        android:text="@string/share_fillter_1"
         android:textSize="14sp" />
 
     <RadioButton
@@ -19,7 +19,7 @@
         style="@style/text_diaglog_filter"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:text="进行中"
+        android:text="@string/share_fillter_3"
         android:textSize="14sp" />
 
     <RadioButton
@@ -27,7 +27,7 @@
         style="@style/text_diaglog_filter"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:text="已完成"
+        android:text="@string/share_fillter_5"
         android:textSize="14sp" />
 
     <RadioButton
@@ -35,7 +35,7 @@
         style="@style/text_diaglog_filter"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:text="已结束"
+        android:text="@string/share_fillter_7"
         android:textSize="14sp" />
 
 </RadioGroup>

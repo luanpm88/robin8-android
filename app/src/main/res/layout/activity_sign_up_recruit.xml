@@ -10,7 +10,7 @@
         android:layout_height="30dp"
         android:layout_marginLeft="13dp"
         android:gravity="center_vertical"
-        android:text="文字描述"
+        android:text="@string/robin185"
         android:textColor="@color/sub_gray_custom"
         android:textSize="@dimen/undefine_font_3" />
 
@@ -32,7 +32,7 @@
         android:layout_height="30dp"
         android:layout_marginLeft="13dp"
         android:gravity="center_vertical"
-        android:text="图片描述"
+        android:text="@string/robin186"
         android:textColor="@color/sub_gray_custom"
         android:textSize="@dimen/undefine_font_3" />
 

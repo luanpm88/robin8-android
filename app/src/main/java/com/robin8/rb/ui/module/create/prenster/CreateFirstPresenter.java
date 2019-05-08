@@ -153,7 +153,7 @@ public class CreateFirstPresenter implements PresenterI {
             @Override
             public void onError(Exception e) {
 
-                CustomToast.showShort(mActivity.getApplicationContext(), "网络加载失败");
+                CustomToast.showShort(mActivity.getApplicationContext(), R.string.robin391);
             }
 
             @Override

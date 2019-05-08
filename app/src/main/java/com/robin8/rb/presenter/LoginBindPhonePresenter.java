@@ -6,20 +6,17 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.ui.activity.MainActivity;
-import com.robin8.rb.ui.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.ui.model.BaseBean;
-import com.robin8.rb.ui.model.LoginBean;
-import com.robin8.rb.ui.module.mine.model.MineShowModel;
-import com.robin8.rb.ui.module.social.MeasureInfluenceActivity;
-import com.robin8.rb.ui.module.social.MeasureInfluenceManActivity;
-import com.robin8.rb.ui.module.social.SocialBindActivity;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.ui.activity.MainActivity;
+import com.robin8.rb.ui.activity.uesr_msg.FirstKnowUserIdActivity;
+import com.robin8.rb.ui.model.BaseBean;
+import com.robin8.rb.ui.model.LoginBean;
+import com.robin8.rb.ui.module.mine.model.MineShowModel;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
@@ -74,7 +71,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
     public void getCheckNumber() {
         String phoneNumber = mILoginView.getPhoneNumber();
         if (! RegExpUtil.checkMobile(phoneNumber)) {
-            CustomToast.showShort(mActivity, "请输入正确的手机号码!");
+            CustomToast.showShort(mActivity, R.string.robin329);
             return;
         }
         //   HelpTools.insertLoginInfo(HelpTools.Token, "");//此时应没有token 手动清理一下
@@ -85,7 +82,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
             @Override
             public void onError(Exception e) {
-                CustomToast.showShort(mActivity, "验证码发送失败");
+                CustomToast.showShort(mActivity, R.string.robin330);
             }
 
             @Override
@@ -95,15 +92,15 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
                // CustomToast.showShort(mActivity, bean.getDetail());
                 if (bean!=null){
                     if (bean.getError() == 0) {
-                        CustomToast.showShort(mActivity, "验证码发送成功");
-                        new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, "重新获取验证码")).start();
+                        CustomToast.showShort(mActivity, R.string.robin331);
+                        new Thread(new TimerUtilTwo(60, null, ((TextView) mILoginView.getTv()), mActivity, mActivity.getString(R.string.robin325))).start();
                         // new Thread(new TimerUtil(60, null, ((TextView) mILoginView.getTv()),null, mActivity, "重新获取验证码", "s后重新获取",mActivity.getResources().getColor(R.color.color_checknum),mActivity.getResources().getColor(R.color.color_checknum))).start();
 
                     } else {
-                        CustomToast.showShort(mActivity, "验证码发送失败");
+                        CustomToast.showShort(mActivity, R.string.robin330);
                     }
                 }else {
-                    CustomToast.showShort(mActivity, "验证码发送失败");
+                    CustomToast.showShort(mActivity, R.string.robin330);
                 }
 
             }
@@ -115,17 +112,17 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
         String checkNum = mILoginView.getCheckCode();
 
         if (TextUtils.isEmpty(phoneNumber)) {
-            CustomToast.showShort(mActivity, "请输入手机号码!");
+            CustomToast.showShort(mActivity, R.string.robin332);
             return;
         }
 
         if (TextUtils.isEmpty(checkNum)) {
-            CustomToast.showShort(mActivity, "请输入验证码!");
+            CustomToast.showShort(mActivity, R.string.robin328);
             return;
         }
 
         if (! RegExpUtil.checkMobile(phoneNumber)) {
-            CustomToast.showShort(mActivity, "请输入正确的手机号码!");
+            CustomToast.showShort(mActivity, R.string.robin329);
             return;
         }
         //   HelpTools.insertLoginInfo(HelpTools.Token, "");//此时应没有token 手动清理一下
@@ -171,68 +168,14 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
             if (BaseApplication.getInstance().hasLogined()) {
                 TalkingDataAppCpa.onCustEvent1();
                 NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
-                //判断是否是kol，如果不是kol，点击申请kol
-                //  judgeIskol();
-                //                String mMineData = CacheUtils.getString(mActivity, SPConstants.MINE_DATA, null);
-                //                MineShowModel mineShowModel = GsonTools.jsonToBean(mMineData, MineShowModel.class);
-                //                if (mineShowModel != null && mineShowModel.getError() == 0) {
-                //                    //本地缓存判断
-                //                    CacheUtils.putString(mActivity, SPConstants.MINE_DATA, mMineData);
-                //                    MineShowModel.KolBean kol = mineShowModel.getKol();
-                //                    if (mineShowModel !=null){
-                //                        if (!kol.getRole_apply_status().equals("pending")){
-                //                            jumpBeKol(kol.getId());
-                //                        }
-                //                    }
-                //                }
-
             }
-            //            LogUtil.LogShitou("绑定手机号此时的from、",""+from);
-            //    LoginHelper.loginSuccess(loginBean, from, mActivity);
-
-            //==============================
-//            if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.SecondIn))){
-//                //first走过
-//                jumpActivity(1);
-//            }else if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ThirdIn))){
-//                //first和second都走过
-//                jumpActivity(2);
-//            }else{
-//                //从影响力来的就回去影响力，否则回到活动页面
-//                backMain();
-//            }
-            //==============new 11-05============
             jumpActivity(3);
-            //===================================
-            //            Intent intent = new Intent(mActivity, MainActivity.class);
-//            //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//            intent.putExtra("register_main", "zhu");
-//            mActivity.startActivity(intent);
-//            mActivity.finish();
         } else {
             CustomToast.showShort(mActivity, loginBean.getDetail());
         }
     }
     private void jumpActivity(int i) {
-        if (i == 0) {
-            //没有微博或者微信
-            Intent intent = new Intent(mActivity, SocialBindActivity.class);
-            mActivity.startActivity(intent);
-            mActivity.finish();
-            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else if (i == 1) {
-            //有微博或者微信
-            Intent intent = new Intent(mActivity, MeasureInfluenceActivity.class);
-            mActivity.startActivity(intent);
-            mActivity.finish();
-            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else if (i == 2) {
-            //跳转到man
-            Intent intent = new Intent(mActivity, MeasureInfluenceManActivity.class);
-            mActivity.startActivity(intent);
-            mActivity.finish();
-            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }else if (i==3){
+        if (i==3){
             Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
             mActivity.startActivity(intent);
             mActivity.finish();

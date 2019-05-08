@@ -22,7 +22,6 @@
             android:src="@mipmap/icon_btn_back_black" />
 
         <LinearLayout
-            android:id="@+id/ll_center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -99,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="全部分类"
+                android:text="@string/robin173"
                 android:textColor="@color/sub_black_custom"
                 android:textSize="@dimen/undefine_font_5" />
 
@@ -124,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="综合排序"
+                android:text="@string/robin174"
                 android:textColor="@color/sub_black_custom"
                 android:textSize="@dimen/undefine_font_5" />
 
@@ -138,7 +137,6 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/line_view2"
         style="@style/Undefined_Line"
         android:layout_below="@+id/ll_selector" />
 
@@ -175,7 +173,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="当前页面无数据，试试别的页面吧"
+            android:text="@string/no_data_try_others"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_6" />
     </LinearLayout>

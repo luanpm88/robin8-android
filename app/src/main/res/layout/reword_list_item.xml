@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/cardview"
-             android:layout_width="match_parent"
+	android:layout_width="match_parent"
              android:layout_height="wrap_content">
 
     <FrameLayout
@@ -59,7 +58,7 @@
             android:minHeight="20dp"
             android:minWidth="20dp"
             android:padding="5dp"
-            android:text="已结束"
+            android:text="@string/account"
             android:textColor="@color/white_custom"
             android:textSize="@dimen/undefine_font_0"
             android:textStyle="bold"
@@ -199,7 +198,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white_custom"
         android:textSize="@dimen/undefine_font_7"
-        android:text="已抢完"/>
+        android:text="@string/robin006"/>
 </LinearLayout>
 
     <LinearLayout
@@ -246,7 +245,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="即将赚"
+                android:text="@string/earning"
                 android:textColor="@color/white_custom"
                 android:textSize="10sp"/>
 

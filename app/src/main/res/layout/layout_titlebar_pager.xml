@@ -62,8 +62,7 @@
             android:visibility="gone"/>
 
         <ImageView
-            android:id="@+id/reword_filter_iv"
-            android:layout_width="40dp"
+	        android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -85,7 +84,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="筛选"
+                android:text="@string/robin295"
                 android:textColor="@color/black_custom"
                 android:textSize="13sp"/>
 
@@ -165,26 +164,10 @@
                     android:layout_marginRight="20dp"
                     android:src="@mipmap/reword_filter"
                     />
-
-                <!--<android.support.v7.widget.SearchView-->
-                <!--android:layout_width="100dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--&gt;</android.support.v7.widget.SearchView>-->
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
-
-        <!--<com.robin8.rb.ui.widget.RefreshListView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/recycler_view">-->
-
-        <!--</com.robin8.rb.ui.widget.RefreshListView>-->
-        <LinearLayout
-            android:id="@+id/layout_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"/>
+        
 
     </LinearLayout>
 </RelativeLayout>

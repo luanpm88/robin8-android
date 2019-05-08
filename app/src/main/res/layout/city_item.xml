@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -15,7 +16,8 @@
         android:text="A"
         android:textColor="@color/sub_gray_custom"
         android:textSize="@dimen/undefine_font_5"
-        android:visibility="visible" />
+        android:visibility="visible"
+	    tools:ignore="HardcodedText" />
 
     <RelativeLayout
         android:id="@+id/infoRowContainer"
@@ -33,7 +35,8 @@
             android:paddingLeft="10dip"
             android:text="广州"
             android:textColor="@color/sub_black_custom"
-            android:textSize="@dimen/undefine_font_5" />
+            android:textSize="@dimen/undefine_font_5"
+	        tools:ignore="HardcodedText" />
 
         <View
             style="@style/Undefined_Line"
@@ -48,6 +51,7 @@
             android:layout_marginRight="40dp"
             android:gravity="center"
             android:text="sf"
-            android:textSize="@dimen/undefine_font_8" />
+            android:textSize="@dimen/undefine_font_8"
+	        tools:ignore="HardcodedText" />
     </RelativeLayout>
 </LinearLayout>

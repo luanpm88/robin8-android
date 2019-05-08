@@ -1,11 +1,11 @@
 package com.robin8.rb.ui.activity.web;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,32 +14,25 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.constants.CommonConfig;
+import com.robin8.rb.ui.dialog.MyDialog;
 import com.robin8.rb.ui.module.mine.model.MineShowModel;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.LogUtil;
-import com.robin8.rb.ui.dialog.MyDialog;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.util.share.RobinShareDialog;
 
-import java.util.HashMap;
 import java.util.List;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
 
 /**
  Banner跳转的Webview
  */
-public class BannerWebActivity extends BaseActivity {
+public class BannerWebActivity extends BaseActivity{
     public final static String BANNER = "banner_web";
     public final static String BANNER_BEAN = "banner_bean";
     private WebView webView;
@@ -204,62 +197,33 @@ public class BannerWebActivity extends BaseActivity {
     private static final String IMAGE_URL = CommonConfig.APP_ICON;
     //  private CustomDialogManager mCustomDialogManager;
     private MineShowModel infosBean;
-
+    RobinShareDialog shareDialog;
     private void showShareDialog(final String myShareUrl) {
-        View view = LayoutInflater.from(BannerWebActivity.this).inflate(R.layout.dialog_web_share_item, null);
+        RobinShareDialog shareDialog = new RobinShareDialog(this);
+        if (infosBean != null) {
+            List<MineShowModel.VoteInfosBean> vote_infos = infosBean.getVote_infos();
+            shareDialog.shareFacebook(myShareUrl,vote_infos.get(0).getTitle(),vote_infos.get(0).getDesc(),IMAGE_URL);
+            shareDialog.show();
+//            oks.setText(vote_infos.get(0).getDesc());
+//            oks.setTitle(vote_infos.get(0).getTitle());
+//            oks.setTitleUrl(vote_infos.get(0).getIcon_url());
+//            oks.setUrl(url);
+        }
 
-        TextView tvCancel = (TextView) view.findViewById(R.id.tv_cancel);
-        TextView tvWechat = (TextView) view.findViewById(R.id.tv_wechat);
-        TextView tvWechatmoment = (TextView) view.findViewById(R.id.tv_wechatmoments);
-        TextView tvQq = (TextView) view.findViewById(R.id.tv_qq);
+    }
 
-        final CustomDialogManager mCustomDialogManager = new CustomDialogManager(BannerWebActivity.this, view);
-
-        tvWechat.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                mCustomDialogManager.dismiss();
-                share(Wechat.NAME, myShareUrl);
-            }
-        });
-
-        tvWechatmoment.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                mCustomDialogManager.dismiss();
-                share(WechatMoments.NAME, myShareUrl);
-            }
-        });
-
-        tvQq.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                mCustomDialogManager.dismiss();
-                share(QQ.NAME, myShareUrl);
-            }
-        });
-
-        tvCancel.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                mCustomDialogManager.dismiss();
-            }
-        });
-        mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
-        mCustomDialogManager.dg.getWindow().setGravity(Gravity.BOTTOM);
-        mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        mCustomDialogManager.showDialog();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (shareDialog != null){
+            shareDialog.onActivityResult(requestCode,resultCode,data);
+        }
     }
 
     private void share(String platName, String url) {
         CustomToast.showShort(BannerWebActivity.this, "前往分享...");
         //ShareSDK.initSDK(DetailContentActivity.this);
         OnekeyShare oks = new OnekeyShare();
-        oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
@@ -277,22 +241,6 @@ public class BannerWebActivity extends BaseActivity {
         oks.show(BannerWebActivity.this);
     }
 
-    private class MySharedListener implements PlatformActionListener {
-        @Override
-        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            CustomToast.showShort(BannerWebActivity.this, "分享成功");
-        }
-
-        @Override
-        public void onError(Platform platform, int i, Throwable throwable) {
-            CustomToast.showShort(BannerWebActivity.this, "分享失败");
-        }
-
-        @Override
-        public void onCancel(Platform platform, int i) {
-            CustomToast.showShort(BannerWebActivity.this, "分享取消");
-        }
-    }
 
     @Override
     public void onClick(View v) {

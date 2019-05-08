@@ -73,7 +73,7 @@ public class BrandBillActivity extends BaseActivity implements IncomeDetailAdapt
         myTabs.setUnderlineHeight(1);
         mViewPager = ((ViewPager) view.findViewById(R.id.my_vp));
         mFragmentList = new ArrayList<>();
-        titles =new String[]{"资金流水", "积分流水"};
+        titles =new String[]{getString(R.string.robin422), getString(R.string.robin423)};
         moneyStream = BrandBillFragment.newInstance(0, mViewPager);
         pointStream = BrandBillFragment.newInstance(1, mViewPager);
         mFragmentList.add(moneyStream);

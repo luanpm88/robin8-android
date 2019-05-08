@@ -12,7 +12,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
-        android:text="请填写个人精彩展示" />
+        android:text="@string/robin043" />
 
     <EditText
         android:id="@+id/et_content1"
@@ -36,7 +36,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
-        android:text="请填写个人精彩展示" />
+        android:text="@string/robin043" />
 
     <EditText
         android:id="@+id/et_content2"
@@ -61,7 +61,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
-        android:text="请填写个人精彩展示" />
+        android:text="@string/robin043" />
 
     <EditText
         android:id="@+id/et_content3"
@@ -93,7 +93,7 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击打开微信"
+            android:text="@string/robin044"
             android:textColor="@color/sub_gray_custom"
             android:textSize="@dimen/undefine_font_5" />
 

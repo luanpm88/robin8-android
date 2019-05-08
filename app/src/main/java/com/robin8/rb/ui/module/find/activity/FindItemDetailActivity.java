@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.ui.activity.LoginActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.activity.LoginActivity;
 import com.robin8.rb.ui.model.BaseBean;
 import com.robin8.rb.ui.module.find.FloatAction.FloatActionController;
 import com.robin8.rb.ui.module.find.adapter.NineGridViewClickAdapter;
@@ -28,10 +31,7 @@ import com.robin8.rb.ui.module.find.model.FindArticleListModel;
 import com.robin8.rb.ui.module.find.model.ImageInfo;
 import com.robin8.rb.ui.module.find.view.NineGridView;
 import com.robin8.rb.ui.module.find.view.snaprecyclerview.MultiSnapRecyclerView;
-import com.robin8.rb.okhttp.HttpRequest;
-import com.robin8.rb.okhttp.RequestCallback;
-import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
@@ -39,21 +39,12 @@ import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
-import com.robin8.rb.ui.widget.CircleImageView;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.util.share.RobinShareDialog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.wechat.friends.Wechat;
-import cn.sharesdk.wechat.moments.WechatMoments;
 
 /**
  Created by zc on 2018/4/18. */
@@ -84,8 +75,8 @@ public class FindItemDetailActivity extends BaseActivity {
     private FindArticleListModel.ListBean listBean;
     private int widthPixels;
     private int heightPixels;
-    private CustomDialogManager mCustomDialogManager;
     private String title;
+    private RobinShareDialog shareDialog;
     private String titleAdd;
     public int findPosition;
     public String stringExtra;
@@ -173,21 +164,6 @@ public class FindItemDetailActivity extends BaseActivity {
                     showInviteDialog();
                 }
                 break;
-            case R.id.tv_weixin:
-                share(Wechat.NAME, listBean);
-                break;
-            case R.id.tv_wechatmoments:
-                share(WechatMoments.NAME, listBean);
-                break;
-            case R.id.tv_weibo:
-                share(SinaWeibo.NAME, listBean);
-                break;
-            case R.id.tv_qq:
-                share(QQ.NAME, listBean);
-                break;
-            case R.id.tv_qonze:
-                share(QZone.NAME, listBean);
-                break;
         }
     }
 
@@ -211,9 +187,9 @@ public class FindItemDetailActivity extends BaseActivity {
         initAll(String.valueOf(listBean.getLikes_count()), tvLikeNum);
         initAll(String.valueOf(listBean.getForwards_count()), tvShareNum);
         if (listBean.getReads_count() >= 10000) {
-            tvLookNum.setText(String.valueOf(listBean.getReads_count() / 10000) + "万次观看");
+            tvLookNum.setText(getString(R.string.robin436,String.valueOf(listBean.getReads_count() / 10000) ));
         } else {
-            tvLookNum.setText(String.valueOf(listBean.getReads_count()) + "次观看");
+            tvLookNum.setText(getString(R.string.robin437,String.valueOf(listBean.getReads_count()) ));
         }
         if (listBean.isIs_collected()) {
             tvCollect.setBackgroundResource(R.drawable.shape_bg_gray_pane_pane);
@@ -484,36 +460,25 @@ public class FindItemDetailActivity extends BaseActivity {
     }
 
     private void showInviteDialog() {
-        View view = LayoutInflater.from(FindItemDetailActivity.this).inflate(R.layout.invite_friends_dialog, null);
-        TextView weixinTV = (TextView) view.findViewById(R.id.tv_weixin);
-        TextView wechatmomentsTV = (TextView) view.findViewById(R.id.tv_wechatmoments);
-        TextView weiboTV = (TextView) view.findViewById(R.id.tv_weibo);
-        TextView qqTV = (TextView) view.findViewById(R.id.tv_qq);
-        TextView qonzeTV = (TextView) view.findViewById(R.id.tv_qonze);
-        TextView cancelTV = (TextView) view.findViewById(R.id.tv_cancel);
-        mCustomDialogManager = new CustomDialogManager(FindItemDetailActivity.this, view);
-        weixinTV.setOnClickListener(this);
-        wechatmomentsTV.setOnClickListener(this);
-        weiboTV.setOnClickListener(this);
-        qqTV.setOnClickListener(this);
-        qonzeTV.setOnClickListener(this);
-        cancelTV.setOnClickListener(new View.OnClickListener() {
+        shareDialog = new RobinShareDialog(this);
+        if (listBean != null) {
+            title = "#robin8#" + listBean.getTitle();
+        } else {
+            title = "#robin8#";
+        }
+        String url = HelpTools.getUrl(listBean.getForward_url());
+        titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
+        shareDialog.shareFacebook(url,title,getString(R.string.app_name),"http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png");
+        shareDialog.show();
+    }
 
-            @Override
-            public void onClick(View v) {
-                mCustomDialogManager.dismiss();
-            }
-        });
-        mCustomDialogManager.dg.setCanceledOnTouchOutside(true);
-        mCustomDialogManager.dg.getWindow().setGravity(Gravity.BOTTOM);
-        mCustomDialogManager.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        mCustomDialogManager.showDialog();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        shareDialog.onActivityResult(requestCode,resultCode,data);
     }
 
     private void share(String platName, FindArticleListModel.ListBean listModel) {
-        if (mCustomDialogManager != null) {
-            mCustomDialogManager.dismiss();
-        }
         if (listModel != null) {
             title = "#robin8#" + listModel.getTitle();
         } else {
@@ -521,46 +486,27 @@ public class FindItemDetailActivity extends BaseActivity {
         }
         String url = HelpTools.getUrl(listModel.getForward_url());
         titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
-        CustomToast.showShort(FindItemDetailActivity.this, "正在前往分享...");
+        CustomToast.showShort(FindItemDetailActivity.this, R.string.robin435);
 
         //ShareSDK.initSDK(FindItemDetailActivity.this);
         OnekeyShare oks = new OnekeyShare();
-        oks.setCallback(new MySharedListener());
         oks.setPlatform(platName);
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        if (SinaWeibo.NAME.equals(platName)) {
-            oks.setText(title + url + titleAdd);
-        } else {
-            oks.setText(title);
-        }
+//        if (SinaWeibo.NAME.equals(platName)) {
+//            oks.setText(title + url + titleAdd);
+//        } else {
+//            oks.setText(title);
+//        }
         oks.setTitle(title);
         oks.setTitleUrl(url);
         oks.setImageUrl("http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png");
-        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)) {
-            oks.setUrl(url);
-        }
+//        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)) {
+//            oks.setUrl(url);
+//        }
         oks.setSite(getString(R.string.app_name));
         oks.setSiteUrl(CommonConfig.SITE_URL);
         oks.show(FindItemDetailActivity.this);
-    }
-
-    private class MySharedListener implements PlatformActionListener {
-        @Override
-        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            CustomToast.showShort(FindItemDetailActivity.this, "分享成功");
-            setParams(2, true, listBean);
-        }
-
-        @Override
-        public void onError(Platform platform, int i, Throwable throwable) {
-            CustomToast.showShort(FindItemDetailActivity.this, "分享失败");
-        }
-
-        @Override
-        public void onCancel(Platform platform, int i) {
-            CustomToast.showShort(FindItemDetailActivity.this, "分享取消");
-        }
     }
 
     @Override

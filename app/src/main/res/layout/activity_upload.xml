@@ -29,7 +29,7 @@
                 android:id="@+id/tv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="恭喜你成功了！！！"
+                android:text="@string/robin191"
                 android:textColor="@color/white_custom"
                 android:textSize="@dimen/undefine_font_6"
                 android:textStyle="bold"/>
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-                android:text="作品上传完成后品牌将会进行审核，请按照协商规则完成"
+                android:text="@string/robin192"
                 android:textColor="@color/white_custom"
                 android:textSize="@dimen/undefine_font_1"/>
         </LinearLayout>
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="添加作品链接"
+                android:text="@string/robin193"
                 android:textColor="@color/black_4a4a4a"
                 android:textSize="@dimen/undefine_font_6"/>
 
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="活动信息"
+                android:text="@string/robin194"
                 android:textColor="@color/gray_9b9b9b"
                 android:textSize="@dimen/undefine_font_4"/>
         </android.support.v7.widget.CardView>
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="作品信息"
+                android:text="@string/robin195"
                 android:textColor="@color/gray_9b9b9b"
                 android:textSize="@dimen/undefine_font_4"/>
         </android.support.v7.widget.CardView>

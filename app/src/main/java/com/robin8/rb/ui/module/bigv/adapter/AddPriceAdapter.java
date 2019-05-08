@@ -77,9 +77,9 @@ public class AddPriceAdapter extends BaseAdapter {
             BitmapUtil.loadImage(context, bean.getAddress(), holder.ivPlat);
         }
         if (type==1){
-            holder.etPrice.setHint("请添加"+bean.getName()+"报价");
+            holder.etPrice.setHint(context.getString(R.string.robin449,bean.getName()));
         }else {
-            holder.etPrice.setHint("请添加"+bean.getName()+"作品链接");
+            holder.etPrice.setHint(context.getString(R.string.robin450,bean.getName()));
 
 
         }

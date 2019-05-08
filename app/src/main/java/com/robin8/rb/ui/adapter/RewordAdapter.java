@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +30,6 @@ import com.robin8.rb.util.StringUtil;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -57,8 +55,6 @@ public class RewordAdapter extends BaseAdapter {
     private final List<CampaignListBean.CampaignInviteEntity> mList;
     private final LayoutInflater mLayoutInflater;
     private final Context mActivity;
-    private HashMap<TextView, Couterdown> timeMap = new HashMap<>();
-    private HashMap<Integer, Integer> mapStart = new HashMap<>();
     private SparseArray<CountDownTimer> countDownCounters;
 
     public RewordAdapter(Activity activity, List<CampaignListBean.CampaignInviteEntity> list) {
@@ -86,22 +82,6 @@ public class RewordAdapter extends BaseAdapter {
     public long getItemId(int position) {
 
         return position;
-    }
-
-    /**
-     清空资源
-     */
-    public void cancelAllTimers() {
-        if (countDownCounters == null) {
-            return;
-        }
-        Log.e("TAG", "size :  " + countDownCounters.size());
-        for (int i = 0, length = countDownCounters.size(); i < length; i++) {
-            CountDownTimer cdt = countDownCounters.get(countDownCounters.keyAt(i));
-            if (cdt != null) {
-                cdt.cancel();
-            }
-        }
     }
 
     @Override
@@ -188,7 +168,7 @@ public class RewordAdapter extends BaseAdapter {
             final int start_time = new Long(DateUtil.getTimeLong(item.getCampaign().getStart_time())).intValue();
             final int deal_time = new Long(DateUtil.getTimeLong(item.getCampaign().getDeadline())).intValue();
             final int now_time = new Long(DateUtil.getTimeLong(DateUtil.getNowTimeMs("yyyyMMddHHmmssSSS"))).intValue();
-            viewHolder.tv_actiontype.setText("距活动开始");
+            viewHolder.tv_actiontype.setText(R.string.robin321);
             viewHolder.tv_actiontype.setTextColor(Color.parseColor("#fab719"));//黄色
             viewHolder.payinfoLinearLayout.setVisibility(View.VISIBLE);
             viewHolder.iv_cover.setBackgroundColor(mActivity.getResources().getColor(R.color.cover_transparent_deep));
@@ -202,7 +182,7 @@ public class RewordAdapter extends BaseAdapter {
                 countDownTimer = new CountDownTimer(timer, 1000) {
 
                     public void onTick(long millisUntilFinished) {
-                        viewHolder.tv_count_down.setText("距开始" + getCountTimeByLong(millisUntilFinished));
+                        viewHolder.tv_count_down.setText(mActivity.getString(R.string.robin322,getCountTimeByLong(millisUntilFinished)));
                     }
 
                     public void onFinish() {
@@ -254,17 +234,17 @@ public class RewordAdapter extends BaseAdapter {
 
                 switch (item.getStatus()) {
                     case "approved"://开始了 参与了
-                        viewHolder.tv_earn_had.setText("即将赚");
+                        viewHolder.tv_earn_had.setText(R.string.earning);
                         break;
                     case "rejected"://结束了 没参与
-                        viewHolder.tv_earn_had.setText("已赚");
+                        viewHolder.tv_earn_had.setText(R.string.earned);
                         viewHolder.tv_earn_money.setText("0");//已赚的金额
                         break;
                     case "finished"://结束了 参与了
-                        viewHolder.tv_earn_had.setText("即将赚");
+                        viewHolder.tv_earn_had.setText(R.string.earning);
                         break;
                     case "settled"://结束了 参与了 结算了
-                        viewHolder.tv_earn_had.setText("已赚");
+                        viewHolder.tv_earn_had.setText(R.string.earned);
                         break;
                     default:
                         break;
@@ -378,9 +358,9 @@ public class RewordAdapter extends BaseAdapter {
         }
         String info = "";
         if (isRecruit) {
-            info = "距报名截止";
+            info = mActivity.getString(R.string.robin319);
         } else {
-            info = "距活动结束";
+            info = mActivity.getString(R.string.robin001);
         }
         tv.setText(info);
         StringBuffer sb = new StringBuffer("");
@@ -401,17 +381,17 @@ public class RewordAdapter extends BaseAdapter {
             long hour = test % (1000 * 60 * 60 * 24) / (1000 * 60 * 60);//- day * 24;
             long minute = test % (1000 * 60 * 60 * 24) % (1000 * 60 * 60) / (1000 * 60);
             if (day == 0) {
-                sb.append(hour).append("小时");
-                sb.append(minute).append("分钟");
+                sb.append(hour).append(mActivity.getResources().getString(R.string.robin004));
+                sb.append(minute).append(mActivity.getResources().getString(R.string.robin005));
             } else {
-                sb.append(day).append("天");
-                sb.append(hour).append("小时");
-                sb.append(minute).append("分钟");
+                sb.append(day).append(mActivity.getResources().getString(R.string.robin003));
+                sb.append(hour).append(mActivity.getResources().getString(R.string.robin004));
+                sb.append(minute).append(mActivity.getResources().getString(R.string.robin005));
             }
 
 
             if (day <= 0 && hour <= 0 && minute <= 0) {
-                return "已结束";
+                return mActivity.getString(R.string.has_been_end);
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -420,27 +400,6 @@ public class RewordAdapter extends BaseAdapter {
         return sb.toString();
     }
 
-    private String count_down(int sum) {
-
-        String showTime = "";
-        int day = sum / 60 / 60 / 24;
-        // 先获取个秒数值
-        int sec = sum % 60;
-        // 如果大于60秒，获取分钟。（秒数）
-        int sec_time = sum / 60;
-        // 再获取分钟
-        int min = sec_time % 60;
-        // 如果大于60分钟，获取小时（分钟数）。
-        int min_time = sec_time / 60;
-        // 获取小时
-        int hour = min_time % 24;
-        // 剩下的自然是天数
-        day = min_time / 24;
-
-        showTime = min + "分" + sec + "秒";
-        return showTime;
-
-    }
 
     /**
      活动类型——招募
@@ -458,7 +417,7 @@ public class RewordAdapter extends BaseAdapter {
         viewHolder.tv_remainder.setText(String.valueOf(item.getCampaign().getMax_action()));//结束时已花费金额
         viewHolder.iv_tag.setVisibility(View.VISIBLE);
         viewHolder.iv_tag.setBackgroundResource(R.mipmap.icon_task_tag_recruit);
-        viewHolder.tv_last.setText("招募人数");
+        viewHolder.tv_last.setText(R.string.robin049);
     }
 
     /**
@@ -475,7 +434,7 @@ public class RewordAdapter extends BaseAdapter {
         viewHolder.tv_remainder.setText(String.valueOf(item.getCampaign().getMax_action()));//剩余金额
         viewHolder.iv_tag.setVisibility(View.VISIBLE);
         viewHolder.iv_tag.setBackgroundResource(R.mipmap.icon_task_tag_invite);
-        viewHolder.tv_last.setText("特邀人数");
+        viewHolder.tv_last.setText(R.string.robin320);
     }
 
     /**
@@ -487,7 +446,7 @@ public class RewordAdapter extends BaseAdapter {
     private void setNormalTypeView(CampaignListBean.CampaignInviteEntity item, ViewHolder viewHolder, int activityStatues) {
 
         if (activityStatues == EXECUTING) {//活动未结束
-            viewHolder.tv_last.setText("最多可赚");
+            viewHolder.tv_last.setText(mActivity.getResources().getString(R.string.robin008));
             viewHolder.tv_remainder.setText("¥ " + StringUtil.deleteZero(String.valueOf(item.getCampaign().getBudget())));//剩余金额
         } else if (activityStatues == EXECUTED) {//活动已结束
             // viewHolder.tv_last.setText("已抢完");
@@ -600,101 +559,7 @@ public class RewordAdapter extends BaseAdapter {
         }
     }
 
-    // mapStart.put(position, deal_time - now_time);
-    //    CountDownTimer tc = timeMap.get(viewHolder.tv_count_down);
-    //            if (tc != null) {
-    //        tc.cancel();
-    //        tc = null;
-    //    }
-    //    CountDownTimer makeValueID = new Couterdown((mapStart.get(position)) * 1000, 1000) {
-    //
-    //        @Override
-    //        public void onFinish() {
-    //            super.onFinish();
-    //            viewHolder.earnLinearLayout.setVisibility(View.GONE);
-    //            viewHolder.ll_show_money.setVisibility(View.VISIBLE);
-    //            viewHolder.ll_will_begin.setVisibility(View.GONE);
-    //            setCampaignTypeView(item, viewHolder, judgeActivityStatues(item));
-    //            setCampaignStateView(item, viewHolder, judgeEnterActivity(item), judgeActivityStatues(item));
-    //        }
-    //
-    //        @Override
-    //        public void onTick(long millisUntilFinished) {
-    //            viewHolder.tv_actiontype.setText("距活动开始");
-    //            viewHolder.tv_count_down.setText("距开始" + getHours(millisUntilFinished));
-    //            viewHolder.iv_cover.setBackgroundColor(mActivity.getResources().getColor(R.color.cover_transparent_deep));
-    //            viewHolder.earnLinearLayout.setVisibility(View.VISIBLE);
-    //            viewHolder.ll_show_money.setVisibility(View.GONE);
-    //            viewHolder.ll_will_begin.setVisibility(View.VISIBLE);
-    //        }
-    //
-    //        @Override
-    //        public String getHours(long time) {
-    //            return super.getHours(time);
-    //        }
-    //
-    //    }.start();
-    //            timeMap.put(viewHolder.tv_count_down, (Couterdown) makeValueID);
-    class Couterdown extends CountDownTimer {
-
-        public Couterdown(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-            // TODO Auto-generated constructor stub
-        }
-
-        @Override
-        public void onFinish() {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        public void onTick(long arg0) {
-        }
-
-        public String getHours(long time) {
-            long second = time / 1000;
-            long hour = second / 60 / 60;
-            long minute = (second - hour * 60 * 60) / 60;
-            long sec = (second - hour * 60 * 60) - minute * 60;
-
-            String rHour = "";
-            String rMin = "";
-            String rSs = "";
-            // 时
-            if (hour < 10) {
-                rHour = "0" + hour;
-            } else if (hour == 0) {
-                rHour = "0";
-            } else {
-                rHour = hour + "";
-            }
-            // 分
-            if (minute < 10) {
-                rMin = "0" + minute;
-            } else if (minute == 0) {
-                rMin = "0";
-            } else {
-                rMin = minute + "";
-            }
-            // 秒
-            if (sec < 10) {
-                rSs = "0" + sec;
-            } else if (sec == 0) {
-                rSs = "0";
-            } else {
-                rSs = sec + "";
-            }
-            //            if (TextUtils.isEmpty(rHour)){
-            //                return rMin+"分钟"+rSs+"秒";
-            //            }else if (TextUtils.isEmpty(rMin)){
-            //
-            //            }else if (TextUtils.isEmpty(rHour))
-            return rHour + "小时" + rMin + "分" + rSs;
-
-        }
-    }
-
-    public static String getCountTimeByLong(long finishTime) {
+    public String getCountTimeByLong(long finishTime) {
         int totalTime = (int) (finishTime / 1000);//秒
         int hour = 0, minute = 0, second = 0;
 
@@ -712,19 +577,19 @@ public class RewordAdapter extends BaseAdapter {
         StringBuilder sb = new StringBuilder();
 
         if (hour < 10) {
-            sb.append("0").append(hour).append("小时");
+            sb.append("0").append(hour).append(mActivity.getResources().getString(R.string.robin004));
         } else {
-            sb.append(hour).append("小时");
+            sb.append(hour).append(mActivity.getResources().getString(R.string.robin004));
         }
         if (minute < 10) {
-            sb.append("0").append(minute).append("分钟");
+            sb.append("0").append(minute).append(mActivity.getResources().getString(R.string.robin005));
         } else {
-            sb.append(minute).append("分钟");
+            sb.append(minute).append(mActivity.getResources().getString(R.string.robin005));
         }
         if (second < 10) {
-            sb.append("0").append(second).append("秒");
+            sb.append("0").append(second).append(mActivity.getString(R.string.robin323));
         } else {
-            sb.append(second).append("秒");
+            sb.append(second).append(mActivity.getString(R.string.robin323));
         }
         return sb.toString();
 

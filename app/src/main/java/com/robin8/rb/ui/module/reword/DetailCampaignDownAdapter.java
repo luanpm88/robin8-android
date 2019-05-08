@@ -150,7 +150,7 @@ public class DetailCampaignDownAdapter extends BaseAdapter {
                 ClipboardManager clipboardManager = (ClipboardManager) BaseApplication.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("simple text", str);
                 clipboardManager.setPrimaryClip(clip);
-                CustomToast.showShort(BaseApplication.getContext(), "复制成功");
+                CustomToast.showShort(BaseApplication.getContext(), R.string.robin314);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -314,7 +314,7 @@ public class FindPager extends BasePager implements View.OnClickListener {
                     mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else {
-                    CustomToast.showShort(mActivity, "没有数据");
+                    CustomToast.showShort(mActivity, R.string.robin388);
                 }
             }
         });
@@ -396,7 +396,7 @@ public class FindPager extends BasePager implements View.OnClickListener {
 
     @Override
     public void initTitleBar() {
-        mTitleBarText.setText("新鲜事");
+        mTitleBarText.setText(R.string.robin377);
         mTitleBarText.setVisibility(View.VISIBLE);
         firstLeft.setVisibility(View.INVISIBLE);
         mImgTypeMenu.setVisibility(View.VISIBLE);

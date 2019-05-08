@@ -25,7 +25,7 @@ public class DialogUtil {
     public static void showPermissionManagerDialogCallBack(final Context context, String str,DialogInterface.OnClickListener cancelListener) {
         new AlertDialog.Builder(context).setTitle("获取" + str + "权限被禁用")
             .setMessage("请在 设置-应用管理-" + context.getString(R.string.app_name) + "-权限管理 (将" + str + "权限打开)")
-            .setNegativeButton("取消", cancelListener)
+            .setNegativeButton(R.string.cancel, cancelListener)
             .setPositiveButton("去设置", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

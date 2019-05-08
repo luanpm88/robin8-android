@@ -107,7 +107,7 @@ public class PhotoPickerActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText("相机胶卷");
+        mTVCenter.setText(R.string.robin361);
     }
 
     @Override

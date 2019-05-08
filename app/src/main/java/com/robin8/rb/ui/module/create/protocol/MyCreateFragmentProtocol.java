@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.robin8.rb.R;
 import com.robin8.rb.ui.activity.web.WebViewActivity;
 import com.robin8.rb.ui.adapter.ViewPagerAdapter;
 import com.robin8.rb.base.constants.SPConstants;
@@ -74,7 +75,7 @@ public class MyCreateFragmentProtocol implements IProtocol {
 
     private void skipToKolDetail(CpsArticlesBean bean) {
         Intent intent = new Intent(mActivity, WebViewActivity.class);
-        intent.putExtra("title", "详情");
+        intent.putExtra("title", mActivity.getString(R.string.robin451));
         intent.putExtra("url", bean.getShow_url());
         intent.putExtra("id", bean.getId());
         if(MyCreateAdapter.TYPE_SHARES.equals(mData.campaignType) || MyCreateAdapter.TYPE_PASSED.equals(mData.campaignType)){

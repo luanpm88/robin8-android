@@ -65,10 +65,10 @@ public class OrederPayActivity extends BaseActivity {
                 // 判断resultStatus 为非"9000"则代表可能支付失败
                 // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                 if (TextUtils.equals(resultStatus, "8000")) {
-                    CustomToast.showShort(OrederPayActivity.this, "支付结果确认中");
+                    CustomToast.showShort(OrederPayActivity.this, R.string.robin426);
                 } else {
                     // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-                    CustomToast.showShort(OrederPayActivity.this, "支付失败");
+                    CustomToast.showShort(OrederPayActivity.this, R.string.robin427);
                 }
             }
         }
@@ -115,8 +115,8 @@ public class OrederPayActivity extends BaseActivity {
         }
         mCampaign = (LaunchRewordModel.Campaign) serializable;
          mBrandAmountF = mCampaign.getBrand_amount();
-        mPayNumberTv.setText("支付金额：¥ " + StringUtil.deleteZero(mCampaign.getNeed_pay_amount()));
-        mPayConfirmTv.setText("确认支付 ¥ " + StringUtil.deleteZero(mCampaign.getNeed_pay_amount()));
+        mPayNumberTv.setText(getString(R.string.robin375,StringUtil.deleteZero(mCampaign.getNeed_pay_amount())));
+        mPayConfirmTv.setText(getString(R.string.robin376,StringUtil.deleteZero(mCampaign.getNeed_pay_amount())));
         mAccountIncomeTv.setText("¥ " + StringUtil.deleteZero(mBrandAmountF));
     }
 
@@ -199,7 +199,7 @@ public class OrederPayActivity extends BaseActivity {
                     }
 
                     if (baseBean.getError() == 0) {
-                        CustomToast.showShort(OrederPayActivity.this, "支付成功");
+                        CustomToast.showShort(OrederPayActivity.this, R.string.robin405);
                         OrederPayActivity.this.startActivityForResult(new Intent(OrederPayActivity.this, PaySuccessActivity.class),0);
                         OrederPayActivity.this.finish();
                     } else {
@@ -268,7 +268,7 @@ public class OrederPayActivity extends BaseActivity {
                     return;
                 }
                 if (baseBean.getError() == 0) {
-                    CustomToast.showShort(OrederPayActivity.this, "支付成功");
+                    CustomToast.showShort(OrederPayActivity.this, R.string.robin405);
                     OrederPayActivity.this.startActivityForResult(new Intent(OrederPayActivity.this, PaySuccessActivity.class),0);
                     OrederPayActivity.this.finish();
                 } else {

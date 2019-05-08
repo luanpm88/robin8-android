@@ -1,5 +1,6 @@
 package com.robin8.rb.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ public class CustomToast {
      * @param context
      * @param message
      */
+    @SuppressLint("ShowToast")
     public static void showShort(Context context, String message) {
         if(toast == null){
             toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);

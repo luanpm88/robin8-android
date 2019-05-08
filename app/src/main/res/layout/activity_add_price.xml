@@ -31,7 +31,7 @@
                 android:id="@+id/tv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="等待品牌方确认"
+                android:text="@string/robin028"
                 android:textColor="@color/white_custom"
                 android:textSize="@dimen/undefine_font_6"
                 android:textStyle="bold"/>
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-                android:text="作品上传完成后品牌将会进行审核，请按照协商规则完成"
+                android:text="@string/robin029"
                 android:textColor="@color/white_custom"
                 android:textSize="@dimen/undefine_font_1"/>
         </LinearLayout>
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="添加报价"
+                android:text="@string/robin030"
                 android:textColor="@color/black_4a4a4a"
                 android:textSize="@dimen/undefine_font_6"/>
 

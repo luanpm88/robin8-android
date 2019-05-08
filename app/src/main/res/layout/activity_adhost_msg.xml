@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="品牌Logo"
+            android:text="@string/robin031"
             android:textColor="@color/black_custom"
             android:textSize="@dimen/undefine_font_4"/>
 
@@ -69,7 +69,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
-            android:text="品牌名称  *"
+            android:text="@string/robin032"
             android:textColor="@color/black_custom"
             android:textSize="@dimen/undefine_font_4"/>
 
@@ -83,7 +83,7 @@
             android:background="@null"
             android:gravity="right"
             android:textCursorDrawable="@drawable/bg_cursor"
-            android:hint="填写品牌名称"
+            android:hint="@string/robin033"
             android:padding="15dp"
             android:textColor="@color/black_custom"
             android:textColorHint="@color/gray_second"
@@ -109,7 +109,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
-            android:text="公司名称  *"
+            android:text="@string/robin034"
             android:textColor="@color/black_custom"
             android:textSize="@dimen/undefine_font_4"/>
 
@@ -122,7 +122,7 @@
             android:layout_gravity="right"
             android:background="@null"
             android:textCursorDrawable="@drawable/bg_cursor"
-            android:hint="填写完整抬头或'个人'"
+            android:hint="@string/robin035"
             android:padding="15dp"
             android:gravity="right"
             android:textColor="@color/black_custom"
@@ -150,7 +150,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
-            android:text="官方网站"
+            android:text="@string/robin036"
             android:textColor="@color/black_custom"
             android:textSize="@dimen/undefine_font_4"/>
 
@@ -163,7 +163,7 @@
             android:layout_gravity="right"
             android:background="@null"
             android:textCursorDrawable="@drawable/bg_cursor"
-            android:hint="您公司的官网"
+            android:hint="@string/robin037"
             android:padding="15dp"
             android:gravity="right"
             android:textColor="@color/black_custom"
@@ -184,7 +184,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="品牌介绍"
+            android:text="@string/robin038"
             android:textColor="@color/black_custom"
             android:textSize="@dimen/undefine_font_4"/>
 
@@ -202,7 +202,7 @@
             android:background="@null"
             android:textCursorDrawable="@drawable/bg_cursor"
             android:gravity="left|top"
-            android:hint="请填写您品牌的介绍"
+            android:hint="@string/robin039"
             android:inputType="textMultiLine"
             android:lineSpacingExtra="3dp"
             android:lineSpacingMultiplier="1.2"

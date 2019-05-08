@@ -28,10 +28,9 @@ import com.robin8.rb.util.LogUtil;
 public class LoginHelper {
     public static void loginSuccess(LoginBean loginBean , int from, Activity mActivity) {
         Intent intent = null;
-        CustomToast.showShort(mActivity, "登录成功");
+        CustomToast.showShort(mActivity, R.string.robin402);
         switch (from) {
             case SPConstants.MAINACTIVITY:
-                LogUtil.LogShitou("哈哈哈","zheli");
                 mActivity.finish();
                 break;
             case SPConstants.DETAILCONTENTACTIVITY:

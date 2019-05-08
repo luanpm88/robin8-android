@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/undefined_backgroud"
               android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/ll_brand_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -62,7 +62,7 @@
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:paddingTop="4dp"
-            android:text="修改资料"
+            android:text="@string/robin025"
             android:textColor="@color/gray_ebd7b4"
             android:textSize="@dimen/undefine_font_09"/>
 
@@ -87,18 +87,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="25"
+                android:text="0"
                 android:textColor="@color/black_734b2b"
                 android:textSize="@dimen/undefine_font_a"
                 android:textStyle="bold"
-                />
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:text="品牌主账户"
+                android:text="@string/robin026"
                 android:textColor="@color/black_custom"
                 android:textSize="@dimen/undefine_font_2"
                 />
@@ -130,11 +130,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="500"
+                    android:text="0"
                     android:textColor="@color/black_734b2b"
                     android:textSize="@dimen/undefine_font_a"
                     android:textStyle="bold"
-                    />
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="品牌主积分"
+                    android:text="@string/robin027"
                     android:textColor="@color/black_custom"
                     android:textSize="@dimen/undefine_font_2"
                     />

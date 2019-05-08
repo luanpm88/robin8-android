@@ -26,7 +26,6 @@ import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.ui.model.BannerBean;
 import com.robin8.rb.ui.model.CampaignListBean;
-import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.ui.model.NotifyMsgEntity;
 import com.robin8.rb.ui.module.first.activity.LaunchRewordFirstActivity;
 import com.robin8.rb.ui.module.reword.banner.ImageBannerAdapter;
@@ -48,8 +47,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- 活动页面
- @author Figo */
+ * 活动页面
+ *
+ * @author Figo
+ */
 public class RewordPager extends BasePager implements Observer {
 
     private static final int INIT_DATA = 0;
@@ -62,10 +63,8 @@ public class RewordPager extends BasePager implements Observer {
     private static final String STATE_REJECTED = "rejected";
 
     private String[] filterStringArray = {"all", "running", "approved", "verifying", "completed", "missed"};
-    private String[] filterString = {"全部", "新任务", "进行中", "待审核", "已完成", "已错失"};
     private List<BannerBean> mBannerList = new ArrayList<BannerBean>();
     private List<CampaignListBean.CampaignInviteEntity> mInviteEntityList = new ArrayList<CampaignListBean.CampaignInviteEntity>();
-    private View mPager;
     private RefreshListView mRefreshListView;
     private RewordProtocol mRewordProtocol;
     private int mCurrentFilter = 0;
@@ -80,7 +79,7 @@ public class RewordPager extends BasePager implements Observer {
 
     private AutoScrollViewPager mVpAuto;
     //private int mTotalPages=100;
-    private boolean isLoad=false;
+    private boolean isLoad = false;
 
     public RewordPager(FragmentActivity activity) {
         super(activity);
@@ -90,19 +89,17 @@ public class RewordPager extends BasePager implements Observer {
 
     @Override
     public void initData() {
-        if (mPager == null) {
-            addView();
-            initLogin(INIT_DATA);
-            initTitleBar();
-            initViewSettings();
-        }
+        addView();
+        initLogin(INIT_DATA);
+        initTitleBar();
+        initViewSettings();
     }
 
 
     private void initLogin(final int status) {
 
         mLoadingPage.showSafePage(LoadingPage.STATE_LOADING);
-        if (! BaseApplication.getInstance().hasLogined()) {
+        if (!BaseApplication.getInstance().hasLogined()) {
             LoginTask loginTask = LoginTask.newInstance(mActivity.getApplicationContext());
             loginTask.start(new RequestCallback() {
 
@@ -111,7 +108,7 @@ public class RewordPager extends BasePager implements Observer {
                     if (mInviteEntityList == null || mInviteEntityList.size() == 0) {
                         mLoadingPage.showSafePage(LoadingPage.STATE_LOAD_ERROR);
                     } else {
-                        CustomToast.showShort(mActivity.getApplicationContext(), "网络加载失败");
+                        CustomToast.showShort(mActivity.getApplicationContext(), R.string.robin391);
                     }
                 }
 
@@ -177,14 +174,14 @@ public class RewordPager extends BasePager implements Observer {
                 CampaignListBean bean = GsonTools.jsonToBean(response, CampaignListBean.class);
 
                 if (bean != null) {
-                    if (! TextUtils.isEmpty(bean.getDetail())) {
+                    if (!TextUtils.isEmpty(bean.getDetail())) {
                         if (bean.getDetail().contains("401")) {
-                            CustomToast.showShort(mActivity, "登陆失效，请重新登陆");
+                            CustomToast.showShort(mActivity, R.string.robin398);
                             return;
                         }
                     }
                 }
-                if (bean != null && ! TextUtils.isEmpty(bean.getDetail()) && bean.getDetail().contains("401")) {
+                if (bean != null && !TextUtils.isEmpty(bean.getDetail()) && bean.getDetail().contains("401")) {
                     initLogin(INIT_DATA);
                     return;
                 }
@@ -216,11 +213,11 @@ public class RewordPager extends BasePager implements Observer {
                     }
 
                     if (campiList != null && campiList.size() >= 0) {
-                        isLoad=false;
+                        isLoad = false;
                         mCurrentPage++;
                         mInviteEntityList.addAll(campiList);
-                    }else {
-                        isLoad=true;
+                    } else {
+                        isLoad = true;
                     }
 
                     if (mInviteEntityList == null || mInviteEntityList.size() == 0) {
@@ -239,44 +236,9 @@ public class RewordPager extends BasePager implements Observer {
 
     private List<CampaignListBean.AnnouncementEntity> announcementsList;
 
-    public void newVpData() {
-
-    }
-
-    public void initVpData() {
-        mBannerList.clear();
-        BannerBean bean1 = new BannerBean();
-        LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
-        if (loginBean != null && loginBean.getKol() != null && ! TextUtils.isEmpty(loginBean.getKol().getRole_apply_status())) {
-            switch (loginBean.getKol().getRole_apply_status()) {
-                case STATE_PENDING:
-                    bean1.resId = R.mipmap.pic_kol_banner_apply_kol;
-                    break;
-                case STATE_APPLYING:
-                    bean1.resId = R.mipmap.pic_kol_banner_data_reviewing;
-                    break;
-                case STATE_REJECTED:
-                    bean1.resId = R.mipmap.pic_kol_banner_rejected;
-                    break;
-                case STATE_PASSED:
-                    mBannerList.add(new BannerBean(R.mipmap.pic_task_banner_invite_friend, BannerBean.INVITE_FRIEND));
-                    mBannerList.add(new BannerBean(R.mipmap.pic_task_banner_indiana, BannerBean.INDIANA));
-                    mBannerList.add(new BannerBean(R.mipmap.pic_task_banner_check_in, BannerBean.CHECK_IN));
-                    return;
-            }
-        } else {
-            bean1.resId = R.mipmap.pic_kol_banner_apply_kol;
-        }
-        bean1.type = BannerBean.BE_KOL;
-        BannerBean bean2 = new BannerBean();
-        bean2.resId = R.mipmap.pic_kol_banner_launch;
-        bean2.type = BannerBean.LAUNCH_CAMPAIGN;
-        mBannerList.add(bean1);
-        mBannerList.add(bean2);
-    }
 
     /**
-     设置轮播图
+     * 设置轮播图
      */
     public void setVpAuto() {
         // int size = mBannerList.size();
@@ -284,12 +246,6 @@ public class RewordPager extends BasePager implements Observer {
         if (mVpAuto == null) {
             return;
         }
-        //        mCardAdapter = new CardPagerAdapter(mActivity,mBannerList);
-        //        mCardShadowTransformer = new ShadowTransformer(mVpAuto, mCardAdapter);
-        //        mVpAuto.setAdapter(mCardAdapter);
-        //        mVpAuto.setPageTransformer(false, mCardShadowTransformer);
-        //        mVpAuto.setOffscreenPageLimit(3);
-        //        mCardShadowTransformer.setScale(0.27272727f,true);
         mVpAuto.setAdapter(new ImageBannerAdapter(mActivity, announcementsList).setInfiniteLoop(true));
         mVpAuto.setOnPageChangeListener(new MyOnPageChangeListener(size, mTopPoints));
         mVpAuto.setInterval(5000);
@@ -394,7 +350,7 @@ public class RewordPager extends BasePager implements Observer {
 
 
     /**
-     设置控件点击事件
+     * 设置控件点击事件
      */
     private void initViewSettings() {
 
@@ -504,7 +460,7 @@ public class RewordPager extends BasePager implements Observer {
                     default:
                         break;
                 }
-                if (! clickItSelf) {
+                if (!clickItSelf) {
                     loadData(REFRESH);
                 }
             }

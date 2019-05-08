@@ -6,13 +6,12 @@
 
 
         <TextView
-            android:id="@+id/tv_other"
-            android:layout_marginTop="40dp"
+	        android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="为了给您提供更好的服务\n请输入您的手机号"
+            android:text="@string/robin157"
             android:textColor="@color/sub_gray_custom"
             android:visibility="visible" />
 
@@ -25,7 +24,7 @@
         android:layout_marginRight="13dp"
         android:layout_marginTop="40dp"
         android:background="@null"
-        android:hint="手机号"
+        android:hint="@string/robin146"
         android:inputType="phone"
         android:maxLength="15"
         android:singleLine="true"
@@ -55,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="验证码"
+            android:hint="@string/robin092"
             android:inputType="phone"
             android:maxLength="15"
             android:singleLine="true"
@@ -77,7 +76,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="获取验证码"
+            android:text="@string/robin093"
             android:textColor="@color/color_checknum"
             android:textSize="@dimen/undefine_font_4" />
     </LinearLayout>
@@ -93,5 +92,5 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
-        android:text="完成"/>
+        android:text="@string/done"/>
 </LinearLayout>

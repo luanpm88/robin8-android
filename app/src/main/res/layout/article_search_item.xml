@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -37,7 +38,8 @@
                 android:ellipsize="end"
                 android:text="安抚客户咖啡咖啡安抚客户咖啡咖啡安抚客咖啡咖啡安抚客咖啡咖啡安抚客户咖啡咖啡安抚客户咖啡咖啡"
                 android:textColor="@color/sub_black_custom"
-                android:textSize="@dimen/undefine_font_5" />
+                android:textSize="@dimen/undefine_font_5"
+	            tools:ignore="HardcodedText" />
 
             <TextView
                 android:layout_alignParentBottom="true"
@@ -50,7 +52,8 @@
                 android:layout_marginTop="5dp"
                 android:text="新浪"
                 android:textColor="@color/sub_gray_custom"
-                android:textSize="@dimen/undefine_font_0" />
+                android:textSize="@dimen/undefine_font_0"
+	            tools:ignore="HardcodedText" />
         </RelativeLayout>
 
 

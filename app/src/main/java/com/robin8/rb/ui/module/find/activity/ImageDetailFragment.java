@@ -116,10 +116,10 @@ public class ImageDetailFragment extends Fragment implements PhotoViewAttacher.O
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_VISIBLE:
-                    CustomToast.showShort(mContext, "保存成功！");
+                    CustomToast.showShort(mContext, R.string.robin371);
                     break;
                 case MSG_ERROR:
-                    CustomToast.showShort(mContext, "保存失败");
+                    CustomToast.showShort(mContext, R.string.robin393);
                     break;
             }
 

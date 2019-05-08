@@ -160,7 +160,7 @@ public class BindAlipayActivity extends BaseActivity {
                     loginBean.setId(mIDNumberETstr);
                     loginBean.getKol().setAlipay_account(mAlipayAccountETstr);
                     loginBean.getKol().setAlipay_name(mAlipayNameETstr);
-                    CustomToast.showShort(BindAlipayActivity.this, "绑定支付宝成功");
+                    CustomToast.showShort(BindAlipayActivity.this, R.string.robin421);
                     HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
                     HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
                     BaseApplication.getInstance().setLoginBean(loginBean);

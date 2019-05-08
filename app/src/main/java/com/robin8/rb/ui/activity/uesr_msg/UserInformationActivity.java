@@ -125,7 +125,7 @@ public class UserInformationActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText("个人信息");
+        mTVCenter.setText(R.string.robin316);
     }
 
     @Override
@@ -135,9 +135,9 @@ public class UserInformationActivity extends BaseActivity {
         mySocialAdapter = new MySocialAdapter();
         mDataList = new ArrayList<>();
         circleName = new ArrayList<>();
-        mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, "身份信息", getResources().getString(R.string.tv_general_user).toString(), "", true));
-        mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, "以下身份未注册", bigVName, allUnCheck, false));
-        mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", getResources().getString(R.string.tv_general_user).toString(), "职业创作者认证", false));
+        mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user).toString(), "", true));
+        mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
+        mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", getResources().getString(R.string.tv_general_user), getString(R.string.robin429), false));
         lvList.setAdapter(mySocialAdapter);
         initData();
         //  initViewData();
@@ -183,8 +183,8 @@ public class UserInformationActivity extends BaseActivity {
                 public_wechat_account = userShowBean.getKol().getPublic_wechat_account();
                 creator = userShowBean.getKol().getCreator();
                 weibo_account = userShowBean.getKol().getWeibo_account();
-                viewSetText(userShowBean.getKol().getName(), "请填写昵称", tvNickName);
-                viewSetText(userShowBean.getKol().getMobile_number(), "请填写昵称", tvPhoneNum);
+                viewSetText(userShowBean.getKol().getName(), getString(R.string.please_write_nick_name), tvNickName);
+                viewSetText(userShowBean.getKol().getMobile_number(), getString(R.string.please_write_nick_name), tvPhoneNum);
                 if (! TextUtils.isEmpty(userShowBean.getKol().getAvatar_url())) {
                     BitmapUtil.loadImage(UserInformationActivity.this, userShowBean.getKol().getAvatar_url(), civImage);
                 } else {
@@ -203,20 +203,20 @@ public class UserInformationActivity extends BaseActivity {
                         }
                     }
                 }
-                mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, "身份信息", getResources().getString(R.string.tv_general_user).toString(), Joiner.on(" ,").join(circleName), true));
+                mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user), Joiner.on(" ,").join(circleName), true));
 
                 if (userShowBean.getKol().isIs_big_v() == true && userShowBean.getKol().isIs_creator() == false) {
                     mDataList.add(new UserIdBean(R.mipmap.icon_bigv_yes, "", bigVName, allUnCheck, true));
-                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "以下身份未注册", craetorName, "职业内容创作者未认证", false));
+                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, getString(R.string.robin201), craetorName, getString(R.string.robin430), false));
                 } else if (userShowBean.getKol().isIs_big_v() == false && userShowBean.getKol().isIs_creator() == true) {
-                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_yes, "", craetorName, "职业内容创作者已认证", true));
-                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, "以下身份未注册", bigVName, allUnCheck, false));
+                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_yes, "", craetorName, getString(R.string.robin431), true));
+                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
                 } else if (userShowBean.getKol().isIs_big_v() == true && userShowBean.getKol().isIs_creator() == true) {
                     mDataList.add(new UserIdBean(R.mipmap.icon_bigv_yes, "", bigVName, allPass, true));
-                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_yes, "", craetorName, "职业内容创作者已认证", true));
+                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_yes, "", craetorName, getString(R.string.robin431), true));
                 } else {
-                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, "以下身份未注册", bigVName, allUnCheck, false));
-                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", craetorName, "职业内容创作者未认证", false));
+                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
+                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", craetorName, getString(R.string.robin430), false));
                 }
                 lvList.setAdapter(mySocialAdapter);
                 mySocialAdapter.notifyDataSetChanged();
@@ -371,10 +371,10 @@ public class UserInformationActivity extends BaseActivity {
                     if (mDataList.get(position).isOpen == false) {
                         if (creator != null) {
                             if (creator.getStatus() == 0) {
-                                holder.tvCheckResult.setText("职业内容创作者认证中");
+                                holder.tvCheckResult.setText(R.string.robin432);
                                 holder.vIconReject.setVisibility(View.GONE);
                             } else if (creator.getStatus() == - 1) {
-                                holder.tvCheckResult.setText("职业内容创作者认证未通过");
+                                holder.tvCheckResult.setText(R.string.robin433);
                                 holder.vIconReject.setVisibility(View.VISIBLE);
                             } else {
                                 holder.vIconReject.setVisibility(View.GONE);
@@ -556,7 +556,7 @@ public class UserInformationActivity extends BaseActivity {
                     break;
                 case R.id.layout_bind_social:
                     if (TextUtils.isEmpty(intentInfo)) {
-                        CustomToast.showShort(UserInformationActivity.this, "努力请求网络中，请稍后再试！");
+                        CustomToast.showShort(UserInformationActivity.this, R.string.robin391);
                     } else {
                         Intent intent = new Intent(this, BeKolSecondActivity.class);
                         intent.putExtra("social_accounts", (Serializable) mSocialAccounts);
