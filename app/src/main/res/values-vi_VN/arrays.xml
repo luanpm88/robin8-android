@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string-array name="mine_list_title">
+        <item>Biểu ngữ nhập</item>
+        <item>Ví của tôi</item>
+        <item>Ví PUT của tôi</item>
+        <item>Chiến dịch của tôi</item>
+        <item>Bộ sưu tập của tôi</item>
+        <item>Sản phẩm của tôi</item>
+        <item>Người theo dõi của tôi</item>
+        <item>Quản lý thương hiệu</item>
+        <item>Mua một đô la</item>
+        <item>Nhận phòng hàng ngày</item>
+        <item>Mời bạn bè kiếm thu nhập</item>
+        <item>Nhập mã mời</item>
+        <!--<item>Robin8 online customer services</item>-->
+        <item>Trợ giúp</item>
+    </string-array>
+    <string-array name="social_tag_name">
+        <item>Khác</item>
+        <item>Di động</item>
+        <item>妆</item>
+        <item>mẹ và con</item>
+        <item>Giải trí</item>
+        <item>Du lịch</item>
+        <item>giáo dục</item>
+        <item>thời trang</item>
+        <item>trò chơi</item>
+        <item>bất động sản</item>
+        <item></item>
+        <item>kỹ thuật số</item>
+        <item>Thiết bị gia dụng</item>
+        <item>sức khỏe</item>
+        <item>Sách</item>
+        <item>thể thao</item>
+        <item>hãng hàng không</item>
+        <item>nhà</item>
+        <item>xe</item>
+        <item>Khách sạn</item>
+        <item>chụp ảnh</item>
+        <item>Thực phẩm</item>
+        <item>thể dục</item>
+        <item>âm nhạc</item>
+        <item>Điện tử tiêu dùng</item>
+        <item>Internet</item>
+    </string-array>
+
+    <string-array name="social_tag_english">
+        <item>khác</item>
+        <item>di động</item>
+        <item>vẻ đẹp</item>
+        <item>em bé</item>
+        <item>giải trí</item>
+        <item>du lịch</item>
+        <item>giáo dục</item>
+        <item>thời trang</item>
+        <item>trò chơi</item>
+        <item>bất động sản</item>
+        <item>tài chính</item>
+        <item>kỹ thuật số</item>
+        <item>thiết bị</item>
+        <item>sức khỏe</item>
+        <item>sách</item>
+        <item>thể thao</item>
+        <item>hãng hàng không</item>
+        <item>nội thất</item>
+        <item>tự động</item>
+        <item>khách sạn</item>
+        <item>máy ảnh</item>
+        <item>thực phẩm</item>
+        <item>thể dục</item>
+        <item>âm nhạc</item>
+        <item>ce</item>
+        <item>internet</item>
+    </string-array>
+    <string-array name="mine_list_icons">
+        <item>&#xe60b;</item>
+        <item>&#xe60b;</item>
+        <item>&#xe601;</item>
+        <item>&#xe601;</item>
+        <item>&#xe601;</item>
+        <item>&#xe645;</item>
+        <item>&#xe623;</item>
+        <item>&#xe606;</item>
+        <item>&#xe612;</item>
+        <item>&#xe627;</item>
+        <item>&#xe60a;</item>
+        <item>&#xe607;</item>
+        <item>&#xe607;</item>
+        <item>&#xe607;</item>
+    </string-array>
+
+    <string-array name="launch_reword_item">
+        <item>thời gian bắt đầu sự kiện</item>
+        <item>thời gian kết thúc sự kiện</item>
+        <item>Chọn loại hoạt động</item>
+        <item>tổng ngân sách hoạt động</item>
+        <item>phí nhấp chuột</item>
+        <item>phí chuyển tiếp duy nhất</item>
+        <item>Phí tải xuống đơn</item>
+        <item>phí nhiệm vụ duy nhất</item>
+    </string-array>
+
+    <string-array name="launch_reword_consume_way">
+        <item>Bằng cách nhấp</item>
+        <item>Chuyển tiếp thanh toán bằng KOL</item>
+        <!--<item>按KOL下载计费</item>-->
+        <item>Thanh toán theo nhiệm vụ KOL</item>
+    </string-array>
+
+    <string-array name="launch_reword_consume_way_no_click">
+        <item>Chuyển tiếp thanh toán bằng KOL</item>
+        <item>Thanh toán theo nhiệm vụ KOL</item>
+    </string-array>
+
+    <string-array name="first_page_tag_item1">
+        <item>Internet</item>
+        <item>妆</item>
+        <item>mẹ và con</item>
+        <item>Giải trí</item>
+        <item>Du lịch</item>
+        <item>giáo dục</item>
+        <item>thời trang</item>
+        <item>trò chơi</item>
+    </string-array>
+
+    <string-array name="first_page_tag_item2">
+        <item>bất động sản</item>
+        <item></item>
+        <item>kỹ thuật số</item>
+        <item>Thiết bị gia dụng</item>
+        <item>sức khỏe</item>
+        <item>Sách</item>
+        <item>thể thao</item>
+        <item>hãng hàng không</item>
+    </string-array>
+
+    <string-array name="first_page_tag_item3">
+        <item>nhà</item>
+        <item>xe</item>
+        <item>Khách sạn</item>
+        <item>chụp ảnh</item>
+        <item>Thực phẩm</item>
+        <item>thể dục</item>
+        <item>âm nhạc</item>
+        <item>tổng hợp</item>
+    </string-array>
+
+
+    <string-array name="business_cooperation">
+        <item>tên</item>
+        <item>Điện thoại</item>
+        <item>công ty</item>
+        <item>hộp thư</item>
+        <item>KOL được mời</item>
+    </string-array>
+
+    <string-array name="business_cooperation_from_product_list">
+        <item>tên</item>
+        <item>Điện thoại</item>
+        <item>công ty</item>
+        <item>hộp thư</item>
+    </string-array>
+
+    <string-array name="first_page_tag_item_total">
+        <item>internet</item>
+        <item>vẻ đẹp</item>
+        <item>em bé</item>
+        <item>giải trí</item>
+        <item>du lịch</item>
+        <item>giáo dục</item>
+        <item>thời trang</item>
+        <item>trò chơi</item>
+        <item>bất động sản</item>
+        <item>tài chính</item>
+        <item>kỹ thuật số</item>
+        <item>thiết bị</item>
+        <item>sức khỏe</item>
+        <item>sách</item>
+        <item>thể thao</item>
+        <item>hãng hàng không</item>
+        <item>nội thất</item>
+        <item>tự động</item>
+        <item>khách sạn</item>
+        <item>máy ảnh</item>
+        <item>thực phẩm</item>
+        <item>thể dục</item>
+        <item>âm nhạc</item>
+        <item>tổng thể</item>
+    </string-array>
+
+    <string-array name="first_page_tag_item_total_en">
+        <item>internet</item>
+        <item>vẻ đẹp</item>
+        <item>em bé</item>
+        <item>giải trí</item>
+        <item>du lịch</item>
+        <item>giáo dục</item>
+        <item>thời trang</item>
+        <item>trò chơi</item>
+        <item>bất động sản</item>
+        <item>tài chính</item>
+        <item>kỹ thuật số</item>
+        <item>thiết bị</item>
+        <item>sức khỏe</item>
+        <item>sách</item>
+        <item>thể thao</item>
+        <item>hãng hàng không</item>
+        <item>nội thất</item>
+        <item>tự động</item>
+        <item>khách sạn</item>
+        <item>máy ảnh</item>
+        <item>thực phẩm</item>
+        <item>thể dục</item>
+        <item>âm nhạc</item>
+        <item>tổng thể</item>
+    </string-array>
+    <string-array name="be_kol_first">
+        <item>Avatar</item>
+        <item>biệt danh</item>
+        <item>số điện thoại di động</item>
+        <item>E-mail</item>
+        <item>giới tính</item>
+        <item>tuổi</item>
+        <item>quan tâm</item>
+        <item>chuyên nghiệp</item>
+        <item>tài khoản xã hội</item>
+        <item>Giới thiệu</item>
+
+    </string-array>
+    <string-array name="second_be_kol_item_name">
+        <item>WeChat</item>
+        <item>QQ</item>
+        <item>博</item>
+        <item>số công khai</item>
+        <item>拍</item>
+        <item>giây</item>
+        <item>biết</item>
+        <item>Cá betta</item>
+
+        <item>客</item>
+        <item>吧</item>
+        <item>Ngày tận thế</item>
+        <item>宝</item>
+        <item>Tiêu</item>
+        <item>NICE</item>
+        <item></item>
+        <item>Sổ đỏ nhỏ</item>
+
+        <item>phát sóng trực tiếp</item>
+        <item>啦</item>
+        <item>Khác</item>
+    </string-array>
+
+    <string-array name="second_be_kol_item_provider">
+        <item>wechat</item>
+        <item>qq</item>
+        <item>weibo</item>
+        <item>công khai_wechat</item>
+        <item>meipai</item>
+        <item>miaopai</item>
+        <item>zhihu</item>
+        <item>douyu</item>
+
+        <item>yingke</item>
+        <item>tieba</item>
+        <item>tianya</item>
+        <item>taobao</item>
+        <item>huajiao</item>
+        <item>đẹp</item>
+        <item>douban</item>
+        <item>xiaohuangshu</item>
+
+        <item>yizhibo</item>
+        <item>meila</item>
+        <item>khác</item>
+    </string-array>
+
+    <string-array name="setting_item_name">
+        <item>Cho phép thông báo</item>
+        <item>Lắc để gửi phản hồi</item>
+        <item>Giới thiệu về Robin8</item>
+    </string-array>
+
+    <string-array name="product_order">
+        <item>order_overall</item>
+        <item>order_price_desc</item>
+        <item>order_price_asc</item>
+        <item>order_commission_desc</item>
+        <item>order_commission_asc</item>
+    </string-array>
+
+    <string-array name="product_order_en">
+        <item>order_overall</item>
+        <item>order_price_desc</item>
+        <item>order_price_asc</item>
+        <item>order_commission_desc</item>
+        <item>order_commission_asc</item>
+    </string-array>
+
+</resources>

@@ -160,7 +160,7 @@ public class AddPriceActivity extends BaseActivity {
             if (baseBean.getError() == 0) {
                 show(2000);
             } else {
-                if (! TextUtils.isEmpty(baseBean.getDetail())) {
+                if (!TextUtils.isEmpty(baseBean.getDetail())) {
                     CustomToast.showShort(this, baseBean.getDetail());
                 }
 

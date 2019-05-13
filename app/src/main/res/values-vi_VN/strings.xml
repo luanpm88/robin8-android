@@ -1,0 +1,534 @@
+<resources>
+    <string name="app_name">Robin8</string>
+
+    <!--MeasureInfluenceActivity-->
+    <string name="measure_influence_text1">Bạn có ảnh hưởng nhiều hơn bạn nghĩ</string>
+    <string name="measure_influence_text2">Hệ thống Robin8 có thể hiểu bạn hơn</string>
+    <string name="measure_influence_text3">Kiểm tra giá trị xã hội của bạn</string>
+    <string name="tourist">Khách du lịch</string>
+
+    <!--MainActivity-->
+    <string name="click_again_go_back">Nhấn lần nữa để thoát Robin8</string>
+    <string name="text_reword">Chiến dịch</string>
+    <string name="text_find">Khám phá</string>
+    <string name="text_first">Trang chủ</string>
+    <string name="text_notification">Thông báo</string>
+    <string name="text_campaign">Chiến dịch</string>
+    <string name="text_product">Sản phẩm</string>
+    <string name="text_create">Tác giả</string>
+    <string name="text_mine">Của tôi</string>
+    <string name="text_social">Ảnh hưởng</string>
+    <string name="text_topnews">Tiêu đề</string>
+    <string name="text_public_number">Số công khai</string>
+    <string name="text_launch_reword">Bắt đầu thưởng</string>
+
+    <!--Mine-->
+    <string name="mine_task">Nhiệm vụ</string>
+    <string name="wallet">Ví</string>
+    <string name="mine_ad_host">Nhà quảng cáo</string>
+    <string name="max_click_number">Lượt nhấn tối đa</string>
+    <string name="history_total_income">Thu nhập của chiến dịch</string>
+    <string name="max_per_income">Thu nhập tối đa</string>
+    <string name="average_income">Thu nhập trung bình</string>
+    <string name="data_reviewing">Đang kiểm duyệt</string>
+    <string name="click_login">Nhấn để đăng nhập</string>
+    <string name="login_get_more_campaign">Đăng nhập để tìm thêm chiến dịch</string>
+    <string name="edit_kol_data">Chỉnh sửa KOL</string>
+    <string name="data_rejected">Từ chối</string>
+    <string name="data_reviewing_again">Đánh giá lại</string>
+
+    <!--收徒-->
+    <string name="apprentice_collect_money">Người mới thu tiền</string>
+
+    <!--BindSocialActivity-->
+    <string name="influence_measure">Đánh giá ảnh hưởng</string>
+    <string name="bind_social">Liên kết mạng xã hội</string>
+    <string name="add_more">Thêm nữa</string>
+    <string name="start_measure">Bắt đầu thử nghiệm</string>
+    <string name="click_approve">*Nhấn để bắt đầu sau khi phê duyệt</string>
+    <string name="click_login_approve">*Nhấn để đăng nhập hoặc dùng tài khoản mạng xã hội</string>
+    <string name="serviece_protocol">Đồng ý điều khoản sử dụng</string>
+    <string name="welcome_words">Hãy để chúng tôi chia sẽ bài viết và tìm thêm thu nhập</string>
+
+    <string name="more_loading">Đang tải dữ liệu</string>
+    <string name="no_net_click_reload">Tải không thành công, nhấp vào thử lại</string>
+    <string name="no_more_data">Không có thêm dữ liệu</string>
+    <string name="aver_repeat">Chuyển tiếp trung bình</string>
+    <string name="aver_comment">Nhận xét</string>
+    <string name="aver_click">Lượt nhấn</string>
+
+
+    <!--LoginActivity-->
+    <string name="register_or_login">Đăng ký / Đăng nhập</string>
+    <string name="forget_pwd">Quên mật khẩu</string>
+    <string name="fix_pwd">Thay đổi mật khẩu</string>
+    <string name="email_login">Đăng nhập email</string>
+    <string name="login">Đăng nhập</string>
+    <string name="pwd">mật khẩu</string>
+
+    <string name="launch_reword">phần thưởng bài đăng</string>
+    <string name="type_count_by_click">Thanh toán theo lượt nhấn</string>
+    <string name="type_count_by_kol">Thanh toán khi KOL nhấn</string>
+    <string name="type_download_by_kol">Thanh toán khi tải</string>
+    <string name="type_task_by_kol">Thanh toán theo nhiệm vụ KOL</string>
+    <!--
+    <string name="min_100">最低100元</string>
+-->
+    <string name="min_2">tối thiểu 2,000₫</string>
+    <string name="min_5">tối thiểu 5,000₫</string>
+    <string name="min_20">tối thiểu 20,000₫</string>
+    <string name="min_25">tối thiểu 25,000₫</string>
+    <string name="min_3">tối thiểu 30,000₫</string>
+    <string name="min_1">tối thiểu 1,000₫</string>
+
+    <!-- app更新 -->
+    <string name="normal_issue">Câu hỏi thường gặp</string>
+    <string name="account_menu">Hóa đơn</string>
+
+    <string name="update_downfinish">Đã hoàn tất tải xuống</string>
+    <string name="update_apkdownfinish">Gói cài đặt đã được tải xuống</string>
+    <string name="update_loading">Đang tải xuống···</string>
+    <string name="update_beginload">Bắt đầu tải xuống</string>
+    <string name="update_wait">Vui lòng đợi..</string>
+    <string name="update_ing">Đang cập nhật..</string>
+    <string name="update_backupdate">Đang bắt đầu chạy nền tác vụ tải xuống các bản cập nhật···</string>
+    <string name="no_netInfo">Bạn hiện đang ngoại tuyến, vui lòng kiểm tra mạng!</string>
+    <string name="no_net">Yêu cầu mạng không thành công, vui lòng kiểm tra mạng!</string>
+    <string name="waring_net_notice">Không có mạng</string>
+    <string name="progress_chekNumber">Xác minh số điện thoại di động···</string>
+    <string name="progress_login">Đang đăng nhập···</string>
+    <string name="progress_resetPw">Đặt lại mật khẩu···</string>
+    <string name="progress_readContact">Đọc thông tin trong sổ địa chỉ···</string>
+    <string name="progress_loadInfo">Đang tải dữ liệu···</string>
+    <string name="progress_postinfo">Đang gửi dữ liệu···</string>
+    <string name="progress_requestnet">Yêu cầu mạng···</string>
+
+    <string name="userid_found">​​Thông tin người dùng đã tồn tại, đang đăng nhập…</string>
+    <string name="logining">Đăng nhập bằng tài khoản %s…</string>
+    <string name="auth_cancel">Hoạt động ủy quyền đã bị hủy</string>
+    <string name="auth_error">Hoạt động ủy quyền đã gặp lỗi, vui lòng đọc Logcat</string>
+    <string name="auth_complete">Thành công, đang đăng nhập…</string>
+    <string name="hello_blank_fragment">Xin chào đoạn trống</string>
+    <string name="put_right_email_address">Vui lòng nhập địa chỉ email chính xác!</string>
+    <string name="put_pwd">Vui lòng nhập mật khẩu</string>
+
+
+    <string name="pickerview_cancel">Hủy</string>
+    <string name="pickerview_submit">OK</string>
+    <string name="pickerview_year">năm</string>
+    <string name="pickerview_month">tháng</string>
+    <string name="pickerview_day">ngày</string>
+    <string name="pickerview_hours">giờ</string>
+    <string name="pickerview_minutes">phút</string>
+    <string name="pickerview_seconds">giây</string>
+
+    <string name="activities_registration">Đăng ký sự kiện</string>
+    <string name="name">Tên</string>
+    <string name="contact_telphone">Điện thoại liên hệ</string>
+    <string name="wechat_account">Tài khoản WeChat</string>
+    <string name="wechat_friends_number">WeChat bạn bè</string>
+    <string name="sina">微博</string>
+    <string name="ideal_offer">Ưu đãi hấp dẫn</string>
+    <string name="remark_info">Nhận xét</string>
+    <string name="click_write">Nhấp để viết</string>
+
+    <string name="reword_money">Số tiền thưởng</string>
+
+    <!--WalletActivity-->
+    <string name="mine_wallet">Ví của tôi</string>
+    <!--已提现-->
+    <string name="was_withdraw">Đã rút tiền</string>
+    <!--已花费-->
+    <string name="was_consume">Có chi phí</string>
+    <!--提现中-->
+    <string name="being_withdraw">Đang chờ rút tiền</string>
+    <string name="beable_withdraw">Có thể được đổi thành tiền mặt</string>
+    <string name="days7_income_development">Xu hướng thu nhập 7 ngày</string>
+    <string name="total">Tổng</string>
+    <string name="income_times">Số lần thu</string>
+    <string name="total_count">Tổng:</string>
+    <string name="total_income">Tổng doanh thu ></string>
+    <string name="income_info2">*Số tiền hiển thị trong hình chứa doanh thu ước tính (sẽ được kiểm toán doanh thu)</string>
+    <string name="income_info3">Có thể được rút tiền mặt ở mức 50,000₫</string>
+    <string name="withdraw">Rút tiền</string>
+    <string name="withdraw_now">Rút tiền ngay</string>
+    <string name="un_binded">Hủy liên kết</string>
+    <string name="click_bind">Nhấn để liên kết</string>
+    <string name="alipay_bind">Liên kết Alipay</string>
+    <string name="alipay_account">Tài khoản Alipay</string>
+    <string name="alipay_name">Tên tài khoản Alipay</string>
+    <string name="id_card">Số tài khoản Alipay</string>
+    <string name="please_write_alipay_account">Vui lòng điền vào tài khoản Alipay</string>
+    <string name="please_write_alipay_name">Vui lòng điền vào tên Alipay</string>
+    <string name="please_write_id_number">Vui lòng điền số ID</string>
+    <string name="click">nhấn</string>
+    <string name="post">chuyển tiếp</string>
+    <string name="shared_clicked_by_friends">Sau khi chia sẻ, bạn bè được trả tiền bằng cách nhấp vào bài viết này</string>
+    <string name="post_this_page_get_reword">Chuyển tiếp bài viết này để được thanh toán ngay lập tức</string>
+    <!--活动订单支付-->
+    <string name="activity_order_pay">Thanh toán chiến dịch</string>
+    <!--促销活动-->
+    <string name="campaign_offer">Ưu đãi khuyến mãi</string>
+    <string name="my_launch_activity">Tôi đã đăng sự kiện</string>
+    <string name="order_pay_success">Đặt hàng thanh toán thành công</string>
+    <string name="order_pay">Thanh toán đơn hàng</string>
+    <string name="we_check_it_in_24hours">Chúng tôi sẽ xem xét hoạt động của bạn trong vòng 24 giờ</string>
+    <string name="look_activity">Xem hoạt động</string>
+    <string name="recharge">Tính phí</string>
+    <string name="recharge_instantly">Tính phí ngay bây giờ </string>
+
+    <string name="pay_instantly">Thanh toán ngay</string>
+    <string name="checking">Kiểm toán</string>
+    <string name="checked_rejected">Kiểm toán thất bại</string>
+    <string name="checked_passed">Vượt qua kiểm toán</string>
+    <string name="executing">Đang xử lý</string>
+    <string name="executed">Đã xử lý</string>
+    <string name="settled">Kết thúc hoạt động</string>
+    <string name="no_data_try_others">Trang hiện tại không có dữ liệu, hãy thử một trang khác</string>
+    <string name="ad_amount">Số dư tài khoản chính của thương hiệu</string>
+    <string name="my_menu">Hóa đơn của tôi</string>
+    <string name="revoke">Hoàn tác</string>
+    <string name="revoke_campaign">Hoàn tác hoạt động</string>
+    <!--资金流水-->
+    <string name="cash_tranx">Tiền mặt tranx</string>
+
+    <string name="robin_indiana">Mua một đô la</string>
+    <string name="detail_indiana">Chi tiết về kho báu</string>
+    <string name="participated">Đã tham gia</string>
+    <string name="person_times">Số lần</string>
+    <string name="you_not_participated">Bạn đã không tham gia vào sự kiện này</string>
+    <string name="you_participated">Sự kiện này bạn đã tham gia</string>
+    <string name="this_participated">Tham gia vào vấn đề này</string>
+    <string name="this_issue">Vấn đề hiện tại</string>
+    <string name="draw_time">Thời gian được công bố</string>
+    <string name="total_consume">Tổng số dư tiêu dùng</string>
+    <string name="current_amount">Số dư hiện tại：₫</string>
+    <string name="right_">)</string>
+
+    <string name="count_detail">Chi tiết tính toán</string>
+    <string name="lucky_number">Số may mắn:</string>
+    <string name="you_participated_times">Bạn có liên quan:</string>
+    <string name="my_participated_times">Tôi đã tham gia:</string>
+    <string name="indiana_number">Số tài sản:</string>
+    <string name="participated_schedule">Tiến trình tham gia</string>
+    <string name="percent_sign">%</string>
+
+    <string name="instantly_indiana">Lấy tài sản ngay</string>
+    <string name="has_announced">Đã được công bố</string>
+    <string name="total_need_times">Tổng số người được yêu cầu:</string>
+    <string name="add_times">Đưa thêm</string>
+    <string name="delivery_address">Địa chỉ nhận</string>
+    <string name="submit">Gửi</string>
+    <string name="submit_success">Gửi thành công</string>
+    <string name="submit_failed">Gửi thất bại</string>
+    <string name="please_write_title">Vui lòng điền tiêu đề</string>
+    <string name="please_write_name">Vui lòng điền tên</string>
+    <string name="please_write_telphone">Vui lòng điền số liên lạc</string>
+    <string name="please_write_address">Vui lòng điền địa chỉ giao hàng</string>
+    <string name="help">Trợ giúp</string>
+    <string name="month_sign_chart">Bảng đăng ký tháng</string>
+    <string name="you_have_sign">Bạn đã đăng ký liên tục</string>
+    <string name="day">ngày</string>
+    <string name="sign_was_done">Hoàn thành đăng ký</string>
+    <string name="sign_instantly">Đăng nhập ngay</string>
+    <string name="sign_successfully">Đăng nhập thành công</string>
+    <string name="sign">Đăng nhập</string>
+
+    <string name="hot_kol_recommend">Đề xuất KOL hàng đầu</string>
+    <string name="wechat"> Vòng kết nối bạn bè</string>
+    <string name="invite_ta_participate_campaign">Gửi sự kiện đặc biệt tới TA</string>
+    <string name="kol_brief">Giới thiệu KOL</string>
+    <string name="kol_display">Hiển thị KOL</string>
+    <string name="kol_tag_cloud">Đám mây thẻ KOL</string>
+    <string name="business_cooperation">Hợp tác kinh doanh</string>
+    <string name="please_write_company">Vui lòng điền vào công ty</string>
+    <string name="please_write_email">Vui lòng điền vào email</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="cancel">Hủy</string>
+    <string name="clear_history">Xóa lịch sử </string>
+    <string name="search_result_empty">Kết quả tìm kiếm trống</string>
+    <string name="nickname">Biệt danh</string>
+    <string name="number_of_fans">Số lượng người hâm mộ</string>
+    <string name="number_of_videos">Số video</string>
+    <string name="business_cop_content_fir_from_product_list">Tôi là một thương hiệu Chúa, tôi muốn hợp tác CPS\\n</string>
+    <string name="business_cop_content_fir">Tôi là một thương hiệu Chúa, tôi đã mời KOL\\n</string>
+    <string name="business_submit_success">Gửi thành công, chúng tôi sẽ liên lạc với bạn càng sớm càng tốt, hãy giữ điện thoại rõ ràng!</string>
+    <string name="my_concern">Mối quan tâm của tôi</string>
+    <string name="edit_invitation_code">Nhập mã thư mời</string>
+    <string name="be_kol">Dữ liệu của tôi</string>
+    <string name="edit_kol">Chỉnh sửa dữ liệu KOL</string>
+
+    <string name="icons_favorite_selected">&#xe622;</string>
+    <string name="icons_favorite_unselected">&#xe623;</string>
+    <string name="icons_back">&#xe603;</string>
+    <string name="icons_delete">&#xe618;</string>
+    <string name="icons_delete2">&#xe61b;</string>
+    <string name="icons_message">&#xe625;</string>
+    <string name="icons_setting">&#xe61f;</string>
+    <string name="icons_box_delete">&#xe618;</string>
+    <string name="arrow_down">&#xe613;</string>//下拉
+    <string name="arrow_down_percent30">&#xe600;</string>//Kéo xuống 30%
+    <string name="arrow_up">&#xe60f;</string>//向上箭头
+    <string name="arrow_right">&#xe60e;</string>//向右箭头
+    <string name="arrow_left">&#xe603;</string>
+    <string name="add_sign">&#xe609;</string>//加好
+    <string name="hook_sign">&#xe61e;</string>//对勾
+    <string name="share_sign">&#xe608;</string>//分享
+    <string name="search_sign">&#xe602;</string>//搜索
+    <string name="icons_message_open">&#xe616;</string>
+    <string name="unselected">&#xe61a;</string>
+    <string name="selected">&#xe61e;</string>
+    <!--打开消息-->
+    <string name="next">Bước tiếp theo</string>
+    <string name="jump">Bỏ qua</string>
+    <string name="invite_friends">Mời bạn bè</string>
+    <string name="be_kol_first_compelete_data">Càng cao dữ liệu nâng cao, cao hơn giá của các hoạt động được chấp nhận</string>
+    <string name="confirm">Xác nhận</string>
+
+    <string name="interest">Quan tâm</string>
+    <string name="user_phone_num">Số điện thoại</string>
+    <string name="user_email">E-mail</string>
+    <string name="interest_tags">Thẻ sở thích (5 tùy chọn)</string>
+    <string name="please_write">Vui lòng điền vào</string>
+    <string name="age">Tuổi</string>
+    <string name="professional">Chuyên gia</string>
+    <string name="introduction">Giới thiệu</string>
+    <string name="please_write_personal_show">Vui lòng điền vào các điểm nổi bật cá nhân của bạn</string>
+    <string name="personal_show">Màn hình tuyệt vời cá nhân</string>
+    <string name="weixin">WeChat</string>
+    <string name="gongzhonghao">Số công khai</string>
+    <string name="weibo">Weibo</string>
+    <string name="qq">QQ</string>
+    <string name="for_example_address">Ví dụ:http//mp.weixin.qq.com/s?__biz=...</string>
+    <string name="friends_number">Số lượng bạn bè</string>
+    <string name="offer_unit">đơn vị (₫ / thanh)</string>
+    <string name="please_bind">Vui lòng liên kết</string>
+    <string name="account">Tài khoản</string>
+    <string name="click_open">Nhấp để mở</string>
+    <string name="corresponding_wechat">Tín hiệu vi tương ứng</string>//向左箭头
+    <string name="for_example">Ví dụ:</string>
+    <string name="has_binded">Bị ràng buộc</string>
+    <string name="male">nam</string>
+    <string name="female">nữ</string>
+    <string name="please_data_wrong">Lỗi tham số yêu cầu</string>
+    <string name="over_time">Yêu cầu hết thời gian</string>
+    <string name="unknown">Không xác định</string>
+
+    <string name="please_write_nick_name">Vui lòng viết tên nick</string>
+    <string name="please_write_age">Vui lòng viết tuổi</string>
+    <string name="please_write_job">Vui lòng viết công việc</string>
+    <string name="please_write_interest">vui lòng viết yêu thích</string>
+    <string name="please_write_desc">Vui lòng viết mô tả</string>
+    <string name="promote_the_content_page_for_details">Trang chi tiết nội dung quảng cáo</string>
+    <string name="campaign_data_download">Tải xuống tài liệu đang hoạt động</string>
+    <string name="approved_wait_activity_start">Chờ hoạt động bắt đầu</string>
+    <string name="campaign_unstart">Chưa bắt đầu</string>
+    <string name="reject_campaign">Từ chối hoạt động này</string>
+    <string name="campaign_is_in_the_way">Đang hoạt động</string>
+    <string name="upload_screenshot">Tải lên ảnh chụp màn hình</string>
+    <string name="approved_check_the_screenshot">Xem ảnh chụp màn hình</string>
+    <string name="approving_check_the_screenshot">Kiểm toán - Xem ảnh chụp màn hình</string>
+    <string name="look_the_screenshot">Xem ảnh chụp màn hình</string>
+    <string name="upload_again">Tải lên lại</string>
+    <string name="approve_reject_check_reason">Từ chối kiểm toán - xem lý do</string>
+    <string name="campaign_missed">Sự kiện đã bị bỏ lỡ</string>
+    <string name="sign_up_approve_failed">Đánh giá đăng ký không thành công</string>
+    <string name="campaign_approve_failed">Đánh giá hoạt động không thành công</string>
+    <string name="campaign_compeleted">Hoạt động đã hoàn thành</string>
+    <string name="campaign_sign_up_checking">Sự kiện đã được đăng ký, đang được xem xét</string>
+    <string name="sign_up_instantly">Đăng ký ngay</string>
+    <string name="sign_up_end">Đã kết thúc</string>
+    <string name="campaign_sign_up_success">Thành công đăng ký hoạt động</string>
+    <string name="campaign_sign_up_success_wait_for_auditing">Đăng ký hoạt động thành công, chờ xem xét</string>
+    <string name="share_instantly">Chia sẻ ngay bây giờ</string>
+    <string name="campaign_missed_forwarding">Sự kiện đã bị bỏ lỡ, chuyển tiếp miễn phí</string>
+    <string name="upload_screenshot_time_end">Thời gian tải lên ảnh chụp màn hình đã qua</string>
+    <string name="share_again">Chia sẻ lại</string>
+    <string name="unknown_state">Trạng thái không xác định</string>
+    <string name="recurit_process">Quy trình hoạt động tuyển dụng</string>
+    <string name="kol_sign_up">Hoạt động đăng ký KOL</string>
+    <string name="brand_select_kol">Chủ sở hữu thương hiệu chọn KOL</string>
+    <string name="kol_receive_campaign">KOL chấp nhận các hoạt động</string>
+    <string name="download_campaign_material">Tải xuống tài liệu đang hoạt động</string>
+    <string name="upload_campaign_screenshot">Tải lên ảnh chụp màn hình hoạt động</string>
+    <string name="screenshot_check_passed">Đã xem xét ảnh chụp màn hình</string>
+    <string name="my_wallet_to_account">Ví của tôi </string>
+    <string name="receive_this_campaign">Chấp nhận sự kiện này</string>
+    <string name="has_invite_friends">Bạn bè được mời</string>
+    <string name="invite_instantly">Mời ngay</string>
+    <string name="setting">Cài đặt</string>
+    <string name="log_out">Đăng xuất</string>
+    <string name="message">Tất cả tin nhắn</string>
+    <string name="all_message_read">Tất cả các tin nhắn được đánh dấu là đã đọc</string>
+    <string name="feed_back">Phản hồi</string>
+    <string name="sweep_qr_code">Quét mã QR để đăng nhập vào trang web chính thức</string>
+    <string name="bind_social_account">Liên kết tài khoản xã hội </string>
+    <string name="social_account">Tài khoản xã hội</string>
+    <string name="help_online">Robin8: Hỗ trợ khách hàng</string>
+
+    <string name="viewfinderview_status_text1">Đặt mã QR / mã vạch vào khung</string>
+    <string name="viewfinderview_status_text2">Có thể tự động quét</string>
+    <string name="button_ok">OK</string>
+    <string name="msg_camera_framework_bug">Xin lỗi, máy ảnh Android gặp sự cố. Bạn có thể cần phải khởi động lại thiết bị.</string>
+    <string name="invitees_list">Danh sách người tham gia</string>
+    <string name="invitees_person">Người tham gia</string>
+    <string name="help_center">Trung tâm trợ giúp</string>
+    <string name="sweep_login_success">Quét đăng nhập thành công</string>
+    <string name="share_invite_friends_title">Gần đây tôi đã tìm thấy một ứng dụng kiếm tiền mỗi ngày. Bạn có muốn dùng thử không?</string>
+    <string name="share_invite_friends_text">Robin8 dựa trên nền tảng tác động xã hội dữ liệu lớn</string>
+    <string name="share_pk_title">Hãy đến và kiểm tra ảnh hưởng tài khoản xã hội của bạn với Robin8!</string>
+    <string name="share_pk">Bạn có muốn cạnh tranh với tôi không? Hãy đến và Robin8 sẽ cạnh tranh!</string>
+    <string name="share_pk_text">Hoạt động tiền mặt lớn hơn và tác động xã hội với bạn bè PK</string>
+    <string name="bind_mobile">Liên kết số điện thoại di động</string>
+    <string name="my_capaign">Hoạt động của tôi</string>
+    <string name="robin8">ROBIN8</string>
+    <string name="please_write_kol">Vui lòng điền KOL đặc biệt</string>
+    <string name="image_check_reject">Đánh giá hình ảnh không vượt qua:</string>
+    <!--账单-->
+    <string name="bill">Chi tiết Tranx</string>
+    <string name="no_introduce">Không được điền vào phần giới thiệu KOL</string>
+    <string name="has_consumed">Đã được sử dụng</string>
+    <string name="count_click">Nhấp vào chi phí</string>
+    <string name="total_clicks">Tổng số lần nhấp</string>
+    <string name="person_number">Số lượng người tham gia</string>
+    <string name="participate_crew_list">Danh sách người tham gia</string>
+    <string name="please_check_id_number">Vui lòng điền đúng số ID</string>
+    <string name="please_write_sex">Giới tính</string>
+    <string name="please_write_pic">Vui lòng tải lên một hình ảnh</string>
+    <string name="must_bind_weixin">Phải được liên kết với WeChat</string>
+    <string name="be_kol_get_more_info">KOL có thể nhận được nhiều hoạt động hơn ~</string>
+    <string name="counts_2to5">Số lượng sở thích ít nhất là 2 và tối đa 5</string>
+    <string name="invite_friends_earn_money">Mời bạn bè nhận phần thưởng</string>
+    <string name="checked_rejected_repair">Kiểm toán không thành công, đã sửa đổi ngay lập tức</string>
+    <string name="expected_cut">Hoa hồng dự kiến</string>
+    <string name="product">Thư viện hàng hóa</string>
+    <string name="cooperate_in">Thành</string>
+    <string name="article">Bài viết</string>
+    <string name="price">Giá</string>
+    <string name="commission">Hoa hồng</string>
+    <string name="my_create">Sản phẩm của tôi</string>
+    <string name="start_create">Bắt đầu tác giả</string>
+    <string name="release">Phát hành</string>
+    <string name="reject_reason">Xem lại lý do từ chối:</string>
+    <string name="earning">Sẽ kiếm được:</string>
+    <string name="earned">Đã kiếm được：</string>
+    <string name="insert_goods">Chèn mục</string>
+    <string name="please_write_article_content">Vui lòng điền vào nội dung bài viết</string>
+    <string name="please_add_one_picture">Vui lòng thêm ít nhất một hình ảnh</string>
+    <string name="article_success">Bài viết được xuất bản thành công</string>
+    <string name="release_success">Phát hành thành công</string>
+    <string name="we_will_check_your_create_in_one_day">Chúng tôi sẽ xem xét sáng tạo của bạn trong vòng 24 giờ</string>
+    <string name="look_my_create">Xem sáng tạo của tôi</string>
+    <string name="download_all_images_in_this_paper">Tải xuống tất cả các hình ảnh trong bài viết</string>
+    <string name="pic_download_success">Tải xuống hình ảnh thành công</string>
+    <string name="img_empty">Ảnh không tồn tại, vui lòng kiểm tra đường dẫn cục bộ và tải lên lại ảnh chụp màn hình</string>
+
+    <string name="text_protocol">\ u3000 \ u3000Robin8 nhắc nhở người dùng đọc và hiểu các điều khoản và điều kiện sau đây trước khi sử dụng dịch vụ nền tảng Robin8 (robin8.com) và robin8 APP (sau đây gọi là "dịch vụ Robin8"), đặc biệt là giới hạn quyền của người dùng. Điều khoản. Việc sử dụng dịch vụ Robin8 sẽ được người dùng đồng ý với toàn bộ nội dung của tuyên bố này và sẽ được tuân thủ trong quá trình sử dụng dịch vụ Robin8. \ n \ u3000 \ u30001, Robin8 là giao dịch của bên thứ ba dành cho khách hàng có nhu cầu quảng cáo để quảng cáo (sau đây gọi là "nhà quảng cáo") và tài khoản tự truyền thông hoặc tài khoản cá nhân (sau đây gọi là "KOL") có thể cung cấp dịch vụ quảng cáo. Nền tảng. Nền tảng Robin8 hiển thị nội dung gốc của nội dung quảng cáo được cung cấp bởi nhà quảng cáo, tên tài khoản do KOL cung cấp và số lượng người hâm mộ để nhà quảng cáo và KOL chọn đối tượng dịch vụ đáp ứng nhu cầu của họ theo nhu cầu. \ n \ u3000 \ u30002, Robin8 sẽ xem xét danh tính của nhà quảng cáo, nội dung quảng cáo, thông tin nhận dạng của KOL, tên tài khoản, v.v. và lọc ra thông tin mà Robin8 cho là không đúng sự thật, nhưng do tính đặc thù của nền tảng mạng và vi mô. Những hạn chế của Robin8 không thể lọc ra tất cả thông tin sai sự thật và xử lý nó, nhưng sẽ làm hết sức mình để đảm bảo tính xác thực của tất cả thông tin. \ n \ u3000 \ u30003, nhà quảng cáo nên điền thông tin quảng cáo một cách trung thực và chịu trách nhiệm về tính xác thực, chính xác, hợp pháp và tác động của nội dung quảng cáo. Robin8 khuyến khích các nhà quảng cáo xuất bản quảng cáo một cách trung thực và tuân thủ luật pháp và quy định để cùng nhau duy trì mạng. Môi trường. \ n \ u3000 \ u30004, KOL nên điền và cập nhật dữ liệu tương ứng của nền tảng tương ứng, bao gồm nhưng không giới hạn ở tên tài khoản, vùng, số người hâm mộ tài khoản, thông tin đối tượng, v.v. và phản hồi hiệu quả quảng cáo thực sự, Robin8 ủng hộ dịch vụ toàn vẹn KOL, Tuân thủ luật pháp và các quy định để cùng duy trì môi trường mạng. \ n \ u3000 \ u30005, KOL nên xem xét toàn diện tính xác thực, tính chính xác, tính hợp pháp và các yếu tố khác của nội dung quảng cáo và sau đó chọn có nhận đơn đặt hàng hay không. Sau khi đơn hàng được chọn, nó sẽ chịu mọi tác động đến tài khoản sau khi nội dung quảng cáo được phát hành. Tranh chấp giữa nhà quảng cáo và KOL do quảng cáo được giải quyết bởi cả hai bên. \ n \ u3000 \ u30006, Robin8 dựa trên nhu cầu đề xuất tài khoản của nhà quảng cáo, chỉ có các diễn viên vi mô dựa trên phân tích và đánh giá dữ liệu của chính tài khoản, cuối cùng nhà quảng cáo xác nhận có nên sử dụng tài khoản được đề xuất Robin8 hay không. \ n \ u3000 \ u30007, Robin8 sẽ sử dụng các phương tiện cần thiết để giữ bí mật thông tin người dùng, nhưng dựa trên các hạn chế kỹ thuật, Robin8 không đảm bảo rằng thông tin của người dùng sẽ không bị rò rỉ. \ n \ u3000 \ u30008, người dùng nên đồng ý với việc sử dụng thông tin hạn chế của Robin8, bao gồm nhưng không giới hạn việc gửi kịp thời các thông báo quan trọng hoặc đơn đặt hàng phân phối cho người dùng, kiểm toán nội bộ, phân tích dữ liệu và nghiên cứu, v.v. Và các yêu cầu pháp lý và quy định. \ n \ u3000 \ u30009. Nếu người dùng tin rằng những người dùng khác của Robin8 vi phạm quyền của họ, họ có thể cung cấp cho Robin8 giấy chứng nhận và tài liệu nhận dạng phù hợp. Robin8 sẽ thực hiện các biện pháp thích hợp để xử lý sau khi xem xét và đánh giá.</string>
+    <string name="agree">Đồng ý</string>
+    <string name="reject">Từ chối</string>
+    <string name="robin_disclaimer">Tuyên bố miễn trừ trách nhiệm Robin8</string>
+    <string name="share_article_tips">Sau khi bài viết được chia sẻ, bạn của bạn đã mua sản phẩm trong bài viết, bạn có thể nhận được hoa hồng cao</string>
+    <string name="expected_income_details"><![CDATA[chi tiết thu nhập dự kiến>]]></string>
+    <string name="realese_article_tips">Không thể sửa đổi sau khi bài viết được xuất bản, hàng hóa trong bài viết được mua, bạn có thể nhận được hoa hồng cao</string>
+    <string name="finish_article_tips">Bài viết hiện tại chưa được phát hành, có phải nó đã được chỉnh sửa không?</string>
+    <string name="white_space">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</string>
+    <string name="white_space_ban">\t\t\t\t\t\t\t\t\t\t\t</string>
+    <string name="sign_end">Kết thúc đăng ký</string>
+    <string name="ending">Là kế toán</string>
+    <string name="has_been_end">Đã kết thúc</string>
+    <string name="kol_age">tuổi KOL</string>
+    <string name="kol_sex">Giới tính KOL</string>
+    <string name="kol_classify">Phân loại KOL</string>
+    <string name="kol_city">thành phố KOL</string>
+    <string name="all">tất cả</string>
+    <string name="count_at_least2">Chọn ít nhất hai phân loại</string>
+    <string name="cancel_all">Hủy tất cả</string>
+    <string name="clear">Xóa </string>
+    <string name="select_all">Chọn tất cả</string>
+    <string name="clear_all">Trống</string>
+    <string name="please_select_one_city">Chọn ít nhất một thành phố</string>
+    <string name="screenshot_reference">Tham chiếu ảnh chụp màn hình</string>
+    <string name="validity_of_goods">Ngày hết hạn sản phẩm</string>
+    <string name="sign_up_recruit">Đăng ký tuyển dụng</string>
+    <string name="share_success">Chia sẻ thành công</string>
+    <string name="share_error">Chia sẻ thất bại</string>
+    <string name="share_cancel">Hủy chia sẻ</string>
+    <string name="share_copy_sucess">Chia sẻ thành công nhân rộng</string>
+    <string name="system_not_support">Hệ thống không hỗ trợ sao chép</string>
+    <string name="share_copy_failure">Sao chép chia sẻ không thành công</string>
+    <string name="download">Tải xuống</string>
+    <string name="task">Tác vụ </string>
+    <string name="launch_reword_activity">Bắt đầu một sự kiện phần thưởng</string>
+    <string name="intelligent_release">Xuất bản thông minh</string>
+    <string name="please_write_link">Vui lòng điền vào liên kết hoạt động</string>
+    <string name="text_class">Danh mục bài viết</string>
+    <string name="key_tags">đám mây từ khóa</string>
+    <string name="sentiment_analysis">Phân tích tình cảm</string>
+    <string name="product_server">Dịch vụ sản phẩm</string>
+    <string name="person_brand">Nhãn hiệu ký tự</string>
+    <string name="detail">Chi tiết bài viết>></string>
+    <string name="all_classify">Tất cả các danh mục</string>
+    <string name="share_to_wechat">Chia sẻ với WeChat</string>
+    <string name="share_to_wechatmoments">Chia sẻ với vòng tròn WeChat</string>
+    <string name="share_to_weibo">Chia sẻ lên Sina Weibo</string>
+    <string name="share_to_qzone">Chia sẻ lên không gian QQ</string>
+    <string name="share_to_wechat_favorites">Chia sẻ với bộ sưu tập WeChat</string>
+    <string name="share_for_money">Chia sẻ doanh thu kiếm tiền</string>
+    <string name="known">Biết</string>
+    <string name="screenshot_check_ruler">\ u30001. Thời gian duy trì hoạt động quá ngắn \ n \ u30002. Hoạt động được đặt thành nhóm \ n \ u30003. Hoạt động chứa văn bản nhấp chuột cảm ứng \ n \ u30004. . Hiển thị quá nhiều hoạt động giống nhau</string>
+    <string name="share_success_and_ruler">Chia sẻ thành công - Quy tắc xem lại ảnh chụp màn hình Robin8</string>
+    <string name="campaign_request">yêu cầu hoạt động</string>
+    <string name="sign_rule">quy tắc phần thưởng đăng nhập</string>
+
+    <!-- 评价效果 页面-->
+
+    <string name="effect_evaluate">đánh giá hiệu ứng</string>
+    <string name="effect_import">Đánh giá của bạn rất quan trọng đối với chúng tôi</string>
+
+    <!--个推-->
+    <string name="add_tag">Thêm thẻ</string>
+    <string name="add_tag_unknown_exception">Đặt nhãn không thành công, ngoại lệ không xác định</string>
+    <string name="add_tag_success">cuộc gọi giao diện đã thành công</string>
+    <string name="add_tag_error_count">cuộc gọi giao diện không thành công, số lượng thẻ quá lớn, tối đa không thể vượt quá 200</string>
+    <string name="add_tag_error_frequency">Đặt nhãn không thành công, tần suất quá nhanh</string>
+    <string name="add_tag_error_null">cuộc gọi giao diện không thành công, thẻ trống</string>
+    <string name="add_tag_error_repeat">Đặt nhãn không thành công, lặp lại nhãn</string>
+    <string name="add_tag_error_unbind">Không thể đặt nhãn, dịch vụ không được khởi tạo thành công</string>
+    <string name="add_tag_error_not_online">chưa đăng nhập thành công</string>
+    <string name="add_tag_error_black_list">Ứng dụng đã có trong danh sách đen, vui lòng liên hệ với bộ phận hỗ trợ sau bán hàng! </string>
+    <string name="add_tag_error_exceed">Thẻ đã lưu vượt quá giới hạn</string>
+    <string name="push_transmission_data">đã nhận được thông báo kiểm tra trong suốt</string>
+
+    <!--活动多图上传-->
+    <string name="image">hình ảnh</string>
+    <string name="all_image">Tất cả hình ảnh</string>
+    <string name="preview">xem trước</string>
+    <string name="msg_no_camera">Không thể bật camera hệ thống</string>
+    <string name="msg_amount_limit">đã đạt số lượng lựa chọn cao nhất</string>
+    <string name="done">Hoàn thành</string>
+    <string name="done_with_count">Hoàn thành(%1$d/%2$d)</string>
+    <string name="image_index">%1$d/%2$d</string>
+    <string name="delete">xóa </string>
+    <string name="deleted_a_photo">đã xóa ảnh</string>
+    <string name="confirm_to_delete">Xác nhận xóa</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="title_activity_email_welcome">EmailWelcomeActivity </string>
+
+    <!--put金币-->
+    <string name="put_campaign_detail">Nhận hoàn tiền 20% PUT cho ngân sách chiến dịch trên Y500</string>
+    <string name="put_wallet">Ví PUT</string>
+
+    <!--登陆后用户信息等-->
+    <string name="tv_know_you">Hãy cho chúng tôi biết bạn </string>
+    <string name="tv_your_choose">Phù hợp với các loại hoạt động khác nhau cho bạn theo sự lựa chọn của bạn</string>
+    <string name="tv_choose_gender">Chọn giới tính của bạn</string>
+    <string name="tv_choose_id">Chọn danh tính của bạn</string>
+    <string name="tv_birth_year">Năm sinh</string>
+    <string name="tv_general_user">người dùng chung </string>
+    <string name="tv_bigV_user">người dùng V lớn</string>
+    <string name="tv_content_creator">người tạo nội dung</string>
+    <string name="tv_choose_favorite">Chọn thẻ bạn quan tâm</string>
+    <string name="tv_find_for_you">Phù hợp với các hoạt động bạn quan tâm nhất đối với bạn</string>
+    <string name="save">Lưu </string>
+    <string name="tv_know_user_id"> Biết danh tính của bạn</string>
+</resources>
