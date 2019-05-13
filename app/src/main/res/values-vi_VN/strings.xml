@@ -1,30 +1,16 @@
 <resources>
     <string name="app_name">Robin8</string>
 
-    <!--MeasureInfluenceActivity-->
-    <string name="measure_influence_text1">Bạn có ảnh hưởng nhiều hơn bạn nghĩ</string>
-    <string name="measure_influence_text2">Hệ thống Robin8 có thể hiểu bạn hơn</string>
-    <string name="measure_influence_text3">Kiểm tra giá trị xã hội của bạn</string>
-    <string name="tourist">Khách du lịch</string>
-
     <!--MainActivity-->
     <string name="click_again_go_back">Nhấn lần nữa để thoát Robin8</string>
     <string name="text_reword">Chiến dịch</string>
     <string name="text_find">Khám phá</string>
     <string name="text_first">Trang chủ</string>
-    <string name="text_notification">Thông báo</string>
     <string name="text_campaign">Chiến dịch</string>
-    <string name="text_product">Sản phẩm</string>
     <string name="text_create">Tác giả</string>
     <string name="text_mine">Của tôi</string>
-    <string name="text_social">Ảnh hưởng</string>
-    <string name="text_topnews">Tiêu đề</string>
-    <string name="text_public_number">Số công khai</string>
-    <string name="text_launch_reword">Bắt đầu thưởng</string>
 
     <!--Mine-->
-    <string name="mine_task">Nhiệm vụ</string>
-    <string name="wallet">Ví</string>
     <string name="mine_ad_host">Nhà quảng cáo</string>
     <string name="max_click_number">Lượt nhấn tối đa</string>
     <string name="history_total_income">Thu nhập của chiến dịch</string>
@@ -33,7 +19,6 @@
     <string name="data_reviewing">Đang kiểm duyệt</string>
     <string name="click_login">Nhấn để đăng nhập</string>
     <string name="login_get_more_campaign">Đăng nhập để tìm thêm chiến dịch</string>
-    <string name="edit_kol_data">Chỉnh sửa KOL</string>
     <string name="data_rejected">Từ chối</string>
     <string name="data_reviewing_again">Đánh giá lại</string>
 
@@ -41,21 +26,12 @@
     <string name="apprentice_collect_money">Người mới thu tiền</string>
 
     <!--BindSocialActivity-->
-    <string name="influence_measure">Đánh giá ảnh hưởng</string>
-    <string name="bind_social">Liên kết mạng xã hội</string>
-    <string name="add_more">Thêm nữa</string>
-    <string name="start_measure">Bắt đầu thử nghiệm</string>
-    <string name="click_approve">*Nhấn để bắt đầu sau khi phê duyệt</string>
     <string name="click_login_approve">*Nhấn để đăng nhập hoặc dùng tài khoản mạng xã hội</string>
     <string name="serviece_protocol">Đồng ý điều khoản sử dụng</string>
-    <string name="welcome_words">Hãy để chúng tôi chia sẽ bài viết và tìm thêm thu nhập</string>
 
     <string name="more_loading">Đang tải dữ liệu</string>
     <string name="no_net_click_reload">Tải không thành công, nhấp vào thử lại</string>
     <string name="no_more_data">Không có thêm dữ liệu</string>
-    <string name="aver_repeat">Chuyển tiếp trung bình</string>
-    <string name="aver_comment">Nhận xét</string>
-    <string name="aver_click">Lượt nhấn</string>
 
 
     <!--LoginActivity-->
@@ -75,7 +51,6 @@
     <string name="min_100">最低100元</string>
 -->
     <string name="min_2">tối thiểu 2,000₫</string>
-    <string name="min_5">tối thiểu 5,000₫</string>
     <string name="min_20">tối thiểu 20,000₫</string>
     <string name="min_25">tối thiểu 25,000₫</string>
     <string name="min_3">tối thiểu 30,000₫</string>
@@ -83,32 +58,14 @@
 
     <!-- app更新 -->
     <string name="normal_issue">Câu hỏi thường gặp</string>
-    <string name="account_menu">Hóa đơn</string>
 
-    <string name="update_downfinish">Đã hoàn tất tải xuống</string>
-    <string name="update_apkdownfinish">Gói cài đặt đã được tải xuống</string>
     <string name="update_loading">Đang tải xuống···</string>
     <string name="update_beginload">Bắt đầu tải xuống</string>
     <string name="update_wait">Vui lòng đợi..</string>
     <string name="update_ing">Đang cập nhật..</string>
     <string name="update_backupdate">Đang bắt đầu chạy nền tác vụ tải xuống các bản cập nhật···</string>
-    <string name="no_netInfo">Bạn hiện đang ngoại tuyến, vui lòng kiểm tra mạng!</string>
     <string name="no_net">Yêu cầu mạng không thành công, vui lòng kiểm tra mạng!</string>
-    <string name="waring_net_notice">Không có mạng</string>
-    <string name="progress_chekNumber">Xác minh số điện thoại di động···</string>
-    <string name="progress_login">Đang đăng nhập···</string>
-    <string name="progress_resetPw">Đặt lại mật khẩu···</string>
-    <string name="progress_readContact">Đọc thông tin trong sổ địa chỉ···</string>
-    <string name="progress_loadInfo">Đang tải dữ liệu···</string>
-    <string name="progress_postinfo">Đang gửi dữ liệu···</string>
-    <string name="progress_requestnet">Yêu cầu mạng···</string>
 
-    <string name="userid_found">​​Thông tin người dùng đã tồn tại, đang đăng nhập…</string>
-    <string name="logining">Đăng nhập bằng tài khoản %s…</string>
-    <string name="auth_cancel">Hoạt động ủy quyền đã bị hủy</string>
-    <string name="auth_error">Hoạt động ủy quyền đã gặp lỗi, vui lòng đọc Logcat</string>
-    <string name="auth_complete">Thành công, đang đăng nhập…</string>
-    <string name="hello_blank_fragment">Xin chào đoạn trống</string>
     <string name="put_right_email_address">Vui lòng nhập địa chỉ email chính xác!</string>
     <string name="put_pwd">Vui lòng nhập mật khẩu</string>
 
@@ -122,17 +79,8 @@
     <string name="pickerview_minutes">phút</string>
     <string name="pickerview_seconds">giây</string>
 
-    <string name="activities_registration">Đăng ký sự kiện</string>
     <string name="name">Tên</string>
     <string name="contact_telphone">Điện thoại liên hệ</string>
-    <string name="wechat_account">Tài khoản WeChat</string>
-    <string name="wechat_friends_number">WeChat bạn bè</string>
-    <string name="sina">微博</string>
-    <string name="ideal_offer">Ưu đãi hấp dẫn</string>
-    <string name="remark_info">Nhận xét</string>
-    <string name="click_write">Nhấp để viết</string>
-
-    <string name="reword_money">Số tiền thưởng</string>
 
     <!--WalletActivity-->
     <string name="mine_wallet">Ví của tôi</string>
@@ -168,7 +116,6 @@
     <!--活动订单支付-->
     <string name="activity_order_pay">Thanh toán chiến dịch</string>
     <!--促销活动-->
-    <string name="campaign_offer">Ưu đãi khuyến mãi</string>
     <string name="my_launch_activity">Tôi đã đăng sự kiện</string>
     <string name="order_pay_success">Đặt hàng thanh toán thành công</string>
     <string name="order_pay">Thanh toán đơn hàng</string>
@@ -185,19 +132,15 @@
     <string name="executed">Đã xử lý</string>
     <string name="settled">Kết thúc hoạt động</string>
     <string name="no_data_try_others">Trang hiện tại không có dữ liệu, hãy thử một trang khác</string>
-    <string name="ad_amount">Số dư tài khoản chính của thương hiệu</string>
     <string name="my_menu">Hóa đơn của tôi</string>
-    <string name="revoke">Hoàn tác</string>
     <string name="revoke_campaign">Hoàn tác hoạt động</string>
     <!--资金流水-->
-    <string name="cash_tranx">Tiền mặt tranx</string>
 
     <string name="robin_indiana">Mua một đô la</string>
     <string name="detail_indiana">Chi tiết về kho báu</string>
     <string name="participated">Đã tham gia</string>
     <string name="person_times">Số lần</string>
     <string name="you_not_participated">Bạn đã không tham gia vào sự kiện này</string>
-    <string name="you_participated">Sự kiện này bạn đã tham gia</string>
     <string name="this_participated">Tham gia vào vấn đề này</string>
     <string name="this_issue">Vấn đề hiện tại</string>
     <string name="draw_time">Thời gian được công bố</string>
@@ -216,7 +159,6 @@
     <string name="instantly_indiana">Lấy tài sản ngay</string>
     <string name="has_announced">Đã được công bố</string>
     <string name="total_need_times">Tổng số người được yêu cầu:</string>
-    <string name="add_times">Đưa thêm</string>
     <string name="delivery_address">Địa chỉ nhận</string>
     <string name="submit">Gửi</string>
     <string name="submit_success">Gửi thành công</string>
@@ -225,16 +167,11 @@
     <string name="please_write_name">Vui lòng điền tên</string>
     <string name="please_write_telphone">Vui lòng điền số liên lạc</string>
     <string name="please_write_address">Vui lòng điền địa chỉ giao hàng</string>
-    <string name="help">Trợ giúp</string>
-    <string name="month_sign_chart">Bảng đăng ký tháng</string>
     <string name="you_have_sign">Bạn đã đăng ký liên tục</string>
     <string name="day">ngày</string>
-    <string name="sign_was_done">Hoàn thành đăng ký</string>
-    <string name="sign_instantly">Đăng nhập ngay</string>
     <string name="sign_successfully">Đăng nhập thành công</string>
     <string name="sign">Đăng nhập</string>
 
-    <string name="hot_kol_recommend">Đề xuất KOL hàng đầu</string>
     <string name="wechat"> Vòng kết nối bạn bè</string>
     <string name="invite_ta_participate_campaign">Gửi sự kiện đặc biệt tới TA</string>
     <string name="kol_brief">Giới thiệu KOL</string>
@@ -246,7 +183,6 @@
     <string name="search">Tìm kiếm</string>
     <string name="cancel">Hủy</string>
     <string name="clear_history">Xóa lịch sử </string>
-    <string name="search_result_empty">Kết quả tìm kiếm trống</string>
     <string name="nickname">Biệt danh</string>
     <string name="number_of_fans">Số lượng người hâm mộ</string>
     <string name="number_of_videos">Số video</string>
@@ -266,12 +202,7 @@
     <string name="icons_message">&#xe625;</string>
     <string name="icons_setting">&#xe61f;</string>
     <string name="icons_box_delete">&#xe618;</string>
-    <string name="arrow_down">&#xe613;</string>//下拉
-    <string name="arrow_down_percent30">&#xe600;</string>//Kéo xuống 30%
-    <string name="arrow_up">&#xe60f;</string>//向上箭头
     <string name="arrow_right">&#xe60e;</string>//向右箭头
-    <string name="arrow_left">&#xe603;</string>
-    <string name="add_sign">&#xe609;</string>//加好
     <string name="hook_sign">&#xe61e;</string>//对勾
     <string name="share_sign">&#xe608;</string>//分享
     <string name="search_sign">&#xe602;</string>//搜索
@@ -280,7 +211,6 @@
     <string name="selected">&#xe61e;</string>
     <!--打开消息-->
     <string name="next">Bước tiếp theo</string>
-    <string name="jump">Bỏ qua</string>
     <string name="invite_friends">Mời bạn bè</string>
     <string name="be_kol_first_compelete_data">Càng cao dữ liệu nâng cao, cao hơn giá của các hoạt động được chấp nhận</string>
     <string name="confirm">Xác nhận</string>
@@ -316,15 +246,12 @@
 
     <string name="please_write_nick_name">Vui lòng viết tên nick</string>
     <string name="please_write_age">Vui lòng viết tuổi</string>
-    <string name="please_write_job">Vui lòng viết công việc</string>
     <string name="please_write_interest">vui lòng viết yêu thích</string>
-    <string name="please_write_desc">Vui lòng viết mô tả</string>
     <string name="promote_the_content_page_for_details">Trang chi tiết nội dung quảng cáo</string>
     <string name="campaign_data_download">Tải xuống tài liệu đang hoạt động</string>
     <string name="approved_wait_activity_start">Chờ hoạt động bắt đầu</string>
     <string name="campaign_unstart">Chưa bắt đầu</string>
     <string name="reject_campaign">Từ chối hoạt động này</string>
-    <string name="campaign_is_in_the_way">Đang hoạt động</string>
     <string name="upload_screenshot">Tải lên ảnh chụp màn hình</string>
     <string name="approved_check_the_screenshot">Xem ảnh chụp màn hình</string>
     <string name="approving_check_the_screenshot">Kiểm toán - Xem ảnh chụp màn hình</string>
@@ -340,8 +267,6 @@
     <string name="sign_up_end">Đã kết thúc</string>
     <string name="campaign_sign_up_success">Thành công đăng ký hoạt động</string>
     <string name="campaign_sign_up_success_wait_for_auditing">Đăng ký hoạt động thành công, chờ xem xét</string>
-    <string name="share_instantly">Chia sẻ ngay bây giờ</string>
-    <string name="campaign_missed_forwarding">Sự kiện đã bị bỏ lỡ, chuyển tiếp miễn phí</string>
     <string name="upload_screenshot_time_end">Thời gian tải lên ảnh chụp màn hình đã qua</string>
     <string name="share_again">Chia sẻ lại</string>
     <string name="unknown_state">Trạng thái không xác định</string>
@@ -376,11 +301,7 @@
     <string name="sweep_login_success">Quét đăng nhập thành công</string>
     <string name="share_invite_friends_title">Gần đây tôi đã tìm thấy một ứng dụng kiếm tiền mỗi ngày. Bạn có muốn dùng thử không?</string>
     <string name="share_invite_friends_text">Robin8 dựa trên nền tảng tác động xã hội dữ liệu lớn</string>
-    <string name="share_pk_title">Hãy đến và kiểm tra ảnh hưởng tài khoản xã hội của bạn với Robin8!</string>
-    <string name="share_pk">Bạn có muốn cạnh tranh với tôi không? Hãy đến và Robin8 sẽ cạnh tranh!</string>
-    <string name="share_pk_text">Hoạt động tiền mặt lớn hơn và tác động xã hội với bạn bè PK</string>
     <string name="bind_mobile">Liên kết số điện thoại di động</string>
-    <string name="my_capaign">Hoạt động của tôi</string>
     <string name="robin8">ROBIN8</string>
     <string name="please_write_kol">Vui lòng điền KOL đặc biệt</string>
     <string name="image_check_reject">Đánh giá hình ảnh không vượt qua:</string>
@@ -402,7 +323,6 @@
     <string name="checked_rejected_repair">Kiểm toán không thành công, đã sửa đổi ngay lập tức</string>
     <string name="expected_cut">Hoa hồng dự kiến</string>
     <string name="product">Thư viện hàng hóa</string>
-    <string name="cooperate_in">Thành</string>
     <string name="article">Bài viết</string>
     <string name="price">Giá</string>
     <string name="commission">Hoa hồng</string>
@@ -450,12 +370,6 @@
     <string name="screenshot_reference">Tham chiếu ảnh chụp màn hình</string>
     <string name="validity_of_goods">Ngày hết hạn sản phẩm</string>
     <string name="sign_up_recruit">Đăng ký tuyển dụng</string>
-    <string name="share_success">Chia sẻ thành công</string>
-    <string name="share_error">Chia sẻ thất bại</string>
-    <string name="share_cancel">Hủy chia sẻ</string>
-    <string name="share_copy_sucess">Chia sẻ thành công nhân rộng</string>
-    <string name="system_not_support">Hệ thống không hỗ trợ sao chép</string>
-    <string name="share_copy_failure">Sao chép chia sẻ không thành công</string>
     <string name="download">Tải xuống</string>
     <string name="task">Tác vụ </string>
     <string name="launch_reword_activity">Bắt đầu một sự kiện phần thưởng</string>
@@ -468,15 +382,10 @@
     <string name="person_brand">Nhãn hiệu ký tự</string>
     <string name="detail">Chi tiết bài viết>></string>
     <string name="all_classify">Tất cả các danh mục</string>
-    <string name="share_to_wechat">Chia sẻ với WeChat</string>
     <string name="share_to_wechatmoments">Chia sẻ với vòng tròn WeChat</string>
     <string name="share_to_weibo">Chia sẻ lên Sina Weibo</string>
-    <string name="share_to_qzone">Chia sẻ lên không gian QQ</string>
-    <string name="share_to_wechat_favorites">Chia sẻ với bộ sưu tập WeChat</string>
     <string name="share_for_money">Chia sẻ doanh thu kiếm tiền</string>
     <string name="known">Biết</string>
-    <string name="screenshot_check_ruler">\ u30001. Thời gian duy trì hoạt động quá ngắn \ n \ u30002. Hoạt động được đặt thành nhóm \ n \ u30003. Hoạt động chứa văn bản nhấp chuột cảm ứng \ n \ u30004. . Hiển thị quá nhiều hoạt động giống nhau</string>
-    <string name="share_success_and_ruler">Chia sẻ thành công - Quy tắc xem lại ảnh chụp màn hình Robin8</string>
     <string name="campaign_request">yêu cầu hoạt động</string>
     <string name="sign_rule">quy tắc phần thưởng đăng nhập</string>
 
@@ -485,37 +394,16 @@
     <string name="effect_evaluate">đánh giá hiệu ứng</string>
     <string name="effect_import">Đánh giá của bạn rất quan trọng đối với chúng tôi</string>
 
-    <!--个推-->
-    <string name="add_tag">Thêm thẻ</string>
-    <string name="add_tag_unknown_exception">Đặt nhãn không thành công, ngoại lệ không xác định</string>
-    <string name="add_tag_success">cuộc gọi giao diện đã thành công</string>
-    <string name="add_tag_error_count">cuộc gọi giao diện không thành công, số lượng thẻ quá lớn, tối đa không thể vượt quá 200</string>
-    <string name="add_tag_error_frequency">Đặt nhãn không thành công, tần suất quá nhanh</string>
-    <string name="add_tag_error_null">cuộc gọi giao diện không thành công, thẻ trống</string>
-    <string name="add_tag_error_repeat">Đặt nhãn không thành công, lặp lại nhãn</string>
-    <string name="add_tag_error_unbind">Không thể đặt nhãn, dịch vụ không được khởi tạo thành công</string>
-    <string name="add_tag_error_not_online">chưa đăng nhập thành công</string>
-    <string name="add_tag_error_black_list">Ứng dụng đã có trong danh sách đen, vui lòng liên hệ với bộ phận hỗ trợ sau bán hàng! </string>
-    <string name="add_tag_error_exceed">Thẻ đã lưu vượt quá giới hạn</string>
-    <string name="push_transmission_data">đã nhận được thông báo kiểm tra trong suốt</string>
 
     <!--活动多图上传-->
-    <string name="image">hình ảnh</string>
     <string name="all_image">Tất cả hình ảnh</string>
     <string name="preview">xem trước</string>
     <string name="msg_no_camera">Không thể bật camera hệ thống</string>
     <string name="msg_amount_limit">đã đạt số lượng lựa chọn cao nhất</string>
     <string name="done">Hoàn thành</string>
-    <string name="done_with_count">Hoàn thành(%1$d/%2$d)</string>
     <string name="image_index">%1$d/%2$d</string>
-    <string name="delete">xóa </string>
-    <string name="deleted_a_photo">đã xóa ảnh</string>
-    <string name="confirm_to_delete">Xác nhận xóa</string>
-    <string name="undo">Hoàn tác</string>
-    <string name="title_activity_email_welcome">EmailWelcomeActivity </string>
 
     <!--put金币-->
-    <string name="put_campaign_detail">Nhận hoàn tiền 20% PUT cho ngân sách chiến dịch trên Y500</string>
     <string name="put_wallet">Ví PUT</string>
 
     <!--登陆后用户信息等-->
