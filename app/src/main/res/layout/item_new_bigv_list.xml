@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/cardview"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="202.5dp"
+        android:background="@color/black_custom">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/sub_gray_custom"
+            android:scaleType="fitXY"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_bg_homepage"
+            android:clickable="false"
+            android:gravity="center"
+            android:minHeight="20dp"
+            android:minWidth="20dp"
+            android:padding="5dp"
+            android:text="已结束"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_0"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="16px"
+            android:gravity="center"
+            android:text="认真是一种能力而不是态度"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_3"
+            android:textStyle="bold"/>
+        <com.robin8.rb.ui.widget.LineSpaceTextView
+            android:id="@+id/tv_alias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="2016"
+            android:textColor="@color/white_custom"
+            android:textSize="@dimen/undefine_font_0"
+            app:letterSpacing="6dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_payinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="38dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_actiontype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#8D000000"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="活动时间"
+                    android:textColor="#fab719"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/tv_count_down"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_height="match_parent"
+                    android:text="剩余0天0时0秒"
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_5"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/light_gray_custom"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_last"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#8D000000"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="活动价格"
+                    android:textColor="@color/white_custom"
+                    android:textSize="@dimen/undefine_font_1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_remainder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="500.0"
+                        android:textColor="@color/white_custom"
+                        android:textSize="@dimen/undefine_font_5"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

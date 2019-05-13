@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 
 import com.robin8.rb.R;
 import com.robin8.rb.ui.adapter.BigvListAdapter;
+import com.robin8.rb.ui.adapter.NewBigVListAdapter;
 import com.robin8.rb.ui.widget.autoviewpager.AutoScrollViewPager;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BasePager;
@@ -59,7 +60,8 @@ public class BigVPager extends BasePager implements Observer {
     private int mCurrentPage = 1;
     private int mCurrentState = INIT_DATA;
 
-    private BigvListAdapter mAdapter;
+//    private BigvListAdapter mAdapter;
+    private NewBigVListAdapter mAdapter;
     private List<BigvListModel.ListBean> listModels = new ArrayList<>();
 
     private LoadingPage mLoadingPage;
@@ -243,7 +245,8 @@ public class BigVPager extends BasePager implements Observer {
         mRefreshListView.setFadingEdgeLength(10);
         mRefreshListView.setDividerHeight(15);
 
-        mAdapter = new BigvListAdapter(mActivity, listModels);
+//        mAdapter = new BigvListAdapter(mActivity, listModels);
+        mAdapter = new NewBigVListAdapter(mActivity, listModels);
         mRefreshListView.setAdapter(mAdapter);
         mRefreshListView.setOnRefreshListener(new MyOnRefreshListener());
 
