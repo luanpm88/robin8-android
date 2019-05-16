@@ -84,7 +84,7 @@ public class MainActivity extends BaseBackHomeActivity {
     private RewordPager mRewordPager;
     private FirstPager mFirstPager;
     // private CreatePager mCreatePager;
-    private FindPager mFindPager;
+//    private FindPager mFindPager;
     private MinePager mMinePager;
     private MyPagerAdapter mPagerAdapter;
     private ViewPager mVPContentPager;
@@ -92,8 +92,8 @@ public class MainActivity extends BaseBackHomeActivity {
     private RadioButton mRBBottomFirst;
     private RadioButton mRBBottomCampaign;
     // private RadioButton mRBBottomCreate;
-    private RadioButton mRBBottomFind;
-    private RadioButton mRBBottomInfluence;
+//    private RadioButton mRBBottomFind;
+//    private RadioButton mRBBottomInfluence;
     private RadioButton mRBBottomMine;
     private int mLastPosition;
     private UpdateNewApk mUpdateNewApk = null;
@@ -120,7 +120,7 @@ public class MainActivity extends BaseBackHomeActivity {
     //  private NotificationPager mNotificationPager;
     //private InfluencePager mInfluencePager;
     // private CustomRedDotRadioButton mRBBottomNotification;
-    private BigVPager mBigVPager;
+//    private BigVPager mBigVPager;
     private Intent intent;
     private String register_main;
 
@@ -266,14 +266,14 @@ public class MainActivity extends BaseBackHomeActivity {
         mRBBottomFirst = (RadioButton) findViewById(R.id.rb_bottom_first);
         //  mRBBottomNotification = (CustomRedDotRadioButton) findViewById(R.id.rb_bottom_notification);
         mRBBottomCampaign = (RadioButton) findViewById(R.id.rb_bottom_campaign);
-        mRBBottomInfluence = (RadioButton) findViewById(R.id.rb_bottom_influence);
+//        mRBBottomInfluence = (RadioButton) findViewById(R.id.rb_bottom_influence);
         //  mRBBottomCreate = (RadioButton) findViewById(R.id.rb_bottom_create);
-        mRBBottomFind = (RadioButton) findViewById(R.id.rb_bottom_find);
+//        mRBBottomFind = (RadioButton) findViewById(R.id.rb_bottom_find);
         mRBBottomMine = (RadioButton) findViewById(R.id.rb_bottom_mine);
         setRadioButtonDrawableSize(mRBBottomFirst);
-        setRadioButtonDrawableSize(mRBBottomInfluence);
+//        setRadioButtonDrawableSize(mRBBottomInfluence);
         setRadioButtonDrawableSize(mRBBottomCampaign);
-        setRadioButtonDrawableSize(mRBBottomFind);
+//        setRadioButtonDrawableSize(mRBBottomFind);
         setRadioButtonDrawableSize(mRBBottomMine);
     }
 
@@ -336,13 +336,13 @@ public class MainActivity extends BaseBackHomeActivity {
             mRewordPager = new RewordPager(this);
         }
 
-        if (mBigVPager == null) {
-            mBigVPager = new BigVPager(this);
-        }
+//        if (mBigVPager == null) {
+//            mBigVPager = new BigVPager(this);
+//        }
 
-        if (mFindPager == null) {
-            mFindPager = new FindPager(this);
-        }
+//        if (mFindPager == null) {
+//            mFindPager = new FindPager(this);
+//        }
 
         if (mMinePager == null) {
             mMinePager = new MinePager(this);
@@ -356,15 +356,15 @@ public class MainActivity extends BaseBackHomeActivity {
         //mPagerList.add(mFirstPager);
         // mPagerList.add(mNotificationPager);
         mPagerList.add(mRewordPager);
-        mPagerList.add(mBigVPager);
-        mPagerList.add(mFindPager);
+//        mPagerList.add(mBigVPager);
+//        mPagerList.add(mFindPager);
         mPagerList.add(mMinePager);
 
         if (mPagerAdapter == null) {
             mPagerAdapter = new MyPagerAdapter();
         }
         mVPContentPager.setAdapter(mPagerAdapter);
-        mVPContentPager.setOffscreenPageLimit(4);
+        mVPContentPager.setOffscreenPageLimit(mPagerList.size());
         //
         // 设置默认显示的界面 默认显示首页
         // mRGContentBottom.check(R.id.rb_bottom_first);
@@ -372,14 +372,14 @@ public class MainActivity extends BaseBackHomeActivity {
             if (register_main.equals("zhu")) {
                 mRGContentBottom.check(R.id.rb_bottom_campaign);
                 mVPContentPager.setCurrentItem(0);
-            } else if (register_main.equals("big_v")) {
+            }/* else if (register_main.equals("big_v")) {
                 mRGContentBottom.check(R.id.rb_bottom_influence);
                 mVPContentPager.setCurrentItem(1);
                 // mPagerList.get(2).initData();
             } else if (register_main.equals("read")) {
                 mRGContentBottom.check(R.id.rb_bottom_find);
                 mVPContentPager.setCurrentItem(2);
-            } else {
+            } */else {
                 mRGContentBottom.check(R.id.rb_bottom_campaign);
             }
         } else {
@@ -455,7 +455,7 @@ public class MainActivity extends BaseBackHomeActivity {
                 case R.id.rb_bottom_campaign:
                     mVPContentPager.setCurrentItem(0, false);
                     break;
-                case R.id.rb_bottom_influence:
+               /* case R.id.rb_bottom_influence:
                     //                    if (! isLogined()) {
                     //                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     //                        intent.putExtra("big_v", StatisticsAgency.BIGV_LIST);
@@ -467,9 +467,9 @@ public class MainActivity extends BaseBackHomeActivity {
                     break;
                 case R.id.rb_bottom_find:
                     mVPContentPager.setCurrentItem(2, false);
-                    break;
+                    break;*/
                 case R.id.rb_bottom_mine:
-                    mVPContentPager.setCurrentItem(3, false);
+                    mVPContentPager.setCurrentItem(1, false);
                     break;
             }
         }
@@ -528,18 +528,18 @@ public class MainActivity extends BaseBackHomeActivity {
                     onePageSelected(CAMPAIGN_LIST);
                     mRBBottomCampaign.setChecked(true);
                     break;
-                case BIGV_LIST:
-                    mPageName = StatisticsAgency.BIGV_LIST;
-                    onePageSelected(BIGV_LIST);
-                    mRBBottomInfluence.setChecked(true);
-                    //  mPagerList.get(BIGV_LIST).initData();
-                    break;
-                case FIND:
-                    mPageName = StatisticsAgency.FIND_LIST;
-                    onePageSelected(FIND);
-                    mRBBottomFind.setChecked(true);
-                    mPagerList.get(FIND).initData();
-                    break;
+//                case BIGV_LIST:
+//                    mPageName = StatisticsAgency.BIGV_LIST;
+//                    onePageSelected(BIGV_LIST);
+//                    mRBBottomInfluence.setChecked(true);
+//                    //  mPagerList.get(BIGV_LIST).initData();
+//                    break;
+//                case FIND:
+//                    mPageName = StatisticsAgency.FIND_LIST;
+//                    onePageSelected(FIND);
+//                    mRBBottomFind.setChecked(true);
+//                    mPagerList.get(FIND).initData();
+//                    break;
                 case MY:
                     mPageName = StatisticsAgency.MY;
                     onePageSelected(MY);
