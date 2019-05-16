@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.app.AlertDialog;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
@@ -41,7 +42,6 @@ public class PutWebFirstActivity extends BaseActivity {
 
     private WebView webView;
     private int FILE_CHOOSER_RESULT_CODE = 1000;
-
     @Override
     public void setTitleView() {
         View view = LayoutInflater.from(this).inflate(R.layout.activity_put_web_first, mLLContent, true);
@@ -71,8 +71,25 @@ public class PutWebFirstActivity extends BaseActivity {
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 super.onReceivedSslError(view, handler, error);
-                L.e("error", error + "");
-                handler.proceed();
+                //L.e("error", error + "");
+                //handler.proceed();
+                final  SslErrorHandler sslhandler = handler;
+                final AlertDialog.Builder builder = new AlertDialog.Builder(PutWebFirstActivity.this);
+                builder.setMessage(R.string.notification_error_ssl_cert_invalid);
+                builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sslhandler.proceed();
+                    }
+                });
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sslhandler.cancel();
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
             }
 
             @TargetApi(Build.VERSION_CODES.KITKAT)

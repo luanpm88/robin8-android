@@ -14,7 +14,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
+import android.app.AlertDialog;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.constants.CommonConfig;
@@ -24,7 +24,7 @@ import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.share.RobinShareDialog;
-
+import android.content.DialogInterface;
 import java.util.List;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -92,7 +92,24 @@ public class BannerWebActivity extends BaseActivity{
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed();
+                //handler.proceed();
+                final  SslErrorHandler sslhandler = handler;
+                final AlertDialog.Builder builder = new AlertDialog.Builder(BannerWebActivity.this);
+                builder.setMessage(R.string.notification_error_ssl_cert_invalid);
+                builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sslhandler.proceed();
+                    }
+                });
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sslhandler.cancel();
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
             }
 
             @Override
