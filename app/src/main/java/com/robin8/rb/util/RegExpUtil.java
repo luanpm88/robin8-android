@@ -29,6 +29,7 @@ public final class RegExpUtil {
     }
 
     public static boolean checkMobile(String mobile) {
+        return true;
         if (!TextUtils.isEmpty(mobile) && mobile.length() == 11) {
             String regex = "(\\+\\d+)?1[0-9]\\d{9}$";
             return Pattern.matches(regex, mobile);
@@ -38,6 +39,7 @@ public final class RegExpUtil {
     }
 
     public static boolean checkPhone(String phone) {
+        return true;
         String regex = "(\\+\\d+)?(\\d{3,4}\\-?)?\\d{7,8}$";
         return Pattern.matches(regex, phone);
     }
