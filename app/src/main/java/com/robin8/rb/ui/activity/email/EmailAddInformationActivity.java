@@ -26,6 +26,7 @@ import com.robin8.rb.util.HelpTools;
 
 import static com.robin8.rb.R.id.et_email_name;
 
+
 public class EmailAddInformationActivity extends BaseActivity {
     public static final String EXTRA_EMAIL_NUM = "extra_email_num";
     public static final String EXTRA_EMAIL_TOKEN = "extra_email_token";
