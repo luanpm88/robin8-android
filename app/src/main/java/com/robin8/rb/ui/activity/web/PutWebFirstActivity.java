@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Environment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -36,6 +37,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import io.rong.imageloader.utils.L;
+
+import static com.robin8.rb.util.LogUtil.LogShitou;
 
 public class PutWebFirstActivity extends BaseActivity {
 
@@ -71,8 +74,25 @@ public class PutWebFirstActivity extends BaseActivity {
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 super.onReceivedSslError(view, handler, error);
-                L.e("error", error + "");
-                handler.proceed();
+                final  SslErrorHandler sslhandler = handler;
+                final AlertDialog.Builder builder = new AlertDialog.Builder(PutWebFirstActivity.this);
+                builder.setMessage(R.string.notification_error_ssl_cert_invalid);
+                builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sslhandler.proceed();
+                    }
+                });
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sslhandler.cancel();
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+                LogShitou("error", error + "");
             }
 
             @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -283,7 +303,7 @@ public class PutWebFirstActivity extends BaseActivity {
         }
         //  i.addCategory("android.intent.category.DEFAULT");
         i.setDataAndType(Uri.fromFile(file), "*/*");
-        LogUtil.LogShitou("选择文件路径", "===" + Uri.fromFile(file));
+        LogShitou("选择文件路径", "===" + Uri.fromFile(file));
         i.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(Intent.createChooser(i, "File Chooser"), FILE_CHOOSER_RESULT_CODE);
     }
