@@ -154,7 +154,6 @@ public class WheelTime {
                 String currentString = dateList.get(wv_day.getCurrentItem());
                 month = currentString.substring(0, currentString.indexOf("月"));
                 day = currentString.substring(currentString.indexOf("月") + 1, currentString.indexOf("日"));
-
                 if (month.length() < 2) {
                     month = String.valueOf(0) + month;
                 }

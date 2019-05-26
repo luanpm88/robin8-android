@@ -81,7 +81,7 @@ public class SplashActivity extends Activity {
             if (sBuilder.length() > 0) {
                 sBuilder.deleteCharAt(sBuilder.length() - 1);
             }
-            DialogUtil.showPermissionManagerDialogCallBack(SplashActivity.this, "获取" + sBuilder.toString() + "权限失败", new DialogInterface.OnClickListener() {
+            DialogUtil.showPermissionManagerDialogCallBack(SplashActivity.this, sBuilder.toString(), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     finish();

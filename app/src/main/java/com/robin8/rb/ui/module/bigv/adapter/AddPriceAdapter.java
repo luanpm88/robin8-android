@@ -80,8 +80,6 @@ public class AddPriceAdapter extends BaseAdapter {
             holder.etPrice.setHint(context.getString(R.string.robin449,bean.getName()));
         }else {
             holder.etPrice.setHint(context.getString(R.string.robin450,bean.getName()));
-
-
         }
         if (! TextUtils.isEmpty(contents.get(position))) {//不为空的时候 赋值给对应的edittext
             holder.etPrice.setText(contents.get(position));
