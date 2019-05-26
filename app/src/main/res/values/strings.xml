@@ -865,5 +865,4 @@
 	<string name="robin460">请先选择推广平台</string>
 	<string name="notification_error_ssl_cert_invalid">网站不信任，你想继续吗？</string>
 
-	<string name="notification_error_ssl_cert_invalid">网站不信任，你想继续吗？</string>
 </resources>
