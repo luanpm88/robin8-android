@@ -105,7 +105,7 @@ public class UpdateNewApk {
                                 mCheckVersionHandler.sendEmptyMessage(1);
                             }
                             if (isNeedNotice) {
-                                CustomToast.showShort(context, "当前已经是最新版本");
+                                CustomToast.showShort(context, R.string.robin262);
                             }
                         }
                     } else {//没有更新
@@ -113,7 +113,7 @@ public class UpdateNewApk {
                             mCheckVersionHandler.sendEmptyMessage(1);
                         }
                         if (isNeedNotice) {
-                            CustomToast.showShort(context, "当前已经是最新版本");
+                            CustomToast.showShort(context, R.string.robin262);
                         }
                     }
                 }

@@ -1082,6 +1082,11 @@
 	<string name="robin458"> single click cost format error </string>
 	<string name="robin459">Promotion platform selection </string>
 	<string name="robin460">Please select the promotion platform first</string>
+	<string name="robin461">This task requires sharing screenshots and uploading after at least 30 minutes after sharing, otherwise it will not pass </string>
+	<string name="robin262"> is currently the latest version </string>
+	<string name="robin462"><![CDATA[After sharing, each click of a friend can help you get: <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin463"><![CDATA[After sharing, you can get it by forwarding: <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin464"><![CDATA[After sharing, you can get: <font color=#ecb200>¥ %s</font>]]></string>
 
 
 </resources>

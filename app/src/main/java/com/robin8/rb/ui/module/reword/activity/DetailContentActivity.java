@@ -212,7 +212,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         //TextView rightTv = (TextView) view.findViewById(R.id.tv_right);
         confirmTV.setText(R.string.known);
         if (is) {
-            new Thread(new TimerUtil(4, null, confirmTV, layout, activity, "知道了", "s", activity.getResources().getColor(R.color.black_686868), activity.getResources().getColor(R.color.white_custom))).start();
+            new Thread(new TimerUtil(4, null, confirmTV, layout, activity, getString(R.string.known), "s", activity.getResources().getColor(R.color.black_686868), activity.getResources().getColor(R.color.white_custom))).start();
         }
         infoTv.setText(info);
         infoTv.setGravity(Gravity.LEFT);
@@ -644,12 +644,14 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
             });
             if (mCampaignInviteEntity.getStatus().equals("running")) {
                 if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
-                    showShadowDialog(DetailContentActivity.this, true, mCampaignInviteEntity.getCampaign().getRemark());
+                    shareCtaAndCti(DetailContentActivity.this, mCampaignInviteEntity.getCampaign().getRemark(), true);
+//                    showShadowDialog(DetailContentActivity.this, true, mCampaignInviteEntity.getCampaign().getRemark());
                 } else {
                     if (HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
                         shareCtaAndCti(DetailContentActivity.this, mCampaignInviteEntity.getCampaign().getRemark(), true);
                     } else {
-                        showShadowDialog(DetailContentActivity.this, true, mCampaignInviteEntity.getCampaign().getRemark());
+                        shareCtaAndCti(DetailContentActivity.this, mCampaignInviteEntity.getCampaign().getRemark(), true);
+//                        showShadowDialog(DetailContentActivity.this, true, mCampaignInviteEntity.getCampaign().getRemark());
                     }
                 }
             }
@@ -658,10 +660,10 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         } else if (CAMPAIGN_TYPE_RECRUIT.equals(mCampaignInviteEntity.getCampaign().getPer_budget_type())) {
             // forLeader(false);
             if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
-                showShadowDialog(DetailContentActivity.this, false, null);
+//                showShadowDialog(DetailContentActivity.this, false, null);
             } else {
                 if (!HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
-                    showShadowDialog(DetailContentActivity.this, false, null);
+//                    showShadowDialog(DetailContentActivity.this, false, null);
                 }
             }
 
@@ -678,27 +680,29 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
 
                 @Override
                 public void onClick(View view) {
-                    shareCtaAndCti(DetailContentActivity.this, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过", false);
+                    shareCtaAndCti(DetailContentActivity.this, getString(R.string.robin461), false);
                 }
             });
             if (mCampaignInviteEntity.getStatus().equals("running")) {
                 //  shareCtaAndCti(DetailContentActivity.this, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过", true);
                 if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
-                    showShadowDialog(DetailContentActivity.this, true, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过");
+                    shareCtaAndCti(DetailContentActivity.this, getString(R.string.robin461), true);
+//                    showShadowDialog(DetailContentActivity.this, true, getString(R.string.robin461));
                 } else {
                     if (HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
-                        shareCtaAndCti(DetailContentActivity.this, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过", true);
+                        shareCtaAndCti(DetailContentActivity.this, getString(R.string.robin461), true);
                     } else {
-                        showShadowDialog(DetailContentActivity.this, true, "此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过");
+                        shareCtaAndCti(DetailContentActivity.this, getString(R.string.robin461), true);
+//                        showShadowDialog(DetailContentActivity.this, true, getString(R.string.robin461));
                     }
                 }
             }
         } else {
             if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.ShadowCampaign))) {
-                showShadowDialog(DetailContentActivity.this, false, null);
+//                showShadowDialog(DetailContentActivity.this, false, null);
             } else {
                 if (!HelpTools.getCommonXml(HelpTools.ShadowCampaign).equals(getString(R.string.submit))) {
-                    showShadowDialog(DetailContentActivity.this, false, null);
+//                    showShadowDialog(DetailContentActivity.this, false, null);
                 }
             }
             mTvCampaignsRequest.setVisibility(View.GONE);
@@ -1262,44 +1266,44 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     //===================蒙版======================
     public void showShadowDialog(final Activity activity, final boolean isShowRequest, final String content) {
         // String rejectReason = campaignInviteEntity.getReject_reason();
-        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_shadow_layout, null);
-        RelativeLayout llShadow = (RelativeLayout) view.findViewById(R.id.ll_shadow);
-        final ImageView imgBg = (ImageView) view.findViewById(R.id.img_shadow_invite);
-        final LinearLayout imgBgTwo = (LinearLayout) view.findViewById(R.id.ll_shadow_share);
-        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
-        imgBg.setVisibility(View.VISIBLE);
-        llShadow.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                HelpTools.insertCommonXml(HelpTools.ShadowCampaign, getString(R.string.submit));
-                if (imgBg.getVisibility() == View.VISIBLE) {
-                    imgBg.setVisibility(View.GONE);
-                    imgBgTwo.setVisibility(View.VISIBLE);
-                } else {
-                    cdm.dismiss();
-                    if (isShowRequest) {
-                        shareCtaAndCti(DetailContentActivity.this, content, true);
-                    }
-                }
-            }
-        });
-
-        Window win = cdm.dg.getWindow();
-
-        WindowManager.LayoutParams lp = win.getAttributes();
-
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-
-        lp.dimAmount = 0.2f;
-
-        win.setAttributes(lp);
-        cdm.dg.setCanceledOnTouchOutside(false);
-        cdm.dg.getWindow().setGravity(Gravity.CENTER);
-        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        cdm.showDialog();
+//        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_shadow_layout, null);
+//        RelativeLayout llShadow = (RelativeLayout) view.findViewById(R.id.ll_shadow);
+//        final ImageView imgBg = (ImageView) view.findViewById(R.id.img_shadow_invite);
+//        final LinearLayout imgBgTwo = (LinearLayout) view.findViewById(R.id.ll_shadow_share);
+//        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
+//        imgBg.setVisibility(View.VISIBLE);
+//        llShadow.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                HelpTools.insertCommonXml(HelpTools.ShadowCampaign, getString(R.string.submit));
+//                if (imgBg.getVisibility() == View.VISIBLE) {
+//                    imgBg.setVisibility(View.GONE);
+//                    imgBgTwo.setVisibility(View.VISIBLE);
+//                } else {
+//                    cdm.dismiss();
+//                    if (isShowRequest) {
+//                        shareCtaAndCti(DetailContentActivity.this, content, true);
+//                    }
+//                }
+//            }
+//        });
+//
+//        Window win = cdm.dg.getWindow();
+//
+//        WindowManager.LayoutParams lp = win.getAttributes();
+//
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//
+//        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+//
+//        lp.dimAmount = 0.2f;
+//
+//        win.setAttributes(lp);
+//        cdm.dg.setCanceledOnTouchOutside(false);
+//        cdm.dg.getWindow().setGravity(Gravity.CENTER);
+//        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+//        cdm.showDialog();
     }
 
 }
