@@ -77,7 +77,6 @@ public class FindItemDetailActivity extends BaseActivity {
     private int heightPixels;
     private String title;
     private RobinShareDialog shareDialog;
-    private String titleAdd;
     public int findPosition;
     public String stringExtra;
     public static final int FIND_DETAIL = 124;
@@ -412,9 +411,9 @@ public class FindItemDetailActivity extends BaseActivity {
                 holder.tvTitle.setText(item.getTitle());
             }
             if (!TextUtils.isEmpty(item.getUser_name())){
-                holder.tvForm.setText("来源于："+item.getUser_name());
+                holder.tvForm.setText(getString(R.string.robin466,item.getUser_name()));
             }else {
-                holder.tvForm.setText("来源于：微博");
+                holder.tvForm.setText(getString(R.string.robin466,getString(R.string.weibo)));
             }
             holder.llRelevant.setOnClickListener(new View.OnClickListener() {
 
@@ -467,7 +466,6 @@ public class FindItemDetailActivity extends BaseActivity {
             title = "#robin8#";
         }
         String url = HelpTools.getUrl(listBean.getForward_url());
-        titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
         shareDialog.shareFacebook(url,title,getString(R.string.app_name),"http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png");
         shareDialog.show();
     }
@@ -476,37 +474,6 @@ public class FindItemDetailActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         shareDialog.onActivityResult(requestCode,resultCode,data);
-    }
-
-    private void share(String platName, FindArticleListModel.ListBean listModel) {
-        if (listModel != null) {
-            title = "#robin8#" + listModel.getTitle();
-        } else {
-            title = "#robin8#";
-        }
-        String url = HelpTools.getUrl(listModel.getForward_url());
-        titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
-        CustomToast.showShort(FindItemDetailActivity.this, R.string.robin435);
-
-        //ShareSDK.initSDK(FindItemDetailActivity.this);
-        OnekeyShare oks = new OnekeyShare();
-        oks.setPlatform(platName);
-        //关闭sso授权
-        oks.disableSSOWhenAuthorize();
-//        if (SinaWeibo.NAME.equals(platName)) {
-//            oks.setText(title + url + titleAdd);
-//        } else {
-//            oks.setText(title);
-//        }
-        oks.setTitle(title);
-        oks.setTitleUrl(url);
-        oks.setImageUrl("http://7xq4sa.com1.z0.glb.clouddn.com/robin8_icon.png");
-//        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)) {
-//            oks.setUrl(url);
-//        }
-        oks.setSite(getString(R.string.app_name));
-        oks.setSiteUrl(CommonConfig.SITE_URL);
-        oks.show(FindItemDetailActivity.this);
     }
 
     @Override

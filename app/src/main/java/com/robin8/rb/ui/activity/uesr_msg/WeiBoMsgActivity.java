@@ -116,13 +116,17 @@ public class WeiBoMsgActivity extends BaseActivity {
     private List<String> circleNameList;
 
     public static final String WEIBOMSG = "WEIBO_MSG";
-    private final String editFirstBegin = "转发：";
-    private final String editSecondBegin = "直发：";
-    private final String editThirdBegin = "直播：";
-    private final String editFifthBegin = "数量：";
+    private String editFirstBegin;
+    private String editSecondBegin;
+    private String editThirdBegin;
+    private String editFifthBegin;
 
     @Override
     public void setTitleView() {
+        editFirstBegin = getString(R.string.robin499);
+        editSecondBegin = getString(R.string.robin500);
+        editThirdBegin = getString(R.string.robin501);
+        editFifthBegin = getString(R.string.robin483);
         mTVCenter.setText(getResources().getString(R.string.weibo));
         mTvSave.setVisibility(View.VISIBLE);
         mTvSave.setOnClickListener(this);
@@ -727,7 +731,7 @@ public class WeiBoMsgActivity extends BaseActivity {
             public void onTimeSelect(Date date, View v) {
                 tvPriceEndTime.setText(getTime(date));
             }
-        }).setType(dataType).setDate(selectedDate).setRangDate(startDate, endDate).setTitleText("").setSubmitText("确定").setCancelText("取消").setLabel("", "", "", "", "", "").setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).setSubCalSize(15).build();
+        }).setType(dataType).setDate(selectedDate).setRangDate(startDate, endDate).setTitleText("").setSubmitText(getString(R.string.confirm)).setCancelText(getString(R.string.cancel)).setLabel("", "", "", "", "", "").setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).setSubCalSize(15).build();
     }
 
     private String getTime(Date date) {//可根据需要自行截取数据显示

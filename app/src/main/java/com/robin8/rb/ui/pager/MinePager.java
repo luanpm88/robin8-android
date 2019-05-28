@@ -717,12 +717,8 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private void skipToCampaign() {
 
         if (isLogined(SPConstants.MY_CAMPAIGN_ACTIVITY)) {
-            String nameArr[] = {"审核中", "审核通过", "审核拒绝"};
-            String campaignTypeArr[] = {"pending", "passed", "rejected"};
             Intent intent = new Intent(mActivity, MyCampaignHistoryActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putStringArray("name", nameArr);
-            bundle.putStringArray("type", campaignTypeArr);
             bundle.putString("page_name", StatisticsAgency.MY_TASK);
             //  bundle.putString("title_name", mActivity.getString(R.string.my_capaign));
             bundle.putString("url", HelpTools.getUrl(CommonConfig.MY_CAMPAIGNS));

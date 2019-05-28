@@ -98,24 +98,6 @@ public class GoodsDetailActivity extends BaseActivity {
         }
      }
 
-//    private void parseJson(String response) {
-//        DetailImageModel detailImageModel = GsonTools.jsonToBean(response, DetailImageModel.class);
-//        if (detailImageModel != null && detailImageModel.getError() == 0) {
-//            pictures = detailImageModel.getPictures();
-//
-//            mListView = new ListView(this);
-//            mListView.setFadingEdgeLength(10);
-//            mListView.setDivider(null);
-//            mListView.setDividerHeight(0);
-//            mListView.setSelector(android.R.color.transparent);
-//            mListView.setVerticalScrollBarEnabled(false);
-//            mListView.setAdapter(new MyBaseAdapter());
-//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-//                    ViewGroup.LayoutParams.MATCH_PARENT);
-//            mLLContent.addView(mListView, lp);
-//        }
-//    }
-
     @Override
     protected void onResume() {
         mPageName = StatisticsAgency.MY_INDIANA_DETAIL_DES;
@@ -131,60 +113,4 @@ public class GoodsDetailActivity extends BaseActivity {
     protected void executeOnclickRightView() {
     }
 
-    class MyBaseAdapter extends BaseAdapter {
-
-        private Holder holder;
-
-        @Override
-        public int getCount() {
-            return pictures.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return pictures[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                holder = new Holder();
-                convertView = LayoutInflater.from(GoodsDetailActivity.this).inflate(R.layout.activity_goods_detail, null);
-                holder.iv = (ImageView) convertView.findViewById(R.id.iv);
-                convertView.setTag(holder);
-            } else {
-                holder = (Holder) convertView.getTag();
-            }
-
-            Glide.with(GoodsDetailActivity.this)
-                    .load(pictures[position])
-                    .asBitmap()
-                    .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-
-                        @Override
-                        public void onResourceReady(final Bitmap bitmap, GlideAnimation glideAnimation) {
-//                            BitmapUtil.loadImage(GoodsDetailActivity.this, pictures[position], holder.iv);
-                            int bitmapH = bitmap.getHeight();
-                            int bitmapW = bitmap.getWidth();
-                            LogUtil.logXXfigo("bitmapH=" + bitmapH + "  bitmapW=" + bitmapW);
-                            int screenWidth = DensityUtils.getScreenWidth(GoodsDetailActivity.this);
-                            ViewGroup.LayoutParams layoutParams = holder.iv.getLayoutParams();
-                            layoutParams.width = screenWidth;
-                            layoutParams.height = bitmapH * screenWidth / bitmapW;
-                            holder.iv.setLayoutParams(layoutParams);
-                            holder.iv.setImageBitmap(bitmap);
-                        }
-                    });
-            return convertView;
-        }
-    }
-
-    class Holder {
-        public ImageView iv;
-    }
 }

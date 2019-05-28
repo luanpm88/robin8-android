@@ -33,7 +33,7 @@ public class InviteesActivity extends BaseActivity {
     private ViewPager mViewPager;
     private TabPageIndicator mTabPageIndicator;
     private ViewPagerAdapter mViewPagerAdapter;
-    String nameArr[] = {"人员列表", "人员分析"};
+    String nameArr[];
     private ArrayList<ViewPagerAdapter.SelectItem> mTitleList = new ArrayList<>();
     private ArrayList<BaseFragment> mFragmentList = new ArrayList<>();
     private BasePresenter mBasePresenter;
@@ -41,6 +41,7 @@ public class InviteesActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
+        nameArr = new String[]{getString(R.string.robin516), getString(R.string.robin517)};
         mTVCenter.setText(R.string.invitees_person);
     }
 

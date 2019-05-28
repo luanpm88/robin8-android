@@ -86,7 +86,7 @@ public class FeedBackActivity extends BaseActivity {
 
     private void sendFeedBack(String content) {
         if (TextUtils.isEmpty(etname.getText().toString())) {
-            CustomToast.showShort(this, "请输入反馈意见");
+            CustomToast.showShort(this, R.string.robin473);
             return;
         }
 
@@ -104,7 +104,7 @@ public class FeedBackActivity extends BaseActivity {
                 file = new File(BitmapUtil.saveBitmap
                         (BitmapUtil.path + File.separator + "screenShot", bitmap));
             }else {
-                CustomToast.showShort(FeedBackActivity.this, "感谢您的反馈");
+                CustomToast.showShort(FeedBackActivity.this, R.string.robin474);
                 FeedBackActivity.this.finish();
             }
         }
@@ -119,14 +119,14 @@ public class FeedBackActivity extends BaseActivity {
             public void onResponse(String response) {
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (null == baseBean || baseBean.getError() == 0) {
-                    CustomToast.showShort(FeedBackActivity.this, "感谢您的反馈");
+                    CustomToast.showShort(FeedBackActivity.this, R.string.robin474);
                     FeedBackActivity.this.finish();
                 }else if (baseBean.getError()==1){
                     if (!TextUtils.isEmpty(baseBean.getDetail())){
                         CustomToast.showShort(FeedBackActivity.this,baseBean.getDetail());
                         finish();
                     }else {
-                        CustomToast.showShort(FeedBackActivity.this, "感谢您的反馈");
+                        CustomToast.showShort(FeedBackActivity.this, R.string.robin474);
                         finish();
                     }
                 }else {

@@ -240,14 +240,14 @@ public class BeKolFirstActivity extends BaseActivity {
                         break;
                     case ITEM_Phone:
                         if (TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))){
-                            item.content = "未绑定";
+                            item.content = getString(R.string.un_binded);
                         }else {
                             item.content =  HelpTools.getLoginInfo(HelpTools.LoginNumber);
                         }
                         break;
                     case ITEM_Email:
                         if (TextUtils.isEmpty(mBigVBean.getEmail())){
-                            item.content = "未绑定";
+                            item.content = getString(R.string.un_binded);
                         }else {
                             item.content = mBigVBean.getEmail();
                         }
@@ -350,7 +350,7 @@ public class BeKolFirstActivity extends BaseActivity {
         requestMap.put("tag_names", getTagNames(mDataList.get(ITEM_INTEREST).content));
         requestMap.put("desc", desc);
         requestMap.put("age", mDataList.get(ITEM_AGE).content);
-        String gender = "全部";
+        String gender = getString(R.string.all);
         if (! TextUtils.isEmpty(mDataList.get(ITEM_GENDER).content)) {
             if (getString(R.string.male).equals(mDataList.get(ITEM_GENDER).content)) {
                 gender = "1";
@@ -543,12 +543,12 @@ public class BeKolFirstActivity extends BaseActivity {
             case R.id.tv_edit:
                 if (isShow) {
                     mTVCenter.setText(this.getText(R.string.be_kol));
-                    mTvEdit.setText("编辑");
+                    mTvEdit.setText(R.string.robin307);
                     isShow = false;
                     mBottomTv.setVisibility(View.GONE);
                 } else {
                     mTVCenter.setText(this.getText(R.string.edit_kol));
-                    mTvEdit.setText("取消");
+                    mTvEdit.setText(R.string.cancel);
                     isShow = true;
                     mBottomTv.setVisibility(View.VISIBLE);
                 }

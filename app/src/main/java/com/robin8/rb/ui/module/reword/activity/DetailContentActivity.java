@@ -1079,7 +1079,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         if (mCustomDialogManager != null) {
             mCustomDialogManager.dismiss();
         }
-        CustomToast.showShort(DetailContentActivity.this, "前往分享...");
+        CustomToast.showShort(DetailContentActivity.this, R.string.robin435);
         //ShareSDK.initSDK(DetailContentActivity.this);
         OnekeyShare oks = new OnekeyShare();
         oks.setCallback(new MySharedListener());
@@ -1158,17 +1158,17 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
     private class MySharedListener implements PlatformActionListener {
         @Override
         public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            CustomToast.showShort(DetailContentActivity.this, "分享成功");
+            CustomToast.showShort(DetailContentActivity.this, R.string.robin379);
         }
 
         @Override
         public void onError(Platform platform, int i, Throwable throwable) {
-            CustomToast.showShort(DetailContentActivity.this, "分享失败");
+            CustomToast.showShort(DetailContentActivity.this, R.string.robin378);
         }
 
         @Override
         public void onCancel(Platform platform, int i) {
-            CustomToast.showShort(DetailContentActivity.this, "分享取消");
+            CustomToast.showShort(DetailContentActivity.this, R.string.robin380);
         }
     }
 

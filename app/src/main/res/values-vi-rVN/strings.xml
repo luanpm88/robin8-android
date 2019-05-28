@@ -1083,10 +1083,63 @@
 	<string name="robin458">lỗi định dạng chi phí nhấp chuột đơn</string>
 	<string name="robin459">Lựa chọn nền tảng quảng cáo</string>
 	<string name="robin460">Trước tiên, hãy chọn nền tảng quảng cáo</string>
+        <string name="notification_error_ssl_cert_invalid">Trang web không tin tưởng, bạn có muốn tiếp tục không？</string>
 	<string name="robin461">Tác vụ này yêu cầu chia sẻ ảnh chụp màn hình và tải lên sau ít nhất 30 phút sau khi chia sẻ, nếu không, nó sẽ không được duyệt</string>
 	<string name="robin262">hiện là phiên bản mới nhất</string>
-	<string name="robin462"><![CDATA[Sau khi chia sẻ, mỗi lần nhấp của một người bạn có thể giúp bạn nhận được:<font color=#ecb200> %s₫</font>]]></string>
-	<string name="robin463"><![CDATA[Sau khi chia sẻ, bạn có thể nhận được bằng cách chuyển tiếp:<font color=#ecb200> %s₫</font>]]></string>
-	<string name="robin464"><![CDATA[Sau khi chia sẻ, bạn có thể nhận được:<font color=#ecb200>¥ %s₫</font>]]></string>
-        <string name="notification_error_ssl_cert_invalid">Trang web không tin tưởng, bạn có muốn tiếp tục không？</string>
+	<string name="robin462"><![CDATA[để chia sẻ, click vào mỗi người bạn có thể giúp bạn nhận được:<font color=#ecb200> %s₫</font>]]></string>
+	<string name="robin463"><![CDATA[chia sẻ, sau đó bạn có thể nhận được bằng cách chuyển tiếp:<font color=#ecb200> %s₫</font>]]></string>
+	<string name="robin464"><![CDATA[chia sẻ, sau đó bạn có thể nhận được bằng cách hoàn thành nhiệm vụ:<font color=#ecb200> %s₫</font>]]></string>
+	<string name="robin466">Nguồn：%s</string>
+	<string name="robin467">Tên thương hiệu không thể để trống</string>
+	<string name="robin468">Tên công ty không thể để trống</string>
+	<string name="robin469">xác nhận dòng liên kết</string>
+	<string name="robin470">xác nhận hủy liên kết</string>
+	<string name="robin471">Nhanh lên để kiếm thu nhập～</string>
+	<string name="robin472">Hôm nay bạn chưa nhận được người học việc, vì vậy hãy để Kiếm tiền!</string>
+	<string name="robin473">Vui lòng nhập phản hồi</string>
+	<string name="robin474">Cảm ơn bạn đã phản hồi</string>
+	<string name="robin475">Bạn chưa thêm liên hệ</string>
+	<string name="robin476"><![CDATA[mời bạn bè để tải về và cài đặt, nhận được<font color=#ecb200>2₫</font>tiền thưởng]]></string>
+	<string name="robin477"><![CDATA[mời bạn bè để đăng nhập vào và tải về hoàn chỉnh <font color=#ecb200>Sự kiện</font>]]></string>
+	<string name="robin478"><![CDATA[Sẽ nhận <font color=#ecb200><b>2</b>₫</font> tiền thưởng（mã thư mời của bạn：%s)]]></string>
+	<string name="robin479">Lời mời không thành công</string>
+	<string name="robin480">Vui lòng chọn nền tảng quảng cáo</string>
+	<string name="robin481">Ảnh gốc：</string>
+	<string name="robin482">Video gốc：</string>
+	<string name="robin483">Số lượng：</string>
+	<string name="robin484">Người dùng big-V</string>
+	<string name="robin485">microblog Big-V đã được chứng nhận</string>
+	<string name="robin486">Chứng nhận microblog Big-V</string>
+	<string name="robin487">Chứng nhận microblog Big-V không thành công</string>
+	<string name="robin488">Số công khai WeChat big V đã được chứng nhận</string>
+	<string name="robin489">WeChat số chứng nhận V lớn công khai</string>
+	<string name="robin490">WeChat chứng nhận số V lớn công khai không thành công</string>
+	<string name="robin491">Weibo / WeChat số công khai big V đã được chứng nhận</string>
+	<string name="robin492">Weibo / WeChat số chứng nhận V lớn công khai</string>
+	<string name="robin493">Weibo / WeChat số chứng nhận V lớn công khai không thành công</string>
+	<string name="robin494">Weibo / WeChat số công khai big V không được chứng nhận</string>
+	<string name="robin495">Nhiều ảnh：</string>
+	<string name="robin496">Ảnh đơn：</string>
+	<string name="robin497">Thứ cấp：</string>
+	<string name="robin498">3-N：</string>
+	<string name="robin499">Chuyển tiếp：</string>
+	<string name="robin500">tóc thẳng：</string>
+	<string name="robin501">trực tiếp：</string>
+	<string name="robin502">Yêu cầu thẻ SD。</string>
+	<string name="robin503">Điện thoại (IMEI) </string>
+	<string name="robin504">đọc và viết</string>
+	<string name="robin505">Tổng cộng: ₫</string>
+	<string name="robin506">Ví dụ về ảnh chụp màn hình</string>
+	<string name="robin507">Nhiệm vụ người mới đã hoàn thành, phần thưởng đã được phát hành</string>
+	<string name="robin508">2.Bảy ngày một chu kỳ, ngày thứ tám để bắt đầu lại phép tính. (Nếu bạn dừng đăng nhập vào giữa ngày, nó vẫn sẽ được tính toán lại)</string>
+	<string name="robin509">đăng nhập thành công</string>
+	<string name="robin510">Xem ví dụ về ảnh chụp màn hình</string>
+	<string name="robin511">Xem nhiệm vụ ví dụ ảnh chụp màn hình đã hoàn thành, phần thưởng 500₫ đã được đặt trong ví của bạn! Tiếp tục hoàn thành nhiệm vụ, bạn có thể nhận thêm phần thưởng</string>
+	<string name="robin512">đã hoàn thành</string>
+	<string name="robin513">Tải lên ảnh chụp màn hình thành công, phần thưởng 100₫ nhân dân tệ đã được đặt vào ví của bạn! Nhiệm vụ người mới đã hoàn thành ~</string>
+	<string name="robin514">Được chia sẻ thành công, phần thưởng 500₫ đã được đặt vào ví của bạn! Tiếp tục hoàn thành nhiệm vụ, bạn có thể nhận thêm phần thưởng~</string>
+	<string name="robin515">Lý do từ chối：</string>
+	<string name="robin516">danh sách người</string>
+	<string name="robin517">phân tích cá nhân</string>
+	<string name="robin519">Phần thưởng meta đã được đặt trong ví của bạn！\nĐăng nhập liên tiếp vào %d ngày，xin cứ tiếp tục～</string>
 </resources>

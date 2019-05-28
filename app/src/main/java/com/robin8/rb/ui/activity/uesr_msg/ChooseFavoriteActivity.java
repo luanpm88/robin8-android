@@ -50,7 +50,6 @@ public class ChooseFavoriteActivity extends AppCompatActivity {
     TagFlowLayout mFlowLayout;
     @Bind(R.id.text_next)
     TextView tvNext;
-    private String[] mVals = new String[]{"二次元", "车友圈", "旅游圈", "吃货圈", "房产圈", "电影爱好者", "游戏圈", "宝妈圈", "网红圈", "女神圈", "企业家", "宠物圈", "校园圈", "精英俱乐部", "时尚圈", "数码发烧友", "理财圈", "白领圈", "健身圈", "投资圈", "网购达人", "体育圈", "读书爱好者", "单身圈"};
     private TagAdapter<UserCircleBean.CirclesListBean> mAdapter;
     public static final String BASE_INFO = "From_base_info";
     public static final String CHOOSE_CIRCLE = "choose_circle";

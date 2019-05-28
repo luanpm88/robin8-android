@@ -1084,8 +1084,62 @@
 	<string name="robin460">Please select the promotion platform first</string>
 	<string name="robin461">This task requires sharing screenshots and uploading after at least 30 minutes after sharing, otherwise it will not pass </string>
 	<string name="robin262"> is currently the latest version </string>
-	<string name="robin462"><![CDATA[After sharing, each click of a friend can help you get: <font color=#ecb200> %s₫</font>]]></string>
-	<string name="robin463"><![CDATA[After sharing, you can get it by forwarding: <font color=#ecb200> %s₫</font>]]></string>
-	<string name="robin464"><![CDATA[After sharing, you can get: <font color=#ecb200> %s₫</font>]]></string>
         <string name="notification_error_ssl_cert_invalid">网站不信任，你想继续吗？</string>
+	<string name="robin462"><![CDATA[After sharing, each click of a friend can help you get: <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin463"><![CDATA[After sharing, you can get it by forwarding: <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin464"><![CDATA[After sharing, you can get: <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin466">Source: %s</string>
+	<string name="robin467">Brand name cannot be empty</string>
+	<string name="robin468">company name cannot be empty</string>
+	<string name="robin469">determine the binding current </string>
+	<string name="robin470">determine unbinding </string>
+	<string name="robin471">Hurry up to earn income~</string>
+	<string name="robin472">You have not received the apprentice today, so let’s earn money! </string>
+	<string name="robin473">Please enter feedback </string>
+	<string name="robin474">Thank you for your feedback</string>
+	<string name="robin475">You have not added a contact</string>
+	<string name="robin476"><![CDATA[Invite a friend to download and complete an event, stand up to <font color=#ecb200>2 yuan</font> reward]]></string>
+	<string name="robin477"><![CDATA[Invite a friend to download and complete a <font color=#ecb200>activity</font>]]></string>
+	<string name="robin478"><![CDATA[立得<font color=#ecb200><b>2</b>元</font> Cash reward (your invitation code: %s)]]></string>
+	<string name="robin479">Invitation failed</string>
+	<string name="robin480">Please select promotion platform </string>
+	<string name="robin481">Original graphic: </string>
+	<string name="robin482">Original video: </string>
+	<string name="robin483">Quantity: </string>
+	<string name="robin484">large V user </string>
+	<string name="robin485">microblogging big V has been certified </string>
+	<string name="robin486">microblogging big V certification </string>
+	<string name="robin487">Weibo big V certification failed </string>
+	<string name="robin488">WeChat public number big V has been certified </string>
+	<string name="robin489">WeChat public number big V certification </string>
+	<string name="robin490">WeChat public number big V certification failed </string>
+	<string name="robin491">Weibo/WeChat public number big V has been certified</string>
+	<string name="robin492">Weibo/WeChat public number big V certification</string>
+	<string name="robin493">Weibo/WeChat public number big V certification failed </string>
+	<string name="robin494">Weibo/WeChat public number big V is not certified</string>
+	<string name="robin495">Multiple graphic headlines: </string>
+	<string name="robin496"> single graphic: </string>
+	<string name="robin497">Secondary: </string>
+	<string name="robin498">3-N: </string>
+	<string name="robin499">Forward: </string>
+	<string name="robin500">straight hair: </string>
+	<string name="robin501">live: </string>
+	<string name="robin502">Requires an SD card. </string>
+	<string name="robin503">Phone (IMEI) </string>
+	<string name="robin504">read and write </string>
+	<string name="robin505">Total: ¥</string>
+	<string name="robin506"> screenshot example </string>
+	<string name="robin507">The novice task is completed, the reward has been issued </string>
+	<string name="robin508"> 2. Seven days a cycle, the eighth day to restart the calculation. (If you stop signing in the middle of the day, it will still be recalculated)</string>
+	<string name="robin509">sign-in success</string>
+	<string name="robin510">View screenshot example </string>
+	<string name="robin511">View screenshot example task completed, 0.50 yuan reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
+	<string name="robin512">task completed </string>
+	<string name="robin513">Upload screenshot success, 1.00 yuan reward has been placed in your wallet! The novice task has been completed~</string>
+	<string name="robin514">Shared successfully, the $0.50 reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
+	<string name="robin515">Rejection reason: </string>
+	<string name="robin516">list of people </string>
+	<string name="robin517">personal analysis</string>
+	<string name="robin518"><![CDATA[1. Continuous check-in, get bonus accumulation, \n sign in the first day to get <font color=#2bdbe2>0.10</font> yuan, \n consecutive sign in two days to get <font color=#2bdbe2>0.20</font> yuan, \n consecutive sign in three days to get <font color=#2bdbe2>0.25</font> yuan, \n consecutive sign in four days to get <font color=#2bdbe2>0.30 </font>元, \\n consecutive sign in five days to get <font color=#2bdbe2>0.35</font> yuan, \n consecutive sign in six days to get <font color=#2bdbe2>0.40</font> yuan,\ n consecutively sign in seven days to get <font color=#2bdbe2>0.50</font>. ]]></string>
+	<string name="robin519">The meta reward has been placed in your wallet! \nYou have signed in to %d days in a row, don\'t interrupt oh~</string>
 </resources>

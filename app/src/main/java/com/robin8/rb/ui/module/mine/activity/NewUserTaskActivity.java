@@ -1,5 +1,6 @@
 package com.robin8.rb.ui.module.mine.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Gravity;
@@ -99,7 +100,7 @@ public class NewUserTaskActivity extends BaseActivity implements ShareView {
         llToWc.setOnClickListener(this);
         imgName = new ArrayList<>();
         imgSimple = new ArrayList<>();
-        imgName.add("截图示例");
+        imgName.add(getString(R.string.robin506));
         imgSimple.add((CommonConfig.APP_IMG_URL+"wechat_example.jpg"));
         //底部
         tvButtonRight = ((TextView) view.findViewById(R.id.tv_bottom_right));
@@ -256,18 +257,18 @@ public class NewUserTaskActivity extends BaseActivity implements ShareView {
                                 }
                                 if (TAG.equals("null")) {
                                     //没有绑定微信
-                                    CustomToast.showShort(activity, "正在前往微信中");
+//                                    CustomToast.showShort(activity, "正在前往微信中");
                                     bind(activity, activity.getString(R.string.weixin), wechatType);
                                 } else {
                                     //绑定了就去分享
                                     popSharedialog(activity,wechatType);
                                 }
                             } else {
-                                CustomToast.showShort(activity, "正在前往微信中");
+//                                CustomToast.showShort(activity, "正在前往微信中");
                                 bind(activity, activity.getString(R.string.weixin), wechatType);
                             }
                         } else {
-                            CustomToast.showShort(activity, "正在前往微信中");
+//                            CustomToast.showShort(activity, "正在前往微信中");
                             bind(activity, activity.getString(R.string.weixin), wechatType);
                         }
                     }
@@ -284,10 +285,10 @@ public class NewUserTaskActivity extends BaseActivity implements ShareView {
             @Override
             public void onResponse(String name) {
                 if (null != name) {
-                    CustomToast.showShort(activity, "已成功绑定" + names);
+                    CustomToast.showShort(activity, getString(R.string.robin387) + names);
                     bindPostData(activity, names, name, wechatType);
                 } else {
-                    CustomToast.showLong(activity, "绑定失败，请重试");
+                    CustomToast.showLong(activity, R.string.robin386);
                 }
             }
         });
@@ -336,7 +337,7 @@ public class NewUserTaskActivity extends BaseActivity implements ShareView {
                     // wechatType 0 是朋友圈，1是群组¬
                     popSharedialog(NewUserTaskActivity.this, wechatType);
                 } else {
-                    CustomToast.showShort(activity, "绑定失败");
+                    CustomToast.showShort(activity, R.string.robin386);
                 }
             }
         });
@@ -356,7 +357,7 @@ public class NewUserTaskActivity extends BaseActivity implements ShareView {
 //            platName = Wechat.NAME;
 //        }
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
-        CustomToast.showShort(activity, "正在前往分享...");
+        CustomToast.showShort(activity, R.string.robin435);
         //ShareSDK.initSDK(activity);
         OnekeyShare oks = new OnekeyShare();
         oks.setPlatform(platName);
@@ -398,46 +399,47 @@ public class NewUserTaskActivity extends BaseActivity implements ShareView {
 
         @Override
         public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-            CustomToast.showShort(activity, "分享成功");
+            CustomToast.showShort(activity, R.string.robin379);
             //分享成功
             //弹出奖励框
             showSuccessDialog(0);
             tvButtonLeft.setVisibility(View.VISIBLE);
             viewLIne.setVisibility(View.VISIBLE);
-            tvButtonLeft.setText("上传截图");
-            tvButtonRight.setText("再次分享");
+            tvButtonLeft.setText(R.string.upload_screenshot);
+            tvButtonRight.setText(R.string.share_again);
 
 
         }
 
         @Override
         public void onError(Platform platform, int i, Throwable throwable) {
-            CustomToast.showShort(activity, "分享失败，请重新分享");
+            CustomToast.showShort(activity, R.string.robin378);
 
         }
 
         @Override
         public void onCancel(Platform platform, int i) {
-            CustomToast.showShort(activity, "取消分享");
+            CustomToast.showShort(activity, R.string.robin380);
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void showSuccessDialog(final int count) {
         View view = LayoutInflater.from(NewUserTaskActivity.this).inflate(R.layout.dialog_sign_success, null);
         TextView tvInfo = (TextView) view.findViewById(R.id.tv_info);
         TextView tvKnow = (TextView) view.findViewById(R.id.tv_know);
         TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
         if (count == 0) {
-            tvTitle.setText("分享成功");
-            tvInfo.setText("分享成功，0.50元奖励已放入您的钱包！\n继续完成任务，可获得更多奖励哦～");
+            tvTitle.setText(R.string.robin379);
+            tvInfo.setText(R.string.robin514);
             StringUtil.setTextViewSpan(tvInfo, 35, 5, 9, getResources().getColor(R.color.blue_custom));
         } else if (count == 1) {
-            tvTitle.setText("查看截图示例");
-            tvInfo.setText("查看截图示例任务完成，0.50元奖励已放入您的钱包！继续完成任务，可获得更多奖励哦～");
+            tvTitle.setText(R.string.robin510);
+            tvInfo.setText(R.string.robin511);
             StringUtil.setTextViewSpan(tvInfo, 35, 11, 15, getResources().getColor(R.color.blue_custom));
         } else if (count == 2) {
-            tvTitle.setText("任务完成");
-            tvInfo.setText("上传截图成功，1.00元奖励已放入您的钱包！新手任务已全部完成～");
+            tvTitle.setText(R.string.robin512);
+            tvInfo.setText(R.string.robin513);
             StringUtil.setTextViewSpan(tvInfo, 35, 7, 11, getResources().getColor(R.color.blue_custom));
         }
 

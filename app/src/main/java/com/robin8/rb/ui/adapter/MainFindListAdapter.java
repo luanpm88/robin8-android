@@ -327,7 +327,6 @@ public class MainFindListAdapter extends BaseRecyclerAdapter{
         } else {
             title = "#robin8#";
         }
-        titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
         shareDialog.shareFacebook(HelpTools.getUrl(listModel.getForward_url()),title,mContext.getString(R.string.app_name),IMAGE_URL);
         shareDialog.show();
         viewHolder.tvShareNum.setText(String.valueOf(listModel.getForwards_count() + 1));
@@ -336,38 +335,5 @@ public class MainFindListAdapter extends BaseRecyclerAdapter{
 
 
     private String title;
-    private String titleAdd;
-    private boolean isFirst = false;
-
-    private void share(String platName, FindArticleListModel.ListBean listModel, String url) {
-        if (listModel != null) {
-            title = "#robin8#" + listModel.getTitle();
-        } else {
-            title = "#robin8#";
-        }
-        titleAdd = "\n------  Robin8 个人影响力管理平台  ------";
-        CustomToast.showShort(mContext, "正在前往分享...");
-        //ShareSDK.initSDK(mContext);
-        OnekeyShare oks = new OnekeyShare();
-        oks.setPlatform(platName);
-        //关闭sso授权
-        oks.disableSSOWhenAuthorize();
-//        if (SinaWeibo.NAME.equals(platName)) {
-//            oks.setText(title + url + titleAdd);
-//        } else {
-//            oks.setText(title);
-//        }
-//        oks.setTitle(title);
-//        oks.setTitleUrl(url);
-//        oks.setImageUrl(IMAGE_URL);
-//        if (Wechat.NAME.equals(platName) || WechatMoments.NAME.equals(platName)) {
-//            oks.setUrl(url);
-//        }
-        oks.setSite(mContext.getString(R.string.app_name));
-        oks.setSiteUrl(CommonConfig.SITE_URL);
-        oks.show(mContext);
-    }
-
-
 
 }

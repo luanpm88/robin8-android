@@ -170,33 +170,6 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         }
     }
 
-    /**
-     添加积分
-     @param model
-     */
-    private void setSwitchCredit(LaunchRewordModel model) {
-        SwitchView viewSwitch = mIUserView.getViewSwitch();
-        viewSwitch.setVisibility(View.VISIBLE);
-        mIUserView.setCreditIncomeTv("(可用积分):" + String.valueOf(model.getKol_credit()));
-    }
-
-
-    private void setSwitchView(LaunchRewordModel.Campaign mCampaign) {
-        SwitchView viewSwitch = mIUserView.getViewSwitch();
-        if ((from == SPConstants.MY_LAUNCH_REWORD_ACTIVITY && ! "unpay".equals(mCampaign.getStatus())) || ! clickable && ! mCampaign.isUsed_voucher()) {
-            viewSwitch.setVisibility(View.INVISIBLE);
-            mIUserView.setAccountIncomeTv(totalConsume + "₫");
-        } else {
-            viewSwitch.setVisibility(View.VISIBLE);
-            float amount = mCampaign.getBudget() - mLaunchRewordModel.getKol_amount();
-            String kolAmout = StringUtil.deleteZero(mLaunchRewordModel.getKol_amount());
-            if (amount <= 0) {
-                mIUserView.setAccountIncomeTv(totalConsume + "₫" + "(Số dư：" + kolAmout + "₫" + ")");
-            } else {
-                mIUserView.setAccountIncomeTv(kolAmout + "₫" + "(Số dư：" + kolAmout + "₫" + ")");
-            }
-        }
-    }
 
     private void setBottomView(LaunchRewordModel.Campaign campaign) {
         TextView payInstantlyTv = mIUserView.getPayInstantlyTv();
@@ -297,43 +270,6 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         }
     }
 
-    public void skipToOrder() {
-        RequestParams params = new RequestParams();
-        params.put("id", mCampaign.getId());
-        params.put("used_voucher", mUseKolAmountB ? 1 : 0);
-        getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.PAY_BY_VOUCHER_URL), params, new RequestCallback() {
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-
-            @Override
-            public void onResponse(String response) {
-                LogUtil.LogShitou("去支付", HelpTools.getUrl(CommonConfig.PAY_BY_VOUCHER_URL) + response);
-                // Log.e("xxfigo", "PAY_BY_VOUCHER_URL=" + response);
-                mLaunchRewordModel = GsonTools.jsonToBean(response, LaunchRewordModel.class);
-                if (mLaunchRewordModel == null) {
-                    CustomToast.showShort(mActivity, mActivity.getString(R.string.please_data_wrong));
-                    return;
-                }
-                if (mLaunchRewordModel.getError() == 0) {
-                    LaunchRewordModel.Campaign campaign = mLaunchRewordModel.getCampaign();
-                    if (campaign != null && campaign.getNeed_pay_amount() == 0) {
-                        CustomToast.showShort(mActivity, "支付成功");
-                        mActivity.startActivityForResult(new Intent(mActivity, PaySuccessActivity.class), 0);
-                    } else {
-                        Intent intent = new Intent(mActivity, OrederPayActivity.class);
-                        intent.putExtra("campaign", campaign);
-                        mActivity.startActivityForResult(intent, 0);
-                    }
-                } else {
-                    CustomToast.showShort(mActivity, mLaunchRewordModel.getDetail());
-                }
-            }
-        });
-    }
-
     public void newSkipToOrder() {
         RequestParams params = new RequestParams();
         params.put("id", mCampaign.getId());
@@ -357,7 +293,7 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
                 if (model.getError() == 0) {
                     LaunchRewordModel.Campaign campaign = mLaunchRewordModel.getCampaign();
                     if (model.getCampaign() != null && model.getCampaign().getNeed_pay_amount() == 0) {
-                        CustomToast.showShort(mActivity, "支付成功");
+                        CustomToast.showShort(mActivity, R.string.robin405);
                         mActivity.startActivityForResult(new Intent(mActivity, PaySuccessActivity.class), 0);
                     } else {
                         campaign.setAlipay_url(model.getCampaign().getAlipay_url());

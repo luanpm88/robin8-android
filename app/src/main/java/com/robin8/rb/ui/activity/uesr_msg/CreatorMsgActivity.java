@@ -102,15 +102,18 @@ public class CreatorMsgActivity extends BaseActivity {
     private List<UserShowBean.CirclesBean> initCirclesList;
     private List<UserShowBean.KolBean.CreatorBean.TerracesBean> initTerracesList;
 
-    private final String editFirstBegin = "原创图文：";
-    private final String editSecondBegin = "原创视频：";
-    private final String editThirdBegin = "数量：";
+    private String editFirstBegin;
+    private String editSecondBegin;
+    private String editThirdBegin;
     private boolean isClose = false;
     private boolean isUpdata = false;
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText(getResources().getString(R.string.tv_content_creator).toString());
+        editFirstBegin = getString(R.string.robin481);
+        editSecondBegin = getString(R.string.robin482);
+        editThirdBegin = getString(R.string.robin483);
+        mTVCenter.setText(getResources().getString(R.string.tv_content_creator));
         mTvSave.setVisibility(View.VISIBLE);
         mTvSave.setOnClickListener(this);
     }
