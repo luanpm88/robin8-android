@@ -121,7 +121,7 @@ public class CreateFirstListAdapter extends BaseRecyclerAdapter implements View.
     private void setNormalItem(ViewHolder holder, CpsArticlesBean bean) {
         holder.tvTitle.setText(bean.getTitle());
         if(bean.getMaterial_total_price() != 0){
-            String str = mActivity.getString(R.string.expected_cut) + "<font color=#ecb200> ¥ " + StringUtil.deleteZero(bean.getMaterial_total_price()) + "</font>";
+            String str = mActivity.getString(R.string.expected_cut) + "<font color=#ecb200> " + StringUtil.deleteZero(bean.getMaterial_total_price()) + "₫" + "</font>";
             holder.tvExpected.setText(Html.fromHtml(str));
             holder.tvExpected.setVisibility(View.VISIBLE);
         }else {

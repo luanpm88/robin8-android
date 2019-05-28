@@ -88,7 +88,7 @@
                 android:lineSpacingExtra="1dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="点击  |  ¥ 0.5"
+                android:text="点击  |  0.5₫"
                 android:textColor="@color/sub_black_custom"
                 android:textSize="@dimen/undefine_font_5"
                 tools:ignore="HardcodedText" />
@@ -127,7 +127,7 @@
                     android:id="@+id/tv_total_consume"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="¥ 100"
+                    android:text="100₫"
                     android:textColor="@color/black_custom"
                     android:textSize="@dimen/undefine_font_5"
                     tools:ignore="HardcodedText" />

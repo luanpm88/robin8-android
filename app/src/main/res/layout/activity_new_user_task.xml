@@ -176,7 +176,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:text="根据你的历史表现，你可单次点击赚到：¥ 0.6"
+                android:text="根据你的历史表现，你可单次点击赚到：0.6₫"
                 android:textColor="@color/sub_black_custom"
                 android:textSize="@dimen/undefine_font_4"/>
 

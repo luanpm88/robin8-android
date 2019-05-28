@@ -147,7 +147,7 @@ public class MyLaunchCampaignRejectActivity extends BaseActivity {
         mActivityTitleTv.setText(mCampaign.getName());
         mActivityTimeTv.setText(DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", startTime) + " - " + DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", endTime));
         mBrandInfoTv.setText(mCampaign.getDescription());
-        mTotalConsumeTv.setText("¥ " + totalConsume);
+        mTotalConsumeTv.setText(totalConsume + "₫");
         List<String> invalidReasons = mCampaign.getInvalid_reasons();
 
         if (invalidReasons != null && invalidReasons.size() > 0) {
@@ -164,17 +164,17 @@ public class MyLaunchCampaignRejectActivity extends BaseActivity {
 
         switch (countWay) {
             case "click":
-                mCountWayTv.setText(getString(R.string.click) + " | ¥ " + everyConsume);
+                mCountWayTv.setText(getString(R.string.click) + " | " + everyConsume + "₫");
                 break;
             case "post":
-                mCountWayTv.setText(getString(R.string.post) + " | ¥ " + everyConsume);
+                mCountWayTv.setText(getString(R.string.post) + " | " + everyConsume + "₫");
                 break;
             case "simple_cpi":
-                mCountWayTv.setText(getString(R.string.download) + " | ¥ " + everyConsume);
+                mCountWayTv.setText(getString(R.string.download) + " | " + everyConsume + "₫");
                 break;
 
             case "cpt":
-                mCountWayTv.setText(getString(R.string.task) + " | ¥ " + everyConsume);
+                mCountWayTv.setText(getString(R.string.task) + " | " + everyConsume + "₫");
                 break;
         }
         setImageView(path);

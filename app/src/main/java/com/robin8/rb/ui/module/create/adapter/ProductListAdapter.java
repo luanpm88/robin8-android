@@ -79,8 +79,8 @@ public class ProductListAdapter extends BaseRecyclerAdapter {
             holder.position = position;
             holder.productNameTv.setText(bean.getGoods_name());
             Context ctx = holder.productNameTv.getContext();
-            holder.priceTv.setText(ctx.getString(R.string.price) + " ¥ " + StringUtil.deleteZero(bean.getUnit_price()));
-            String str = ctx.getString(R.string.commission) + "<font color=#ecb200> ¥ " + StringUtil.deleteZero(bean.getKol_commision_wl()) + "</font>";
+            holder.priceTv.setText(ctx.getString(R.string.price) + StringUtil.deleteZero(bean.getUnit_price()) + "₫");
+            String str = ctx.getString(R.string.commission) + "<font color=#ecb200> " + StringUtil.deleteZero(bean.getKol_commision_wl()) + "₫</font>";
             holder.commissionTv.setText(Html.fromHtml(str));
 
             holder.validityOfGoodsTv.setText(ctx.getString(R.string.validity_of_goods) +" "+ bean.getEnd_date());

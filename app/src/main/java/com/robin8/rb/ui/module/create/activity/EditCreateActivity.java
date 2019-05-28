@@ -260,8 +260,8 @@ public class EditCreateActivity extends BaseActivity {
 
         BitmapUtil.loadImage(this.getApplicationContext(), mCpsMaterialsBean.getImg_url(), productIv);
         productNameTv.setText(mCpsMaterialsBean.getGoods_name());
-        priceTv.setText(getString(R.string.price) + " ¥ " + StringUtil.deleteZero(mCpsMaterialsBean.getUnit_price()));
-        String str = getString(R.string.commission) + "<font color=#ecb200> ¥ " + StringUtil.deleteZero(mCpsMaterialsBean.getKol_commision_wl()) + "</font>";
+        priceTv.setText(getString(R.string.price) + " " + StringUtil.deleteZero(mCpsMaterialsBean.getUnit_price()) + "₫");
+        String str = getString(R.string.commission) + "<font color=#ecb200> " + StringUtil.deleteZero(mCpsMaterialsBean.getKol_commision_wl()) + "₫</font>";
         commissionTv.setText(Html.fromHtml(str));
 
         boxDeleteIv.setOnClickListener(new View.OnClickListener() {

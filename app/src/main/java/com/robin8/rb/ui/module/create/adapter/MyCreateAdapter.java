@@ -86,19 +86,19 @@ public class MyCreateAdapter extends BaseRecyclerAdapter {
         holder.titleTv.setText(bean.getTitle());
         BitmapUtil.loadImage(context, bean.getCover(), holder.picIv);
 
-        String earningStr = context.getString(R.string.earning) + "<font color=#ecb200>¥ 0</font>";
-        String earnedStr = context.getString(R.string.earning) + "<font color=#ecb200>¥ 0</font>";
+        String earningStr = context.getString(R.string.earning) + "<font color=#ecb200> 0₫</font>";
+        String earnedStr = context.getString(R.string.earning) + "<font color=#ecb200> 0₫</font>";
         switch (data.campaignType) {
             case TYPE_SHARES:
             case TYPE_PASSED:
                 holder.lineBottom.setVisibility(View.GONE);
                 holder.bottomTv.setVisibility(View.GONE);
                 if (TYPE_PASSED.equals(data.campaignType)) {
-                    earningStr = context.getString(R.string.earning) + "<font color=#ecb200>¥ " + StringUtil.deleteZero(bean.getWriting_forecast_commission()) + "</font>";
-                    earnedStr = context.getString(R.string.earned) + "<font color=#ecb200>¥ " + StringUtil.deleteZero(bean.getWriting_settled_commission()) + "</font>";
+                    earningStr = context.getString(R.string.earning) + "<font color=#ecb200> " + StringUtil.deleteZero(bean.getWriting_forecast_commission()) + "₫" + "</font>";
+                    earnedStr = context.getString(R.string.earned) + "<font color=#ecb200> " + StringUtil.deleteZero(bean.getWriting_settled_commission()) + "₫" + "</font>";
                 } else {
-                    earningStr = context.getString(R.string.earning) + "<font color=#ecb200>¥ " + StringUtil.deleteZero(bean.getShare_forecast_commission()) + "</font>";
-                    earnedStr = context.getString(R.string.earned) + "<font color=#ecb200>¥ " + StringUtil.deleteZero(bean.getShare_settled_commission()) + "</font>";
+                    earningStr = context.getString(R.string.earning) + "<font color=#ecb200> " + StringUtil.deleteZero(bean.getShare_forecast_commission()) + "₫" + "</font>";
+                    earnedStr = context.getString(R.string.earned) + "<font color=#ecb200> " + StringUtil.deleteZero(bean.getShare_settled_commission()) + "₫" + "</font>";
                 }
 
                 break;

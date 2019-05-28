@@ -112,7 +112,7 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                 holder.tvReason.setVisibility(View.GONE);
                 holder.topTv.setText(R.string.earning);
                 holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
-                holder.bottomTv.setText("¥ " + StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+                holder.bottomTv.setText(StringUtil.deleteZero(campaignInviteEntity.getEarn_money()) + "₫");
                 holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
                 holder.llReason.setClickable(false);
                 holder.nameTv.setClickable(false);
@@ -122,7 +122,7 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                     holder.tvReason.setVisibility(View.GONE);
                     holder.topTv.setText(R.string.earned);
                     holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
-                    holder.bottomTv.setText("¥ " + StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+                    holder.bottomTv.setText(StringUtil.deleteZero(campaignInviteEntity.getEarn_money()) + "₫");
                     holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
                     holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
                     holder.llReason.setClickable(false);
@@ -133,7 +133,7 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                         holder.llReason.setVisibility(View.VISIBLE);
                         holder.tvReason.setVisibility(View.GONE);
                         holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
-                        holder.bottomTv.setText("¥ " + StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+                        holder.bottomTv.setText(StringUtil.deleteZero(campaignInviteEntity.getEarn_money()) + "₫");
                         holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
                     } else if (invite_status.equals("rejected")) {
                         holder.llReason.setVisibility(View.GONE);
@@ -152,7 +152,7 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                         holder.llReason.setVisibility(View.VISIBLE);
                         holder.tvReason.setVisibility(View.GONE);
                         holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
-                        holder.bottomTv.setText("¥ " + StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+                        holder.bottomTv.setText(StringUtil.deleteZero(campaignInviteEntity.getEarn_money()) + "₫");
                         holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
                     }
 
@@ -175,7 +175,7 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                     holder.tvReason.setVisibility(View.GONE);
                     holder.topTv.setText(R.string.earning);
                     holder.topTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
-                    holder.bottomTv.setText("¥ " + StringUtil.deleteZero(campaignInviteEntity.getEarn_money()));
+                    holder.bottomTv.setText(StringUtil.deleteZero(campaignInviteEntity.getEarn_money()) + "₫");
                     holder.bottomTv.setTextColor(UIUtils.getColor(R.color.gray_custom));
                     holder.llReason.setClickable(false);
                     holder.nameTv.setClickable(false);

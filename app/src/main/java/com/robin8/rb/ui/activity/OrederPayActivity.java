@@ -117,7 +117,7 @@ public class OrederPayActivity extends BaseActivity {
          mBrandAmountF = mCampaign.getBrand_amount();
         mPayNumberTv.setText(getString(R.string.robin375,StringUtil.deleteZero(mCampaign.getNeed_pay_amount())));
         mPayConfirmTv.setText(getString(R.string.robin376,StringUtil.deleteZero(mCampaign.getNeed_pay_amount())));
-        mAccountIncomeTv.setText("¥ " + StringUtil.deleteZero(mBrandAmountF));
+        mAccountIncomeTv.setText(StringUtil.deleteZero(mBrandAmountF) + "₫");
     }
 
     @Override
@@ -228,7 +228,7 @@ public class OrederPayActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == SPConstants.OREDERPAYACTIVITY){
             mBrandAmountF = data.getFloatExtra("brand_amount", 0);
-            mAccountIncomeTv.setText("¥ " + StringUtil.deleteZero(mBrandAmountF));
+            mAccountIncomeTv.setText(StringUtil.deleteZero(mBrandAmountF) + "₫");
         }
     }
 

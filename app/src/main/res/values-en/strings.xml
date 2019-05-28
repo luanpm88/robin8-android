@@ -163,7 +163,7 @@
 	    
 	<string name="total_consume"> total consumption balance </string>
 	    
-	<string name="current_amount"> yuan (current balance: ¥ </string>
+	<string name="current_amount"> yuan (current balance: ₫ </string>
 	<string name="right_">)</string>
 	
 	<string name="count_detail">calculation details </string>
@@ -916,7 +916,7 @@
 	<string name="robin285">go to read</string>
 	<string name="robin286">Reward: depending on the activity </string>
 	<string name="robin287">Reward: Massive cash red envelopes in you </string>
-	<string name="robin288">Reward: ¥ 2.00 </string>
+	<string name="robin288">Reward: 2.00₫ </string>
 	<string name="robin289">Invite friends (%d/10)</string>
 	<string name="robin290">Content Mining (%d/10)</string>
 	<string name="robin291">Active sharing (%d/4)</string>
@@ -961,10 +961,10 @@
 	<string name="robin330">Certificate code failed to send!</string>
 	<string name="robin331">Verification code sent successfully </string>
 	<string name="robin332">Please enter your mobile number!</string>
-	<string name="robin333"><![CDATA[has got <font color=#ecb200>%d</font> clicks, earned <font color=#ecb200>¥%s </font> ]]> </string>
-	<string name="robin334"><![CDATA[has got <font color=#ecb200>%d</font> clicks, will earn <font color=#ecb200>¥%s </font> ]]> </string>
-	<string name="robin335"><![CDATA[Completed, earned <font color=#ecb200>¥%s</font>]]></string>
-	<string name="robin336"><![CDATA[Event is in progress, will soon earn <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin333"><![CDATA[has got <font color=#ecb200>%d</font> clicks, earned <font color=#ecb200>%s₫ </font> ]]> </string>
+	<string name="robin334"><![CDATA[has got <font color=#ecb200>%d</font> clicks, will earn <font color=#ecb200>%s₫ </font> ]]> </string>
+	<string name="robin335"><![CDATA[Completed, earned <font color=#ecb200>%s₫</font>]]></string>
+	<string name="robin336"><![CDATA[Event is in progress, will soon earn <font color=#ecb200>%s₫</font>]]></string>
 	<string name="robin337">Upload screenshot success</string>
 	<string name="robin338">click </string>
 	<string name="robin339">effect </string>
@@ -990,7 +990,7 @@
 	<string name="robin359">Please fill in the WeChat quote</string>
 	<string name="robin360">The audit failed, please contact customer service </string>
 	<string name="robin361">Camera film </string>
-	<string name="robin362">activity budget: ¥ %s </string>
+	<string name="robin362">activity budget: %s₫ </string>
 	<string name="robin363">integration: %s</string>
 	<string name="robin364">View evaluation</string>
 	<string name="robin365">Rejection reason: %s</string>
@@ -1003,8 +1003,8 @@
 	<string name="robin372">empty</string>
 	<string name="robin373">invitation </string>
 	<string name="robin374">invited </string>
-	<string name="robin375">payment amount: ¥ %s </string>
-	<string name="robin376">Confirm payment ¥ %s </string>
+	<string name="robin375">payment amount:  %s₫ </string>
+	<string name="robin376">Confirm payment  %s₫ </string>
 	<string name="robin377">new things</string>
 	<string name="robin378">Share failed, please share again</string>
 	<string name="robin379">share success</string>
@@ -1084,8 +1084,8 @@
 	<string name="robin460">Please select the promotion platform first</string>
 	<string name="robin461">This task requires sharing screenshots and uploading after at least 30 minutes after sharing, otherwise it will not pass </string>
 	<string name="robin262"> is currently the latest version </string>
-	<string name="robin462"><![CDATA[After sharing, each click of a friend can help you get: <font color=#ecb200>¥ %s</font>]]></string>
-	<string name="robin463"><![CDATA[After sharing, you can get it by forwarding: <font color=#ecb200>¥ %s</font>]]></string>
-	<string name="robin464"><![CDATA[After sharing, you can get: <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin462"><![CDATA[After sharing, each click of a friend can help you get: <font color=#ecb200> %s₫</font>]]></string>
+	<string name="robin463"><![CDATA[After sharing, you can get it by forwarding: <font color=#ecb200> %s₫</font>]]></string>
+	<string name="robin464"><![CDATA[After sharing, you can get: <font color=#ecb200> %s₫</font>]]></string>
         <string name="notification_error_ssl_cert_invalid">网站不信任，你想继续吗？</string>
 </resources>

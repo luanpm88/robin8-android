@@ -991,7 +991,7 @@
 	<string name="robin359">Vui lòng điền vào trích dẫn WeChat</string>
 	<string name="robin360">Việc kiểm toán không thành công, vui lòng liên hệ với dịch vụ khách hàng</string>
 	<string name="robin361">Phim máy ảnh</string>
-	<string name="robin362">ngân sách hoạt động: ¥ %s </string>
+	<string name="robin362">ngân sách hoạt động: %s₫</string>
 	<string name="robin363">Tích hợp: %s</string>
 	<string name="robin364">Xem đánh giá</string>
 	<string name="robin365">Lý do từ chối: %s</string>

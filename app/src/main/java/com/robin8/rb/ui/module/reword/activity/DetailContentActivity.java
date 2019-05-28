@@ -451,7 +451,7 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
                 mTVShareInfo.setText(getString(R.string.post_this_page_get_reword));
                 break;
         }
-        mTVMoney.setText("¥ " + everyConsume);
+        mTVMoney.setText(everyConsume + "₫");
         if (!TextUtils.isEmpty(path) && !path.startsWith("http://")) {
             BitmapUtil.loadLocalImage(this, path, mImageView);
         } else {

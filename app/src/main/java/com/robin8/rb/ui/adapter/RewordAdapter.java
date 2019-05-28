@@ -447,7 +447,7 @@ public class RewordAdapter extends BaseAdapter {
 
         if (activityStatues == EXECUTING) {//活动未结束
             viewHolder.tv_last.setText(mActivity.getResources().getString(R.string.robin008));
-            viewHolder.tv_remainder.setText("¥ " + StringUtil.deleteZero(String.valueOf(item.getCampaign().getBudget())));//剩余金额
+            viewHolder.tv_remainder.setText(StringUtil.deleteZero(String.valueOf(item.getCampaign().getBudget())) + "₫");//剩余金额
         } else if (activityStatues == EXECUTED) {//活动已结束
             // viewHolder.tv_last.setText("已抢完");
             viewHolder.payinfoLinearLayout.setVisibility(View.GONE);

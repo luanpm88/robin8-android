@@ -158,7 +158,7 @@ public class WalletActivity extends BaseActivity implements IWalletView {
 
     @Override
     public void setTVTotal(String text) {
-        String todayTotalIncome = getString(R.string.total_count) + "<font color=#ffffff>¥ " + StringUtil.deleteZero(text) + "</font>";
+        String todayTotalIncome = getString(R.string.total_count) + "<font color=#ffffff> " + StringUtil.deleteZero(text) + "₫" + "</font>";
         mTVTotal.setText(Html.fromHtml(todayTotalIncome));
     }
 

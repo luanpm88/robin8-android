@@ -183,7 +183,7 @@ public class MyCampaignDetailActivity extends BaseActivity {
         int totalClick = mCampaign.getTotal_click();
         int availClick = mCampaign.getAvail_click();
 
-        mNumberConsumedTv.setText("¥ " + StringUtil.deleteZero(takeBudget));
+        mNumberConsumedTv.setText(StringUtil.deleteZero(takeBudget) + "₫");
         mNumberPersonTv.setText(String.valueOf(shareTimes));
         mTotalClickTv.setText(String.valueOf(totalClick));
         mCountClickTv.setText(String.valueOf(availClick));
@@ -191,14 +191,14 @@ public class MyCampaignDetailActivity extends BaseActivity {
         mActivityTitleTv.setText(mCampaign.getName());
         mActivityTimeTv.setText(DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", startTime) + " - " + DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", endTime));
         mBrandInfoTv.setText(mCampaign.getDescription());
-        mTotalConsumeTv.setText("¥ " + totalConsume);
+        mTotalConsumeTv.setText(totalConsume + "₫");
 
         switch (countWay) {
             case "click":
-                mCountWayTv.setText(getString(R.string.click) + " | ¥ " + everyConsume);
+                mCountWayTv.setText(getString(R.string.click) + " | " + everyConsume + "₫");
                 break;
             case "post":
-                mCountWayTv.setText(getString(R.string.post) + " | ¥ " + everyConsume);
+                mCountWayTv.setText(getString(R.string.post) + " | " + everyConsume + "₫");
                 break;
         }
         setImageView(path);

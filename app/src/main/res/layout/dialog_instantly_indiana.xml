@@ -141,7 +141,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:text="共消耗余额6元(当前余额：¥ 900.3)"
+        android:text="共消耗余额6元(当前余额：900.3 ₫)"
         android:textColor="@color/gray_custom"
         android:textSize="@dimen/undefine_font_5"
         tools:ignore="HardcodedText" />

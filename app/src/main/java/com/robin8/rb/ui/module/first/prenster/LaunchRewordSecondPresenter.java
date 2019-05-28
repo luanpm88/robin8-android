@@ -135,22 +135,22 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         mIUserView.setActivityTitleTv(mCampaign.getName());
         mIUserView.setActivityTimeTv(DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", startTime) + " - " + DateUtil.formatTime("yyyy-MM-dd'T'HH:mm:ssZ", endTime));
         mIUserView.setBrandInfoTv(mCampaign.getDescription());
-        mIUserView.setTotalConsumeTv("¥ " + totalConsume);
+        mIUserView.setTotalConsumeTv(totalConsume + "₫");
 
         switch (countWay) {
             case "click":
-                mIUserView.setCountWayTv(mActivity.getString(R.string.click) + " | ¥ " + everyConsume);
+                mIUserView.setCountWayTv(mActivity.getString(R.string.click) + " | " + everyConsume + "₫");
                 break;
             case "post":
-                mIUserView.setCountWayTv(mActivity.getString(R.string.post) + " | ¥ " + everyConsume);
+                mIUserView.setCountWayTv(mActivity.getString(R.string.post) + " | " + everyConsume + "₫");
                 break;
 
             case "simple_cpi":
-                mIUserView.setCountWayTv(mActivity.getString(R.string.download) + " | ¥ " + everyConsume);
+                mIUserView.setCountWayTv(mActivity.getString(R.string.download) + " | " + everyConsume + "₫");
                 break;
 
             case "cpt":
-                mIUserView.setCountWayTv(mActivity.getString(R.string.task) + " | ¥ " + everyConsume);
+                mIUserView.setCountWayTv(mActivity.getString(R.string.task) + " | " + everyConsume + "₫");
                 break;
         }
 
@@ -162,10 +162,10 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         if (mUseKolAmountB) {
             if (amount <= 0) {
                 mIUserView.setCountTv(String.valueOf(0));
-                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mCampaign.getBudget()));
+                mIUserView.setCreditIncomeTv(StringUtil.deleteZero(mCampaign.getBudget()) + "₫");
             } else {
                 mIUserView.setCountTv(StringUtil.deleteZero(amount));
-                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10));
+                mIUserView.setCreditIncomeTv(StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10) + "₫");
             }
         }
     }
@@ -185,15 +185,15 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         SwitchView viewSwitch = mIUserView.getViewSwitch();
         if ((from == SPConstants.MY_LAUNCH_REWORD_ACTIVITY && ! "unpay".equals(mCampaign.getStatus())) || ! clickable && ! mCampaign.isUsed_voucher()) {
             viewSwitch.setVisibility(View.INVISIBLE);
-            mIUserView.setAccountIncomeTv("¥ " + totalConsume);
+            mIUserView.setAccountIncomeTv(totalConsume + "₫");
         } else {
             viewSwitch.setVisibility(View.VISIBLE);
             float amount = mCampaign.getBudget() - mLaunchRewordModel.getKol_amount();
             String kolAmout = StringUtil.deleteZero(mLaunchRewordModel.getKol_amount());
             if (amount <= 0) {
-                mIUserView.setAccountIncomeTv("¥ " + totalConsume + "(余额：¥" + kolAmout + ")");
+                mIUserView.setAccountIncomeTv(totalConsume + "₫" + "(Số dư：" + kolAmout + "₫" + ")");
             } else {
-                mIUserView.setAccountIncomeTv("¥ " + kolAmout + "(余额：¥" + kolAmout + ")");
+                mIUserView.setAccountIncomeTv(kolAmout + "₫" + "(Số dư：" + kolAmout + "₫" + ")");
             }
         }
     }
@@ -257,17 +257,17 @@ public class LaunchRewordSecondPresenter extends BasePresenter implements Presen
         if (mUseKolAmountB) {
             if (amount <= 0) {
                 mIUserView.setCountTv(String.valueOf(0));
-                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mCampaign.getBudget()));
+                mIUserView.setCreditIncomeTv(StringUtil.deleteZero(mCampaign.getBudget()) + "₫");
             } else {
                 mIUserView.setCountTv(StringUtil.deleteZero(amount));
-                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10));
+                mIUserView.setCreditIncomeTv(StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10) + "₫");
             }
         } else {
             mIUserView.setCountTv(StringUtil.deleteZero(String.valueOf(mCampaign.getBudget())));
             if (amount <= 0) {
-                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mCampaign.getBudget()));
+                mIUserView.setCreditIncomeTv(StringUtil.deleteZero(mCampaign.getBudget()) + "₫");
             } else {
-                mIUserView.setCreditIncomeTv(" ¥"+StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10));
+                mIUserView.setCreditIncomeTv(StringUtil.deleteZero(mLaunchRewordModel.getKol_credit()/10) + "₫");
             }
         }
         //        float ammount = mCampaign.getBudget() - mLaunchRewordModel.getKol_amount();

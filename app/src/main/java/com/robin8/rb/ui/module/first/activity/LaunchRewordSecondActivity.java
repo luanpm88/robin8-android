@@ -223,7 +223,7 @@ public class LaunchRewordSecondActivity extends BaseActivity implements ILaunchR
 
     @Override
     public void setCountTv(String title) {
-        mCountTv.setText("合计: ¥ " + title);
+        mCountTv.setText("Tổng cộng: " + title + "₫");
     }
 
     @Override

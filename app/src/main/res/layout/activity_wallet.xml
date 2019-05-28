@@ -161,7 +161,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="合计：¥0"
+                    android:text="合计：0₫"
                     android:textColor="@color/sub_gray_custom"
                     android:textSize="@dimen/undefine_font_6"
                     tools:ignore="HardcodedText" />

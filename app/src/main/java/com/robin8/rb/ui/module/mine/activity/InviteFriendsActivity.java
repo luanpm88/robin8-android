@@ -302,7 +302,7 @@ public class InviteFriendsActivity extends BaseActivity {
     }
 
     private void updateView(InviteFridensModel inviteFridensModel) {
-        tvRewordMoney.setText("¥ " + StringUtil.deleteZero(inviteFridensModel.getInvite_amount()));
+        tvRewordMoney.setText(StringUtil.deleteZero(inviteFridensModel.getInvite_amount()) + "₫");
         tvInviteNumber.setText(String.valueOf(inviteFridensModel.getInvite_count()));
         if (inviteFridensModel.getInvite_code() == 0) {
             tvRewordInfo.setText(Html.fromHtml("邀请好友下载并完成一个活动,立得<font color=#ecb200>" + "2元" + "</font>奖励"));

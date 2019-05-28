@@ -136,7 +136,7 @@
     <string name="this_issue">本期期号：</string>
     <string name="draw_time">揭晓时间：</string>
     <string name="total_consume">共消耗余额</string>
-    <string name="current_amount">元(当前余额：¥</string>
+    <string name="current_amount">元(当前余额：₫</string>
     <string name="right_">)</string>
 
     <string name="count_detail">计算详情</string>
@@ -689,7 +689,7 @@
     <string name="robin285">去阅读</string>
     <string name="robin286">奖励：视活动而定</string>
     <string name="robin287">奖励：海量现金红包砸中你</string>
-    <string name="robin288">奖励：¥ 2.00</string>
+    <string name="robin288">奖励：2.00₫</string>
     <string name="robin289">邀请好友(%d/10)</string>
     <string name="robin290">内容挖掘(%d/10)</string>
     <string name="robin291">活动分享(%d/4)</string>
@@ -733,10 +733,10 @@
     <string name="robin330">验证码发送失败!</string>
     <string name="robin331">验证码发送成功</string>
     <string name="robin332">请输入手机号码!</string>
-    <string name="robin333"><![CDATA[已获得<font color=#ecb200>\" + %d+ \"</font>次点击，已赚<font color=#ecb200>¥ </font> %s]]></string>
-    <string name="robin334"><![CDATA[已获得<font color=#ecb200>\\\" + %d+ \\\"</font>次点击，即将赚<font color=#ecb200>¥ </font> %s]]></string>
-	<string name="robin335"><![CDATA[已完成，已赚<font color=#ecb200>¥%s</font>]]></string>
-    <string name="robin336"><![CDATA[活动进行中，即将赚<font color=#ecb200>¥ %s</font>]]></string>
+    <string name="robin333"><![CDATA[已获得<font color=#ecb200>\" + %d+ \"</font>次点击，已赚<font color=#ecb200> </font> %s₫]]></string>
+    <string name="robin334"><![CDATA[已获得<font color=#ecb200>\\\" + %d+ \\\"</font>次点击，即将赚<font color=#ecb200> </font> %s₫]]></string>
+	<string name="robin335"><![CDATA[已完成，已赚<font color=#ecb200>%s₫</font>]]></string>
+    <string name="robin336"><![CDATA[活动进行中，即将赚<font color=#ecb200> %s₫</font>]]></string>
 	<string name="robin337">上传截图成功</string>
 	<string name="robin338">点击</string>
 	<string name="robin339">效果</string>
@@ -762,7 +762,7 @@
     <string name="robin359">请填写微信报价</string>
     <string name="robin360">审核未通过,请联系客服</string>
     <string name="robin361">相机胶卷</string>
-    <string name="robin362">活动预算：¥ %s</string>
+    <string name="robin362">活动预算： %s₫</string>
     <string name="robin363">积分：%s</string>
     <string name="robin364">查看评价</string>
     <string name="robin365">拒绝原因：%s</string>
@@ -775,8 +775,8 @@
     <string name="robin372">空</string>
     <string name="robin373">邀请</string>
     <string name="robin374">已邀请</string>
-    <string name="robin375">支付金额：¥  %s</string>
-    <string name="robin376">确认支付 ¥  %s</string>
+    <string name="robin375">支付金额： %s₫</string>
+    <string name="robin376">确认支付  %s₫</string>
     <string name="robin377">新鲜事</string>
     <string name="robin378">分享失败，请重新分享</string>
     <string name="robin379">分享成功</string>
