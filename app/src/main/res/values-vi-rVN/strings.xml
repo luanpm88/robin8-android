@@ -1083,7 +1083,9 @@
 	<string name="robin458">lỗi định dạng chi phí nhấp chuột đơn</string>
 	<string name="robin459">Lựa chọn nền tảng quảng cáo</string>
 	<string name="robin460">Trước tiên, hãy chọn nền tảng quảng cáo</string>
-	<string name="notification_error_ssl_cert_invalid">
-Trang web không đáng tin cậy, bạn có muốn tiếp tục không?</string>
-
+	<string name="robin461">此任务要求分享后保留至少30分钟后截图并上传，否则不予以通过</string>
+	<string name="robin262">当前已经是最新版本</string>
+	<string name="robin462"><![CDATA[分享后，好友每个点击可帮您获得:<font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin463"><![CDATA[分享后，您可通过转发活动获得:<font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin464"><![CDATA[分享后，您可通过完成任务获得:<font color=#ecb200>¥ %s</font>]]></string>
 </resources>

@@ -597,7 +597,7 @@ public class DetailContentHelper {
                 tvPutResult.setText(countView.getContext().getString(R.string.robin270));
                 switch (bean.getCampaign().getPer_budget_type()) {
                     case CAMPAIGN_TYPE_CLICK://
-                        infoView.setText(Html.fromHtml("分享后，好友每个点击可帮您获得:<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(bean.getCampaign().getPer_action_budget())));
+                        infoView.setText(Html.fromHtml(infoView.getContext().getString(R.string.robin462,StringUtil.deleteZero(bean.getCampaign().getPer_action_budget()))));
                         countView.setText(getCountDownTime(bean, false));
                         break;
                     case CAMPAIGN_TYPE_CPA:
@@ -605,7 +605,7 @@ public class DetailContentHelper {
                         countView.setText(getCountDownTime(bean, false));
                         break;
                     case CAMPAIGN_TYPE_POST://
-                        infoView.setText(Html.fromHtml("分享后，您可通过转发活动获得:<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(bean.getCampaign().getPer_action_budget())));
+                        infoView.setText(Html.fromHtml(infoView.getContext().getString(R.string.robin463,StringUtil.deleteZero(bean.getCampaign().getPer_action_budget()))));
                         countView.setText(getCountDownTime(bean, false));
                         break;
                     case CAMPAIGN_TYPE_RECRUIT:
@@ -623,7 +623,7 @@ public class DetailContentHelper {
                         break;
 
                     case CAMPAIGN_TYPE_CPT://
-                        infoView.setText(Html.fromHtml("分享后，您可通过完成任务获得:<font color=#ecb200>¥ </font>" + StringUtil.deleteZero(bean.getCampaign().getPer_action_budget())));
+                        infoView.setText(Html.fromHtml(infoView.getContext().getString(R.string.robin464,StringUtil.deleteZero(bean.getCampaign().getPer_action_budget()))));
                         countView.setText(getCountDownTime(bean, false));
                         break;
                 }

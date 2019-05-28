@@ -39,21 +39,19 @@ import com.robin8.rb.base.BasePager;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.StatisticsAgency;
-import com.robin8.rb.ui.model.LoginBean;
-import com.robin8.rb.ui.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.ui.pager.BigVPager;
-import com.robin8.rb.ui.pager.FindPager;
-import com.robin8.rb.ui.pager.FirstPager;
-import com.robin8.rb.ui.pager.MinePager;
-import com.robin8.rb.ui.pager.RewordPager;
 import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.receiver.DemoIntentService;
 import com.robin8.rb.receiver.DemoPushService;
 import com.robin8.rb.task.LocationService;
-import com.robin8.rb.util.update.UpdateNewApk;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.ui.model.LoginBean;
+import com.robin8.rb.ui.module.mine.rongcloud.RongCloudBean;
+import com.robin8.rb.ui.pager.FirstPager;
+import com.robin8.rb.ui.pager.MinePager;
+import com.robin8.rb.ui.pager.RewordPager;
 import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.util.CacheUtils;
 import com.robin8.rb.util.CustomToast;
@@ -67,7 +65,7 @@ import com.robin8.rb.util.PermissionHelper;
 import com.robin8.rb.util.RequestCode;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.XPermissionUtils;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.util.update.UpdateNewApk;
 
 import java.util.ArrayList;
 
@@ -609,60 +607,60 @@ public class MainActivity extends BaseBackHomeActivity {
     };
 
     public void showShadowDialog(final Activity activity, final int page) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_shadow_layout, null);
-        ImageView imgBg = (ImageView) view.findViewById(R.id.img_shadow_mine);
-        final ImageView imgBgFirst = (ImageView) view.findViewById(R.id.img_shadow_first);
-        final ImageView imgBgFirstRight = (ImageView) view.findViewById(R.id.img_shadow_first_right);
-        RelativeLayout llShadow = (RelativeLayout) view.findViewById(R.id.ll_shadow);
-        LinearLayout llFirstBottom = (LinearLayout) view.findViewById(R.id.ll_first_bottom);
-        final ImageView imgStartLeft = (ImageView) view.findViewById(R.id.img_shadow_first_start_left);
-        final ImageView imgStartRight = (ImageView) view.findViewById(R.id.img_shadow_first_start_right);
-        if (page == 0) {
-            imgBgFirst.setVisibility(View.VISIBLE);
-            imgBgFirstRight.setVisibility(View.INVISIBLE);
-            llFirstBottom.setVisibility(View.VISIBLE);
-            imgStartLeft.setVisibility(View.VISIBLE);
-            imgStartRight.setVisibility(View.INVISIBLE);
-        } else {
-            imgBg.setVisibility(View.VISIBLE);
-        }
-        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
-        llShadow.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                if (page == 0) {
-                    HelpTools.insertCommonXml(HelpTools.ShadowFirst, getString(R.string.submit));
-                    if (imgStartLeft.getVisibility() == View.VISIBLE) {
-                        imgStartLeft.setVisibility(View.INVISIBLE);
-                        imgBgFirst.setVisibility(View.INVISIBLE);
-                        imgBgFirstRight.setVisibility(View.VISIBLE);
-                        imgStartRight.setVisibility(View.VISIBLE);
-                    } else {
-                        cdm.dismiss();
-                    }
-                } else {
-                    HelpTools.insertCommonXml(HelpTools.ShadowMine, getString(R.string.submit));
-                    cdm.dismiss();
-                }
-            }
-        });
-
-        Window win = cdm.dg.getWindow();
-
-        WindowManager.LayoutParams lp = win.getAttributes();
-
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-
-        lp.dimAmount = 0.2f;
-
-        win.setAttributes(lp);
-        cdm.dg.setCanceledOnTouchOutside(true);
-        cdm.dg.getWindow().setGravity(Gravity.CENTER);
-        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-        cdm.showDialog();
+//        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_shadow_layout, null);
+//        ImageView imgBg = (ImageView) view.findViewById(R.id.img_shadow_mine);
+//        final ImageView imgBgFirst = (ImageView) view.findViewById(R.id.img_shadow_first);
+//        final ImageView imgBgFirstRight = (ImageView) view.findViewById(R.id.img_shadow_first_right);
+//        RelativeLayout llShadow = (RelativeLayout) view.findViewById(R.id.ll_shadow);
+//        LinearLayout llFirstBottom = (LinearLayout) view.findViewById(R.id.ll_first_bottom);
+//        final ImageView imgStartLeft = (ImageView) view.findViewById(R.id.img_shadow_first_start_left);
+//        final ImageView imgStartRight = (ImageView) view.findViewById(R.id.img_shadow_first_start_right);
+//        if (page == 0) {
+//            imgBgFirst.setVisibility(View.VISIBLE);
+//            imgBgFirstRight.setVisibility(View.INVISIBLE);
+//            llFirstBottom.setVisibility(View.VISIBLE);
+//            imgStartLeft.setVisibility(View.VISIBLE);
+//            imgStartRight.setVisibility(View.INVISIBLE);
+//        } else {
+//            imgBg.setVisibility(View.VISIBLE);
+//        }
+//        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
+//        llShadow.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                if (page == 0) {
+//                    HelpTools.insertCommonXml(HelpTools.ShadowFirst, getString(R.string.submit));
+//                    if (imgStartLeft.getVisibility() == View.VISIBLE) {
+//                        imgStartLeft.setVisibility(View.INVISIBLE);
+//                        imgBgFirst.setVisibility(View.INVISIBLE);
+//                        imgBgFirstRight.setVisibility(View.VISIBLE);
+//                        imgStartRight.setVisibility(View.VISIBLE);
+//                    } else {
+//                        cdm.dismiss();
+//                    }
+//                } else {
+//                    HelpTools.insertCommonXml(HelpTools.ShadowMine, getString(R.string.submit));
+//                    cdm.dismiss();
+//                }
+//            }
+//        });
+//
+//        Window win = cdm.dg.getWindow();
+//
+//        WindowManager.LayoutParams lp = win.getAttributes();
+//
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//
+//        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+//
+//        lp.dimAmount = 0.2f;
+//
+//        win.setAttributes(lp);
+//        cdm.dg.setCanceledOnTouchOutside(true);
+//        cdm.dg.getWindow().setGravity(Gravity.CENTER);
+//        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
+//        cdm.showDialog();
 
     }
 
