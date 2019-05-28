@@ -106,25 +106,42 @@ public class UserInformationActivity extends BaseActivity {
     private UserShowBean.KolBean kolBean;
     private List<String> circleName;
 
-    private final String bigVName = "大V用户";
-    private final String weiBoPass = "微博大V已认证";
-    private final String weiBoCheck = "微博大V认证中";
-    private final String weiBoUnPass = "微博大V认证未通过";
+    private String bigVName = "";
+    private String weiBoPass = "";
+    private String weiBoCheck = "";
+    private String weiBoUnPass = "";
 
-    private final String wechatPass = "微信公众号大V已认证";
-    private final String wechatCheck = "微信公众号大V认证中";
-    private final String wechatUnPass = "微信公众号大V认证未通过";
+    private String wechatPass = "";
+    private String wechatCheck = "";
+    private String wechatUnPass = "";
 
-    private final String allPass = "微博／微信公众号大V已认证";
-    private final String allCheck = "微博／微信公众号大V认证中";
-    private final String allUnPass = "微博／微信公众号大V认证未通过";
-    private final String allUnCheck = "微博／微信公众号大V未认证";
+    private String allPass = "";
+    private String allCheck = "";
+    private String allUnPass = "";
+    private String allUnCheck = "";
 
-    private final String craetorName = "内容创作者";
-    private final String publicName = "普通用户";
+    private String craetorName = "";
+    private String publicName = "";
 
     @Override
     public void setTitleView() {
+
+        bigVName = getString(R.string.robin484);
+        weiBoPass = getString(R.string.robin485);
+        weiBoCheck = getString(R.string.robin486);
+        weiBoUnPass = getString(R.string.robin487);
+
+        wechatPass = getString(R.string.robin488);
+        wechatCheck = getString(R.string.robin489);
+        wechatUnPass = getString(R.string.robin490);
+
+        allPass = getString(R.string.robin491);
+        allCheck = getString(R.string.robin492);
+        allUnPass = getString(R.string.robin493);
+        allUnCheck = getString(R.string.robin494);
+
+        craetorName = getString(R.string.tv_content_creator);
+        publicName = getString(R.string.tv_general_user);
         mTVCenter.setText(R.string.robin316);
     }
 
@@ -135,7 +152,7 @@ public class UserInformationActivity extends BaseActivity {
         mySocialAdapter = new MySocialAdapter();
         mDataList = new ArrayList<>();
         circleName = new ArrayList<>();
-        mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user).toString(), "", true));
+        mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user), "", true));
         mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
         mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", getResources().getString(R.string.tv_general_user), getString(R.string.robin429), false));
         lvList.setAdapter(mySocialAdapter);
@@ -287,109 +304,107 @@ public class UserInformationActivity extends BaseActivity {
             holder.civImage.setImageResource(mDataList.get(position).getIcon());
             holder.tvUserId.setText(mDataList.get(position).getName());
             holder.tvCheckResult.setText(mDataList.get(position).getResult());
-            switch (mDataList.get(position).getName()) {
-                case bigVName:
-                    if (mDataList.get(position).isOpen == false) {
-                        //审核未通过
-                        if (public_wechat_account != null && weibo_account != null) {
-                            if (public_wechat_account.getStatus() == 0 && weibo_account.getStatus() == 0) {
-                                holder.vIconReject.setVisibility(View.GONE);
-                                holder.tvCheckResult.setText(allCheck);
-                            } else if (public_wechat_account.getStatus() != 0 && weibo_account.getStatus() == 0) {
-                                //微博中认证中+微信审核拒绝
-                                holder.vIconReject.setVisibility(View.VISIBLE);
-                                holder.tvCheckResult.setText(wechatUnPass);
-                            } else if (public_wechat_account.getStatus() == 0 && weibo_account.getStatus() != 0) {
-                                //微博审核拒绝+微信认证中
-                                holder.vIconReject.setVisibility(View.VISIBLE);
-                                holder.tvCheckResult.setText(weiBoUnPass);
-                            } else {
-                                //两个都不等于0,认证未通过
-                                holder.vIconReject.setVisibility(View.VISIBLE);
-                                holder.tvCheckResult.setText(allUnPass);
-                            }
-                        } else if (public_wechat_account != null && weibo_account == null) {
-                            if (public_wechat_account.getStatus() == 0) {
-                                holder.tvCheckResult.setText(wechatCheck);
-                                holder.vIconReject.setVisibility(View.GONE);
-                            } else {
-                                //微博未开通+微信审核拒绝
-                                holder.tvCheckResult.setText(wechatUnPass);
-                                holder.vIconReject.setVisibility(View.VISIBLE);
-                            }
-                        } else if (public_wechat_account == null && weibo_account != null) {
-                            if (weibo_account.getStatus() == 0) {
-                                holder.tvCheckResult.setText(weiBoCheck);
-                                holder.vIconReject.setVisibility(View.GONE);
-                            } else {
-                                //微博审核拒绝+微信未开通
-                                holder.tvCheckResult.setText(weiBoUnPass);
-                                holder.vIconReject.setVisibility(View.VISIBLE);
-                            }
-                        } else {
-                            //都未开通
-                            holder.tvCheckResult.setText(allUnCheck);
+            if (bigVName.equals(mDataList.get(position).getName())) {
+                if (mDataList.get(position).isOpen == false) {
+                    //审核未通过
+                    if (public_wechat_account != null && weibo_account != null) {
+                        if (public_wechat_account.getStatus() == 0 && weibo_account.getStatus() == 0) {
                             holder.vIconReject.setVisibility(View.GONE);
+                            holder.tvCheckResult.setText(allCheck);
+                        } else if (public_wechat_account.getStatus() != 0 && weibo_account.getStatus() == 0) {
+                            //微博中认证中+微信审核拒绝
+                            holder.vIconReject.setVisibility(View.VISIBLE);
+                            holder.tvCheckResult.setText(wechatUnPass);
+                        } else if (public_wechat_account.getStatus() == 0 && weibo_account.getStatus() != 0) {
+                            //微博审核拒绝+微信认证中
+                            holder.vIconReject.setVisibility(View.VISIBLE);
+                            holder.tvCheckResult.setText(weiBoUnPass);
+                        } else {
+                            //两个都不等于0,认证未通过
+                            holder.vIconReject.setVisibility(View.VISIBLE);
+                            holder.tvCheckResult.setText(allUnPass);
                         }
-
+                    } else if (public_wechat_account != null && weibo_account == null) {
+                        if (public_wechat_account.getStatus() == 0) {
+                            holder.tvCheckResult.setText(wechatCheck);
+                            holder.vIconReject.setVisibility(View.GONE);
+                        } else {
+                            //微博未开通+微信审核拒绝
+                            holder.tvCheckResult.setText(wechatUnPass);
+                            holder.vIconReject.setVisibility(View.VISIBLE);
+                        }
+                    } else if (public_wechat_account == null && weibo_account != null) {
+                        if (weibo_account.getStatus() == 0) {
+                            holder.tvCheckResult.setText(weiBoCheck);
+                            holder.vIconReject.setVisibility(View.GONE);
+                        } else {
+                            //微博审核拒绝+微信未开通
+                            holder.tvCheckResult.setText(weiBoUnPass);
+                            holder.vIconReject.setVisibility(View.VISIBLE);
+                        }
                     } else {
-                        //审核通过
-                        if (public_wechat_account != null && weibo_account == null) {
-                            holder.tvCheckResult.setText(wechatPass);
-                            holder.vIconReject.setVisibility(View.GONE);
-                        } else if (public_wechat_account == null && weibo_account != null) {
-                            holder.tvCheckResult.setText(weiBoPass);
-                            holder.vIconReject.setVisibility(View.GONE);
-                        } else if (public_wechat_account != null && weibo_account != null) {
-                            if (public_wechat_account.getStatus() == 1 && weibo_account.getStatus() == 1) {
-                                holder.tvCheckResult.setText(allPass);
-                                holder.vIconReject.setVisibility(View.GONE);
-                            } else if (public_wechat_account.getStatus() != 1 && weibo_account.getStatus() == 1) {
-                                if (public_wechat_account.getStatus() == - 1) {
-                                    holder.vIconReject.setVisibility(View.VISIBLE);
-                                } else {
-                                    holder.vIconReject.setVisibility(View.GONE);
-                                }
-                                holder.tvCheckResult.setText(weiBoPass);
-                            } else if (public_wechat_account.getStatus() == 1 && weibo_account.getStatus() != 1) {
-                                if (weibo_account.getStatus() == - 1) {
-                                    holder.vIconReject.setVisibility(View.VISIBLE);
-                                } else {
-                                    holder.vIconReject.setVisibility(View.GONE);
-                                }
-                                holder.tvCheckResult.setText(wechatPass);
-                            } else {
-                                //不存在的情况，已开通情况下，必定有一方状态为1已经通过
-                                holder.vIconReject.setVisibility(View.GONE);
-                                holder.tvCheckResult.setText(allUnCheck);
-                            }
-
-                        }
+                        //都未开通
+                        holder.tvCheckResult.setText(allUnCheck);
+                        holder.vIconReject.setVisibility(View.GONE);
                     }
-                    break;
-                case craetorName:
-                    if (mDataList.get(position).isOpen == false) {
-                        if (creator != null) {
-                            if (creator.getStatus() == 0) {
-                                holder.tvCheckResult.setText(R.string.robin432);
-                                holder.vIconReject.setVisibility(View.GONE);
-                            } else if (creator.getStatus() == - 1) {
-                                holder.tvCheckResult.setText(R.string.robin433);
+
+                } else {
+                    //审核通过
+                    if (public_wechat_account != null && weibo_account == null) {
+                        holder.tvCheckResult.setText(wechatPass);
+                        holder.vIconReject.setVisibility(View.GONE);
+                    } else if (public_wechat_account == null && weibo_account != null) {
+                        holder.tvCheckResult.setText(weiBoPass);
+                        holder.vIconReject.setVisibility(View.GONE);
+                    } else if (public_wechat_account != null && weibo_account != null) {
+                        if (public_wechat_account.getStatus() == 1 && weibo_account.getStatus() == 1) {
+                            holder.tvCheckResult.setText(allPass);
+                            holder.vIconReject.setVisibility(View.GONE);
+                        } else if (public_wechat_account.getStatus() != 1 && weibo_account.getStatus() == 1) {
+                            if (public_wechat_account.getStatus() == -1) {
                                 holder.vIconReject.setVisibility(View.VISIBLE);
                             } else {
                                 holder.vIconReject.setVisibility(View.GONE);
                             }
+                            holder.tvCheckResult.setText(weiBoPass);
+                        } else if (public_wechat_account.getStatus() == 1 && weibo_account.getStatus() != 1) {
+                            if (weibo_account.getStatus() == -1) {
+                                holder.vIconReject.setVisibility(View.VISIBLE);
+                            } else {
+                                holder.vIconReject.setVisibility(View.GONE);
+                            }
+                            holder.tvCheckResult.setText(wechatPass);
+                        } else {
+                            //不存在的情况，已开通情况下，必定有一方状态为1已经通过
+                            holder.vIconReject.setVisibility(View.GONE);
+                            holder.tvCheckResult.setText(allUnCheck);
+                        }
 
+                    }
+                }
+
+            } else if (craetorName.equals(mDataList.get(position).getName())) {
+                if (mDataList.get(position).isOpen == false) {
+                    if (creator != null) {
+                        if (creator.getStatus() == 0) {
+                            holder.tvCheckResult.setText(R.string.robin432);
+                            holder.vIconReject.setVisibility(View.GONE);
+                        } else if (creator.getStatus() == -1) {
+                            holder.tvCheckResult.setText(R.string.robin433);
+                            holder.vIconReject.setVisibility(View.VISIBLE);
                         } else {
                             holder.vIconReject.setVisibility(View.GONE);
                         }
+
                     } else {
                         holder.vIconReject.setVisibility(View.GONE);
                     }
-                    break;
-                case publicName:
+                } else {
                     holder.vIconReject.setVisibility(View.GONE);
-                    break;
+                }
+
+            } else if (publicName.equals(mDataList.get(position).getName())) {
+                holder.vIconReject.setVisibility(View.GONE);
 
             }
             holder.layoutItem.setOnClickListener(new View.OnClickListener() {
@@ -399,30 +414,27 @@ public class UserInformationActivity extends BaseActivity {
                     if (! NetworkUtil.isNetworkAvailable(UserInformationActivity.this)) {
                         CustomToast.showShort(UserInformationActivity.this, getResources().getString(R.string.no_net).toString());
                     } else {
-                        switch (mDataList.get(position).getName()) {
-                            case publicName:
-                                //传送圈子和微信好友个数
-                                Intent intentP = new Intent(UserInformationActivity.this, PublicUserMsgActivity.class);
-                                intentP.putExtra(PublicUserMsgActivity.PUBLIC, intentInfo);
-                                startActivityForResult(intentP, SPConstants.USER_NEW_INFO);
-                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                break;
-                            case bigVName:
-                                Intent intentB = new Intent(UserInformationActivity.this, UserSelectActivity.class);
-                                if (mDataList.get(position).isOpen || public_wechat_account != null || weibo_account != null) {
-                                    intentB.putExtra(UserSelectActivity.SELECTPLAT, intentInfo);
-                                }
-                                startActivityForResult(intentB, SPConstants.USER_NEW_INFO);
-                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                break;
-                            case craetorName:
-                                Intent intentC = new Intent(UserInformationActivity.this, CreatorMsgActivity.class);
-                                if (mDataList.get(position).isOpen || creator != null) {
-                                    intentC.putExtra(CreatorMsgActivity.CREATOR, intentInfo);
-                                }
-                                startActivityForResult(intentC, SPConstants.USER_NEW_INFO);
-                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                break;
+                        if (publicName.equals(mDataList.get(position).getName())) {//传送圈子和微信好友个数
+                            Intent intentP = new Intent(UserInformationActivity.this, PublicUserMsgActivity.class);
+                            intentP.putExtra(PublicUserMsgActivity.PUBLIC, intentInfo);
+                            startActivityForResult(intentP, SPConstants.USER_NEW_INFO);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                        } else if (bigVName.equals(mDataList.get(position).getName())) {
+                            Intent intentB = new Intent(UserInformationActivity.this, UserSelectActivity.class);
+                            if (mDataList.get(position).isOpen || public_wechat_account != null || weibo_account != null) {
+                                intentB.putExtra(UserSelectActivity.SELECTPLAT, intentInfo);
+                            }
+                            startActivityForResult(intentB, SPConstants.USER_NEW_INFO);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                        } else if (craetorName.equals(mDataList.get(position).getName())) {
+                            Intent intentC = new Intent(UserInformationActivity.this, CreatorMsgActivity.class);
+                            if (mDataList.get(position).isOpen || creator != null) {
+                                intentC.putExtra(CreatorMsgActivity.CREATOR, intentInfo);
+                            }
+                            startActivityForResult(intentC, SPConstants.USER_NEW_INFO);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                         }
                     }
@@ -623,48 +635,4 @@ public class UserInformationActivity extends BaseActivity {
         }
     }
 
-    private void initViewData() {
-        final BasePresenter mBasePresenter = new BasePresenter();
-        mBasePresenter.getDataFromServer(true, HttpRequest.GET, HelpTools.getUrl(CommonConfig.UPDATE_BASE_INFOS_URL), null, new RequestCallback() {
-
-            @Override
-            public void onError(Exception e) {
-                if (mWProgressDialog != null) {
-                    mWProgressDialog.dismiss();
-                }
-            }
-
-            @Override
-            public void onResponse(String response) {
-                if (mWProgressDialog != null) {
-                    mWProgressDialog.dismiss();
-                }
-                LogUtil.LogShitou("更新数据", "==>" + response);
-                UserCircleBean bean = GsonTools.jsonToBean(response, UserCircleBean.class);
-                if (bean != null) {
-                    if (bean.getError() == 0) {
-                        CacheUtils.putString(UserInformationActivity.this, HelpTools.BASEINFO, response);
-                    }
-                }
-            }
-        });
-    }
-
-    //       if (userShowBean.getKol().isIs_big_v() == true) {
-    //        tvHaveNotFirst.setVisibility(View.GONE);
-    //        civBigvImage.setImageResource(R.mipmap.icon_bigv_yes);
-    //    } else {
-    //        tvHaveNotFirst.setVisibility(View.VISIBLE);
-    //        civBigvImage.setImageResource(R.mipmap.icon_bigv_no);
-    //    }
-    //            if (userShowBean.getKol().isIs_creator() == true) {
-    //        tvHaveNotSecond.setVisibility(View.GONE);
-    //        civCreatorImage.setImageResource(R.mipmap.icon_creator_yes);
-    //    } else {
-    //        tvHaveNotSecond.setVisibility(View.VISIBLE);
-    //        civCreatorImage.setImageResource(R.mipmap.icon_creator_no);
-    //    }
-    //            if (userShowBean.getKol().isIs_big_v() == false && userShowBean.getKol().isIs_creator() == false) {
-    //        tvHaveNotSecond.setVisibility(View.GONE);
-    //    }
 }

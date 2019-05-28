@@ -214,10 +214,10 @@ public class UserSignPresenter extends BasePresenter implements PresenterI {
         TextView tvKnow = (TextView) view.findViewById(R.id.tv_know);
         final CustomDialogManager cdm = new CustomDialogManager(mActivity, view);
         if (mSignHistoryModel != null) {
-            s = "签到成功，" + StringUtil.addZeroForNum(String.valueOf(mSignHistoryModel.getToday_already_amount()), 4) + "元奖励已放入您的钱包！\n您已连续签到" + mSignHistoryModel.getContinuous_checkin_count() + "天，不要间断哦～";
+            s = mActivity.getString(R.string.robin509)+"，" + StringUtil.addZeroForNum(String.valueOf(mSignHistoryModel.getToday_already_amount()), 4) + mActivity.getString(R.string.robin519, mSignHistoryModel.getContinuous_checkin_count());
 
         } else {
-            s = "签到成功";
+            s = mActivity.getString(R.string.robin509);
         }
         tvInfo.setText(s);
         if (mSignHistoryModel != null) {

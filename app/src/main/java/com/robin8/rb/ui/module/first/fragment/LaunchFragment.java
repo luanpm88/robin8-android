@@ -82,8 +82,8 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     private static final int MALE = 1;
     private static final int FEMALE = 2;
 
-    private String[] agePostArr = {"全部", "(0,20)", "(20,40)", "(40,60)", "(60,100)"};
-    private String[] ageArr = {"全部", "0-20", "20-40", "40-60", "60-100"};
+    private String[] agePostArr;
+    private String[] ageArr;
     private EditText mETTitle;// 活动标题
     private TextView mTVTitleNum;
     private EditText mETIntroduce;// 活动简介
@@ -461,14 +461,14 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     private boolean checkInfoCompelete(boolean showToast) {
         if (TextUtils.isEmpty(mTVInfoSubType.getText().toString().trim())) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "请选择推广平台");
+                CustomToast.showShort(mActivity, R.string.robin480);
             }
             return false;
         }
 
         if (TextUtils.isEmpty(mTVInfo3.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "请选择活动类型");
+                CustomToast.showShort(mActivity, R.string.robin453);
             }
             return false;
         } else {
@@ -486,40 +486,40 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
         if (TextUtils.isEmpty(mETTitle.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "请填写活动标题");
+                CustomToast.showShort(mActivity, R.string.robin126);
             }
             return false;
         }
 
         if (TextUtils.isEmpty(mETIntroduce.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "请填写活动简介");
+                CustomToast.showShort(mActivity, R.string.robin127);
             }
             return false;
         }
 
         if (! mImageLoadB) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "请上传封面图片");
+                CustomToast.showShort(mActivity, R.string.robin128);
             }
             return false;
         }
 
         if (TextUtils.isEmpty(mETAddress.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "请填写活动链接");
+                CustomToast.showShort(mActivity, R.string.robin129);
             }
             return false;
         } else if (! RegExpUtil.isUrl(mETAddress.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "活动链接格式不正确");
+                CustomToast.showShort(mActivity, R.string.robin454);
                 return false;
             }
         }
 
         if (TextUtils.isEmpty(mETConsume4.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "请填写活动总预算");
+                CustomToast.showShort(mActivity, R.string.robin455);
             }
             return false;
         } else {
@@ -542,7 +542,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
 
         if (TextUtils.isEmpty(mETConsume5.getText().toString())) {
             if (showToast) {
-                CustomToast.showShort(mActivity, "请填写单个费用");
+                CustomToast.showShort(mActivity, R.string.robin456);
             }
             return false;
         } else {
@@ -551,13 +551,13 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                 float oneComsuneF = Float.parseFloat(oneComsuneStr);
                 if (oneComsuneF < 0.2) {
                     if (showToast) {
-                        CustomToast.showShort(mActivity, "单个点击费用最低0.2元");
+                        CustomToast.showShort(mActivity, R.string.robin457);
                     }
                     return false;
                 }
             } catch (Exception e) {
                 if (showToast) {
-                    CustomToast.showShort(mActivity, "单个点击费用格式错误");
+                    CustomToast.showShort(mActivity, R.string.robin458);
                 }
                 return false;
             }
@@ -628,7 +628,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         mTvTitle5 = (TextView) layoutPerConsume.findViewById(R.id.tv_title);
         mETConsume5 = (EditText) layoutPerConsume.findViewById(R.id.et_consume);
 
-        tvTitleSubType.setText("推广平台选择");
+        tvTitleSubType.setText(R.string.robin459);
         tvTitle1.setText(mArrayTitle[0]);
         tvTitle2.setText(mArrayTitle[1]);
         tvTitle3.setText(mArrayTitle[2]);
@@ -663,7 +663,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
             public void onClick(View v) {
                 //  mTVInfo3.setText("");
                 if (TextUtils.isEmpty(stChoseType)) {
-                    CustomToast.showShort(mActivity, "请先选择推广平台");
+                    CustomToast.showShort(mActivity, R.string.robin460);
                 } else {
                     // prepareData();
                     //                    if (pvTime!=null){
@@ -976,7 +976,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         if (! checkInfoCompelete(true)) {
             return;
         }
-        CustomToast.showLong(mActivity, "提交中..");
+//        CustomToast.showLong(mActivity, "提交中..");
         LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
         requestMap.put("name", mETTitle.getText().toString());
         requestMap.put("description", mETIntroduce.getText().toString());
@@ -989,7 +989,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
         requestMap.put("age", getPostAge(mTVInfoAge.getText().toString()));
         //发布平台sub_type
         if (TextUtils.isEmpty(stChoseType)) {
-            CustomToast.showShort(mActivity, "请选择推广平台");
+            CustomToast.showShort(mActivity, R.string.robin460);
             return;
         } else {
             if (stChoseType.equals((mActivity.getString(R.string.weixin) + mActivity.getString(R.string.wechat) + "," + mActivity.getString(R.string.weibo)))) {
@@ -1004,7 +1004,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
                 requestMap.put("sub_type", "wechat");
             }
         }
-        String gender = "全部";
+        String gender = getString(R.string.all);
         if (getString(R.string.male).equals(mTVInfoSex.getText())) {
             gender = "1";
         } else if (getString(R.string.female).equals(mTVInfoSex.getText())) {
@@ -1074,6 +1074,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     private String getDisPlay(String age) {
+        agePostArr = new String[]{getString(R.string.all), "(0,20)", "(20,40)", "(40,60)", "(60,100)"};
         for (int i = 0; i < agePostArr.length; i++) {
             if (! TextUtils.isEmpty(age) && age.equals(agePostArr[i])) {
                 return ageArr[i];
@@ -1083,6 +1084,7 @@ public class LaunchFragment extends BaseFragment implements View.OnClickListener
     }
 
     private String getPostAge(String ageS) {
+        ageArr = new String[] {getString(R.string.all), "0-20", "20-40", "40-60", "60-100"};
         for (int i = 0; i < ageArr.length; i++) {
             if (! TextUtils.isEmpty(ageS) && ageS.equals(ageArr[i])) {
                 return agePostArr[i];

@@ -164,9 +164,9 @@ public class CollectListActivity extends BaseActivity {
                             layoutNoWait.setVisibility(View.VISIBLE);
                         }
                         if (thisType==0){
-                            tvWaitThis.setText("赶快收徒赚收益吧～");
+                            tvWaitThis.setText(R.string.robin471);
                         }else {
-                            tvWaitThis.setText("您今日还没有收徒，赶快收徒赚收益吧～");
+                            tvWaitThis.setText(R.string.robin472);
                         }
                     }
                 }

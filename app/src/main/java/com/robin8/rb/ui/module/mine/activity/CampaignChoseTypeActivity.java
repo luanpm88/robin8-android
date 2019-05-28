@@ -20,7 +20,7 @@ public class CampaignChoseTypeActivity extends BaseActivity {
 
     @Override
     public void setTitleView() {
-        mTVCenter.setText("推广平台选择");
+        mTVCenter.setText(R.string.robin459);
         mBottomTv.setVisibility(View.VISIBLE);
         mBottomTv.setText(R.string.submit);
         mBottomTv.setOnClickListener(this);
@@ -73,7 +73,7 @@ public class CampaignChoseTypeActivity extends BaseActivity {
                   //  intent.putExtra("chose",R.string.weibo);
                     chose =getString(R.string.weibo);
                 }else {
-                    CustomToast.showShort(CampaignChoseTypeActivity.this,"请选择发布平台");
+                    CustomToast.showShort(CampaignChoseTypeActivity.this,R.string.robin460);
                     return;
                 }
                 intent.putExtra("chose",chose);

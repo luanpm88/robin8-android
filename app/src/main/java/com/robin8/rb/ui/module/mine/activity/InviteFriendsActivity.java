@@ -252,7 +252,7 @@ public class InviteFriendsActivity extends BaseActivity {
                 final InviteModel inviteModel = GsonTools.jsonToBean(response, InviteModel.class);
 
                 if (inviteModel.getKol_users().size() == 0) {
-                    CustomToast.showShort(InviteFriendsActivity.this, "您尚未添加联系人");
+                    CustomToast.showShort(InviteFriendsActivity.this, R.string.robin475);
                     mListView.setVisibility(View.GONE);
                     mEmptyLayout.setVisibility(View.VISIBLE);
                 }else {
@@ -305,12 +305,12 @@ public class InviteFriendsActivity extends BaseActivity {
         tvRewordMoney.setText("¥ " + StringUtil.deleteZero(inviteFridensModel.getInvite_amount()));
         tvInviteNumber.setText(String.valueOf(inviteFridensModel.getInvite_count()));
         if (inviteFridensModel.getInvite_code() == 0) {
-            tvRewordInfo.setText(Html.fromHtml("邀请好友下载并完成一个活动,立得<font color=#ecb200>" + "2元" + "</font>奖励"));
+            tvRewordInfo.setText(Html.fromHtml(getString(R.string.robin476)));
         } else {
            // String s = "邀请好友下载登录并完成一个活动";
-            tvRewordInfo.setText(Html.fromHtml("邀请好友下载登录并完成一个<font color=#ecb200>活动</font>"));
+            tvRewordInfo.setText(Html.fromHtml(getString(R.string.robin477)));
            // StringUtil.setTextViewSpan(tvRewordInfo,0,13,15,getResources().getColor(R.color.yellow_custom));
-            tvRewordInfoTwo.setText(Html.fromHtml("立得 <font color=#ecb200><b>2</b>元</font> 现金奖励（您的邀请码："+String.valueOf(inviteFridensModel.getInvite_code())+"）"));
+            tvRewordInfoTwo.setText(Html.fromHtml(getString(R.string.robin478,String.valueOf(inviteFridensModel.getInvite_code()))));
 
         }
     }
@@ -489,7 +489,7 @@ public class InviteFriendsActivity extends BaseActivity {
                                     holder.mTvStatus.setText(R.string.robin374);
                                     holder.mTvStatus.setBackgroundResource(R.drawable.shape_solid_gray);
                                 } else {
-                                    CustomToast.showShort(InviteFriendsActivity.this, "邀请失败");
+                                    CustomToast.showShort(InviteFriendsActivity.this, R.string.robin479);
                                 }
 
 

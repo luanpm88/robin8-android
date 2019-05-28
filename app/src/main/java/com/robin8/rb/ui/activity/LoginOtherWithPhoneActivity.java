@@ -70,62 +70,6 @@ public class LoginOtherWithPhoneActivity extends BaseActivity implements ILoginV
         }
     }
 
-    //    private void complete() {
-    //            String phoneNumber = mETPhoneNumber.getText().toString();
-    //            String checkNum = mETCheckNum.getText().toString();
-    //
-    //            if (TextUtils.isEmpty(phoneNumber)) {
-    //                CustomToast.showShort(this, "请输入手机号码!");
-    //                return;
-    //            }
-    //
-    //            if (TextUtils.isEmpty(checkNum)) {
-    //                CustomToast.showShort(this, "请输入验证码!");
-    //                return;
-    //            }
-    //
-    //            if (!RegExpUtil.checkMobile(phoneNumber)) {
-    //            CustomToast.showShort(this, "请输入正确的手机号码!");
-    //            return;
-    //        }
-    //BasePresenter basePresenter = new BasePresenter();
-    //        RequestParams requestParams = new RequestParams();
-    //        requestParams.put("mobile_number", phoneNumber);
-    //        requestParams.put("code", checkNum);
-    //        basePresenter.getDataFromServer(true, HttpRequest.PUT, HelpTools.getUrl(CommonConfig.BIND_MOBILE_URL), requestParams, new RequestCallback() {
-    //            @Override
-    //            public void onError(Exception e) {
-    //
-    //            }
-    //
-    //            @Override
-    //            public void onResponse(String response) {
-    //                parseJson(response);
-    //            }
-    //        });
-    //    }
-    //
-    //    private void parseJson(String response) {
-    //        LoginBean loginBean = GsonTools.jsonToBean(response, LoginBean.class);
-    //
-    //        if (loginBean == null) {
-    //            CustomToast.showShort(this, getString(R.string.please_data_wrong));
-    //            return;
-    //        }
-    //
-    //        if (loginBean.getError() == 0) {
-    //            HelpTools.insertLoginInfo(HelpTools.Token, BaseApplication.decodeToken(loginBean.getKol().getIssue_token()));
-    //            HelpTools.insertLoginInfo(HelpTools.LoginNumber, loginBean.getKol().getMobile_number());
-    //            BaseApplication.getInstance().setLoginBean(loginBean);
-    //            if (BaseApplication.getInstance().hasLogined()) {
-    //                NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
-    //            }
-    //            LoginHelper.loginSuccess(loginBean, from, this);
-    //        } else {
-    //            CustomToast.showShort(this, loginBean.getDetail());
-    //        }
-    //    }
-
     @Override
     public String getPhoneNumber() {
 

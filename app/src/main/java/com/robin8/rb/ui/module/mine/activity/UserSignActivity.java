@@ -60,7 +60,7 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
     private NoScrollGridView mGridView;
     private List<SignDaysModel> listGrid;
     private float[] rewards = {0.10f, 0.20f, 0.25f, 0.30f, 0.35f, 0.40f, 0.50f};
-    private String[] weeks = {"1天", "2天", "3天", "4天", "5天", "6天", "7天"};
+    private String[] weeks;
     private LinearLayoutForListView myList;
     private List<SimpleModel> mTaskList;
     private TextView tvSign;
@@ -245,7 +245,7 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == NEW_USER_TASKS_OVER) {
-                CustomToast.showShort(UserSignActivity.this, "新手任务完成，奖励已发放");
+                CustomToast.showShort(UserSignActivity.this, R.string.robin507);
                 llTasks.setVisibility(View.GONE);
             }
         }
@@ -302,8 +302,8 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
         topTv.setText(R.string.sign_rule);
         confirmTV.setText(R.string.known);
         // infoTv.setText(Html.fromHtml("1.连续签到,获得奖励累加,\n第一天签到获得<font color=#2bdbe2>" + "0.10" + "</font>元,\n连续签到两天获得<font color=#2bdbe2>" + "0.20" + "</font>元,\n连续签到三天获得<font color=#2bdbe2>" + "0.25" + "</font>元,\n连续签到四天获得<font color=#2bdbe2>" + "0.30" + "</font>元,\n连续签到五天获得<font color=#2bdbe2>" + "0.35" + "</font>元,\n连续签到六天获得<font color=#2bdbe2>" + "0.40" + "</font>元,\n连续签到七天获得<font color=#2bdbe2>" + "0.50" + "</font>元。")+"\n2.七天一个周期,第八天重新开始计算。(若中途某一天停止签到,仍会重新计算)");
-        infoTv.setText(Html.fromHtml("1.连续签到,获得奖励累加,\n第一天签到获得<font color=#2bdbe2>" + "0.10" + "</font>元,\n连续签到两天获得<font color=#2bdbe2>" + "0.20" + "</font>元,\n连续签到三天获得<font color=#2bdbe2>" + "0.25" + "</font>元,\n连续签到四天获得<font color=#2bdbe2>" + "0.30" + "</font>元,\n连续签到五天获得<font color=#2bdbe2>" + "0.35" + "</font>元,\n连续签到六天获得<font color=#2bdbe2>" + "0.40" + "</font>元,\n连续签到七天获得<font color=#2bdbe2>" + "0.50" + "</font>元。"));
-        infoSecondTv.setText("2.七天一个周期,第八天重新开始计算。(若中途某一天停止签到,仍会重新计算)");
+        infoTv.setText(Html.fromHtml(getString(R.string.robin518)));
+        infoSecondTv.setText(R.string.robin508);
         infoTv.setGravity(Gravity.LEFT);
         infoSecondTv.setGravity(Gravity.LEFT);
         final CustomDialogManager cdm = new CustomDialogManager(UserSignActivity.this, view);
@@ -327,10 +327,10 @@ public class UserSignActivity extends BaseActivity implements IUserSignView {
         TextView tvKnow = (TextView) view.findViewById(R.id.tv_know);
         final CustomDialogManager cdm = new CustomDialogManager(UserSignActivity.this, view);
         if (bean != null) {
-            s = "签到成功，" + StringUtil.addZeroForNum(String.valueOf(bean.getToday_can_amount()), 4) + "元奖励已放入您的钱包！\n您已连续签到" + (bean.getContinuous_checkin_count() + 1) + "天，不要间断哦～";
+            s = getString(R.string.robin509)+"，" + StringUtil.addZeroForNum(String.valueOf(bean.getToday_can_amount()), 4) + getString(R.string.robin519, bean.getContinuous_checkin_count() + 1);
 
         } else {
-            s = "签到成功";
+            s = getString(R.string.robin509);
         }
         tvInfo.setText(s);
         if (bean != null) {

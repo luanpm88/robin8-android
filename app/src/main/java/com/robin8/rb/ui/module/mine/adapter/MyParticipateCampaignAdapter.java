@@ -1,5 +1,6 @@
 package com.robin8.rb.ui.module.mine.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -85,6 +86,7 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, boolean isItem) {
         ViewHolder holder = (ViewHolder) viewHolder;
@@ -145,7 +147,7 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                                 holder.tvReason.setText(R.string.robin318);
                             }
                         } else {
-                            holder.tvReason.setText("拒绝原因：" + campaignInviteEntity.getReject_reason());
+                            holder.tvReason.setText(holder.bottomTv.getContext().getString(R.string.robin515) + campaignInviteEntity.getReject_reason());
                         }
                     } else {
                         holder.topTv.setText(R.string.earning);
@@ -168,7 +170,7 @@ public class MyParticipateCampaignAdapter extends BaseRecyclerAdapter {
                             holder.tvReason.setText(R.string.robin318);
                         }
                     } else {
-                        holder.tvReason.setText("拒绝原因：" + campaignInviteEntity.getReject_reason());
+                        holder.tvReason.setText(holder.bottomTv.getContext().getString(R.string.robin515) + campaignInviteEntity.getReject_reason());
                     }
                 } else {
                     holder.llReason.setVisibility(View.VISIBLE);

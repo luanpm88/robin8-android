@@ -220,27 +220,6 @@ public class BannerWebActivity extends BaseActivity{
         }
     }
 
-    private void share(String platName, String url) {
-        CustomToast.showShort(BannerWebActivity.this, "前往分享...");
-        //ShareSDK.initSDK(DetailContentActivity.this);
-        OnekeyShare oks = new OnekeyShare();
-        oks.setPlatform(platName);
-        //关闭sso授权
-        oks.disableSSOWhenAuthorize();
-
-        if (infosBean != null) {
-            List<MineShowModel.VoteInfosBean> vote_infos = infosBean.getVote_infos();
-            oks.setText(vote_infos.get(0).getDesc());
-            oks.setTitle(vote_infos.get(0).getTitle());
-            oks.setTitleUrl(vote_infos.get(0).getIcon_url());
-            oks.setUrl(url);
-        }
-        oks.setImageUrl(IMAGE_URL);
-        oks.setSite(getResources().getString(R.string.app_name));
-        oks.setSiteUrl(CommonConfig.SITE_URL);
-        oks.show(BannerWebActivity.this);
-    }
-
 
     @Override
     public void onClick(View v) {

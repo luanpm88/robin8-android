@@ -116,15 +116,20 @@ public class WechatMsgActivity extends BaseActivity {
     private ArrayList<String> cityNameList;
     private List<String> circleNameList;
     public static final String WECHAT = "WechatMsg";
-    private final String editFirstBegin = "单图文：";
-    private final String editSecondBegin = "多图文头条：";
-    private final String editThirdBegin = "次条：";
-    private final String editFourthBegin = "3-N条：";
-    private final String editFifthBegin = "数量：";
+    private String editFirstBegin ;
+    private String editSecondBegin ;
+    private String editThirdBegin;
+    private String editFourthBegin;
+    private String editFifthBegin;
 
 
     @Override
     public void setTitleView() {
+        editFirstBegin = getString(R.string.robin496);
+        editSecondBegin = getString(R.string.robin495);
+        editThirdBegin = getString(R.string.robin497);
+        editFourthBegin = getString(R.string.robin498);
+        editFifthBegin = getString(R.string.robin483);
         mTVCenter.setText(R.string.robin434);
         mTvSave.setVisibility(View.VISIBLE);
         mTvSave.setOnClickListener(this);
@@ -146,13 +151,13 @@ public class WechatMsgActivity extends BaseActivity {
         initData();
         Intent intent = getIntent();
         String extra = intent.getStringExtra(WECHAT);
-        if (! TextUtils.isEmpty(extra)) {
+        if (!TextUtils.isEmpty(extra)) {
             initLastData(extra);
         }
         initText();
         initPicker();
         MyTextChange myTextChange = new MyTextChange();
-        if (! TextUtils.isEmpty(txEditNickName)) {
+        if (!TextUtils.isEmpty(txEditNickName)) {
             editNickName.setSelection(editNickName.getText().toString().trim().length());
         }
         editFirstPrice.setOnFocusChangeListener(new MyFocusListener(R.id.edit_first_price));
@@ -262,8 +267,8 @@ public class WechatMsgActivity extends BaseActivity {
                 if (baseBean != null) {
                     if (baseBean.getError() == 0) {
                         Intent intent = new Intent(WechatMsgActivity.this, UserSelectActivity.class);
-                        intent.putExtra("updata",response);
-                        setResult(RESULT_OK,intent);
+                        intent.putExtra("updata", response);
+                        setResult(RESULT_OK, intent);
                         finish();
                     }
                 }
@@ -272,6 +277,7 @@ public class WechatMsgActivity extends BaseActivity {
         });
 
     }
+
     private ArrayList<String> listAddText(ArrayList<String> list) {
         ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -279,6 +285,7 @@ public class WechatMsgActivity extends BaseActivity {
         }
         return arrayList;
     }
+
     private Boolean checkParams(boolean show) {
         if (TextUtils.isEmpty(txEditNickName)) {
             if (show) {
@@ -425,12 +432,12 @@ public class WechatMsgActivity extends BaseActivity {
                     editThirdPrice.setText(editShow(false, String.valueOf(wechatAccountBean.getSub_price()), editThirdBegin));
                     editFourthPrice.setText(editShow(false, String.valueOf(wechatAccountBean.getN_price()), editFourthBegin));
 
-                   // tvPriceEndTime.setText(wechatAccountBean.getQuote_expired_at());//"2018-11-01T08:00:00.000+08:00"需要处理
+                    // tvPriceEndTime.setText(wechatAccountBean.getQuote_expired_at());//"2018-11-01T08:00:00.000+08:00"需要处理
                     String time = wechatAccountBean.getQuote_expired_at();
-                    if (!TextUtils.isEmpty(time)){
-                        tvPriceEndTime.setText(time.substring(0,time.indexOf("T")));
+                    if (!TextUtils.isEmpty(time)) {
+                        tvPriceEndTime.setText(time.substring(0, time.indexOf("T")));
                     }
-                 //   tvPriceEndTime.setText(wechatAccountBean.getQuote_expired_at());//"2018-11-01T08:00:00.000+08:00"需要处理
+                    //   tvPriceEndTime.setText(wechatAccountBean.getQuote_expired_at());//"2018-11-01T08:00:00.000+08:00"需要处理
 
                     editFirstNum.setText(editShow(false, String.valueOf(wechatAccountBean.getFans_count()), editFifthBegin));
                     TYPE_TWO = wechatAccountBean.getGender();
@@ -445,11 +452,11 @@ public class WechatMsgActivity extends BaseActivity {
                         for (int i = 0; i < cities.size(); i++) {
                             cityNameList.add(cities.get(i));
                         }
-                        tvThirdChoose.setText(getString(R.string.robin269,Joiner.on(" ,").join(cityName(cityNameList))));
+                        tvThirdChoose.setText(getString(R.string.robin269, Joiner.on(" ,").join(cityName(cityNameList))));
                     }
 
                     editLink.setText(wechatAccountBean.getContent_show());
-                    if (! TextUtils.isEmpty(wechatAccountBean.getRemark())) {
+                    if (!TextUtils.isEmpty(wechatAccountBean.getRemark())) {
                         editRemark.setText(wechatAccountBean.getRemark());
                     }
                 }
@@ -482,7 +489,7 @@ public class WechatMsgActivity extends BaseActivity {
                         }
                     }
                     tvChooseRange.setText(Joiner.on(" ,").join(circleNameList));
-                }else {
+                } else {
                     tvChooseRange.setText(R.string.robin218);
                     setSave();
                 }
@@ -500,7 +507,7 @@ public class WechatMsgActivity extends BaseActivity {
                     for (int i = 0; i < listExtra.size(); i++) {
                         cityNameList.add(listExtra.get(i));
                     }
-                    tvThirdChoose.setText(getString(R.string.robin269,(Joiner.on(" ,").join(cityName(cityNameList)))));
+                    tvThirdChoose.setText(getString(R.string.robin269, (Joiner.on(" ,").join(cityName(cityNameList)))));
                 }
             }
         }
@@ -587,7 +594,7 @@ public class WechatMsgActivity extends BaseActivity {
             public void onTimeSelect(Date date, View v) {
                 tvPriceEndTime.setText(getTime(date));
             }
-        }).setType(dataType).setDate(selectedDate).setRangDate(startDate, endDate).setTitleText("").setSubmitText("确定").setCancelText("取消").setLabel("", "", "", "", "", "").setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).setSubCalSize(15).build();
+        }).setType(dataType).setDate(selectedDate).setRangDate(startDate, endDate).setTitleText("").setSubmitText(getString(R.string.confirm)).setCancelText(getString(R.string.cancel)).setLabel("", "", "", "", "", "").setSubmitColor(getResources().getColor(R.color.blue_custom)).setCancelColor(getResources().getColor(R.color.gray_second)).setTitleBgColor(getResources().getColor(R.color.white_custom)).setBgColor(getResources().getColor(R.color.white_custom)).setTitleColor(getResources().getColor(R.color.white_custom)).setSubCalSize(15).build();
     }
 
     private String getTime(Date date) {//可根据需要自行截取数据显示
@@ -638,7 +645,7 @@ public class WechatMsgActivity extends BaseActivity {
 
     private void editShowText(boolean is, EditText editText, String tx, String repaceStr) {
         if (is == false) {
-            if (! TextUtils.isEmpty(tx)) {
+            if (!TextUtils.isEmpty(tx)) {
                 if (tx.startsWith(repaceStr)) {
                     editText.setText(tx);
                 } else {
@@ -646,7 +653,7 @@ public class WechatMsgActivity extends BaseActivity {
                 }
             }
         } else {
-            if (! TextUtils.isEmpty(tx)) {
+            if (!TextUtils.isEmpty(tx)) {
                 if (tx.startsWith(repaceStr)) {
                     String replace = tx.replace(repaceStr, "");
                     editText.setText(replace);
@@ -656,10 +663,10 @@ public class WechatMsgActivity extends BaseActivity {
     }
 
     /**
-     @param is true=提交；false = 赋值
-     @param tx
-     @param repaceStr editview要添加的开头文字
-     @return
+     * @param is        true=提交；false = 赋值
+     * @param tx
+     * @param repaceStr editview要添加的开头文字
+     * @return
      */
     private String editShow(boolean is, String tx, String repaceStr) {
         if (is == true) {
@@ -669,7 +676,7 @@ public class WechatMsgActivity extends BaseActivity {
             }
             return tx;
         } else {
-            if (! tx.startsWith(repaceStr)) {
+            if (!tx.startsWith(repaceStr)) {
                 tx = repaceStr + tx;
             }
             return tx;

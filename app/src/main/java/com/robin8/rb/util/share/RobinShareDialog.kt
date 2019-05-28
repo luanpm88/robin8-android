@@ -90,7 +90,7 @@ class RobinShareDialog {
 
 	fun share() {
 		if (linkContent != null) {
-			CustomToast.showShort(mContext, "前往分享...")
+//			CustomToast.showShort(mContext, "前往分享...")
 			mCallbackManager = CallbackManager.Factory.create()
 			var mShareDialog = ShareDialog(mContext as Activity)
 			mShareDialog.registerCallback(mCallbackManager, shareCallback)

@@ -324,7 +324,7 @@ public class BeKolSecondActivity extends BaseActivity implements ShareView {
      @param names
      */
     private void bind(final String names, final int ids) {
-        CustomToast.showShort(BeKolSecondActivity.this, "正在前往" + names + "中...");
+//        CustomToast.showShort(BeKolSecondActivity.this, "正在前往" + names + "中...");
         BindSocialPresenter presenter = new BindSocialPresenter(this.getApplicationContext(), null, names, 0);
         presenter.setOnBindListener(new BindSocialPresenter.OnBindListener() {
 
@@ -827,9 +827,9 @@ public class BeKolSecondActivity extends BaseActivity implements ShareView {
                     if (! TextUtils.isEmpty(baseBean.getDetail())) {
                         if (type == 0) {
                             //未绑定
-                            showMyDialog(BeKolSecondActivity.this, ids, provider, "确定绑定当前" + name + "？", baseBean.getDetail(), 0, name, true);
+                            showMyDialog(BeKolSecondActivity.this, ids, provider, getString(R.string.robin469) + name + "？", baseBean.getDetail(), 0, name, true);
                         } else if (type == 2) {
-                            showMyDialog(BeKolSecondActivity.this, ids, provider, "确定解绑" + name + "？", baseBean.getDetail(), 2, name, true);
+                            showMyDialog(BeKolSecondActivity.this, ids, provider, getString(R.string.robin470) + name + "？", baseBean.getDetail(), 2, name, true);
                         }
 
                     }

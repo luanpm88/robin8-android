@@ -77,8 +77,8 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     private static final int MALE = 1;
     private static final int FEMALE = 2;
 
-    private String[] agePostArr = {"全部", "(0,20)", "(20,40)", "(40,60)", "(60,100)"};
-    private String[] ageArr = {"全部", "0-20", "20-40", "40-60", "60-100"};
+    private String[] agePostArr;
+    private String[] ageArr;
     private EditText mETTitle;// 活动标题
     private TextView mTVTitleNum;
     private EditText mETIntroduce;// 活动简介
@@ -230,12 +230,12 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
 
         mTVInfoAge.setText(getDisPlay(mModifyCampaign.getAge()));
         if ("0".equals(mModifyCampaign.getGender())) {
-            mTVInfoSex.setText("全部");
+            mTVInfoSex.setText(R.string.all);
 
         } else if ("1".equals(mModifyCampaign.getGender())) {
-            mTVInfoSex.setText("男");
+            mTVInfoSex.setText(R.string.male);
         } else if ("2".equals(mModifyCampaign.getGender())) {
-            mTVInfoSex.setText("女");
+            mTVInfoSex.setText(R.string.female);
         } else {
             mTVInfoSex.setText(mModifyCampaign.getGender());
         }
@@ -248,6 +248,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     private String getDisPlay(String age) {
+        agePostArr = new String[]{getString(R.string.all), "(0,20)", "(20,40)", "(40,60)", "(60,100)"};
         for (int i = 0; i < agePostArr.length; i++) {
             if (! TextUtils.isEmpty(age) && age.equals(agePostArr[i])) {
                 return ageArr[i];
@@ -1016,7 +1017,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
             return;
         }
 
-        CustomToast.showShort(this, "提交中..");
+//        CustomToast.showShort(this, "提交中..");
         LinkedHashMap<String, Object> requestMap = new LinkedHashMap<>();
         requestMap.put("name", mETTitle.getText().toString());
         requestMap.put("description", mETIntroduce.getText().toString());
@@ -1100,6 +1101,7 @@ public class ModifyRewordActivity extends BaseActivity implements View.OnClickLi
     }
 
     private String getPostAge(String ageS) {
+        ageArr = new String[] {getString(R.string.all), "0-20", "20-40", "40-60", "60-100"};
         for (int i = 0; i < ageArr.length; i++) {
             if (! TextUtils.isEmpty(ageS) && ageS.equals(ageArr[i])) {
                 return agePostArr[i];

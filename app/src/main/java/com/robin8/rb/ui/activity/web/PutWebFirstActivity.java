@@ -100,7 +100,7 @@ public class PutWebFirstActivity extends BaseActivity {
         @Override
         public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
             if (! Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                Toast t = Toast.makeText(PutWebFirstActivity.this, "需要SD卡。", Toast.LENGTH_LONG);
+                Toast t = Toast.makeText(PutWebFirstActivity.this, R.string.robin502, Toast.LENGTH_LONG);
                 t.setGravity(Gravity.CENTER, 0, 0);
                 t.show();
                 return;

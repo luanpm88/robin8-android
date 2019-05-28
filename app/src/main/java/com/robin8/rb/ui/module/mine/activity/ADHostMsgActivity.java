@@ -119,27 +119,11 @@ public class ADHostMsgActivity extends BaseActivity {
     }
 
     private void putData() {
-//        if (TextUtils.isEmpty(mFinalPicturePath) && TextUtils.isEmpty(bean.getAvatar_url())) {
-//            CustomToast.showShort(this, getString(R.string.please_write_pic));
-//            return;
-//        } else if (StringUtil.isEmpty(etBrandName.getText().toString().trim())) {
-//            CustomToast.showShort(ADHostMsgActivity.this, "品牌名称不能为空");
-//            return;
-//        } else if (StringUtil.isEmpty(etName.getText().toString().trim())) {
-//            CustomToast.showShort(ADHostMsgActivity.this, "公司名称不能为空");
-//            return;
-//        } else if (StringUtil.isEmpty(etAddress.getText().toString().trim())) {
-//            CustomToast.showShort(ADHostMsgActivity.this, "官方网站不能为空");
-//            return;
-//        } else if (StringUtil.isEmpty(etIntroduce.getText().toString().trim())) {
-//            CustomToast.showShort(ADHostMsgActivity.this, "品牌简介不能为空");
-//            return;
-//        }
         if (StringUtil.isEmpty(etBrandName.getText().toString().trim())) {
-            CustomToast.showShort(ADHostMsgActivity.this, "品牌名称不能为空");
+            CustomToast.showShort(ADHostMsgActivity.this, R.string.robin467);
             return;
         } else if (StringUtil.isEmpty(etName.getText().toString().trim())) {
-            CustomToast.showShort(ADHostMsgActivity.this, "公司名称不能为空");
+            CustomToast.showShort(ADHostMsgActivity.this, R.string.robin468);
             return;
         } else {
             if (mWProgressDialog == null) {

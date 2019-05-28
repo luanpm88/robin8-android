@@ -120,7 +120,7 @@ public class AnalysisFragment extends BaseFragment implements View.OnClickListen
             case R.id.tv_detail:
                 if (!TextUtils.isEmpty(mDetailUrl)) {
                     Intent intent = new Intent(mActivity, WebViewActivity.class);
-                    intent.putExtra("title", "文章详情");
+                    intent.putExtra("title", getString(R.string.detail));
                     intent.putExtra("url", mDetailUrl);
                     startActivity(intent);
                 }

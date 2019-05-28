@@ -868,6 +868,60 @@
 	<string name="robin462"><![CDATA[分享后，好友每个点击可帮您获得:<font color=#ecb200>¥ %s</font>]]></string>
 	<string name="robin463"><![CDATA[分享后，您可通过转发活动获得:<font color=#ecb200>¥ %s</font>]]></string>
 	<string name="robin464"><![CDATA[分享后，您可通过完成任务获得:<font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin466">来源于：%s</string>
+	<string name="robin467">品牌名称不能为空</string>
+	<string name="robin468">公司名称不能为空</string>
+	<string name="robin469">确定绑定当前</string>
+	<string name="robin470">确定解绑</string>
+	<string name="robin471">赶快收徒赚收益吧～</string>
+	<string name="robin472">您今日还没有收徒，赶快收徒赚收益吧～</string>
+	<string name="robin473">请输入反馈意见</string>
+	<string name="robin474">感谢您的反馈</string>
+	<string name="robin475">您尚未添加联系人</string>
+	<string name="robin476"><![CDATA[邀请好友下载并完成一个活动,立得<font color=#ecb200>2元</font>奖励]]></string>
+	<string name="robin477"><![CDATA[邀请好友下载登录并完成一个<font color=#ecb200>活动</font>]]></string>
+	<string name="robin478"><![CDATA[立得 <font color=#ecb200><b>2</b>元</font> 现金奖励（您的邀请码：%s)]]></string>
+	<string name="robin479">邀请失败</string>
+	<string name="robin480">请选择推广平台</string>
+	<string name="robin481">原创图文：</string>
+	<string name="robin482">原创视频：</string>
+	<string name="robin483">数量：</string>
+	<string name="robin484">大V用户</string>
+	<string name="robin485">微博大V已认证</string>
+	<string name="robin486">微博大V认证中</string>
+	<string name="robin487">微博大V认证未通过</string>
+	<string name="robin488">微信公众号大V已认证</string>
+	<string name="robin489">微信公众号大V认证中</string>
+	<string name="robin490">微信公众号大V认证未通过</string>
+	<string name="robin491">微博／微信公众号大V已认证</string>
+	<string name="robin492">微博／微信公众号大V认证中</string>
+	<string name="robin493">微博／微信公众号大V认证未通过</string>
+	<string name="robin494">微博／微信公众号大V未认证</string>
+	<string name="robin495">多图文头条：</string>
+	<string name="robin496">单图文：</string>
+	<string name="robin497">次条：</string>
+	<string name="robin498">3-N条：</string>
+	<string name="robin499">转发：</string>
+	<string name="robin500">直发：</string>
+	<string name="robin501">直播：</string>
+	<string name="robin502">需要SD卡。</string>
+	<string name="robin503">电话（IMEI）</string>
+	<string name="robin504">读写</string>
+	<string name="robin505">合计: ¥</string>
+	<string name="robin506">截图示例</string>
+	<string name="robin507">新手任务完成，奖励已发放</string>
+	<string name="robin508">2.七天一个周期,第八天重新开始计算。(若中途某一天停止签到,仍会重新计算)</string>
+	<string name="robin509">签到成功</string>
+	<string name="robin510">查看截图示例</string>
+	<string name="robin511">查看截图示例任务完成，0.50元奖励已放入您的钱包！继续完成任务，可获得更多奖励哦～</string>
+	<string name="robin512">任务完成</string>
+	<string name="robin513">上传截图成功，1.00元奖励已放入您的钱包！新手任务已全部完成～</string>
+	<string name="robin514">分享成功，0.50元奖励已放入您的钱包！ 继续完成任务，可获得更多奖励哦～</string>
+	<string name="robin515">拒绝原因：</string>
+	<string name="robin516">人员列表</string>
+	<string name="robin517">人员分析</string>
+	<string name="robin518"><![CDATA[1.连续签到,获得奖励累加,\n第一天签到获得<font color=#2bdbe2>0.10</font>元,\n连续签到两天获得<font color=#2bdbe2>0.20</font>元,\n连续签到三天获得<font color=#2bdbe2>0.25</font>元,\n连续签到四天获得<font color=#2bdbe2>0.30</font>元,\\n连续签到五天获得<font color=#2bdbe2>0.35</font>元,\n连续签到六天获得<font color=#2bdbe2>0.40</font>元,\n连续签到七天获得<font color=#2bdbe2>0.50</font>元。]]></string>
+	<string name="robin519">元奖励已放入您的钱包！\n您已连续签到 %d天，不要间断哦～</string>
 
 
 </resources>
