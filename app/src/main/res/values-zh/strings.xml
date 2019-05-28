@@ -859,4 +859,5 @@
     <string name="robin462"><![CDATA[分享后，好友每个点击可帮您获得:<font color=#ecb200>¥ %s</font>]]></string>
     <string name="robin463"><![CDATA[分享后，您可通过转发活动获得:<font color=#ecb200>¥ %s</font>]]></string>
     <string name="robin464"><![CDATA[分享后，您可通过完成任务获得:<font color=#ecb200>¥ %s</font>]]></string>
+    <string name="notification_error_ssl_cert_invalid">网站不信任，你想继续吗？</string>
 </resources>
