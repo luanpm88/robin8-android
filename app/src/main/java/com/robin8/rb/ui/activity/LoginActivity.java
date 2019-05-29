@@ -1,6 +1,7 @@
 package com.robin8.rb.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -31,6 +32,8 @@ import com.robin8.rb.ui.activity.email.ForgetPwdActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.ui.model.sortlist.UserFacebookInfo;
 import com.robin8.rb.presenter.LoginPresenter;
+import com.robin8.rb.ui.module.share.thirdplatfom.Constants;
+import com.robin8.rb.util.AppUtils;
 import com.robin8.rb.view.ILoginView;
 
 import org.json.JSONObject;
@@ -137,7 +140,15 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 if (isLoggedIn()) {
                     LoginManager.getInstance().logOut();
                 }
-                mBtnFBRoot.performClick();
+                if (AppUtils.isAppInstalled(getApplicationContext(), Constants.FACEBOOK_PACKAGE)) {
+                    mBtnFBRoot.performClick();
+                } else {
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.FACEBOOK_PACKAGE)));
+                    } catch (android.content.ActivityNotFoundException anfe) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + Constants.FACEBOOK_PACKAGE)));
+                    }
+                }
                 break;
             case R.id.iv_back:
                 mLoginPresenter.backMain(0);

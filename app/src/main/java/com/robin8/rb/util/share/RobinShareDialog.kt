@@ -15,6 +15,8 @@ import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.widget.ShareDialog
 import com.robin8.rb.R
 import com.robin8.rb.ui.dialog.CustomDialogManager
+import com.robin8.rb.ui.module.share.thirdplatfom.Constants
+import com.robin8.rb.util.AppUtils
 import com.robin8.rb.util.CustomToast
 
 class RobinShareDialog {
@@ -91,10 +93,20 @@ class RobinShareDialog {
 	fun share() {
 		if (linkContent != null) {
 //			CustomToast.showShort(mContext, "前往分享...")
-			mCallbackManager = CallbackManager.Factory.create()
-			var mShareDialog = ShareDialog(mContext as Activity)
-			mShareDialog.registerCallback(mCallbackManager, shareCallback)
-			mShareDialog.show(linkContent)
+			if (AppUtils.isAppInstalled(mContext.getApplicationContext(), Constants.FACEBOOK_PACKAGE)) {
+				mCallbackManager = CallbackManager.Factory.create()
+				var mShareDialog = ShareDialog(mContext as Activity)
+				mShareDialog.registerCallback(mCallbackManager, shareCallback)
+				mShareDialog.show(linkContent)
+			} else {
+				try {
+					mContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.FACEBOOK_PACKAGE)))
+				} catch (anfe: android.content.ActivityNotFoundException) {
+					mContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + Constants.FACEBOOK_PACKAGE)))
+				}
+
+			}
+
 		}
 	}
 }
