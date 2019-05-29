@@ -1151,6 +1151,9 @@
 	<string name="robin522">Chúng tôi sẽ đồng bộ hóa danh bạ điện thoại của bạn để bạn có thể giới thiệu chúng tôi với bạn bè và tăng tác động của bạn.</string>
 	<string name="robin523">Không  </string>
 	<string name="robin524">OK </string>
+	<string name="robin525">Get %s permission is disabled</string>
+	<string name="robin559">Please go to Settings - Application Management - %s - Permission Management (open %s permissions) </string>
+	<string name="robin527">Go to set </string> <!-- total activity budget -->
 	<string-array name="put_wallet_questions">
 		<item> Giới thiệu về mã bảo mật của ví? </item>
 		<item>Sau khi ví PUT được tạo, hệ thống sẽ nhắc về Mnemonic / chuỗi. Hãy cẩn thận để giữ chuỗi của bạn. Trong trường hợp bạn thay đổi thiết bị di động hoặc quên mật khẩu ví, bạn cần nhập chuỗi. Lấy lại ví của bạn.</item>

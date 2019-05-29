@@ -23,10 +23,10 @@ public class DialogUtil {
 
 
     public static void showPermissionManagerDialogCallBack(final Context context, String str,DialogInterface.OnClickListener cancelListener) {
-        new AlertDialog.Builder(context).setTitle("获取" + str + "权限被禁用")
-            .setMessage("请在 设置-应用管理-" + context.getString(R.string.app_name) + "-权限管理 (将" + str + "权限打开)")
+        new AlertDialog.Builder(context).setTitle(context.getString(R.string.robin525,str))
+            .setMessage(context.getString(R.string.robin559,context.getString(R.string.app_name),str))
             .setNegativeButton(R.string.cancel, cancelListener)
-            .setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+            .setPositiveButton(R.string.robin527, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -37,28 +37,4 @@ public class DialogUtil {
             .show();
     }
 
-    public static void showLocServiceDialog(final Context context) {
-        new AlertDialog.Builder(context).setTitle("手机未开启位置服务")
-            .setMessage("请在 设置-系统安全-位置信息 (将位置服务打开))")
-            .setNegativeButton("取消", null)
-            .setPositiveButton("去设置", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent();
-                    intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    try {
-                        context.startActivity(intent);
-                    } catch (ActivityNotFoundException ex) {
-                        intent.setAction(Settings.ACTION_SETTINGS);
-                        try {
-                            context.startActivity(intent);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            })
-            .show();
-    }
 }

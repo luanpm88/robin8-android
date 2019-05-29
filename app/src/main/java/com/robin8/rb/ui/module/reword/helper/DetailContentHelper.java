@@ -1043,12 +1043,12 @@ public class DetailContentHelper {
             long day = test / (1000 * 60 * 60 * 24);
             long hour = test % (1000 * 60 * 60 * 24) / (1000 * 60 * 60);//- day * 24;
             long minute = test % (1000 * 60 * 60 * 24) % (1000 * 60 * 60) / (1000 * 60);
-            sb.append(day).append("天");
-            sb.append(hour).append("小时");
-            sb.append(minute).append("分钟");
+            sb.append(day).append(line.getContext().getString(R.string.robin004));
+            sb.append(hour).append(line.getContext().getString(R.string.robin004));
+            sb.append(minute).append(line.getContext().getString(R.string.robin005));
 
             if (day <= 0 && hour <= 0 && minute <= 0) {
-                return "已结束";
+                return line.getContext().getString(R.string.has_been_end);
             }
         } catch (ParseException e) {
             e.printStackTrace();

@@ -70,11 +70,11 @@ public class SplashActivity extends Activity {
             StringBuilder sBuilder = new StringBuilder();
             for (String deniedPermission : deniedPermissions) {
                 if (deniedPermission.equals(Manifest.permission.READ_PHONE_STATE)) {
-                    sBuilder.append(R.string.robin503);
+                    sBuilder.append(getString(R.string.robin503));
                     sBuilder.append(",");
                 }
                 if (deniedPermission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                    sBuilder.append(R.string.robin504);
+                    sBuilder.append(getString(R.string.robin504));
                     sBuilder.append(",");
                 }
             }
