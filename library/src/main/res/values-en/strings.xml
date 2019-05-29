@@ -1,0 +1,18 @@
+<resources>
+	
+    <string name="xrefreshview_header_hint_normal">Pull down refresh</string>
+    <string name="xrefreshview_header_hint_ready">release to refresh</string>
+	<string name="xrefreshview_header_hint_loading">Loading...</string>
+	<string name="xrefreshview_header_hint_loaded">Load completed </string>
+	<string name="xrefreshview_footer_hint_normal">Load completed </string>
+     <string name="xrefreshview_footer_hint_fail">Load failed, please try again</string>
+     <string name="xrefreshview_footer_hint_complete">No more data</string>
+     <string name="xrefreshview_footer_hint_click">Click to load more</string>
+     <string name="xrefreshview_footer_hint_ready">release loading more </string>
+     <string name="xrefreshview_never_refresh"> never refreshed</string>
+     <string name="xrefreshview_refresh_justnow">just refreshed</string>
+     <string name="xrefreshview_refresh_minutes_ago">%1s minutes before refreshing</string>
+     <string name="xrefreshview_refresh_hours_ago">%1s before refreshing</string>
+     <string name="xrefreshview_refresh_days_ago">%1s days before refreshing</string>
+
+</resources>

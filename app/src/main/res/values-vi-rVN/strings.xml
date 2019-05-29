@@ -1083,7 +1083,7 @@
 	<string name="robin458">lỗi định dạng chi phí nhấp chuột đơn</string>
 	<string name="robin459">Lựa chọn nền tảng quảng cáo</string>
 	<string name="robin460">Trước tiên, hãy chọn nền tảng quảng cáo</string>
-        <string name="notification_error_ssl_cert_invalid">Trang web không tin tưởng, bạn có muốn tiếp tục không？</string>
+	<string name="notification_error_ssl_cert_invalid">Trang web không tin tưởng, bạn có muốn tiếp tục không？</string>
 	<string name="robin461">Tác vụ này yêu cầu chia sẻ ảnh chụp màn hình và tải lên sau ít nhất 30 phút sau khi chia sẻ, nếu không, nó sẽ không được duyệt</string>
 	<string name="robin262">hiện là phiên bản mới nhất</string>
 	<string name="robin462"><![CDATA[để chia sẻ, click vào mỗi người bạn có thể giúp bạn nhận được:<font color=#ecb200> %s₫</font>]]></string>
@@ -1142,4 +1142,25 @@
 	<string name="robin516">danh sách người</string>
 	<string name="robin517">phân tích cá nhân</string>
 	<string name="robin519">Phần thưởng meta đã được đặt trong ví của bạn！\nĐăng nhập liên tiếp vào %d ngày，xin cứ tiếp tục～</string>
+	<string name="put_balance">Số dư PUT</string>
+	<string name="put_wallet_list">Lịch sử ví</string>
+	<string name="look_wallet_list">Xem lịch sử ví</string>
+	<string name="put_question">Câu hỏi thường gặp về PUT</string>
+	<string name="robin520">số lượng</string>
+	<string name="robin521">Tìm kiếm người bạn liên hệ</string>
+	<string name="robin522">Chúng tôi sẽ đồng bộ hóa danh bạ điện thoại của bạn để bạn có thể giới thiệu chúng tôi với bạn bè và tăng tác động của bạn.</string>
+	<string name="robin523">Không  </string>
+	<string name="robin524">OK </string>
+	<string-array name="put_wallet_questions">
+		<item> Giới thiệu về mã bảo mật của ví? </item>
+		<item>Sau khi ví PUT được tạo, hệ thống sẽ nhắc về Mnemonic / chuỗi. Hãy cẩn thận để giữ chuỗi của bạn. Trong trường hợp bạn thay đổi thiết bị di động hoặc quên mật khẩu ví, bạn cần nhập chuỗi. Lấy lại ví của bạn.</item>
+		<item> PUT là gì?</item>
+		<item>PUT, Mã thông báo tiện ích hồ sơ, là một hệ thống phần thưởng dựa trên công nghệ blockchain được giới thiệu bởi Robin8.</item>
+		<item> Làm thế nào để có được PUT?</item>
+		<item> Người dùng có thể nhận phần thưởng PUT bằng cách tham gia các hoạt động khác nhau trong hệ sinh thái Robin8. Trong tương lai gần, người dùng cũng có thể sử dụng PUT để đổi phần thưởng vật lý.</item>
+		<item>Điều gì xảy ra khi vận hành thử nghiệm?</item>
+		<item> là người dùng đã đăng ký hoạt động thử nghiệm đầu tiên, bạn có thể đăng ký ví blockchain PUT của mình trước và Robin8 cũng sẽ khởi chạy các phần thưởng khác nhau trong quá trình thử nghiệm để nhận thêm phần thưởng PUT.</item>
+		<item>Việc sử dụng PUT là gì? </item>
+		<item> Chúng tôi đang sắp xếp các giải thưởng vật lý khác nhau để bạn đổi quà, vì vậy hãy theo dõi.</item>
+	</string-array>
 </resources>

@@ -923,4 +923,25 @@
 	<string name="robin517">人员分析</string>
 	<string name="robin518"><![CDATA[1.连续签到,获得奖励累加,\n第一天签到获得<font color=#2bdbe2>0.10</font>元,\n连续签到两天获得<font color=#2bdbe2>0.20</font>元,\n连续签到三天获得<font color=#2bdbe2>0.25</font>元,\n连续签到四天获得<font color=#2bdbe2>0.30</font>元,\\n连续签到五天获得<font color=#2bdbe2>0.35</font>元,\n连续签到六天获得<font color=#2bdbe2>0.40</font>元,\n连续签到七天获得<font color=#2bdbe2>0.50</font>元。]]></string>
 	<string name="robin519">元奖励已放入您的钱包！\n您已连续签到 %d天，不要间断哦～</string>
+	<string name="put_balance">PUT余额</string>
+	<string name="put_wallet_list">钱包流水</string>
+	<string name="look_wallet_list">查看钱包流水</string>
+	<string name="put_question">关于PUT的常见问题解答</string>
+	<string name="robin520">数量</string>
+	<string name="robin521">找一找通讯录好友</string>
+	<string name="robin522">我们将同步手机通讯录,方便您将我们推荐给您的朋友,提高您的影响力。</string>
+	<string name="robin523">否</string>
+	<string name="robin524">是</string> <!-- 活动总预算 -->
+	<string-array name="put_wallet_questions">
+		<item>关于钱包的安全码？</item>
+		<item>PUT钱包创建好以后系统会提示一个 Mnemonic/字串，请您万分小心好好保管您的字串，万一您更换移动设备或者是忘记了您的钱包密码，您需要通过输入字串去恢复您的钱包。</item>
+		<item>什么是PUT？</item>
+		<item>PUT，Profile Utility Token, 是Robin8推出的一个基于区块链技术的奖励系统。</item>
+		<item>怎样获得PUT？</item>
+		<item>用户通过参与Robin8生态圈内不同的活动可以获得PUT奖励，在不久的将来用户也可以利用PUT兑换实物奖品。</item>
+		<item>参加试运营测试会带来什么？</item>
+		<item>成为首批试运营注册用户，您可以优先注册您的PUT区块链钱包，Robin8在试运营期间也会推出不同的奖励让您获得额外的PUT奖赏。</item>
+		<item>PUT有什么用途？</item>
+		<item>我们正在安排不同的实物奖品等您兑换，敬请期待。</item>
+	</string-array>
 </resources>

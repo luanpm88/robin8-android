@@ -13,8 +13,8 @@
     <LinearLayout
         android:id="@+id/layout_header"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_height="wrap_content"
+        android:minHeight="150dp"
         android:background="@color/white_custom"
         android:orientation="horizontal"
         android:paddingLeft="15dp"

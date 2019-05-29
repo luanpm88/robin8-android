@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
+import com.robin8.rb.mine.activity.PutWalletActivity;
 import com.robin8.rb.ui.activity.LoginActivity;
 import com.robin8.rb.ui.activity.WalletActivity;
 import com.robin8.rb.ui.activity.uesr_msg.UserInformationActivity;
@@ -745,7 +746,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private void skipToPutWallet() {
 
         if (isLogined(SPConstants.MY_PUT_WALLET)) {
-            Intent intent = new Intent(mActivity, PutWebActivity.class);
+            Intent intent = new Intent(mActivity, PutWalletActivity.class);
             intent.putExtra(PutWebActivity.PUT_TYPE, "1");
             mActivity.startActivity(intent);
         }

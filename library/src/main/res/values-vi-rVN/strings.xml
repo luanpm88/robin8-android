@@ -1,0 +1,18 @@
+<resources>
+	
+    
+    <string name="xrefreshview_header_hint_normal">Làm mới kéo xuống</string>
+    <string name="xrefreshview_header_hint_ready">Phát hành dữ liệu làm mới</string>
+    <string name="xrefreshview_header_hint_loading">Đang tải...</string>
+    <string name="xrefreshview_header_hint_loaded">Đang tải xong</string>
+    <string name="xrefreshview_footer_hint_normal">Đang tải xong</string>
+    <string name="xrefreshview_footer_hint_fail">Đang tải không thành công, vui lòng thử lại</string>
+    <string name="xrefreshview_footer_hint_complete">Không còn dữ liệu</string>
+    <string name="xrefreshview_footer_hint_click">Nhấn vào đây để tải thêm</string>
+    <string name="xrefreshview_footer_hint_ready">Phát hành và tải thêm</string>
+    <string name="xrefreshview_never_refresh">Không bao giờ được làm mới</string>
+    <string name="xrefreshview_refresh_justnow">Chỉ cần làm mới</string>
+    <string name="xrefreshview_refresh_minutes_ago">Làm mới trước %1s phút</string>
+    <string name="xrefreshview_refresh_hours_ago">Làm mới %1s giờ trước</string>
+    <string name="xrefreshview_refresh_days_ago">Làm mới %1s ngày trước</string>
+</resources>

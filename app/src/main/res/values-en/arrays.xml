@@ -1,282 +1,282 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-
-    <string-array name="mine_list_title">
-        <item>BannerEnter</item>
-        <item>My wallet</item>
-        <item>My PUT wallet</item>
-        <item>My campaigns</item>
-        <item>My collect</item>
-        <item>My product</item>
-        <item>My followers</item>
-        <item>Brand manager</item>
-        <item>One dollar purchase</item>
-        <item>Daily check-in</item>
-        <item>Invite friends to earn income</item>
-        <item>Input invite code</item>
-        <item>Robin8 online customer services</item>
-        <item>Help</item>
-    </string-array>
+	
+	<string-array name="mine_list_title">
+		<item>BannerEnter</item>
+		<item>My wallet</item>
+		<item>My PUT wallet</item>
+		<item>My campaigns</item>
+		<item>My collect</item>
+		<item>My product</item>
+		<item>My followers</item>
+		<item>Brand manager</item>
+		<item>One dollar purchase</item>
+		<item>Daily check-in</item>
+		<item>Invite friends to earn income</item>
+		<item>Input invite code</item>
+		<item>Robin8 online customer services</item>
+		<item>Help</item>
+	</string-array>
 	
 	<string-array name="mine_list_icons">
-        <item>&#xe60b;</item>
-        <item>&#xe60b;</item>
-        <item>&#xe601;</item>
-        <item>&#xe601;</item>
-        <item>&#xe601;</item>
-        <item>&#xe645;</item>
-        <item>&#xe623;</item>
-        <item>&#xe606;</item>
-        <item>&#xe612;</item>
-        <item>&#xe627;</item>
-        <item>&#xe60a;</item>
-        <item>&#xe607;</item>
-        <item>&#xe607;</item>
-        <item>&#xe607;</item>
-    </string-array>
-
-    <string-array name="launch_reword_item">
-        <item>活动开始时间</item>
-        <item>活动结束时间</item>
-        <item>选择活动类型</item>
-        <item>活动总预算</item>
-        <item>单个点击费用</item>
-        <item>单个转发费用</item>
-        <item>单个下载费用</item>
-        <item>单个任务费用</item>
-    </string-array>
-
-    <string-array name="launch_reword_consume_way">
-        <item>按点击次数计费</item>
-        <item>按KOL转发计费</item>
-        <!--<item>按KOL下载计费</item>-->
-        <item>按KOL任务计费</item>
-    </string-array>
-
-    <string-array name="launch_reword_consume_way_no_click">
-        <item>按KOL转发计费</item>
-        <item>按KOL任务计费</item>
-    </string-array>
-
-    <string-array name="first_page_tag_item1">
-        <item>互联网</item>
-        <item>美妆</item>
-        <item>母婴</item>
-        <item>娱乐</item>
-        <item>旅游</item>
-        <item>教育</item>
-        <item>时尚</item>
-        <item>游戏</item>
-    </string-array>
-
-    <string-array name="first_page_tag_item2">
-        <item>房地产</item>
-        <item>财经</item>
-        <item>数码</item>
-        <item>家电</item>
-        <item>健康</item>
-        <item>图书</item>
-        <item>体育</item>
-        <item>航空</item>
-    </string-array>
-
-    <string-array name="first_page_tag_item3">
-        <item>家居</item>
-        <item>汽车</item>
-        <item>酒店</item>
-        <item>摄影</item>
-        <item>美食</item>
-        <item>健身</item>
-        <item>音乐</item>
-        <item>综合</item>
-    </string-array>
-
-
-    <string-array name="business_cooperation">
-        <item>姓名</item>
-        <item>电话</item>
-        <item>公司</item>
-        <item>邮箱</item>
-        <item>特邀KOL</item>
-    </string-array>
-
-    <string-array name="business_cooperation_from_product_list">
-        <item>姓名</item>
-        <item>电话</item>
-        <item>公司</item>
-        <item>邮箱</item>
-    </string-array>
-
-    <string-array name="first_page_tag_item_total">
-        <item>internet</item>
-        <item>beauty</item>
-        <item>babies</item>
-        <item>entertainment</item>
-        <item>travel</item>
-        <item>education</item>
-        <item>fashion</item>
-        <item>games</item>
-        <item>realestate</item>
-        <item>finance</item>
-        <item>digital</item>
-        <item>appliances</item>
-        <item>health</item>
-        <item>books</item>
-        <item>sports</item>
-        <item>airline</item>
-        <item>furniture</item>
-        <item>auto</item>
-        <item>hotel</item>
-        <item>camera</item>
-        <item>food</item>
-        <item>fitness</item>
-        <item>music</item>
-        <item>overall</item>
-    </string-array>
-
-    <string-array name="first_page_tag_item_total_en">
-        <item>internet</item>
-        <item>beauty</item>
-        <item>babies</item>
-        <item>entertainment</item>
-        <item>travel</item>
-        <item>education</item>
-        <item>fashion</item>
-        <item>games</item>
-        <item>realestate</item>
-        <item>finance</item>
-        <item>digital</item>
-        <item>appliances</item>
-        <item>health</item>
-        <item>books</item>
-        <item>sports</item>
-        <item>airline</item>
-        <item>furniture</item>
-        <item>auto</item>
-        <item>hotel</item>
-        <item>camera</item>
-        <item>food</item>
-        <item>fitness</item>
-        <item>music</item>
-        <item>overall</item>
-    </string-array>
-    <string-array name="be_kol_first">
-        <item>头像</item>
-        <item>昵称</item>
-        <item>手机号</item>
-        <item>E-mail</item>
-        <item>性别</item>
-        <item>年龄</item>
-        <item>兴趣</item>
-        <item>职业</item>
-        <item>社交账号</item>
-        <item>简介</item>
-
-    </string-array>
-    <string-array name="second_be_kol_item_name">
-        <item>微信</item>
-        <item>QQ</item>
-        <item>微博</item>
-        <item>公众号</item>
-        <item>美拍</item>
-        <item>秒拍</item>
-        <item>知乎</item>
-        <item>斗鱼</item>
-
-        <item>映客</item>
-        <item>贴吧</item>
-        <item>天涯</item>
-        <item>淘宝</item>
-        <item>花椒</item>
-        <item>NICE</item>
-        <item>豆瓣</item>
-        <item>小红书</item>
-
-        <item>一直播</item>
-        <item>美啦</item>
-        <item>其它</item>
-    </string-array>
-
-    <string-array name="second_be_kol_item_provider">
-        <item>wechat</item>
-        <item>qq</item>
-        <item>weibo</item>
-        <item>public_wechat</item>
-        <item>meipai</item>
-        <item>miaopai</item>
-        <item>zhihu</item>
-        <item>douyu</item>
-
-        <item>yingke</item>
-        <item>tieba</item>
-        <item>tianya</item>
-        <item>taobao</item>
-        <item>huajiao</item>
-        <item>nice</item>
-        <item>douban</item>
-        <item>xiaohuangshu</item>
-
-        <item>yizhibo</item>
-        <item>meila</item>
-        <item>other</item>
-    </string-array>
-
-    <string-array name="setting_item_name">
-        <item>Allow notification</item>
-        <item>Shake to send feedback</item>
-        <item>About Robin8</item>
-    </string-array>
-
-    <string-array name="product_order">
-        <item>order_overall</item>
-        <item>order_price_desc</item>
-        <item>order_price_asc</item>
-        <item>order_commission_desc</item>
-        <item>order_commission_asc</item>
-    </string-array>
-
-    <string-array name="product_order_en">
-        <item>order_overall</item>
-        <item>order_price_desc</item>
-        <item>order_price_asc</item>
-        <item>order_commission_desc</item>
-        <item>order_commission_asc</item>
-    </string-array>
-    <string-array name="task_menu">
-        <item>Reviewing</item>
-        <item>Approved</item>
-        <item>Rejected</item>
-    </string-array>
-    <string-array name="task_menu_2">
-        <item>Waiting</item>
-        <item>Ongoing</item>
-        <item>Completed</item>
-        <item>Refused</item>
-    </string-array>
-    <string-array name="sign_days">
-        <item>1day</item>
-        <item>2day</item>
-        <item>3day</item>
-        <item>4day</item>
-        <item>5day</item>
-        <item>6day</item>
-        <item>7day</item>
-    </string-array>
-    <string-array name="campaignStatus">
-        <item>待付款</item>
-        <item>审核中</item>
-        <item>进行中</item>
-        <item>已完成</item>
-    </string-array>
-    <string-array name="paySuccessItems">
-        <item>我的分享</item>
-        <item>我的创作</item>
-        <item>待审核</item>
-        <item>审核拒绝</item>
-    </string-array>
-    <string-array name="indianaItems">
-        <item>进行中</item>
-        <item>已揭晓</item>
-        <item>中奖纪录</item>
-    </string-array>
+		<item>&#xe60b;</item>
+		<item>&#xe60b;</item>
+		<item>&#xe601;</item>
+		<item>&#xe601;</item>
+		<item>&#xe601;</item>
+		<item>&#xe645;</item>
+		<item>&#xe623;</item>
+		<item>&#xe606;</item>
+		<item>&#xe612;</item>
+		<item>&#xe627;</item>
+		<item>&#xe60a;</item>
+		<item>&#xe607;</item>
+		<item>&#xe607;</item>
+		<item>&#xe607;</item>
+	</string-array>
+	
+	<string-array name="launch_reword_item">
+		<item>活动开始时间</item>
+		<item>活动结束时间</item>
+		<item>选择活动类型</item>
+		<item>活动总预算</item>
+		<item>单个点击费用</item>
+		<item>单个转发费用</item>
+		<item>单个下载费用</item>
+		<item>单个任务费用</item>
+	</string-array>
+	
+	<string-array name="launch_reword_consume_way">
+		<item>按点击次数计费</item>
+		<item>按KOL转发计费</item>
+		<!--<item>按KOL下载计费</item>-->
+		<item>按KOL任务计费</item>
+	</string-array>
+	
+	<string-array name="launch_reword_consume_way_no_click">
+		<item>按KOL转发计费</item>
+		<item>按KOL任务计费</item>
+	</string-array>
+	
+	<string-array name="first_page_tag_item1">
+		<item>互联网</item>
+		<item>美妆</item>
+		<item>母婴</item>
+		<item>娱乐</item>
+		<item>旅游</item>
+		<item>教育</item>
+		<item>时尚</item>
+		<item>游戏</item>
+	</string-array>
+	
+	<string-array name="first_page_tag_item2">
+		<item>房地产</item>
+		<item>财经</item>
+		<item>数码</item>
+		<item>家电</item>
+		<item>健康</item>
+		<item>图书</item>
+		<item>体育</item>
+		<item>航空</item>
+	</string-array>
+	
+	<string-array name="first_page_tag_item3">
+		<item>家居</item>
+		<item>汽车</item>
+		<item>酒店</item>
+		<item>摄影</item>
+		<item>美食</item>
+		<item>健身</item>
+		<item>音乐</item>
+		<item>综合</item>
+	</string-array>
+	
+	
+	<string-array name="business_cooperation">
+		<item>姓名</item>
+		<item>电话</item>
+		<item>公司</item>
+		<item>邮箱</item>
+		<item>特邀KOL</item>
+	</string-array>
+	
+	<string-array name="business_cooperation_from_product_list">
+		<item>姓名</item>
+		<item>电话</item>
+		<item>公司</item>
+		<item>邮箱</item>
+	</string-array>
+	
+	<string-array name="first_page_tag_item_total">
+		<item>internet</item>
+		<item>beauty</item>
+		<item>babies</item>
+		<item>entertainment</item>
+		<item>travel</item>
+		<item>education</item>
+		<item>fashion</item>
+		<item>games</item>
+		<item>realestate</item>
+		<item>finance</item>
+		<item>digital</item>
+		<item>appliances</item>
+		<item>health</item>
+		<item>books</item>
+		<item>sports</item>
+		<item>airline</item>
+		<item>furniture</item>
+		<item>auto</item>
+		<item>hotel</item>
+		<item>camera</item>
+		<item>food</item>
+		<item>fitness</item>
+		<item>music</item>
+		<item>overall</item>
+	</string-array>
+	
+	<string-array name="first_page_tag_item_total_en">
+		<item>internet</item>
+		<item>beauty</item>
+		<item>babies</item>
+		<item>entertainment</item>
+		<item>travel</item>
+		<item>education</item>
+		<item>fashion</item>
+		<item>games</item>
+		<item>realestate</item>
+		<item>finance</item>
+		<item>digital</item>
+		<item>appliances</item>
+		<item>health</item>
+		<item>books</item>
+		<item>sports</item>
+		<item>airline</item>
+		<item>furniture</item>
+		<item>auto</item>
+		<item>hotel</item>
+		<item>camera</item>
+		<item>food</item>
+		<item>fitness</item>
+		<item>music</item>
+		<item>overall</item>
+	</string-array>
+	<string-array name="be_kol_first">
+		<item>头像</item>
+		<item>昵称</item>
+		<item>手机号</item>
+		<item>E-mail</item>
+		<item>性别</item>
+		<item>年龄</item>
+		<item>兴趣</item>
+		<item>职业</item>
+		<item>社交账号</item>
+		<item>简介</item>
+	
+	</string-array>
+	<string-array name="second_be_kol_item_name">
+		<item>微信</item>
+		<item>QQ</item>
+		<item>微博</item>
+		<item>公众号</item>
+		<item>美拍</item>
+		<item>秒拍</item>
+		<item>知乎</item>
+		<item>斗鱼</item>
+		
+		<item>映客</item>
+		<item>贴吧</item>
+		<item>天涯</item>
+		<item>淘宝</item>
+		<item>花椒</item>
+		<item>NICE</item>
+		<item>豆瓣</item>
+		<item>小红书</item>
+		
+		<item>一直播</item>
+		<item>美啦</item>
+		<item>其它</item>
+	</string-array>
+	
+	<string-array name="second_be_kol_item_provider">
+		<item>wechat</item>
+		<item>qq</item>
+		<item>weibo</item>
+		<item>public_wechat</item>
+		<item>meipai</item>
+		<item>miaopai</item>
+		<item>zhihu</item>
+		<item>douyu</item>
+		
+		<item>yingke</item>
+		<item>tieba</item>
+		<item>tianya</item>
+		<item>taobao</item>
+		<item>huajiao</item>
+		<item>nice</item>
+		<item>douban</item>
+		<item>xiaohuangshu</item>
+		
+		<item>yizhibo</item>
+		<item>meila</item>
+		<item>other</item>
+	</string-array>
+	
+	<string-array name="setting_item_name">
+		<item>Allow notification</item>
+		<item>Shake to send feedback</item>
+		<item>About Robin8</item>
+	</string-array>
+	
+	<string-array name="product_order">
+		<item>order_overall</item>
+		<item>order_price_desc</item>
+		<item>order_price_asc</item>
+		<item>order_commission_desc</item>
+		<item>order_commission_asc</item>
+	</string-array>
+	
+	<string-array name="product_order_en">
+		<item>order_overall</item>
+		<item>order_price_desc</item>
+		<item>order_price_asc</item>
+		<item>order_commission_desc</item>
+		<item>order_commission_asc</item>
+	</string-array>
+	<string-array name="task_menu">
+		<item>Reviewing</item>
+		<item>Approved</item>
+		<item>Rejected</item>
+	</string-array>
+	<string-array name="task_menu_2">
+		<item>Waiting</item>
+		<item>Ongoing</item>
+		<item>Completed</item>
+		<item>Refused</item>
+	</string-array>
+	<string-array name="sign_days">
+		<item>1day</item>
+		<item>2day</item>
+		<item>3day</item>
+		<item>4day</item>
+		<item>5day</item>
+		<item>6day</item>
+		<item>7day</item>
+	</string-array>
+	<string-array name="campaignStatus">
+		<item> pending payment</item>
+		<item> in review</item>      
+		<item> in progress </item>       
+		<item> is completed </item>
+	</string-array>
+	<string-array name="paySuccessItems">
+		<item>My share</item>        
+		<item>My creation</item>        
+		<item> pending review</item>       
+		<item> review rejection </item>
+	</string-array>
+	<string-array name="indianaItems">
+		<item> in progress </item>       
+		<item> has been announced </item>       
+		<item> winning record </item>
+	</string-array>
 </resources>

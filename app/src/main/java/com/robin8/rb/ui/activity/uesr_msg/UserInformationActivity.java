@@ -153,8 +153,8 @@ public class UserInformationActivity extends BaseActivity {
         mDataList = new ArrayList<>();
         circleName = new ArrayList<>();
         mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user), "", true));
-        mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
-        mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", getResources().getString(R.string.tv_general_user), getString(R.string.robin429), false));
+//        mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
+//        mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", getResources().getString(R.string.tv_general_user), getString(R.string.robin429), false));
         lvList.setAdapter(mySocialAdapter);
         initData();
         //  initViewData();
@@ -222,19 +222,19 @@ public class UserInformationActivity extends BaseActivity {
                 }
                 mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user), Joiner.on(" ,").join(circleName), true));
 
-                if (userShowBean.getKol().isIs_big_v() == true && userShowBean.getKol().isIs_creator() == false) {
-                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_yes, "", bigVName, allUnCheck, true));
-                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, getString(R.string.robin201), craetorName, getString(R.string.robin430), false));
-                } else if (userShowBean.getKol().isIs_big_v() == false && userShowBean.getKol().isIs_creator() == true) {
-                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_yes, "", craetorName, getString(R.string.robin431), true));
-                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
-                } else if (userShowBean.getKol().isIs_big_v() == true && userShowBean.getKol().isIs_creator() == true) {
-                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_yes, "", bigVName, allPass, true));
-                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_yes, "", craetorName, getString(R.string.robin431), true));
-                } else {
-                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
-                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", craetorName, getString(R.string.robin430), false));
-                }
+//                if (userShowBean.getKol().isIs_big_v() == true && userShowBean.getKol().isIs_creator() == false) {
+//                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_yes, "", bigVName, allUnCheck, true));
+//                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, getString(R.string.robin201), craetorName, getString(R.string.robin430), false));
+//                } else if (userShowBean.getKol().isIs_big_v() == false && userShowBean.getKol().isIs_creator() == true) {
+//                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_yes, "", craetorName, getString(R.string.robin431), true));
+//                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
+//                } else if (userShowBean.getKol().isIs_big_v() == true && userShowBean.getKol().isIs_creator() == true) {
+//                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_yes, "", bigVName, allPass, true));
+//                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_yes, "", craetorName, getString(R.string.robin431), true));
+//                } else {
+//                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
+//                    mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", craetorName, getString(R.string.robin430), false));
+//                }
                 lvList.setAdapter(mySocialAdapter);
                 mySocialAdapter.notifyDataSetChanged();
                 mSocialAccounts = userShowBean.getKol().getSocial_accounts();
@@ -261,7 +261,7 @@ public class UserInformationActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return mDataList.size();
         }
 
         @Override

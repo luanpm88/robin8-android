@@ -201,6 +201,8 @@ public class CommonConfig {
     public static final String BIGV_LIST_CAMPAIGN_HISTORY_URL = "api/v3_0/kols/";//大V详情添加报价，post
 
     public static final String GET_UPLOAD_IMAGE_TOKEN = "api/v3_0/campaign_invites/get_uptoken";//获取七牛的token
+    public static final String PUT_WALLET_INFO = "api/v2_0/e_wallets/unpaid";//put钱包信息
+    public static final String PUT_WALLET_LIST = "api/v2_0/e_wallets/unpaid_list";//put钱包流水
 
 
 }

@@ -20,7 +20,7 @@
     <string-array name="social_tag_name">
         <item>Khác</item>
         <item>Di động</item>
-        <item>妆</item>
+        <item>Trang điểm</item>
         <item>mẹ và con</item>
         <item>Giải trí</item>
         <item>Du lịch</item>
@@ -232,17 +232,17 @@
     <string-array name="second_be_kol_item_name">
         <item>WeChat</item>
         <item>QQ</item>
-        <item>博</item>
+        <item>Bồ</item>
         <item>số công khai</item>
-        <item>拍</item>
+        <item>Bắn</item>
         <item>giây</item>
         <item>biết</item>
         <item>Cá betta</item>
 
-        <item>客</item>
+        <item>Khách</item>
         <item>吧</item>
         <item>Ngày tận thế</item>
-        <item>宝</item>
+        <item>Kho báu</item>
         <item>Tiêu</item>
         <item>NICE</item>
         <item></item>
@@ -298,5 +298,43 @@
         <item>order_commission_desc</item>
         <item>order_commission_asc</item>
     </string-array>
-
+    
+    <string-array name="sign_days">
+        <item>1day</item>
+        <item>2day</item>
+        <item>3day</item>
+        <item>4day</item>
+        <item>5day</item>
+        <item>6day</item>
+        <item>7day</item>
+    </string-array>
+    
+    <string-array name="task_menu">
+        <item>Đang duyệt</item>
+        <item>Đã duyệt</item>
+        <item>Đã từ chối</item>
+    </string-array>
+    <string-array name="task_menu_2">
+        <item>Đang chờ</item>
+        <item>Đang chạy</item>
+        <item>Hoàn thành</item>
+        <item>Từ chối</item>
+    </string-array>
+    <string-array name="campaignStatus">
+        <item> đang thực hiện thanh toán</item>
+        <item> đang duyệt</item>      
+        <item> đang chạy</item>       
+        <item> đã hoàn thành</item>
+    </string-array>
+    <string-array name="paySuccessItems">
+        <item>Chia sẻ của tôi</item>        
+        <item>Sáng tạo của tôi</item>        
+        <item> đang duyệt</item>       
+        <item> từ chối</item>
+    </string-array>
+    <string-array name="indianaItems">
+        <item> đang chạy</item>       
+        <item> đã được thông báo</item>       
+        <item> xếp hạng</item>
+    </string-array>
 </resources>

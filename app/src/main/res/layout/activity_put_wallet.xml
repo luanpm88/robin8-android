@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<ImageView
+    android:id="@+id/image_bg"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_width="0dp"
+    android:layout_margin="15dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    android:src="@mipmap/balance_card"
+    android:scaleType="fitXY"
+    app:layout_constraintDimensionRatio="2:1"
+    app:layout_constraintRight_toRightOf="parent"
+    android:layout_height="0dp" />
+
+    <TextView
+        android:id="@+id/tv_balance_title"
+        android:text="@string/put_balance"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/white_custom"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/image_bg"
+        app:layout_constraintTop_toTopOf="@id/image_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_balance"
+        app:layout_constraintTop_toBottomOf="@id/tv_balance_title"
+        android:layout_width="wrap_content"
+        android:textColor="@color/white_custom"
+        android:textSize="30sp"
+        android:text="0"
+        app:layout_constraintLeft_toLeftOf="@id/tv_balance_title"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_show_wallet_list"
+        app:layout_constraintRight_toRightOf="@id/image_bg"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/look_wallet_list"
+        android:textColor="@color/white_custom"
+        android:padding="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/image_bg"
+        android:layout_height="wrap_content" />
+     <LinearLayout
+         android:id="@+id/layout_question"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         android:layout_marginBottom="50dp"
+         android:orientation="horizontal"
+         android:padding="5dp"
+         android:gravity="center_vertical"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content">
+         <TextView
+             android:layout_width="wrap_content"
+             android:text="@string/put_question"
+             android:layout_height="wrap_content" />
+         <ImageView
+             android:layout_width="15dp"
+             android:src="@mipmap/icon_question"
+             android:layout_marginLeft="5dp"
+             android:layout_height="15dp" />
+     </LinearLayout>
+</android.support.constraint.ConstraintLayout>
