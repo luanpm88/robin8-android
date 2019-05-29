@@ -844,18 +844,18 @@ public class LoginPresenter extends BindSocialPresenterListener implements Prese
     }
 
     private void jumpActivity(int i) {
-        if (i==3){
-            Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
-            mActivity.startActivity(intent);
-            mActivity.finish();
-            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }else if (i==4 || i==1 || i==2){
+//        if (i==3){
+//            Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
+//            mActivity.startActivity(intent);
+//            mActivity.finish();
+//            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//        }else if (i==4 || i==1 || i==2){
             Intent intent = new Intent(mActivity, MainActivity.class);
             intent.putExtra("register_main", "zhu");
             mActivity.startActivity(intent);
             mActivity.finish();
             mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
+//        }
     }
 
     public void backMain(int i) {

@@ -188,36 +188,6 @@ public class UserBaseMsgActivity extends AppCompatActivity implements View.OnCli
                     CustomToast.showShort(this, R.string.robin419);
                     return;
                 }
-//                if (tag == 0) {
-//                    CustomToast.showShort(this, "请选择身份");
-//                    return;
-//                }
-//                if (tag == 2) {
-//                    if (one == false && TextUtils.isEmpty(resultData)) {
-//                        CustomToast.showShort(this, "请填写大V用户信息");
-//                        return;
-//                    }
-//                }
-//                if (tag == 3) {
-//                    if (two == false  && TextUtils.isEmpty(resultDataTwo)) {
-//                        CustomToast.showShort(this, "请填写内容创作者信息");
-//                        return;
-//                    }
-//                }
-//                if (tag==1){
-//                    map.put("gender", String.valueOf(chooseSex));
-//                    //  map.put("age", tvChooseYear.getText().toString().trim());
-//                    map.put("kol_role", kolRole(tag));
-//                    IntentUtils intentUtils = new IntentUtils(UserBaseMsgActivity.this, ChooseFavoriteActivity.class);
-//                    intentUtils.setMapPaths(ChooseFavoriteActivity.BASE_INFO, map);
-//                    startActivity(intentUtils);
-//                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                }else {
-//                    map.put("gender", String.valueOf(chooseSex));
-//                    //  map.put("age", tvChooseYear.getText().toString().trim());
-//                    map.put("kol_role", kolRole(tag));
-//                    saveData();
-//                }
                 map.put("gender", String.valueOf(chooseSex));
                 //  map.put("age", tvChooseYear.getText().toString().trim());
                 map.put("kol_role", kolRole(tag));
