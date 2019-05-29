@@ -298,5 +298,43 @@
         <item>order_commission_desc</item>
         <item>order_commission_asc</item>
     </string-array>
-
+    
+    <string-array name="sign_days">
+        <item>1day</item>
+        <item>2day</item>
+        <item>3day</item>
+        <item>4day</item>
+        <item>5day</item>
+        <item>6day</item>
+        <item>7day</item>
+    </string-array>
+    
+    <string-array name="task_menu">
+        <item>Reviewing</item>
+        <item>Approved</item>
+        <item>Rejected</item>
+    </string-array>
+    <string-array name="task_menu_2">
+        <item>Waiting</item>
+        <item>Ongoing</item>
+        <item>Completed</item>
+        <item>Refused</item>
+    </string-array>
+    <string-array name="campaignStatus">
+        <item> pending payment</item>
+        <item> in review</item>      
+        <item> in progress </item>       
+        <item> is completed </item>
+    </string-array>
+    <string-array name="paySuccessItems">
+        <item>My share</item>        
+        <item>My creation</item>        
+        <item> pending review</item>       
+        <item> review rejection </item>
+    </string-array>
+    <string-array name="indianaItems">
+        <item> in progress </item>       
+        <item> has been announced </item>       
+        <item> winning record </item>
+    </string-array>
 </resources>

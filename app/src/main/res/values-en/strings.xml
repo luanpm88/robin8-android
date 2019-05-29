@@ -1141,6 +1141,26 @@
 	<string name="robin517">personal analysis</string>
 	<string name="robin518"><![CDATA[1. Continuous check-in, get bonus accumulation, \n sign in the first day to get <font color=#2bdbe2>0.10</font> yuan, \n consecutive sign in two days to get <font color=#2bdbe2>0.20</font> yuan, \n consecutive sign in three days to get <font color=#2bdbe2>0.25</font> yuan, \n consecutive sign in four days to get <font color=#2bdbe2>0.30 </font>元, \\n consecutive sign in five days to get <font color=#2bdbe2>0.35</font> yuan, \n consecutive sign in six days to get <font color=#2bdbe2>0.40</font> yuan,\ n consecutively sign in seven days to get <font color=#2bdbe2>0.50</font>. ]]></string>
 	<string name="robin519">The meta reward has been placed in your wallet! \nYou have signed in to %d days in a row, don\'t interrupt oh~</string>
-
+	<string name="put_balance">PUT balance</string>
+	<string name="put_wallet_list">wallet flow </string>
+	<string name="look_wallet_list">View wallet flow </string>
+	<string name="put_question">FAQ about PUT</string>
+	<string name="robin520">quantity</string>
+	<string name="robin521">Looking for a contact friend </string>
+	<string name="robin522">We will sync your phone contacts so you can recommend us to your friends and increase your impact. </string>
+	<string name="robin523">No </string>
+	<string name="robin524">OK </string> <!-- total activity budget -->
+	<string-array name="put_wallet_questions">
+		<item> About the security code of the wallet? </item>
+		<item>After the PUT wallet is created, the system will prompt for a Mnemonic/string. Please take care to keep your string. In case you change your mobile device or forget your wallet password, you need to enter the string. Recover your wallet. </item>
+		<item> What is PUT? </item>
+		<item>PUT, Profile Utility Token, is a reward system based on blockchain technology introduced by Robin8. </item>
+		<item> How does get PUT? </item>
+		<item> Users can get PUT rewards by participating in different activities in the Robin8 ecosystem. In the near future, users can also use PUT to redeem physical prizes. </item>
+		<item>What does bring to the trial operation test? </item>
+		<item> is the first trial operation registered user, you can register your PUT blockchain wallet first, and Robin8 will also launch different rewards during the trial operation to get additional PUT rewards. </item>
+		<item>What is the use of PUT? </item>
+		<item> We are arranging different physical prizes for you to redeem, so stay tuned. </item>
+	</string-array>
 
 </resources>

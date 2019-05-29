@@ -34,7 +34,6 @@ import com.robin8.rb.ui.module.find.view.snaprecyclerview.MultiSnapRecyclerView;
 import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.BitmapUtil;
-import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DateUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
@@ -43,8 +42,6 @@ import com.robin8.rb.util.share.RobinShareDialog;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  Created by zc on 2018/4/18. */
