@@ -1151,6 +1151,9 @@
 	<string name="robin522">We will sync your phone contacts so you can recommend us to your friends and increase your impact. </string>
 	<string name="robin523">No </string>
 	<string name="robin524">OK </string>
+	<string name="robin525">Get %s permission is disabled</string>
+	<string name="robin559">Please go to Settings - Application Management - %s - Permission Management (open %s permissions) </string>
+	<string name="robin527">Go to set </string> <!-- total activity budget -->
 	<string-array name="put_wallet_questions">
 		<item> About the security code of the wallet? </item>
 		<item>After the PUT wallet is created, the system will prompt for a Mnemonic/string. Please take care to keep your string. In case you change your mobile device or forget your wallet password, you need to enter the string. Recover your wallet. </item>

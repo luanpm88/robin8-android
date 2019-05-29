@@ -930,7 +930,10 @@
 	<string name="robin521">找一找通讯录好友</string>
 	<string name="robin522">我们将同步手机通讯录,方便您将我们推荐给您的朋友,提高您的影响力。</string>
 	<string name="robin523">否</string>
-	<string name="robin524">是</string> <!-- 活动总预算 -->
+	<string name="robin524">是</string>
+	<string name="robin525">获取%s权限被禁用</string>
+	<string name="robin559">请在 设置-应用管理-%s -权限管理 (将%s权限打开)</string>
+	<string name="robin527">去设置</string> <!-- 活动总预算 -->
 	<string-array name="put_wallet_questions">
 		<item>关于钱包的安全码？</item>
 		<item>PUT钱包创建好以后系统会提示一个 Mnemonic/字串，请您万分小心好好保管您的字串，万一您更换移动设备或者是忘记了您的钱包密码，您需要通过输入字串去恢复您的钱包。</item>
