@@ -8,17 +8,17 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.robin8.rb.R;
-import com.robin8.rb.ui.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.ui.model.LoginBean;
-import com.robin8.rb.ui.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.activity.MainActivity;
+import com.robin8.rb.ui.model.LoginBean;
+import com.robin8.rb.ui.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
@@ -123,15 +123,15 @@ public class EmailAddInformationActivity extends BaseActivity {
                         NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_LOGIN);//发送消息
                     }
                     initGetRongCloud(textEmailNum,loginBean.getKol().getName(),loginBean.getKol().getAvatar_url());
-
-//                    Intent intent = new Intent(EmailAddInformationActivity.this, EmailWelcomeActivity.class);
-//                    intent.putExtra(EmailWelcomeActivity.EXTRA_EMAIL_NAME,etEmailName.getText().toString().trim());
-//                    startActivity(intent);
-//                    finish();
-                    Intent intent = new Intent(EmailAddInformationActivity.this, FirstKnowUserIdActivity.class);
+                    Intent intent = new Intent(EmailAddInformationActivity.this, MainActivity.class);
+                    intent.putExtra("register_main", "zhu");
                     startActivity(intent);
                     finish();
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//                    Intent intent = new Intent(EmailAddInformationActivity.this, FirstKnowUserIdActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }else {
                     CustomToast.showShort(getApplicationContext(), loginBean.getDetail());
                 }
