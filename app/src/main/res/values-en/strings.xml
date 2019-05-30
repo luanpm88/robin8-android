@@ -41,7 +41,7 @@
 	
 	
 	<!--LoginActivity-->
-	<string name="register_or_login">Registe/Login</string>
+	<string name="register_or_login">Register/Login</string>
 	<string name="forget_pwd">Forget password</string>
 	<string name="fix_pwd">change password</string>
 	<string name="email_login">Email login</string>
