@@ -48,6 +48,8 @@
                 <action android:name="io.rong.imkit.intent.action.webview" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing"
+                android:value="true" />
         </activity>
 
         <activity
