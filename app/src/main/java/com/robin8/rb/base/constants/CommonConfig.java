@@ -10,7 +10,6 @@ import java.io.File;
  主要的配置文件 */
 public class CommonConfig {
 
-    public static final String HELP_URL = "http://robin8.net/kol_publish_campaign_help";
     public static final String SITE_URL = "http://www.robin8.net";
     public static final String RONG_CLOUD_KEY = "c9kqb3rdkii8j";
     public static final String RONG_CLOUD_SECRET = "3Qgy92wONUMc";
@@ -34,8 +33,8 @@ public class CommonConfig {
     //18321878526
 //     public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
 //     public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
-     public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
-//     public static String SERVICE = "http://robin8.live:4000/";//测试服
+//     public static String SERVICE = "https://robin8.net/";//正式服务器地址／the formal server path
+     public static String SERVICE = "http://robin8.live:4000/";//测试服
 //    public static String SERVICE = "https://app.robin8.com/";//global robin8-测试服务器地址/test server path
 
     public static final String WEBPATH = "file:///android_asset/blockchain_pems/";//本地web路径

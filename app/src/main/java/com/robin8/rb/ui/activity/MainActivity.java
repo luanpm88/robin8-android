@@ -17,17 +17,10 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -46,10 +39,8 @@ import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.receiver.DemoIntentService;
 import com.robin8.rb.receiver.DemoPushService;
 import com.robin8.rb.task.LocationService;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.ui.module.mine.rongcloud.RongCloudBean;
-import com.robin8.rb.ui.pager.FirstPager;
 import com.robin8.rb.ui.pager.MinePager;
 import com.robin8.rb.ui.pager.RewordPager;
 import com.robin8.rb.util.AppUtils;
@@ -80,8 +71,6 @@ public class MainActivity extends BaseBackHomeActivity {
     private static final int FIND = 2;
     private ArrayList<BasePager> mPagerList;
     private RewordPager mRewordPager;
-    private FirstPager mFirstPager;
-    // private CreatePager mCreatePager;
 //    private FindPager mFindPager;
     private MinePager mMinePager;
     private MyPagerAdapter mPagerAdapter;
@@ -115,7 +104,6 @@ public class MainActivity extends BaseBackHomeActivity {
     private final static double UNKNOW = -2000;
     private double latitude = UNKNOW;
     private double longitude = UNKNOW;
-    //  private NotificationPager mNotificationPager;
     //private InfluencePager mInfluencePager;
     // private CustomRedDotRadioButton mRBBottomNotification;
 //    private BigVPager mBigVPager;
@@ -326,10 +314,6 @@ public class MainActivity extends BaseBackHomeActivity {
         if (mPagerList == null) {
             mPagerList = new ArrayList<BasePager>();
         }
-        //        if (mFirstPager == null) {
-        //            //  mFirstPager = new FirstPager(this, mVPContentPager);
-        //            mFirstPager = new FirstPager(this);
-        //        }
         if (mRewordPager == null) {
             mRewordPager = new RewordPager(this);
         }
@@ -345,10 +329,6 @@ public class MainActivity extends BaseBackHomeActivity {
         if (mMinePager == null) {
             mMinePager = new MinePager(this);
         }
-        //通知pager
-        //        if (mNotificationPager == null) {
-        //  mNotificationPager = new NotificationPager(this);
-        //        }
 
         mPagerList.clear();
         //mPagerList.add(mFirstPager);

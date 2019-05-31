@@ -287,21 +287,6 @@ public class WebViewActivity extends BaseActivity{
                 case R.id.tv_expected_income:
                     skipToDetail();
                     break;
-//                case R.id.tv_weixin:
-//                    share(mShareUrl, mImgUrl, Wechat.NAME);
-//                    break;
-//                case R.id.tv_wechatmoments:
-//                    share(mShareUrl, mImgUrl, WechatMoments.NAME);
-//                    break;
-//                case R.id.tv_weibo:
-//                    share(mShareUrl, mImgUrl, SinaWeibo.NAME);
-//                    break;
-//                case R.id.tv_qq:
-//                    share(mShareUrl, mImgUrl, QQ.NAME);
-//                    break;
-//                case R.id.tv_qonze:
-//                    share(mShareUrl, mImgUrl, QZone.NAME);
-//                    break;
             }
         }
     }
@@ -480,34 +465,6 @@ public class WebViewActivity extends BaseActivity{
             shareDialog.onActivityResult(requestCode,resultCode,data);
         }
     }
-
-    /**
-     * 分享
-     *
-     * @param shareUrl
-     */
-    private void share(String shareUrl, String imgUrl, String platName) {
-
-        CustomToast.showShort(this, R.string.robin435);
-        //ShareSDK.initSDK(this);
-        OnekeyShare oks = new OnekeyShare();
-        oks.setPlatform(platName);
-        //关闭sso授权
-        oks.disableSSOWhenAuthorize();
-        oks.setTitle(mShareTitle);
-//        if (SinaWeibo.NAME.equals(platName)) {
-//            oks.setText(mShareTitle + shareUrl);
-//        } else {
-//            oks.setText(mShareTitle);
-//        }
-        oks.setTitleUrl(shareUrl);
-        oks.setImageUrl(imgUrl);
-        oks.setUrl(shareUrl);
-        oks.setSite(getString(R.string.app_name));
-        oks.setSiteUrl(CommonConfig.SITE_URL);
-        oks.show(this);
-    }
-
 
     private void skipToShareDetail() {
         Intent intent = new Intent(this, PostInviteesActivity.class);
