@@ -349,7 +349,7 @@
 	    
 	<string name="upload_screenshot_time_end">Upload screenshot time has passed </string>
 	    
-	<string name="share_again">share again</string>
+	<string name="share_again">Share again</string>
 	    
 	<string name="unknown_state">unknown status </string>
 	    
@@ -554,7 +554,7 @@
 	    
 	<string name="share_to_weibo">Share to Sina Weibo</string>
 	    
-	<string name="share_for_money">Share earning revenue</string>
+	<string name="share_for_money">Share</string>
 	    
 	<string name="known">Ok! Got it! </string>
 	    
@@ -617,7 +617,7 @@
 	<string name="robin020">Please fill in your email </string>
 	<string name="robin021">Please fill in your mobile phone number</string>
 	<string name="robin022">Please fill in your nickname</string>
-	<string name="robin023">%d kols take the campaign</string>
+	<string name="robin023">%d KOLs took this campaign</string>
 	<string name="robin024">Campaign Details</string>
 	<string name="robin025">Modify data</string>
 	<string name="robin026">brand master account</string>
@@ -898,7 +898,7 @@
 	<string name="robin267">Invitation code (%d)</string>
 	<string name="robin268">Age range：%s</string>
 	<string name="robin269">Regional concentrated city：%s</string>
-	<string name="robin270">Additional PUT rewards for participating in this event</string>
+	<string name="robin270">You will be awarded additional KOL tokens for participating in this campaign</string>
 	<string name="robin271">After sharing, the friend gets paid for completing the specified task</string>
 	<string name="robin272">Participating in recruitment activities to get rewards</string>
 	<string name="robin273">Participate in the invited event to get rewards</string>
@@ -1086,7 +1086,7 @@
 	<string name="robin262"> is currently the latest version </string>
         <string name="notification_error_ssl_cert_invalid">网站不信任，你想继续吗？</string>
 	<string name="robin462"><![CDATA[After sharing, each click of a friend can help you get: <font color=#ecb200>¥ %s</font>]]></string>
-	<string name="robin463"><![CDATA[After sharing, you can get it by forwarding: <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin463"><![CDATA[After sharing, you can earn up to: <font color=#ecb200>¥ %s</font>]]></string>
 	<string name="robin464"><![CDATA[After sharing, you can get: <font color=#ecb200>¥ %s</font>]]></string>
 	<string name="robin466">Source: %s</string>
 	<string name="robin467">Brand name cannot be empty</string>
