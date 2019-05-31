@@ -10,7 +10,6 @@ import java.io.File;
  主要的配置文件 */
 public class CommonConfig {
 
-    public static final String HELP_URL = "http://robin8.net/kol_publish_campaign_help";
     public static final String SITE_URL = "http://www.robin8.net";
     public static final String RONG_CLOUD_KEY = "c9kqb3rdkii8j";
     public static final String RONG_CLOUD_SECRET = "3Qgy92wONUMc";

@@ -80,7 +80,7 @@ public class ScreenImgActivity extends BaseActivity {
         screenList = getIntent().getStringArrayListExtra(EXTRA_SCREEN_LISTS);//审核中的截图/截图示例
         if (nameList == null || nameList.size() == 0) {
             for (int i = 0; i < screenList.size(); i++) {
-                nameList.add("截图" + i);
+                nameList.add(getString(R.string.robin528) + i);
             }
         }
         if (screenType.equals("0") || screenType.equals("1")) {
