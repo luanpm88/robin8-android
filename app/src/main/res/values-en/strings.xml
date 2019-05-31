@@ -1085,9 +1085,9 @@
 	<string name="robin461">This task requires sharing screenshots and uploading after at least 30 minutes after sharing, otherwise it will not pass </string>
 	<string name="robin262"> is currently the latest version </string>
         <string name="notification_error_ssl_cert_invalid">网站不信任，你想继续吗？</string>
-	<string name="robin462"><![CDATA[After sharing, each click of a friend can help you get: <font color=#ecb200>¥ %s</font>]]></string>
-	<string name="robin463"><![CDATA[After sharing, you can earn up to: <font color=#ecb200>¥ %s</font>]]></string>
-	<string name="robin464"><![CDATA[After sharing, you can get: <font color=#ecb200>¥ %s</font>]]></string>
+	<string name="robin462"><![CDATA[After sharing, each click of a friend can help you get: <font color=#ecb200> %sđ</font>]]></string>
+	<string name="robin463"><![CDATA[After sharing, you can earn up to: <font color=#ecb200> %sđ</font>]]></string>
+	<string name="robin464"><![CDATA[After sharing, you can get: <font color=#ecb200> %sđ</font>]]></string>
 	<string name="robin466">Source: %s</string>
 	<string name="robin467">Brand name cannot be empty</string>
 	<string name="robin468">company name cannot be empty</string>
