@@ -364,7 +364,7 @@
 	    
 	<string name="download_campaign_material">Tải xuống tài liệu đang hoạt động</string>
 	    
-	<string name="upload_campaign_screenshot">Tải lên ảnh chụp màn hình hoạt động</string>
+	<string name="">Tải lên ảnh chụp màn hình hoạt động</string>
 	    
 	<string name="screenshot_check_passed">Đã xem xét ảnh chụp màn hình</string>
 	    
