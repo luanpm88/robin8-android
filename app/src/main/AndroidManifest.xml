@@ -657,11 +657,6 @@
             android:launchMode="standard"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.activity.email.EmailWelcomeActivity"
-            android:configChanges="keyboard|orientation"
-            android:launchMode="standard"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".ui.activity.email.FixPwdActivity"
             android:configChanges="keyboard|orientation"
             android:launchMode="standard"
