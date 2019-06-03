@@ -152,7 +152,7 @@ public class UserInformationActivity extends BaseActivity {
         mySocialAdapter = new MySocialAdapter();
         mDataList = new ArrayList<>();
         circleName = new ArrayList<>();
-        mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user), "", true));
+//        mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user), "", true));
 //        mDataList.add(new UserIdBean(R.mipmap.icon_bigv_no, getString(R.string.robin201), bigVName, allUnCheck, false));
 //        mDataList.add(new UserIdBean(R.mipmap.icon_creator_no, "", getResources().getString(R.string.tv_general_user), getString(R.string.robin429), false));
         lvList.setAdapter(mySocialAdapter);
@@ -220,7 +220,7 @@ public class UserInformationActivity extends BaseActivity {
                         }
                     }
                 }
-                mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user), Joiner.on(" ,").join(circleName), true));
+//                mDataList.add(new UserIdBean(R.mipmap.icon_general_yes, getString(R.string.robin200), getResources().getString(R.string.tv_general_user), Joiner.on(" ,").join(circleName), true));
 
 //                if (userShowBean.getKol().isIs_big_v() == true && userShowBean.getKol().isIs_creator() == false) {
 //                    mDataList.add(new UserIdBean(R.mipmap.icon_bigv_yes, "", bigVName, allUnCheck, true));

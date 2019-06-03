@@ -17,6 +17,7 @@ import com.robin8.rb.ui.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.ui.model.BaseBean;
 import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.ui.module.mine.model.MineShowModel;
+import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
@@ -34,6 +35,7 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
     private Activity mActivity;
     private int from;
     private int influence;
+    private WProgressDialog wProgressDialog;
 
     public LoginBindPhonePresenter(Activity activity, ILoginView loginView) {
         super(activity);
@@ -108,6 +110,10 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
     }
 
     public void complete() {
+        if (wProgressDialog == null) {
+            wProgressDialog = WProgressDialog.createDialog(mActivity);
+        }
+        wProgressDialog.show();
         String phoneNumber = mILoginView.getPhoneNumber();
         String checkNum = mILoginView.getCheckCode();
 
@@ -137,11 +143,16 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
 
             @Override
             public void onError(Exception e) {
-
+                if (wProgressDialog != null) {
+                    wProgressDialog.dismiss();
+                }
             }
 
             @Override
             public void onResponse(String response) {
+                if (wProgressDialog != null) {
+                    wProgressDialog.dismiss();
+                }
                 LogUtil.LogShitou("绑定手机号api/v1/kols/bind_mobile",response);
                 parseJson(response);
             }
@@ -171,16 +182,21 @@ public class LoginBindPhonePresenter extends BindSocialPresenterListener impleme
             }
             jumpActivity(3);
         } else {
-            CustomToast.showShort(mActivity, loginBean.getDetail());
+            CustomToast.showShort(mActivity, loginBean.getError_message());
         }
     }
     private void jumpActivity(int i) {
-        if (i==3){
-            Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
-            mActivity.startActivity(intent);
-            mActivity.finish();
-            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
+//        if (i==3){
+//            Intent intent = new Intent(mActivity, FirstKnowUserIdActivity.class);
+//            mActivity.startActivity(intent);
+//            mActivity.finish();
+//            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//        }
+        Intent intent = new Intent(mActivity, MainActivity.class);
+        intent.putExtra("register_main", "zhu");
+        mActivity.startActivity(intent);
+        mActivity.finish();
+        mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void backMain() {
         if (influence == 1) {
