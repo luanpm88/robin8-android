@@ -33,7 +33,7 @@ public class CommonConfig {
     //18321878526
 //     public static String SERVICE = "https://qa.robin8.net/";//robin8-测试服务器地址/test server path
 //     public static String SERVICE = "http://api.robin8.net/";//正式服务器地址／the formal server path
-     public static String SERVICE = "http://13.229.232.233:4000/";//正式服务器地址／the formal server path
+     public static String SERVICE = "https://app.robin8.vn/";//正式服务器地址／the formal server path
 //    public static String SERVICE = "https://app.robin8.com/";//global robin8-测试服务器地址/test server path
 
     public static final String WEBPATH = "file:///android_asset/blockchain_pems/";//本地web路径
