@@ -56,11 +56,11 @@
 	<!--
 	<string name="min_100">最低100元</string>
 -->
-	<string name="min_2">minimum 0.2 yuan </string>
-	<string name="min_20">minimum 2 yuan </string>
-	<string name="min_25"> minimum 2.5 yuan </string>
-	<string name="min_3">minimum 3 yuan </string>
-	<string name="min_1">minimum 1 yuan </string>
+	<string name="min_2">minimum 0.2₫ </string>
+	<string name="min_20">minimum 2₫ </string>
+	<string name="min_25"> minimum 2.5₫ </string>
+	<string name="min_3">minimum 3₫ </string>
+	<string name="min_1">minimum 1₫ </string>
 	
 	<!-- app更新 -->
 	<string name="normal_issue">common problem</string>
@@ -103,7 +103,7 @@
 	<string name="total_count">Total:</string>
 	<string name="total_income">Total ></string>
 	<string name="income_info2">*Figure shows the amount contained \'will earn\'</string>
-	<string name="income_info3">Over 50 yuan can be withdrawn</string>
+	<string name="income_info3">Over 50₫ can be withdrawn</string>
 	<string name="withdraw">withdraw</string>
 	<string name="withdraw_now">withdraw now</string>
 	<string name="un_binded">Unbound</string>
@@ -163,7 +163,7 @@
 	    
 	<string name="total_consume"> total consumption balance </string>
 	    
-	<string name="current_amount"> yuan (current balance: ₫ </string>
+	<string name="current_amount"> Đồng (current balance: ₫ </string>
 	<string name="right_">)</string>
 	
 	<string name="count_detail">calculation details </string>
@@ -284,7 +284,7 @@
 	<string name="for_example_address">E.g:http//mp.weixin.qq.com/s?__biz=...</string>
 	<string name="friends_number">number of friends </string>
 	    
-	<string name="offer_unit">quote (yuan/bar) </string>
+	<string name="offer_unit">quote (₫/bar) </string>
 	    
 	<string name="please_bind">Please bind </string>
 	    
@@ -659,7 +659,7 @@
 	    
 	<string name="robin060">total revenue </string>
 	    
-	<string name="robin061">yuan</string>
+	<string name="robin061">₫</string>
 	    
 	<string name="robin062">Share invitations </string>
 	    
@@ -815,7 +815,7 @@
 	<string name="robin177">WeChat friends number</string>
 	<string name="robin178">Please fill in the number of WeChat friends</string>
 	<string name="robin179">charge amount</string>
-	<string name="robin180">the minimum recharge amount is 500 yuan</string>
+	<string name="robin180">the minimum recharge amount is 500₫</string>
 	<string name="robin181">invitation code</string>
 	<string name="robin182">Do not fill</string>
 	<string name="robin183">payment method </string>
@@ -889,7 +889,7 @@
 	<string name="robin257">Load failed, click retry</string>
 	<string name="robin258">Notification</string>
 	<string name="robin259">A big wave of activities is on the way, so stay tuned</string>
-	<string name="robin260">Your current score %d, using \n points can deduct %d yuan</string>
+	<string name="robin260">Your current score %d, using \n points can deduct %d₫</string>
 	<string name="robin261">The validity period of the points is up to: %s</string>
 	<string name="robin263">Your current points / 10 can be deducted cash</string>
 	<string name="robin264">Please improve the brand owner information</string>
@@ -921,8 +921,8 @@
 	<string name="robin290">Content Mining (%d/10)</string>
 	<string name="robin291">Active sharing (%d/4)</string>
 	<string name="robin292">checked in </string>
-	<string name="robin293"> has been signed to %d days in a row, tomorrow to sign in to earn %s yuan </string>
-	<string name="robin294"> has been signed in %d days, today sign in to earn %s yuan </string>
+	<string name="robin293"> has been signed to %d days in a row, tomorrow to sign in to earn %s₫ </string>
+	<string name="robin294"> has been signed in %d days, today sign in to earn %s₫ </string>
 	<string name="robin295">Filter</string>
 	<string name="robin296">Pull down can refresh</string>
 	<string name="robin297">release to refresh </string>
@@ -1078,7 +1078,7 @@
 	<string name="robin454">Active link format is incorrect </string>
 	<string name="robin455">Please fill in the total activity budget </string>
 	<string name="robin456">Please fill in a single fee </string>
-	<string name="robin457">The minimum cost of a single click is 0.2 yuan </string>
+	<string name="robin457">The minimum cost of a single click is 0.2₫ </string>
 	<string name="robin458"> single click cost format error </string>
 	<string name="robin459">Promotion platform selection </string>
 	<string name="robin460">Please select the promotion platform first</string>
@@ -1098,7 +1098,7 @@
 	<string name="robin473">Please enter feedback </string>
 	<string name="robin474">Thank you for your feedback</string>
 	<string name="robin475">You have not added a contact</string>
-	<string name="robin476"><![CDATA[Invite a friend to download and complete an event, stand up to <font color=#ecb200>2 yuan</font> reward]]></string>
+	<string name="robin476"><![CDATA[Invite a friend to download and complete an event, stand up to <font color=#ecb200>2₫</font> reward]]></string>
 	<string name="robin477"><![CDATA[Invite a friend to download and complete a <font color=#ecb200>activity</font>]]></string>
 	<string name="robin478"><![CDATA[立得<font color=#ecb200><b>2</b>元</font> Cash reward (your invitation code: %s)]]></string>
 	<string name="robin479">Invitation failed</string>
@@ -1133,14 +1133,14 @@
 	<string name="robin508"> 2. Seven days a cycle, the eighth day to restart the calculation. (If you stop signing in the middle of the day, it will still be recalculated)</string>
 	<string name="robin509">sign-in success</string>
 	<string name="robin510">View screenshot example </string>
-	<string name="robin511">View screenshot example task completed, 0.50 yuan reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
+	<string name="robin511">View screenshot example task completed, 0.50₫ reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
 	<string name="robin512">task completed </string>
-	<string name="robin513">Upload screenshot success, 1.00 yuan reward has been placed in your wallet! The novice task has been completed~</string>
+	<string name="robin513">Upload screenshot success, 1.00₫ reward has been placed in your wallet! The novice task has been completed~</string>
 	<string name="robin514">Shared successfully, the $0.50 reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
 	<string name="robin515">Rejection reason: </string>
 	<string name="robin516">list of people </string>
 	<string name="robin517">personal analysis</string>
-	<string name="robin518"><![CDATA[1. Continuous check-in, get bonus accumulation, \n sign in the first day to get <font color=#2bdbe2>0.10</font> yuan, \n consecutive sign in two days to get <font color=#2bdbe2>0.20</font> yuan, \n consecutive sign in three days to get <font color=#2bdbe2>0.25</font> yuan, \n consecutive sign in four days to get <font color=#2bdbe2>0.30 </font>元, \\n consecutive sign in five days to get <font color=#2bdbe2>0.35</font> yuan, \n consecutive sign in six days to get <font color=#2bdbe2>0.40</font> yuan,\ n consecutively sign in seven days to get <font color=#2bdbe2>0.50</font>. ]]></string>
+	<string name="robin518"><![CDATA[1. Continuous check-in, get bonus accumulation, \n sign in the first day to get <font color=#2bdbe2>0.10</font>₫, \n consecutive sign in two days to get <font color=#2bdbe2>0.20</font> yuan, \n consecutive sign in three days to get <font color=#2bdbe2>0.25</font> yuan, \n consecutive sign in four days to get <font color=#2bdbe2>0.30 </font>元, \\n consecutive sign in five days to get <font color=#2bdbe2>0.35</font> yuan, \n consecutive sign in six days to get <font color=#2bdbe2>0.40</font> yuan,\ n consecutively sign in seven days to get <font color=#2bdbe2>0.50</font>. ]]></string>
 	<string name="robin519">The meta reward has been placed in your wallet! \nYou have signed in to %d days in a row, don\'t interrupt oh~</string>
 	<string name="put_balance">PUT balance</string>
 	<string name="put_wallet_list">wallet flow </string>

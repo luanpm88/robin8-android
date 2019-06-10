@@ -35,7 +35,7 @@
                 android:id="@+id/tv_left_chose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_bg_blue_left"
+                android:background="@drawable/shape_bg_blue"
                 android:paddingBottom="@dimen/dp_5"
                 android:paddingLeft="@dimen/dp_10"
                 android:paddingRight="@dimen/dp_10"
@@ -44,17 +44,17 @@
                 android:textColor="@color/white_custom"/>
 
 
-            <TextView
-                android:id="@+id/tv_right_chose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_bg_white_right"
-                android:paddingBottom="@dimen/dp_5"
-                android:paddingLeft="@dimen/dp_10"
-                android:paddingRight="@dimen/dp_10"
-                android:paddingTop="@dimen/dp_5"
-                android:text="@string/robin165"
-                android:textColor="@color/blue_custom"/>
+            <!--<TextView-->
+                <!--android:id="@+id/tv_right_chose"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/shape_bg_white_right"-->
+                <!--android:paddingBottom="@dimen/dp_5"-->
+                <!--android:paddingLeft="@dimen/dp_10"-->
+                <!--android:paddingRight="@dimen/dp_10"-->
+                <!--android:paddingTop="@dimen/dp_5"-->
+                <!--android:text="@string/robin165"-->
+                <!--android:textColor="@color/blue_custom"/>-->
         </LinearLayout>
 
     </RelativeLayout>

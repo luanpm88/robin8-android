@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class MyCampaignHistoryActivity extends BaseActivity {
     private ImageView ivBack;
     private TextView tvLeftChose;
-    private TextView tvRightChose;
+//    private TextView tvRightChose;
     private TabPageIndicator indicatorBigV;
     private TabPageIndicator indicator;
     private ViewPager pager;
@@ -74,7 +74,7 @@ public class MyCampaignHistoryActivity extends BaseActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.activity_my_campaign_history, mLLContent, true);
         ivBack = (ImageView) view.findViewById(R.id.img_back);
         tvLeftChose = (TextView) view.findViewById(R.id.tv_left_chose);
-        tvRightChose = (TextView) view.findViewById(R.id.tv_right_chose);
+//        tvRightChose = (TextView) view.findViewById(R.id.tv_right_chose);
         pager = (ViewPager) view.findViewById(R.id.pager);
         pagerBigV = (ViewPager) view.findViewById(R.id.pager_bigv);
         indicator = (TabPageIndicator) view.findViewById(R.id.indicator);
@@ -84,7 +84,7 @@ public class MyCampaignHistoryActivity extends BaseActivity {
 
         ivBack.setOnClickListener(this);
         tvLeftChose.setOnClickListener(this);
-        tvRightChose.setOnClickListener(this);
+//        tvRightChose.setOnClickListener(this);
         mViewPagerAdapter = new ViewPagerAdapter(mFragmentList, this.getSupportFragmentManager());
         mViewPagerAdapterBigV = new ViewPagerAdapter(mFragmentListBigV, this.getSupportFragmentManager());
         initData(campaignTypeArr);
@@ -196,19 +196,19 @@ public class MyCampaignHistoryActivity extends BaseActivity {
                 LogUtil.LogShitou("为什么", "点击时间");
                 tvLeftChose.setTextColor(getColor(R.color.white_custom));
                 tvLeftChose.setBackgroundResource(R.drawable.shape_bg_blue_left);
-                tvRightChose.setBackgroundResource(R.drawable.shape_bg_white_right);
-                tvRightChose.setTextColor(getColor(R.color.blue_custom));
+//                tvRightChose.setBackgroundResource(R.drawable.shape_bg_white_right);
+//                tvRightChose.setTextColor(getColor(R.color.blue_custom));
                 llOld.setVisibility(View.VISIBLE);
                 llNew.setVisibility(View.GONE);
                 break;
-            case R.id.tv_right_chose:
-                tvRightChose.setBackgroundResource(R.drawable.shape_bg_blue_right);
-                tvRightChose.setTextColor(getColor(R.color.white_custom));
-                tvLeftChose.setBackgroundResource(R.drawable.shape_bg_white_left);
-                tvLeftChose.setTextColor(getColor(R.color.blue_custom));
-                llOld.setVisibility(View.GONE);
-                llNew.setVisibility(View.VISIBLE);
-                break;
+//            case R.id.tv_right_chose:
+//                tvRightChose.setBackgroundResource(R.drawable.shape_bg_blue_right);
+//                tvRightChose.setTextColor(getColor(R.color.white_custom));
+//                tvLeftChose.setBackgroundResource(R.drawable.shape_bg_white_left);
+//                tvLeftChose.setTextColor(getColor(R.color.blue_custom));
+//                llOld.setVisibility(View.GONE);
+//                llNew.setVisibility(View.VISIBLE);
+//                break;
         }
     }
 }
