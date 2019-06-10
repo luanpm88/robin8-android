@@ -55,7 +55,6 @@ import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.ui.dialog.CustomDialog;
 import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.robin8.rb.util.share.RobinShareDialog;
-import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import org.json.JSONObject;
 
@@ -63,12 +62,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.onekeyshare.OnekeyShare;
 
 import static com.robin8.rb.base.BaseApplication.isDoubleClick;
 

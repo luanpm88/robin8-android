@@ -102,7 +102,7 @@
             android:gravity="center"
             android:text="@string/robin189"
             android:textColor="@color/sub_black_custom"
-            android:textSize="@dimen/undefine_font_5" />"
+            android:textSize="@dimen/undefine_font_5" />
 
     </LinearLayout>
 </LinearLayout>

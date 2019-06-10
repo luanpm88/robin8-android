@@ -29,7 +29,6 @@ import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.ui.dialog.CustomDialogManager;

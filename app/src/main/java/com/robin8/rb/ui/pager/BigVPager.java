@@ -10,7 +10,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.robin8.rb.R;
-import com.robin8.rb.ui.adapter.BigvListAdapter;
 import com.robin8.rb.ui.adapter.NewBigVListAdapter;
 import com.robin8.rb.ui.widget.autoviewpager.AutoScrollViewPager;
 import com.robin8.rb.base.BaseApplication;

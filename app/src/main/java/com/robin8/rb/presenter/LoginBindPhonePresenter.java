@@ -13,7 +13,6 @@ import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
 import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.ui.activity.MainActivity;
-import com.robin8.rb.ui.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.ui.model.BaseBean;
 import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.ui.module.mine.model.MineShowModel;

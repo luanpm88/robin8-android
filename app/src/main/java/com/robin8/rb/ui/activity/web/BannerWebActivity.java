@@ -20,14 +20,11 @@ import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.ui.dialog.MyDialog;
 import com.robin8.rb.ui.module.mine.model.MineShowModel;
-import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.share.RobinShareDialog;
 
 import java.util.List;
-
-import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  Banner跳转的Webview

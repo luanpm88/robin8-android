@@ -92,7 +92,7 @@
         android:orientation="vertical">
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/rc_dimen_size_44"
+            android:layout_height="44dp"
             android:layout_marginBottom="@dimen/dp_10"
             android:layout_marginLeft="@dimen/dp_20"
             android:layout_marginRight="@dimen/dp_20"
@@ -114,7 +114,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/rc_dimen_size_44"
+            android:layout_height="44dp"
             android:layout_marginLeft="@dimen/dp_20"
             android:layout_marginRight="@dimen/dp_20"
             app:cardBackgroundColor="@color/white_custom"
@@ -143,7 +143,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/card_submit"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/rc_dimen_size_44"
+        android:layout_height="44dp"
         android:layout_marginBottom="@dimen/dp_20"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"

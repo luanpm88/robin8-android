@@ -742,8 +742,8 @@
 	<string name="robin330">验证码发送失败!</string>
 	<string name="robin331">验证码发送成功</string>
 	<string name="robin332">请输入手机号码!</string>
-	<string name="robin333"><![CDATA[已获得<font color=#ecb200>\" + %d+ \"</font>次点击，已赚<font color=#ecb200>¥ </font> %s]]></string>
-	<string name="robin334"><![CDATA[已获得<font color=#ecb200>\\\" + %d+ \\\"</font>次点击，即将赚<font color=#ecb200>¥ </font> %s]]></string>
+	<string name="robin333"><![CDATA[已获得<font color=#ecb200> %d </font>次点击，已赚<font color=#ecb200>¥ </font> %s]]></string>
+	<string name="robin334"><![CDATA[已获得<font color=#ecb200> %d </font>次点击，即将赚<font color=#ecb200>¥ </font> %s]]></string>
 	<string name="robin335"><![CDATA[已完成，已赚<font color=#ecb200>¥%s</font>]]></string>
 	<string name="robin336"><![CDATA[活动进行中，即将赚<font color=#ecb200>¥%s</font>]]></string>
 	<string name="robin337">上传截图成功</string>

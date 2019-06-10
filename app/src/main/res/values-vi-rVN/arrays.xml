@@ -17,63 +17,7 @@
         <!--<item>Robin8 online customer services</item>-->
         <item>Trợ giúp</item>
     </string-array>
-    <string-array name="social_tag_name">
-        <item>Khác</item>
-        <item>Di động</item>
-        <item>妆</item>
-        <item>mẹ và con</item>
-        <item>Giải trí</item>
-        <item>Du lịch</item>
-        <item>giáo dục</item>
-        <item>thời trang</item>
-        <item>trò chơi</item>
-        <item>bất động sản</item>
-        <item></item>
-        <item>kỹ thuật số</item>
-        <item>Thiết bị gia dụng</item>
-        <item>sức khỏe</item>
-        <item>Sách</item>
-        <item>thể thao</item>
-        <item>hãng hàng không</item>
-        <item>nhà</item>
-        <item>xe</item>
-        <item>Khách sạn</item>
-        <item>chụp ảnh</item>
-        <item>Thực phẩm</item>
-        <item>thể dục</item>
-        <item>âm nhạc</item>
-        <item>Điện tử tiêu dùng</item>
-        <item>Internet</item>
-    </string-array>
-
-    <string-array name="social_tag_english">
-        <item>khác</item>
-        <item>di động</item>
-        <item>vẻ đẹp</item>
-        <item>em bé</item>
-        <item>giải trí</item>
-        <item>du lịch</item>
-        <item>giáo dục</item>
-        <item>thời trang</item>
-        <item>trò chơi</item>
-        <item>bất động sản</item>
-        <item>tài chính</item>
-        <item>kỹ thuật số</item>
-        <item>thiết bị</item>
-        <item>sức khỏe</item>
-        <item>sách</item>
-        <item>thể thao</item>
-        <item>hãng hàng không</item>
-        <item>nội thất</item>
-        <item>tự động</item>
-        <item>khách sạn</item>
-        <item>máy ảnh</item>
-        <item>thực phẩm</item>
-        <item>thể dục</item>
-        <item>âm nhạc</item>
-        <item>ce</item>
-        <item>internet</item>
-    </string-array>
+    
     <string-array name="mine_list_icons">
         <item>&#xe60b;</item>
         <item>&#xe60b;</item>

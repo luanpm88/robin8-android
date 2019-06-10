@@ -2,7 +2,6 @@ package com.robin8.rb.ui.pager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -69,11 +68,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-
-import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient;
-import io.rong.imlib.model.CSCustomServiceInfo;
-import io.rong.imlib.model.UserInfo;
 
 /**
  * 我的页面
@@ -297,7 +291,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     mImgLogo.setVisibility(View.GONE);
                 }
                 if (!TextUtils.isEmpty(kol.getAvatar_url())) {
-                    BitmapUtil.loadImage(mActivity.getApplicationContext(), kol.getAvatar_url(), mCIVImage);
+                    BitmapUtil.loadImage(mActivity, kol.getAvatar_url(), mCIVImage);
                 } else {
                     mCIVImage.setImageResource(R.mipmap.icon_user_default);
                 }
@@ -881,14 +875,14 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     final RongCloudBean rongCloudBean = GsonTools.jsonToBean(response, RongCloudBean.class);
                     if (rongCloudBean.getCode() == 200) {
                         HelpTools.insertCommonXml(HelpTools.CloudToken, rongCloudBean.getToken());
-                        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-
-                            @Override
-                            public UserInfo getUserInfo(String s) {
-                                UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber), name, Uri.parse(imgUrl));
-                                return userInfo;
-                            }
-                        }, true);
+//                        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+//
+//                            @Override
+//                            public UserInfo getUserInfo(String s) {
+//                                UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber), name, Uri.parse(imgUrl));
+//                                return userInfo;
+//                            }
+//                        }, true);
                         connect(rongCloudBean.getToken());
                     } else {
                         HelpTools.insertCommonXml(HelpTools.CloudToken, "");
@@ -898,37 +892,37 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 }
             });
         } else {
-            RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-
-                @Override
-                public UserInfo getUserInfo(String s) {
-                    UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber), name, Uri.parse(imgUrl));
-                    return userInfo;
-                }
-            }, true);
+//            RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+//
+//                @Override
+//                public UserInfo getUserInfo(String s) {
+//                    UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber), name, Uri.parse(imgUrl));
+//                    return userInfo;
+//                }
+//            }, true);
             connect(HelpTools.getCommonXml(HelpTools.CloudToken));
         }
     }
 
     private void connect(String token) {
-        RongIM.connect(token, new RongIMClient.ConnectCallback() {
-
-            @Override
-            public void onTokenIncorrect() {
-            }
-
-            @Override
-            public void onSuccess(String s) {
-                CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
-                CSCustomServiceInfo csInfo = csBuilder.nickName(mActivity.getString(R.string.app_name)).build();
-                RongIM.getInstance().startCustomerServiceChat(mActivity, CommonConfig.RONG_CLOUD_ID, mActivity.getString(R.string.help_online), csInfo);
-            }
-
-            @Override
-            public void onError(RongIMClient.ErrorCode errorCode) {
-                CustomToast.showShort(mActivity, mActivity.getString(R.string.no_net));
-            }
-        });
+//        RongIM.connect(token, new RongIMClient.ConnectCallback() {
+//
+//            @Override
+//            public void onTokenIncorrect() {
+//            }
+//
+//            @Override
+//            public void onSuccess(String s) {
+//                CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
+//                CSCustomServiceInfo csInfo = csBuilder.nickName(mActivity.getString(R.string.app_name)).build();
+//                RongIM.getInstance().startCustomerServiceChat(mActivity, CommonConfig.RONG_CLOUD_ID, mActivity.getString(R.string.help_online), csInfo);
+//            }
+//
+//            @Override
+//            public void onError(RongIMClient.ErrorCode errorCode) {
+//                CustomToast.showShort(mActivity, mActivity.getString(R.string.no_net));
+//            }
+//        });
     }
 
     class MineListAdapter extends BaseAdapter {

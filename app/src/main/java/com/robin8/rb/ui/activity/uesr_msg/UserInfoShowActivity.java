@@ -17,12 +17,15 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.bumptech.glide.Glide;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
+import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.ui.model.BaseBean;
+import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.ui.model.UserShowBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
@@ -219,9 +222,13 @@ public class UserInfoShowActivity extends BaseActivity {
                 if (! TextUtils.isEmpty(mFinalPicturePath)) {
                     BitmapUtil.deleteBm(mFinalPicturePath);
                 }
+
                 LogUtil.LogShitou("提交基本信息", "==>" + response);
-                BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
+                LoginBean baseBean = GsonTools.jsonToBean(response, LoginBean.class);
                 if (baseBean.getError() == 0) {
+//                    LoginBean bean = BaseApplication.getInstance().getLoginBean();
+//                    bean.getKol().setAvatar_url(baseBean.);
+                    BaseApplication.getInstance().setLoginBean(baseBean);
                     Intent intent = new Intent(UserInfoShowActivity.this, UserInformationActivity.class);
                     setResult(RESULT_OK, intent);
                     finish();
@@ -246,7 +253,8 @@ public class UserInfoShowActivity extends BaseActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    civImage.setImageBitmap(mBitmap);
+                    Glide.with(this).load(mFinalPicturePath).into(civImage);
+//                    civImage.setImageBitmap(mBitmap);
                     break;
             }
         }
