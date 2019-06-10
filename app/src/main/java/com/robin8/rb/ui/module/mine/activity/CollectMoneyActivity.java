@@ -199,7 +199,9 @@ public class CollectMoneyActivity extends BaseActivity {
     private void showInviteDialog() {
         int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
         shareDialog = new RobinShareDialog(this);
-        shareDialog.shareFacebook(TITLE_URL+ String.valueOf(id),getString(R.string.share_invite_friends_title),getString(R.string.share_invite_friends_text),"");
+        String str = getResources().getConfiguration().locale.toString();
+        String locale = str.split("_")[0];
+        shareDialog.shareFacebook(TITLE_URL+ String.valueOf(id) + "&locale=" + locale,getString(R.string.share_invite_friends_title),getString(R.string.share_invite_friends_text),"");
         shareDialog.show();
     }
 
