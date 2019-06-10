@@ -11,15 +11,15 @@
         android:orientation="vertical"
         android:padding="13dp">
 
-        <TextView
-            style="@style/text_view_with_left_line"
-            android:text="@string/kol_classify" />
+        <!--<TextView-->
+            <!--style="@style/text_view_with_left_line"-->
+            <!--android:text="@string/kol_classify" />-->
 
-        <com.robin8.rb.ui.widget.PieChartView
-            android:id="@+id/pv_classify"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/sub_gray_custom" />
+        <!--<com.robin8.rb.ui.widget.PieChartView-->
+            <!--android:id="@+id/pv_classify"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/sub_gray_custom" />-->
 
         <TextView
             style="@style/text_view_with_left_line"

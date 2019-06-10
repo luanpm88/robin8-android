@@ -31,8 +31,8 @@ import butterknife.ButterKnife;
  */
 public class PersonAnalysisFragment extends BaseFragment implements View.OnClickListener {
 
-    @Bind(R.id.pv_classify)
-    PieChartView pvClassify;
+//    @Bind(R.id.pv_classify)
+//    PieChartView pvClassify;
     @Bind(R.id.pv_sex)
     PieChartView pvSex;
     @Bind(R.id.pv_age)
@@ -123,7 +123,7 @@ public class PersonAnalysisFragment extends BaseFragment implements View.OnClick
             PieDataBean bean = new PieDataBean(tagAnalysisBean.getName(), (float) tagAnalysisBean.getRatio());
             mTempList.add(bean);
         }
-        pvClassify.setDataList(mTempList);
+//        pvClassify.setDataList(mTempList);
 
         List<AgeAnalysisBean> ageAnalysisBeanList = analysisResultModel.getAge_analysis();
         mTempList.clear();
