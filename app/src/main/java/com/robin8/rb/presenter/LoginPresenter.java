@@ -23,12 +23,9 @@ import com.robin8.rb.task.LoginTask;
 import com.robin8.rb.ui.activity.LoginOtherWithPhoneActivity;
 import com.robin8.rb.ui.activity.MainActivity;
 import com.robin8.rb.ui.activity.email.EmailRegiterActivity;
-import com.robin8.rb.ui.activity.uesr_msg.FirstKnowUserIdActivity;
 import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.robin8.rb.ui.model.BaseBean;
-import com.robin8.rb.ui.model.IndentyBean;
 import com.robin8.rb.ui.model.LoginBean;
-import com.robin8.rb.ui.model.OtherLoginListBean;
 import com.robin8.rb.ui.model.sortlist.UserFacebookInfo;
 import com.robin8.rb.ui.module.mine.model.MineShowModel;
 import com.robin8.rb.ui.module.mine.rongcloud.RongCloudBean;
@@ -46,7 +43,6 @@ import com.robin8.rb.util.UIUtils;
 import com.robin8.rb.view.ILoginView;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import cn.sharesdk.framework.Platform;

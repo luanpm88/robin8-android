@@ -19,7 +19,6 @@ import com.robin8.rb.ui.module.mine.activity.SettingActivity;
 import com.robin8.rb.ui.module.mine.activity.UserSignActivity;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.HelpTools;
-import com.robin8.rb.util.LogUtil;
 
 
 /**

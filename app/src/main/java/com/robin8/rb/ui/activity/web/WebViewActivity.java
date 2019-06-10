@@ -69,7 +69,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.sharesdk.onekeyshare.OnekeyShare;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

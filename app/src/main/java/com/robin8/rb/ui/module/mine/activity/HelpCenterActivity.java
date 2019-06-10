@@ -1,7 +1,6 @@
 package com.robin8.rb.ui.module.mine.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,11 +31,6 @@ import com.robin8.rb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient;
-import io.rong.imlib.model.CSCustomServiceInfo;
-import io.rong.imlib.model.UserInfo;
 
 
 /**
@@ -83,7 +77,7 @@ public class HelpCenterActivity extends BaseActivity {
             parseJson(helpCenterData);
         }
         initData();
-        initGetRongCloud();
+//        initGetRongCloud();
     }
 
     /**
@@ -133,15 +127,15 @@ public class HelpCenterActivity extends BaseActivity {
                     final RongCloudBean rongCloudBean = GsonTools.jsonToBean(response, RongCloudBean.class);
                     if (rongCloudBean.getCode() == 200) {
                         HelpTools.insertCommonXml(HelpTools.CloudToken, rongCloudBean.getToken());
-                        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-
-                            @Override
-                            public UserInfo getUserInfo(String s) {
-                                UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber), name
-                                        , Uri.parse(imgUrl));
-                                return userInfo;
-                            }
-                        }, true);
+//                        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+//
+//                            @Override
+//                            public UserInfo getUserInfo(String s) {
+//                                UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber), name
+//                                        , Uri.parse(imgUrl));
+//                                return userInfo;
+//                            }
+//                        }, true);
                         connect(rongCloudBean.getToken());
                     } else {
                         HelpTools.insertCommonXml(HelpTools.CloudToken, "");
@@ -150,39 +144,39 @@ public class HelpCenterActivity extends BaseActivity {
                 }
             });
         }else {
-            RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-
-                @Override
-                public UserInfo getUserInfo(String s) {
-                    UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber),name , Uri.parse(imgUrl));
-                    return userInfo;
-                }
-            }, true);
+//            RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+//
+//                @Override
+//                public UserInfo getUserInfo(String s) {
+//                    UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber),name , Uri.parse(imgUrl));
+//                    return userInfo;
+//                }
+//            }, true);
             connect(HelpTools.getCommonXml(HelpTools.CloudToken));
         }
     }
 
     private void connect(String token) {
-        RongIM.connect(token, new RongIMClient.ConnectCallback() {
-
-            @Override
-            public void onTokenIncorrect() {
-              //  Log.e("", "连fgd—————>");
-            }
-
-            @Override
-            public void onSuccess(String s) {
-               // Log.e("", "连接成功—————>" + s);
-               // Toast.makeText(HelpCenterActivity.this, "连接成功" + s, Toast.LENGTH_SHORT).show();
-                isRongCloud=true;
-            }
-
-            @Override
-            public void onError(RongIMClient.ErrorCode errorCode) {
-               // Log.e("", "连接失败—————>" + errorCode);
-                CustomToast.showShort(HelpCenterActivity.this,getString(R.string.no_net));
-            }
-        });
+//        RongIM.connect(token, new RongIMClient.ConnectCallback() {
+//
+//            @Override
+//            public void onTokenIncorrect() {
+//              //  Log.e("", "连fgd—————>");
+//            }
+//
+//            @Override
+//            public void onSuccess(String s) {
+//               // Log.e("", "连接成功—————>" + s);
+//               // Toast.makeText(HelpCenterActivity.this, "连接成功" + s, Toast.LENGTH_SHORT).show();
+//                isRongCloud=true;
+//            }
+//
+//            @Override
+//            public void onError(RongIMClient.ErrorCode errorCode) {
+//               // Log.e("", "连接失败—————>" + errorCode);
+//                CustomToast.showShort(HelpCenterActivity.this,getString(R.string.no_net));
+//            }
+//        });
     }
 
     @Override
@@ -282,19 +276,19 @@ public class HelpCenterActivity extends BaseActivity {
 
                     @Override
                     public void onClick(View view) {
-                        CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
-                        CSCustomServiceInfo csInfo = csBuilder.nickName("Robin8").build();
-
-                        /**
-                         * 启动客户服聊天界面。
-                         *
-                         * @param context           应用上下文。
-                         * @param customerServiceId 要与之聊天的客服 Id。
-                         * @param title             聊天的标题，开发者可以在聊天界面通过 intent.getData().getQueryParameter("title") 获取该值, 再手动设置为标题。
-                         * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
-                         * KEFU151140489031686
-                         */
-                        RongIM.getInstance().startCustomerServiceChat(HelpCenterActivity.this, CommonConfig.RONG_CLOUD_ID, getString(R.string.help_online), csInfo);
+//                        CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
+//                        CSCustomServiceInfo csInfo = csBuilder.nickName("Robin8").build();
+//
+//                        /**
+//                         * 启动客户服聊天界面。
+//                         *
+//                         * @param context           应用上下文。
+//                         * @param customerServiceId 要与之聊天的客服 Id。
+//                         * @param title             聊天的标题，开发者可以在聊天界面通过 intent.getData().getQueryParameter("title") 获取该值, 再手动设置为标题。
+//                         * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
+//                         * KEFU151140489031686
+//                         */
+//                        RongIM.getInstance().startCustomerServiceChat(HelpCenterActivity.this, CommonConfig.RONG_CLOUD_ID, getString(R.string.help_online), csInfo);
 
                     }
                 });
@@ -332,6 +326,6 @@ public class HelpCenterActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RongIM.getInstance().disconnect();//不设置收不到推送
+//        RongIM.getInstance().disconnect();//不设置收不到推送
     }
 }

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -36,7 +35,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import io.rong.imageloader.utils.L;
 
 import static com.robin8.rb.util.LogUtil.LogShitou;
 
@@ -74,25 +72,7 @@ public class PutWebFirstActivity extends BaseActivity {
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 super.onReceivedSslError(view, handler, error);
-                final  SslErrorHandler sslhandler = handler;
-                final AlertDialog.Builder builder = new AlertDialog.Builder(PutWebFirstActivity.this);
-                builder.setMessage(R.string.notification_error_ssl_cert_invalid);
-                builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sslhandler.proceed();
-                    }
-                });
-                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sslhandler.cancel();
-                    }
-                });
-                final AlertDialog dialog = builder.create();
-                dialog.show();
-
-                LogShitou("error", error + "");
+                handler.proceed();
             }
 
             @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -233,23 +213,19 @@ public class PutWebFirstActivity extends BaseActivity {
         // 如果页面中链接，如果希望点击链接继续在当前browser中响应，
         // 而不是新开Android的系统browser中响应该链接，必须覆盖 webview的WebViewClient对象。
         public boolean shouldOverviewUrlLoading(WebView view, String url) {
-            L.i("shouldOverviewUrlLoading");
             view.loadUrl(url);
             return true;
         }
 
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            L.i("onPageStarted");
             //  showProgress();
         }
 
         public void onPageFinished(WebView view, String url) {
-            L.i("onPageFinished");
             //  closeProgress();
         }
 
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            L.i("onReceivedError");
             //  closeProgress();
         }
 

@@ -21,7 +21,6 @@ import com.robin8.rb.okhttp.RequestParams;
 import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.presenter.PresenterI;
 import com.robin8.rb.task.CampaignTask;
-import com.robin8.rb.ui.widget.SwitchView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.DateUtil;
