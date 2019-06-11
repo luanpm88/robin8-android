@@ -37,8 +37,8 @@ public class PersonAnalysisFragment extends BaseFragment implements View.OnClick
     PieChartView pvSex;
     @Bind(R.id.pv_age)
     PieChartView pvAge;
-    @Bind(R.id.webview)
-    WebView mWebView;
+//    @Bind(R.id.webview)
+//    WebView mWebView;
     private ViewPagerAdapter.SelectItem mData;
     private List<PieDataBean> mTempList = new ArrayList();
     private String mDetailUrl;
@@ -52,8 +52,8 @@ public class PersonAnalysisFragment extends BaseFragment implements View.OnClick
 
     private void initWebView(final String provinceOpt) {
        // Log.e("provinceOpt",provinceOpt);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.getSettings().setDefaultTextEncodingName("utf-8");
+//        mWebView.getSettings().setJavaScriptEnabled(true);
+//        mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 //        mWebView.addJavascriptInterface(new Object() {
 //            @SuppressWarnings("unused")
 //            public void setResult(String param) {
@@ -61,38 +61,38 @@ public class PersonAnalysisFragment extends BaseFragment implements View.OnClick
 //                CustomToast.showShort(mActivity,"结果是：" + result);
 //            }
 //        }, "jsObj");
-        // 加载本地assets下面的index.html文件
-        mWebView.loadUrl("file:///android_asset/index.html");
-        // 这个是为了，判断页面是否加载完成。加载完成才能调用js方法
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                // 加载完成，调用js方法。runOnUiThread这样做是为了运行在主线程
-                mActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String json;
-                        String p = "{'result':[{'xizang':{'stateInitColor':'0'},'hunan':{'stateInitColor':'0'}}]}";
-                        try {
-                            JSONObject jsonObject = new JSONObject(provinceOpt);
-                            JSONArray arr = jsonObject.getJSONArray("result");
-                            json = arr.toString();
-                            if(mWebView == null){
-                                return;
-                            }
-                            mWebView.loadUrl("javascript:test(" + json.substring(1, json.length() - 1) + ")");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-
-            }
-        });
+//        // 加载本地assets下面的index.html文件
+//        mWebView.loadUrl("file:///android_asset/index.html");
+//        // 这个是为了，判断页面是否加载完成。加载完成才能调用js方法
+//        mWebView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                // 加载完成，调用js方法。runOnUiThread这样做是为了运行在主线程
+//                mActivity.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        String json;
+//                        String p = "{'result':[{'xizang':{'stateInitColor':'0'},'hunan':{'stateInitColor':'0'}}]}";
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(provinceOpt);
+//                            JSONArray arr = jsonObject.getJSONArray("result");
+//                            json = arr.toString();
+//                            if(mWebView == null){
+//                                return;
+//                            }
+//                            mWebView.loadUrl("javascript:test(" + json.substring(1, json.length() - 1) + ")");
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//
+//            }
+//        });
     }
 
     @Override

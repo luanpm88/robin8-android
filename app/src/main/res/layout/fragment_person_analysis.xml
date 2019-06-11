@@ -43,15 +43,15 @@
             android:layout_height="wrap_content"
             android:background="@color/sub_gray_custom" />
 
-        <TextView
-            style="@style/text_view_with_left_line"
-            android:layout_marginTop="13dp"
-            android:text="@string/kol_city" />
+        <!--<TextView-->
+            <!--style="@style/text_view_with_left_line"-->
+            <!--android:layout_marginTop="13dp"-->
+            <!--android:text="@string/kol_city" />-->
 
-        <WebView
-            android:id="@+id/webview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <!--<WebView-->
+            <!--android:id="@+id/webview"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
 
 
     </LinearLayout>

@@ -149,7 +149,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private void initDataList() {
 
         String[] arrayTitle = mActivity.getResources().getStringArray(R.array.mine_list_title);
-        hindMenu.add(arrayTitle[2]);
+//        hindMenu.add(arrayTitle[2]);
         hindMenu.add(arrayTitle[4]);
         hindMenu.add(arrayTitle[5]);
         hindMenu.add(arrayTitle[6]);
@@ -157,6 +157,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
         hindMenu.add(arrayTitle[8]);
         hindMenu.add(arrayTitle[11]);
         hindMenu.add(arrayTitle[12]);
+        hindMenu.add(arrayTitle[13]);
         String[] arrayId = mActivity.getResources().getStringArray(R.array.mine_list_icons);
         if (mItemList == null) {
             mItemList = new ArrayList<ItemBean>();
