@@ -1090,17 +1090,17 @@ public class DetailContentActivity extends BaseDataActivity implements View.OnCl
         if (mCampaignInviteEntity == null) {
             int id = BaseApplication.getInstance().getLoginBean().getKol().getId();
             if (FACEBOOK_SHARE_TYPE.equals(platName)) {
-                shareFacebook(TITLE_URL + String.valueOf(id), getString(R.string.share_invite_friends_title), IMAGE_URL);
+                shareFacebook(TITLE_URL + String.valueOf(id) + "&locale=vi", getString(R.string.share_invite_friends_title), IMAGE_URL);
                 return;
             } else if (MESSENGE_SHARE_TYPE.equals(platName)) {
-                shareFacebookMessenger(TITLE_URL + String.valueOf(id), getString(R.string.share_invite_friends_title), IMAGE_URL);
+                shareFacebookMessenger(TITLE_URL + String.valueOf(id) + "&locale=vi", getString(R.string.share_invite_friends_title), IMAGE_URL);
                 return;
             } else {
                 oks.setText(getResources().getString(R.string.share_invite_friends_text));
             }
             oks.setTitle(getResources().getString(R.string.share_invite_friends_title));
-            oks.setTitleUrl(TITLE_URL + String.valueOf(id));
-            oks.setUrl(TITLE_URL + String.valueOf(id));
+            oks.setTitleUrl(TITLE_URL + String.valueOf(id) + "&locale=vi");
+            oks.setUrl(TITLE_URL + String.valueOf(id) + "&locale=vi");
         } else {
             if (FACEBOOK_SHARE_TYPE.equals(platName)) {
                 shareFacebook(mCampaignInviteEntity.getCampaign().getUrl(), mCampaignInviteEntity.getCampaign().getName(), IMAGE_URL);

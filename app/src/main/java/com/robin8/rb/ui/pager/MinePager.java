@@ -149,6 +149,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private void initDataList() {
 
         String[] arrayTitle = mActivity.getResources().getStringArray(R.array.mine_list_title);
+        hindMenu.add(arrayTitle[2]);
         hindMenu.add(arrayTitle[4]);
         hindMenu.add(arrayTitle[5]);
         hindMenu.add(arrayTitle[6]);
