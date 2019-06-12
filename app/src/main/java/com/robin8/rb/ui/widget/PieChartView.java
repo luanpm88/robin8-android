@@ -60,7 +60,7 @@ public class PieChartView extends SurfaceView {
             for (int i = 0; i < 4; i++) {
                 sum += mDataList.get(i).getProbability();
             }
-            PieDataBean other = new PieDataBean("其他", 1 - sum);
+            PieDataBean other = new PieDataBean("Other", 1 - sum);
             mDataList.add(4, other);
         }
 

@@ -57,11 +57,11 @@
 	<!--
 	<string name="min_100">最低100元</string>
 -->
-	<string name="min_2">tối thiểu 2,000₫</string>
-	<string name="min_20">tối thiểu 20,000₫</string>
-	<string name="min_25">tối thiểu 25,000₫</string>
-	<string name="min_3">tối thiểu 30,000₫</string>
-	<string name="min_1">tối thiểu 1,000₫</string>
+	<string name="min_2">tối thiểu 6,000₫</string>
+	<string name="min_20">tối thiểu 60,000₫</string>
+	<string name="min_25">tối thiểu 80,000₫</string>
+	<string name="min_3">tối thiểu 90,000₫</string>
+	<string name="min_1">tối thiểu 3,000₫</string>
 	
 	<!-- app更新 -->
 	<string name="normal_issue">Câu hỏi thường gặp</string>
@@ -104,7 +104,7 @@
 	<string name="total_count">Tổng:</string>
 	<string name="total_income">Tổng doanh thu &gt;</string>
 	<string name="income_info2">*Số tiền hiển thị trong hình chứa doanh thu ước tính (sẽ được kiểm toán doanh thu)</string>
-	<string name="income_info3">Có thể được rút tiền mặt ở mức 50,000₫</string>
+	<string name="income_info3">Có thể được rút tiền mặt ở mức 1,000,000₫</string>
 	<string name="withdraw">Rút tiền</string>
 	<string name="withdraw_now">Rút tiền ngay</string>
 	<string name="un_binded">Hủy liên kết</string>
@@ -917,7 +917,7 @@
 	<string name="robin285">xem thêm</string>
 	<string name="robin286">Phần thưởng: tùy thuộc vào hoạt động</string>
 	<string name="robin287">Phần thưởng: Phong bì đỏ tiền mặt trong bạn</string>
-	<string name="robin288">Phần thưởng: 2.000₫ </string>
+	<string name="robin288">Phần thưởng: 6,000₫ </string>
 	<string name="robin289">Mời bạn bè (%d/10)</string>
 	<string name="robin290">Khai thác nội dung (%d/10)</string>
 	<string name="robin291">Chia sẻ hoạt động (%d/4)</string>

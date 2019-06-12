@@ -56,11 +56,11 @@
 	<!--
 	<string name="min_100">最低100元</string>
 -->
-	<string name="min_2">minimum 0.2₫ </string>
-	<string name="min_20">minimum 2₫ </string>
-	<string name="min_25"> minimum 2.5₫ </string>
-	<string name="min_3">minimum 3₫ </string>
-	<string name="min_1">minimum 1₫ </string>
+	<string name="min_2">minimum 600₫ </string>
+	<string name="min_20">minimum 6,000₫ </string>
+	<string name="min_25"> minimum 7,500₫ </string>
+	<string name="min_3">minimum 9,000₫ </string>
+	<string name="min_1">minimum 3,000₫ </string>
 	
 	<!-- app更新 -->
 	<string name="normal_issue">common problem</string>
@@ -103,7 +103,7 @@
 	<string name="total_count">Total:</string>
 	<string name="total_income">Total ></string>
 	<string name="income_info2">*Figure shows the amount contained \'will earn\'</string>
-	<string name="income_info3">Over 50₫ can be withdrawn</string>
+	<string name="income_info3">Over 150,000₫ can be withdrawn</string>
 	<string name="withdraw">withdraw</string>
 	<string name="withdraw_now">withdraw now</string>
 	<string name="un_binded">Unbound</string>
@@ -815,7 +815,7 @@
 	<string name="robin177">WeChat friends number</string>
 	<string name="robin178">Please fill in the number of WeChat friends</string>
 	<string name="robin179">charge amount</string>
-	<string name="robin180">the minimum recharge amount is 500₫</string>
+	<string name="robin180">the minimum recharge amount is 1,000,000₫</string>
 	<string name="robin181">invitation code</string>
 	<string name="robin182">Do not fill</string>
 	<string name="robin183">payment method </string>
@@ -916,7 +916,7 @@
 	<string name="robin285">go to read</string>
 	<string name="robin286">Reward: depending on the activity </string>
 	<string name="robin287">Reward: Massive cash red envelopes in you </string>
-	<string name="robin288">Reward: 2.00₫ </string>
+	<string name="robin288">Reward: 6,000₫ </string>
 	<string name="robin289">Invite friends (%d/10)</string>
 	<string name="robin290">Content Mining (%d/10)</string>
 	<string name="robin291">Active sharing (%d/4)</string>
@@ -1078,7 +1078,7 @@
 	<string name="robin454">Active link format is incorrect </string>
 	<string name="robin455">Please fill in the total activity budget </string>
 	<string name="robin456">Please fill in a single fee </string>
-	<string name="robin457">The minimum cost of a single click is 0.2₫ </string>
+	<string name="robin457">The minimum cost of a single click is 6,000₫ </string>
 	<string name="robin458"> single click cost format error </string>
 	<string name="robin459">Promotion platform selection </string>
 	<string name="robin460">Please select the promotion platform first</string>
@@ -1098,7 +1098,7 @@
 	<string name="robin473">Please enter feedback </string>
 	<string name="robin474">Thank you for your feedback</string>
 	<string name="robin475">You have not added a contact</string>
-	<string name="robin476"><![CDATA[Invite a friend to download and complete an event, stand up to <font color=#ecb200>2₫</font> reward]]></string>
+	<string name="robin476"><![CDATA[Invite a friend to download and complete an event, stand up to <font color=#ecb200>6,000₫</font> reward]]></string>
 	<string name="robin477"><![CDATA[Invite a friend to download and complete a <font color=#ecb200>activity</font>]]></string>
 	<string name="robin478"><![CDATA[立得<font color=#ecb200><b>2</b>元</font> Cash reward (your invitation code: %s)]]></string>
 	<string name="robin479">Invitation failed</string>
@@ -1133,10 +1133,10 @@
 	<string name="robin508"> 2. Seven days a cycle, the eighth day to restart the calculation. (If you stop signing in the middle of the day, it will still be recalculated)</string>
 	<string name="robin509">sign-in success</string>
 	<string name="robin510">View screenshot example </string>
-	<string name="robin511">View screenshot example task completed, 0.50₫ reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
+	<string name="robin511">View screenshot example task completed, 1,500₫ reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
 	<string name="robin512">task completed </string>
-	<string name="robin513">Upload screenshot success, 1.00₫ reward has been placed in your wallet! The novice task has been completed~</string>
-	<string name="robin514">Shared successfully, the $0.50 reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
+	<string name="robin513">Upload screenshot success, 3,000₫ reward has been placed in your wallet! The novice task has been completed~</string>
+	<string name="robin514">Shared successfully, the 1,500₫ reward has been placed in your wallet! Continue to complete the task, you can get more rewards~</string>
 	<string name="robin515">Rejection reason: </string>
 	<string name="robin516">list of people </string>
 	<string name="robin517">personal analysis</string>
