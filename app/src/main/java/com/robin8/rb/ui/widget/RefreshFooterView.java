@@ -20,7 +20,7 @@ public class RefreshFooterView extends LinearLayout implements IFooterCallBack {
     private View mFooter;
     private int mFooterHeight;
     private ImageView mProgressIv;
-
+    private boolean showing = true;
     public RefreshFooterView(Context context) {
         super(context);
         initFooterView(context);
@@ -95,13 +95,21 @@ public class RefreshFooterView extends LinearLayout implements IFooterCallBack {
 
     @Override
     public void show(boolean show) {
+        if(show==showing){
+            return;
+        }
+        showing = show;
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mFooter
+                .getLayoutParams();
+        lp.height = show ? LayoutParams.WRAP_CONTENT : 0;
+        mFooter.setLayoutParams(lp);
         Log.e(TAG, "show");
     }
 
     @Override
     public boolean isShowing() {
         Log.e(TAG, "isShowing");
-        return false;
+        return showing;
     }
 
     @Override

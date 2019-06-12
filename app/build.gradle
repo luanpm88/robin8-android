@@ -21,7 +21,7 @@ android {
         javaMaxHeapSize "4g"
     }
 
-    compileSdkVersion 28
+    compileSdkVersion 25
     buildToolsVersion '28.0.3'
 
     aaptOptions.cruncherEnabled = false
@@ -34,7 +34,7 @@ android {
     defaultConfig {
         applicationId "com.robin8.rb"
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 26
         useLibrary 'org.apache.http.legacy'
         //noinspection HighAppVersionCode
         versionCode 2019032054

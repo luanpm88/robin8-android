@@ -90,6 +90,7 @@ public class PersonListFragment extends BaseFragment {
                 //                    mWProgressDialog.dismiss();
                 //                }
                 if (mXRefreshView != null) {
+                    mRefreshFooterView.show(false);
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore();
                 }
@@ -101,6 +102,7 @@ public class PersonListFragment extends BaseFragment {
                 //                    mWProgressDialog.dismiss();
                 //                }
                 if (mXRefreshView != null) {
+                    mRefreshFooterView.show(false);
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore();
                 }

@@ -137,7 +137,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private String bannerUrl;
     private String mResponse;
     private ArrayList<String> hindMenu = new ArrayList<>();
-
+    private String[] arrayTitle;
     public MinePager(FragmentActivity activity) {
 
         this.mActivity = activity;
@@ -148,7 +148,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
     private void initDataList() {
 
-        String[] arrayTitle = mActivity.getResources().getStringArray(R.array.mine_list_title);
+        arrayTitle = mActivity.getResources().getStringArray(R.array.mine_list_title);
 //        hindMenu.add(arrayTitle[2]);
         hindMenu.add(arrayTitle[4]);
         hindMenu.add(arrayTitle[5]);
@@ -1036,7 +1036,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 }
 
                 String loginInfo = HelpTools.getLoginInfo(HelpTools.ISOPENPUT);
-                if (item.name.equals(mActivity.getString(R.string.put_wallet))) {
+                if (item.name.equals(arrayTitle[2])) {
                     if (!TextUtils.isEmpty(loginInfo)) {
                         if (loginInfo.equals("1")) {
                             holder.mLlItem.setVisibility(View.VISIBLE);
@@ -1071,7 +1071,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_rong_cloud);
                 } else if (item.name.equals(mActivity.getString(R.string.my_collect))) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_my_collect);
-                } else if (item.name.equals(mActivity.getString(R.string.put_wallet))) {
+                } else if (item.name.equals(arrayTitle[2])) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_put_wallet);
                 } else {
                     IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);

@@ -273,6 +273,7 @@ public class BaseRecyclerViewPresenter extends BasePresenter implements Presente
                 if (mXRefreshView != null) {
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore();
+                    mRefreshFooterView.show(false);
                 }
             }
 
@@ -282,6 +283,7 @@ public class BaseRecyclerViewPresenter extends BasePresenter implements Presente
                 if (mXRefreshView != null) {
                     mXRefreshView.stopRefresh();
                     mXRefreshView.stopLoadMore();
+                    mRefreshFooterView.show(false);
                 }
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();

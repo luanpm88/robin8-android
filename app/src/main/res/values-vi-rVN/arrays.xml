@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string-array name="mine_list_title">
-        <item>Biểu ngữ nhập</item>
+        <item>BannerEnter</item>
         <item>Ví của tôi</item>
         <item>Ví PUT của tôi</item>
         <item>Chiến dịch của tôi</item>

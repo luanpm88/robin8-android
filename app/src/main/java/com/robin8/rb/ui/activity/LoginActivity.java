@@ -30,10 +30,12 @@ import com.google.gson.JsonParser;
 import com.robin8.rb.R;
 import com.robin8.rb.ui.activity.email.ForgetPwdActivity;
 import com.robin8.rb.base.BaseActivity;
+import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.ui.model.sortlist.UserFacebookInfo;
 import com.robin8.rb.presenter.LoginPresenter;
 import com.robin8.rb.ui.module.share.thirdplatfom.Constants;
 import com.robin8.rb.util.AppUtils;
+import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.view.ILoginView;
 
 import org.json.JSONObject;
@@ -224,11 +226,13 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
             @Override
             public void onCancel() {
+                CustomToast.showShort(LoginActivity.this,"Cancel login");
                 Log.d("fb","cancel");
             }
 
             @Override
             public void onError(FacebookException exception) {
+                CustomToast.showShort(LoginActivity.this,exception.getMessage());
                 Log.d("fb","onError");
             }
         });
