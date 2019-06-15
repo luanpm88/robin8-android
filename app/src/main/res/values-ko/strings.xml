@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="app_name">Robin8</string>
+
+	<!--MainActivity-->
+	<string name="click_again_go_back">다시 눌러서 Robin8 나가기</string>
+	<string name="text_reword">공유</string>
+	<string name="text_find">찾기</string>
+	<string name="main_share">공유</string>
+	<string name="text_first">홈</string>
+	<string name="text_campaign">활동</string>
+	<string name="text_create">만들기</string>
+	<string name="text_mine">내 것</string>
+	<string name="text_show">확대하기 </string>
+	<string name="text_pack_up"> 버리기 </string>
+	<string name="text_collect">좋아요</string>
+	<string name="text_collected">모였습니다. </string>
+	<string name="my_collect">내 좋아요</string>
+	<string name="content">콘텐츠 </string>
+	<!--Mine-->
+	<string name="mine_ad_host">광고주</string>
+	<string name="max_click_number">최대 클릭수</string>
+	<string name="history_total_income">활동 수익</string>
+	<string name="max_per_income">최대 수익</string>
+	<string name="average_income">평균 수익</string>
+	<string name="data_reviewing">데이터 리뷰</string>
+	<string name="click_login">클릭해서 로그인하기</string>
+	<string name="login_get_more_campaign">더 많은 이벤트를 위해 가입하기</string>
+	<string name="data_rejected">데이터 리뷰 거절</string>
+	<string name="data_reviewing_again">다시 리뷰하기</string>
+
+	<!--收徒-->
+	<string name="apprentice_collect_money">인턴 돈 모으기</string>
+	<string name="apprentice_all_collect_money">전체 수익 </string>
+	<string name="today_apprentices">오늘\'이 승인되었습니다. </string>
+	<string name="click_login_approve">*클릭해서 가입하기 혹은 소셜 계정으로 동의하기</string>
+	<string name="serviece_protocol">사용자 서비스 동의</string>
+
+	<string name="more_loading">더 많은 데이터 가져오기</string>
+	<string name="no_net_click_reload">로딩에 실패했습니다, 클릭해서 다시 시도하세요</string>
+	<string name="no_more_data">데이터 없음</string>
+
+
+	<!--LoginActivity-->
+	<string name="register_or_login">등록/로그인</string>
+	<string name="forget_pwd">비밀번호를 잊어버림</string>
+	<string name="fix_pwd">비밀번호 바꾸기</string>
+	<string name="email_login">이메일 로그인</string>
+	<string name="login">로그인</string>
+	<string name="pwd">비밀번호</string>
+
+	<string name="launch_reword">리워드 올리기</string>
+	<string name="type_count_by_click">클릭으로 청구하기</string>
+	<string name="type_count_by_kol">KOL로 포워드 청구하기</string>
+	<string name="type_download_by_kol">KOL로 다운로드 하기</string>
+	<string name="type_task_by_kol">KOL 테스크로 청구하기</string>
+	<!--
+	<string name="min_100">最低100元</string>
+-->
+	<string name="min_2">최소 600₫ </string>
+	<string name="min_20">최소 6,000₫ </string>
+	<string name="min_25"> 최소 7,500₫ </string>
+	<string name="min_3">최소 9,000₫ </string>
+	<string name="min_1">최소 3,000₫ </string>
+
+	<!-- app更新 -->
+	<string name="normal_issue">일상적인 문제</string>
+
+	<string name="update_loading">다운로드중···</string>
+	<string name="update_beginload">다운로드를 시작합니다</string>
+	<string name="update_wait">잠시 기다리세요..</string>
+	<string name="update_ing">업데이트합니다.</string>
+	<string name="update_backupdate">배경으로 돌아가서 업데이트를 진행합니다..</string>
+	<string name="no_net">네트워크 연결에 실패했습니다, 인터넷 연결을 확인하세요!</string>
+
+	<string name="put_right_email_address">유효한 이메일을 입력해주세요!</string>
+	<string name="put_pwd">비밀번호를 입력해주세요</string>
+
+
+	<string name="pickerview_cancel">취소</string>
+	<string name="pickerview_submit">승인</string>
+	<string name="pickerview_year">년</string>
+	<string name="pickerview_month">월</string>
+	<string name="pickerview_day">일</string>
+	<string name="pickerview_hours">시간</string>
+	<string name="pickerview_minutes">분</string>
+	<string name="pickerview_seconds">초</string>
+
+	<string name="name">이름</string>
+	<string name="contact_telphone">연락처</string>
+
+	<!--WalletActivity-->
+	<string name="mine_wallet">내 지갑</string>
+	<!--已提现-->
+	<string name="was_withdraw">인출</string>
+	<!--已花费-->
+	<string name="was_consume">사용</string>
+	<!--提现中-->
+	<string name="being_withdraw">보류</string>
+	<string name="beable_withdraw">가능</string>
+	<string name="days7_income_development">일주일 간의 수익 동향</string>
+	<string name="total">전체</string>
+	<string name="income_times">거래</string>
+	<string name="total_count">전체:</string>
+	<string name="total_income">전체 ></string>
+	<string name="income_info2">*수치에는 포함된 금액이 표시됩니다 \'Will earn\'</string>
+	<string name="income_info3">150,000₫ 넘는 돈이 인출될 수 있습니다.</string>
+	<string name="withdraw">인출</string>
+	<string name="withdraw_now">지금 인출하기</string>
+	<string name="un_binded">언바운드</string>
+	<string name="click_bind">클릭해서 연결하기</string>
+	<string name="alipay_bind">알리페이 연결하기</string>
+	<string name="alipay_account">알리페이 계정</string>
+	<string name="alipay_name">알리페이 이름</string>
+	<string name="id_card">신분증 번호</string>
+	<string name="please_write_alipay_account">알리페이 계정을 입력해주세요</string>
+	<string name="please_write_alipay_name">알리페이 이름을 입력해주세요</string>
+	<string name="please_write_id_number">ID number를 입력해주세요 </string>
+	<string name="click">클릭</string>
+	<string name="post">포스팅</string>
+	<string name="shared_clicked_by_friends">공유한 후에, 이 기사를 클릭함으로써 친구가 수익을 얻습니다.</string>
+	<string name="post_this_page_get_reword">이 기사를 포스팅해서 즉시 수입을 얻으세요.</string>
+	<!--活动订单支付-->
+	<string name="activity_order_pay">활동 수익</string>
+	<!--促销活动-->
+	<string name="my_launch_activity">이벤트를 포스팅했습니다. </string>
+	<string name="order_pay_success">지불에 성공했습니다. </string>
+	<string name="order_pay">지불하기 </string>
+	<string name="we_check_it_in_24hours">당신의 활동을 24시간내에 리뷰합니다.</string>
+	<string name="look_activity">활동 보기</string>
+	<string name="recharge">충전</string>
+	<string name="recharge_instantly">지금 바로 충전하기 </string>
+
+	<string name="pay_instantly"> 지금 지불하기 </string>
+	<string name="checking">리뷰중</string>
+	<string name="checked_rejected">거절</string>
+	<string name="checked_passed">승인</string>
+	<string name="executing">진행중</string>
+
+	<string name="executed">활동 종료 </string>
+
+	<string name="settled"> 결정 </string>
+	<string name="no_data_try_others">아무것도 없습니다. 다른 페이지를 시도하세요.</string>
+	<string name="my_menu">내 청구서 </string>
+
+	<string name="revoke_campaign">활동 취소하기 </string>
+	<!--资金流水-->
+
+	<string name="robin_indiana">1달러로 구매하기 </string>
+
+	<string name="detail_indiana"> 트레져의 자세한 사항 </string>
+
+	<string name="participated">참여함 </string>
+
+	<string name="person_times">개인 시간</string>
+
+	<string name="you_not_participated">당신은 이 활동에 참여하지 않았습니다.</string>
+
+	<string name="this_participated"> 이 이슈에 참여하기: </string>
+
+	<string name="this_issue"> 현재 이슈 숫자: </string>
+
+	<string name="draw_time"> 예정된 시간: </string>
+
+	<string name="total_consume"> 전체 소비 밸런스 </string>
+
+	<string name="current_amount"> Đồng (current balance: ₫ </string>
+	<string name="right_">)</string>
+
+	<string name="count_detail">계산 내역 </string>
+
+	<string name="lucky_number"> 행운의 숫자: </string>
+
+	<string name="you_participated_times">당신은 포함되었습니다: </string>
+
+	<string name="my_participated_times">나는 참여했습니다: </string>
+
+	<string name="indiana_number">트레져 넘버: </string>
+
+	<string name="participated_schedule"> 참여 진행: </string>
+	<string name="percent_sign">%</string>
+
+	<string name="instantly_indiana"> 즉시 트레져를 얻으세요 </string>
+
+	<string name="has_announced"> 사실이 발표되었습니다. </string>
+
+	<string name="total_need_times"> 필요한 전체 사람 수: </string>
+
+	<string name="delivery_address">영수증 주소 </string>
+	<string name="submit">제출</string>
+	<string name="submit_success">성공적으로 제출되었습니다. </string>
+
+	<string name="submit_failed">제출에 실패했습니다.</string>
+
+	<string name="please_write_title">제목을 입력해주세요 </string>
+
+	<string name="please_write_name">이름을 입력해주세요 </string>
+
+	<string name="please_write_telphone">연락처를 입력해주세요 </string>
+
+	<string name="please_write_address">배달 주소를 입력해주세요 </string>
+
+	<string name="you_have_sign">당신은 계속해서 확인했습니다. </string>
+
+	<string name="day">날</string>
+
+	<string name="sign_successfully">가입에 성공했습니다.</string>
+	<string name="sign">가입</string>
+
+	<string name="wechat">친구 모임 </string>
+
+	<string name="invite_ta_participate_campaign">TA에게 특별한 이벤트 보내기</string>
+
+	<string name="kol_brief">KOL 소개 </string>
+
+	<string name="kol_display">KOL 쇼 </string>
+
+	<string name="kol_tag_cloud">KOL 태그 클라우드</string>
+
+	<string name="business_cooperation">비지니스 기업</string>
+
+	<string name="please_write_company">기업명을 입력해주세요 </string>
+
+	<string name="please_write_email">이메일을 입력해주세요 </string>
+	<string name="search">찾기</string>
+	<string name="cancel">취소</string>
+	<string name="clear_history">확실한 히스토리</string>
+
+	<string name="nickname">별명</string>
+
+	<string name="number_of_fans">팬의 수 </string>
+
+	<string name="number_of_videos">비디오 수 </string>
+
+	<string name="business_cop_content_fir_from_product_list">내가 브랜드 CEO입니다, 나는 CPS 기업을 원합니다. \\n</string>
+
+	<string name="business_cop_content_fir">나는 브랜드 CEO입니다, 나는 KOL을 초대하기를 원합니다.\\n</string>
+
+	<string name="business_submit_success">제출에 성공했습니다, 당신에게 최대한 빨리 연락하겠습니다, 계속 핸드폰을 켜놔주세요!</string>
+	<string name="my_concern">내 팔로워</string>
+	<string name="edit_invitation_code">초대코드 입력하기</string>
+	<string name="be_kol">내 데이터 </string>
+
+	<string name="edit_kol">KOL data 편집하기 </string>
+
+	<string name="icons_favorite_selected">&#xe622;</string>
+	<string name="icons_favorite_unselected">&#xe623;</string>
+	<string name="icons_back">&#xe603;</string>
+	<string name="icons_delete">&#xe618;</string>
+	<string name="icons_delete2">&#xe61b;</string>
+	<string name="icons_message">&#xe625;</string>
+	<string name="icons_setting">&#xe61f;</string>
+	<string name="icons_box_delete">&#xe618;</string>
+	//下拉
+	//下拉30%
+	//向上箭头
+	<string name="arrow_right">&#xe60e;</string>//向右箭头
+	//加好
+	<string name="hook_sign">&#xe61e;</string>//对勾
+	<string name="share_sign">&#xe608;</string>//分享
+	<string name="search_sign">&#xe602;</string>//搜索
+	<string name="icons_message_open">&#xe616;</string>
+	<string name="unselected">&#xe61a;</string>
+	<string name="selected">&#xe61e;</string>
+	<!--打开消息-->
+	<string name="next">다음 단계</string>
+	<string name="invite_friends">친구 초대하기</string>
+	<string name="be_kol_first_compelete_data">데이터가 더 상세 할 수록, 허용되는 활동의 가격도 더 높아집니다.</string>
+	<string name="confirm">확인</string>
+
+	<string name="interest">관심사</string>
+	<string name="user_phone_num">핸드폰 번호</string>
+	<string name="user_email">이메일</string>
+	<string name="interest_tags"> 관심있는 태그 (5개까지 선택가능) </string>
+	<string name="please_write">입력해주세요 </string>
+	<string name="age">나이</string>
+	<string name="professional">직업</string>
+	<string name="introduction">소개</string>
+	<string name="please_write_personal_show">당신의 하이라이트를 입력해주세요</string>
+	<string name="personal_show">개인적인 놀라운 디스플레이</string>
+	<string name="weixin">위챗</string>
+	<string name="gongzhonghao">公众号</string>
+	<string name="weibo">웨이보</string>
+	<string name="qq">QQ</string>
+	<string name="for_example_address">E.g:http//mp.weixin.qq.com/s?__biz=...</string>
+	<string name="friends_number">친구 수 </string>
+
+	<string name="offer_unit">승인 (₫/bar) </string>
+
+	<string name="please_bind">연결해주세요 </string>
+
+	<string name="account">계정</string>
+
+	<string name="click_open">클릭해서 열기</string>
+	<string name="corresponding_wechat">대응하는 마이크로 신호 </string> / / left arrow
+
+	<string name="for_example">예시: </string>
+
+	<string name="has_binded"> 연결되었습니다 </string>
+	<string name="male">남자</string>
+	<string name="female">여자</string>
+	<string name="please_data_wrong">요청 한도 에러 </string>
+
+	<string name="over_time">요청 시간 초과</string>
+
+	<string name="unknown">알 수 없음</string>
+
+	<string name="please_write_nick_name">별명을 입력해주세요</string>
+	<string name="please_write_age">나이를 입력해주세요</string>
+	<string name="please_write_interest">관심사를 입력해주세요</string>
+	<string name="promote_the_content_page_for_details">활동 디테일</string>
+	<string name="campaign_data_download">자료 다운로드 </string>
+
+	<string name="approved_wait_activity_start">활동이 시작하기를 기다립니다</string>
+
+	<string name="campaign_unstart">활동이 시작되지 않았습니다. </string>
+
+	<string name="reject_campaign">활동 거절하기</string>
+
+	<string name="upload_screenshot"> 스크린샷 업로드하기 </string>
+
+	<string name="approved_check_the_screenshot">Audit 통과 - 스크린샷 보기 </string>
+
+	<string name="approving_check_the_screenshot">Audit - 스크린샷 보기</string>
+
+	<string name="look_the_screenshot">스크린샷 보기 </string>
+
+	<string name="upload_again"> 다시 업로드하기 </string>
+
+	<string name="approve_reject_check_reason">Audit 거절 - 이유 확인 하기 </string>
+
+	<string name="campaign_missed">이벤트를 놓쳤습니다.</string>
+
+	<string name="campaign_ready_begin">활동이 시작되지 않았습니다</string>
+	<string name="sign_up_approve_failed"> 등록에 실패했습니다 </string>
+
+	<string name="campaign_approve_failed">활동 리뷰에 실패했습니다</string>
+
+	<string name="campaign_compeleted">활동이 끝났습니다</string>
+
+	<string name="campaign_sign_up_checking">이벤트에 등록되었습니다, 이벤트를 리뷰하는 중입니다. </string>
+
+	<string name="sign_up_instantly">지금 바로 등록하기</string>
+
+	<string name="sign_up_end">등록이 완료되었습니다. </string>
+
+	<string name="campaign_sign_up_success">활동 등록 완료 </string>
+
+	<string name="campaign_sign_up_success_wait_for_auditing">활동 등록에 성공했습니다, 리뷰를 기다리세요 </string>
+
+	<string name="upload_screenshot_time_end">스크린샷 업로드 시간이 초과 되었습니다 </string>
+
+	<string name="share_again">다시 공유하기</string>
+
+	<string name="unknown_state">알수없는 상태 </string>
+
+	<string name="recurit_process">채용 활동 과정</string>
+
+	<string name="kol_sign_up">KOL 등록 활동</string>
+
+	<string name="brand_select_kol"> 브랜드 CEO가 KOL을 선택했습니다</string>
+
+	<string name="kol_receive_campaign">KOL이 활동을 받아들였습니다</string>
+
+	<string name="download_campaign_material">자료를 다운 받으세요 </string>
+
+	<string name="upload_campaign_screenshot">활동 스크린샷 업로드하기</string>
+
+	<string name="screenshot_check_passed"> 스크린샷 리뷰 패스 </string>
+
+	<string name="my_wallet_to_account">내 지갑이 도착</string>
+
+	<string name="receive_this_campaign">이벤트를 승인</string>
+
+	<string name="has_invite_friends">친구 초대하기</string>
+
+	<string name="invite_instantly">지금 초대하기 </string>
+	<string name="setting">세팅</string>
+	<string name="log_out">로그아웃</string>
+	<string name="message">모든 메세지</string>
+	<string name="all_message_read">모두 읽음으로 표시하기</string>
+	<string name="feed_back">피드백</string>
+	<string name="sweep_qr_code"> QR코드 스캔하고 공식 사이트에 로그인하기</string>
+
+	<string name="bind_social_account">소셜 계정 연결하기 </string>
+
+	<string name="social_account">소셜 계정 </string>
+	<string name="help_online">Robin8 온라인 고객 서비스</string>
+
+	<string name="viewfinderview_status_text1"> QR코드 넣기 / 프레임 안에 넣기 </string>
+
+	<string name="viewfinderview_status_text2"> 자동으로 스캔합니다. </string>
+	<string name="button_ok">OK</string>
+	<string name="msg_camera_framework_bug">죄송합니다, 안드로이드 카메라에 문제가 생겼습니다. 기계를 재시작 해야합니다. </string>
+	<string name="invitees_list">참여 리스트</string>
+
+	<string name="invitees_person">참여자</string>
+	<string name="help_center">도움</string>
+	<string name="sweep_login_success"> 스캔 로그인에 성공했습니다 </string>
+
+	<string name="share_invite_friends_title">매일 돈을 벌 수 있는 앱을 최근에 발견했슷ㅂ니다. 시도해보시겠어요? </string>
+
+	<string name="share_invite_friends_text">Robin8은 빅데이터 소셜 플랫폼에 기반하고 있습니다 </string>
+
+	<string name="bind_mobile">핸드폰 번호 연결하기 </string>
+	<string name="robin8">ROBIN8</string>
+	<string name="please_write_kol">스페셜 KOL를 입력해주세요</string>
+
+	<string name="image_check_reject">이미지 리뷰가 승인 되지 않았습니다.: </string>
+	<!--账单-->
+	<string name="bill">청구서</string>
+	<string name="no_introduce"> KOL 소개를 입력하지 않았습니다. </string>
+
+	<string name="has_consumed"> 이 사용되었습니다 </string>
+
+	<string name="count_click">클릭 수 세기 </string>
+
+	<string name="total_clicks">전체 클릭 수 </string>
+
+	<string name="person_number">참여자 수 </string>
+
+	<string name="participate_crew_list">참여자 리스트 </string>
+
+	<string name="please_check_id_number">정확한 ID number를 입력해주세요 </string>
+
+	<string name="please_write_sex">성별 </string>
+
+	<string name="please_write_pic">이미지 업로드하기</string>
+
+	<string name="must_bind_weixin"> 위챗에 반드시 연결되어야 합니다 </string>
+
+	<string name="be_kol_get_more_info">KOL은 더 많은 활동을 보여줄 수 있습니다~</string>
+
+	<string name="counts_2to5">관심사의 갯수가 최소 2개에서 5개여야만 합니다</string>
+
+	<string name="invite_friends_earn_money">친구 초대해서 리워드 받기</string>
+
+	<string name="checked_rejected_repair">Audit에 실패했습니다, 즉시 수정했습니다 </string>
+
+	<string name="expected_cut">예상되는 커미션 </string>
+
+	<string name="product">상품 라이브러리</string>
+
+	<string name="article">기사 </string>
+
+	<string name="price">가격</string>
+
+	<string name="commission">커미션 </string>
+
+	<string name="my_create">내 제품</string>
+
+	<string name="start_create">작성하기</string>
+
+	<string name="release">올리기 </string>
+
+	<string name="reject_reason">거절 이유 리뷰하기: </string>
+
+	<string name="earning">을 벌 수 있습니다: </string>
+
+	<string name="earned"> 을 벌었습니다: </string>
+
+	<string name="insert_goods">상품 입력하기 </string>
+
+	<string name="please_write_article_content">기사 내용을 입력하세요 </string>
+
+	<string name="please_add_one_picture">최소 한 개의 이미지를 넣어주세요 </string>
+
+	<string name="article_success"> 기사가 성공적으로 발간되었습니다 </string>
+
+	<string name="release_success">올리기 성공 </string>
+
+	<string name="we_will_check_your_create_in_one_day">우리가 당신의 창작물을 24시간내에 리뷰합니다</string>
+
+	<string name="look_my_create">내 창작 보기</string>
+
+	<string name="download_all_images_in_this_paper">기사의 모든 이미지 다운로드 하기</string>
+
+	<string name="pic_download_success">이미지 다운로드에 성공했습니다. </string>
+
+	<string name="img_empty">이미자가 존재하지 않습니다, 로컬 경로를 확인하고 스크린샷을 다시 업로드하세요 </string>
+
+	<string name="text_protocol">\u3000\u3000Robin8提醒用户在使用Robin8平台（robin8.com）服务以及robin8 APP（以下简称“Robin8服务”）之前，仔细阅读并理解以下条款，尤其是限制用户权利的条款。使用Robin8服务的行为将视为用户已经同意本声明的全部内容，并将在使用Robin8服务的过程中遵守执行。\n\u3000\u30001、Robin8是供有广告投放推广需求的客户（下称“广告主”）和能够提供广告发布推广服务的自媒体账号或个人账户（以下简称“KOL”）交易的第三方平台。Robin8平台展示广告主提供的广告内容、KOL提供的账号名称、粉丝数等原始数据，供广告主、KOL根据需要甄选符合自己需求的服务对象进行交易。\n\u3000\u30002、Robin8将对广告主的身份、广告内容、KOL的身份信息、账号名称等内容进行审查，筛选出Robin8认为不真实的信息，但由于网络平台的特殊性及微播易的局限性，Robin8无法筛选出所有的不真实信息并做处理，但将尽最大努力保证所有信息的真实性。\n\u3000\u30003、广告主应如实填写广告信息，对广告内容的真实性、准确性、合法性、推广后的影响负责，Robin8倡导各广告主诚信发布广告、遵守法律法规以共同维护网络环境。\n\u3000\u30004、KOL应如实填写并及时更新对应平台的相应数据，包括但不限于账号名称、地域、账号粉丝数、受众信息等，并反馈真实的推广效果，Robin8倡导KOL诚信服务、遵守法律法规以共同维护网络环境。\n\u3000\u30005、KOL应综合考虑广告内容的真实性、准确性、合法性等因素后选择是否接单，一旦选择接单则应自行承担广告内容发布后对其账号造成的一切影响。广告主与KOL因广告发布产生的纠纷由双方自行解决。\n\u3000\u30006、Robin8基于广告主需求向其推荐的账号，仅是微播易基于账号自身数据分析判断做出的推荐，由广告主最终确认是否使用Robin8推荐的账号。\n\u3000\u30007、Robin8将采取必要手段为用户信息保密，但基于技术限制等，Robin8并不能保证用户的信息完全不被泄露。\n\u3000\u30008、用户应同意Robin8有限度的使用其信息，包括但不限于向用户及时发送重要通知或派发订单、Robin8内部进行审计、数据分析和研究等Robin8自行判断为合理使用的情形及法律法规要求等。\n\u3000\u30009、用户认为Robin8的其它用户侵犯其权利的，可向Robin8提供权利证明文件、身份证明文件等，Robin8审核评估后将采取适当措施予以处理。</string>
+	<string name="agree">동의</string>
+	<string name="reject">거절</string>
+	<string name="robin_disclaimer">Robin8 Disclaimer </string>
+
+	<string name="share_article_tips">기사가 공유된 이후에, 당신의 친구가 기사에 있는 상품을 구매하면, 당신은 더 높은 커미션을 얻을 수 있습니다. </string>
+
+	<string name="expected_income_details"><![CDATA[expected income details>]]></string>
+
+	<string name="realese_article_tips">기사가 발행된 이후 수정할 수 없습니다, 기사의 물건을 구입하면 더 높은 커미션을 받을 수 있습니다.</string>
+
+	<string name="finish_article_tips">현재 기사가 공개 되지 않았습니다. 편집이 안됐나요? </string>
+	<string name="white_space">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</string>
+	<string name="white_space_ban">\t\t\t\t\t\t\t\t\t\t\t</string>
+	<string name="sign_end">등록 완료 </string>
+
+	<string name="ending"> 이 끝나고 있습니다 </string>
+
+	<string name="has_been_end">종료</string>
+
+	<string name="kol_age">KOL 나이 </string>
+
+	<string name="kol_sex">KOL 성별 </string>
+
+	<string name="kol_classify">KOL 분류 </string>
+
+	<string name="kol_city">KOL 도시 </string>
+
+	<string name="all">전체 </string>
+
+	<string name="count_at_least2">최소한 2개의 분류를 선택하세요</string>
+
+	<string name="cancel_all"> 전체 취소하기 </string>
+
+	<string name="clear">클리어 </string>
+
+	<string name="select_all">전체 선택하기 </string>
+
+	<string name="clear_all"> 비우기 </string>
+
+	<string name="please_select_one_city">최소한 한 개의 도시를 선택 하세요</string>
+
+	<string name="screenshot_reference">스크린샷 참조 </string>
+
+	<string name="validity_of_goods">제품 유통기한</string>
+
+	<string name="sign_up_recruit">모집 등록 </string>
+
+	<string name="download">다운로드 </string>
+
+	<string name="task">테스크 </string>
+
+	<string name="launch_reword_activity">리워드 이벤트 시작하기</string>
+
+	<string name="intelligent_release">지능 출판</string>
+
+	<string name="please_write_link">활동 링크를 입력하세요 </string>
+
+	<string name="text_class">기사 카테고리 </string>
+
+	<string name="key_tags">키워드 클라우드</string>
+
+	<string name="sentiment_analysis">센티멘트 분석</string>
+
+	<string name="product_server">제품 서비스 </string>
+
+	<string name="person_brand">캐릭터 브랜드 </string>
+
+	<string name="detail">기사 더보기>></string>
+
+	<string name="all_classify">모든 카테고리 </string>
+
+	<string name="share_to_wechatmoments">위챗 모임에 공유하기</string>
+
+	<string name="share_to_weibo">시나 웨이보에 공유하기</string>
+
+	<string name="share_for_money">공유</string>
+
+	<string name="known">Ok! Got it! </string>
+
+	<string name="known_la">알다</string>
+	<string name="campaign_request">활동 요구사항 </string>
+
+	<string name="sign_rule">등록 리워드 규칙</string>
+	<!-- 评价效果 页面-->
+	<string name="effect_evaluate">영향력있는 평가</string>
+
+	<string name="effect_import">당신의 평가는 우리에게 매우 중요합니다</string>
+	<!--个推-->
+	<!--活动多图上传-->
+	<string name="all_image">모든 사진 </string>
+
+	<string name="preview">"프리뷰 "</string>
+
+	<string name="msg_no_camera">시스템 카메라를 이용할 수 없습니다 </string>
+
+	<string name="msg_amount_limit"> 가장 많은 선택 수에 도달했습니다. </string>
+
+	<string name="done">완료 </string>
+	<string name="image_index">%1$d/%2$d</string>
+	<!--put金币-->
+	<string name="put_wallet">KOL 토큰 지갑</string>
+	<!--登陆后用户信息等-->
+	<string name="tv_know_you">우리에게 당신에 대해서 알려주세요</string>
+	<string name="tv_your_choose">당신의 선택에 따라 서로 다른 종류의 활동을 당신에게 연결해줍니다</string>
+	<string name="tv_choose_gender">성별을 선택하세요</string>
+	<string name="tv_choose_id">신분증을 선택하세요</string>
+	<string name="tv_birth_year">출생연도</string>
+	<string name="tv_general_user">일반 사용자</string>
+	<string name="tv_bigV_user">big V 사용자</string>
+	<string name="tv_content_creator">콘텐츠 크리에이터</string>
+	<string name="tv_choose_favorite">당신이 관심있는 태그를 선택하세요</string>
+	<string name="tv_find_for_you">당신이 가장 관심있는 활동을 선택하세요</string>
+	<string name="save">저장</string>
+	<string name="tv_know_user_id">당신의 ID를 알기</string>
+	<string name="share_fillter_1">모든 활동</string>
+	<string name="share_fillter_2">새로운 활동</string>
+	<string name="share_fillter_3">진행중</string>
+	<string name="share_fillter_4">보류중</string>
+	<string name="share_fillter_5">완료</string>
+	<string name="share_fillter_6">놓침</string>
+	<string name="robin001">캠페인은 끝납니다:</string>
+	<string name="robin003">날(s)</string>
+	<string name="robin004">시간(s)</string>
+	<string name="robin005">분(s)</string>
+	<string name="robin008">최대 가능한 수입:</string>
+	<string name="robin006">끝남</string>
+	<string name="share_fillter_7">끝</string>
+	<string name="robin7">완벽한 ID 정보를 위해 클릭하세요</string>
+	<string name="robin011">성별</string>
+	<string name="robin012">아바타</string>
+	<string name="robin104">핸드폰</string>
+	<string name="robin015">생일</string>
+	<string name="robin017">직업을 입력해주세요</string>
+	<string name="robin018">생일을 입력해주세요</string>
+	<string name="robin019">성별을 입력해주세요</string>
+	<string name="robin020">이메일을 입력해주세요 </string>
+	<string name="robin021">핸드폰 번호를 입력해주세요</string>
+	<string name="robin022">별명을 입력해주세요</string>
+	<string name="robin023">%캠페인 세부사항</string>
+	<string name="robin025">데이터 수정하기</string>
+	<string name="robin026">브랜드 마스터 계정</string>
+	<string name="robin027">브랜드 마스터 포인트</string>
+	<string name="robin028">브랜드 확인을 위해 기다립니다</string>
+	<string name="robin029">당신의 작업이 업로드 된 이후에 브랜드를 리뷰합니다, 규칙을 따라주세요</string>
+	<string name="robin030">견적 추가</string>
+	<string name="robin031">브랜드 로고</string>
+	<string name="robin032">브랜드 이름 *</string>
+	<string name="robin033">브랜드 이름을 입력하세요</string>
+	<string name="robin034">회사 이름 *</string>
+	<string name="robin035">전체 담당자 혹은 \'사람\'을 입력하세요</string>
+	<string name="robin036">공식 웹사이트</string>
+	<string name="robin037">당신 회사\'의 공식 웹사이트</string>
+	<string name="robin038">브랜드 소개</string>
+	<string name="robin039">브랜드 소개를 입력해주세요</string>
+	<string name="robin040">제출</string>
+	<string name="robin041">나이를 입력해주세요</string>
+	<string name="robin042">개인적인 장점을 입력해주세요</string>
+	<string name="robin044">클릭해서 위챗 열기</string>
+	<string name="robin045">성공적으로 제출했습니다, KOL 자격을 심사합니다! </string>
+	<string name="robin046">Robin8이 영업일 기준 1일 이내에 KOL 자격 심사를 할 예정입니다, 기다려주세요.</string>
+	<string name="robin047">활동 시간：</string>
+	<string name="robin048">활동 가격：</string>
+	<string name="robin049">모집 수：</string>
+	<string name="robin050">활동 플랫폼：</string>
+	<string name="robin051">KOL이 속한 기업</string>
+	<string name="robin052">브랜드 소개</string>
+	<string name="robin053">브랜드 이름</string>
+	<string name="robin054">이벤트에 참여</string>
+	<string name="robin056"> 페이스트보드에서 자동으로 읽을 수 있습니다 </string>
+
+	<string name="robin057"><![CDATA[skip>]]></string>
+
+	<string name="robin058">전체 수집자</string>
+
+	<string name="robin059">개인</string>
+
+	<string name="robin060">전체 수익 </string>
+
+	<string name="robin061">₫</string>
+
+	<string name="robin062">초대 공유하기 </string>
+
+	<string name="robin063">공유하기</string>
+
+	<string name="robin064">연락처 초대하기</string>
+
+	<string name="robin065">초대하기</string>
+
+	<string name="robin066">복사하기 </string>
+
+	<string name="robin067">리워드 룰 </string>
+
+	<string name="robin068">리워드 룰 받기: </string>
+
+	<string name="robin069">인턴의 성공과 포상금은 다음과 같은 조건을 충족한다: </string>
+
+	<string name="robin070">1. Rowin8의 사용자가 되기 위한 인턴 등록; </string>
+
+	<string name="robin071">2. Rowin8 활동 완료. </string>
+	<string name="robin072">배당보너스 룰：</string>
+	<string name="robin073">셀프 미디어 모임</string>
+	<string name="robin074">당신의 미디어 모임을 선택하세요</string>
+
+	<string name="robin075">셀프 미디어 플랫폼</string>
+
+	<string name="robin076">셀프 미디어 플랫폼을 선택하세요</string>
+
+	<string name="robin077">나의 제안</string>
+
+	<string name="robin078">원본 그래픽 견적을 입력하세요 </string>
+
+	<string name="robin079">원본 비디오 견적을 입력하세요</string>
+
+	<string name="robin080">팬의 수 </string>
+
+	<string name="robin081">팬의 수를 입력하세요 </string>
+
+	<string name="robin082">주요한 팬의 성별을 입력하세요</string>
+
+	<string name="robin083">나이대를 선택하세요 </string>
+
+	<string name="robin084">지리적으로 집중된 도시를 선택하세요(1-3)</string>
+
+	<string name="robin085">작업 링크 </string>
+
+	<string name="robin086">작업 링크를 입력하세요 </string>
+
+	<string name="robin087">주목 (선택) </string>
+
+	<string name="robin088">중요사항을 입력해주세요</string>
+
+	<string name="robin091">다음</string>
+
+	<string name="robin092">확인 코드 </string>
+
+	<string name="robin093">확인 코드 받기 </string>
+
+	<string name="robin094">당신이 겪고 있는 문제에 대해 설명해주세요</string>
+
+	<string name="robin095">관련 추천</string>
+
+	<string name="robin096">일반 사용자 (내일의 스타)</string>
+
+	<string name="robin097"> 저는 로빈8 플랫폼을 통해 새로운 것을 발견하고, 주요 브랜드와 협력하여 미래 네트워크 스타가 될 수 있는 기회를 갖기를 바랍니다. </string>
+
+	<string name="robin098">large V 사용자 (super net red) </string>
+
+	<string name="robin099"> 10만명 이상의 팬을 가지고 있고, 브랜드에 대한 경험을 가지고 있으며, Robin8을 통해 보다 광범위한 사업협력을 얻기를 바랍니다.</string>
+
+	<string name="robin100">콘텐츠 크리에이터 (Creative Big Coffee)</string>
+
+	<string name="robin101">그래픽 및 비디오 생성에 집중하여, 다양한 원본 컨텐츠를 게시할 수 있으며 주요 브랜드와 협력할 수 있는 기회를 제공합니다</string>
+
+	<string name="robin102">새로운 비밀번호를 입력하세요</string>
+
+	<string name="robin103">비밀 번호를 다시 입력하세요 </string>
+
+	<string name="robin105"> 채널 고정</string>
+
+	<string name="robin106">즉시 트레져 얻기</string>
+
+	<string name="robin107">계산 공식 </string>
+
+	<string name="robin108">[(가치 A + 가치 B) / 상품이 필요로 한 시간] 나머지를 갖다 + </string>
+
+	<string name="robin110">가치 A </string>
+
+	<string name="robin111">=The last 10 total station participation records for the last time of the item\'s time to win the treasure </string>
+
+	<string name="robin112">=The results of the latest issue of China Welfare Lottery\'s old time color\'</string>
+
+	<string name="robin114">현재 참여: </string>
+
+	<string name="robin116">전체 소비 밸런스: </string>
+
+	<string name="robin117">지금 지급하기</string>
+
+	<string name="robin118">가치 B </string>
+	<string name="robin119">리워드 룰</string>
+	<string name="robin120">방법 1: 등록을 완료하려면 아래의 초대 버튼을 클릭하십시오</string>
+	<string name="robin121">방법 2: 친구에게 당신의 초대 코드를 알려주고, Robin8에 로그인할 때 입력하시오.</string>
+	<string name="robin122">주의사항: Robin8에서 활동을 하고 스크린샷을 업로드하는 친구만이 하루에 최대 10개의 리워드를 받을 수 있고, 성공 후에 당신의 지갑에 직접 리워드가 들어옵니다</string>
+	<string name="robin123">*이 이벤트의 최종 설명은 모두 @Robin8에 속한다.</string>
+	<string name="robin124">아직 전화 연락처를 동기화하지 않았으므로 친구 정보를 얻을 수 없습니다</string>
+	<string name="robin125">연락처 친구 초대</string>
+	<string name="robin126">이벤트 타이틀을 입력해주세요</string>
+	<string name="robin127">활동설명을 입력해주세요</string>
+	<string name="robin128">클릭해서 커버 이미지를 업로드하세요</string>
+	<string name="robin129">활동 링크를 입력해주세요</string>
+	<string name="robin130">활동 플랫폼</string>
+	<string name="robin131">활동 시간</string>
+	<string name="robin132">활동 타입</string>
+	<string name="robin133">정확한 마케팅？</string>
+	<string name="robin135">제출</string>
+	<string name="robin136">기사 링크를 입력해주세요 </string>
+	<string name="robin137">링크를 복사하면 자동으로 채울 수 있습니다.【위챗 기사를 게시할 것을 권장합니다】 </string>
+	<string name="robin138">원하는 효과를 선택하십시오.</string>
+	<string name="robin139">Robin8은 정확한 마케팅을 위해 NLP 기술을 사용한 최초의 국내 기업입니다.기사 링크를 복사하기만 하면 게시할 수 있습니다.</string>
+	<string name="robin140">이벤트 정보 수정</string>
+	<string name="robin141">활동 전체 예산</string>
+	<string name="robin142">포인트 공제</string>
+	<string name="robin143">지갑 밸런스 공제</string>
+	<string name="robin144">지금 지급하기</string>
+	<string name="robin145">핸드폰 번호 로그인</string>
+	<string name="robin146">핸드폰 번호</string>
+	<string name="robin147">초대 코드를 입력하세요 (선택사항) </string>
+	<string name="robin149">비밀번호를 잊어버리셨나요?</string>
+	<string name="robin150">사용자 서비스 계약에 동의하려면 로그인 또는 소셜 계정을 클릭하세요</string>
+	<string name="robin151">아직 메일이 없으신가요?</string>
+	<string name="robin152">지금 바로 등록하세요</string>
+	<string name="robin153">방문자 모드를 눌러주세요</string>
+	<string name="robin155">*사용자 서비스 계약에 동의하려면 로그인 또는 소셜 계정을 클릭하세요</string>
+	<string name="robin156">혹은</string>
+	<string name="robin157">당신에게 더 나은 서비스를 제공하기 위해, 휴대폰 번호를 입력해주세요</string>
+	<string name="robin158">영향</string>
+	<string name="robin159">활동 전체 예산</string>
+	<string name="robin160">이벤트 페이지 보기</string>
+	<string name="robin161">참여자 페이지 보기</string>
+	<string name="robin163">거절된 이유 보기</string>
+	<string name="robin164">이벤트 공유하기</string>
+	<string name="robin165">창의적인 활동</string>
+	<string name="robin166">콘텐츠가 아직 수집되지 않았습니다, 컬렉션으로 이동하십시오.~</string>
+	<string name="robin167">지급 방법을 선택해주세요</string>
+	<string name="robin168">광고계정밸런스결제</string>
+	<string name="robin169">지금 청구하기</string>
+	<string name="robin170">알리페이 지급</string>
+	<string name="robin172">셀프 미디어 플랫폼 선택하기</string>
+	<string name="robin173">모든 카테고리</string>
+	<string name="robin174">통합된 분류</string>
+	<string name="robin175">모임</string>
+	<string name="robin176">당신이 관심있는 모임을 선택해주세요</string>
+	<string name="robin177">위챗 친구 수</string>
+	<string name="robin178">위챗 친구 수를 입력해주세요</string>
+	<string name="robin179">청구액</string>
+	<string name="robin180">최소 충전량은 1,000,000₫입니다.</string>
+	<string name="robin181">초대 코드</string>
+	<string name="robin182">입력하지마세요</string>
+	<string name="robin183">지급 방법</string>
+	<string name="robin184">참고: 스크린샷 예제 순서대로 해당 이미지를 업로드하세요.</string>
+	<string name="robin185">텍스트 설명</string>
+	<string name="robin186">사진 설명</string>
+	<string name="robin187">제목</string>
+	<string name="robin188">이미지 삽입하기</string>
+	<string name="robin189">아이템 삽입하기</string>
+	<string name="robin190">당신의 성공을 축하합니다! ! !</string>
+	<string name="robin192">작업이 업로드된 이후에 브랜드 리뷰가 이루어집니다, 규칙을 따라주세요</string>
+	<string name="robin193">작업 링크 업로드하기</string>
+	<string name="robin194">활동 정보</string>
+	<string name="robin195">작업 정보</string>
+	<string name="robin200">ID 정보</string>
+	<string name="robin201">다음 ID는 등록 되지 않았습니다</string>
+	<string name="robin202">열기</string>
+	<string name="robin203">마이크로블로그 견적을 작성해주세요</string>
+	<string name="robin204">위챗 견적을 작성해주세요</string>
+	<string name="robin205">누적 수입</string>
+	<string name="robin206">오늘\'의 수입</string>
+	<string name="robin207">등록 보상</string>
+	<string name="robin208">초보자 작업</string>
+	<string name="robin209">활동 완성하기</string>
+	<string name="robin210">테스크 하기</string>
+	<string name="robin211">콘텐츠를 처음 공유하기 (0/1) 리워드:</string>
+	<string name="robin212">스크린샷 예제 보기 (0/1) 리워드:</string>
+	<string name="ribin213">처음 스크린샷 업로드하기 (0/1) 리워드:</string>
+	<string name="robin214">매일의 테스크</string>
+	<string name="robin215">공유해서 수입 얻기</string>
+	<string name="robin216">참조 문헌 </string>
+	<string name="robin217">KOL 모임</string>
+	<string name="robin218">당신의 KOL 모임을 선택해주세요</string>
+	<string name="robin219">단일 그래픽 가격을 입력해주세요</string>
+	<string name="robin220">여러 장의 헤드라인 가격을 입력해주세요</string>
+	<string name="robin221">다음 가격을 입력해주세요</string>
+	<string name="robin222">3-N 가격을 입력해주세요</string>
+	<string name="robin223">할당 유효 기간</string>
+	<string name="robin224">견적서의 유효 기간을 입력하십시오</string>
+	<string name="robin225">인증 유형</string>
+	<string name="robin226">인증 유형을 선택해주세요</string>
+	<string name="robin227">포워딩 가격을 입력해주세요</string>
+	<string name="robin228">스트레이트 헤어 가격을 입력해주세요</string>
+	<string name="robin229">실제 가격을 입력해주세요</string>
+	<string name="robin230">금액을 올리기 위해서</string>
+	<string name="robin231">여기가 마지막입니다 클릭해서 새로고치기</string>
+	<string name="robin232">친구를 초대해서 함께 돈을 벌어보세요</string>
+	<string name="robin233"><![CDATA[토큰 지갑을 열어서 추가 리워드를 받아보세요 >]]></string>
+	<string name="robin234">포인트 룰</string>
+	<string name="robin235">연결 해제하기</string>
+	<string name="robin236">ID 리뷰 과정</string>
+	<string name="robin237">고객 서비스에 연락하기</string>
+	<string name="robin238">사진 저장하기</string>
+	<string name="robin239">추가 리워드</string>
+	<string name="robin240">참여자</string>
+	<string name="robin241">오픈 앨범</string>
+	<string name="robin243">도움</string>
+	<string name="robin244">Robin8은 가장 정확히 매칭하는 KOL에 우선순위를 둡니다. 6시간 후에, 이벤트가 끝날때까지 활동은 끝나지않고, 맞는 KOL 분류를 찾아갈때까지 재제출 될 것입니다.</string>
+	<string name="robin245">성공적인 빨간 봉투</string>
+	<string name="robin246">수시로 올라오는 컨텐츠를 매일 읽어 찾기 \n 빨간 패키지 가져오기</string>
+	<string name="robin247">KOL 자격 심사 거부</string>
+	<string name="robin248">아바타가 요구조건에 맞지 않습니다.</string>
+	<string name="robin249">KOL이 되기 위해 재지원 하기</string>
+	<string name="robin250">견적을 채워주세요</string>
+	<string name="robin251">소셜 계정 정보</string>
+	<string name="robin252">사진 찍기</string>
+	<string name="robin253">활동 무효화 하기</string>
+	<string name="robin254">우승자:</string>
+	<string name="robin255">TA 가 참여했습니다：</string>
+	<string name="robin257">로딩에 실패했습니다, 클릭해서 재시도 하기</string>
+	<string name="robin258">알림</string>
+	<string name="robin259">활동들이 몰려오고 있으니, 채널을 고정해주세요</string>
+	<string name="robin260">당신의 현재 점수는 %d입니다,  \n 포인트를 사용해서  %d₫ 공제할 수 있습니다.</string>
+	<string name="robin261">포인트의 유효 기간입니다:%s</string>
+	<string name="robin263">당신의 현재 포인트 / 10 현금으로 차감할 수 있습니다</string>
+	<string name="robin264">브랜드 CEO 정보를 개선하십시오</string>
+	<string name="robin265">개선하기</string>
+	<string name="robin266">연결된 활동 수: %d</string>
+	<string name="robin267">초대 코드 (%d)</string>
+	<string name="robin268">나이대：%s</string>
+	<string name="robin269">지리적으로 밀집된 도시：%s</string>
+	<string name="robin270">이 캠페인에 참여해서 추가 KOL토큰을 지급받으세요</string>
+	<string name="robin271">공유한 후에, 친구는 정해진 테스크를 완수하고 수익을 얻습니다.</string>
+	<string name="robin272">모집활동에 참여해서 리워드를 받으세요</string>
+	<string name="robin273">초대된 이벤트에 참여하고 리워드를 받으세요</string>
+	<string name="robin274">공유 후 링크를 열고 앱을 다운로드하여 수익을 얻으세요</string>
+	<string name="robin275"> %s PUT 엑스트라 보너스를 받았습니다, 지갑에 가서 확인하세요</string>
+	<string name="robin276">이벤트가 종료되었습니다 더이상 추가적인 리워드가 없습니다</string>
+	<string name="robin277">이메일 등록</string>
+	<string name="robin278">카메라</string>
+	<string name="robin279">카메라에 접근하는 것에 실패했습니다</string>
+	<string name="robin280">이 기능을 사용하기 위해서는 카메라에 접근 동의가 필요합니다</string>
+	<string name="robin281">사용 권한 확인</string>
+	<string name="robin282">팁</string>
+	<string name="robin283">고객 서비스 이용이 현재 원활하지 않습니다. 다시 시도해주세요</string>
+	<string name="robin284">완료하러 가기</string>
+	<string name="robin285">읽으러  가기</string>
+	<string name="robin286">리워드: 활동에 따라서 </string>
+	<string name="robin287">리워드: 당신에게 있는 엄청난 현금의 빨간 봉투 </string>
+	<string name="robin288">리워드: 6,000₫ </string>
+	<string name="robin289">친구 초대하기 (%d/10)</string>
+	<string name="robin290">콘텐츠 발굴하기 (%d/10)</string>
+	<string name="robin291">공유 활성화 (%d/4)</string>
+	<string name="robin292">확인 </string>
+	<string name="robin293"> 연속으로%d 일 동안 등록하였습니다, 내일 등록하여 %s₫를 받으세요 </string>
+	<string name="robin294"> 연속으로%d 일 동안 등록하였습니다, 오늘 등록하여 %s₫를 받으세요 </string>
+	<string name="robin295">필터</string>
+	<string name="robin296">끌어내려서 새로 고침하기</string>
+	<string name="robin297">발표하여 새로 고침하기 </string>
+	<string name="robin298">최근 업데이트: %s</string>
+	<!--<string name="robin298">最后更新：%s</string>-->
+	<string name="robin299">Robin8 엔진이 작동중입니다 </string>
+	<string name="robin300">협조적이지 않음 </string>
+	<string name="robin301">협조 확인, 지급 보류 </string>
+	<string name="robin302">동의 충족, 지급 보류 </string>
+	<string name="robin303">제안 보기</string>
+	<string name="robin304">거절된 견적</string>
+	<string name="robin305">작업 업로드하기</string>
+	<string name="robin306">활동이 끝났습니다</string>
+	<string name="robin307">지급이 성공적으로</string>
+	<string name="robin308">활동이 닫혔습니다</string>
+	<string name="robin309">작업 업로드, 동의 보류 </string>
+	<string name="robin310">협조적이지 않음 </string>
+	<string name="robin311">협조 확인, 지급 보류 </string>
+	<string name="robin312">동의 충족, 지급 보류 </string>
+	<string name="robin313"> 여전히 %s를 현금화 할 수 있습니다. </string>
+	<string name="robin314">복사 성공</string>
+	<string name="robin315">개인 정보</string>
+	<string name="robin317">거절 이유: 스크린샷이 업로드 되지 않음 </string>
+	<string name="robin318">거절 이유: 스크린샷이 요구조건을 충족하지 않습니다. </string>
+	<string name="robin319">등록 마감일로부터 </string>
+	<string name="robin320">특별 인원 수 </string>
+	<string name="robin321">이벤트 시작으로부터  </string>
+	<string name="robin322">%s 시작으로부터</string>
+	<string name="robin323">초</string>
+	<string name="robin324">별명을 입력해주세요 </string>
+	<string name="robin325">확인 코드 다시 받기 </string>
+	<string name="robin327">정확한 이메일 주소를 입력해주세요!</string>
+	<string name="robin328">확인 코드를 입력해주세요!</string>
+	<string name="robin329">정확한 핸드폰 번호를 입력해주세요!</string>
+	<string name="robin330">인증서 코드를 전송하는데 실패했습니다!</string>
+	<string name="robin331">확인 코드를 성공적으로 보냈습니다 </string>
+	<string name="robin332">당신의 핸드폰 번호를 입력해주세요!</string>
+	<string name="robin333"><![CDATA[ <font color=#ecb200>%d</font> 클릭을 받았고,  <font color=#ecb200>%s₫ </font>의 수익을 얻습니다 ]]> </string>
+	<string name="robin334"><![CDATA[ <font color=#ecb200>%d</font> 클릭을 받았고,  <font color=#ecb200>%s₫ </font>의 수익을 얻게 될 것입니다 ]]> </string>
+	<string name="robin335"><![CDATA[완료, e <font color=#ecb200>%s₫</font>의 수익을 얻습니다]]></string>
+	<string name="robin336"><![CDATA[이벤트가 진행중입니다, 곧 <font color=#ecb200>%s₫</font>의 수익을 얻게 됩니다]]></string>
+	<string name="robin337">스크린샷 업로드 성공</string>
+	<string name="robin338">클릭 </string>
+	<string name="robin339">효과 </string>
+	<string name="robin340">포워드 </string>
+	<string name="robin341">모집 </string>
+	<string name="robin342">초대 </string>
+	<string name="robin343">다운로드 </string>
+	<string name="robin344">업무 </string>
+	<string name="robin345">네트워크 연결 오류</string>
+	<string name="robin346">활동이 성공적으로 승인되었습니다 </string>
+	<string name="robin347">재업로드</string>
+	<string name="robin348">스크린샷 업로드</string>
+	<string name="robin349">탑 10 인턴이 하루 2 개의 보너스를 얻습니다</string>
+	<string name="robin350">브랜드 </string>
+	<string name="robin351">회사 이름 </string>
+	<string name="robin352">기관 인증</string>
+	<string name="robin353">개인 인증</string>
+	<string name="robin354">인증되지 않음</string>
+	<string name="robin355">주요 팬 성별: 남성 </string>
+	<string name="robin356">주요 팬 성별: 여성 </string>
+	<string name="robin357">플랫폼을 선택하세요 </string>
+	<string name="robin358">마이크로 블로그 견적을 입력해주세요 </string>
+	<string name="robin359">위챗 견적을 입력해주세요</string>
+	<string name="robin360">audit에 실패했습니다, 고객 서비스에 연락해주세요 </string>
+	<string name="robin361">카메라 필름</string>
+	<string name="robin362">활동 예산: %s₫ </string>
+	<string name="robin363">통합: %s</string>
+	<string name="robin364">평가 보기</string>
+	<string name="robin365">거절 이유: %s</string>
+	<string name="robin366"> (% s) </string>
+	<string name="robin367"> 기간 번호: %s</string>
+	<string name="robin368"> %d를 충전해 포인트 받기</string>
+	<string name="robin369">참고: 보너스 시간은 %s에 유효합니다</string>
+	<string name="robin370">편집 </string>
+	<string name="robin371">성공적으로 저장했습니다 </string>
+	<string name="robin372">비어있음</string>
+	<string name="robin373">초대 </string>
+	<string name="robin374">초대됨 </string>
+	<string name="robin375">지급액:  %s₫ </string>
+	<string name="robin376"> %s₫지급을 확인했습니다 </string>
+	<string name="robin377">새로운 것들</string>
+	<string name="robin378">공유에 실패했습니다, 다시 시도 해주세요</string>
+	<string name="robin379">공유에 성공했습니다</string>
+	<string name="robin380">공유 취소하기</string>
+	<string name="robin381">모든 사진을 업로드해주세요! </string>
+	<string name="robin382">이미지를 업로드해주세요! </string>
+	<string name="robin383">성공적으로 통합되었습니다 </string>
+	<string name="robin384">바인딩 실패 </string>
+	<string name="robin385">%s 묶임</string>
+	<string name="robin386">묶는 데 실패했습니다, 다시 시도 해주세요</string>
+	<string name="robin387"> %s를 성공적으로 바인딩했습니다</string>
+	<string name="robin388">데이터 없음</string>
+	<string name="robin389">유효하지않은 초대 코</string>
+	<string name="robin390">인증 성공</string>
+	<string name="robin391">네트워크 로딩에 실패했습니다</string>
+	<string name="robin392">초대코드를 미입력 할 수 없습니다</string>
+	<string name="robin393">저장에 실패했습니다</string>
+	<string name="robin394">먼저 인증해 주세요</string>
+	<string name="robin395">충전액을 입력해 주세요</string>
+	<string name="robin396">작업 링크를 입력해주세요</string>
+	<string name="robin397">견적을 입력해주세요</string>
+	<string name="robin398">로그인이 유효하지않습니다, 다시 로그인 해주세요 </string>
+	<string name="robin399">연락할 수 있도록 권한을 허용해주세요. 그렇지 않으면 이 기능이 제대로 작동하기 어렵습니다 </string>
+	<string name="robin400">확인란을 체크하시고 , \'Settings-Application Management\' 로 가서 해당하는 권한을 허용해주세요. 그렇지 않으면 이 기능이 제대로 작동하기 어렵습니다</string>
+	<string name="robin401">텍스트를 입력해주세요</string>
+	<string name="robin402">로그인 성공 </string>
+	<string name="robin403">비밀번호 입력과 확인이 불일치 합니다</string>
+	<string name="robin404">최소 6자리 이상의 비밀번호를 입력해주세요 </string>
+	<string name="robin405">지급 성공 </string>
+	<string name="robin406">현금액을 입력해주세요 </string>
+	<string name="robin407">정확한 금액을 입력해주세요 </string>
+	<string name="robin408">50이 현금화 되었습니다 </string>
+	<string name="robin409">잔고 부족 </string>
+	<string name="robin410">먼저 알리페이 계정을 연결해주세요 </string>
+	<string name="robin411">성공</string>
+	<string name="robin418">양: %d</string>
+	<string name="robin419">성별을 선택해주세요 </string>
+	<string name="robin420">인증에 실패했습니다, 다시 시도해주세요</string>
+	<string name="robin421">알리페이 연결 성공</string>
+	<string name="robin422">자금 흐름</string>
+	<string name="robin423">통합 흐름 </string>
+	<string name="robin424">점수를 매겨주세요 </string>
+	<string name="robin425">평가 내용을 입력해주세요 </string>
+	<string name="robin426">지급 결과 확인</string>
+	<string name="robin427">지급에 실패했습니다 </string>
+	<string name="robin428">플랫폼을 선택하고 저장해주세요 </string>
+	<string name="robin429">전문 크리에이터 인증</string>
+	<string name="robin430">전문 콘텐츠 크리에이터로 인증되지 않았습니다</string>
+	<string name="robin431">전문 콘텐츠 크리에이터로 인증되었습니다</string>
+	<string name="robin432">전문 콘텐츠 크리에이터 인증</string>
+	<string name="robin433">전문 콘텐츠 크리에이터 인증 실패 </string>
+	<string name="robin434">위챗 public number </string>
+	<string name="robin435">공유하러 가기...</string>
+	<string name="robin436">%s 백만 조회 </string>
+	<string name="robin437">%s 조회</string>
+	<string name="robin438">제안 수정하기</string>
+	<string name="robin439">협력 견적 </string>
+	<string name="robin440">견적이 성공적입니다, 브랜드 마스터의 리뷰를 기다리세요 </string>
+	<string name="robin441">참고하세요 </string>
+	<string name="robin442">링크 수정하기 </string>
+	<string name="robin444">축하합니다! 협력이 완료되었습니다 </string>
+	<string name="robin445">협력 보상이 당신의 Robin8 계좌로 입금되었습니다, 내 지갑을 확인해주세요</string>
+	<string name="robin446">브랜드 마스터의 리뷰를 기다리세요</string>
+	<string name="robin447">당신의 성공적인 참여를 축하합니다, 당신의 작업을 업로드하세요</string>
+	<string name="robin448">제출에 성공했습니다, 브랜드 마스터의 리뷰를 기다리세요 </string>
+	<string name="robin449">%s 견적을 추가하세요</string>
+	<string name="robin450">%s를 추가하세요</string>
+	<string name="robin451">자세한 사항 </string>
+	<string name="robin452">%s의 메타 리워드가 지갑에 있습니다 </string>
+	<string name="robin453">활동 유형을 선택하세요 </string>
+	<string name="robin454">활성된 링크의 유형이 정확하지 않습니다 </string>
+	<string name="robin455">전체 활동 예산을 입력해주세요 </string>
+	<string name="robin456">단일 요금을 입력해주세요 </string>
+	<string name="robin457">클릭 한 번의 최소 가격은 6,000₫입니다 </string>
+	<string name="robin458">클릭 한번의 비용 형식 오류 </string>
+	<string name="robin459">프로모션 플랫폼 선택 </string>
+	<string name="robin460">프로모션 플랫폼을 먼저 선택해주세요</string>
+	<string name="robin461">이 테스크는 공유한 뒤 최소 30분 후에 스크린샷을 공유 및 업로드를 해야합니다, 그렇지 않으면 통과 될 수 없습니다 </string>
+	<string name="robin262">는 현재 최신 버전입니다 </string>
+	<string name="notification_error_ssl_cert_invalid">网站不信任，你想继续吗？</string>
+	<string name="robin462"><![CDATA[공유하면, 친구의 각각의 클릭은 당신이 벌 수 있게 해줍니다: <font color=#ecb200> %sđ</font>]]></string>
+	<string name="robin463"><![CDATA[공유하면, 당신은 최대까지 벌 수 있습니다<font color=#ecb200> %sđ</font>]]></string>
+	<string name="robin464"><![CDATA[공유하면, 당신은 받을 수 있습니다: <font color=#ecb200> %sđ</font>]]></string>
+	<string name="robin466">소스: %s</string>
+	<string name="robin467">브랜드 이름은 비워둘 수 없습니다</string>
+	<string name="robin468">회사 이름은 비워둘 수 없습니다</string>
+	<string name="robin469">현재 바인딩을 결정하세요</string>
+	<string name="robin470">언바인딩을 결정하세요 </string>
+	<string name="robin471">수익을 얻으려면 서두르세요~</string>
+	<string name="robin472">당신은 오늘 인턴을 얻지 못했습니다, 그러니 돈을 벌러가죠! </string>
+	<string name="robin473">피드백을 입력해주세요</string>
+	<string name="robin474">당신의 피드백에 감사드립니다</string>
+	<string name="robin475">당신은 연락처를 입력하지 않았습니다</string>
+	<string name="robin476"><![CDATA[친구를 초대해서 이벤트를 다운로드, 완료하고, <font color=#ecb200>6,000₫</font> 리워드를 받으세요]]></string>
+	<string name="robin477"><![CDATA[친구를 초대해서 <font color=#ecb200>activity</font>를 다운로드, 완료하세요]]></string>
+	<string name="robin478"><![CDATA[立得<font color=#ecb200><b>2</b>元</font> 현금 리워드 (당신의 초대 코드: %s)]]></string>
+	<string name="robin479">초대에 실패했습니다</string>
+	<string name="robin480">프로모션 플랫폼을 선택하세요 </string>
+	<string name="robin481">원본 그래픽: </string>
+	<string name="robin482">원본 비디오: </string>
+	<string name="robin483">양: </string>
+	<string name="robin484">large V 사용자 </string>
+	<string name="robin485">마이크로 블로그 big V 인증되었습니다 </string>
+	<string name="robin486">마이크로 블로그 big V 인증 </string>
+	<string name="robin487">웨이보 big V 인증에 실패하였습니다 </string>
+	<string name="robin488">위챗 public number big V 인증되었습니다 </string>
+	<string name="robin489">위챗 public number big V 인증 </string>
+	<string name="robin490">위챗 public number big V 인증에 실패하였습니다 </string>
+	<string name="robin491">웨이보/위챗 public number big V 인증되었습니다</string>
+	<string name="robin492">웨이보/위챗 public number big V 인증</string>
+	<string name="robin493">웨이보/위챗 public number big V 인증에 실패하였습니다 </string>
+	<string name="robin494">웨이보/위챗 public number big V 이 인증되지 않습니다</string>
+	<string name="robin495">여러개의 그래픽 헤드라인: </string>
+	<string name="robin496">싱글 그래픽: </string>
+	<string name="robin497">이차적인: </string>
+	<string name="robin498">3-N: </string>
+	<string name="robin499">포워드: </string>
+	<string name="robin500">스트레이트 헤어: </string>
+	<string name="robin501">라이브: </string>
+	<string name="robin502">SD 카드가 필요합니다. </string>
+	<string name="robin503">핸드폰 (IMEI) </string>
+	<string name="robin504">읽고 작성하기</string>
+	<string name="robin505">전체: ¥</string>
+	<string name="robin506"> 스크린샷 예제 </string>
+	<string name="robin507">초보자 작업이 완료되고 보상이 발행되었습니다 </string>
+	<string name="robin508"> 2. 7일이 한 사이클이고, 8번째날에 다시 계산을 시작합니다 (만약 당신이 중간에 등록을 중단하면, 다시 계산됩니다)</string>
+	<string name="robin509">등록 성공</string>
+	<string name="robin510">스크린샷 예제 테스크가 완료되었습니다, 1,500₫ 의 리워드가 당신의 지갑에 있습니다! 계속해서 테스크를 완료하면, 더 많은 리워드를 받을 수 있습니다~</string>
+	<string name="robin512">테스크 완료 </string>
+	<string name="robin513">스크린샷 업로드 성공, 3,000₫  의 리워드가 당신의 지갑에 있습니t! 초보자 테스크가 완료되었습니다~</string>
+	<string name="robin514">성공적으로 공유했습니다, 1,500₫  의 리워드가 당신의 지갑에 있습니다! 계속해서 테스크를 완료하면, 더 많은 리워드를 받을 수 있습니다~</string>
+	<string name="robin515">거절 이유: </string>
+	<string name="robin516">사람들 목록 </string>
+	<string name="robin517">개인 분석</string>
+	<string name="robin518"><![CDATA[1. 계속 체크인해서, 보너스를 누적 받으세요, \n 첫날에 등록해 <font color=#2bdbe2>0.10</font>₫를 받고, \n 2일 연속 등록해 <font color=#2bdbe2>0.20</font> 를 받고, \n 3일 연속 등록해 <font color=#2bdbe2>를 받고, \n 4일 연속 등록해 <font color=#2bdbe2>0.30 </font>元를 받고, \\n 5일 연속 등록해 <font color=#2bdbe2>0.35</font> yuan를 받고, \n 6일 연속 등록해<font color=#2bdbe2>0.40</font> yuan를 받고,\ n 7일 연속 등록해<font color=#2bdbe2>0.50</font>를 받으세요. ]]></string>
+	<string name="robin519">메타 리워드가 당신의 지갑에 있습니다! \n 당신은 %d 날 연속으로 등록했습니다, 중단\하지마세요~</string>
+	<string name="put_balance">KOL 토큰 밸런스</string>
+	<string name="put_wallet_list">지갑 흐름 </string>
+	<string name="look_wallet_list">지갑 흐름 보기 </string>
+	<string name="put_question">PUT에대한 FAQ</string>
+	<string name="robin520">양</string>
+	<string name="robin521">연락처를 찾는 중</string>
+	<string name="robin522">핸드폰 연락처를 동기화해 우리를 친구에게 추천하고 당신의 영향력을 키우세요. </string>
+	<string name="robin523">아니요</string>
+	<string name="robin524">네 </string>
+	<string name="robin525"> %s 허가를 받는 것이 불가능해졌습니다</string>
+	<string name="robin559"> Settings - Application Management - %s - Permission Management (open %s permissions)로 가세요 </string>
+	<string name="robin527"> 세팅으로 가기</string>
+	<string name="robin528">스크린샷</string>
+	<string name="robin529">스크린샷 업로드하기</string>
+	<string-array name="put_wallet_questions">
+		<item> 지갑 보안 코드가 어떻게 되나요? </item>
+		<item>PUT 지갑이 생긴 이후에, 시스템이 Mnemonic/string을 할 것입니다. 당신의 string 유지해주세요. 당신이 핸드폰 기기를 바꾸거나 지갑의 비밀번호를 잊어버린 경우, string을 입력해야합니다. 지갑을 복구합니다. </item>
+		<item>PUT가 뭔가요? </item>
+		<item>PUT, Profile Utility Token은 Robin8 도입한 블록체인 기술을 기반으로 한 리워드 시스템입니다. </item>
+		<item> 어떻게 PUT를 얻나요? </item>
+		<item> 사용자는 PUT Robin8d의 에코 시스템에서 각기 다른 활동에 참여함으로써 리워드를 얻을 수 있습니다. 가까운 미래에, 사용자는 또한 PUT를 물리적인 상금으로 상환할 수 있습니다. </item>
+		<item>시범운영 테스트에서 무엇을 얻을 수 있나요? </item>
+		<item> 은 첫 시범 운영에 등록된 사용자입니다, 당신은 당신의 PUT 블록체인 지갑에 먼저 등록할 수 있습니다, 그리고 Robin8은 또한 시범 운영 중에 추가적인 PUT 리워드를 얻을 수 있도록 다른 리워드를 런칭할 계획입니다. </item>
+		<item>PUT의 용도가 무엇인가요? </item>
+		<item> 우리는 당신이 물리적인 상금으로 상환할 수 있도록 준비중입니다, 계속 지켜봐주세요. </item>
+	</string-array>
+</resources>
