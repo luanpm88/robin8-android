@@ -200,7 +200,8 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         AppEventsLogger.activateApp(this);
 
         mCallbackManager = CallbackManager.Factory.create();
-        mBtnFBRoot.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
+        // mBtnFBRoot.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
+        mBtnFBRoot.setReadPermissions(Arrays.asList("public_profile", "email"));
         // Callback registration
         mBtnFBRoot.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
