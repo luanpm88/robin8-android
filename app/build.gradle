@@ -37,8 +37,8 @@ android {
         targetSdkVersion 26
         useLibrary 'org.apache.http.legacy'
         //noinspection HighAppVersionCode
-        versionCode 2019032057
-        versionName "2.5.30"
+        versionCode 2019032060
+        versionName "2.5.31"
         multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "IZNLTEcKP29wbXiZVI8414",
@@ -58,16 +58,16 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'robin8'
-            keyPassword 'robin8'
-            storeFile file('robin8.keystore')
-            storePassword 'robin8'
+            keyAlias 'key1'
+            keyPassword '123456'
+            storeFile file('D:/robin8-android.git/app/ks.jks')
+            storePassword 'aA456321@'
         }
         debug {
-            keyAlias 'robin8'
-            keyPassword 'robin8'
-            storeFile file('robin8.keystore')
-            storePassword 'robin8'
+            keyAlias 'key1'
+            keyPassword '123456'
+            storeFile file('D:/robin8-android.git/app/ks.jks')
+            storePassword 'aA456321@'
         }
     }
 
