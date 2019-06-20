@@ -5,6 +5,7 @@
         <item>BannerEnter</item>
         <item>Ví của tôi</item>
         <item>Ví PUT của tôi</item>
+        <item>Ví PUT của tôi</item>
         <item>Chiến dịch của tôi</item>
         <item>Bộ sưu tập của tôi</item>
         <item>Sản phẩm của tôi</item>
@@ -77,6 +78,7 @@
     <string-array name="mine_list_icons">
         <item>&#xe60b;</item>
         <item>&#xe60b;</item>
+        <item>&#xe601;</item>
         <item>&#xe601;</item>
         <item>&#xe601;</item>
         <item>&#xe601;</item>

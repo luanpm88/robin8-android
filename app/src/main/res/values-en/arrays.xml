@@ -5,6 +5,7 @@
 		<item>BannerEnter</item>
 		<item>My wallet</item>
 		<item>KOL Token Wallet</item>
+		<item>KOL Token Wallet</item>
 		<item>My campaigns</item>
 		<item>My collect</item>
 		<item>My product</item>
@@ -21,6 +22,7 @@
 	<string-array name="mine_list_icons">
 		<item>&#xe60b;</item>
 		<item>&#xe60b;</item>
+		<item>&#xe601;</item>
 		<item>&#xe601;</item>
 		<item>&#xe601;</item>
 		<item>&#xe601;</item>

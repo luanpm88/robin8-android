@@ -2,8 +2,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string-array name="mine_list_title">
-        <item>배너 들어가기</item>
+        <item>BannerEnter</item>
         <item>내 지갑</item>
+        <item>KOL 토큰 지갑</item>
         <item>KOL 토큰 지갑</item>
         <item>내 활동</item>
         <item>내 수집</item>
@@ -21,6 +22,7 @@
     <string-array name="mine_list_icons">
         <item>&#xe60b;</item>
         <item>&#xe60b;</item>
+        <item>&#xe601;</item>
         <item>&#xe601;</item>
         <item>&#xe601;</item>
         <item>&#xe601;</item>

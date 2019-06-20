@@ -2,7 +2,6 @@ package com.robin8.rb.ui.pager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -19,12 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.robin8.rb.R;
-import com.robin8.rb.mine.activity.PutWalletActivity;
-import com.robin8.rb.ui.activity.LoginActivity;
-import com.robin8.rb.ui.activity.WalletActivity;
-import com.robin8.rb.ui.activity.uesr_msg.UserInformationActivity;
-import com.robin8.rb.ui.activity.web.BannerWebActivity;
-import com.robin8.rb.ui.activity.web.PutWebActivity;
 import com.robin8.rb.base.BaseApplication;
 import com.robin8.rb.base.BasePager;
 import com.robin8.rb.base.BaseRecyclerViewActivity;
@@ -33,6 +26,16 @@ import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.IconFontHelper;
 import com.robin8.rb.helper.NotifyManager;
 import com.robin8.rb.helper.StatisticsAgency;
+import com.robin8.rb.mine.activity.PutWalletActivity;
+import com.robin8.rb.okhttp.HttpRequest;
+import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.presenter.BasePresenter;
+import com.robin8.rb.ui.activity.LoginActivity;
+import com.robin8.rb.ui.activity.WalletActivity;
+import com.robin8.rb.ui.activity.uesr_msg.UserInformationActivity;
+import com.robin8.rb.ui.activity.web.BannerWebActivity;
+import com.robin8.rb.ui.activity.web.PutWebActivity;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.robin8.rb.ui.model.LoginBean;
 import com.robin8.rb.ui.model.NotifyMsgEntity;
 import com.robin8.rb.ui.module.create.activity.FragmentsActivity;
@@ -47,33 +50,21 @@ import com.robin8.rb.ui.module.mine.activity.SettingActivity;
 import com.robin8.rb.ui.module.mine.activity.UserSignActivity;
 import com.robin8.rb.ui.module.mine.adapter.UserCheckAdapter;
 import com.robin8.rb.ui.module.mine.model.MineShowModel;
-import com.robin8.rb.ui.module.mine.rongcloud.RongCloudBean;
 import com.robin8.rb.ui.module.social.view.LinearLayoutForListView;
-import com.robin8.rb.okhttp.HttpRequest;
-import com.robin8.rb.okhttp.RequestCallback;
-import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.presenter.BasePresenter;
 import com.robin8.rb.ui.widget.myprogress.RoundCornerProgressBar;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CacheUtils;
-import com.robin8.rb.util.CustomToast;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
 import com.robin8.rb.util.StringUtil;
 import com.robin8.rb.util.UIUtils;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
 import com.tendcloud.appcpa.TalkingDataAppCpa;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-
-import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient;
-import io.rong.imlib.model.CSCustomServiceInfo;
-import io.rong.imlib.model.UserInfo;
 
 /**
  * 我的页面
@@ -86,17 +77,18 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     private static final int MY_BANNER = 1;
     private static final int MY_WALLET = 2;
     private static final int MY_PUT_WALLET = 3;
-    private static final int MY_CAMPAIGN = 4;
-        private static final int MY_COLLECT = 5;
-    private static final int MY_PRODUCT = 6;
-    private static final int MY_CARE = 7;
-        private static final int AD_HOST = 8;
-    private static final int ROBIN_INDIANA = 9;
-    private static final int SIGN = 10;
-    private static final int INVITE_FRIENDS = 11;
-    private static final int INVITE_CODE = 12;
-        private static final int RONG_CLOUD = 13;
-    private static final int HELP_CENTER = 14;
+    private static final int MY_PUT_WALLET_2 = 4;
+    private static final int MY_CAMPAIGN = 5;
+        private static final int MY_COLLECT = 6;
+    private static final int MY_PRODUCT = 7;
+    private static final int MY_CARE = 8;
+        private static final int AD_HOST = 9;
+    private static final int ROBIN_INDIANA = 10;
+    private static final int SIGN = 11;
+    private static final int INVITE_FRIENDS = 12;
+    private static final int INVITE_CODE = 13;
+        private static final int RONG_CLOUD = 14;
+    private static final int HELP_CENTER = 15;
 
     private static final String ROLE_BIG_V = "big_v";
     private static final String ROLE_PUBLIC = "public";
@@ -150,14 +142,15 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
 
         arrayTitle = mActivity.getResources().getStringArray(R.array.mine_list_title);
 //        hindMenu.add(arrayTitle[2]);
-        hindMenu.add(arrayTitle[4]);
+
         hindMenu.add(arrayTitle[5]);
         hindMenu.add(arrayTitle[6]);
         hindMenu.add(arrayTitle[7]);
         hindMenu.add(arrayTitle[8]);
-        hindMenu.add(arrayTitle[11]);
+        hindMenu.add(arrayTitle[9]);
         hindMenu.add(arrayTitle[12]);
         hindMenu.add(arrayTitle[13]);
+        hindMenu.add(arrayTitle[14]);
         String[] arrayId = mActivity.getResources().getStringArray(R.array.mine_list_icons);
         if (mItemList == null) {
             mItemList = new ArrayList<ItemBean>();
@@ -628,6 +621,9 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                 case MY_PUT_WALLET:
                     skipToPutWallet();
                     break;
+                case MY_PUT_WALLET_2:
+                    skipToPutWallet();
+                    break;
                 case MY_CAMPAIGN:
                     skipToCampaign();
                     break;
@@ -826,112 +822,11 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
      */
     private void skipRongCloud() {
         if (isLogined(SPConstants.RONG_CLOUD)) {
-            initGetRongCloud();
+//            initGetRongCloud();
         }
     }
 
-    /**
-     * 获取融云的token
-     */
-    private void initGetRongCloud() {
-        try {
-            mCustomDialogManager.dismiss();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        final LoginBean loginBean = BaseApplication.getInstance().getLoginBean();
-        String id;
-        final String name;
-        final String imgUrl;
-        if (loginBean != null) {
-            if (TextUtils.isEmpty(HelpTools.getLoginInfo(HelpTools.LoginNumber))) {
-                id = CommonConfig.TOURIST_PHONE;
-            } else {
-                id = HelpTools.getLoginInfo(HelpTools.LoginNumber);
-            }
-            if (!TextUtils.isEmpty(loginBean.getKol().getName())) {
-                name = loginBean.getKol().getName();
-            } else {
-                name = "游客";
-            }
-            if (!TextUtils.isEmpty(loginBean.getKol().getAvatar_url())) {
-                imgUrl = loginBean.getKol().getAvatar_url();
-            } else {
-                imgUrl = CommonConfig.APP_IMG_URL;
-            }
-        } else {
-            id = CommonConfig.TOURIST_PHONE;
-            name = "游客";
-            imgUrl = CommonConfig.APP_IMG_URL;
-        }
-        if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.CloudToken))) {
-            BasePresenter base = new BasePresenter();
-            RequestParams requestParams = new RequestParams();
-            requestParams.put("userId", id);
-            requestParams.put("name", name);
-            requestParams.put("portraitUri", imgUrl);
-            base.getDataFromServer(false, HttpRequest.POST, CommonConfig.RONG_CLOUD_URL, requestParams, new RequestCallback() {
 
-                @Override
-                public void onError(Exception e) {
-                    // CustomToast.showShort(mActivity, mActivity.getString(R.string.no_net));
-                    CustomToast.showShort(mActivity, R.string.robin283);
-                }
-
-                @Override
-                public void onResponse(String response) {
-                    final RongCloudBean rongCloudBean = GsonTools.jsonToBean(response, RongCloudBean.class);
-                    if (rongCloudBean.getCode() == 200) {
-                        HelpTools.insertCommonXml(HelpTools.CloudToken, rongCloudBean.getToken());
-                        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-
-                            @Override
-                            public UserInfo getUserInfo(String s) {
-                                UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber), name, Uri.parse(imgUrl));
-                                return userInfo;
-                            }
-                        }, true);
-                        connect(rongCloudBean.getToken());
-                    } else {
-                        HelpTools.insertCommonXml(HelpTools.CloudToken, "");
-                        CustomToast.showShort(mActivity, R.string.robin283);
-                    }
-
-                }
-            });
-        } else {
-            RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-
-                @Override
-                public UserInfo getUserInfo(String s) {
-                    UserInfo userInfo = new UserInfo(HelpTools.getLoginInfo(HelpTools.LoginNumber), name, Uri.parse(imgUrl));
-                    return userInfo;
-                }
-            }, true);
-            connect(HelpTools.getCommonXml(HelpTools.CloudToken));
-        }
-    }
-
-    private void connect(String token) {
-        RongIM.connect(token, new RongIMClient.ConnectCallback() {
-
-            @Override
-            public void onTokenIncorrect() {
-            }
-
-            @Override
-            public void onSuccess(String s) {
-                CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
-                CSCustomServiceInfo csInfo = csBuilder.nickName(mActivity.getString(R.string.app_name)).build();
-                RongIM.getInstance().startCustomerServiceChat(mActivity, CommonConfig.RONG_CLOUD_ID, mActivity.getString(R.string.help_online), csInfo);
-            }
-
-            @Override
-            public void onError(RongIMClient.ErrorCode errorCode) {
-                CustomToast.showShort(mActivity, mActivity.getString(R.string.no_net));
-            }
-        });
-    }
 
     class MineListAdapter extends BaseAdapter {
         @Override
@@ -1164,7 +1059,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
             public void onClick(View view) {
                 mCustomDialogManager.dg.dismiss();
                 if (isTextShow == true) {
-                    initGetRongCloud();
+//                    initGetRongCloud();
                 }
                 postRead();
             }
