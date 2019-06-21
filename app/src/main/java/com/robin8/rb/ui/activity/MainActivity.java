@@ -1,7 +1,6 @@
 package com.robin8.rb.ui.activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -133,13 +132,6 @@ public class MainActivity extends BaseBackHomeActivity {
         initData();
         if (TextUtils.isEmpty(HelpTools.getCommonXml(HelpTools.CloudToken))) {
             initGetRongCloud();
-        }
-        if (TextUtils.isEmpty((HelpTools.getCommonXml(HelpTools.ShadowFirst)))) {
-            showShadowDialog(MainActivity.this, 0);
-        } else {
-            if (!(HelpTools.getCommonXml(HelpTools.ShadowFirst)).equals(getString(R.string.submit))) {
-                showShadowDialog(MainActivity.this, 0);
-            }
         }
         XPermissionUtils.requestPermissions(this, RequestCode.MORE, new String[]{
                         Manifest.permission.ACCESS_COARSE_LOCATION
@@ -523,14 +515,6 @@ public class MainActivity extends BaseBackHomeActivity {
                     onePageSelected(MY);
                     mRBBottomMine.setChecked(true);
                     mPagerList.get(MY).initData();
-                    //我的页面蒙版
-                    if (TextUtils.isEmpty((HelpTools.getCommonXml(HelpTools.ShadowMine)))) {
-                        showShadowDialog(MainActivity.this, 4);
-                    } else {
-                        if (!(HelpTools.getCommonXml(HelpTools.ShadowMine)).equals(getString(R.string.submit))) {
-                            showShadowDialog(MainActivity.this, 4);
-                        }
-                    }
                     break;
             }
             StatisticsAgency.onPageStart(MainActivity.this, mPageName);
@@ -585,64 +569,6 @@ public class MainActivity extends BaseBackHomeActivity {
         }
 
     };
-
-    public void showShadowDialog(final Activity activity, final int page) {
-//        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_shadow_layout, null);
-//        ImageView imgBg = (ImageView) view.findViewById(R.id.img_shadow_mine);
-//        final ImageView imgBgFirst = (ImageView) view.findViewById(R.id.img_shadow_first);
-//        final ImageView imgBgFirstRight = (ImageView) view.findViewById(R.id.img_shadow_first_right);
-//        RelativeLayout llShadow = (RelativeLayout) view.findViewById(R.id.ll_shadow);
-//        LinearLayout llFirstBottom = (LinearLayout) view.findViewById(R.id.ll_first_bottom);
-//        final ImageView imgStartLeft = (ImageView) view.findViewById(R.id.img_shadow_first_start_left);
-//        final ImageView imgStartRight = (ImageView) view.findViewById(R.id.img_shadow_first_start_right);
-//        if (page == 0) {
-//            imgBgFirst.setVisibility(View.VISIBLE);
-//            imgBgFirstRight.setVisibility(View.INVISIBLE);
-//            llFirstBottom.setVisibility(View.VISIBLE);
-//            imgStartLeft.setVisibility(View.VISIBLE);
-//            imgStartRight.setVisibility(View.INVISIBLE);
-//        } else {
-//            imgBg.setVisibility(View.VISIBLE);
-//        }
-//        final CustomDialogManager cdm = new CustomDialogManager(activity, view);
-//        llShadow.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                if (page == 0) {
-//                    HelpTools.insertCommonXml(HelpTools.ShadowFirst, getString(R.string.submit));
-//                    if (imgStartLeft.getVisibility() == View.VISIBLE) {
-//                        imgStartLeft.setVisibility(View.INVISIBLE);
-//                        imgBgFirst.setVisibility(View.INVISIBLE);
-//                        imgBgFirstRight.setVisibility(View.VISIBLE);
-//                        imgStartRight.setVisibility(View.VISIBLE);
-//                    } else {
-//                        cdm.dismiss();
-//                    }
-//                } else {
-//                    HelpTools.insertCommonXml(HelpTools.ShadowMine, getString(R.string.submit));
-//                    cdm.dismiss();
-//                }
-//            }
-//        });
-//
-//        Window win = cdm.dg.getWindow();
-//
-//        WindowManager.LayoutParams lp = win.getAttributes();
-//
-//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-//
-//        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-//
-//        lp.dimAmount = 0.2f;
-//
-//        win.setAttributes(lp);
-//        cdm.dg.setCanceledOnTouchOutside(true);
-//        cdm.dg.getWindow().setGravity(Gravity.CENTER);
-//        cdm.dg.getWindow().setWindowAnimations(R.style.umeng_socialize_dialog_anim_fade);
-//        cdm.showDialog();
-
-    }
 
     private void checkPermissionCamera() {
         XPermissionUtils.requestPermissions(this, RequestCode.CAMERA, new String[]{Manifest.permission.CAMERA}, new XPermissionUtils.OnPermissionListener() {

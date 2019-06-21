@@ -30,7 +30,6 @@ import com.robin8.rb.util.XPermissionUtils;
 
 public class SplashActivity extends Activity {
 
-    private static final String LOCATION_URL = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,6 @@ public class SplashActivity extends Activity {
         XPermissionUtils.requestPermissions(this, RequestCode.MORE,
                 new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, permissionListener);
 //        getContacts();
-        getLocation();
 //        goToNextPage(0);
     }
 
@@ -115,25 +113,6 @@ public class SplashActivity extends Activity {
         });
     }
 
-
-    public void getLocation() {
-        BasePresenter presenter = new BasePresenter();
-        presenter.getDataFromServer(false, HttpRequest.GET, LOCATION_URL, null, new RequestCallback() {
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-
-            @Override
-            public void onResponse(String response) {
-                LocationModel locationModel = GsonTools.jsonToBean(response, LocationModel.class);
-                if (locationModel != null && !TextUtils.isEmpty(locationModel.getCity())) {
-                    CacheUtils.putString(SplashActivity.this, SPConstants.LOCATION_CITY, locationModel.getCity());
-                }
-            }
-        });
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
