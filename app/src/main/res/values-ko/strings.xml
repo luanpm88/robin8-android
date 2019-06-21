@@ -1138,7 +1138,7 @@
 	<string name="robin517">개인 분석</string>
 	<string name="robin518"><![CDATA[1. 계속 체크인해서, 보너스를 누적 받으세요, \n 첫날에 등록해 <font color=#2bdbe2>0.10</font>₫를 받고, \n 2일 연속 등록해 <font color=#2bdbe2>0.20</font> 를 받고, \n 3일 연속 등록해 <font color=#2bdbe2>를 받고, \n 4일 연속 등록해 <font color=#2bdbe2>0.30 </font>元를 받고, \\n 5일 연속 등록해 <font color=#2bdbe2>0.35</font> yuan를 받고, \n 6일 연속 등록해<font color=#2bdbe2>0.40</font> yuan를 받고,\ n 7일 연속 등록해<font color=#2bdbe2>0.50</font>를 받으세요. ]]></string>
 	<string name="robin519">메타 리워드가 당신의 지갑에 있습니다! \n 당신은 %d 날 연속으로 등록했습니다, 중단\하지마세요~</string>
-	<string name="put_balance">KOL 토큰 밸런스</string>
+	<string name="put_balance">PUT 토큰 밸런스</string>
 	<string name="put_wallet_list">지갑 흐름 </string>
 	<string name="look_wallet_list">지갑 흐름 보기 </string>
 	<string name="put_question">PUT에대한 FAQ</string>
