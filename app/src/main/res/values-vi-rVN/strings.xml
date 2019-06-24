@@ -581,6 +581,7 @@
 	<string name="image_index">%1$d/%2$d</string>
 	<!--put金币-->
 	<string name="put_wallet">Ví PUT</string>
+	<string name="put_wallet2">Ví PUT</string>
 	<!--登陆后用户信息等-->
 	<string name="tv_know_you">Hãy cho chúng tôi biết bạn </string>
 	<string name="tv_your_choose">Phù hợp với các loại hoạt động khác nhau cho bạn theo sự lựa chọn của bạn</string>
@@ -1143,6 +1144,7 @@
 	<string name="robin517">phân tích cá nhân</string>
 	<string name="robin519">Phần thưởng meta đã được đặt trong ví của bạn！\nĐăng nhập liên tiếp vào %d ngày，xin cứ tiếp tục～</string>
 	<string name="put_balance">Số dư PUT</string>
+	<string name="put_balance2">Số dư PUT</string>
 	<string name="put_wallet_list">Lịch sử ví</string>
 	<string name="look_wallet_list">Xem lịch sử ví</string>
 	<string name="put_question">Câu hỏi thường gặp về PUT</string>

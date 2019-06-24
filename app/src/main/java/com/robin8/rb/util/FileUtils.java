@@ -10,6 +10,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
+
+import com.robin8.rb.ui.module.mine.model.GlobalCityModel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +23,11 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileUtils {
 
@@ -423,5 +431,39 @@ public class FileUtils {
             path = uri.getPath();
         }
         return path;
+    }
+
+
+    //读取CSV文件
+    public static List<GlobalCityModel> readCSV(String path, Activity activity){
+
+        List<GlobalCityModel> list=new ArrayList<GlobalCityModel>();
+        Scanner scanner;
+        try {
+            scanner=new Scanner(activity.getResources().getAssets().open(path),"UTF-8");
+            scanner.nextLine();//读下一行,把表头越过。不注释的话第一行数据就越过去了
+            int a=0;
+            while (scanner.hasNextLine()) {
+                String sourceString = scanner.nextLine();
+                Log.e("source-->", sourceString);
+                Pattern pattern = Pattern.compile("[^,]*,");
+                Matcher matcher = pattern.matcher(sourceString);
+                String[] lines=new String[8];
+                int i=0;
+                while(matcher.find()) {
+                    String find = matcher.group().replace(",", "");
+                    lines[i]=find.trim();
+                    Log.e("City", "find="+find+",i="+i+",lines="+lines[i]);
+                    i++;
+                }
+                GlobalCityModel bean = new GlobalCityModel(lines[0],lines[1]);
+                list.add(bean);
+                a++;
+                i=0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

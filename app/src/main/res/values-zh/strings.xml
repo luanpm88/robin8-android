@@ -407,6 +407,7 @@
     <string name="image_index">%1$d/%2$d</string>
     <!--put金币-->
     <string name="put_wallet">PUT钱包</string>
+    <string name="put_wallet2">PUT钱包</string>
     <string name="tv_know_you">让我们了解你</string>
     <string name="tv_your_choose">根据你的选择，为你匹配不同种类的活动</string>
     <string name="tv_choose_gender">选择你的性别</string>
@@ -915,6 +916,7 @@
     <string name="robin518"><![CDATA[1.连续签到,获得奖励累加,\n第一天签到获得<font color=#2bdbe2>0.10</font>元,\n连续签到两天获得<font color=#2bdbe2>0.20</font>元,\n连续签到三天获得<font color=#2bdbe2>0.25</font>元,\n连续签到四天获得<font color=#2bdbe2>0.30</font>元,\n连续签到五天获得<font color=#2bdbe2>0.35</font>元,\n连续签到六天获得<font color=#2bdbe2>0.40</font>元,\n连续签到七天获得<font color=#2bdbe2>0.50</font>元。]]></string>
     <string name="robin519">元奖励已放入您的钱包！\n您已连续签到 %d天，不要间断哦～</string>
     <string name="put_balance">PUT余额</string>
+    <string name="put_balance2">PUT余额</string>
     <string name="put_wallet_list">钱包流水</string>
     <string name="look_wallet_list">查看钱包流水</string>
     <string name="put_question">关于PUT的常见问题解答</string>

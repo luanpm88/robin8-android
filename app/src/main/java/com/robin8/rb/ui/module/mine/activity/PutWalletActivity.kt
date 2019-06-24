@@ -11,6 +11,7 @@ import com.robin8.rb.mine.bean.PutWalltInfoBean
 import com.robin8.rb.okhttp.HttpRequest
 import com.robin8.rb.okhttp.RequestCallback
 import com.robin8.rb.presenter.BasePresenter
+import com.robin8.rb.ui.activity.web.PutWebActivity
 import com.robin8.rb.ui.widget.WProgressDialog
 import com.robin8.rb.util.GsonTools
 import com.robin8.rb.util.HelpTools
@@ -20,12 +21,15 @@ import java.lang.Exception
 class PutWalletActivity : BaseActivity() {
     lateinit var persenter:BasePresenter
     lateinit var progressDialog:WProgressDialog
+    var value = 1
     override fun setTitleView() {
-        mTVCenter.text=getString(R.string.put_wallet)
+        value = intent.getIntExtra(PutWebActivity.PUT_TYPE,1)
+        mTVCenter.text=if(value ==1 ){getString(R.string.put_wallet)}else{getString(R.string.put_wallet2)}
     }
 
     override fun initView() {
         var view = LayoutInflater.from(this).inflate(R.layout.activity_put_wallet, mLLContent, true) as View
+        tv_balance_title.text =if(value ==1 ){getString(R.string.put_balance)}else{getString(R.string.put_balance2)}
         layout_question.setOnClickListener { startActivity(Intent(this@PutWalletActivity, PutWalletQuestionActivity::class.java))}
         tv_show_wallet_list.setOnClickListener{startActivity(Intent(this@PutWalletActivity, PutWalletListActivity::class.java))}
         persenter = BasePresenter()

@@ -619,10 +619,10 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     skipToWallet();
                     break;
                 case MY_PUT_WALLET:
-                    skipToPutWallet();
+                    skipToPutWallet(1);
                     break;
                 case MY_PUT_WALLET_2:
-                    skipToPutWallet();
+                    skipToPutWallet(2);
                     break;
                 case MY_CAMPAIGN:
                     skipToCampaign();
@@ -741,11 +741,11 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
     /**
      * put钱包
      */
-    private void skipToPutWallet() {
+    private void skipToPutWallet(int value) {
 
         if (isLogined(SPConstants.MY_PUT_WALLET)) {
             Intent intent = new Intent(mActivity, PutWalletActivity.class);
-            intent.putExtra(PutWebActivity.PUT_TYPE, "1");
+            intent.putExtra(PutWebActivity.PUT_TYPE, value);
             mActivity.startActivity(intent);
         }
     }

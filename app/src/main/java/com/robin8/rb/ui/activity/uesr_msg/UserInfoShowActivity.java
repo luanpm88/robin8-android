@@ -39,9 +39,11 @@ import com.robin8.rb.ui.dialog.CustomDialogManager;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -77,6 +79,7 @@ public class UserInfoShowActivity extends BaseActivity {
         mTVCenter.setText(R.string.robin315);
         mTvSave.setVisibility(View.VISIBLE);
         mTvSave.setOnClickListener(this);
+//        getCitys();
     }
 
     @Override
@@ -391,4 +394,14 @@ public class UserInfoShowActivity extends BaseActivity {
 
     }
 
+
+    private void getCitys(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+               List result =  FileUtils.readCSV("cities.csv",UserInfoShowActivity.this);
+               Log.d("result",result.toString());
+            }
+        }).start();
+    }
 }
