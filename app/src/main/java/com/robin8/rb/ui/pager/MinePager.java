@@ -966,7 +966,7 @@ public class MinePager extends BasePager implements View.OnClickListener, Observ
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_rong_cloud);
                 } else if (item.name.equals(mActivity.getString(R.string.my_collect))) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_my_collect);
-                } else if (item.name.equals(arrayTitle[2])) {
+                } else if (item.name.equals(arrayTitle[2])||item.name.equals(arrayTitle[3])) {
                     IconFontHelper.setTextIconFont(mActivity, holder.mTVItemIcon, R.mipmap.icon_put_wallet);
                 } else {
                     IconFontHelper.setTextIconFont(holder.mTVItemIcon, item.icons);
