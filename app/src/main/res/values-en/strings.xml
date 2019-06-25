@@ -1158,6 +1158,10 @@
 	<string name="robin527">Go to set </string>
 	<string name="robin528">screenshot</string>
 	<string name="robin529">Please upload a screenshot</string>
+	<string name="robin530">国家</string>
+	<string name="robin531">请填写你的国家</string>
+	<string name="robin532">城市</string>
+	<string name="robin533">请填写你的城市</string>
 	<string-array name="put_wallet_questions">
 		<item> About the security code of the wallet? </item>
 		<item>After the PUT wallet is created, the system will prompt for a Mnemonic/string. Please take care to keep your string. In case you change your mobile device or forget your wallet password, you need to enter the string. Recover your wallet. </item>

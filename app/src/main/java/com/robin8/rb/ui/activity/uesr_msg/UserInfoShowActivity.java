@@ -17,15 +17,21 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.hp.hpl.sparta.xpath.Step;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
+import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.ui.dialog.ChoiceGlobalCityDialog;
 import com.robin8.rb.ui.model.BaseBean;
 import com.robin8.rb.ui.model.UserShowBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.ui.module.mine.model.GlobalCityModel;
+import com.robin8.rb.ui.module.mine.model.GlobalCoutryItem;
+import com.robin8.rb.ui.module.mine.model.GlobalCoutryModel;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
@@ -47,6 +53,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 用户个人信息详情
@@ -68,6 +75,10 @@ public class UserInfoShowActivity extends BaseActivity {
     TextView tvBirth;
     @Bind(R.id.edit_job)
     EditText editJob;
+    @Bind((R.id.tv_contry))
+    TextView tv_contry;
+    @Bind((R.id.tv_city))
+    TextView tv_city;
     private WProgressDialog mWProgressDialog;
     private String url;
     private int TYPE_TWO = 0;
@@ -89,13 +100,13 @@ public class UserInfoShowActivity extends BaseActivity {
         Intent intent = getIntent();
         String base = intent.getStringExtra("base");
         initPicker();
-        if(!TextUtils.isEmpty(base)){
+        if (!TextUtils.isEmpty(base)) {
             initData(base);
         }
         layoutPhoto.setOnClickListener(this);
         tvGender.setOnClickListener(this);
         tvBirth.setOnClickListener(this);
-        if (!TextUtils.isEmpty(editNickName.getText().toString())){
+        if (!TextUtils.isEmpty(editNickName.getText().toString())) {
             editNickName.setSelection(editNickName.getText().toString().length());
         }
         setSave();
@@ -107,22 +118,25 @@ public class UserInfoShowActivity extends BaseActivity {
             UserShowBean.KolBean kol = userShowBean.getKol();
             if (kol != null) {
                 avatar_url = kol.getAvatar_url();
-                if (! TextUtils.isEmpty(avatar_url)) {
+                if (!TextUtils.isEmpty(avatar_url)) {
                     BitmapUtil.loadImage(this, avatar_url, civImage);
                 }
-                if (! TextUtils.isEmpty(kol.getName())) {
+                if (!TextUtils.isEmpty(kol.getName())) {
                     editNickName.setText(kol.getName());
                 }
-                if (! TextUtils.isEmpty(kol.getMobile_number())) {
+                if (!TextUtils.isEmpty(kol.getMobile_number())) {
                     tvPhoneNum.setText(kol.getMobile_number());
                 }
-                if (! TextUtils.isEmpty(kol.getEmail())) {
+                if (!TextUtils.isEmpty(kol.getEmail())) {
                     tvEmailNum.setText(String.valueOf(kol.getEmail()));
                 } else {
                     tvEmailNum.setText("");
                 }
+
+                tv_city.setText(kol.getCity_name());
+                tv_contry.setText(kol.getCountry_code());
                 String time = kol.getBirthday();
-                if (! TextUtils.isEmpty(time)) {
+                if (!TextUtils.isEmpty(time)) {
                     if (time.contains("T")) {
                         tvBirth.setText(time.substring(0, time.indexOf("T")));
                     } else {
@@ -141,7 +155,7 @@ public class UserInfoShowActivity extends BaseActivity {
                     tvGender.setTextColor(getResources().getColor(R.color.black_000000));
 
                 }
-                if (! TextUtils.isEmpty(kol.getJob_info())) {
+                if (!TextUtils.isEmpty(kol.getJob_info())) {
                     editJob.setText(kol.getJob_info());
                 }
             }
@@ -195,15 +209,17 @@ public class UserInfoShowActivity extends BaseActivity {
 
         String imageName = null;
         File file = null;
-        if (! TextUtils.isEmpty(mFinalPicturePath)) {
+        if (!TextUtils.isEmpty(mFinalPicturePath)) {
             imageName = mFinalPicturePath.substring(mFinalPicturePath.lastIndexOf("/") + 1);
             file = new File(mFinalPicturePath);
         }
         LinkedHashMap<String, Object> mRequestParams = new LinkedHashMap<>();
-        mRequestParams.put("name",editNickName.getText().toString().trim());
-        mRequestParams.put("birthday",tvBirth.getText().toString());
-        mRequestParams.put("gender",String.valueOf(TYPE_TWO));
-        mRequestParams.put("job_info",editJob.getText().toString());
+        mRequestParams.put("name", editNickName.getText().toString().trim());
+        mRequestParams.put("birthday", tvBirth.getText().toString());
+        mRequestParams.put("gender", String.valueOf(TYPE_TWO));
+        mRequestParams.put("job_info", editJob.getText().toString());
+        mRequestParams.put("country_code", conutryCode);
+        mRequestParams.put("city_name", cityname);
 
         HttpRequest.getInstance().post(true, HelpTools.getUrl(CommonConfig.UPDATE_BASE_INFO_URL), "avatar", imageName, file, mRequestParams, new RequestCallback() {
 
@@ -219,7 +235,7 @@ public class UserInfoShowActivity extends BaseActivity {
                 if (mWProgressDialog != null) {
                     mWProgressDialog.dismiss();
                 }
-                if (! TextUtils.isEmpty(mFinalPicturePath)) {
+                if (!TextUtils.isEmpty(mFinalPicturePath)) {
                     BitmapUtil.deleteBm(mFinalPicturePath);
                 }
                 LogUtil.LogShitou("提交基本信息", "==>" + response);
@@ -326,10 +342,10 @@ public class UserInfoShowActivity extends BaseActivity {
 
     private boolean checkInfoCompelete(boolean show) {
 
-        if (TextUtils.isEmpty(mFinalPicturePath)&&TextUtils.isEmpty(avatar_url)) {
-                if (show) {
-                    CustomToast.showShort(this, getString(R.string.please_write_pic));
-                }
+        if (TextUtils.isEmpty(mFinalPicturePath) && TextUtils.isEmpty(avatar_url)) {
+            if (show) {
+                CustomToast.showShort(this, getString(R.string.please_write_pic));
+            }
             return false;
         }
 
@@ -394,14 +410,83 @@ public class UserInfoShowActivity extends BaseActivity {
 
     }
 
+    @OnClick({R.id.tv_city, R.id.tv_contry})
+    public void choiceCity(TextView item) {
+        switch (item.getId()) {
+            case R.id.tv_city:
+                if (conutryCode.isEmpty()) {
+                    return;
+                }
+                getCitys();
+                break;
+            case R.id.tv_contry:
+                if (coutryDialog == null) {
+                    getContry();
+                } else {
+                    coutryDialog.show();
+                }
+                break;
+        }
+    }
 
-    private void getCitys(){
-        new Thread(new Runnable() {
+    private String conutryCode = "";
+    private String cityname = "";
+    private ChoiceGlobalCityDialog coutryDialog;
+
+    private void getContry() {
+        HttpRequest.getInstance().get(false, HelpTools.getUrl(CommonConfig.COUNTRY_LIST), new RequestCallback() {
             @Override
-            public void run() {
-               List result =  FileUtils.readCSV("cities.csv",UserInfoShowActivity.this);
-               Log.d("result",result.toString());
+            public void onError(Exception e) {
+
             }
-        }).start();
+
+            @Override
+            public void onResponse(String response) {
+                final GlobalCoutryModel globalCoutryModel = GsonTools.jsonToBean(response, GlobalCoutryModel.class);
+                if (globalCoutryModel != null && globalCoutryModel.getItems().size() > 0) {
+                    List<String> showItems = new ArrayList<>();
+                    for (GlobalCoutryItem item : globalCoutryModel.getItems()) {
+                        showItems.add(item.getName());
+                    }
+                    coutryDialog = new ChoiceGlobalCityDialog(UserInfoShowActivity.this, showItems, new ChoiceGlobalCityDialog.OnCheckCityListener() {
+                        @Override
+                        public void onCheck(int item) {
+                            conutryCode = globalCoutryModel.getItems().get(item).getCode();
+                            tv_contry.setText(globalCoutryModel.getItems().get(item).getName());
+                            tv_city.setText("");
+                            cityname = "";
+                        }
+                    });
+                    coutryDialog.show();
+                }
+
+            }
+        });
+    }
+
+    private void getCitys() {
+        RequestParams params = new RequestParams();
+        params.put("country_code", conutryCode);
+        HttpRequest.getInstance().get(true, HelpTools.getUrl(CommonConfig.CITY_LIST), params, new RequestCallback() {
+            @Override
+            public void onError(Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                final GlobalCityModel globalCoutryModel = GsonTools.jsonToBean(response, GlobalCityModel.class);
+                if (globalCoutryModel != null && globalCoutryModel.getItems().size() > 0) {
+                    new ChoiceGlobalCityDialog(UserInfoShowActivity.this, globalCoutryModel.getItems(), new ChoiceGlobalCityDialog.OnCheckCityListener() {
+                        @Override
+                        public void onCheck(int item) {
+                            cityname = globalCoutryModel.getItems().get(item);
+                            tv_city.setText(cityname);
+                        }
+                    }).show();
+                }
+
+            }
+        });
     }
 }

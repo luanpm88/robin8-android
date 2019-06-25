@@ -65,6 +65,24 @@ public class UserShowBean extends BaseBean {
         private CreatorBean creator;
         private List<CirclesBean> circles;
         private List<SocialAccountsBean> social_accounts;
+        private String city_name;
+        private String country_code;
+
+        public String getCity_name() {
+            return city_name;
+        }
+
+        public void setCity_name(String city_name) {
+            this.city_name = city_name;
+        }
+
+        public String getCountry_code() {
+            return country_code;
+        }
+
+        public void setCountry_code(String country_code) {
+            this.country_code = country_code;
+        }
 
         public int getId() {
             return id;

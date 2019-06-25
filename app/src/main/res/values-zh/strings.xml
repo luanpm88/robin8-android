@@ -930,7 +930,11 @@
 	<string name="robin527">去设置</string>
 	<string name="robin528">截图</string>
 	<string name="robin529">后请上传截图</string>
-	<string-array name="put_wallet_questions">
+	<string name="robin530">国家</string>
+    <string name="robin531">请填写你的国家</string>
+    <string name="robin532">城市</string>
+    <string name="robin533">请填写你的城市</string>
+    <string-array name="put_wallet_questions">
         <item>关于钱包的安全码？</item>
         <item>PUT钱包创建好以后系统会提示一个 Mnemonic/字串，请您万分小心好好保管您的字串，万一您更换移动设备或者是忘记了您的钱包密码，您需要通过输入字串去恢复您的钱包。</item>
         <item>什么是PUT？</item>

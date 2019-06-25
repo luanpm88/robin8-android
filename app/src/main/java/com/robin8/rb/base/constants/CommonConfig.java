@@ -204,4 +204,9 @@ public class CommonConfig {
     public static final String PUT_WALLET_LIST = "api/v2_0/e_wallets/unpaid_list";//put钱包流水
 
 
+    public static final String COUNTRY_LIST = "brand_api/v2/kols/country_list";//城市列表
+    public static final String CITY_LIST = "brand_api/v2/kols/city_list";
+
+
+
 }

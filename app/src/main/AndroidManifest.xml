@@ -751,6 +751,8 @@
         <activity android:name=".mine.activity.PutWalletListActivity" android:screenOrientation="portrait"/>
         <activity android:name=".mine.activity.PutWalletActivity" android:screenOrientation="portrait"/>
         <activity android:name=".mine.activity.PutWalletQuestionActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.module.mine.activity.GlobalCityActivity"
+            android:screenOrientation="portrait"/>
     
         <provider android:authorities="com.facebook.app.FacebookContentProvider420480135074551"
             android:name="com.facebook.FacebookContentProvider"
