@@ -37,8 +37,8 @@ android {
         targetSdkVersion 26
         useLibrary 'org.apache.http.legacy'
         //noinspection HighAppVersionCode
-        versionCode 2019032060
-        versionName "2.5.31"
+        versionCode 2019032062
+        versionName "2.5.32"
         multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "IZNLTEcKP29wbXiZVI8414",
