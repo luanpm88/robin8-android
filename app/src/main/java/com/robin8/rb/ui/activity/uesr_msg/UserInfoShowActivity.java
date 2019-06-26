@@ -132,7 +132,8 @@ public class UserInfoShowActivity extends BaseActivity {
                 } else {
                     tvEmailNum.setText("");
                 }
-
+                conutryCode = kol.getCountry_code();
+                cityname = kol.getCity_name();
                 tv_city.setText(kol.getCity_name());
                 tv_contry.setText(kol.getCountry_name());
                 String time = kol.getBirthday();
