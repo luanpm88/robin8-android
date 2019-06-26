@@ -22,7 +22,7 @@
 			android:paddingLeft="@dimen/pickerview_topbar_padding"
 			android:text="@string/pickerview_cancel"
 			android:textColor="@drawable/selector_pickerview_btn"
-			android:textSize="@dimen/pickerview_topbar_btn_textsize"/>
+			android:textSize="18sp"/>
 		
 		<Button
 			android:id="@id/btnSubmit"
@@ -34,7 +34,7 @@
 			android:paddingRight="@dimen/pickerview_topbar_padding"
 			android:text="@string/pickerview_submit"
 			android:textColor="@drawable/selector_pickerview_btn"
-			android:textSize="@dimen/pickerview_topbar_btn_textsize"/>
+			android:textSize="18sp"/>
 	
 	</RelativeLayout>
 	<com.contrarywind.view.WheelView

@@ -1154,10 +1154,10 @@
 	<string name="robin527"> 세팅으로 가기</string>
 	<string name="robin528">스크린샷</string>
 	<string name="robin529">스크린샷 업로드하기</string>
-	<string name="robin530">国家</string>
-	<string name="robin531">请填写你的国家</string>
-	<string name="robin532">城市</string>
-	<string name="robin533">请填写你的城市</string>
+	<string name="robin530">Residential country</string>
+	<string name="robin531">Please Choose Residential country</string>
+	<string name="robin532">Residential city</string>
+	<string name="robin533">Please Choose Residential city</string>
 	<string-array name="put_wallet_questions">
 		<item> 지갑 보안 코드가 어떻게 되나요? </item>
 		<item>PUT 지갑이 생긴 이후에, 시스템이 Mnemonic/string을 할 것입니다. 당신의 string 유지해주세요. 당신이 핸드폰 기기를 바꾸거나 지갑의 비밀번호를 잊어버린 경우, string을 입력해야합니다. 지갑을 복구합니다. </item>

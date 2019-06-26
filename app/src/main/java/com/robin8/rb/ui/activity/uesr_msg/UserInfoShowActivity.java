@@ -134,7 +134,7 @@ public class UserInfoShowActivity extends BaseActivity {
                 }
 
                 tv_city.setText(kol.getCity_name());
-                tv_contry.setText(kol.getCountry_code());
+                tv_contry.setText(kol.getCountry_name());
                 String time = kol.getBirthday();
                 if (!TextUtils.isEmpty(time)) {
                     if (time.contains("T")) {
