@@ -243,6 +243,7 @@ public class UserInfoShowActivity extends BaseActivity {
                 BaseBean baseBean = GsonTools.jsonToBean(response, BaseBean.class);
                 if (baseBean.getError() == 0) {
                     Intent intent = new Intent(UserInfoShowActivity.this, UserInformationActivity.class);
+                    NotifyManager.getNotifyManager().notifyChange(NotifyManager.TYPE_REFRESH_PROFILE);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
