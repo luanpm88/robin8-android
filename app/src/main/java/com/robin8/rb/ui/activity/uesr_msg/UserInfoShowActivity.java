@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.constants.CommonConfig;
@@ -115,7 +117,7 @@ public class UserInfoShowActivity extends BaseActivity {
             if (kol != null) {
                 avatar_url = kol.getAvatar_url();
                 if (!TextUtils.isEmpty(avatar_url)) {
-                    BitmapUtil.loadImage(this, avatar_url, civImage);
+                    BitmapUtil.loadImage(getApplicationContext(), avatar_url, civImage);
                 }
                 if (!TextUtils.isEmpty(kol.getName())) {
                     editNickName.setText(kol.getName());
@@ -257,15 +259,8 @@ public class UserInfoShowActivity extends BaseActivity {
                     BitmapUtil.cropImageUri(mImageUri, 500, 500, SPConstants.RESULT_CROP_CODE, 1, 1, this);
                     break;
                 case SPConstants.RESULT_CROP_CODE:
-//                    mBitmap = BitmapUtil.decodeUriAsBitmap(mImageUri, this);
-//                    try {
-//                        mFinalPicturePath = FileUtils.saveBitmapToSD(mBitmap, "temp" + SystemClock.currentThreadTimeMillis());
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
                     mFinalPicturePath = Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg";
-                    BitmapUtil.loadImage(this, mFinalPicturePath, civImage);
-//                    civImage.setImageBitmap(mBitmap);
+                    Glide.with(this).load(mFinalPicturePath).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).centerCrop().into(civImage);
                     break;
             }
         }
