@@ -1,9 +1,8 @@
 package com.robin8.rb.ui.activity.uesr_msg;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.SystemClock;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,33 +16,30 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.hp.hpl.sparta.xpath.Step;
 import com.robin8.rb.R;
 import com.robin8.rb.base.BaseActivity;
 import com.robin8.rb.base.constants.CommonConfig;
 import com.robin8.rb.base.constants.SPConstants;
 import com.robin8.rb.helper.NotifyManager;
-import com.robin8.rb.okhttp.RequestParams;
-import com.robin8.rb.ui.dialog.ChoiceGlobalCityDialog;
-import com.robin8.rb.ui.model.BaseBean;
-import com.robin8.rb.ui.model.UserShowBean;
 import com.robin8.rb.okhttp.HttpRequest;
 import com.robin8.rb.okhttp.RequestCallback;
+import com.robin8.rb.okhttp.RequestParams;
+import com.robin8.rb.ui.dialog.ChoiceGlobalCityDialog;
+import com.robin8.rb.ui.dialog.CustomDialogManager;
+import com.robin8.rb.ui.model.BaseBean;
+import com.robin8.rb.ui.model.UserShowBean;
 import com.robin8.rb.ui.module.mine.model.GlobalCityModel;
 import com.robin8.rb.ui.module.mine.model.GlobalCoutryItem;
 import com.robin8.rb.ui.module.mine.model.GlobalCoutryModel;
+import com.robin8.rb.ui.widget.CircleImageView;
 import com.robin8.rb.ui.widget.WProgressDialog;
 import com.robin8.rb.util.BitmapUtil;
 import com.robin8.rb.util.CustomToast;
-import com.robin8.rb.util.FileUtils;
 import com.robin8.rb.util.GsonTools;
 import com.robin8.rb.util.HelpTools;
 import com.robin8.rb.util.LogUtil;
-import com.robin8.rb.ui.widget.CircleImageView;
-import com.robin8.rb.ui.dialog.CustomDialogManager;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -82,7 +78,7 @@ public class UserInfoShowActivity extends BaseActivity {
     private WProgressDialog mWProgressDialog;
     private String url;
     private int TYPE_TWO = 0;
-    private Bitmap mBitmap;
+//    private Bitmap mBitmap;
     private String avatar_url;
 
     @Override
@@ -261,13 +257,15 @@ public class UserInfoShowActivity extends BaseActivity {
                     BitmapUtil.cropImageUri(mImageUri, 500, 500, SPConstants.RESULT_CROP_CODE, 1, 1, this);
                     break;
                 case SPConstants.RESULT_CROP_CODE:
-                    mBitmap = BitmapUtil.decodeUriAsBitmap(mImageUri, this);
-                    try {
-                        mFinalPicturePath = FileUtils.saveBitmapToSD(mBitmap, "temp" + SystemClock.currentThreadTimeMillis());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    civImage.setImageBitmap(mBitmap);
+//                    mBitmap = BitmapUtil.decodeUriAsBitmap(mImageUri, this);
+//                    try {
+//                        mFinalPicturePath = FileUtils.saveBitmapToSD(mBitmap, "temp" + SystemClock.currentThreadTimeMillis());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+                    mFinalPicturePath = Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg";
+                    BitmapUtil.loadImage(this, mFinalPicturePath, civImage);
+//                    civImage.setImageBitmap(mBitmap);
                     break;
             }
         }
@@ -394,10 +392,10 @@ public class UserInfoShowActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        if (mBitmap != null) {
-            mBitmap.recycle();
-            mBitmap = null;
-        }
+//        if (mBitmap != null) {
+//            mBitmap.recycle();
+//            mBitmap = null;
+//        }
         NotifyManager.getNotifyManager().deleteObserver(this);
         super.onDestroy();
     }
