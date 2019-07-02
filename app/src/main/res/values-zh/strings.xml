@@ -934,6 +934,10 @@
     <string name="robin531">请填写居住国家</string>
     <string name="robin532">居住城市</string>
     <string name="robin533">请填写居住城市</string>
+	<string name="robin534">刚刚</string>
+    <string name="robin535">分钟前</string>
+    <string name="robin536">小时前</string>
+    <string name="robin537">天前</string>
     <string-array name="put_wallet_questions">
         <item>关于钱包的安全码？</item>
         <item>PUT钱包创建好以后系统会提示一个 Mnemonic/字串，请您万分小心好好保管您的字串，万一您更换移动设备或者是忘记了您的钱包密码，您需要通过输入字串去恢复您的钱包。</item>

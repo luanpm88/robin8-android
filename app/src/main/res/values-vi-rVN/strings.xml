@@ -1162,6 +1162,10 @@
 	<string name="robin531">Chọn quốc gia</string>
 	<string name="robin532">Tỉnh/thành</string>
 	<string name="robin533">Chọn tỉnh/thành</string>
+	<string name="robin534">刚刚</string>
+	<string name="robin535">分钟前</string>
+	<string name="robin536">小时前</string>
+	<string name="robin537">天前</string>
 	<string-array name="put_wallet_questions">
 		<item> Giới thiệu về mã bảo mật của ví? </item>
 		<item>Sau khi ví PUT được tạo, hệ thống sẽ nhắc về Mnemonic / chuỗi. Hãy cẩn thận để giữ chuỗi của bạn. Trong trường hợp bạn thay đổi thiết bị di động hoặc quên mật khẩu ví, bạn cần nhập chuỗi. Lấy lại ví của bạn.</item>

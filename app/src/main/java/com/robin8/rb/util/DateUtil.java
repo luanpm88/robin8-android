@@ -1,7 +1,10 @@
 package com.robin8.rb.util;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.text.TextUtils;
+
+import com.robin8.rb.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -255,19 +258,19 @@ public class DateUtil {
         return time;
     }
 
-    public static String getCountdown(String timeU) {
+    public static String getCountdown(Context context,String timeU) {
         String timeCountdown = null;
         long millionSeconds = getTimeLong(timeU);
         long currentTimeMillis = System.currentTimeMillis();
         int time = (int) ((currentTimeMillis - millionSeconds) / 60000);
         if (time < 1) {
-            timeCountdown = "刚刚";
+            timeCountdown = context.getString(R.string.robin534);
         } else if (time < 60) {
-            timeCountdown = time + "分钟前";
+            timeCountdown = time + context.getString(R.string.robin535);
         } else if (time < 60 * 24) {
-            timeCountdown = String.valueOf(time / 60) + "小时前";
+            timeCountdown = String.valueOf(time / 60) + context.getString(R.string.robin536);
         } else if (time < 60 * 24 * 6) {
-            timeCountdown = String.valueOf(time / (60 * 24)) + "天前";
+            timeCountdown = String.valueOf(time / (60 * 24)) + context.getString(R.string.robin537);
         } else {
             timeCountdown = getFormatTime(millionSeconds, "yyyy-MM-dd");
         }

@@ -74,7 +74,7 @@ public class MessageAdapter extends BaseRecyclerAdapter {
         holder.position = position;
         holder.nameTv.setText(MessagesBean.getName());
         holder.contentTv.setText(MessagesBean.getTitle());
-        holder.timeTv.setText(DateUtil.getCountdown(MessagesBean.getCreated_at()));
+        holder.timeTv.setText(DateUtil.getCountdown(holder.timeTv.getContext(),MessagesBean.getCreated_at()));
         if (MessagesBean.isIs_read()) {
             holder.dotIv.setVisibility(View.INVISIBLE);
         } else {

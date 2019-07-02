@@ -1158,6 +1158,10 @@
 	<string name="robin531">거주 국가를 선택하십시오.</string>
 	<string name="robin532">거주 도시</string>
 	<string name="robin533">거주 도시 선택</string>
+	<string name="robin534">刚刚</string>
+	<string name="robin535">分钟前</string>
+	<string name="robin536">小时前</string>
+	<string name="robin537">天前</string>
 	<string-array name="put_wallet_questions">
 		<item> 지갑 보안 코드가 어떻게 되나요? </item>
 		<item>PUT 지갑이 생긴 이후에, 시스템이 Mnemonic/string을 할 것입니다. 당신의 string 유지해주세요. 당신이 핸드폰 기기를 바꾸거나 지갑의 비밀번호를 잊어버린 경우, string을 입력해야합니다. 지갑을 복구합니다. </item>
