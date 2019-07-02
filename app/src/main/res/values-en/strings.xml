@@ -1162,10 +1162,10 @@
 	<string name="robin531">Please Choose Residential country</string>
 	<string name="robin532">Residential city</string>
 	<string name="robin533">Please Choose Residential city</string>
-	<string name="robin534">刚刚</string>
-	<string name="robin535">分钟前</string>
-	<string name="robin536">小时前</string>
-	<string name="robin537">天前</string>
+	<string name="robin534">now</string>
+	<string name="robin535"> minute(s) ago</string>
+	<string name="robin536"> hour(s) ago</string>
+	<string name="robin537"> day(s) ago</string>
 	<string-array name="put_wallet_questions">
 		<item> About the security code of the wallet? </item>
 		<item>After the PUT wallet is created, the system will prompt for a Mnemonic/string. Please take care to keep your string. In case you change your mobile device or forget your wallet password, you need to enter the string. Recover your wallet. </item>
